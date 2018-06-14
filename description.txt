@@ -1,0 +1,25 @@
+Reduced Grinding
+
+This mod isn't supposed to make the game too easy, but makes it so you don't have to spend huge amounts of time farming for loot, for example: AFK farms to get rare item like Biome Keys. Everything is configurable, so you can adjust to your liking. This description breifly explains how it does this, for more info see the link below. How this mod does this:
+
+New War Potion which greatly increase monster spawn rates. If you can handle the flood of monsters coming at you, then you'll be able to get rare items from them faster. The recipe calls for Vile/Vicious Mushroom and/or their powder (depending on the configuration file).
+
+New Chlorophyte Accelerator, which allows you to turn Mud in to Chlorophyte Ore after defeating the Golem (earlier or never depending on your configurations).
+
+New time potion which allows you to skip to the start of night and clear the Enchanted Sundial cooldown.
+
+Added New Recipes.
+
+Increased drop rates for 165+ different loot items (some rates aren't vanilla).
+
+Increased Biome Key drop rate depending on amount of Mechanicle Bosses defeated.
+
+Increased rates of some Grab Bag, Fishing, Shop, Traveling Merchant, Quest, and Extractinator items (some rates aren't vanilla).
+
+Crates catches may upgrade to a better crate depending on the fishing power you have. They can also be downgraded through crafting at a Crystal Ball.
+
+New players start with 3 Mining Potions. There's also configurations for starting with configured amounts of other items.
+
+Keep in mind, that the drop rate increases in configuration file are additional to the drops you get in vanilla (for example: if an items vanilla rate = 1% and mod rate = 9%, then the rate is 10%).
+
+Change Log and Credits on link below.

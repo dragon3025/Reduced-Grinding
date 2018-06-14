@@ -1,0 +1,9 @@
+author = Dragon3025
+version = 4.28
+displayName = Reduced Grinding
+homepage = http://forums.terraria.org/index.php?threads/reduced-grinding.51082/
+hideCode = false
+hideResources = false
+includeSource = true
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+includePDB = true
