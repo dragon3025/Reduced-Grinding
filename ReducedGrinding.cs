@@ -2526,6 +2526,30 @@ namespace ReducedGrinding
 								}
 							}
 						}
+						if (npc.type == 16 || npc.type == 58 || npc.type == 167 || npc.type == 197 || npc.type == 185 || (npc.type >= 494 && npc.type <= 506)) //Salamanders, Giant Shellys, Crawdads, Mother Slimes, Piranhas, Snow Flinxes, Undead Vikings, and Armored Vikings.
+						{
+							if (Config.LootCompassIncrease > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootCompassIncrease*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Compass, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 49 || npc.type == 93 || npc.type == 51 || npc.type == 150 || (npc.type >= 494 && npc.type <= 506)) //Cave Bats, Giant Bats, Jungle Bats, Ice Bats, Salamanders, Giant Shellys, and Crawdads.
+						{
+							if (Config.LootDepthMeterIncrease > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootDepthMeterIncrease*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DepthMeter, 1, false, -1, false, false);
+								}
+							}
+						}
+						
+						
+						
+						
 						
 						//Modded Loot
 						

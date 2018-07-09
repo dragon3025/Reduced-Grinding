@@ -8,6 +8,8 @@ namespace ReducedGrinding
 {
     public static class Config
     {
+		static string filename = "Reduced Grinding v4.31.json";
+		
         public static float BagBoneRattleIncrease = 0.2f;
         public static float BagFishronWingsIncrease = 0.1f;
         public static float BagEatersBoneIncrease = 0.2f;
@@ -257,6 +259,8 @@ namespace ReducedGrinding
 		public static float IceSlimeAndSpikedIceSlimeLootFishItem = 0.02f;
 		public static float TombCrawlerAndDuneSplicerLootPyramidChestItem = 0.1428f;
 		public static float HellBiomeModdedShadowBoxLoot = 0.02f;
+		public static float LootCompassIncrease = 0.0f;
+		public static float LootDepthMeterIncrease = 0.0f;
 		
 		public static bool SlimeStaffIncreaseToSurfaceSlimes = false;
 		public static bool SlimeStaffIncreaseToUndergroundSlimes = false;
@@ -503,7 +507,7 @@ namespace ReducedGrinding
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		
-        static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", "Reduced Grinding v4.28.json");
+        static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", filename);
 
         static Preferences Configuration = new Preferences(ConfigPath);
 
@@ -771,6 +775,8 @@ namespace ReducedGrinding
 				Configuration.Get("IceSlimeAndSpikedIceSlimeLootFishItem", ref IceSlimeAndSpikedIceSlimeLootFishItem);
 				Configuration.Get("TombCrawlerAndDuneSplicerLootPyramidChestItem", ref TombCrawlerAndDuneSplicerLootPyramidChestItem);
 				Configuration.Get("HellBiomeModdedShadowBoxLoot", ref HellBiomeModdedShadowBoxLoot);
+				Configuration.Get("LootCompassIncrease", ref LootCompassIncrease);
+				Configuration.Get("LootDepthMeterIncrease", ref LootDepthMeterIncrease);
 			
 				Configuration.Get("SlimeStaffIncreaseToSurfaceSlimes", ref SlimeStaffIncreaseToSurfaceSlimes);
 				Configuration.Get("SlimeStaffIncreaseToUndergroundSlimes", ref SlimeStaffIncreaseToUndergroundSlimes);
@@ -1278,6 +1284,8 @@ namespace ReducedGrinding
 			Configuration.Put("IceSlimeAndSpikedIceSlimeLootFishItem", IceSlimeAndSpikedIceSlimeLootFishItem);
 			Configuration.Put("TombCrawlerAndDuneSplicerLootPyramidChestItem", TombCrawlerAndDuneSplicerLootPyramidChestItem);
 			Configuration.Put("HellBiomeModdedShadowBoxLoot", HellBiomeModdedShadowBoxLoot);
+			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
+			Configuration.Put("LootDepthMeterIncrease", LootDepthMeterIncrease);
 		
 			Configuration.Put("SlimeStaffIncreaseToSurfaceSlimes", SlimeStaffIncreaseToSurfaceSlimes);
 			Configuration.Put("SlimeStaffIncreaseToUndergroundSlimes", SlimeStaffIncreaseToUndergroundSlimes);
