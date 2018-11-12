@@ -149,6 +149,16 @@ namespace ReducedGrinding
 						}
 					}
 				}
+				if (arg == 3206) //Sky Crate
+				{
+					if (Config.SkyCrateSkyMill > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.SkyCrateSkyMill*10000)
+						{
+							player.QuickSpawnItem(2197, 1); //Sky Mill
+						}
+					}
+				}
 				if (arg == ItemID.WoodenCrate || arg == ItemID.IronCrate || arg == ItemID.GoldenCrate)
 				{
 					if (Config.WoodenIronAndGoldCrateLivingLoom > 0)

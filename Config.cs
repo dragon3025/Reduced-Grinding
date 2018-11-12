@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.31.json";
+		static string filename = "Reduced Grinding v4.32.json";
 		
         public static float BagBoneRattleIncrease = 0.2f;
         public static float BagFishronWingsIncrease = 0.1f;
@@ -29,6 +29,7 @@ namespace ReducedGrinding
 		public static float WoodenIronAndGoldCrateLivingWoodWand = 0.10f;
 		public static float WoodenIronAndGoldCrateWaterWalkingBoots = 0.10f;
 		public static float WoodenIronAndGoldCrateWaterFlippers = 0.10f;
+		public static float SkyCrateSkyMill = 0.25f;
 		public static float PresentDogWhistle = 0.00f;
 		public static float PresentToolbox  = 0.00f;
 		public static float PresentHandWarmer = 0.00f;
@@ -429,13 +430,16 @@ namespace ReducedGrinding
 		public static bool UseSandstormPotionRecipe = true;
 		public static int SandstormPotionBlinkrootCost = 1;
 		public static int SandstormPotionSandBlockCost = 1;
+		public static bool UseAnglerPotionRecipe = true;
+		public static int AnglerPotionSpecularFishCost = 1;
+		public static int AnglerPotionMoonglowCost = 1;
 		
 		public static float BattlePotionSpawnrateMultiplier = 1f;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
 		public static bool UseWarPotionRecipe = true;
 		public static float WarPotionSpawnrateMultiplier = 10f;
 		public static float WarPotionMaxSpawnsMultiplier = 10f;
-		public static int WarPotionPowderCost = 7;
+		public static int WarPotionPowderCost = 5;
 		public static int WarPotionDurationInFrames = 25200;
 		
 		public static int NewCharacterMiningPotions = 3;
@@ -545,6 +549,7 @@ namespace ReducedGrinding
 				Configuration.Get("WoodenIronAndGoldCrateLivingWoodWand", ref WoodenIronAndGoldCrateLivingWoodWand);
 				Configuration.Get("WoodenIronAndGoldCrateWaterWalkingBoots", ref WoodenIronAndGoldCrateWaterWalkingBoots);
 				Configuration.Get("WoodenIronAndGoldCrateWaterFlippers", ref WoodenIronAndGoldCrateWaterFlippers);
+				Configuration.Get("SkyCrateSkyMill", ref SkyCrateSkyMill);
 				Configuration.Get("PresentDogWhistle", ref PresentDogWhistle);
 				Configuration.Get("PresentToolbox ", ref PresentToolbox);
 				Configuration.Get("PresentHandWarmer", ref PresentHandWarmer);
@@ -944,6 +949,9 @@ namespace ReducedGrinding
 				Configuration.Get("UseSandstormPotionRecipe", ref UseSandstormPotionRecipe);
 				Configuration.Get("SandstormPotionBlinkrootCost", ref SandstormPotionBlinkrootCost);
 				Configuration.Get("SandstormPotionSandBlockCost", ref SandstormPotionSandBlockCost);
+				Configuration.Get("UseAnglerPotionRecipe", ref UseAnglerPotionRecipe);
+				Configuration.Get("AnglerPotionSpecularFishCost", ref AnglerPotionSpecularFishCost);
+				Configuration.Get("AnglerPotionMoonglowCost", ref AnglerPotionMoonglowCost);
 				
 				Configuration.Get("BattlePotionSpawnrateMultiplier", ref BattlePotionSpawnrateMultiplier);
 				Configuration.Get("BattlePotionMaxSpawnsMultiplier", ref BattlePotionMaxSpawnsMultiplier);
@@ -1054,6 +1062,7 @@ namespace ReducedGrinding
 			Configuration.Put("WoodenIronAndGoldCrateLivingWoodWand", WoodenIronAndGoldCrateLivingWoodWand);
 			Configuration.Put("WoodenIronAndGoldCrateWaterWalkingBoots", WoodenIronAndGoldCrateWaterWalkingBoots);
 			Configuration.Put("WoodenIronAndGoldCrateWaterFlippers", WoodenIronAndGoldCrateWaterFlippers);
+			Configuration.Put("SkyCrateSkyMill", SkyCrateSkyMill);
 			Configuration.Put("PresentDogWhistle", PresentDogWhistle);
 			Configuration.Put("PresentToolbox ", PresentToolbox);
 			Configuration.Put("PresentHandWarmer", PresentHandWarmer);
@@ -1453,6 +1462,9 @@ namespace ReducedGrinding
 			Configuration.Put("UseSandstormPotionRecipe", UseSandstormPotionRecipe);
 			Configuration.Put("SandstormPotionBlinkrootCost", SandstormPotionBlinkrootCost);
 			Configuration.Put("SandstormPotionSandBlockCost", SandstormPotionSandBlockCost);
+			Configuration.Put("UseAnglerPotionRecipe", UseAnglerPotionRecipe);
+			Configuration.Put("AnglerPotionSpecularFishCost", AnglerPotionSpecularFishCost);
+			Configuration.Put("AnglerPotionMoonglowCost", AnglerPotionMoonglowCost);
 			
 			Configuration.Put("BattlePotionSpawnrateMultiplier", BattlePotionSpawnrateMultiplier);
 			Configuration.Put("BattlePotionMaxSpawnsMultiplier", BattlePotionMaxSpawnsMultiplier);
