@@ -37,6 +37,7 @@ namespace ReducedGrinding
 		{
 			public override void OpenVanillaBag(string context, Player player, int arg)
 			{
+				float crateLootChanceMultiplier = 1f;
 				if (arg == ItemID.BrainOfCthulhuBossBag && Config.BagBoneRattleIncrease > 0)
 				{
 					if (Main.rand.Next(10000)+1 <= Config.BagBoneRattleIncrease*10000)
@@ -120,114 +121,132 @@ namespace ReducedGrinding
 				}
 				if (arg == ItemID.JungleFishingCrate)
 				{
-					if (Config.JungleCrateSeaweed > 0)
+					if (Config.CrateJungleSeaweed > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.JungleCrateSeaweed*10000)
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleSeaweed*10000)
 						{
 							player.QuickSpawnItem(ItemID.Seaweed, 1);
 						}
 					}
-					if (Config.JungleCrateFlowerBoots > 0)
+					if (Config.CrateJungleFlowerBoots > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.JungleCrateFlowerBoots*10000)
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleFlowerBoots*10000)
 						{
 							player.QuickSpawnItem(ItemID.FlowerBoots, 1);
 						}
 					}
-					if (Config.JungleCrateLivingMahoganyWand > 0)
+					if (Config.CrateJungleLivingMahoganyWand > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.JungleCrateLivingMahoganyWand*10000)
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingMahoganyWand*10000)
 						{
 							player.QuickSpawnItem(ItemID.LivingMahoganyWand, 1);
 						}
 					}
-					if (Config.JungleCrateRichMahoganyLeafWand > 0)
+					if (Config.CrateJungleRichMahoganyLeafWand > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.JungleCrateRichMahoganyLeafWand*10000)
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleRichMahoganyLeafWand*10000)
 						{
 							player.QuickSpawnItem(ItemID.LivingMahoganyLeafWand, 1);
+						}
+					}
+					if (Config.CrateJungleLivingLoom > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingLoom*10000)
+						{
+							player.QuickSpawnItem(ItemID.LivingLoom, 1);
+						}
+					}
+					if (Config.CrateJungleLeafWand > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLeafWand*10000)
+						{
+							player.QuickSpawnItem(ItemID.LeafWand, 1);
+						}
+					}
+					if (Config.CrateJungleLivingWoodWand > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingWoodWand*10000)
+						{
+							player.QuickSpawnItem(ItemID.LivingWoodWand, 1);
+						}
+					}
+					if (Config.CrateJungleAnkeltOfTheWindIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleAnkeltOfTheWindIncrease*10000)
+						{
+							player.QuickSpawnItem(212, 1); //Anklet of the Wind
+						}
+					}
+					if (Config.CrateJungleFeralClawsIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleFeralClawsIncrease*10000)
+						{
+							player.QuickSpawnItem(211, 1); //Feral Claws
+						}
+					}
+					if (Config.CrateJungleStaffOfRegrowth > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateJungleStaffOfRegrowth*10000)
+						{
+							player.QuickSpawnItem(213, 1); //Staff Of Regrowth
 						}
 					}
 				}
 				if (arg == 3206) //Sky Crate
 				{
-					if (Config.SkyCrateSkyMill > 0)
+					if (Config.CrateSkySkyMill > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.SkyCrateSkyMill*10000)
+						if (Main.rand.Next(10000)+1 <= Config.CrateSkySkyMill*10000)
 						{
 							player.QuickSpawnItem(2197, 1); //Sky Mill
 						}
 					}
 				}
+				if (arg == ItemID.WoodenCrate)
+				{
+					crateLootChanceMultiplier = Config.CrateMultiplierForWoodenLootChances;
+					if (Config.CrateWoodenClimbingClawsIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenClimbingClawsIncrease*10000*crateLootChanceMultiplier)
+						{
+							player.QuickSpawnItem(953, 1); //Climbing Claws
+						}
+					}
+					if (Config.CrateWoodenRadarIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenRadarIncrease*10000*crateLootChanceMultiplier)
+						{
+							player.QuickSpawnItem(3084, 1); //Radar
+						}
+					}
+					if (Config.CrateWoodenAgletIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenAgletIncrease*10000*crateLootChanceMultiplier)
+						{
+							player.QuickSpawnItem(285, 1); //Aglet
+						}
+					}
+				}
 				if (arg == ItemID.WoodenCrate || arg == ItemID.IronCrate || arg == ItemID.GoldenCrate)
 				{
-					if (Config.WoodenIronAndGoldCrateLivingLoom > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateLivingLoom*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingLoom, 1);
-						}
-					}
-					if (Config.WoodenIronAndGoldCrateLeafWand > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateLeafWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LeafWand, 1);
-						}
-					}
-					if (Config.WoodenIronAndGoldCrateLivingWoodWand > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateLivingWoodWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingWoodWand, 1);
-						}
-					}
-				}
-				if (Config.WoodenIronAndGoldCrateWaterWalkingBoots > 0)
-				{
 					if (arg == ItemID.WoodenCrate)
+						crateLootChanceMultiplier = Config.CrateMultiplierForWoodenLootChances;
+					else if (arg == ItemID.IronCrate)
+						crateLootChanceMultiplier = Config.CrateMultiplierForIronLootChances;
+					else
+						crateLootChanceMultiplier = Config.CrateMultiplierForGoldenLootChances;
+					if (Config.CrateWoodenIronGoldWaterWalkingBoots > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterWalkingBoots*10000/4)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenIronGoldWaterWalkingBoots*10000*crateLootChanceMultiplier)
 						{
 							player.QuickSpawnItem(863, 1); //Water walking boots
 						}
 					}
-					if (arg == ItemID.IronCrate)
+					if (Config.CrateWoodenIronGoldWaterFlippers > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterWalkingBoots*10000/2)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenIronGoldWaterFlippers*10000*crateLootChanceMultiplier)
 						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (arg == ItemID.GoldenCrate)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterWalkingBoots*10000)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-				}
-				if (Config.WoodenIronAndGoldCrateWaterFlippers > 0)
-				{
-					if (arg == ItemID.WoodenCrate)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterFlippers*10000/4)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (arg == ItemID.IronCrate)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterFlippers*10000/2)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (arg == ItemID.GoldenCrate)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.WoodenIronAndGoldCrateWaterFlippers*10000)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
+							player.QuickSpawnItem(187, 1); //Flipper
 						}
 					}
 				}
