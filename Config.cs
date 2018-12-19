@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.33.json";
+		static string filename = "Reduced Grinding v4.34.json";
 		
 		public static float BagBookofSkullsIncrease = 0f;
 		public static float BagSeedlingIncrease = 0.15f;
@@ -271,6 +271,13 @@ namespace ReducedGrinding
 		public static float HellBiomeModdedShadowBoxLoot = 0.02f;
 		public static float LootCompassIncrease = 0.0f;
 		public static float LootDepthMeterIncrease = 0.0f;
+		public static float LootGreenCap = 1.0f;
+		public static float LootExoticScimitar = 0.875f;
+		public static float LootAleTosser = 0.833f;
+		public static float LootStylishScissors = 0.875f;
+		public static float LootPaintballGun = 0.9f;
+		public static float LootHappyGrenade = 0.75f;
+		public static float LootClassyCane = 0.875f;
 		
 		public static bool SlimeStaffIncreaseToSurfaceSlimes = false;
 		public static bool SlimeStaffIncreaseToUndergroundSlimes = false;
@@ -800,6 +807,13 @@ namespace ReducedGrinding
 				Configuration.Get("HellBiomeModdedShadowBoxLoot", ref HellBiomeModdedShadowBoxLoot);
 				Configuration.Get("LootCompassIncrease", ref LootCompassIncrease);
 				Configuration.Get("LootDepthMeterIncrease", ref LootDepthMeterIncrease);
+				Configuration.Get("LootGreenCap", ref LootGreenCap);
+				Configuration.Get("LootExoticScimitar", ref LootExoticScimitar);
+				Configuration.Get("LootAleTosser", ref LootAleTosser);
+				Configuration.Get("LootStylishScissors", ref LootStylishScissors);
+				Configuration.Get("LootPaintballGun", ref LootPaintballGun);
+				Configuration.Get("LootHappyGrenade", ref LootHappyGrenade);
+				Configuration.Get("LootClassyCane", ref LootClassyCane);
 			
 				Configuration.Get("SlimeStaffIncreaseToSurfaceSlimes", ref SlimeStaffIncreaseToSurfaceSlimes);
 				Configuration.Get("SlimeStaffIncreaseToUndergroundSlimes", ref SlimeStaffIncreaseToUndergroundSlimes);
@@ -1322,6 +1336,13 @@ namespace ReducedGrinding
 			Configuration.Put("HellBiomeModdedShadowBoxLoot", HellBiomeModdedShadowBoxLoot);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
 			Configuration.Put("LootDepthMeterIncrease", LootDepthMeterIncrease);
+			Configuration.Put("LootGreenCap", LootGreenCap);
+			Configuration.Put("LootExoticScimitar", LootExoticScimitar);
+			Configuration.Put("LootAleTosser", LootAleTosser);
+			Configuration.Put("LootStylishScissors", LootStylishScissors);
+			Configuration.Put("LootPaintballGun", LootPaintballGun);
+			Configuration.Put("LootHappyGrenade", LootHappyGrenade);
+			Configuration.Put("LootClassyCane", LootClassyCane);
 		
 			Configuration.Put("SlimeStaffIncreaseToSurfaceSlimes", SlimeStaffIncreaseToSurfaceSlimes);
 			Configuration.Put("SlimeStaffIncreaseToUndergroundSlimes", SlimeStaffIncreaseToUndergroundSlimes);

@@ -2575,6 +2575,76 @@ namespace ReducedGrinding
 								}
 							}
 						}
+						if (npc.type == 22) //Guide NPC
+						{
+							if (Config.LootGreenCap > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootGreenCap*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 207) //Dye Trader NPC
+						{
+							if (Config.LootExoticScimitar > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootExoticScimitar*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 550) //Tavernkeep NPC
+						{
+							if (Config.LootAleTosser > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootAleTosser*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 353) //Stylist NPC
+						{
+							if (Config.LootStylishScissors > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootStylishScissors*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 227) //Painter NPC
+						{
+							if (Config.LootStylishScissors > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootStylishScissors*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 208) //Party Girl NPC
+						{
+							if (Config.LootPaintballGun > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootPaintballGun*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
+								}
+							}
+						}
+						if (npc.type == 441) //Tax Collector Guide NPC
+						{
+							if (Config.LootClassyCane > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootClassyCane*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3351, 1, false, -1, false, false);
+								}
+							}
+						}
 						
 						
 						
