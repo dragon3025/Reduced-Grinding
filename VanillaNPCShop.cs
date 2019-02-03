@@ -14,10 +14,13 @@ namespace ReducedGrinding.NPCs
             switch (type)
             {
                 case NPCID.Merchant:
-					shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
-					nextSlot++;
+					if (Config.MerchantSellsAllMiningGear)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
+						nextSlot++;
+					}
 					if (Config.MerchantSellsFishItem)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.Fish);

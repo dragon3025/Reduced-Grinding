@@ -45,11 +45,21 @@ namespace ReducedGrinding
 						player.QuickSpawnItem(ItemID.BoneRattle, 1);
 					}
 				}
-				if (arg == ItemID.FishronBossBag && Config.BagFishronWingsIncrease > 0)
+				if (arg == ItemID.FishronBossBag)
 				{
-					if (Main.rand.Next(10000)+1 <= Config.BagFishronWingsIncrease*10000)
+					if (Config.BagFishronWingsIncrease > 0)
 					{
-						player.QuickSpawnItem(ItemID.FishronWings, 1);
+						if (Main.rand.Next(10000)+1 <= Config.BagFishronWingsIncrease*10000)
+						{
+							player.QuickSpawnItem(ItemID.FishronWings, 1);
+						}
+					}
+					if (Config.BagFishronTruffleworm > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.BagFishronTruffleworm*10000)
+						{
+							player.QuickSpawnItem(2673, 1); //Truffleworm
+						}
 					}
 				}
 				if (arg == ItemID.EaterOfWorldsBossBag && Config.BagEatersBoneIncrease > 0)
@@ -648,6 +658,13 @@ namespace ReducedGrinding
 								if (Main.rand.Next(10000)+1 <= Config.LootFishronWingsIncrease*10000)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FishronWings, 1, false, -1, false, false);
+								}
+							}
+							if (Config.LootFishronTruffleworm > 0)
+							{
+								if (Main.rand.Next(10000)+1 <= Config.LootFishronTruffleworm*10000)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2673, 1, false, -1, false, false);
 								}
 							}
 						}
