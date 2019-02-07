@@ -37,7 +37,6 @@ namespace ReducedGrinding
 		{
 			public override void OpenVanillaBag(string context, Player player, int arg)
 			{
-				float crateLootChanceMultiplier = 1f;
 				if (arg == ItemID.BrainOfCthulhuBossBag && Config.BagBoneRattleIncrease > 0)
 				{
 					if (Main.rand.Next(10000)+1 <= Config.BagBoneRattleIncrease*10000)
@@ -214,49 +213,97 @@ namespace ReducedGrinding
 				}
 				if (arg == ItemID.WoodenCrate)
 				{
-					crateLootChanceMultiplier = Config.CrateMultiplierForWoodenLootChances;
 					if (Config.CrateWoodenClimbingClawsIncrease > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenClimbingClawsIncrease*10000*crateLootChanceMultiplier)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenClimbingClawsIncrease*10000)
 						{
 							player.QuickSpawnItem(953, 1); //Climbing Claws
 						}
 					}
 					if (Config.CrateWoodenRadarIncrease > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenRadarIncrease*10000*crateLootChanceMultiplier)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenRadarIncrease*10000)
 						{
 							player.QuickSpawnItem(3084, 1); //Radar
 						}
 					}
 					if (Config.CrateWoodenAgletIncrease > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenAgletIncrease*10000*crateLootChanceMultiplier)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenAgletIncrease*10000)
 						{
 							player.QuickSpawnItem(285, 1); //Aglet
 						}
 					}
 				}
-				if (arg == ItemID.WoodenCrate || arg == ItemID.IronCrate || arg == ItemID.GoldenCrate)
+				if (arg == ItemID.WoodenCrate)
 				{
-					if (arg == ItemID.WoodenCrate)
-						crateLootChanceMultiplier = Config.CrateMultiplierForWoodenLootChances;
-					else if (arg == ItemID.IronCrate)
-						crateLootChanceMultiplier = Config.CrateMultiplierForIronLootChances;
-					else
-						crateLootChanceMultiplier = Config.CrateMultiplierForGoldenLootChances;
-					if (Config.CrateWoodenIronGoldWaterWalkingBoots > 0)
+					if (Config.CrateWaterWalkingBootsWooden > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenIronGoldWaterWalkingBoots*10000*crateLootChanceMultiplier)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsWooden*10000)
 						{
 							player.QuickSpawnItem(863, 1); //Water walking boots
 						}
 					}
-					if (Config.CrateWoodenIronGoldWaterFlippers > 0)
+					if (Config.CrateWaterFlippersWooden > 0)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenIronGoldWaterFlippers*10000*crateLootChanceMultiplier)
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersWooden*10000)
 						{
 							player.QuickSpawnItem(187, 1); //Flipper
+						}
+					}
+					if (Config.CrateEnchantedSundialWoodenIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialWoodenIncrease*10000)
+						{
+							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
+						}
+					}
+				}
+				if (arg == ItemID.IronCrate)
+				{
+					if (Config.CrateWaterWalkingBootsIron > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsIron*10000)
+						{
+							player.QuickSpawnItem(863, 1); //Water walking boots
+						}
+					}
+					if (Config.CrateWaterFlippersIron > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersIron*10000)
+						{
+							player.QuickSpawnItem(187, 1); //Flipper
+						}
+					}
+					if (Config.CrateEnchantedSundialIronIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialIronIncrease*10000)
+						{
+							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
+						}
+					}
+				}
+				if (arg == ItemID.GoldenCrate)
+				{
+					if (Config.CrateWaterWalkingBootsGolden > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsGolden*10000)
+						{
+							player.QuickSpawnItem(863, 1); //Water walking boots
+						}
+					}
+					if (Config.CrateWaterFlippersGolden > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersGolden*10000)
+						{
+							player.QuickSpawnItem(187, 1); //Flipper
+						}
+					}
+					if (Config.CrateEnchantedSundialGoldenIncrease > 0)
+					{
+						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialGoldenIncrease*10000)
+						{
+							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
 						}
 					}
 				}
@@ -2682,6 +2729,19 @@ namespace ReducedGrinding
 								}
 							}
 						}
+						if (player.ZoneSnow && player.ZoneRockLayerHeight)
+						{
+							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							{
+								if (Config.UndergroundSnowBiomeModdedIceLockBoxLoot > 0)
+								{
+									if (Main.rand.Next(10000)+1 <= Config.UndergroundSnowBiomeModdedIceLockBoxLoot*10000)
+									{
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Ice_Lock_Box"), 1, false, -1, false, false);
+									}
+								}
+							}
+						}
 					}
 					
 					//Restock Traveling Merchant
@@ -2910,6 +2970,100 @@ namespace ReducedGrinding
 				recipe.AddIngredient(ItemID.IronCrate, 1);
 				recipe.AddTile(TileID.CrystalBall);
 				recipe.SetResult(ItemID.WoodenCrate);
+				recipe.AddRecipe();
+			}
+			if (Config.CrateUpgradeRecipes)
+			{
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.DoubleCod, 1);
+				recipe.AddIngredient(ItemID.VariegatedLardfish, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.JungleFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.Ebonkoi, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.CorruptFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.CrimsonTigerfish, 1);
+				recipe.AddIngredient(ItemID.Hemopiranha, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.CrimsonFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.Prismite, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.HallowedFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.GoldenKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.DungeonFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddIngredient(ItemID.Damselfish, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.FloatingIslandFishingCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.WoodenCrate, 5);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.IronCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.IronCrate, 4);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.JungleFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.FloatingIslandFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.CorruptFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.CrimsonFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.HallowedFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(ItemID.DungeonFishingCrate, 2);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(ItemID.GoldenCrate);
 				recipe.AddRecipe();
 			}
 		

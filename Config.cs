@@ -8,11 +8,22 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.35.json";
+		static string filename = "Reduced Grinding v4.36.json";
 		
+        public static float BagBinocularsIncrease = 0.2167f;
 		public static float BagBookofSkullsIncrease = 0f;
+        public static float BagBoneRattleIncrease = 0.2f;
+        public static float BagEatersBoneIncrease = 0.2f;
+        public static float BagFishronTruffleworm = 0.5f;
+        public static float BagFishronWingsIncrease = 0.1f;
+        public static float BagHoneyedGogglesIncrease = 0.9f;
+        public static float BagNectarIncrease = 0.14f;
 		public static float BagSeedlingIncrease = 0.15f;
 		public static float BagSkeletronBoneKey = 0f;
+        public static float BagTheAxeIncrease = 0.20f;
+		public static float CrateEnchantedSundialGoldenIncrease = 0.45f;
+		public static float CrateEnchantedSundialIronIncrease = 0.2333f;
+		public static float CrateEnchantedSundialWoodenIncrease = 0.12f;
 		public static float CrateJungleAnkeltOfTheWindIncrease = 0.25f;
 		public static float CrateJungleFeralClawsIncrease = 0.25f;
 		public static float CrateJungleFlowerBoots = 0.25f;
@@ -23,14 +34,15 @@ namespace ReducedGrinding
 		public static float CrateJungleRichMahoganyLeafWand = 0.25f;
 		public static float CrateJungleSeaweed = 0.25f;
 		public static float CrateJungleStaffOfRegrowth = 0.25f;
-		public static float CrateMultiplierForGoldenLootChances = 1.5f;
-		public static float CrateMultiplierForIronLootChances = 1f;
-		public static float CrateMultiplierForWoodenLootChances = 0.5f;
 		public static float CrateSkySkyMill = 0.25f;
+		public static float CrateWaterFlippersGolden = 0.5f;
+		public static float CrateWaterFlippersIron = 0.25f;
+		public static float CrateWaterFlippersWooden = 0.125f;
+		public static float CrateWaterWalkingBootsGolden = 0.5f;
+		public static float CrateWaterWalkingBootsIron = 0.25f;
+		public static float CrateWaterWalkingBootsWooden = 0.125f;
 		public static float CrateWoodenAgletIncrease = 0.20f;
 		public static float CrateWoodenClimbingClawsIncrease = 0.20f;
-		public static float CrateWoodenIronGoldWaterFlippers = 0.20f;
-		public static float CrateWoodenIronGoldWaterWalkingBoots = 0.20f;
 		public static float CrateWoodenRadarIncrease = 0.20f;
 		public static float PresentCandyCaneBlock = 0.00f;
 		public static float PresentCandyCaneHook = 0.00f;
@@ -57,14 +69,6 @@ namespace ReducedGrinding
 		public static float PresentToolbox  = 0.00f;
 		public static float PresentTreeCostume = 0.00f;
 		public static float PresentUglySweater = 0.00f;
-        public static float BagBinocularsIncrease = 0.2167f;
-        public static float BagBoneRattleIncrease = 0.2f;
-        public static float BagEatersBoneIncrease = 0.2f;
-        public static float BagFishronTruffleworm = 0.5f;
-        public static float BagFishronWingsIncrease = 0.1f;
-        public static float BagHoneyedGogglesIncrease = 0.9f;
-        public static float BagNectarIncrease = 0.14f;
-        public static float BagTheAxeIncrease = 0.20f;
 		
 		public static float LootBookofSkullsIncrease = 0f;
 		public static float LootSeedlingIncrease = 0.1833f;
@@ -271,6 +275,7 @@ namespace ReducedGrinding
 		public static float IceSlimeAndSpikedIceSlimeLootFishItem = 0.02f;
 		public static float TombCrawlerAndDuneSplicerLootPyramidChestItem = 0.1428f;
 		public static float HellBiomeModdedShadowBoxLoot = 0.02f;
+		public static float UndergroundSnowBiomeModdedIceLockBoxLoot = 0.02f;
 		public static float LootCompassIncrease = 0.0f;
 		public static float LootDepthMeterIncrease = 0.0f;
 		public static float LootGreenCap = 1.0f;
@@ -438,6 +443,7 @@ namespace ReducedGrinding
 		public static int ExpertChangePotionMushroomCost = 1;
 		public static int ExpertChangePotionGlowingMushroomCost = 1;
 		public static bool CrateDowngradeRecipes = true;
+		public static bool CrateUpgradeRecipes = true;
 		public static bool UseRainPotionRecipe = true;
 		public static int RainPotionWaterleafCost = 1;
 		public static int RainPotionRainCloudCost = 1;
@@ -560,6 +566,9 @@ namespace ReducedGrinding
 				Configuration.Get("BagSeedlingIncrease", ref BagSeedlingIncrease);
 				Configuration.Get("BagSkeletronBoneKey", ref BagSkeletronBoneKey);
 				Configuration.Get("BagTheAxeIncrease", ref BagTheAxeIncrease);
+				Configuration.Get("CrateEnchantedSundialGoldenIncrease", ref CrateEnchantedSundialGoldenIncrease);
+				Configuration.Get("CrateEnchantedSundialIronIncrease", ref CrateEnchantedSundialIronIncrease);
+				Configuration.Get("CrateEnchantedSundialWoodenIncrease", ref CrateEnchantedSundialWoodenIncrease);
 				Configuration.Get("CrateJungleAnkeltOfTheWindIncrease", ref CrateJungleAnkeltOfTheWindIncrease);
 				Configuration.Get("CrateJungleFeralClawsIncrease", ref CrateJungleFeralClawsIncrease);
 				Configuration.Get("CrateJungleFlowerBoots", ref CrateJungleFlowerBoots);
@@ -570,14 +579,15 @@ namespace ReducedGrinding
 				Configuration.Get("CrateJungleRichMahoganyLeafWand", ref CrateJungleRichMahoganyLeafWand);
 				Configuration.Get("CrateJungleSeaweed", ref CrateJungleSeaweed);
 				Configuration.Get("CrateJungleStaffOfRegrowth", ref CrateJungleStaffOfRegrowth);
-				Configuration.Get("CrateMultiplierForGoldenLootChances", ref CrateMultiplierForGoldenLootChances);
-				Configuration.Get("CrateMultiplierForIronLootChances", ref CrateMultiplierForIronLootChances);
-				Configuration.Get("CrateMultiplierForWoodenLootChances", ref CrateMultiplierForWoodenLootChances);
 				Configuration.Get("CrateSkySkyMill", ref CrateSkySkyMill);
+				Configuration.Get("CrateWaterFlippersGolden", ref CrateWaterFlippersGolden);
+				Configuration.Get("CrateWaterFlippersIron", ref CrateWaterFlippersIron);
+				Configuration.Get("CrateWaterFlippersWooden", ref CrateWaterFlippersWooden);
+				Configuration.Get("CrateWaterWalkingBootsGolden", ref CrateWaterWalkingBootsGolden);
+				Configuration.Get("CrateWaterWalkingBootsIron", ref CrateWaterWalkingBootsIron);
+				Configuration.Get("CrateWaterWalkingBootsWooden", ref CrateWaterWalkingBootsWooden);
 				Configuration.Get("CrateWoodenAgletIncrease", ref CrateWoodenAgletIncrease);
 				Configuration.Get("CrateWoodenClimbingClawsIncrease", ref CrateWoodenClimbingClawsIncrease);
-				Configuration.Get("CrateWoodenIronGoldWaterFlippers", ref CrateWoodenIronGoldWaterFlippers);
-				Configuration.Get("CrateWoodenIronGoldWaterWalkingBoots", ref CrateWoodenIronGoldWaterWalkingBoots);
 				Configuration.Get("CrateWoodenRadarIncrease", ref CrateWoodenRadarIncrease);
 				Configuration.Get("PresentCandyCaneBlock", ref PresentCandyCaneBlock);
 				Configuration.Get("PresentCandyCaneHook", ref PresentCandyCaneHook);
@@ -810,6 +820,7 @@ namespace ReducedGrinding
 				Configuration.Get("IceSlimeAndSpikedIceSlimeLootFishItem", ref IceSlimeAndSpikedIceSlimeLootFishItem);
 				Configuration.Get("TombCrawlerAndDuneSplicerLootPyramidChestItem", ref TombCrawlerAndDuneSplicerLootPyramidChestItem);
 				Configuration.Get("HellBiomeModdedShadowBoxLoot", ref HellBiomeModdedShadowBoxLoot);
+				Configuration.Get("UndergroundSnowBiomeModdedIceLockBoxLoot", ref UndergroundSnowBiomeModdedIceLockBoxLoot);
 				Configuration.Get("LootCompassIncrease", ref LootCompassIncrease);
 				Configuration.Get("LootDepthMeterIncrease", ref LootDepthMeterIncrease);
 				Configuration.Get("LootGreenCap", ref LootGreenCap);
@@ -976,6 +987,7 @@ namespace ReducedGrinding
 				Configuration.Get("ExpertChangePotionMushroomCost", ref ExpertChangePotionMushroomCost);
 				Configuration.Get("ExpertChangePotionGlowingMushroomCost", ref ExpertChangePotionGlowingMushroomCost);
 				Configuration.Get("CrateDowngradeRecipes", ref CrateDowngradeRecipes);
+				Configuration.Get("CrateUpgradeRecipes", ref CrateUpgradeRecipes);
 				Configuration.Get("UseRainPotionRecipe", ref UseRainPotionRecipe);
 				Configuration.Get("RainPotionWaterleafCost", ref RainPotionWaterleafCost);
 				Configuration.Get("RainPotionRainCloudCost", ref RainPotionRainCloudCost);
@@ -1081,6 +1093,7 @@ namespace ReducedGrinding
         static void CreateConfig()
         {
             Configuration.Clear();
+			
 			Configuration.Put("BagBinocularsIncrease", BagBinocularsIncrease);
 			Configuration.Put("BagBoneRattleIncrease", BagBoneRattleIncrease);
 			Configuration.Put("BagBookofSkullsIncrease", BagBookofSkullsIncrease);
@@ -1102,14 +1115,18 @@ namespace ReducedGrinding
 			Configuration.Put("CrateJungleRichMahoganyLeafWand", CrateJungleRichMahoganyLeafWand);
 			Configuration.Put("CrateJungleSeaweed", CrateJungleSeaweed);
 			Configuration.Put("CrateJungleStaffOfRegrowth", CrateJungleStaffOfRegrowth);
-			Configuration.Put("CrateMultiplierForGoldenLootChances", CrateMultiplierForGoldenLootChances);
-			Configuration.Put("CrateMultiplierForIronLootChances", CrateMultiplierForIronLootChances);
-			Configuration.Put("CrateMultiplierForWoodenLootChances", CrateMultiplierForWoodenLootChances);
 			Configuration.Put("CrateSkySkyMill", CrateSkySkyMill);
+			Configuration.Put("CrateWaterFlippersGolden", CrateWaterFlippersGolden);
+			Configuration.Put("CrateWaterFlippersIron", CrateWaterFlippersIron);
+			Configuration.Put("CrateWaterFlippersWooden", CrateWaterFlippersWooden);
+			Configuration.Put("CrateWaterWalkingBootsGolden", CrateWaterWalkingBootsGolden);
+			Configuration.Put("CrateWaterWalkingBootsIron", CrateWaterWalkingBootsIron);
+			Configuration.Put("CrateWaterWalkingBootsWooden", CrateWaterWalkingBootsWooden);
+			Configuration.Put("CrateWaterWalkingBootsGolden", CrateWaterWalkingBootsGolden);
+			Configuration.Put("CrateWaterWalkingBootsIron", CrateWaterWalkingBootsIron);
+			Configuration.Put("CrateWaterWalkingBootsWooden", CrateWaterWalkingBootsWooden);
 			Configuration.Put("CrateWoodenAgletIncrease", CrateWoodenAgletIncrease);
 			Configuration.Put("CrateWoodenClimbingClawsIncrease", CrateWoodenClimbingClawsIncrease);
-			Configuration.Put("CrateWoodenIronGoldWaterFlippers", CrateWoodenIronGoldWaterFlippers);
-			Configuration.Put("CrateWoodenIronGoldWaterWalkingBoots", CrateWoodenIronGoldWaterWalkingBoots);
 			Configuration.Put("CrateWoodenRadarIncrease", CrateWoodenRadarIncrease);
 			Configuration.Put("PresentCandyCaneBlock", PresentCandyCaneBlock);
 			Configuration.Put("PresentCandyCaneHook", PresentCandyCaneHook);
@@ -1342,6 +1359,7 @@ namespace ReducedGrinding
 			Configuration.Put("IceSlimeAndSpikedIceSlimeLootFishItem", IceSlimeAndSpikedIceSlimeLootFishItem);
 			Configuration.Put("TombCrawlerAndDuneSplicerLootPyramidChestItem", TombCrawlerAndDuneSplicerLootPyramidChestItem);
 			Configuration.Put("HellBiomeModdedShadowBoxLoot", HellBiomeModdedShadowBoxLoot);
+			Configuration.Put("UndergroundSnowBiomeModdedIceLockBoxLoot", UndergroundSnowBiomeModdedIceLockBoxLoot);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
 			Configuration.Put("LootDepthMeterIncrease", LootDepthMeterIncrease);
 			Configuration.Put("LootGreenCap", LootGreenCap);
@@ -1508,6 +1526,7 @@ namespace ReducedGrinding
 			Configuration.Put("ExpertChangePotionMushroomCost", ExpertChangePotionMushroomCost);
 			Configuration.Put("ExpertChangePotionGlowingMushroomCost", ExpertChangePotionGlowingMushroomCost);
 			Configuration.Put("CrateDowngradeRecipes", CrateDowngradeRecipes);
+			Configuration.Put("CrateUpgradeRecipes", CrateUpgradeRecipes);
 			Configuration.Put("UseRainPotionRecipe", UseRainPotionRecipe);
 			Configuration.Put("RainPotionWaterleafCost", RainPotionWaterleafCost);
 			Configuration.Put("RainPotionRainCloudCost", RainPotionRainCloudCost);
