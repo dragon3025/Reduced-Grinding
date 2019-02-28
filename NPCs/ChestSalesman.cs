@@ -41,8 +41,6 @@ namespace ReducedGrinding.NPCs
 				return false;
         }
 
-
-
         public override string TownNPCName()
         {										//NPC names
             switch (Main.rand.Next(27))

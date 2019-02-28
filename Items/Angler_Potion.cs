@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items
             item.width = 20;
             item.height = 30;
             item.maxStack = 30;
-            item.rare = 0;
+            item.rare = 2;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
@@ -40,7 +40,7 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.UseAnglerPotionRecipe)
+			if (Config.AnglerPotionRecipe)
 			{
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.BottledWater, 1);

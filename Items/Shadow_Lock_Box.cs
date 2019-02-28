@@ -19,8 +19,6 @@ namespace ReducedGrinding.Items
 			item.maxStack = 99;
 			item.rare = 3;
 			item.value = 10000;
-			
-			
 		}
 
 		public override bool CanRightClick()
@@ -30,12 +28,100 @@ namespace ReducedGrinding.Items
 				return true;
 			else
 				return false;
-			
-			return true;
 		}
 
 		public override void RightClick(Player player)
 		{
+			//Ruined House Banners
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1464, 1); //Hellhound Banner
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1465, 1); //Hell Hammer Banner
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1466, 1); //Hell Tower Banner
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1467, 1); //Lost Hopes Banner
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1468, 1); //Obsidian Watcher Banner
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(1469, 1); //Lava Erupts Banner
+			
+			float dropChance = 0f;
+			int testItemID = 0;
+			int chosenID = 0;
+			
+			//Ruined House Furniture
+			if (Main.rand.Next(5) == 0)
+			{
+				player.QuickSpawnItem(221, 1); //Hellforge
+			}
+			if (Main.rand.Next(2) == 0)
+				player.QuickSpawnItem(433, Main.rand.Next(5, 11)); //Demon Torch
+			dropChance = 0.04f; //About 4 furniture for rollng 5 times for 20 furnitures.
+			for (int i = 0; i <= 4; i++) //Other Furniture
+			{
+				for (testItemID = 1457; testItemID <= 1463; testItemID++)
+				{
+					if (Main.rand.NextFloat() < dropChance)
+						chosenID = testItemID;
+				}
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1473;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2380;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2390;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2406;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2600;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2618;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2642;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2644;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2651;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2657;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2662;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2667;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 2840;
+				player.QuickSpawnItem(chosenID);
+				chosenID = 0;
+			}
+			
+			//Ruined House Paintings
+			dropChance = 0.0556f; //About 2 paintings when rolling 3 times for 12 paintings
+			for (int i = 0; i <= 2; i++)
+			{
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1475;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1476;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1478;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1479;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1497;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1499;
+				if (Main.rand.NextFloat() < dropChance)
+					chosenID = 1501;
+				for (testItemID = 1538; testItemID <= 1542; testItemID++)
+				{
+					if (Main.rand.NextFloat() < dropChance)
+						chosenID = testItemID;
+				}
+				player.QuickSpawnItem(chosenID);
+				chosenID = 0;
+			}
+			
 			switch (Main.rand.Next(5))
 			{
 				case 0:
@@ -64,7 +150,7 @@ namespace ReducedGrinding.Items
 				}
 				else
 				{
-					player.QuickSpawnItem(ItemID.GoldBar, Main.rand.Next(15, 30));
+					player.QuickSpawnItem(WorldGen.goldBar, Main.rand.Next(15, 30));
 				}
 			}
 			if (Main.rand.Next(2) == 0)
@@ -82,16 +168,16 @@ namespace ReducedGrinding.Items
 			{
 				if (Main.rand.Next(1) == 0)
 				{
-					player.QuickSpawnItem(ItemID.LesserRestorationPotion, Main.rand.Next(15, 30));
+					player.QuickSpawnItem(ItemID.LesserRestorationPotion, Main.rand.Next(15, 21));
 				}
 				else
 				{
-					player.QuickSpawnItem(ItemID.RestorationPotion, Main.rand.Next(15, 30));
+					player.QuickSpawnItem(ItemID.RestorationPotion, Main.rand.Next(15, 21));
 				}
 			}
 			if (Main.rand.Next(4) <= 2)
 			{
-				switch (Main.rand.Next(7))
+				switch (Main.rand.Next(8))
 				{
 					case 0:
 						player.QuickSpawnItem(ItemID.SpelunkerPotion, Main.rand.Next(1, 3));
@@ -114,11 +200,14 @@ namespace ReducedGrinding.Items
 					case 6:
 						player.QuickSpawnItem(ItemID.HunterPotion, Main.rand.Next(1, 3));
 						break;
+					case 7:
+						player.QuickSpawnItem(ItemID.HeartreachPotion, Main.rand.Next(1, 3));
+						break;
 				}
 			}
 			if (Main.rand.Next(3) <= 1)
 			{
-				switch (Main.rand.Next(5))
+				switch (Main.rand.Next(8))
 				{
 					case 0:
 						player.QuickSpawnItem(ItemID.GravitationPotion, Main.rand.Next(1, 3));
@@ -135,7 +224,20 @@ namespace ReducedGrinding.Items
 					case 4:
 						player.QuickSpawnItem(ItemID.BattlePotion, Main.rand.Next(1, 3));
 						break;
+					case 5:
+						player.QuickSpawnItem(ItemID.TeleportationPotion, Main.rand.Next(1, 3));
+						break;
+					case 6:
+						player.QuickSpawnItem(ItemID.InfernoPotion, Main.rand.Next(1, 3));
+						break;
+					case 7:
+						player.QuickSpawnItem(ItemID.LifeforcePotion, Main.rand.Next(1, 3));
+						break;
 				}
+			}
+			if (Main.rand.Next(3) == 0)
+			{
+				player.QuickSpawnItem(ItemID.RecallPotion, Main.rand.Next(1, 3));
 			}
 			if (Main.rand.Next(2) == 0)
 			{

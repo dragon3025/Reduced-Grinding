@@ -1,7 +1,16 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
+using Terraria.DataStructures;
 using Terraria.GameContent.Events;
+using Terraria.GameContent.Generation;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader.IO;
+using Terraria.ModLoader;
+using Terraria.World.Generation;
+using Terraria;
 
 namespace ReducedGrinding.Items
 {
@@ -18,7 +27,7 @@ namespace ReducedGrinding.Items
             item.width = 20;
             item.height = 30;
             item.maxStack = 30;
-            item.rare = 0;
+            item.rare = 2;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
@@ -67,7 +76,10 @@ namespace ReducedGrinding.Items
        
 		private static void StopSandstorm()
 		{
-			Main.NewText("The sandstorm stopped.", 255, 255, 0);
+			if (Main.netMode == 2) // Server
+				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The sandstorm stopped."), new Color(0, 128, 255));
+			else if (Main.netMode == 0) // Single Player
+				Main.NewText("The sandstorm stopped.", 0, 128, 255);
 			Sandstorm.Happening = false;
 			Sandstorm.TimeLeft = 0;
 			ChangeSeverityIntentions();
@@ -75,7 +87,14 @@ namespace ReducedGrinding.Items
 
 		private static void StartSandstorm()
 		{
-			Main.NewText("The sandstorm started.", 255, 255, 0);
+			if (Main.netMode == 2) // Server
+			{
+				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The sandstorm started."), new Color(0, 128, 255));
+			}
+			else if (Main.netMode == 0) // Single Player
+			{
+				Main.NewText("The sandstorm started.", 0, 128, 255);
+			}
 			Sandstorm.Happening = true;
 			Sandstorm.TimeLeft = (int)(3600f * (8f + Main.rand.NextFloat() * 16f));
 			ChangeSeverityIntentions();
@@ -83,7 +102,7 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.UseSandstormPotionRecipe)
+			if (Config.SandstormPotionRecipe)
 			{
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.BottledWater, 1);

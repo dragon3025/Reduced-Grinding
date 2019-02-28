@@ -30,7 +30,7 @@ namespace ReducedGrinding.Items
 	
 		public override void AddRecipes()
 		{
-			if (Config.UseChlorophyteAcceleratorRecipe)
+			if (Config.ChlorophyteAcceleratorRecipe)
 			{
 				ModRecipe recipe = new ModRecipe(mod);
 				if (Config.ChlorophyteAcceleratorHallowedBarCost > 0)

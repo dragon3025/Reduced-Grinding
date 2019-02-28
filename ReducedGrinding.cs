@@ -1,18 +1,33 @@
-using Terraria;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
+using System;
+using Terraria.DataStructures;
+using Terraria.GameContent.Achievements;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
+using Terraria.World.Generation;
+using Terraria;
 
-//To debug, use:
-//ErrorLogger.Log(<string>);
+/*To debug, use:
+ErrorLogger.Log(<string>);
 
-//To turn into a string use:
-//Value.ToString()
+To turn into a string use:
+Value.ToString()
 
-//To show text in chat use:
-//Main.NewText(string, red, green, blue);
+To show text in chat use:
+Main.NewText(string);
+or
+Main.NewText(string, red, green, blue);
 
-//Chatting a value:
-//Main.NewText(Value.ToString(), 255, 255, 255);
+Chatting a value:
+Main.NewText(Value.ToString(), 255, 255, 255);
+*/
 
 namespace ReducedGrinding
 {
@@ -37,566 +52,521 @@ namespace ReducedGrinding
 		{
 			public override void OpenVanillaBag(string context, Player player, int arg)
 			{
-				if (arg == ItemID.BrainOfCthulhuBossBag && Config.BagBoneRattleIncrease > 0)
+				//Boss Bags
+				if (arg == ItemID.BrainOfCthulhuBossBag)
 				{
-					if (Main.rand.Next(10000)+1 <= Config.BagBoneRattleIncrease*10000)
+					if (Main.rand.NextFloat() < Config.LootBoneRattleIncrease)
 					{
 						player.QuickSpawnItem(ItemID.BoneRattle, 1);
 					}
-				}
-				if (arg == ItemID.FishronBossBag)
-				{
-					if (Config.BagFishronWingsIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagFishronWingsIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.FishronWings, 1);
-						}
-					}
-					if (Config.BagFishronTruffleworm > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.BagFishronTruffleworm*10000)
-						{
-							player.QuickSpawnItem(2673, 1); //Truffleworm
-						}
+						player.QuickSpawnItem(2104, 1); //Mask
 					}
 				}
-				if (arg == ItemID.EaterOfWorldsBossBag && Config.BagEatersBoneIncrease > 0)
+				else if (arg == ItemID.FishronBossBag)
 				{
-					if (Main.rand.Next(10000)+1 <= Config.BagEatersBoneIncrease*10000)
+					if (Main.rand.NextFloat() < Config.LootFishronWingsIncrease)
+					{
+						player.QuickSpawnItem(ItemID.FishronWings, 1);
+					}
+					if (Main.rand.NextFloat() < Config.LootFishronTruffleworm)
+					{
+						player.QuickSpawnItem(2673, 1); //Truffleworm
+					}
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+					{
+						player.QuickSpawnItem(2588, 1); //Mask
+					}
+				}
+				else if (arg == ItemID.EaterOfWorldsBossBag)
+				{
+					if (Main.rand.NextFloat() < Config.LootEatersBoneIncrease)
 					{
 						player.QuickSpawnItem(ItemID.EatersBone, 1);
 					}
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+					{
+						player.QuickSpawnItem(2111, 1); //Mask
+					}
 				}
-				if (arg == ItemID.EyeOfCthulhuBossBag && Config.BagBinocularsIncrease > 0)
+				else if (arg == ItemID.EyeOfCthulhuBossBag)
 				{
-					if (Main.rand.Next(10000)+1 <= Config.BagBinocularsIncrease*10000)
+					if (Main.rand.NextFloat() < Config.LootBinocularsIncrease)
 					{
 						player.QuickSpawnItem(ItemID.Binoculars, 1);
 					}
-				}
-				if (arg == ItemID.PlanteraBossBag)
-				{
-					if (Config.BagTheAxeIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagTheAxeIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.TheAxe, 1);
-						}
-
-					}
-					if (Config.BagSeedlingIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.BagSeedlingIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.Seedling, 1);
-						}
-
+						player.QuickSpawnItem(2112, 1); //Mask
 					}
 				}
-				if (arg == ItemID.QueenBeeBossBag)
+				else if (arg == ItemID.PlanteraBossBag)
 				{
-					if (Config.BagHoneyedGogglesIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootTheAxeIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagHoneyedGogglesIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.HoneyedGoggles, 1);
-						}
+						player.QuickSpawnItem(ItemID.TheAxe, 1);
 					}
-					if (Config.BagNectarIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootSeedlingIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagNectarIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.Nectar, 1);
-						}
+						player.QuickSpawnItem(ItemID.Seedling, 1);
+					}
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+					{
+						player.QuickSpawnItem(2109, 1); //Mask
 					}
 				}
-				if (arg == ItemID.SkeletronBossBag)
+				else if (arg == ItemID.QueenBeeBossBag)
 				{
-					if (Config.BagBookofSkullsIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootHoneyedGogglesIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagBookofSkullsIncrease*10000)
-						{
-							player.QuickSpawnItem(ItemID.BookofSkulls, 1);
-						}
+						player.QuickSpawnItem(ItemID.HoneyedGoggles, 1);
 					}
-					if (Config.BagSkeletronBoneKey > 0)
+					if (Main.rand.NextFloat() < Config.LootNectarIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.BagSkeletronBoneKey*10000)
-						{
-							player.QuickSpawnItem(ItemID.BookofSkulls, 1);
-						}
+						player.QuickSpawnItem(ItemID.Nectar, 1);
+					}
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+					{
+						player.QuickSpawnItem(2108, 1); //Mask
 					}
 				}
-				if (arg == ItemID.JungleFishingCrate)
+				else if (arg == ItemID.SkeletronBossBag)
 				{
-					if (Config.CrateJungleSeaweed > 0)
+					if (Main.rand.NextFloat() < Config.LootBookofSkullsIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleSeaweed*10000)
-						{
-							player.QuickSpawnItem(ItemID.Seaweed, 1);
-						}
+						player.QuickSpawnItem(ItemID.BookofSkulls, 1);
 					}
-					if (Config.CrateJungleFlowerBoots > 0)
+					if (Main.rand.NextFloat() < Config.LootSkeletronBoneKey)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleFlowerBoots*10000)
-						{
-							player.QuickSpawnItem(ItemID.FlowerBoots, 1);
-						}
+						player.QuickSpawnItem(ItemID.BookofSkulls, 1);
 					}
-					if (Config.CrateJungleLivingMahoganyWand > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingMahoganyWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingMahoganyWand, 1);
-						}
-					}
-					if (Config.CrateJungleRichMahoganyLeafWand > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleRichMahoganyLeafWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingMahoganyLeafWand, 1);
-						}
-					}
-					if (Config.CrateJungleLivingLoom > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingLoom*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingLoom, 1);
-						}
-					}
-					if (Config.CrateJungleLeafWand > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLeafWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LeafWand, 1);
-						}
-					}
-					if (Config.CrateJungleLivingWoodWand > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleLivingWoodWand*10000)
-						{
-							player.QuickSpawnItem(ItemID.LivingWoodWand, 1);
-						}
-					}
-					if (Config.CrateJungleAnkeltOfTheWindIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleAnkeltOfTheWindIncrease*10000)
-						{
-							player.QuickSpawnItem(212, 1); //Anklet of the Wind
-						}
-					}
-					if (Config.CrateJungleFeralClawsIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleFeralClawsIncrease*10000)
-						{
-							player.QuickSpawnItem(211, 1); //Feral Claws
-						}
-					}
-					if (Config.CrateJungleStaffOfRegrowth > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateJungleStaffOfRegrowth*10000)
-						{
-							player.QuickSpawnItem(213, 1); //Staff Of Regrowth
-						}
+						player.QuickSpawnItem(1281, 1); //Mask
 					}
 				}
-				if (arg == 3206) //Sky Crate
+				else if (arg == 3318) //King Slime
 				{
-					if (Config.CrateSkySkyMill > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateSkySkyMill*10000)
-						{
-							player.QuickSpawnItem(2197, 1); //Sky Mill
-						}
+						player.QuickSpawnItem(2493, 1); //Mask
 					}
 				}
-				if (arg == ItemID.WoodenCrate)
+				else if (arg == 3324) //Wall of Flesh
 				{
-					if (Config.CrateWoodenClimbingClawsIncrease > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenClimbingClawsIncrease*10000)
-						{
-							player.QuickSpawnItem(953, 1); //Climbing Claws
-						}
-					}
-					if (Config.CrateWoodenRadarIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenRadarIncrease*10000)
-						{
-							player.QuickSpawnItem(3084, 1); //Radar
-						}
-					}
-					if (Config.CrateWoodenAgletIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWoodenAgletIncrease*10000)
-						{
-							player.QuickSpawnItem(285, 1); //Aglet
-						}
+						player.QuickSpawnItem(2105, 1); //Mask
 					}
 				}
-				if (arg == ItemID.WoodenCrate)
+				else if (arg == 3325) //The Destroyer
 				{
-					if (Config.CrateWaterWalkingBootsWooden > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsWooden*10000)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (Config.CrateWaterFlippersWooden > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersWooden*10000)
-						{
-							player.QuickSpawnItem(187, 1); //Flipper
-						}
-					}
-					if (Config.CrateEnchantedSundialWoodenIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialWoodenIncrease*10000)
-						{
-							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
-						}
+						player.QuickSpawnItem(2113, 1); //Mask
 					}
 				}
-				if (arg == ItemID.IronCrate)
+				else if (arg == 3326) //The Twins
 				{
-					if (Config.CrateWaterWalkingBootsIron > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsIron*10000)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (Config.CrateWaterFlippersIron > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersIron*10000)
-						{
-							player.QuickSpawnItem(187, 1); //Flipper
-						}
-					}
-					if (Config.CrateEnchantedSundialIronIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialIronIncrease*10000)
-						{
-							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
-						}
+						player.QuickSpawnItem(2106, 1); //Mask
 					}
 				}
-				if (arg == ItemID.GoldenCrate)
+				else if (arg == 3327) //Skeletron Prime
 				{
-					if (Config.CrateWaterWalkingBootsGolden > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterWalkingBootsGolden*10000)
-						{
-							player.QuickSpawnItem(863, 1); //Water walking boots
-						}
-					}
-					if (Config.CrateWaterFlippersGolden > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateWaterFlippersGolden*10000)
-						{
-							player.QuickSpawnItem(187, 1); //Flipper
-						}
-					}
-					if (Config.CrateEnchantedSundialGoldenIncrease > 0)
-					{
-						if (Main.rand.Next(10000)+1 <= Config.CrateEnchantedSundialGoldenIncrease*10000)
-						{
-							player.QuickSpawnItem(3064, 1); //Enchanted Sundial
-						}
+						player.QuickSpawnItem(2107, 1); //Mask
 					}
 				}
-				if (context == "present")
+				else if (arg == 3329) //Golem
 				{
-					if (Config.PresentDogWhistle > 0)
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentDogWhistle*10000)
-						{
-							player.QuickSpawnItem(1927, 1);
-						}
+						player.QuickSpawnItem(2110, 1); //Mask
 					}
-					if (Config.PresentToolbox > 0)
+				}
+				else if (arg == 3332) //Moon Lord
+				{
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentToolbox*10000)
-						{
-							player.QuickSpawnItem(1923, 1);
-						}
+						player.QuickSpawnItem(3373, 1); //Mask
 					}
-					if (Config.PresentHandWarmer > 0)
+				}
+				else if (arg == 3860) //Betsy
+				{
+					if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentHandWarmer*10000)
-						{
-							player.QuickSpawnItem(1921, 1);
-						}
+						player.QuickSpawnItem(3863, 1); //Mask
 					}
-					if (Config.PresentCandyCanePickaxe > 0)
+				}
+				
+				//Crates
+				else if (arg == 3205) //Dungeon Crate
+				{
+					if (Main.rand.NextFloat() < Config.CrateDungeonBoneWelder)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentCandyCanePickaxe*10000)
-						{
-							player.QuickSpawnItem(1917, 1);
-						}
+						player.QuickSpawnItem(2192, 1); //Bone Welder
 					}
-					if (Config.PresentCandyCaneHook > 0)
+				}
+				else if (arg == ItemID.JungleFishingCrate)
+				{
+					if (Main.rand.NextFloat() < Config.CrateJungleSeaweed)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentCandyCaneHook*10000)
-						{
-							player.QuickSpawnItem(1915, 1);
-						}
+						player.QuickSpawnItem(ItemID.Seaweed, 1);
 					}
-					if (Config.PresentFruitcakeChakram > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleFlowerBoots)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentFruitcakeChakram*10000)
-						{
-							player.QuickSpawnItem(1918, 1);
-						}
+						player.QuickSpawnItem(ItemID.FlowerBoots, 1);
 					}
-					if (Config.PresentRedRyderPlusMusketBall > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleLivingMahoganyWand)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentRedRyderPlusMusketBall*10000)
-						{
-							player.QuickSpawnItem(1870, 1);
-							player.QuickSpawnItem(97, Main.rand.Next(30,60));
-						}
+						player.QuickSpawnItem(ItemID.LivingMahoganyWand, 1);
 					}
-					if (Config.PresentCandyCaneSword > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleRichMahoganyLeafWand)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentCandyCaneSword*10000)
-						{
-							player.QuickSpawnItem(1909, 1);
-						}
+						player.QuickSpawnItem(ItemID.LivingMahoganyLeafWand, 1);
 					}
-					if (Config.PresentMrsClausCostume > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleLivingLoom)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentMrsClausCostume*10000)
-						{
-							player.QuickSpawnItem(1932, 1);
-							player.QuickSpawnItem(1933, 1);
-							player.QuickSpawnItem(1934, 1);
-						}
+						player.QuickSpawnItem(ItemID.LivingLoom, 1);
 					}
-					if (Config.PresentParkaOutfit > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleLeafWand)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentParkaOutfit*10000)
-						{
-							player.QuickSpawnItem(1935, 1);
-							player.QuickSpawnItem(1936, 1);
-							player.QuickSpawnItem(1937, 1);
-						}
+						player.QuickSpawnItem(ItemID.LeafWand, 1);
 					}
-					if (Config.PresentTreeCostume > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleLivingWoodWand)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentTreeCostume*10000)
-						{
-							player.QuickSpawnItem(1940, 1);
-							player.QuickSpawnItem(1941, 1);
-							player.QuickSpawnItem(1942, 1);
-						}
+						player.QuickSpawnItem(ItemID.LivingWoodWand, 1);
 					}
-					if (Config.PresentSnowHat > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleAnkeltOfTheWindIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentSnowHat*10000)
-						{
-							player.QuickSpawnItem(1938, 1);
-						}
+						player.QuickSpawnItem(212, 1); //Anklet of the Wind
 					}
-					if (Config.PresentUglySweater > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleFeralClawsIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentUglySweater*10000)
-						{
-							player.QuickSpawnItem(1939, 1);
-						}
+						player.QuickSpawnItem(211, 1); //Feral Claws
 					}
-					if (Config.PresentReindeerAntlers > 0)
+					if (Main.rand.NextFloat() < Config.CrateJungleStaffOfRegrowth)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentReindeerAntlers*10000)
-						{
-							player.QuickSpawnItem(1907, 1);
-						}
+						player.QuickSpawnItem(213, 1); //Staff Of Regrowth
 					}
-					if (Config.PresentCoal > 0)
+				}
+				else if (arg == 3206) //Sky Crate
+				{
+					if (Main.rand.NextFloat() < Config.CrateSkySkyMill)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentCoal*10000)
-						{
-							player.QuickSpawnItem(1922, 1);
-						}
+						player.QuickSpawnItem(2197, 1); //Sky Mill
 					}
-					if (Config.PresentChristmasPudding > 0)
+				}
+				else if (arg == ItemID.WoodenCrate)
+				{
+					if (Main.rand.NextFloat() < Config.CrateWoodenClimbingClawsIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentChristmasPudding*10000)
-						{
-							player.QuickSpawnItem(1911, 1);
-						}
+						player.QuickSpawnItem(953, 1); //Climbing Claws
 					}
-					if (Config.PresentSugarCookie > 0)
+					if (Main.rand.NextFloat() < Config.CrateWoodenRadarIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentSugarCookie*10000)
-						{
-							player.QuickSpawnItem(1919, 1);
-						}
+						player.QuickSpawnItem(3084, 1); //Radar
 					}
-					if (Config.PresentGingerbreadCookie > 0)
+					if (Main.rand.NextFloat() < Config.CrateWoodenAgletIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentGingerbreadCookie*10000)
-						{
-							player.QuickSpawnItem(1920, 1);
-						}
+						player.QuickSpawnItem(285, 1); //Aglet
 					}
-					if (Config.PresentStarAnise > 0)
+				}
+				else if (arg == ItemID.WoodenCrate)
+				{
+					if (Main.rand.NextFloat() < Config.CrateWaterWalkingBootsWooden)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentStarAnise*10000)
-						{
-							player.QuickSpawnItem(1913, Main.rand.Next(20,40));
-						}
+						player.QuickSpawnItem(863, 1); //Water walking boots
 					}
-					if (Config.PresentEggnog > 0)
+					if (Main.rand.NextFloat() < Config.CrateFlippersWooden)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentEggnog*10000)
-						{
-							player.QuickSpawnItem(1912, Main.rand.Next(1,3));
-						}
+						player.QuickSpawnItem(187, 1); //Flipper
 					}
-					if (Config.PresentHolly > 0)
+					if (Main.rand.NextFloat() < Config.CrateEnchantedSundialWoodenIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentHolly*10000)
-						{
-							player.QuickSpawnItem(1908, 1);
-						}
+						player.QuickSpawnItem(3064, 1); //Enchanted Sundial
 					}
-					if (Config.PresentPineTreeBlock > 0)
+				}
+				else if (arg == ItemID.IronCrate)
+				{
+					if (Main.rand.NextFloat() < Config.CrateWaterWalkingBootsIron)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentPineTreeBlock*10000)
-						{
-							player.QuickSpawnItem(1872, Main.rand.Next(20,49));
-						}
+						player.QuickSpawnItem(863, 1); //Water walking boots
 					}
-					if (Config.PresentCandyCaneBlock > 0)
+					if (Main.rand.NextFloat() < Config.CrateFlippersIron)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentCandyCaneBlock*10000)
-						{
-							player.QuickSpawnItem(586, Main.rand.Next(20,49));
-						}
+						player.QuickSpawnItem(187, 1); //Flipper
 					}
-					if (Config.PresentGreenCandyCaneBlock > 0)
+					if (Main.rand.NextFloat() < Config.CrateEnchantedSundialIronIncrease)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentGreenCandyCaneBlock*10000)
-						{
-							player.QuickSpawnItem(591, Main.rand.Next(20,49));
-						}
+						player.QuickSpawnItem(3064, 1); //Enchanted Sundial
 					}
-					if (Config.PresentHardmodeSnowGlobe > 0 && Main.hardMode)
+				}
+				else if (arg == ItemID.GoldenCrate)
+				{
+					if (Main.rand.NextFloat() < Config.CrateWaterWalkingBootsGolden)
 					{
-						if (Main.rand.Next(10000)+1 <= Config.PresentHardmodeSnowGlobe*10000)
-						{
-							player.QuickSpawnItem(602, 1);
-						}
+						player.QuickSpawnItem(863, 1); //Water walking boots
+					}
+					if (Main.rand.NextFloat() < Config.CrateFlippersGolden)
+					{
+						player.QuickSpawnItem(187, 1); //Flipper
+					}
+					if (Main.rand.NextFloat() < Config.CrateEnchantedSundialGoldenIncrease)
+					{
+						player.QuickSpawnItem(3064, 1); //Enchanted Sundial
+					}
+				}
+				else if (context == "present")
+				{
+					if (Main.rand.NextFloat() < Config.PresentDogWhistle)
+					{
+						player.QuickSpawnItem(1927, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentToolbox)
+					{
+						player.QuickSpawnItem(1923, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentHandWarmer)
+					{
+						player.QuickSpawnItem(1921, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentCandyCanePickaxe)
+					{
+						player.QuickSpawnItem(1917, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentCandyCaneHook)
+					{
+						player.QuickSpawnItem(1915, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentFruitcakeChakram)
+					{
+						player.QuickSpawnItem(1918, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentRedRyderPlusMusketBall)
+					{
+						player.QuickSpawnItem(1870, 1);
+						player.QuickSpawnItem(97, Main.rand.Next(30,60));
+					}
+					if (Main.rand.NextFloat() < Config.PresentCandyCaneSword)
+					{
+						player.QuickSpawnItem(1909, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentMrsClausCostume)
+					{
+						player.QuickSpawnItem(1932, 1);
+						player.QuickSpawnItem(1933, 1);
+						player.QuickSpawnItem(1934, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentParkaOutfit)
+					{
+						player.QuickSpawnItem(1935, 1);
+						player.QuickSpawnItem(1936, 1);
+						player.QuickSpawnItem(1937, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentTreeCostume)
+					{
+						player.QuickSpawnItem(1940, 1);
+						player.QuickSpawnItem(1941, 1);
+						player.QuickSpawnItem(1942, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentSnowHat)
+					{
+						player.QuickSpawnItem(1938, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentUglySweater)
+					{
+						player.QuickSpawnItem(1939, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentReindeerAntlers)
+					{
+						player.QuickSpawnItem(1907, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentCoal)
+					{
+						player.QuickSpawnItem(1922, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentChristmasPudding)
+					{
+						player.QuickSpawnItem(1911, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentSugarCookie)
+					{
+						player.QuickSpawnItem(1919, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentGingerbreadCookie)
+					{
+						player.QuickSpawnItem(1920, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentStarAnise)
+					{
+						player.QuickSpawnItem(1913, Main.rand.Next(20,40));
+					}
+					if (Main.rand.NextFloat() < Config.PresentEggnog)
+					{
+						player.QuickSpawnItem(1912, Main.rand.Next(1,3));
+					}
+					if (Main.rand.NextFloat() < Config.PresentHolly)
+					{
+						player.QuickSpawnItem(1908, 1);
+					}
+					if (Main.rand.NextFloat() < Config.PresentPineTreeBlock)
+					{
+						player.QuickSpawnItem(1872, Main.rand.Next(20,49));
+					}
+					if (Main.rand.NextFloat() < Config.PresentCandyCaneBlock)
+					{
+						player.QuickSpawnItem(586, Main.rand.Next(20,49));
+					}
+					if (Main.rand.NextFloat() < Config.PresentGreenCandyCaneBlock)
+					{
+						player.QuickSpawnItem(591, Main.rand.Next(20,49));
+					}
+					if (Main.rand.NextFloat() < Config.PresentHardmodeSnowGlobe)
+					{
+						player.QuickSpawnItem(602, 1);
 					}
 				}
             }
 			
 			public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
 			{
-				if(extractType == 0 || extractType == ItemID.DesertFossil)
+				if(extractType == 3347 || extractType == 424 || extractType == 1103)
 				{
-					if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesAmberMosquito*10000/3  && extractType != ItemID.DesertFossil || Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesAmberMosquito*10000 && extractType == ItemID.DesertFossil)
+					float amberMosquitoMultiplier = 3f;
+					float gemMultiplier = 1f;
+					float amberMultiplier = 2f;
+					if (extractType == 3347)
+					{
+						amberMosquitoMultiplier /= 3;
+						gemMultiplier *= 2;
+						amberMultiplier /= 2;
+					}
+					if (Main.rand.NextFloat() * amberMosquitoMultiplier < Config.ExtractinatorGivesAmberMosquito)
 					{
 						resultStack = 1;
 						resultType = ItemID.AmberMosquito;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesDiamond*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesDiamond)
 					{
 						resultStack = 1;
 						resultType = ItemID.Diamond;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesRuby*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesRuby)
 					{
 						resultStack = 1;
 						resultType = ItemID.Ruby;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesEmerald*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesEmerald)
 					{
 						resultStack = 1;
 						resultType = ItemID.Emerald;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesSapphire*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesSapphire)
 					{
 						resultStack = 1;
 						resultType = ItemID.Sapphire;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesTopaz*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesTopaz)
 					{
 						resultStack = 1;
 						resultType = ItemID.Topaz;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesAmethyst*10000)
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < Config.ExtractinatorGivesAmethyst)
 					{
 						resultStack = 1;
 						resultType = ItemID.Amethyst;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesAmber*10000/2  && extractType != ItemID.DesertFossil || Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesAmber*10000 && extractType == ItemID.DesertFossil)
+					}
+					else if (Main.rand.NextFloat() * amberMultiplier < Config.ExtractinatorGivesAmber)
 					{
 						resultStack = 1;
 						resultType = ItemID.Amber;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesGoldOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesGoldOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.GoldOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesPlatinumOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesPlatinumOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.PlatinumOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesFossilOre*10000 && extractType == ItemID.DesertFossil)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesFossilOre && extractType == 3347)
 					{
 						resultStack = 1;
 						resultType = ItemID.FossilOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesSilverOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesSilverOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.SilverOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesTungstenOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesTungstenOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.TungstenOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesIronOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesIronOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.IronOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesLeadOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesLeadOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.LeadOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesCopperOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesCopperOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.CopperOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesTinOre*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesTinOre)
 					{
 						resultStack = 1;
 						resultType = ItemID.TinOre;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesPlatinumCoin*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesPlatinumCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.PlatinumCoin;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesGoldCoin*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesGoldCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.GoldCoin;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesSilverCoin*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesSilverCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.SilverCoin;
-					} else if (Main.rand.Next(10000)+1 <= Config.ExtractinatorGivesCopperCoin*10000)
+					}
+					else if (Main.rand.NextFloat() < Config.ExtractinatorGivesCopperCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.CopperCoin;
 					}
 				}
 			}
-			
         }
 		
 		public class ModGlobalNPC : GlobalNPC
 		{
-			
-			
-			public override void NPCLoot(NPC npc)
-			{
-				Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
-				if (!npc.SpawnedFromStatue)
+				public override void NPCLoot(NPC npc)
 				{
+				
+				if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall && (npc.townNPC == false) && !npc.SpawnedFromStatue)
+				{
+					Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
+					float difficultyMultiplier = 1f;
+					if (!Main.expertMode)
+						difficultyMultiplier = Config.NormalModeLootMultiplierForLootWithSeperateDifficultyRates;
+					
 					//Biome Keys
 					int mechBossesDowned = 0;
 					if (Main.hardMode)
@@ -628,40 +598,36 @@ namespace ReducedGrinding
 							{
 								keyDropRateIncrease = Config.BiomeKeyIncreaseForThreeMechBossDown;
 							}
-							// Not a critter or other npcs that give no coins or items when killed.
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < keyDropRateIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= keyDropRateIncrease*10000)
+								if (player.ZoneJungle)
 								{
-									if (player.ZoneJungle)
 									{
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JungleKey, 1, false, -1, false, false);
-										}
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JungleKey, 1, false, -1, false, false);
 									}
-									else if (player.ZoneCorrupt)
+								}
+								else if (player.ZoneCorrupt)
+								{
 									{
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CorruptionKey, 1, false, -1, false, false);
-										}
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CorruptionKey, 1, false, -1, false, false);
 									}
-									else if (player.ZoneCrimson)
+								}
+								else if (player.ZoneCrimson)
+								{
 									{
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrimsonKey, 1, false, -1, false, false);
-										}
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrimsonKey, 1, false, -1, false, false);
 									}
-									else if (player.ZoneHoly)
+								}
+								else if (player.ZoneHoly)
+								{
 									{
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HallowedKey, 1, false, -1, false, false);
-										}
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HallowedKey, 1, false, -1, false, false);
 									}
-									else if (player.ZoneSnow)
+								}
+								else if (player.ZoneSnow)
+								{
 									{
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrozenKey, 1, false, -1, false, false);
-										}
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrozenKey, 1, false, -1, false, false);
 									}
 								}
 							}
@@ -671,2106 +637,1551 @@ namespace ReducedGrinding
 					for (int j=0; j<Config.DropTriesForAllEnemyDroppedLoot; j++)
 					{
 						//Boss Loot
-						if (npc.type == NPCID.SkeletronHead && !Main.expertMode) //Skeletron
+						if (npc.type == NPCID.SkeletronHead) //Skeletron
 						{
-							if (!Main.expertMode && Config.LootSkeletronBoneKey > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSkeletronBoneKey*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootSkeletronBoneKey * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneKey, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootBookofSkullsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBookofSkullsIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootBookofSkullsIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BookofSkulls, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1281, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1363, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 266 && !Main.expertMode) //Brain of Cthulhu
+						if (npc.type == 266) //Brain of Cthulhu
 						{
-							if (Config.LootBoneRattleIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBoneRattleIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootBoneRattleIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneRattle, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2104, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1362, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 370 && !Main.expertMode) //Duke Fishron
+						if (npc.type == 370) //Duke Fishron
 						{
-							if (Config.LootFishronWingsIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFishronWingsIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootFishronWingsIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FishronWings, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootFishronTruffleworm > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFishronTruffleworm*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootFishronTruffleworm * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2673, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2588, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2589, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type >= 13 && npc.type <= 15 && !Main.expertMode && npc.boss) //Eater of Worlds
+						if (npc.type >= 13 && npc.type <= 15 && npc.boss) //Eater of Worlds
 						{
-							if (Config.LootEatersBoneIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootEatersBoneIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootEatersBoneIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EatersBone, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2111, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1361, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 4 && !Main.expertMode) //Eye of Cthulhu
+						if (npc.type == 4) //Eye of Cthulhu
 						{
-							if (Config.LootBinocularsIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBinocularsIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootBinocularsIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Binoculars, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2112, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1360, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 262 && !Main.expertMode) //Plantera
+						if (npc.type == 262) //Plantera
 						{
-							if (Config.LootTheAxeIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTheAxeIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootTheAxeIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TheAxe, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootSeedlingIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSeedlingIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootSeedlingIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Seedling, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2109, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1370, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 222 && !Main.expertMode) //Queen Bee
+						if (npc.type == 222) //Queen Bee
 						{
-							if (Config.LootHoneyedGogglesIncrease > 0)
+							if (!Main.expertMode)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootHoneyedGogglesIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootHoneyedGogglesIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HoneyedGoggles, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootNectarIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootNectarIncrease*10000)
-								{
+								if (Main.rand.NextFloat() < Config.LootNectarIncrease * difficultyMultiplier)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nectar, 1, false, -1, false, false);
-								}
+								if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2108, 1, false, -1, false, false); //Mask
 							}
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1364, 1, false, -1, false, false); //Trophy
 						}
+						if (npc.type == 50) //Slime King
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2493, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2489, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 113) //Wall of Flesh
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2105, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1365, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 134) //The Destroyer
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2113, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1366, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 125 || npc.type == 126) //The Twins
+						{
+							if (!Main.expertMode)
+							{
+								int oppositeTwin = 125;
+								if (npc.type == 125)
+									oppositeTwin = 126;
+								if (!NPC.AnyNPCs(oppositeTwin) && Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2106, 1, false, -1, false, false);
+							}
+							if (npc.type == 125 && Main.rand.NextFloat() < Config.LootBossTrophyIncrease) //Retinazer
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1368, 1, false, -1, false, false); //Trophy
+							if (npc.type == 126 && Main.rand.NextFloat() < Config.LootBossTrophyIncrease) //Spazmatism
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1369, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 127) //Skeletron Prime
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2113, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1367, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 245) //Golem
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2110, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1371, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 370) //Duke Fishron
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2588, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2589, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 439) //Lunatic Cultist
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3372, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3357, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 398) //Moon Lord
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3373, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3595, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 551) //Betsy
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease && !Main.expertMode)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3863, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3866, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 564) //Dark Mage T1
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3864, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3867, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 565) //Dark Mage T3
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease / 2)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3864, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3867, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 576) //Ogre T2
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3865, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3868, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 577) //Ogre T3
+						{
+							if (Main.rand.NextFloat() < Config.LootBossMaskIncrease / 2)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3865, 1, false, -1, false, false); //Mask
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3868, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 344) //Everscream
+						{
+							if (Main.rand.NextFloat() < Config.LootFestiveWingsIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FestiveWings, 1, false, -1, false, false);
+						}
+						if (npc.type == 345) //Ice Queen
+						{
+							if (Main.rand.NextFloat() < Config.LootBabyGrinchsMischiefWhistleIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BabyGrinchMischiefWhistle, 1, false, -1, false, false);
+							if (Main.rand.NextFloat() < Config.LootReindeerBellsIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ReindeerBells, 1, false, -1, false, false);
+						}
+						if (npc.type == 491) //Flying Dutchman
+						{
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3359, 1, false, -1, false, false); //Trophy
+						}
+						if (npc.type == 395) //Martian Saucer
+						{
+							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3358, 1, false, -1, false, false); //Trophy
+						}
+						
+						
 						
 						//Other Loot
 						if (npc.type == NPCID.AnglerFish || npc.type == NPCID.Piranha)
 						{
-							if (Config.LootRobotHatIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootRobotHatIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootRobotHatIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RobotHat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RobotHat, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.AnglerFish || (npc.type >= 269 && npc.type <= 272) || npc.type == NPCID.Werewolf) //269 to 272 is Rusty Armored Bones
 						{
-							if (Main.expertMode && Config.ExpertLootAdhesiveBandageIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAdhesiveBandageIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootAdhesiveBandageIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootAdhesiveBandageIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAdhesiveBandageIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ChaosElemental && Config.LootRodofDiscordIncrease > 0)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootRodofDiscordIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootRodofDiscordIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RodofDiscord, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Clown || npc.type == NPCID.LightMummy || npc.type == NPCID.GiantBat)
 						{
-							if (Main.expertMode && Config.ExpertLootTrifoldMapIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootTrifoldMapIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootTrifoldMapIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TrifoldMap, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootTrifoldMapIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTrifoldMapIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TrifoldMap, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TrifoldMap, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Clown)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootBananarangIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootBananarangIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bananarang, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.EnchantedSword || npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.CursedSkull)
 						{
-							if (Main.expertMode && Config.ExpertLootNazarIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootNazarIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootNazarIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nazar, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootNazarIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootNazarIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nazar, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nazar, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 42 || (npc.type >= 231 && npc.type <= 235)) //Hornet
 						{
-							if (Main.expertMode && Config.ExpertLootMegaphoneIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMegaphoneBaseIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMegaphoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
 							}
-							else if(!Main.expertMode && Config.LootMegaphoneIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMegaphoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientCobaltHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltBreastplateIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltBreastplate, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientCobaltBreastplateIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltLeggingsIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltBreastplateIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltBreastplate, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootAncientCobaltLeggingsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltLeggingsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltLeggings, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltLeggings, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Corruptor || npc.type == NPCID.FloatyGross)
 						{
-							if (Main.expertMode && Config.ExpertLootVitaminsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootVitaminsIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootVitaminsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootVitaminsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootVitaminsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Crimslime || npc.type == NPCID.BigCrimslime || npc.type == NPCID.LittleCrimslime)
 						{
-							if (Main.expertMode && Config.ExpertLootBlindfoldIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBlindfoldIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootBlindfoldIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Blindfold, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootBlindfoldIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBlindfoldIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Blindfold, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Blindfold, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == NPCID.DesertScorpionWalk || npc.type == NPCID.DesertScorpionWall || npc.type == NPCID.Mummy || npc.type == NPCID.Pixie || npc.type == NPCID.Wraith)
+						if (npc.type == NPCID.Mummy || npc.type == NPCID.Pixie || npc.type == NPCID.Wraith)
 						{
-							if (Main.expertMode && Config.ExpertLootFastClockIncrease > 0)
+							int fastClockMultiplier = 1;
+							if (npc.type != NPCID.Pixie)
+								fastClockMultiplier = 2;
+							if (Main.rand.NextFloat() < Config.LootFastClockBaseIncrease * difficultyMultiplier* fastClockMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootFastClockIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootFastClockIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFastClockIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.FlyingSnake || npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler)
 						{
-							if (Config.LootLizardEggIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootLizardEggIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootLizardEggIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LizardEgg, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LizardEgg, 1, false, -1, false, false);
 							}
-							if (Config.LootLihzahrdPowerCellIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootLihzahrdPowerCellIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootLihzahrdPowerCellIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LihzahrdPowerCell, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LihzahrdPowerCell, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.GiantTortoise && Config.LootTurtleShellIncrease > 0)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootTurtleShellIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootTurtleShellIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TurtleShell, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.IceTortoise && Config.LootFrozenTurtleShellIncrease > 0)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootFrozenTurtleShellIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootFrozenTurtleShellIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrozenTurtleShell, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Paladin)
 						{
-							if (Main.expertMode && Config.ExpertLootPaladinsShieldIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPaladinsShieldIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootPaladinsShieldIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PaladinsShield, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootPaladinsShieldIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPaladinsShieldIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PaladinsShield, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PaladinsShield, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type >= 212 && npc.type <= 216) //All pirates
+						if ((npc.type >= 212 && npc.type <= 216) || npc.type == NPCID.PirateShip) //All Human Pirates and Flying Dutchman
 						{
-							if (Config.PirateLootCoinGunIncrease > 0)
+							int pirateLootMultiplier = 1;
+							int pirateLootMultiplier2 = 1;
+							if (npc.type == NPCID.PirateCaptain || npc.type == NPCID.PirateShip)
+								pirateLootMultiplier = 4;
+							if (npc.type == NPCID.PirateShip)
+								pirateLootMultiplier2 = 4;
+							if (Main.rand.NextFloat() < Config.PirateLootCoinGunBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateLootCoinGunIncrease*10000)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CoinGun, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.PirateLootLuckyCoinBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LuckyCoin, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.PirateLootDiscountCardBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DiscountCard, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.PirateLootPirateStaffBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PirateStaff, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.PirateLootGoldRingBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldRing, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.PirateLootCutlassBaseIncrease * pirateLootMultiplier * pirateLootMultiplier2)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Cutlass, 1, false, -1, false, false);
+							}
+							if (npc.type != NPCID.PirateCaptain && npc.type != NPCID.PirateShip)
+							{
+								if (Main.rand.NextFloat() < Config.LootSailorHatIncrease)
 								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CoinGun, 1, false, -1, false, false);
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorHat, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < Config.LootSailorShirtIncrease)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorShirt, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < Config.LootSailorPantsIncrease)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorPants, 1, false, -1, false, false);
 								}
 							}
-							if (Config.PirateLootLuckyCoinIncrease > 0)
+							if (Config.LootGoldenFurnitureIncrease > 0 && npc.type != NPCID.PirateCaptain && npc.type != NPCID.PirateShip)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateLootLuckyCoinIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LuckyCoin, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateLootDiscountCardIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateLootDiscountCardIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DiscountCard, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateLootPirateStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateLootPirateStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PirateStaff, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateLootGoldRingIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateLootGoldRingIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldRing, 1, false, -1, false, false);
-								}
-							}
-							if (npc.type != NPCID.PirateCaptain)
-							{
-								if (Config.LootSailorHatIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootSailorHatIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorHat, 1, false, -1, false, false);
-									}
-								}
-								if (Config.LootSailorShirtIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootSailorShirtIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorShirt, 1, false, -1, false, false);
-									}
-								}
-								if (Config.LootSailorPantsIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootSailorPantsIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SailorPants, 1, false, -1, false, false);
-									}
-								}
-							}
-							if (Config.LootGoldenFurnitureIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenChair, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenToilet, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenDoor, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenTable, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenBed, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenPiano, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenDresser, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenSofa, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenBathtub, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenClock, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenLamp, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenBookcase, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenChandelier, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenLantern, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenCandelabra, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenCandle, 1, false, -1, false, false);
 								}
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenFurnitureIncrease*10000)
+								if (Main.rand.NextFloat() < Config.LootGoldenFurnitureIncrease)
 								{
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenSink, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootCutlassIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootCutlassIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Cutlass, 1, false, -1, false, false);
-								}
-							}
-						}
-						if (npc.type == NPCID.PirateShip)
-						{
-							if (Config.PirateShipLootCoinGunIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateShipLootCoinGunIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CoinGun, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateShipLootLuckyCoinIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateShipLootLuckyCoinIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LuckyCoin, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateShipLootDiscountCardIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateShipLootDiscountCardIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DiscountCard, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateShipLootPirateShipStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateShipLootPirateShipStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PirateStaff, 1, false, -1, false, false);
-								}
-							}
-							if (Config.PirateShipLootGoldRingIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.PirateShipLootGoldRingIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldRing, 1, false, -1, false, false);
 								}
 							}
 						}
 						if (npc.type == NPCID.Pixie || npc.type == NPCID.GreenJellyfish || npc.type == NPCID.DarkMummy)
 						{
-							if (Main.expertMode && Config.ExpertLootMegaphoneIncrease > 0)
+							int megaphoneMultiplier = 1;
+							if (npc.type == NPCID.GreenJellyfish)
+								megaphoneMultiplier = 2;
+							if (Main.rand.NextFloat() < Config.LootMegaphoneBaseIncrease * difficultyMultiplier * megaphoneMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMegaphoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootMegaphoneIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMegaphoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 77 || (npc.type >= 273 && npc.type <= 276)) //Blue Amored Bones and Armored Skeleton
 						{
-							if (Main.expertMode && Config.ExpertLootArmorPolishIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootArmorPolishIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootArmorPolishIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ArmorPolish, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootArmorPolishIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootArmorPolishIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ArmorPolish, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ArmorPolish, 1, false, -1, false, false);
 							}
 						}
 						if ((npc.type == NPCID.ZombieElf || npc.type == NPCID.ZombieElfBeard || npc.type == NPCID.ZombieElfGirl))
 						{
-							if (Config.LootElfHatIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootElfHatIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootElfHatIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfHat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfHat, 1, false, -1, false, false);
 							}
-							if (Config.LootElfShirtIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootElfShirtIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootElfShirtIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfShirt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfShirt, 1, false, -1, false, false);
 							}
-							if (Config.LootElfPantsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootElfPantsIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootElfPantsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfPants, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ElfPants, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 269 && npc.type <= 280)//All Armored Bones variants
 						{
-							if (Main.expertMode && Config.ExpertLootWispinaBottleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootWispinaBottleIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootWispinaBottleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WispinaBottle, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WispinaBottle, 1, false, -1, false, false);
 							}
-							else if(!Main.expertMode && Config.LootWispinaBottleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBoneFeatherIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootWispinaBottleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WispinaBottle, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneFeather, 1, false, -1, false, false);
 							}
-							if (Config.LootBoneFeatherIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMagnetSphereIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBoneFeatherIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneFeather, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagnetSphere, 1, false, -1, false, false);
 							}
-							if (Main.expertMode && Config.ExpertLootMagnetSphereIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootKeybrandIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMagnetSphereIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagnetSphere, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootMagnetSphereIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMagnetSphereIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagnetSphere, 1, false, -1, false, false);
-								}
-							}
-							if (Main.expertMode && Config.ExpertLootKeybrandIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootKeybrandIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Keybrand, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootKeybrandIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootKeybrandIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Keybrand, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Keybrand, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.EaterofSouls)
 						{
-							if (Config.LootAncientShadowHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientShadowHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientShadowHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientShadowScalemailIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientShadowScalemailIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientShadowScalemailIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowScalemail, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowScalemail, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientShadowGreavesIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientShadowGreavesIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientShadowGreavesIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowGreaves, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientShadowGreaves, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 21 || (npc.type >= 201 && npc.type <= 203) || (npc.type >= 322 && npc.type <= 323) || (npc.type >= 449 && npc.type <= 452)) //Skeleton
 						{
-							if (Config.LootSkullIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSkullIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSkullIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Skull, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Skull, 1, false, -1, false, false);
 							}
-							if (Config.LootBoneSwordIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBoneSwordIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBoneSwordIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneSword, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneSword, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientGoldHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientGoldHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientGoldHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientGoldHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientGoldHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientIronHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientIronHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientIronHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientIronHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientIronHelmet, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 31 || (npc.type >= 294 && npc.type <= 296)) //Angry Bones
 						{
-							if (Config.LootAncientNecroHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientNecroHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientNecroHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientNecroHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientNecroHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootClothierVoodooDollIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootClothierVoodooDollIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootClothierVoodooDollIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ClothierVoodooDoll, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ClothierVoodooDoll, 1, false, -1, false, false);
 							}
-							if (Config.LootBoneWandIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBoneWandIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBoneWandIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneWand, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneWand, 1, false, -1, false, false);
 							}
 						}
 						if (player.ZoneUnderworldHeight)
 						{
 							
-							if (Main.hardMode){
-								if (Config.LootHelFireIncrease > 0)
+							if (Main.hardMode)
+							{
+								if (Main.rand.NextFloat() < Config.LootHelFireIncrease)
 								{
-									if (Main.rand.Next(10000)+1 <= Config.LootHelFireIncrease*10000)
-									{
-										if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HelFire, 1, false, -1, false, false);
-										}
-									}
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HelFire, 1, false, -1, false, false);
 								}
-								if (Config.LootLivingFireBlockIncrease > 0)
+								if (Main.rand.NextFloat() < Config.LootLivingFireBlockIncrease)
 								{
-									if (Main.rand.Next(10000)+1 <= Config.LootLivingFireBlockIncrease*10000)
-									{
-										if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LivingFireBlock, 1, false, -1, false, false);
-										}
-									}
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LivingFireBlock, 1, false, -1, false, false);
 								}
 							}
 							else if (NPC.downedBoss3) //Skeletron
 							{
-								if (Config.LootCascadeIncrease > 0)
+								if (Main.rand.NextFloat() < Config.LootCascadeIncrease)
 								{
-									if (Main.rand.Next(10000)+1 <= Config.LootCascadeIncrease*10000)
-									{
-										if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-										{
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Cascade, 1, false, -1, false, false);
-										}
-									}
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Cascade, 1, false, -1, false, false);
 								}
 							}
 						}
 						if (npc.type == NPCID.ManEater)
 						{
-							if (Config.LootAncientCobaltHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientCobaltBreastplateIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltBreastplateIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltBreastplateIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltBreastplate, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltBreastplate, 1, false, -1, false, false);
 							}
-							if (Config.LootAncientCobaltLeggingsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientCobaltLeggingsIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientCobaltLeggingsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltLeggings, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltLeggings, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.FireImp)
 						{
-							if (Config.LootPlumbersHatIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPlumbersHatIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPlumbersHatIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PlumbersHat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PlumbersHat, 1, false, -1, false, false);
 							}
-							if (Config.LootObsidianRoseIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootObsidianRoseIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootObsidianRoseIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ObsidianRose, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ObsidianRose, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster)
 						{
-							if (Config.LootBoneWandIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBoneWandIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBoneWandIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneWand, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BoneWand, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.CaveBat)
 						{
-							if (Config.LootChainKnifeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootChainKnifeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootChainKnifeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ChainKnife, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ChainKnife, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Reaper)
 						{
-							if (Main.expertMode && Config.ExpertLootDeathSickleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDeathSickleIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootDeathSickleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootDeathSickleIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDeathSickleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 3 || npc.type == 132 || npc.type == 161 || (npc.type >= 186 && npc.type <= 200) || npc.type == 223 || (npc.type >= 430 && npc.type <= 436)) //Normal Zombie Variants, Raincoat Zombie, and Zombie Eskimo
 						{
-							if (Config.LootZombieArmIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootZombieArmIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootZombieArmIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ZombieArm, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ZombieArm, 1, false, -1, false, false);
 							}
-							if (Config.LootShackleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootShackleIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootShackleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Shackle, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Shackle, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Pixie || npc.type == NPCID.Unicorn || npc.type == NPCID.RainbowSlime || npc.type == NPCID.Gastropod || npc.type == NPCID.LightMummy || npc.type == NPCID.IlluminantSlime || npc.type == NPCID.IlluminantBat || npc.type == NPCID.ChaosElemental || npc.type == NPCID.EnchantedSword || npc.type == NPCID.BigMimicHallow) //Hallow Enemies
 						{
-							if (Main.expertMode && Config.ExpertLootBlessedAppleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBlessedAppleIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootBlessedAppleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlessedApple, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootBlessedAppleIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBlessedAppleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlessedApple, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlessedApple, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Mimic)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootDualHookIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootDualHookIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DualHook, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootMagicDaggerIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootMagicDaggerIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicDagger, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootTitanGloveIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootTitanGloveIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TitanGlove, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootPhilosophersStoneIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootPhilosophersStoneIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PhilosophersStone, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootCrossNecklaceIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootCrossNecklaceIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrossNecklace, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootStarCloakIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootStarCloakIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.StarCloak, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.BigMimicCorruption)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootDartRifleIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootDartRifleIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DartRifle, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootWormHookIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootWormHookIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WormHook, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootChainGuillotinesIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootChainGuillotinesIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ChainGuillotines, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootClingerStaffIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootClingerStaffIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ClingerStaff, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootPutridScentIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootPutridScentIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PutridScent, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.BigMimicCrimson)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootLifeDrainIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootLifeDrainIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulDrain, 1, false, -1, false, false);//Life Drain
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootDartPistolIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootDartPistolIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DartPistol, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootFetidBaghnakhsIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootFetidBaghnakhsIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FetidBaghnakhs, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootFleshKnucklesIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootFleshKnucklesIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FleshKnuckles, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootTendonHookIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootTendonHookIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TendonHook, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.BigMimicHallow)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootDaedalusStormbowIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootDaedalusStormbowIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DaedalusStormbow, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootFlyingKnifeIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootFlyingKnifeIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FlyingKnife, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootCrystalVileShardIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootCrystalVileShardIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrystalVileShard, 1, false, -1, false, false);
 							}
-							if (Main.rand.Next(10000)+1 <= Config.LootIlluminantHookIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootIlluminantHookIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IlluminantHook, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Harpy)
 						{
-							if (Config.LootGiantHarpyFeatherIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootGiantHarpyFeatherIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootGiantHarpyFeatherIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GiantHarpyFeather, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GiantHarpyFeather, 1, false, -1, false, false);
 							}
 						}
 						if ((npc.type >= 26 && npc.type <= 29) || npc.type == 111) //Goblin Army (Excluding Summoner)
 						{
-							if (Config.LootHarpoonIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootHarpoonIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootHarpoonIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Harpoon, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Harpoon, 1, false, -1, false, false);
 							}
-						}
+					}
 						if (npc.type == NPCID.ArmoredViking || npc.type == NPCID.IceElemental || npc.type == NPCID.IcyMerman || npc.type == NPCID.IceTortoise)
 						{
-							if (Config.LootIceSickleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootIceSickleIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootIceSickleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IceSickle, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.IceSickle, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 269 && npc.type <= 293)// Post-plantera dungeon enemies
 						{
-							if (Config.LootKrakenIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootKrakenIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootKrakenIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Kraken, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Kraken, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.SkeletonArcher)
 						{
-							if (Config.LootMarrowIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMarrowIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMarrowIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Marrow, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Marrow, 1, false, -1, false, false);
 							}
-							if (Config.LootMagicQuiverIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMagicQuiverIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMagicQuiverIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicQuiver, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagicQuiver, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Crimslime || npc.type == NPCID.CrimsonAxe || npc.type == NPCID.FloatyGross || npc.type == NPCID.Herpling)
 						{
-							if (Config.LootMeatGrinderIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMeatGrinderIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMeatGrinderIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MeatGrinder, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MeatGrinder, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.AngryTrapper)
 						{
-							if (Config.LootUziIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootUziIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootUziIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Uzi, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Uzi, 1, false, -1, false, false);
 							}
 						}
 						if (NPC.downedMechBoss1 && player.ZoneJungle)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootYeletsIncrease)
 							{
-								if (Config.LootYeletsIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootYeletsIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Yelets, 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Yelets, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ArmoredSkeleton)
 						{
-							if (Config.LootBeamSwordIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBeamSwordIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBeamSwordIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BeamSword, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BeamSword, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 2 || (npc.type >= 190 && npc.type <= 194) || npc.type == 317 || npc.type == 318) //Demon Eye and Wandering Eye
 						{
-							if (Config.LootBlackLensIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBlackLensIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBlackLensIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackLens, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ZombieEskimo || npc.type == NPCID.ArmedZombieEskimo)
 						{
-							if (Config.LootEskimoHoodIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootEskimoHoodIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootEskimoHoodIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoHood, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoHood, 1, false, -1, false, false);
 							}
-							if (Config.LootEskimoCoatIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootEskimoCoatIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootEskimoCoatIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoCoat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoCoat, 1, false, -1, false, false);
 							}
-							if (Config.LootEskimoPantsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootEskimoPantsIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootEskimoPantsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoPants, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EskimoPants, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Hellbat)
 						{
-							if (Config.HellBatLootMagmaStoneIncrease > 0)
+							if (Main.rand.NextFloat() < Config.HellBatLootMagmaStoneIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.HellBatLootMagmaStoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagmaStone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagmaStone, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Lavabat)
 						{
-							if (Config.LavaBatLootMagmaStoneIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LavaBatLootMagmaStoneIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LavaBatLootMagmaStoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagmaStone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MagmaStone, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.SnowFlinx)
 						{
-							if (Config.LootSnowballLauncherIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSnowballLauncherIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSnowballLauncherIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowballLauncher, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowballLauncher, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.MossHornet)
 						{
-							if (Config.LootTatteredBeeWingIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootTatteredBeeWingIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTatteredBeeWingIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TatteredBeeWing, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TatteredBeeWing, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ScutlixRider)
 						{
-							if (Config.LootBrainScramblerIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBrainScramblerIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBrainScramblerIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BrainScrambler, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BrainScrambler, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 63 || npc.type == 64 || npc.type == 103) //Basic Jellyfish
 						{
-							if (Config.LootJellyfishNecklaceIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootJellyfishNecklaceIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootJellyfishNecklaceIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JellyfishNecklace, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JellyfishNecklace, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertLamiaLight || npc.type == NPCID.DesertLamiaDark)
 						{
-							if (Config.LootLamiaClothesIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootLamiaClothesIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootLamiaClothesIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaHat, 1, false, -1, false, false);
-								}
-								if (Main.rand.Next(10000)+1 <= Config.LootLamiaClothesIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaPants, 1, false, -1, false, false);
-								}
-								if (Main.rand.Next(10000)+1 <= Config.LootLamiaClothesIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaShirt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaHat, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.LootLamiaClothesIncrease)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaPants, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.LootLamiaClothesIncrease)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LamiaShirt, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Vampire)
 						{
-							if (Main.expertMode && Config.ExpertLootMoonStoneIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMoonStoneIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMoonStoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonStone, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootMoonStoneIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMoonStoneIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonStone, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonStone, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.RedDevil)
 						{
-							if (Config.LootFireFeatherIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootFireFeatherIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFireFeatherIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FireFeather, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FireFeather, 1, false, -1, false, false);
 							}
 						}
 						if (Config.SlimeStaffIncreaseToSurfaceSlimes && (npc.type == NPCID.GreenSlime || npc.type == NPCID.BlueSlime || npc.type == NPCID.PurpleSlime || npc.type == NPCID.IceSlime || npc.type == NPCID.SandSlime || npc.type == NPCID.JungleSlime))
 						{
-							if (Main.expertMode && Config.ExpertLootSlimeStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSlimeStaffIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootSlimeStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
 							}
 						}
 						if (Config.SlimeStaffIncreaseToUndergroundSlimes && (npc.type == NPCID.RedSlime || npc.type == NPCID.YellowSlime))
 						{
-							if (Main.expertMode && Config.ExpertLootSlimeStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSlimeStaffIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootSlimeStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
 							}
 						}
 						if (Config.SlimeStaffIncreaseToCavernSlimess && (npc.type == NPCID.BlackSlime || npc.type == NPCID.MotherSlime || npc.type == NPCID.BabySlime))
 						{
-							if (Main.expertMode && Config.ExpertLootSlimeStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSlimeStaffIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootSlimeStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
 							}
 						}
 						if (Config.SlimeStaffIncreaseToIceSpikedSlimes && npc.type == NPCID.SpikedIceSlime)
 						{
-							if (Main.expertMode && Config.ExpertLootSlimeStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSlimeStaffIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootSlimeStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
 							}
 						}
 						if (Config.SlimeStaffIncreaseToSpikedJungleSlimes && npc.type == NPCID.SpikedJungleSlime)
 						{
-							if (Main.expertMode && Config.ExpertLootSlimeStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSlimeStaffIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.LootSlimeStaffIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSlimeStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SlimeStaff, 1, false, -1, false, false);
 							}
 						}
 						if (Main.hardMode && player.ZoneBeach)
 						{
-							if (Config.LootPirateMapIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPirateMapIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPirateMapIncrease*10000)
-								{
-									if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PirateMap, 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PirateMap, 1, false, -1, false, false);
 							}
 						}
-						if (Main.hardMode && player.ZoneDirtLayerHeight && (player.ZoneCorrupt || player.ZoneCrimson))
+						if (Main.hardMode && player.ZoneRockLayerHeight && (player.ZoneCorrupt || player.ZoneCrimson))
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootSoulofNightIncrease * difficultyMultiplier)
 							{
-								if (Main.expertMode && ((Main.rand.Next(10000)+1) <= Config.ExpertLootSoulofNightIncrease*10000))
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, -1, false, false);
-								}
-								else if (!Main.expertMode && ((Main.rand.Next(10000)+1) <= Config.LootSoulofNightIncrease*10000))
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, -1, false, false);
 							}
 						}
-						if (Main.hardMode && player.ZoneDirtLayerHeight && player.ZoneHoly)
+						if (Main.hardMode && player.ZoneRockLayerHeight && player.ZoneHoly)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootSoulofLightIncrease * difficultyMultiplier)
 							{
-								if (Main.expertMode && ((Main.rand.Next(10000)+1) <= Config.ExpertLootSoulofLightIncrease*10000))
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight, 1, false, -1, false, false);
-								}
-								else if (!Main.expertMode && ((Main.rand.Next(10000)+1) <= Config.LootSoulofLightIncrease*10000))
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofLight, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Unicorn)
 						{
-							if (Config.LootUnicornonaStickIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootUnicornonaStickIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootUnicornonaStickIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.UnicornonaStick, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.UnicornonaStick, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DiggerHead || npc.type == NPCID.GiantWormHead)
 						{
-							if (Config.LootWhoopieCushionIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootWhoopieCushionIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootWhoopieCushionIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WhoopieCushion, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.WhoopieCushion, 1, false, -1, false, false);
 							}
 						}
 						if (player.ZoneSnow && Main.hardMode) //Skeletron
 						{
-							if (Config.LootAmarokIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAmarokIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAmarokIncrease*10000)
-								{
-									if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Amarok, 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Amarok, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.UndeadMiner)
 						{
-							if (Config.LootBonePickaxeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBonePickaxeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBonePickaxeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BonePickaxe, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BonePickaxe, 1, false, -1, false, false);
 							}
-							if (Config.LootMiningHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMiningHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMiningHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningHelmet, 1, false, -1, false, false);
 							}
-							if (Config.LootMiningShirtIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMiningShirtIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMiningShirtIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningShirt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningShirt, 1, false, -1, false, false);
 							}
-							if (Config.LootMiningPantsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMiningPantsIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMiningPantsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningPants, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MiningPants, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Psycho)
 						{
-							if (Main.expertMode && Config.LootPsychoKnifeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPsychoKnifeIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPsychoKnifeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PsychoKnife, 1, false, -1, false, false);
-								}
-							}
-							else if(!Main.expertMode && Config.ExpertLootPsychoKnifeIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootPsychoKnifeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PsychoKnife, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PsychoKnife, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.CorruptBunny)
 						{
-							if (Config.LootBunnyHoodIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBunnyHoodIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBunnyHoodIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BunnyHood, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BunnyHood, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 78 && npc.type <= 80) //Mummies
 						{
-							if (Config.LootMummyCostumeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMummyCostumeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMummyCostumeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyMask, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyMask, 1, false, -1, false, false);
 							}
-							if (Config.LootMummyCostumeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMummyCostumeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMummyCostumeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyShirt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyShirt, 1, false, -1, false, false);
 							}
-							if (Config.LootMummyCostumeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMummyCostumeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMummyCostumeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyPants, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MummyPants, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 31 || (npc.type >= 294 && npc.type <= 296) || npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster) //Angry Bones, Cursed Skull, and Dark Caster
 						{
-							if (Config.LootGoldenKeyIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootGoldenKeyIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootGoldenKeyIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenKey, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoldenKey, 1, false, -1, false, false);
 							}
-							if (Config.LootTallyCounterIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootTallyCounterIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTallyCounterIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TallyCounter, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TallyCounter, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Werewolf)
 						{
-							if (Config.LootMoonCharmIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMoonCharmIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMoonCharmIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonCharm, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonCharm, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertBeast)
 						{
-							if (Config.LootAncientHornIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientHornIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientHornIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientHorn, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientHorn, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Demon)
 						{
-							if (Config.LootDemonScytheIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDemonScytheIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDemonScytheIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DemonScythe, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DemonScythe, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Shark)
 						{
-							if (Config.LootDivingHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDivingHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDivingHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DivingHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DivingHelmet, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Eyezor)
 						{
-							if (Config.LootEyeSpringIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootEyeSpringIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootEyeSpringIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EyeSpring, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.EyeSpring, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.IceElemental || npc.type == NPCID.IcyMerman)
 						{
-							if (Config.LootFrostStaffIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootFrostStaffIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFrostStaffIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrostStaff, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrostStaff, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.WalkingAntlion)
 						{
-							if (Config.LootMandibleBladeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMandibleBladeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMandibleBladeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AntlionClaw, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AntlionClaw, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.MeteorHead)
 						{
-							if (Config.LootMeteoriteIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMeteoriteIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMeteoriteIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Meteorite, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Meteorite, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.CorruptPenguin || npc.type == NPCID.CrimsonPenguin)
 						{
-							if (Config.LootPedguinssuitIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPedguinssuitIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPedguinssuitIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinHat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinHat, 1, false, -1, false, false);
 							}
-							if (Config.LootPedguinssuitIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPedguinssuitIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPedguinssuitIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinShirt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinShirt, 1, false, -1, false, false);
 							}
-							if (Config.LootPedguinssuitIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPedguinssuitIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPedguinssuitIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinPants, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PedguinPants, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.UndeadViking)
 						{
-							if (Config.LootVikingHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootVikingHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootVikingHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.VikingHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.VikingHelmet, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.UmbrellaSlime)
 						{
-							if (Config.LootUmbrellaHatIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootUmbrellaHatIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootUmbrellaHatIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.UmbrellaHat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.UmbrellaHat, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Vampire || npc.type == NPCID.VampireBat)
 						{
-							if (Config.LootBrokenBatWingIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBrokenBatWingIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBrokenBatWingIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BrokenBatWing, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BrokenBatWing, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertDjinn)
 						{
-							if (Config.LootDesertSpiritLampIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDesertSpiritLampIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDesertSpiritLampIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DjinnLamp, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DjinnLamp, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Piranha)
 						{
-							if (Config.LootHookIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootHookIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootHookIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hook, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hook, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.LightMummy || npc.type == NPCID.DesertGhoulHallow || npc.type == NPCID.SandsharkHallow)
 						{
-							if (Config.LootLightShardIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootLightShardIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootLightShardIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LightShard, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LightShard, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertLamiaLight)
 						{
-							if (Config.LootMoonMaskIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMoonMaskIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMoonMaskIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonMask, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonMask, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertLamiaDark)
 						{
-							if (Config.LootSunMaskIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSunMaskIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSunMaskIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SunMask, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SunMask, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 333 && npc.type <= 336) //Present Slimes
 						{
-							if (Config.LootGiantBowIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootGiantBowIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootGiantBowIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GiantBow, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GiantBow, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ZombieRaincoat)
 						{
-							if (Config.LootRainArmorIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootRainArmorIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootRainArmorIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainCoat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainCoat, 1, false, -1, false, false);
 							}
-							if (Config.LootRainArmorIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootRainArmorIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootRainArmorIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainCoat, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainCoat, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Mimic && player.ZoneSnow)
 						{
-							if (Config.LootToySledIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootToySledIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootToySledIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ToySled, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ToySled, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.SkeletonSniper)
 						{
-							if (Config.LootSniperRifleIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSniperRifleIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSniperRifleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SniperRifle, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SniperRifle, 1, false, -1, false, false);
 							}
-							if (Config.LootRifleScopeIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootRifleScopeIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootRifleScopeIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RifleScope, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RifleScope, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.TacticalSkeleton)
 						{
-							if (Config.LootTacticalShotgunIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootTacticalShotgunIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTacticalShotgunIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TacticalShotgun, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TacticalShotgun, 1, false, -1, false, false);
 							}
-							if (Config.LootSWATHelmetIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootSWATHelmetIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootSWATHelmetIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SWATHelmet, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SWATHelmet, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 524 && npc.type <= 527) //Ghouls
 						{
-							if (Config.LootAncientClothIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootAncientClothIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAncientClothIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCloth, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCloth, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DesertGhoulCorruption || npc.type == NPCID.DesertGhoulCrimson)
 						{
-							if (Config.LootDarkShardIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDarkShardIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDarkShardIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DarkShard, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DarkShard, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.AngryNimbus)
 						{
-							if (Config.LootNimbusRodIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootNimbusRodIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootNimbusRodIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.NimbusRod, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.NimbusRod, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.BoneLee)
 						{
-							if (Config.LootBlackBeltIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBlackBeltIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBlackBeltIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackBelt, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BlackBelt, 1, false, -1, false, false);
 							}
-							if (Config.LootTabiIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootTabiIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootTabiIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Tabi, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Tabi, 1, false, -1, false, false);
 							}
 						}
 						if (Main.halloween && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootGoodieBagIncrease)
 							{
-								if (Config.LootGoodieBagIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootGoodieBagIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoodieBag, 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GoodieBag, 1, false, -1, false, false);
 							}
 						}
 						if (Main.xMas && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootPresentIncrease)
 							{
-								if (Config.LootPresentIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootPresentIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Present, 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Present, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Drippler || npc.type == NPCID.BloodZombie)
 						{
-							if (Main.expertMode && Config.ExpertLootMoneyTroughIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMoneyTroughIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMoneyTroughIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoneyTrough, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootMoneyTroughIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMoneyTroughIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoneyTrough, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoneyTrough, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 42 || npc.type == 141|| npc.type == 176 || (npc.type >= 231 && npc.type <= 235)) //Hornet, Moss Hornet, and Toxic Sludge
 						{
-							if (Main.expertMode && Config.ExpertLootBezoarIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootBezoarIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootBezoarIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bezoar, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootBezoarIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBezoarIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bezoar, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bezoar, 1, false, -1, false, false);
 							}
 						}
 						if (Main.halloween && npc.value > 0f && npc.value < 500f && npc.damage < 40 && npc.defense < 20)
 						{
-							if (Main.rand.Next(10000)+1 <= Config.LootBloodyMacheteIncrease*10000)
+							if (Main.rand.NextFloat() < Config.LootBloodyMacheteIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BloodyMachete, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type >= 494 && npc.type <= 506) //Giant Shellies, Crawdads, and Salamanders
 						{
-							if (Config.LootRallyIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootRallyIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootRallyIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Rally, 1, false, -1, false, false);
-								}
-							}
-						}
-						if (npc.type == NPCID.Everscream)
-						{
-							if (Config.LootFestiveWingsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootFestiveWingsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FestiveWings, 1, false, -1, false, false);
-								}
-							}
-						}
-						if (npc.type == NPCID.IceQueen)
-						{
-							if (Config.LootBabyGrinchsMischiefWhistleIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootBabyGrinchsMischiefWhistleIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BabyGrinchMischiefWhistle, 1, false, -1, false, false);
-								}
-							}
-							if (Config.LootReindeerBellsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootReindeerBellsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ReindeerBells, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Rally, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Medusa)
 						{
-							if (Main.expertMode && Config.ExpertLootPocketMirrorIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootPocketMirrorIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootPocketMirrorIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PocketMirror, 1, false, -1, false, false);
-								}
-							}
-							else if (Config.LootPocketMirrorIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPocketMirrorIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PocketMirror, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PocketMirror, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Mothron)
 						{
-							if (Main.expertMode && Config.ExpertLootMothronWingsIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootMothronWingsIncrease * difficultyMultiplier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ExpertLootMothronWingsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MothronWings, 1, false, -1, false, false);
-								}
-							}
-							else if (!Main.expertMode && Config.LootMothronWingsIncrease > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.LootMothronWingsIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MothronWings, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MothronWings, 1, false, -1, false, false);
 							}
 						}
 						if (Main.bloodMoon && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead && Main.hardMode)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.LootKOCannonIncrease)
 							{
-								if (Config.LootKOCannonIncrease > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.LootKOCannonIncrease*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.KOCannon, 1, false, -1, false, false);
-									}
-								}
-							}
-						}
-						if (npc.type == NPCID.IceSlime || npc.type == NPCID.SpikedIceSlime)
-						{
-							if (Config.IceSlimeAndSpikedIceSlimeLootFishItem > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.IceSlimeAndSpikedIceSlimeLootFishItem*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Fish, 1, false, -1, false, false);
-								}
-							}
-						}
-						if (npc.type == 510 || npc.type == 513)
-						{
-							if (Config.TombCrawlerAndDuneSplicerLootPyramidChestItem > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.TombCrawlerAndDuneSplicerLootPyramidChestItem*10000)
-								{
-									switch (Main.rand.Next(7))
-									{
-										case 0:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FlyingCarpet, 1, false, -1, false, false);
-											break;
-										case 1:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandstorminaBottle, 1, false, -1, false, false);
-											break;
-										case 2:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PharaohsMask, 1, false, -1, false, false);
-											break;
-										case 3:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PharaohsRobe, 1, false, -1, false, false);
-											break;
-										case 4:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnakeBanner, 1, false, -1, false, false);
-											break;
-										case 5:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.OmegaBanner, 1, false, -1, false, false);
-											break;
-										case 6:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AnkhBanner, 1, false, -1, false, false);
-											break;
-									}
-								}
-							}
-						}
-						if (npc.type == 510 || npc.type == 513)
-						{
-							if (Config.TombCrawlerAndDuneSplicerLootPyramidChestItem > 0)
-							{
-								if (Main.rand.Next(10000)+1 <= Config.TombCrawlerAndDuneSplicerLootPyramidChestItem*10000)
-								{
-									switch (Main.rand.Next(7))
-									{
-										case 0:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FlyingCarpet, 1, false, -1, false, false);
-											break;
-										case 1:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandstorminaBottle, 1, false, -1, false, false);
-											break;
-										case 2:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PharaohsMask, 1, false, -1, false, false);
-											break;
-										case 3:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PharaohsRobe, 1, false, -1, false, false);
-											break;
-										case 4:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnakeBanner, 1, false, -1, false, false);
-											break;
-										case 5:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.OmegaBanner, 1, false, -1, false, false);
-											break;
-										case 6:
-											Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AnkhBanner, 1, false, -1, false, false);
-											break;
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.KOCannon, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 16 || npc.type == 58 || npc.type == 167 || npc.type == 197 || npc.type == 185 || (npc.type >= 494 && npc.type <= 506)) //Salamanders, Giant Shellys, Crawdads, Mother Slimes, Piranhas, Snow Flinxes, Undead Vikings, and Armored Vikings.
 						{
-							if (Config.LootCompassIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootCompassIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootCompassIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Compass, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Compass, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 49 || npc.type == 93 || npc.type == 51 || npc.type == 150 || (npc.type >= 494 && npc.type <= 506)) //Cave Bats, Giant Bats, Jungle Bats, Ice Bats, Salamanders, Giant Shellys, and Crawdads.
 						{
-							if (Config.LootDepthMeterIncrease > 0)
+							if (Main.rand.NextFloat() < Config.LootDepthMeterIncrease)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootDepthMeterIncrease*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DepthMeter, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DepthMeter, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 22) //Guide NPC
 						{
-							if (Config.LootGreenCap > 0)
+							if (Main.rand.NextFloat() < Config.LootGreenCap)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootGreenCap*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 207) //Dye Trader NPC
 						{
-							if (Config.LootExoticScimitar > 0)
+							if (Main.rand.NextFloat() < Config.LootExoticScimitar)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootExoticScimitar*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 550) //Tavernkeep NPC
 						{
-							if (Config.LootAleTosser > 0)
+							if (Main.rand.NextFloat() < Config.LootAleTosser)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootAleTosser*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 353) //Stylist NPC
 						{
-							if (Config.LootStylishScissors > 0)
+							if (Main.rand.NextFloat() < Config.LootStylishScissors)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootStylishScissors*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 227) //Painter NPC
 						{
-							if (Config.LootStylishScissors > 0)
+							if (Main.rand.NextFloat() < Config.LootStylishScissors)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootStylishScissors*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 208) //Party Girl NPC
 						{
-							if (Config.LootPaintballGun > 0)
+							if (Main.rand.NextFloat() < Config.LootPaintballGun)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootPaintballGun*10000)
-								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
 							}
 						}
 						if (npc.type == 441) //Tax Collector Guide NPC
 						{
-							if (Config.LootClassyCane > 0)
+							if (Main.rand.NextFloat() < Config.LootClassyCane)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.LootClassyCane*10000)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3351, 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == 244 && (Config.LootRainbowBlockDropMinIncrease < Config.LootRainbowBlockDropMaxIncrease)) //RainbowSlime
+						{
+							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 662, Main.rand.Next(Config.LootRainbowBlockDropMinIncrease - 30, Config.LootRainbowBlockDropMaxIncrease - 60), false, -1, false, false); //Rainbow Block
+						}
+					
+						//Chest Drop
+						if (Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop > 0)
+						{
+							if (Config.LivingWoodChestRecipe == false && player.ZoneOverworldHeight && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 831, 1, false, -1, false, false); //Living Wood Chest
+							if ((player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 306, 1, false, -1, false, false); //Gold Chest
+							if (player.ZoneSnow && player.ZoneRockLayerHeight && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
+							if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
+							if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
+							if (player.ZoneSkyHeight && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 838, 1, false, -1, false, false); //Skyware Chest
+							if ((npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1298, 1, false, -1, false, false); //Water Chest
+							if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 952, 1, false, -1, false, false); //Web Covered Chest
+							if (player.ZoneUnderworldHeight && Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 328, 1, false, -1, false, false); //Shadow Chest
+							if (player.ZoneDungeon && NPC.downedPlantBoss)
+							{
+								if (Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.jungleChestMined)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1528, 1, false, -1, false, false); //Jungle Chest
+								if (ReducedGrindingWorld.infectionChestMined)
 								{
-									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3351, 1, false, -1, false, false);
+									if (Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1529, 1, false, -1, false, false); //Corruption Chest
+									if (Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1530, 1, false, -1, false, false); //Crimson Chest
+								}
+								if (Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.hallowedChestMined)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1531, 1, false, -1, false, false); //Hallowed Chest
+								if (Main.rand.NextFloat() < Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.frozenChestMined)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1532, 1, false, -1, false, false); //Frozen Chest
+							}
+						}
+
+						//Modded Loot
+						float lockboxDropModdifier = 0.0f;
+						if (Main.hardMode)
+							lockboxDropModdifier = Config.HardmodeModdedLockBoxDropRateModifier;
+						else
+							lockboxDropModdifier = Config.NormalmodeModdedLockBoxDropRateModifier;
+						
+						if (player.ZoneDungeon)
+						{
+							if (Main.rand.NextFloat() < Config.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Blue_Dungeon_Lock_Box"), 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Green_Dungeon_Lock_Box"), 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < Config.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pink_Dungeon_Lock_Box"), 1, false, -1, false, false);
+							}
+							if (NPC.downedPlantBoss)
+							{
+								if (Main.rand.NextFloat() < Config.DungeonModdedBiomeLockBoxLoot*lockboxDropModdifier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Biome_Lock_Box"), 1, false, -1, false, false);
 								}
 							}
 						}
-						
-						
-						
-						
-						
-						//Modded Loot
-						
 						if (player.ZoneUnderworldHeight)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.HellBiomeModdedShadowLockBoxLoot*lockboxDropModdifier)
 							{
-								if (Config.HellBiomeModdedShadowBoxLoot > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.HellBiomeModdedShadowBoxLoot*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Shadow_Lock_Box"), 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Shadow_Lock_Box"), 1, false, -1, false, false);
 							}
 						}
 						if (player.ZoneSnow && player.ZoneRockLayerHeight)
 						{
-							if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+							if (Main.rand.NextFloat() < Config.UndergroundSnowBiomeModdedIceLockBoxLoot*lockboxDropModdifier)
 							{
-								if (Config.UndergroundSnowBiomeModdedIceLockBoxLoot > 0)
-								{
-									if (Main.rand.Next(10000)+1 <= Config.UndergroundSnowBiomeModdedIceLockBoxLoot*10000)
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Ice_Lock_Box"), 1, false, -1, false, false);
-									}
-								}
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Ice_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (player.ZoneJungle && player.ZoneRockLayerHeight)
+						{
+							if (Main.rand.NextFloat() < Config.UndergroundJungleBiomeModdedIvyLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Ivy_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (player.ZoneOverworldHeight)
+						{
+							if (Main.rand.NextFloat() < Config.SurfaceModdedLivingWoodLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Living_Wood_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
+						{
+							if (Main.rand.NextFloat() < Config.WaterEnemyModdedWaterLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Water_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == 48) //Harpy
+						{
+							if (Main.rand.NextFloat() < Config.SkyModdedSkywareLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Skyware_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (player.ZoneSandstorm || player.ZoneUndergroundDesert)
+						{
+							if (Main.rand.NextFloat() < Config.SandstormAndUndergroundDesertPyramidLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pyramid_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (player.ZoneRockLayerHeight)
+						{
+							if (Main.rand.NextFloat() < Config.CavernModdedCavernLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Cavern_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == 198 || npc.type == 199 || npc.type == 226) //Lihzard Temple Enemies
+						{
+							if (Main.rand.NextFloat() < Config.JungleTempleLihzahrd_Lock_Box*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Lihzahrd_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if ((npc.type >= 163 && npc.type <= 165) || npc.type == 238) //Spider Nest Enemies
+						{
+							if (Main.rand.NextFloat() < Config.SpiderNestWebCoveredLockBoxLoot*lockboxDropModdifier)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Web_Covered_Lock_Box"), 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == NPCID.Drippler || npc.type == NPCID.BloodZombie)
+						{
+							if (Main.rand.NextFloat() < Config.BloodZombieAndDripplerDropsBloodMoonMedallion)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Blood_Moon_Medallion"), 1, false, -1, false, false);
 							}
 						}
 					}
 					
 					//Restock Traveling Merchant
-					
-					if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
+					if (Config.ChanceThatEnemyKillWillResetTravelingMerchant > 0)
 					{
-						if (Config.ChanceThatEnemyKillWillResetTravelingMerchant > 0)
+						int travelingMerchantResetChanceModifier = 22; //There are 22 vanilla NPCs as of 5/26/2017
+						bool tryToResetTravelingMerchant = false;
+						for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
 						{
-							int townNPCReduction = 22;//There are 21 vanilla NPCs as of 5/26/2017
-							bool resetTravelingMerchant = false;
-							for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
+							if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+								tryToResetTravelingMerchant = true;
+							if (Terraria.Main.npc[i].townNPC == true)
 							{
-								if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
-									resetTravelingMerchant = true;
-								if (Terraria.Main.npc[i].townNPC == true)
-								{
-									if (Terraria.Main.npc[i].type == NPCID.Merchant || Terraria.Main.npc[i].type == NPCID.Nurse || Terraria.Main.npc[i].type == NPCID.Demolitionist || Terraria.Main.npc[i].type == NPCID.DyeTrader || Terraria.Main.npc[i].type == NPCID.Dryad || Terraria.Main.npc[i].type == NPCID.DD2Bartender || Terraria.Main.npc[i].type == NPCID.ArmsDealer || Terraria.Main.npc[i].type == NPCID.Stylist || Terraria.Main.npc[i].type == NPCID.Painter || Terraria.Main.npc[i].type == NPCID.Angler || Terraria.Main.npc[i].type == NPCID.GoblinTinkerer || Terraria.Main.npc[i].type == NPCID.WitchDoctor || Terraria.Main.npc[i].type == NPCID.Clothier || Terraria.Main.npc[i].type == NPCID.Mechanic || Terraria.Main.npc[i].type == NPCID.PartyGirl || Terraria.Main.npc[i].type == NPCID.Wizard || Terraria.Main.npc[i].type == NPCID.TaxCollector || Terraria.Main.npc[i].type == NPCID.Truffle || Terraria.Main.npc[i].type == NPCID.Pirate || Terraria.Main.npc[i].type == NPCID.Steampunker || Terraria.Main.npc[i].type == NPCID.Cyborg)
-										townNPCReduction--;
-								}
+								if (Terraria.Main.npc[i].type == NPCID.Merchant || Terraria.Main.npc[i].type == NPCID.Nurse || Terraria.Main.npc[i].type == NPCID.Demolitionist || Terraria.Main.npc[i].type == NPCID.DyeTrader || Terraria.Main.npc[i].type == NPCID.Dryad || Terraria.Main.npc[i].type == NPCID.DD2Bartender || Terraria.Main.npc[i].type == NPCID.ArmsDealer || Terraria.Main.npc[i].type == NPCID.Stylist || Terraria.Main.npc[i].type == NPCID.Painter || Terraria.Main.npc[i].type == NPCID.Angler || Terraria.Main.npc[i].type == NPCID.GoblinTinkerer || Terraria.Main.npc[i].type == NPCID.WitchDoctor || Terraria.Main.npc[i].type == NPCID.Clothier || Terraria.Main.npc[i].type == NPCID.Mechanic || Terraria.Main.npc[i].type == NPCID.PartyGirl || Terraria.Main.npc[i].type == NPCID.Wizard || Terraria.Main.npc[i].type == NPCID.TaxCollector || Terraria.Main.npc[i].type == NPCID.Truffle || Terraria.Main.npc[i].type == NPCID.Pirate || Terraria.Main.npc[i].type == NPCID.Steampunker || Terraria.Main.npc[i].type == NPCID.Cyborg) //Any Permenant Town Residents other than the Guide
+									travelingMerchantResetChanceModifier--;
 							}
-							if (townNPCReduction < 1)
-								townNPCReduction = 1;
-							if (resetTravelingMerchant)
+						}
+						if (travelingMerchantResetChanceModifier < 1)
+							travelingMerchantResetChanceModifier = 1;
+						if (tryToResetTravelingMerchant)
+						{
+							if (Main.rand.NextFloat() < Config.ChanceThatEnemyKillWillResetTravelingMerchant/travelingMerchantResetChanceModifier)
 							{
-								if (Main.rand.Next(10000)+1 <= Config.ChanceThatEnemyKillWillResetTravelingMerchant*10000/townNPCReduction)
-								{
-									Chest.SetupTravelShop();
+								Chest.SetupTravelShop();
+								if (Main.netMode == 2) // Server
+									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The Traveling Merchant restocked his items."), new Color(0, 127, 255));
+								else if (Main.netMode == 0) // Single Player
 									Main.NewText("The Traveling Merchant restocked his items.", 0, 127, 255);
-								}
 							}
 						}
 					}
@@ -2801,7 +2212,7 @@ namespace ReducedGrinding
 				
 				recipe = new ModRecipe(this);
 			}
-			if (Config.UseEnchangedSwordInNightsEdgeRecipe)
+			if (Config.EnchangedSwordInNightsEdgeRecipe)
 			{
 				recipe.AddIngredient(ItemID.LightsBane,1);
 				recipe.AddIngredient(ItemID.EnchantedSword,1);
@@ -2822,7 +2233,7 @@ namespace ReducedGrinding
 				
 				recipe = new ModRecipe(this);
 			}
-			if (Config.UseArkhalisInNightsEdgeRecipe)
+			if (Config.ArkhalisInNightsEdgeRecipe)
 			{
 				recipe.AddIngredient(ItemID.LightsBane,1);
 				recipe.AddIngredient(ItemID.Arkhalis,1);
@@ -2841,7 +2252,7 @@ namespace ReducedGrinding
 				recipe.SetResult(ItemID.NightsEdge);
 				recipe.AddRecipe();
 			}
-			if (Config.UseCloudinaBottleRecipe)
+			if (Config.CloudinaBottleRecipe)
 			{
 				recipe = new ModRecipe(this);
 				recipe.AddIngredient(ItemID.Bottle,1);
@@ -2850,7 +2261,7 @@ namespace ReducedGrinding
 				recipe.SetResult(ItemID.CloudinaBottle);
 				recipe.AddRecipe();
 			}
-			if (Config.UseBlizzardinaBottleRecipe)
+			if (Config.BlizzardinaBottleRecipe)
 			{
 				recipe = new ModRecipe(this);
 				recipe.AddIngredient(ItemID.CloudinaBottle,1);
@@ -2859,7 +2270,7 @@ namespace ReducedGrinding
 				recipe.SetResult(ItemID.BlizzardinaBottle);
 				recipe.AddRecipe();
 			}
-			if (Config.UseSandstorminaBottleRecipe)
+			if (Config.SandstorminaBottleRecipe)
 			{
 				recipe = new ModRecipe(this);
 				recipe.AddIngredient(ItemID.CloudinaBottle,1);
@@ -2868,13 +2279,13 @@ namespace ReducedGrinding
 				recipe.SetResult(ItemID.SandstorminaBottle);
 				recipe.AddRecipe();
 			}
-			if (Config.UseCustomCelestialSigilRecipe)
+			if (Config.CelestialSigilRecipe)
 			{
 				recipe = new ModRecipe(this);
-				recipe.AddIngredient(ItemID.FragmentSolar, Config.CustomCelestialSigilEachLunarFragmentCost);
-				recipe.AddIngredient(ItemID.FragmentVortex, Config.CustomCelestialSigilEachLunarFragmentCost);
-				recipe.AddIngredient(ItemID.FragmentNebula, Config.CustomCelestialSigilEachLunarFragmentCost);
-				recipe.AddIngredient(ItemID.FragmentStardust, Config.CustomCelestialSigilEachLunarFragmentCost);
+				recipe.AddIngredient(ItemID.FragmentSolar, Config.CelestialSigilEachLunarFragmentCost);
+				recipe.AddIngredient(ItemID.FragmentVortex, Config.CelestialSigilEachLunarFragmentCost);
+				recipe.AddIngredient(ItemID.FragmentNebula, Config.CelestialSigilEachLunarFragmentCost);
+				recipe.AddIngredient(ItemID.FragmentStardust, Config.CelestialSigilEachLunarFragmentCost);
 				recipe.AddTile(TileID.LunarCraftingStation);
 				recipe.SetResult(ItemID.CelestialSigil);
 				recipe.AddRecipe();
@@ -3066,6 +2477,53 @@ namespace ReducedGrinding
 				recipe.SetResult(ItemID.GoldenCrate);
 				recipe.AddRecipe();
 			}
+				
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(1534, 1); //Corruption Key
+			recipe.SetResult(1535); //Crimson Key
+			recipe.AddRecipe();
+				
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(1535, 1); //Crimson Key
+			recipe.SetResult(1534); //Corruption Key
+			recipe.AddRecipe();
+			
+			if (Config.CrawdadGiantShellySalamanderBannerRecipe)
+			{
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(3392, 1); //Giant Shelly Banner
+				if (Config.CrawdadGiantShellySalamanderBannerCostOneOfEach)
+					recipe.AddIngredient(3391, 1); //Salamander Banner
+				recipe.AddTile(TileID.Loom);
+				recipe.SetResult(3393); //Crawdad Banner
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(3393, 1); //Crawdad Banner
+				if (Config.CrawdadGiantShellySalamanderBannerCostOneOfEach)
+					recipe.AddIngredient(3392, 1); //Giant Shelly Banner
+				recipe.AddTile(TileID.Loom);
+				recipe.SetResult(3391); //Salamander Banner
+				recipe.AddRecipe();
+				
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(3391, 1); //Salamander Banner
+				if (Config.CrawdadGiantShellySalamanderBannerCostOneOfEach)
+					recipe.AddIngredient(3393, 1); //Crawdad Banner
+				recipe.AddTile(TileID.Loom);
+				recipe.SetResult(3392); //Giant Shelly Banner
+				recipe.AddRecipe();
+			}
+			
+			if (Config.GuideVoodooDollRecipe)
+			{
+				recipe = new ModRecipe(this);
+				recipe.AddIngredient(1307, Config.GuideVoodooDollClothierVoodooDollCost); //ClothierVoodooDoll
+				recipe.AddIngredient(521, Config.GuideVoodooDollSoulOfNightCost); //Soul of Night
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.SetResult(267); //Guide Voodoo Doll
+				recipe.AddRecipe();
+			}
 		
 		}
 		
@@ -3079,6 +2537,11 @@ namespace ReducedGrinding
 			{
 				spawnRate = (int)(spawnRate / Config.WarPotionSpawnrateMultiplier);
 				maxSpawns = (int)(maxSpawns * Config.WarPotionMaxSpawnsMultiplier);
+			}
+			if (player.FindBuffIndex(mod.BuffType("Chaos")) != -1)
+			{
+				spawnRate = (int)(spawnRate / Config.ChaosPotionSpawnrateMultiplier);
+				maxSpawns = (int)(maxSpawns * Config.ChaosPotionMaxSpawnsMultiplier);
 			}
 			if (player.FindBuffIndex(BuffID.Battle) != -1)
 			{

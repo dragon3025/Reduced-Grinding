@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items
 			item.width = 20;
 			item.height = 30;
 			item.maxStack = 30;
-			item.rare = 0;
+			item.rare = 2;
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
@@ -33,13 +33,14 @@ namespace ReducedGrinding.Items
 
 		public override bool UseItem(Player player)
 		{
+			player.AddBuff(13, 25200); //Battle
 			player.AddBuff(mod.BuffType("War"), Config.WarPotionDurationInFrames);
 			return true;
 		}
 	
 		public override void AddRecipes()
 		{
-			if (Config.UseWarPotionRecipe)
+			if (Config.WarPotionRecipe)
 			{
 				//Set Powder and Mushroom cost
 				int WarPowderCost = Config.WarPotionPowderCost;

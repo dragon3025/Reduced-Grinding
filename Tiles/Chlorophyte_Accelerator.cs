@@ -31,6 +31,13 @@ namespace ReducedGrinding.Tiles
 			disableSmartCursor = true;
 		}
 
+		public override void MouseOver(int i, int j)
+		{
+			Player player = Main.LocalPlayer;
+			player.showItemIcon = true;
+			player.showItemIcon2 = mod.ItemType("Chlorophyte_Accelerator");
+		}
+
 		public override void NumDust(int i, int j, bool fail, ref int num)
 		{
 			num = fail ? 1 : 3;

@@ -1,6 +1,15 @@
-using Terraria;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
+using Terraria.DataStructures;
+using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
+using Terraria.World.Generation;
+using Terraria;
 
 namespace ReducedGrinding.Items
 {
@@ -33,10 +42,20 @@ namespace ReducedGrinding.Items
 
 		public override bool UseItem(Player player)
 		{
-			if (Main.expertMode)
-				Main.NewText("World difficulty is now Normal Mode.", 127, 127, 127);
-			else
-				Main.NewText("World difficulty is now Expert Mode.", 207, 136, 255);
+			if (Main.netMode == 2) // Server
+			{
+				if (Main.expertMode)
+					NetMessage.BroadcastChatMessage(NetworkText.FromKey("World difficulty is now Normal Mode."), new Color(255, 255, 0));
+				else
+					NetMessage.BroadcastChatMessage(NetworkText.FromKey("World difficulty is now Expert Mode."), new Color(207, 136, 255));
+			}
+			else if (Main.netMode == 0) // Single Player
+			{
+				if (Main.expertMode)
+					Main.NewText("World difficulty is now Normal Mode.", 255, 255, 0);
+				else
+					Main.NewText("World difficulty is now Expert Mode.", 207, 136, 255);
+			}
 			Main.expertMode = (!Main.expertMode);
 			return true;
 		}

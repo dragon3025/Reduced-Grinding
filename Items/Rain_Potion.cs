@@ -1,6 +1,21 @@
 using Terraria;
-using Terraria.ID;
+using Terraria.World.Generation;
+using Terraria.ObjectData;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using Terraria.Localization;
+using Terraria.ID;
+using Terraria.GameContent.Generation;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Achievements;
+using Terraria.Enums;
+using Terraria.DataStructures;
+using System;
+using System.Linq;
+using System.IO;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ReducedGrinding.Items
 {
@@ -17,7 +32,7 @@ namespace ReducedGrinding.Items
             item.width = 20;
             item.height = 30;
             item.maxStack = 30;
-            item.rare = 0;
+            item.rare = 2;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
@@ -43,7 +58,11 @@ namespace ReducedGrinding.Items
        
         private static void StopRain()
         {
-			Main.NewText("The rain started to fade away.", 0, 128, 255);
+			if (Main.netMode == 2) // Server
+				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
+			else if (Main.netMode == 0) // Single Player
+				Main.NewText("The rain started to fade away.", 0, 128, 255);
+			Main.expertMode = (!Main.expertMode);
             Main.rainTime = 0;
             Main.raining = false;
             Main.maxRaining = 0f;
@@ -51,7 +70,14 @@ namespace ReducedGrinding.Items
 
         private static void StartRain()
         {
-			Main.NewText("The rain started to fade in.", 0, 128, 255);
+			if (Main.netMode == 2) // Server
+			{
+				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade in."), new Color(0, 128, 255));
+			}
+			else if (Main.netMode == 0) // Single Player
+			{
+				Main.NewText("The rain started to fade in.", 0, 128, 255);
+			}
             int num = 86400;
             int num2 = num / 24;
             Main.rainTime = Main.rand.Next(num2 * 8, num);
@@ -137,7 +163,7 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.UseRainPotionRecipe)
+			if (Config.RainPotionRecipe)
 			{
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.BottledWater, 1);
