@@ -187,6 +187,10 @@ namespace ReducedGrinding
 					{
 						player.QuickSpawnItem(2110, 1); //Mask
 					}
+					if (Main.rand.NextFloat() < Config.LootPicksawIncrease)
+					{
+						player.QuickSpawnItem(1294, 1); //Picksaw
+					}
 				}
 				else if (arg == 3332) //Moon Lord
 				{
@@ -778,6 +782,8 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2110, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < Config.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1371, 1, false, -1, false, false); //Trophy
+							if (Main.rand.NextFloat() < Config.LootPicksawIncrease)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1371, 1, false, -1, false, false); //Picksaw
 						}
 						if (npc.type == 370) //Duke Fishron
 						{

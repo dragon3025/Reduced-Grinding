@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.37.json";
+		static string filename = "Reduced Grinding v4.38.json";
 		
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
 		public static bool UsingLuiafk = true;
@@ -64,6 +64,7 @@ namespace ReducedGrinding
 		public static float PresentUglySweater = 0f;
 		
 		public static float LootBookofSkullsIncrease = 0f;
+		public static float LootPicksawIncrease = 0.375f;
 		public static float LootSeedlingIncrease = 0.15f;
 		public static float LootSkeletronBoneKey = 0f;
         public static float LootBinocularsIncrease = 0.467f;
@@ -615,14 +616,15 @@ namespace ReducedGrinding
 				
 				Configuration.Get("LootBinocularsIncrease", ref LootBinocularsIncrease);
 				Configuration.Get("LootBoneRattleIncrease", ref LootBoneRattleIncrease);
+				Configuration.Get("LootBookofSkullsIncrease", ref LootBookofSkullsIncrease);
 				Configuration.Get("LootBossMaskIncrease", ref LootBossMaskIncrease);
 				Configuration.Get("LootBossTrophyIncrease", ref LootBossTrophyIncrease);
-				Configuration.Get("LootBookofSkullsIncrease", ref LootBookofSkullsIncrease);
 				Configuration.Get("LootEatersBoneIncrease", ref LootEatersBoneIncrease);
 				Configuration.Get("LootFishronTruffleworm", ref LootFishronTruffleworm);
 				Configuration.Get("LootFishronWingsIncrease", ref LootFishronWingsIncrease);
 				Configuration.Get("LootHoneyedGogglesIncrease", ref LootHoneyedGogglesIncrease);
 				Configuration.Get("LootNectarIncrease", ref LootNectarIncrease);
+				Configuration.Get("LootPicksawIncrease", ref LootPicksawIncrease);
 				Configuration.Get("LootSeedlingIncrease", ref LootSeedlingIncrease);
 				Configuration.Get("LootSkeletronBoneKey", ref LootSkeletronBoneKey);
 				Configuration.Get("LootTheAxeIncrease", ref LootTheAxeIncrease);
@@ -1168,14 +1170,15 @@ namespace ReducedGrinding
 			Configuration.Put("===================================================================================================D", 0);
 			Configuration.Put("LootBinocularsIncrease", LootBinocularsIncrease);
 			Configuration.Put("LootBoneRattleIncrease", LootBoneRattleIncrease);
+			Configuration.Put("LootBookofSkullsIncrease", LootBookofSkullsIncrease);
 			Configuration.Put("LootBossMaskIncrease", LootBossMaskIncrease);
 			Configuration.Put("LootBossTrophyIncrease", LootBossTrophyIncrease);
-			Configuration.Put("LootBookofSkullsIncrease", LootBookofSkullsIncrease);
 			Configuration.Put("LootEatersBoneIncrease", LootEatersBoneIncrease);
 			Configuration.Put("LootFishronTruffleworm", LootFishronTruffleworm);
 			Configuration.Put("LootFishronWingsIncrease", LootFishronWingsIncrease);
 			Configuration.Put("LootHoneyedGogglesIncrease", LootHoneyedGogglesIncrease);
 			Configuration.Put("LootNectarIncrease", LootNectarIncrease);
+			Configuration.Put("LootPicksawIncrease", LootPicksawIncrease);
 			Configuration.Put("LootSeedlingIncrease", LootSeedlingIncrease);
 			Configuration.Put("LootSkeletronBoneKey", LootSkeletronBoneKey);
 			Configuration.Put("LootTheAxeIncrease", LootTheAxeIncrease);
