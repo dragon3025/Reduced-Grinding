@@ -1953,11 +1953,29 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bezoar, 1, false, -1, false, false);
 							}
 						}
-						if (Main.halloween && npc.value > 0f && npc.value < 500f && npc.damage < 40 && npc.defense < 20)
+						if (Main.halloween && npc.value < 500f)
 						{
-							if (Main.rand.NextFloat() < Config.LootBloodyMacheteIncrease)
+							if (npc.damage >= 40 && npc.defense >= 20 && Config.LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense) //Add Vanilla Drop Rate to the enemies that vanilla limits
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BloodyMachete, 1, false, -1, false, false);
+								if (Main.rand.Next(2000) == 0)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1825, 1, false, -1, false, false); //Bloody Machete
+								}
+								if (Main.rand.Next(2000) == 0)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1827, 1, false, -1, false, false); //Bladed Gloves
+								}
+							}
+							if ((npc.damage < 40 && npc.defense < 20) || (Config.LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense)) //Add this mod's increase
+							{
+								if (Main.rand.Next(2000) == 0)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1825, 1, false, -1, false, false); //Bloody Machete
+								}
+								if (Main.rand.Next(2000) == 0)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1827, 1, false, -1, false, false); //Bladed Gloves
+								}
 							}
 						}
 						if (npc.type >= 494 && npc.type <= 506) //Giant Shellies, Crawdads, and Salamanders

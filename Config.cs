@@ -8,10 +8,9 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.39.json";
+		static string filename = "Reduced Grinding v4.40.json";
 		
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
-		public static bool UsingLuiafk = true;
 		
 		public static float CrateDungeonBoneWelder = 0.2f;
 		public static float CrateEnchantedSundialGoldenIncrease = 0.45f;
@@ -109,7 +108,7 @@ namespace ReducedGrinding
 		public static float LootBlackLensIncrease = 0f;
 		public static float LootBlessedAppleIncrease = 0.0066f;
 		public static float LootBlindfoldIncrease = 0f;
-		public static float LootBloodyMacheteIncrease = 0.0015f;
+		public static float LootBloodyMacheteAndBladedGlovesIncrease = 0.0015f;
 		public static float LootBoneFeatherIncrease = 0.0078f;
 		public static float LootBonePickaxeIncrease = 0.0867f;
 		public static float LootBoneSwordIncrease = 0.0051f;
@@ -253,6 +252,7 @@ namespace ReducedGrinding
 		public static float PirateLootGoldRingBaseIncrease = 0.0043f;
 		public static float PirateLootLuckyCoinBaseIncrease = 0.0039f;
 		public static float PirateLootPirateStaffBaseIncrease = 0.0045f;
+		public static bool LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense = true;
 		public static bool SlimeStaffIncreaseToSurfaceSlimes = false;
 		public static bool SlimeStaffIncreaseToUndergroundSlimes = false;
 		public static bool SlimeStaffIncreaseToCavernSlimess = false;
@@ -563,7 +563,6 @@ namespace ReducedGrinding
             if(Configuration.Load())
             {
 				Configuration.Get("NormalModeLootMultiplierForLootWithSeperateDifficultyRates", ref NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
-				Configuration.Get("UsingLuiafk", ref UsingLuiafk);
 				
 				Configuration.Get("CrateDungeonBoneWelder", ref CrateDungeonBoneWelder);
 				Configuration.Get("CrateEnchantedSundialGoldenIncrease", ref CrateEnchantedSundialGoldenIncrease);
@@ -661,7 +660,8 @@ namespace ReducedGrinding
 				Configuration.Get("LootBlackLensIncrease", ref LootBlackLensIncrease);
 				Configuration.Get("LootBlessedAppleIncrease", ref LootBlessedAppleIncrease);
 				Configuration.Get("LootBlindfoldIncrease", ref LootBlindfoldIncrease);
-				Configuration.Get("LootBloodyMacheteIncrease", ref LootBloodyMacheteIncrease);
+				Configuration.Get("LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense", ref LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense);
+				Configuration.Get("LootBloodyMacheteAndBladedGlovesIncrease", ref LootBloodyMacheteAndBladedGlovesIncrease);
 				Configuration.Get("LootBoneFeatherIncrease", ref LootBoneFeatherIncrease);
 				Configuration.Get("LootBonePickaxeIncrease", ref LootBonePickaxeIncrease);
 				Configuration.Get("LootBoneSwordIncrease", ref LootBoneSwordIncrease);
@@ -677,7 +677,6 @@ namespace ReducedGrinding
 				Configuration.Get("LootClothierVoodooDollIncrease", ref LootClothierVoodooDollIncrease);
 				Configuration.Get("LootCrossNecklaceIncrease", ref LootCrossNecklaceIncrease);
 				Configuration.Get("LootCrystalVileShardIncrease", ref LootCrystalVileShardIncrease);
-				Configuration.Get("PirateLootCutlassBaseIncrease", ref PirateLootCutlassBaseIncrease);
 				Configuration.Get("LootDaedalusStormbowIncrease", ref LootDaedalusStormbowIncrease);
 				Configuration.Get("LootDarkShardIncrease", ref LootDarkShardIncrease);
 				Configuration.Get("LootDartPistolIncrease", ref LootDartPistolIncrease);
@@ -800,6 +799,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootYeletsIncrease", ref LootYeletsIncrease);
 				Configuration.Get("LootZombieArmIncrease", ref LootZombieArmIncrease);
 				Configuration.Get("PirateLootCoinGunBaseIncrease", ref PirateLootCoinGunBaseIncrease);
+				Configuration.Get("PirateLootCutlassBaseIncrease", ref PirateLootCutlassBaseIncrease);
 				Configuration.Get("PirateLootDiscountCardBaseIncrease", ref PirateLootDiscountCardBaseIncrease);
 				Configuration.Get("PirateLootGoldRingBaseIncrease", ref PirateLootGoldRingBaseIncrease);
 				Configuration.Get("PirateLootLuckyCoinBaseIncrease", ref PirateLootLuckyCoinBaseIncrease);
@@ -1113,7 +1113,6 @@ namespace ReducedGrinding
 			
 			Configuration.Put("DropTriesForAllEnemyDroppedLoot", DropTriesForAllEnemyDroppedLoot);
 			Configuration.Put("NormalModeLootMultiplierForLootWithSeperateDifficultyRates", NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
-			Configuration.Put("UsingLuiafk", UsingLuiafk);
 			Configuration.Put("===================================================================================================A", 0);
 			Configuration.Put("|                                            GRAB BAGS                                             |", 0);
 			Configuration.Put("===================================================================================================B", 0);
@@ -1222,7 +1221,8 @@ namespace ReducedGrinding
 			Configuration.Put("LootBlackLensIncrease", LootBlackLensIncrease);
 			Configuration.Put("LootBlessedAppleIncrease", LootBlessedAppleIncrease);
 			Configuration.Put("LootBlindfoldIncrease", LootBlindfoldIncrease);
-			Configuration.Put("LootBloodyMacheteIncrease", LootBloodyMacheteIncrease);
+			Configuration.Put("LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense", LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense);
+			Configuration.Put("LootBloodyMacheteAndBladedGlovesIncrease", LootBloodyMacheteAndBladedGlovesIncrease);
 			Configuration.Put("LootBoneFeatherIncrease", LootBoneFeatherIncrease);
 			Configuration.Put("LootBonePickaxeIncrease", LootBonePickaxeIncrease);
 			Configuration.Put("LootBoneSwordIncrease", LootBoneSwordIncrease);
@@ -1238,7 +1238,6 @@ namespace ReducedGrinding
 			Configuration.Put("LootClothierVoodooDollIncrease", LootClothierVoodooDollIncrease);
 			Configuration.Put("LootCrossNecklaceIncrease", LootCrossNecklaceIncrease);
 			Configuration.Put("LootCrystalVileShardIncrease", LootCrystalVileShardIncrease);
-			Configuration.Put("PirateLootCutlassBaseIncrease", PirateLootCutlassBaseIncrease);
 			Configuration.Put("LootDaedalusStormbowIncrease", LootDaedalusStormbowIncrease);
 			Configuration.Put("LootDarkShardIncrease", LootDarkShardIncrease);
 			Configuration.Put("LootDartPistolIncrease", LootDartPistolIncrease);
@@ -1361,6 +1360,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootYeletsIncrease", LootYeletsIncrease);
 			Configuration.Put("LootZombieArmIncrease", LootZombieArmIncrease);
 			Configuration.Put("PirateLootCoinGunBaseIncrease", PirateLootCoinGunBaseIncrease);
+			Configuration.Put("PirateLootCutlassBaseIncrease", PirateLootCutlassBaseIncrease);
 			Configuration.Put("PirateLootDiscountCardBaseIncrease", PirateLootDiscountCardBaseIncrease);
 			Configuration.Put("PirateLootGoldRingBaseIncrease", PirateLootGoldRingBaseIncrease);
 			Configuration.Put("PirateLootLuckyCoinBaseIncrease", PirateLootLuckyCoinBaseIncrease);

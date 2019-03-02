@@ -25,6 +25,8 @@ namespace ReducedGrinding.NPCs
         public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
 			Player player = Main.player[Main.myPlayer];
+			Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent adding items that Luiafk already adds
+			
             switch (type)
             {
                 case NPCID.Merchant:
@@ -70,25 +72,28 @@ namespace ReducedGrinding.NPCs
 					}
                     break;
                 case NPCID.Steampunker:
-					if (WorldGen.crimson)
+					if (luiafk == null)
 					{
-						if (Main.bloodMoon || Main.eclipse)
+						if (WorldGen.crimson)
 						{
-							shop.item[nextSlot].SetDefaults(ItemID.PurpleSolution);
-							nextSlot++;
+							if (Main.bloodMoon || Main.eclipse)
+							{
+								shop.item[nextSlot].SetDefaults(ItemID.PurpleSolution);
+								nextSlot++;
+							}
 						}
-					}
-					else
-					{
-						if (Main.bloodMoon || Main.eclipse)
+						else
 						{
-							shop.item[nextSlot].SetDefaults(ItemID.RedSolution);
-							nextSlot++;
-						}
-						if (Config.UsingLuiafk == false)
-						{
-							shop.item[nextSlot].SetDefaults(2193); //Flesh Cloning Vat
-							nextSlot++;
+							if (Main.bloodMoon || Main.eclipse)
+							{
+								shop.item[nextSlot].SetDefaults(ItemID.RedSolution);
+								nextSlot++;
+							}
+							if (luiafk == null)
+							{
+								shop.item[nextSlot].SetDefaults(2193); //Flesh Cloning Vat
+								nextSlot++;
+							}
 						}
 					}
                     break;
@@ -115,29 +120,32 @@ namespace ReducedGrinding.NPCs
 					}
                     break;
                 case NPCID.Dryad:
-					if (WorldGen.crimson)
+					if (luiafk == null)
 					{
-						if (Main.bloodMoon || player.ZoneCorrupt)
+						if (WorldGen.crimson)
 						{
-							shop.item[nextSlot].SetDefaults(ItemID.CorruptSeeds);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.VilePowder);
-							nextSlot++;
+							if (Main.bloodMoon || player.ZoneCorrupt)
+							{
+								shop.item[nextSlot].SetDefaults(ItemID.CorruptSeeds);
+								nextSlot++;
+								shop.item[nextSlot].SetDefaults(ItemID.VilePowder);
+								nextSlot++;
+							}
+							if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
+								shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
 						}
-						if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
-							shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
-					}
-					else
-					{
-						if (Main.bloodMoon || player.ZoneCrimson)
+						else
 						{
-							shop.item[nextSlot].SetDefaults(ItemID.CrimsonSeeds);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.ViciousPowder);
-							nextSlot++;
+							if (Main.bloodMoon || player.ZoneCrimson)
+							{
+								shop.item[nextSlot].SetDefaults(ItemID.CrimsonSeeds);
+								nextSlot++;
+								shop.item[nextSlot].SetDefaults(ItemID.ViciousPowder);
+								nextSlot++;
+							}
+							if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
+								shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
 						}
-						if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
-							shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
 					}
                     break;
                 case NPCID.Mechanic:
