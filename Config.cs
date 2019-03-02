@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.38.json";
+		static string filename = "Reduced Grinding v4.39.json";
 		
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
 		public static bool UsingLuiafk = true;
@@ -99,6 +99,7 @@ namespace ReducedGrinding
 		public static float LootAncientShadowGreavesIncrease = 0f;
 		public static float LootAncientShadowHelmetIncrease = 0f;
 		public static float LootAncientShadowScalemailIncrease = 0f;
+		public static float LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory = 0.0024f;
 		public static float LootArmorPolishIncrease = 0f;
 		public static float LootBabyGrinchsMischiefWhistleIncrease = 0.05f;
 		public static float LootBananarangIncrease = 0.3f;
@@ -107,7 +108,7 @@ namespace ReducedGrinding
 		public static float LootBlackBeltIncrease = 0f;
 		public static float LootBlackLensIncrease = 0f;
 		public static float LootBlessedAppleIncrease = 0.0066f;
-		public static float LootBlindfoldIncrease = 0.01f;
+		public static float LootBlindfoldIncrease = 0f;
 		public static float LootBloodyMacheteIncrease = 0.0015f;
 		public static float LootBoneFeatherIncrease = 0.0078f;
 		public static float LootBonePickaxeIncrease = 0.0867f;
@@ -191,7 +192,7 @@ namespace ReducedGrinding
 		public static float LootMoonStoneIncrease = 0f;
 		public static float LootMothronWingsIncrease = 0.1381f;
 		public static float LootMummyCostumeIncrease = 0f;
-		public static float LootNazarIncrease = 0.03f;
+		public static float LootNazarIncrease = 0f;
 		public static float LootNimbusRodIncrease = 0f;
 		public static float LootObsidianRoseIncrease = 0.03f;
 		public static float LootPaintballGun = 0.9f;
@@ -650,6 +651,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootAncientShadowGreavesIncrease", ref LootAncientShadowGreavesIncrease);
 				Configuration.Get("LootAncientShadowHelmetIncrease", ref LootAncientShadowHelmetIncrease);
 				Configuration.Get("LootAncientShadowScalemailIncrease", ref LootAncientShadowScalemailIncrease);
+				Configuration.Get("LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory", ref LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory);
 				Configuration.Get("LootArmorPolishIncrease", ref LootArmorPolishIncrease);
 				Configuration.Get("LootBabyGrinchsMischiefWhistleIncrease", ref LootBabyGrinchsMischiefWhistleIncrease);
 				Configuration.Get("LootBananarangIncrease", ref LootBananarangIncrease);
@@ -1210,6 +1212,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootAncientShadowGreavesIncrease", LootAncientShadowGreavesIncrease);
 			Configuration.Put("LootAncientShadowHelmetIncrease", LootAncientShadowHelmetIncrease);
 			Configuration.Put("LootAncientShadowScalemailIncrease", LootAncientShadowScalemailIncrease);
+			Configuration.Put("LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory", LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory);
 			Configuration.Put("LootArmorPolishIncrease", LootArmorPolishIncrease);
 			Configuration.Put("LootBabyGrinchsMischiefWhistleIncrease", LootBabyGrinchsMischiefWhistleIncrease);
 			Configuration.Put("LootBananarangIncrease", LootBananarangIncrease);

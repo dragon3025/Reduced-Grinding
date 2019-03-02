@@ -640,6 +640,47 @@ namespace ReducedGrinding
 					
 					for (int j=0; j<Config.DropTriesForAllEnemyDroppedLoot; j++)
 					{
+						int AnkhCharmInInventory = 0;
+						if (player.HasItem(888)) //Blindfold
+							AnkhCharmInInventory++;
+						if (player.HasItem(901)) //Armor Bracing
+							AnkhCharmInInventory += 2;
+						else
+						{
+							if (player.HasItem(886)) //Armor Polish
+								AnkhCharmInInventory++;
+							if (player.HasItem(892)) //Vitamins
+								AnkhCharmInInventory++;
+						}
+						if (player.HasItem(902)) //Medicated Bandage
+							AnkhCharmInInventory += 2;
+						else
+						{
+							if (player.HasItem(887)) //Bezoar
+								AnkhCharmInInventory++;
+							if (player.HasItem(885)) //Adhesive Bandage
+								AnkhCharmInInventory++;
+						}
+						if (player.HasItem(904)) //Countercurse Mantra
+							AnkhCharmInInventory += 2;
+						else
+						{
+							if (player.HasItem(890)) //Megaphone
+								AnkhCharmInInventory++;
+							if (player.HasItem(891)) //Nazar
+								AnkhCharmInInventory++;
+						}
+						if (player.HasItem(903)) //The Plan
+							AnkhCharmInInventory += 2;
+						else
+						{
+							if (player.HasItem(889)) //Fast Clock
+								AnkhCharmInInventory++;
+							if (player.HasItem(893)) //Trifold Map
+								AnkhCharmInInventory++;
+						}
+						float AnkhMaterialBonus = AnkhCharmInInventory * Config.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory * difficultyMultiplier;
+						
 						//Boss Loot
 						if (npc.type == NPCID.SkeletronHead) //Skeletron
 						{
@@ -876,7 +917,7 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.AnglerFish || (npc.type >= 269 && npc.type <= 272) || npc.type == NPCID.Werewolf) //269 to 272 is Rusty Armored Bones
 						{
-							if (Main.rand.NextFloat() < Config.LootAdhesiveBandageIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootAdhesiveBandageIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
 							}
@@ -890,7 +931,7 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.Clown || npc.type == NPCID.LightMummy || npc.type == NPCID.GiantBat)
 						{
-							if (Main.rand.NextFloat() < Config.LootTrifoldMapIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootTrifoldMapIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TrifoldMap, 1, false, -1, false, false);
 							}
@@ -904,14 +945,14 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.EnchantedSword || npc.type == NPCID.CrimsonAxe || npc.type == NPCID.CursedHammer || npc.type == NPCID.CursedSkull)
 						{
-							if (Main.rand.NextFloat() < Config.LootNazarIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootNazarIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nazar, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == 42 || (npc.type >= 231 && npc.type <= 235)) //Hornet
 						{
-							if (Main.rand.NextFloat() < Config.LootMegaphoneBaseIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootMegaphoneBaseIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
 							}
@@ -930,14 +971,14 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.Corruptor || npc.type == NPCID.FloatyGross)
 						{
-							if (Main.rand.NextFloat() < Config.LootVitaminsIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootVitaminsIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Vitamins, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Crimslime || npc.type == NPCID.BigCrimslime || npc.type == NPCID.LittleCrimslime)
 						{
-							if (Main.rand.NextFloat() < Config.LootBlindfoldIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootBlindfoldIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Blindfold, 1, false, -1, false, false);
 							}
@@ -947,7 +988,7 @@ namespace ReducedGrinding
 							int fastClockMultiplier = 1;
 							if (npc.type != NPCID.Pixie)
 								fastClockMultiplier = 2;
-							if (Main.rand.NextFloat() < Config.LootFastClockBaseIncrease * difficultyMultiplier* fastClockMultiplier)
+							if (Main.rand.NextFloat() < Config.LootFastClockBaseIncrease * difficultyMultiplier * fastClockMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
 							}
@@ -1115,7 +1156,7 @@ namespace ReducedGrinding
 						}
 						if (npc.type == 77 || (npc.type >= 273 && npc.type <= 276)) //Blue Amored Bones and Armored Skeleton
 						{
-							if (Main.rand.NextFloat() < Config.LootArmorPolishIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootArmorPolishIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ArmorPolish, 1, false, -1, false, false);
 							}
@@ -1269,7 +1310,7 @@ namespace ReducedGrinding
 						{
 							if (Main.rand.NextFloat() < Config.LootDeathSickleIncrease * difficultyMultiplier)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AdhesiveBandage, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1327, 1, false, -1, false, false); //Death Sickle
 							}
 						}
 						if (npc.type == 3 || npc.type == 132 || npc.type == 161 || (npc.type >= 186 && npc.type <= 200) || npc.type == 223 || (npc.type >= 430 && npc.type <= 436)) //Normal Zombie Variants, Raincoat Zombie, and Zombie Eskimo
@@ -1907,7 +1948,7 @@ namespace ReducedGrinding
 						}
 						if (npc.type == 42 || npc.type == 141|| npc.type == 176 || (npc.type >= 231 && npc.type <= 235)) //Hornet, Moss Hornet, and Toxic Sludge
 						{
-							if (Main.rand.NextFloat() < Config.LootBezoarIncrease * difficultyMultiplier)
+							if (Main.rand.NextFloat() < Config.LootBezoarIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Bezoar, 1, false, -1, false, false);
 							}
