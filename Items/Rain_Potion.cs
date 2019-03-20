@@ -62,7 +62,6 @@ namespace ReducedGrinding.Items
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
 			else if (Main.netMode == 0) // Single Player
 				Main.NewText("The rain started to fade away.", 0, 128, 255);
-			Main.expertMode = (!Main.expertMode);
             Main.rainTime = 0;
             Main.raining = false;
             Main.maxRaining = 0f;
