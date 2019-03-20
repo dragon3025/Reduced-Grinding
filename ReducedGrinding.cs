@@ -48,23 +48,10 @@ namespace ReducedGrinding
             };
         }
 		
-		
-
-		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             RGMessageType msgType = (RGMessageType)reader.ReadByte();
             byte playernumber;
-			
-			
-			
-			
 			
             int DropTriesForAllEnemyDroppedLoot;
 			float NormalModeLootMultiplierForLootWithSeperateDifficultyRates;
@@ -1492,49 +1479,20 @@ namespace ReducedGrinding
 							FishCatchBecomesZephyrFish
 						);
 
-                        //in addition to recieving the server config, get all info about the players
-
                         arrayLength = reader.ReadByte();
-                        //Main.NewText("arrayLength is " + arrayLength);
-                        /*if (arrayLength > 0)
-                        {
-                            byte[] indexes = new byte[arrayLength];
-                            int[] ranges = new int[arrayLength];
-                            bool[] currentlyActives = new bool[arrayLength];
-
-                            for (int i = 0; i < arrayLength; i++)
-                            {
-                                indexes[i] = reader.ReadByte();
-                                ranges[i] = reader.ReadInt32();
-                                currentlyActives[i] = reader.ReadBoolean();
-                            }
-
-                            for (int i = 0; i < arrayLength; i++)
-                            {
-                                //Main.NewText("recv with " + indexes[i] + " " + ranges[i] + " " + currentlyActives[i]);
-                                mPlayer = Main.player[indexes[i]].GetModPlayer<ReducedGrindingPlayer>();
-                                //mPlayer.magnetGrabRadius = ranges[i];
-                                //mPlayer.currentlyActive = currentlyActives[i];
-                            }
-                        }*/
                     }
                     break;
                 case RGMessageType.SendClientChanges:
                     playernumber = reader.ReadByte();
 
                     flags1 = reader.ReadByte();        //byte
-                    //currentlyActive = flags1[0];
 
                     mPlayer = Main.player[playernumber].GetModPlayer<ReducedGrindingPlayer>();
-                    //mPlayer.magnetGrabRadius = range;
-                    //mPlayer.currentlyActive = currentlyActive;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        //NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("server send SendClientChanges from " + playernumber + " with " + currentlyActive), new Color(255, 25, 25));
                         ModPacket packet = GetPacket();
                         packet.Write((byte)RGMessageType.SendClientChanges);
                         packet.Write(playernumber);
-                        //packet.Write((int)range);
                         packet.Write((byte)flags1);
                         packet.Send(-1, playernumber);
                     }

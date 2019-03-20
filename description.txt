@@ -1,6 +1,6 @@
 Reduced Grinding
 
-This mod isn't supposed to make the game too easy, but makes it so you don't have to spend huge amounts of time farming for loot, for example: AFK farms to get rare item like Biome Keys. Everything is configurable, so you can adjust to your liking. This description breifly explains how it does this, for more info see the link below. How this mod does this:
+This mod isn't supposed to make the game too easy, but makes it so you don't have to spend huge amounts of time farming for loot, for example: AFK farms to get rare item like Biome Keys. It's highly configurable, so you can adjust to your liking. This description breifly explains how it does this, for more info see the link below. How this mod does this:
 
 New War Potion and Chaos Potion which greatly increase monster spawn rates. If you can handle the flood of monsters coming at you, then you'll be able to get rare items from them faster.
 

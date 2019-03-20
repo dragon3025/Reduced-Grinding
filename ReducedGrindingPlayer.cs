@@ -15,19 +15,42 @@ using Terraria.ModLoader;
 using Terraria.World.Generation;
 using Terraria;
 
+/*To debug, use:
+ErrorLogger.Log(<string>);
+
+To turn into a string use:
+Value.ToString()
+
+To show text in chat use:
+Main.NewText(string);
+or
+Main.NewText(string, red, green, blue);
+
+Chatting a value:
+Main.NewText(Value.ToString(), 255, 255, 255);
+*/
+
 namespace ReducedGrinding
 {
 	
 	class ReducedGrindingPlayer : ModPlayer
     {
 
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-        public bool currentlyActive = false;
+		/*public override void PreUpdate()
+		{
+			if (Main.time % 180 == 0)
+			{
+				Main.NewText("Debug Client:");
+				Main.NewText("DropTriesForAllEnemyDroppedLoot: "+Config.DropTriesForAllEnemyDroppedLoot.ToString());
+				Main.NewText("");
+				
+				//Console.WriteLine("Debug Server:");
+				//Console.WriteLine("DropTriesForAllEnemyDroppedLoot: "+Config.DropTriesForAllEnemyDroppedLoot.ToString());
+				//Console.WriteLine("");
+			}
+		}*/
+	
+		public bool currentlyActive = false;
 
         public struct ClientConf
         {
@@ -2884,35 +2907,7 @@ namespace ReducedGrinding
 				
 				
 			);
-
-            //in addition to sending the server config, send all info about the players
-
-            /*
-			byte[] indexes = new byte[255];
-            int[] ranges = new int[255];
-            bool[] currentlyActives = new bool[255];
-            byte arrayLength = 0;
-            for (int i = 0; i < 255; i++)
-            {
-                if (Main.player[i].active && i != player.whoAmI)
-                    currentlyActives[arrayLength++] = currentlyActive;
-            }
-
-            packet.Write((byte)arrayLength);
-            if (arrayLength > 0)
-            {
-                Array.Resize(ref ranges, arrayLength + 1);
-                Array.Resize(ref currentlyActives, arrayLength + 1);
-
-                for (int i = 0; i < arrayLength; i++)
-                {
-                    packet.Write((byte)indexes[i]);
-                    packet.Write((int)ranges[i]);
-                    packet.Write((bool)currentlyActives[i]);
-                }
-            }*/
 			
-
             packet.Send(toWho/*, fromWho*/);
         }
 		
@@ -3402,14 +3397,6 @@ namespace ReducedGrinding
             }
         }
 		
-		
-		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		
 		public override void AnglerQuestReward(float quality, List<Item> rewardItems)
 		{
 			Player player = Main.player[Main.myPlayer];
@@ -3710,7 +3697,8 @@ namespace ReducedGrinding
 		public override void SetupStartInventory(IList<Item> items)
 		{
 			Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent crashes when using Luiafk
-			if (luiafk == null)
+			Mod recipebrowser = ModLoader.GetMod("RecipeBrowser"); //Prevent crashes when using RecipeBrowser
+			if (luiafk == null && recipebrowser == null)
 			{
 				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
 			
