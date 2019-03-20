@@ -25,7 +25,6 @@ namespace ReducedGrinding
         public static bool jungleChestMined = false;
 		public static List<int> stationaryMerchantItems;
 		public static List<int> stationaryMerchantStructureItems;
-        public static bool luiafkTravelingMerchantRequirementMet = false;
         public static bool skippedToDayOrNight = false;
 
         public override void Initialize()
@@ -36,7 +35,6 @@ namespace ReducedGrinding
 			jungleChestMined = false;
 			stationaryMerchantItems = new List<int>();
 			stationaryMerchantStructureItems = new List<int>();
-			luiafkTravelingMerchantRequirementMet = false;
 			skippedToDayOrNight = false;
 		}
 		
@@ -53,7 +51,6 @@ namespace ReducedGrinding
                 {"biomeChestMined", biomeChestMined},
 				{"stationaryMerchantItems", stationaryMerchantItems},
 				{"stationaryMerchantStructureItems", stationaryMerchantStructureItems},
-				{"luiafkTravelingMerchantRequirementMet", luiafkTravelingMerchantRequirementMet},
 				{"skippedToDayOrNight", skippedToDayOrNight}
             };
         }
@@ -69,7 +66,6 @@ namespace ReducedGrinding
 			stationaryMerchantItems = tag.Get<List<int>>("stationaryMerchantItems");
 			stationaryMerchantStructureItems = tag.Get<List<int>>("stationaryMerchantStructureItems");
 			
-			luiafkTravelingMerchantRequirementMet = tag.GetBool("luiafkTravelingMerchantRequirementMet");
 			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
         }
 		
@@ -116,8 +112,6 @@ namespace ReducedGrinding
                         break;
                 }
             }
-			if (townNPCCount >= 2 && playerCoinAmount >= 50000)
-				luiafkTravelingMerchantRequirementMet = true;
 			stationaryMerchantItems.Sort();
 			stationaryMerchantStructureItems.Sort();
 			

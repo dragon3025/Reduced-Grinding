@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
-			item.value = (88 * Config.WarPotionPowderCost * 5);
+			item.value = 113;
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
 		}
@@ -34,52 +34,28 @@ namespace ReducedGrinding.Items
 		public override bool UseItem(Player player)
 		{
 			player.AddBuff(13, 25200); //Battle
-			player.AddBuff(mod.BuffType("War"), Config.WarPotionDurationInFrames);
+			player.AddBuff(mod.BuffType("War"), 25200);
 			return true;
 		}
 	
 		public override void AddRecipes()
 		{
-			if (Config.WarPotionRecipe)
-			{
-				//Set Powder and Mushroom cost
-				int WarPowderCost = Config.WarPotionPowderCost;
-				int WarMushroomCost = 0;
-				while (WarPowderCost >= 5)
-				{
-					WarPowderCost -= 5;
-					WarMushroomCost++;
-				}
+			
+			//War Potion recipe for corruption
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.BattlePotion,1);
+			recipe.AddIngredient(ItemID.VileMushroom, 1);
+			recipe.AddTile(TileID.Bottles);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 				
-				//War Potion recipe for corruption
-				ModRecipe recipe = new ModRecipe(mod);
-				recipe.AddIngredient(ItemID.BattlePotion,1);
-				if (WarMushroomCost > 0)
-				{
-					recipe.AddIngredient(ItemID.VileMushroom,WarMushroomCost);
-				}
-				if (WarPowderCost > 0){
-					recipe.AddIngredient(ItemID.VilePowder,WarPowderCost);
-				}
-				recipe.AddTile(TileID.Bottles);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-					
-				//War Potion recipe for crimson
-				recipe = new ModRecipe(mod);
-				recipe.AddIngredient(ItemID.BattlePotion,1);
-				if (WarMushroomCost > 0)
-				{
-					recipe.AddIngredient(ItemID.ViciousMushroom,WarMushroomCost);
-				}
-				if (WarPowderCost > 0){
-					recipe.AddIngredient(ItemID.ViciousPowder,WarPowderCost);
-				}
-				recipe.AddTile(TileID.Bottles);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-			}
-		
+			//War Potion recipe for crimson
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.BattlePotion,1);
+			recipe.AddIngredient(ItemID.ViciousMushroom, 1);
+			recipe.AddTile(TileID.Bottles);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

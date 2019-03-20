@@ -63,8 +63,6 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.AnglerPotionRecipe)
-			{
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.BottledWater, 1);
 				recipe.AddIngredient(2358, 1);
@@ -72,7 +70,6 @@ namespace ReducedGrinding.Items
                 recipe.AddTile(TileID.Bottles);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
-			}
         }
     }
 }

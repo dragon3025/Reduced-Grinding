@@ -68,20 +68,17 @@ namespace ReducedGrinding.Items
 		
 		public override void AddRecipes()
         {
-			if (Config.AtmosphericBarrierRecipe)
-			{
-				ModRecipe recipe = new ModRecipe(mod);
-				recipe.AddIngredient(520); //Soul of Light
-				recipe.AddIngredient(521); //Soul of Night
-				recipe.AddIngredient(547); //Soul of Fright
-				recipe.AddIngredient(548); //Soul of Might
-				recipe.AddIngredient(549); //Soul of Sight
-				recipe.AddIngredient(575); //Soul of Flight
-				recipe.AddIngredient(3467); //Luminite Bar
-				recipe.AddTile(TileID.LunarCraftingStation);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(520); //Soul of Light
+			recipe.AddIngredient(521); //Soul of Night
+			recipe.AddIngredient(547); //Soul of Fright
+			recipe.AddIngredient(548); //Soul of Might
+			recipe.AddIngredient(549); //Soul of Sight
+			recipe.AddIngredient(575); //Soul of Flight
+			recipe.AddIngredient(3467); //Luminite Bar
+			recipe.AddTile(TileID.LunarCraftingStation);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
         }
 	}
 }

@@ -30,7 +30,7 @@ namespace ReducedGrinding.Items
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
-			item.value = (Config.ExpertChangePotionMushroomCost * 250 + Config.ExpertChangePotionGlowingMushroomCost * 10) * 285 / 100;
+			item.value = 100;
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
 		}
@@ -58,24 +58,6 @@ namespace ReducedGrinding.Items
 			}
 			Main.expertMode = (!Main.expertMode);
 			return true;
-		}
-	
-		public override void AddRecipes()
-		{
-
-			if (Config.ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS)
-			{
-				ModRecipe recipe = new ModRecipe(mod);
-				if (Config.ExpertChangePotionMushroomCost > 0)
-					recipe.AddIngredient(ItemID.Mushroom, Config.ExpertChangePotionMushroomCost);
-				if (Config.ExpertChangePotionGlowingMushroomCost > 0)
-					recipe.AddIngredient(ItemID.GlowingMushroom, Config.ExpertChangePotionGlowingMushroomCost);
-				recipe.AddIngredient(ItemID.BottledWater, 1);
-				recipe.AddTile(TileID.Bottles);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-			}
-		
 		}
 	}
 }

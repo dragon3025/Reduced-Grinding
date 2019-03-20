@@ -73,9 +73,11 @@ namespace ReducedGrinding.Items
 				if (Main.rand.NextFloat() < dropChance)
 					chosenID = testItemID;
 			}
-			player.QuickSpawnItem(chosenID);
-			if (chosenID != 476 && chosenID != 477 && Main.rand.Next(4) == 0)
+			if (chosenID != 476 && chosenID != 477 && Main.rand.Next(10) == 0) //10% chance of being king or queen statue
 				player.QuickSpawnItem(Main.rand.Next(476, 478));
+			else
+				player.QuickSpawnItem(chosenID);
+				chosenID = 0;
 			
 			//Cabin Paintings
 			dropChance = 0.0067f; //About 0.1 paintings when rolling 1 time for 15 paintings

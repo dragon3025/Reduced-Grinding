@@ -8,8 +8,10 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.40.json";
+		static string filename = "Reduced Grinding v4.41.json";
 		
+		
+		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
 		
 		public static float CrateDungeonBoneWelder = 0.2f;
@@ -398,20 +400,9 @@ namespace ReducedGrinding
 		public static bool WitchDoctorSellsStaffofRegrowth = false;
 		public static int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = 50000;
 		
-		public static bool AnglerPotionRecipe = true;
-		public static bool AtmosphericBarrierRecipe = true;
-		public static bool CelestialBeaconRecipe = true;
-		public static bool ChaosPotionRecipe = true;
-		public static bool ChlorophyteAcceleratorRecipe = true;
-		public static bool ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS = true;
-		public static bool GoblinTinkererSellsGoblinRetreatOrderRecipe = true;
-		public static bool GraniteSundialRecipe = true;
-		public static bool MarbleMoondialRecipe = true;
-		public static bool PirateSellsPirateRetreatOrderRecipe = true;
-		public static bool RainPotionRecipe = true;
-		public static bool SandstormPotionRecipe = true;
-		public static bool SlimeRainPotionRecipe = true;
-		public static bool WarPotionRecipe = true;
+		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
+		public static bool MerchantSellsExpertChangePotion = false;
+		public static bool PirateSellsPirateRetreatOrder = true;
 		public static bool WizardSellsMoonBall = true;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
 		public static float BattlePotionSpawnrateMultiplier = 1f;
@@ -420,59 +411,6 @@ namespace ReducedGrinding
 		public static float ChaosPotionSpawnrateMultiplier = 20f;
 		public static float WarPotionMaxSpawnsMultiplier = 10f;
 		public static float WarPotionSpawnrateMultiplier = 10f;
-		public static int AnglerPotionMoonglowCost = 1;
-		public static int AnglerPotionSpecularFishCost = 1;
-		public static int ChaosPotionDurationInFrames = 25200;
-		public static int ChaosPotionPixieDustCost = 1;
-		public static int ChlorophyteAcceleratorChlorophyteOreCost = 1;
-		public static int ChlorophyteAcceleratorChlorophyteOreOutput = 60;
-		public static int ChlorophyteAcceleratorHallowedBarCost = 0;
-		public static int ChlorophyteAcceleratorHallowedBarInput = 0;
-		public static int ChlorophyteAcceleratorLihzahrdBrickCost = 10;
-		public static int ChlorophyteAcceleratorLihzahrdPowerCellInput = 1;
-		public static int ChlorophyteAcceleratorMudBlockInput = 60;
-		public static int ChlorophyteAcceleratorWireCost = 10;
-		public static int ExpertChangePotionGlowingMushroomCost = 1;
-		public static int ExpertChangePotionMushroomCost = 1;
-		public static int GraniteAndMarbleDialRecipeBlockCost = 6;
-		public static int GraniteAndMarbleDialRecipeBlinkroot = 1;
-		public static int RainPotionRainCloudCost = 1;
-		public static int RainPotionWaterleafCost = 1;
-		public static int SandstormPotionBlinkrootCost = 1;
-		public static int SandstormPotionSandBlockCost = 1;
-		public static int SlimeRainPotionGelCost = 1;
-		public static int SlimeRainPotionRainCloudCost = 0;
-		public static int SlimeRainPotionRainPotionCost = 1;
-		public static int SlimeRainPotionWaterleafCost = 0;
-		public static int TimePotionGlowingMushroomCost = 1;
-		public static int TimePotionNeonTetraCost = 1;
-		public static int WarPotionDurationInFrames = 25200;
-		public static int WarPotionPowderCost = 5;
-		
-		public static bool ArkhalisInNightsEdgeRecipe = true;
-		public static bool ArkhalisRecipe = true;
-		public static bool BlizzardinaBottleRecipe = false;
-		public static bool CloudinaBottleRecipe = false;
-		public static bool CrateDowngradeRecipes = true;
-		public static bool CrateUpgradeRecipes = true;
-		public static bool CrawdadGiantShellySalamanderBannerCostOneOfEach = true;
-		public static bool CrawdadGiantShellySalamanderBannerRecipe = true;
-		public static bool CelestialSigilRecipe = true;
-		public static bool EnchangedSwordInNightsEdgeRecipe = true;
-		public static bool EnchantedSwordRecipe = true;
-		public static bool GuideVoodooDollRecipe = true;
-		public static bool HermesBootsRecipe = true;
-		public static bool LavaCharmRecipe = true;
-		public static bool LivingWoodChestRecipe = true;
-		public static bool SandstorminaBottleRecipe = false;
-		public static int CelestialSigilEachLunarFragmentCost= 9;
-		public static int GuideVoodooDollClothierVoodooDollCost = 1;
-		public static int GuideVoodooDollSoulOfNightCost = 1;
-		public static int HermesBootsSilkCost = 46;
-		public static int HermesBootsSwiftnessPotionCost = 4;
-		public static int LavaCharmFireblossomCost = 1;
-		public static int LavaCharmHellstoneBarCost = 15;
-		public static int LavaCharmWaterleafCost = 1;
 		
 		public static int NewCharacterBarrels = 0;
 		public static int NewCharacterCopperBars = 0;
@@ -541,8 +479,6 @@ namespace ReducedGrinding
 		public static float FishCatchBecomesWoodenCrate = 0f;
 		public static float FishCatchBecomesZephyrFish = 0.01f;
 		
-		public static int DropTriesForAllEnemyDroppedLoot = 1;
-		
         static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", filename);
 
         static Preferences Configuration = new Preferences(ConfigPath);
@@ -562,6 +498,8 @@ namespace ReducedGrinding
         {
             if(Configuration.Load())
             {
+				Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent adding items that Luiafk already adds
+				
 				Configuration.Get("NormalModeLootMultiplierForLootWithSeperateDifficultyRates", ref NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
 				
 				Configuration.Get("CrateDungeonBoneWelder", ref CrateDungeonBoneWelder);
@@ -948,81 +886,17 @@ namespace ReducedGrinding
 				Configuration.Get("WitchDoctorSellsSeaweed", ref WitchDoctorSellsSeaweed);
 				Configuration.Get("WitchDoctorSellsStaffofRegrowth", ref WitchDoctorSellsStaffofRegrowth);
 				
-				Configuration.Get("AnglerPotionMoonglowCost", ref AnglerPotionMoonglowCost);
-				Configuration.Get("AnglerPotionRecipe", ref AnglerPotionRecipe);
-				Configuration.Get("AnglerPotionSpecularFishCost", ref AnglerPotionSpecularFishCost);
-				Configuration.Get("AtmosphericBarrierRecipe", ref AtmosphericBarrierRecipe);
 				Configuration.Get("BattlePotionMaxSpawnsMultiplier", ref BattlePotionMaxSpawnsMultiplier);
 				Configuration.Get("BattlePotionSpawnrateMultiplier", ref BattlePotionSpawnrateMultiplier);
 				Configuration.Get("BloodZombieAndDripplerDropsBloodMoonMedallion", ref BloodZombieAndDripplerDropsBloodMoonMedallion);
-				Configuration.Get("CelestialBeaconRecipe", ref CelestialBeaconRecipe);
-				Configuration.Get("ChaosPotionDurationInFrames", ref ChaosPotionDurationInFrames);
 				Configuration.Get("ChaosPotionMaxSpawnsMultiplier", ref ChaosPotionMaxSpawnsMultiplier);
-				Configuration.Get("ChaosPotionPixieDustCost", ref ChaosPotionPixieDustCost);
-				Configuration.Get("ChaosPotionRecipe", ref ChaosPotionRecipe);
 				Configuration.Get("ChaosPotionSpawnrateMultiplier", ref ChaosPotionSpawnrateMultiplier);
-				Configuration.Get("ChlorophyteAcceleratorChlorophyteOreCost", ref ChlorophyteAcceleratorChlorophyteOreCost);
-				Configuration.Get("ChlorophyteAcceleratorChlorophyteOreOutput", ref ChlorophyteAcceleratorChlorophyteOreOutput);
-				Configuration.Get("ChlorophyteAcceleratorHallowedBarCost", ref ChlorophyteAcceleratorHallowedBarCost);
-				Configuration.Get("ChlorophyteAcceleratorHallowedBarInput", ref ChlorophyteAcceleratorHallowedBarInput);
-				Configuration.Get("ChlorophyteAcceleratorLihzahrdBrickCost", ref ChlorophyteAcceleratorLihzahrdBrickCost);
-				Configuration.Get("ChlorophyteAcceleratorLihzahrdPowerCellInput", ref ChlorophyteAcceleratorLihzahrdPowerCellInput);
-				Configuration.Get("ChlorophyteAcceleratorMudBlockInput", ref ChlorophyteAcceleratorMudBlockInput);
-				Configuration.Get("ChlorophyteAcceleratorRecipe", ref ChlorophyteAcceleratorRecipe);
-				Configuration.Get("ChlorophyteAcceleratorWireCost", ref ChlorophyteAcceleratorWireCost);
-				Configuration.Get("ExpertChangePotionGlowingMushroomCost", ref ExpertChangePotionGlowingMushroomCost);
-				Configuration.Get("ExpertChangePotionMushroomCost", ref ExpertChangePotionMushroomCost);
-				Configuration.Get("ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS", ref ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS);
-				Configuration.Get("GoblinTinkererSellsGoblinRetreatOrderRecipe", ref GoblinTinkererSellsGoblinRetreatOrderRecipe);
-				Configuration.Get("GraniteAndMarbleDialRecipeBlinkroot", ref GraniteAndMarbleDialRecipeBlinkroot);
-				Configuration.Get("GraniteAndMarbleDialRecipeBlockCost", ref GraniteAndMarbleDialRecipeBlockCost);
-				Configuration.Get("GraniteSundialRecipe", ref GraniteSundialRecipe);
-				Configuration.Get("MarbleMoondialRecipe", ref MarbleMoondialRecipe);
-				Configuration.Get("PirateSellsPirateRetreatOrderRecipe", ref PirateSellsPirateRetreatOrderRecipe);
-				Configuration.Get("RainPotionRainCloudCost", ref RainPotionRainCloudCost);
-				Configuration.Get("RainPotionRecipe", ref RainPotionRecipe);
-				Configuration.Get("RainPotionWaterleafCost", ref RainPotionWaterleafCost);
-				Configuration.Get("SandstormPotionBlinkrootCost", ref SandstormPotionBlinkrootCost);
-				Configuration.Get("SandstormPotionRecipe", ref SandstormPotionRecipe);
-				Configuration.Get("SandstormPotionSandBlockCost", ref SandstormPotionSandBlockCost);
-				Configuration.Get("SlimeRainPotionGelCost", ref SlimeRainPotionGelCost);
-				Configuration.Get("SlimeRainPotionRainCloudCost", ref SlimeRainPotionRainCloudCost);
-				Configuration.Get("SlimeRainPotionRainPotionCost", ref SlimeRainPotionRainPotionCost);
-				Configuration.Get("SlimeRainPotionRecipe", ref SlimeRainPotionRecipe);
-				Configuration.Get("SlimeRainPotionWaterleafCost", ref SlimeRainPotionWaterleafCost);
-				Configuration.Get("TimePotionGlowingMushroomCost", ref TimePotionGlowingMushroomCost);
-				Configuration.Get("TimePotionNeonTetraCost", ref TimePotionNeonTetraCost);
-				Configuration.Get("WarPotionDurationInFrames", ref WarPotionDurationInFrames);
+				Configuration.Get("GoblinTinkererSellsGoblinRetreatOrder", ref GoblinTinkererSellsGoblinRetreatOrder);
+				Configuration.Get("MerchantSellsExpertChangePotion", ref MerchantSellsExpertChangePotion);
+				Configuration.Get("PirateSellsPirateRetreatOrder", ref PirateSellsPirateRetreatOrder);
 				Configuration.Get("WarPotionMaxSpawnsMultiplier", ref WarPotionMaxSpawnsMultiplier);
-				Configuration.Get("WarPotionPowderCost", ref WarPotionPowderCost);
-				Configuration.Get("WarPotionRecipe", ref WarPotionRecipe);
 				Configuration.Get("WarPotionSpawnrateMultiplier", ref WarPotionSpawnrateMultiplier);
 				Configuration.Get("WizardSellsMoonBall", ref WizardSellsMoonBall);
-				
-				Configuration.Get("ArkhalisInNightsEdgeRecipe", ref ArkhalisInNightsEdgeRecipe);
-				Configuration.Get("ArkhalisRecipe", ref ArkhalisRecipe);
-				Configuration.Get("BlizzardinaBottleRecipe", ref BlizzardinaBottleRecipe);
-				Configuration.Get("CloudinaBottleRecipe", ref CloudinaBottleRecipe);
-				Configuration.Get("CrateDowngradeRecipes", ref CrateDowngradeRecipes);
-				Configuration.Get("CrateUpgradeRecipes", ref CrateUpgradeRecipes);
-				Configuration.Get("CrawdadGiantShellySalamanderBannerCostOneOfEach", ref CrawdadGiantShellySalamanderBannerCostOneOfEach);
-				Configuration.Get("CrawdadGiantShellySalamanderBannerRecipe", ref CrawdadGiantShellySalamanderBannerRecipe);
-				Configuration.Get("CelestialSigilEachLunarFragmentCost", ref CelestialSigilEachLunarFragmentCost);
-				Configuration.Get("CelestialSigilRecipe", ref CelestialSigilRecipe);
-				Configuration.Get("EnchangedSwordInNightsEdgeRecipe", ref EnchangedSwordInNightsEdgeRecipe);
-				Configuration.Get("EnchantedSwordRecipe", ref EnchantedSwordRecipe);
-				Configuration.Get("GuideVoodooDollClothierVoodooDollCost", ref GuideVoodooDollClothierVoodooDollCost);
-				Configuration.Get("GuideVoodooDollRecipe", ref GuideVoodooDollRecipe);
-				Configuration.Get("GuideVoodooDollSoulOfNightCost", ref GuideVoodooDollSoulOfNightCost);
-				Configuration.Get("HermesBootsRecipe", ref HermesBootsRecipe);
-				Configuration.Get("HermesBootsSilkCost", ref HermesBootsSilkCost);
-				Configuration.Get("HermesBootsSwiftnessPotionCost", ref HermesBootsSwiftnessPotionCost);
-				Configuration.Get("LavaCharmFireblossomCost", ref LavaCharmFireblossomCost);
-				Configuration.Get("LavaCharmHellstoneBarCost", ref LavaCharmHellstoneBarCost);
-				Configuration.Get("LavaCharmRecipe", ref LavaCharmRecipe);
-				Configuration.Get("LavaCharmWaterleafCost", ref LavaCharmWaterleafCost);
-				Configuration.Get("LivingWoodChestRecipe", ref LivingWoodChestRecipe);
-				Configuration.Get("SandstorminaBottleRecipe", ref SandstorminaBottleRecipe);
 			
 				Configuration.Get("NewCharacterBarrels", ref NewCharacterBarrels);
 				Configuration.Get("NewCharacterCopperBars", ref NewCharacterCopperBars);
@@ -1525,87 +1399,19 @@ namespace ReducedGrinding
 			Configuration.Put("===================================================================================================S", 0);
 			Configuration.Put("|                                      OTHER MOD OBJECTS                                           |", 0);
 			Configuration.Put("===================================================================================================T", 0);
-			Configuration.Put("AnglerPotionMoonglowCost", AnglerPotionMoonglowCost);
-			Configuration.Put("AnglerPotionRecipe", AnglerPotionRecipe);
-			Configuration.Put("AnglerPotionSpecularFishCost", AnglerPotionSpecularFishCost);
-			Configuration.Put("AtmosphericBarrierRecipe", AtmosphericBarrierRecipe);
 			Configuration.Put("BattlePotionMaxSpawnsMultiplier", BattlePotionMaxSpawnsMultiplier);
 			Configuration.Put("BattlePotionSpawnrateMultiplier", BattlePotionSpawnrateMultiplier);
 			Configuration.Put("BloodZombieAndDripplerDropsBloodMoonMedallion", BloodZombieAndDripplerDropsBloodMoonMedallion);
-			Configuration.Put("CelestialBeaconRecipe", CelestialBeaconRecipe);
-			Configuration.Put("CelestialBeaconRecipe", CelestialBeaconRecipe);
-			Configuration.Put("ChaosPotionDurationInFrames", ChaosPotionDurationInFrames);
 			Configuration.Put("ChaosPotionMaxSpawnsMultiplier", ChaosPotionMaxSpawnsMultiplier);
-			Configuration.Put("ChaosPotionPixieDustCost", ChaosPotionPixieDustCost);
-			Configuration.Put("ChaosPotionRecipe", ChaosPotionRecipe);
 			Configuration.Put("ChaosPotionSpawnrateMultiplier", ChaosPotionSpawnrateMultiplier);
-			Configuration.Put("ChlorophyteAcceleratorChlorophyteOreCost", ChlorophyteAcceleratorChlorophyteOreCost);
-			Configuration.Put("ChlorophyteAcceleratorChlorophyteOreOutput", ChlorophyteAcceleratorChlorophyteOreOutput);
-			Configuration.Put("ChlorophyteAcceleratorHallowedBarCost", ChlorophyteAcceleratorHallowedBarCost);
-			Configuration.Put("ChlorophyteAcceleratorHallowedBarInput", ChlorophyteAcceleratorHallowedBarInput);
-			Configuration.Put("ChlorophyteAcceleratorLihzahrdBrickCost", ChlorophyteAcceleratorLihzahrdBrickCost);
-			Configuration.Put("ChlorophyteAcceleratorLihzahrdPowerCellInput", ChlorophyteAcceleratorLihzahrdPowerCellInput);
-			Configuration.Put("ChlorophyteAcceleratorMudBlockInput", ChlorophyteAcceleratorMudBlockInput);
-			Configuration.Put("ChlorophyteAcceleratorRecipe", ChlorophyteAcceleratorRecipe);
-			Configuration.Put("ChlorophyteAcceleratorWireCost", ChlorophyteAcceleratorWireCost);
-			Configuration.Put("ExpertChangePotionGlowingMushroomCost", ExpertChangePotionGlowingMushroomCost);
-			Configuration.Put("ExpertChangePotionMushroomCost", ExpertChangePotionMushroomCost);
-			Configuration.Put("ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS", ExpertChangePotionRecipe_SET_TO_FALSE_IF_YOU_THINK_PLAYERS_MIGHT_ABUSE_THIS);
-			Configuration.Put("GoblinTinkererSellsGoblinRetreatOrderRecipe", GoblinTinkererSellsGoblinRetreatOrderRecipe);
-			Configuration.Put("GraniteAndMarbleDialRecipeBlinkroot", GraniteAndMarbleDialRecipeBlinkroot);
-			Configuration.Put("GraniteAndMarbleDialRecipeBlockCost", GraniteAndMarbleDialRecipeBlockCost);
-			Configuration.Put("GraniteSundialRecipe", GraniteSundialRecipe);
+			Configuration.Put("GoblinTinkererSellsGoblinRetreatOrder", GoblinTinkererSellsGoblinRetreatOrder);
+			Configuration.Put("MerchantSellsExpertChangePotion", MerchantSellsExpertChangePotion);
 			Configuration.Put("JungleTempleLihzahrd_Lock_Box", JungleTempleLihzahrd_Lock_Box);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
-			Configuration.Put("MarbleMoondialRecipe", MarbleMoondialRecipe);
-			Configuration.Put("PirateSellsPirateRetreatOrderRecipe", PirateSellsPirateRetreatOrderRecipe);
-			Configuration.Put("RainPotionRainCloudCost", RainPotionRainCloudCost);
-			Configuration.Put("RainPotionRecipe", RainPotionRecipe);
-			Configuration.Put("RainPotionWaterleafCost", RainPotionWaterleafCost);
-			Configuration.Put("SandstormPotionBlinkrootCost", SandstormPotionBlinkrootCost);
-			Configuration.Put("SandstormPotionRecipe", SandstormPotionRecipe);
-			Configuration.Put("SandstormPotionSandBlockCost", SandstormPotionSandBlockCost);
-			Configuration.Put("SlimeRainPotionGelCost", SlimeRainPotionGelCost);
-			Configuration.Put("SlimeRainPotionRainCloudCost", SlimeRainPotionRainCloudCost);
-			Configuration.Put("SlimeRainPotionRainPotionCost", SlimeRainPotionRainPotionCost);
-			Configuration.Put("SlimeRainPotionRecipe", SlimeRainPotionRecipe);
-			Configuration.Put("SlimeRainPotionWaterleafCost", SlimeRainPotionWaterleafCost);
-			Configuration.Put("TimePotionGlowingMushroomCost", TimePotionGlowingMushroomCost);
-			Configuration.Put("TimePotionNeonTetraCost", TimePotionNeonTetraCost);
-			Configuration.Put("WarPotionDurationInFrames", WarPotionDurationInFrames);
+			Configuration.Put("PirateSellsPirateRetreatOrder", PirateSellsPirateRetreatOrder);
 			Configuration.Put("WarPotionMaxSpawnsMultiplier", WarPotionMaxSpawnsMultiplier);
-			Configuration.Put("WarPotionPowderCost", WarPotionPowderCost);
-			Configuration.Put("WarPotionRecipe", WarPotionRecipe);
 			Configuration.Put("WarPotionSpawnrateMultiplier", WarPotionSpawnrateMultiplier);
 			Configuration.Put("WizardSellsMoonBall", WizardSellsMoonBall);
-			
-			Configuration.Put("===================================================================================================U", 0);
-			Configuration.Put("|                                  VANILLA OBJECT RECIPES                                          |", 0);
-			Configuration.Put("===================================================================================================V", 0);
-			Configuration.Put("ArkhalisInNightsEdgeRecipe", ArkhalisInNightsEdgeRecipe);
-			Configuration.Put("ArkhalisRecipe", ArkhalisRecipe);
-			Configuration.Put("BlizzardinaBottleRecipe", BlizzardinaBottleRecipe);
-			Configuration.Put("CelestialSigilEachLunarFragmentCost", CelestialSigilEachLunarFragmentCost);
-			Configuration.Put("CelestialSigilRecipe", CelestialSigilRecipe);
-			Configuration.Put("CloudinaBottleRecipe", CloudinaBottleRecipe);
-			Configuration.Put("CrateDowngradeRecipes", CrateDowngradeRecipes);
-			Configuration.Put("CrateUpgradeRecipes", CrateUpgradeRecipes);
-			Configuration.Put("CrawdadGiantShellySalamanderBannerCostOneOfEach", CrawdadGiantShellySalamanderBannerCostOneOfEach);
-			Configuration.Put("CrawdadGiantShellySalamanderBannerRecipe", CrawdadGiantShellySalamanderBannerRecipe);
-			Configuration.Put("EnchangedSwordInNightsEdgeRecipe", EnchangedSwordInNightsEdgeRecipe);
-			Configuration.Put("EnchantedSwordRecipe", EnchantedSwordRecipe);
-			Configuration.Put("GuideVoodooDollClothierVoodooDollCost", GuideVoodooDollClothierVoodooDollCost);
-			Configuration.Put("GuideVoodooDollRecipe", GuideVoodooDollRecipe);
-			Configuration.Put("GuideVoodooDollSoulOfNightCost", GuideVoodooDollSoulOfNightCost);
-			Configuration.Put("HermesBootsRecipe", HermesBootsRecipe);
-			Configuration.Put("HermesBootsSilkCost", HermesBootsSilkCost);
-			Configuration.Put("HermesBootsSwiftnessPotionCost", HermesBootsSwiftnessPotionCost);
-			Configuration.Put("LavaCharmFireblossomCost", LavaCharmFireblossomCost);
-			Configuration.Put("LavaCharmHellstoneBarCost", LavaCharmHellstoneBarCost);
-			Configuration.Put("LavaCharmRecipe", LavaCharmRecipe);
-			Configuration.Put("LavaCharmWaterleafCost", LavaCharmWaterleafCost);
-			Configuration.Put("LivingWoodChestRecipe", LivingWoodChestRecipe);
-			Configuration.Put("SandstorminaBottleRecipe", SandstorminaBottleRecipe);
 			
 			Configuration.Put("===================================================================================================W", 0);
 			Configuration.Put("|                                       STARTING ITEMS                                             |", 0);
@@ -1652,6 +1458,9 @@ namespace ReducedGrinding
 			
 			Configuration.Put("==================================================================================================AA", 0);
 			Configuration.Put("|                                       FISHING CATCHES                                            |", 0);
+			Configuration.Put("------------------------------------------------------------------------------------------------1655", 0);
+			Configuration.Put(" Fish catches here are still affected by Fishing Power and some fish are limited to certain     1656", 0);
+			Configuration.Put(" locations.                                                                                     1657", 0);
 			Configuration.Put("==================================================================================================AB", 0);
 			Configuration.Put("CrateUpgradesDependingOnFishingPower", CrateUpgradesDependingOnFishingPower);
 			Configuration.Put("FishCatchBecomesBalloonPufferfish", FishCatchBecomesBalloonPufferfish);

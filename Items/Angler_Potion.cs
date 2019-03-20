@@ -6,6 +6,7 @@ namespace ReducedGrinding.Items
 {
     public class Angler_Potion : ModItem
     {
+		
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Angler Potion");
@@ -14,6 +15,8 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
+			//ReducedGrindingPlayer mPlayer = Main.player[Main.myPlayer].GetModPlayer<ReducedGrindingPlayer>();
+		
             item.width = 20;
             item.height = 30;
             item.maxStack = 30;
@@ -21,7 +24,7 @@ namespace ReducedGrinding.Items
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = (Config.RainPotionWaterleafCost * 200);
+            item.value = 200;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
         }
@@ -40,18 +43,13 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.AnglerPotionRecipe)
-			{
-                ModRecipe recipe = new ModRecipe(mod);
-                recipe.AddIngredient(ItemID.BottledWater, 1);
-				if (Config.AnglerPotionSpecularFishCost > 0)
-					recipe.AddIngredient(2309, Config.AnglerPotionSpecularFishCost);
-				if (Config.AnglerPotionMoonglowCost > 0)
-					recipe.AddIngredient(314, Config.AnglerPotionMoonglowCost);
-                recipe.AddTile(TileID.Bottles);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.BottledWater, 1);
+			recipe.AddIngredient(2309, 1); //Specular Fish
+			recipe.AddIngredient(314, 1); //Moonglow
+			recipe.AddTile(TileID.Bottles);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
         }
     }
 }

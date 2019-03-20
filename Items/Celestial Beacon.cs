@@ -22,18 +22,15 @@ namespace ReducedGrinding.Items
 
 		public override void AddRecipes()
         {
-			if (Config.CelestialBeaconRecipe)
-			{
-				ModRecipe recipe = new ModRecipe(mod);
-				recipe.AddIngredient(3456); //Vortext Fragment
-				recipe.AddIngredient(3457); //Nebula Fragment
-				recipe.AddIngredient(3458); //Solar Fragment
-				recipe.AddIngredient(3459); //Stardust Fragment
-				recipe.AddIngredient(3467); //Luminite Bar
-				recipe.AddTile(TileID.LunarCraftingStation);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(3456); //Vortext Fragment
+			recipe.AddIngredient(3457); //Nebula Fragment
+			recipe.AddIngredient(3458); //Solar Fragment
+			recipe.AddIngredient(3459); //Stardust Fragment
+			recipe.AddIngredient(3467); //Luminite Bar
+			recipe.AddTile(TileID.LunarCraftingStation);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
         }
 		
 	}

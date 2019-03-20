@@ -23,7 +23,7 @@ namespace ReducedGrinding.Items
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = Config.SlimeRainPotionRainPotionCost * Config.RainPotionWaterleafCost * 200 + Config.SlimeRainPotionWaterleafCost * 200 + Config.SlimeRainPotionGelCost * 10;
+            item.value = 230;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
         }
@@ -119,27 +119,12 @@ namespace ReducedGrinding.Items
 		
         public override void AddRecipes()
         {
-			if (Config.RainPotionRecipe)
-			{
-                ModRecipe recipe = new ModRecipe(mod);
-				if (Config.SlimeRainPotionRainPotionCost > 0)
-				{
-					recipe.AddIngredient(mod.ItemType("Rain_Potion"), Config.SlimeRainPotionRainPotionCost);
-				}
-				else
-				{
-					recipe.AddIngredient(ItemID.BottledWater, 1);
-				}
-                if (Config.SlimeRainPotionWaterleafCost > 0)
-					recipe.AddIngredient(ItemID.Waterleaf, Config.SlimeRainPotionWaterleafCost);
-                if (Config.SlimeRainPotionRainCloudCost > 0)
-					recipe.AddIngredient(ItemID.RainCloud, Config.SlimeRainPotionRainCloudCost);
-                if (Config.SlimeRainPotionGelCost > 0)
-					recipe.AddIngredient(ItemID.Gel, Config.SlimeRainPotionGelCost);
-                recipe.AddTile(TileID.Bottles);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(mod.ItemType("Rain_Potion"), 1);
+			recipe.AddIngredient(ItemID.Gel, 1);
+			recipe.AddTile(TileID.Bottles);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
         }
     }
 }

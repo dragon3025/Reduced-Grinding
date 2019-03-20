@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
 {
-	public class Ivy_Lock_Box : ModItem
+	public class Underground_Lock_Box : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Ivy Lock Box");
+			DisplayName.SetDefault("Underground Lock Box");
 			Tooltip.SetDefault("It's already unlocked\nRight click to open");
 		}
 
@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items
 			item.width = 32;
 			item.height = 22;
 			item.maxStack = 99;
-			item.rare = 3;
+			item.rare = 0;
 			item.value = 10000;
 		}
 
@@ -31,6 +31,7 @@ namespace ReducedGrinding.Items
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
+			int itemid = 0;
 			
 			//Cabin Statues
 			dropChance = 0.0169f;
@@ -107,144 +108,111 @@ namespace ReducedGrinding.Items
 			player.QuickSpawnItem(chosenID);
 			chosenID = 0;
 			
-			//Undereground Jungle Cabin Sharpening Station
-			if (Main.rand.Next(5) <= 1)
-			{
-				player.QuickSpawnItem(3198, 1); //Sharpening Station
-			}
-			
 			float itemroll = Main.rand.NextFloat();
-			
-			//Ivy Chest Primary Items
-			if (itemroll < 0.225f)
-				player.QuickSpawnItem(212, 1); //Anklet of the Wind
-			else if (itemroll < 0.45f)
-				player.QuickSpawnItem(211, 1); //Feral Claws
-			else if (itemroll < 0.675f)
-				player.QuickSpawnItem(213, 1); //Staff of Regrowth
-			else if (itemroll < 0.9f)
-				player.QuickSpawnItem(964, 1); //Boomstick
-			else if (itemroll < 0.92f)
-				player.QuickSpawnItem(964, 1); //Seaweed
-			else if (itemroll < 0.953f)
-				player.QuickSpawnItem(2292, 1); //Fiberglass Fishing Pole
-			else
-				player.QuickSpawnItem(3017, 1); //Flower Boots
-			
-			//Ivy Chest Secondary Items
-			if (Main.rand.Next(6) == 0)
+			//Underground Rare Items
+			switch (Main.rand.Next(7))
 			{
-				player.QuickSpawnItem(3360, 1); //Living Mahogany Wand
-				player.QuickSpawnItem(3361, 1); //Living Mahogany Leaf Wand
+				case 0:
+					player.QuickSpawnItem(49, 1); //Band of Regeneration
+					break;
+				case 1:
+					player.QuickSpawnItem(50, 1); //Magic Mirror
+					break;
+				case 2:
+					player.QuickSpawnItem(53, 1); //Cloud in a Bottle
+					break;
+				case 3:
+					player.QuickSpawnItem(54, 1); //Hermes Boots
+					break;
+				case 4:
+					player.QuickSpawnItem(55, 1); //Enchanted Boomerang
+					break;
+				case 5:
+					player.QuickSpawnItem(975, 1); //Shoe Spikes
+					break;
+				case 6:
+					player.QuickSpawnItem(930); //Flare Gun
+					player.QuickSpawnItem(931, Main.rand.Next(25, 51)); //Flares
+					break;
 			}
-			if (Main.rand.Next(4) == 0)
-				player.QuickSpawnItem(2204, 1); //Honey Dispenser
 			
-			//Cavern Gold Chest Common Items
-			if (Main.rand.Next(5) == 0)
-				player.QuickSpawnItem(43, 1); //Suspicious Looking Eye
+			//Underground Chest Common Items			
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(167, 1); //Dynamite
-			if (Main.rand.Next(4) == 0)
-				player.QuickSpawnItem(51, Main.rand.Next(25, 51)); //Jester's Arrow
+				player.QuickSpawnItem(166, Main.rand.Next(10, 20)); //Bomb
+			if (Main.rand.Next(5) == 0)
+				player.QuickSpawnItem(52, 1); //Angel Statue
+			if (Main.rand.Next(3) == 0)
+				player.QuickSpawnItem(965, Main.rand.Next(50, 101)); //Rope
 			if (Main.rand.Next(2) == 0)
 			{
-				switch (Main.rand.Next(4))
+				switch (Main.rand.Next(2))
 				{
 					case 0:
-						chosenID = WorldGen.silverBar;
+						itemid = WorldGen.ironBar;
 						break;
 					case 1:
-						chosenID = WorldGen.goldBar;
-						break;
-					default:
-						chosenID = 0;
+						itemid = WorldGen.silverBar;
 						break;
 				}
-				player.QuickSpawnItem(chosenID, Main.rand.Next(3, 11));
+				player.QuickSpawnItem(itemid, Main.rand.Next(5, 15));
 			}
 			if (Main.rand.Next(2) == 0)
 			{
 				switch (Main.rand.Next(2))
 				{
 					case 0:
-						chosenID = 41; //Flaming Arrow
+						itemid = 40; //Arrow
 						break;
 					case 1:
-						chosenID = 279; //Throwing Knife
+						itemid = 42; //Shuriken
 						break;
 				}
-				player.QuickSpawnItem(chosenID, Main.rand.Next(25, 51));
+				player.QuickSpawnItem(itemid, Main.rand.Next(25, 51));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(188, Main.rand.Next(3, 6)); //Healing Potion
+				player.QuickSpawnItem(28, Main.rand.Next(3, 6)); //Lesser Healing Potion
 			if (Main.rand.Next(3) <= 1)
 			{
-				switch (Main.rand.Next(6))
+				switch (Main.rand.Next(9))
 				{
 					case 0:
-						chosenID = 296; //Spelunker Potion
+						itemid = 289; //Regeneration Potion
 						break;
 					case 1:
-						chosenID = 295; //Featherfall Potion
+						itemid = 298; //Shine Potion
 						break;
 					case 2:
-						chosenID = 299; //Night Owl Potion
+						itemid = 299; //Night Owl Potion
 						break;
 					case 3:
-						chosenID = 302; //Water Walking Potion
+						itemid = 290; //Swiftness Potion
 						break;
 					case 4:
-						chosenID = 303; //Archery Potion
+						itemid = 303; //Archery Potion
 						break;
 					case 5:
-						chosenID = 305; //Gravitation Potion
+						itemid = 291; //Gills Potion
+						break;
+					case 6:
+						itemid = 304; //Hunter Potion
+						break;
+					case 7:
+						itemid = 2322; //Mining Potion
+						break;
+					case 8:
+						itemid = 2329; //Dangersense Potion
 						break;
 				}
-				player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
+				player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
 			}
-			else
-			{
-				switch (Main.rand.Next(6))
-				{
-					case 0:
-						chosenID = 301; //Thorns Potion
-						break;
-					case 1:
-						chosenID = 302; //Water Walking Potion
-						break;
-					case 2:
-						chosenID = 297; //Invisiblity Potion
-						break;
-					case 3:
-						chosenID = 304; //Hunter Potion
-						break;
-					case 4:
-						chosenID = 2329; //Dangersense Potion
-						break;
-					case 5:
-						chosenID = 2351; //Teleportation Potion
-						break;
-				}
-				player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
-			}
-			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(2350, Main.rand.Next(1, 3)); //Recal Potion
 			if (Main.rand.Next(2) == 0)
 			{
-				switch (Main.rand.Next(2))
-				{
-					case 0:
-						chosenID = 8; //Torch
-						break;
-					case 1:
-						chosenID = 282; //Glowstick
-						break;
-				}
-				player.QuickSpawnItem(chosenID, Main.rand.Next(15, 30));
+				player.QuickSpawnItem(8, Main.rand.Next(10, 21)); //Torch
 			}
+			if (Main.rand.Next(3) <= 1)
+				player.QuickSpawnItem(2350, Main.rand.Next(1, 3)); //Recall Potion
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(73, Main.rand.Next(2, 3)); //Gold Coin
+				player.QuickSpawnItem(72, Main.rand.Next(50, 90)); //Silver Coins
 		}
 
 	}

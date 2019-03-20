@@ -113,7 +113,7 @@ namespace ReducedGrinding.Items
 			}
 			if (Main.rand.Next(2) == 0)
 				player.QuickSpawnItem(28, Main.rand.Next(3, 6)); //Lesser Healing Potion
-			if (Main.rand.Next(2) <= 1)
+			if (Main.rand.Next(3) <= 1)
 			{
 				switch (Main.rand.Next(6))
 				{

@@ -24,38 +24,26 @@ namespace ReducedGrinding.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.rare = 7;
-			item.value = (Config.ChlorophyteAcceleratorHallowedBarCost * 4000 + Config.ChlorophyteAcceleratorWireCost * 500 + Config.ChlorophyteAcceleratorChlorophyteOreCost * 600) * 105 / 100;
+			item.value = 5880;
 			item.createTile = mod.TileType("Chlorophyte_Accelerator");
 		}
 	
 		public override void AddRecipes()
 		{
-			if (Config.ChlorophyteAcceleratorRecipe)
-			{
-				ModRecipe recipe = new ModRecipe(mod);
-				if (Config.ChlorophyteAcceleratorHallowedBarCost > 0)
-					recipe.AddIngredient(ItemID.HallowedBar, Config.ChlorophyteAcceleratorHallowedBarCost);
-				if (Config.ChlorophyteAcceleratorLihzahrdBrickCost > 0)
-					recipe.AddIngredient(ItemID.LihzahrdBrick, Config.ChlorophyteAcceleratorLihzahrdBrickCost);
-				if (Config.ChlorophyteAcceleratorWireCost > 0)
-					recipe.AddIngredient(ItemID.Wire, Config.ChlorophyteAcceleratorWireCost);
-				if (Config.ChlorophyteAcceleratorChlorophyteOreCost > 0)
-					recipe.AddIngredient(ItemID.ChlorophyteOre, Config.ChlorophyteAcceleratorChlorophyteOreCost);
-				recipe.AddTile(TileID.TinkerersWorkbench);
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-					
-				recipe = new ModRecipe(mod);
-				if (Config.ChlorophyteAcceleratorHallowedBarInput > 0)
-					recipe.AddIngredient(ItemID.HallowedBar, Config.ChlorophyteAcceleratorHallowedBarInput);
-				if (Config.ChlorophyteAcceleratorMudBlockInput > 0)
-					recipe.AddIngredient(ItemID.MudBlock, Config.ChlorophyteAcceleratorMudBlockInput);
-				if (Config.ChlorophyteAcceleratorLihzahrdPowerCellInput > 0)
-					recipe.AddIngredient(ItemID.LihzahrdPowerCell, Config.ChlorophyteAcceleratorLihzahrdPowerCellInput);
-				recipe.AddTile(mod.TileType("Chlorophyte_Accelerator"));
-				recipe.SetResult(ItemID.ChlorophyteOre, Math.Max(1, Config.ChlorophyteAcceleratorChlorophyteOreOutput));
-				recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.LihzahrdBrick, 10);
+			recipe.AddIngredient(ItemID.Wire, 10);
+			recipe.AddIngredient(ItemID.ChlorophyteOre, 1);
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
+				
+			recipe = new ModRecipe(mod);
+			recipe.AddIngredient(ItemID.MudBlock, 60);
+			recipe.AddIngredient(ItemID.LihzahrdPowerCell, 1);
+			recipe.AddTile(mod.TileType("Chlorophyte_Accelerator"));
+			recipe.SetResult(ItemID.ChlorophyteOre, Math.Max(1, 60));
+			recipe.AddRecipe();
 		}
 	}
 }

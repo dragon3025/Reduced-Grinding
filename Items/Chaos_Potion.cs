@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items
 			item.useAnimation = 45;
 			item.useTime = 45;
 			item.useStyle = 4;
-			item.value = (88 * Config.WarPotionPowderCost * 5);
+			item.value = 234;
 			item.UseSound = SoundID.Item3;
 			item.consumable = true;
 		}
@@ -34,26 +34,19 @@ namespace ReducedGrinding.Items
 		public override bool UseItem(Player player)
 		{
 			player.AddBuff(13, 25200); //Battle
-			player.AddBuff(mod.BuffType("War"), Config.WarPotionDurationInFrames);
-			player.AddBuff(mod.BuffType("Chaos"), Config.WarPotionDurationInFrames);
+			player.AddBuff(mod.BuffType("War"), 25200);
+			player.AddBuff(mod.BuffType("Chaos"), 25200);
 			return true;
 		}
 	
 		public override void AddRecipes()
 		{
-			if (Config.ChaosPotionRecipe)
-			{
-                ModRecipe recipe = new ModRecipe(mod);
-				if (Config.WarPotionRecipe)
-					recipe.AddIngredient(mod.ItemType("War_Potion"));
-				else
-					recipe.AddIngredient(ItemID.BattlePotion,1);
-				if (Config.ChaosPotionPixieDustCost > 0)
-					recipe.AddIngredient(501, Config.ChaosPotionPixieDustCost);
-                recipe.AddTile(TileID.Bottles);
-                recipe.SetResult(this);
-                recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(mod.ItemType("War_Potion"));
+			recipe.AddIngredient(501, 1); //Pixie Dust
+			recipe.AddTile(TileID.Bottles);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

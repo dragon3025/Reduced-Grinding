@@ -32,24 +32,19 @@ namespace ReducedGrinding.Items
 			item.useTime = 10;
 			item.useStyle = 1;
 			item.consumable = true;
-			item.value = 2 + 33 * Config.GraniteAndMarbleDialRecipeBlockCost + Config.GraniteAndMarbleDialRecipeBlinkroot * 100;
+			item.value = 300;
 			item.rare = 1;
 			item.createTile = mod.TileType("Granite_Moondial");
 		}
 	
 		public override void AddRecipes()
 		{
-			if (Config.MarbleMoondialRecipe)
-			{
-				ModRecipe recipe = new ModRecipe(mod);
-				if (Config.GraniteAndMarbleDialRecipeBlockCost > 0)
-					recipe.AddIngredient(3087, Config.GraniteAndMarbleDialRecipeBlockCost); //Smooth Granite Blcok
-				if (Config.GraniteAndMarbleDialRecipeBlinkroot > 0)
-					recipe.AddIngredient(315, Config.GraniteAndMarbleDialRecipeBlinkroot); //Blinkroot
-                recipe.AddTile(283); //Heavy Workbench
-				recipe.SetResult(this);
-				recipe.AddRecipe();
-			}
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(3087, 1); //Smooth Granite Blcok
+			recipe.AddIngredient(315, 1); //Blinkroot
+			recipe.AddTile(283); //Heavy Workbench
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace ReducedGrinding.Items
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = (Config.RainPotionWaterleafCost * 200);
+            item.value = 200;
             item.UseSound = SoundID.Item3;
             item.consumable = true;
         }
@@ -163,18 +163,13 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			if (Config.RainPotionRecipe)
-			{
                 ModRecipe recipe = new ModRecipe(mod);
                 recipe.AddIngredient(ItemID.BottledWater, 1);
-				if (Config.RainPotionWaterleafCost > 0)
-					recipe.AddIngredient(ItemID.Waterleaf, Config.RainPotionWaterleafCost);
-				if (Config.RainPotionRainCloudCost > 0)
-					recipe.AddIngredient(ItemID.RainCloud, Config.RainPotionRainCloudCost);
+				recipe.AddIngredient(ItemID.Waterleaf, 1);
+				recipe.AddIngredient(ItemID.RainCloud, 1);
                 recipe.AddTile(TileID.Bottles);
                 recipe.SetResult(this);
                 recipe.AddRecipe();
-			}
         }
     }
 }
