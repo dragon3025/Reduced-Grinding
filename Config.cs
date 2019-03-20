@@ -401,7 +401,7 @@ namespace ReducedGrinding
 		public static int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = 50000;
 		
 		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
-		public static bool MerchantSellsExpertChangePotion = false;
+		public static bool MerchantSellsExpertChangePotion = true;
 		public static bool PirateSellsPirateRetreatOrder = true;
 		public static bool WizardSellsMoonBall = true;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
@@ -1415,7 +1415,9 @@ namespace ReducedGrinding
 			
 			Configuration.Put("===================================================================================================W", 0);
 			Configuration.Put("|                                       STARTING ITEMS                                             |", 0);
-			Configuration.Put("===================================================================================================X", 0);
+			Configuration.Put("------------------------------------------------------------------------------------------------1418", 0);
+			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk.                                       1419", 0);
+			Configuration.Put("================================================================================================1420", 0);
 			Configuration.Put("NewCharacterBarrels", NewCharacterBarrels);
 			Configuration.Put("NewCharacterCopperBars", NewCharacterCopperBars);
 			Configuration.Put("NewCharacterCopperCoins", NewCharacterCopperCoins);
