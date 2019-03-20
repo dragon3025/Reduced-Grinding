@@ -1416,7 +1416,7 @@ namespace ReducedGrinding
 			Configuration.Put("===================================================================================================W", 0);
 			Configuration.Put("|                                       STARTING ITEMS                                             |", 0);
 			Configuration.Put("------------------------------------------------------------------------------------------------1418", 0);
-			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk.                                       1419", 0);
+			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk and Recipe Browser.                    1419", 0);
 			Configuration.Put("================================================================================================1420", 0);
 			Configuration.Put("NewCharacterBarrels", NewCharacterBarrels);
 			Configuration.Put("NewCharacterCopperBars", NewCharacterCopperBars);
