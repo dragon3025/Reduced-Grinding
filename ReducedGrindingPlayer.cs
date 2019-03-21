@@ -36,9 +36,9 @@ namespace ReducedGrinding
 	class ReducedGrindingPlayer : ModPlayer
     {
 
-		public override void PreUpdate()
+		/*public override void PreUpdate()
 		{
-			if (Main.time % 60 == 0)
+			if (Main.time % 60 == 0) //Debug
 			{
 				Main.NewText("Debug Client:");
 				Main.NewText("Main.time: "+Main.time.ToString());
@@ -52,7 +52,7 @@ namespace ReducedGrinding
 				Console.WriteLine("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
 				Console.WriteLine("");
 			}
-		}
+		}*/
 		
 		public bool currentlyActive = false;
 
