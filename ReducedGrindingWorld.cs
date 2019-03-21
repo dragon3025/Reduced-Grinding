@@ -19,6 +19,10 @@ namespace ReducedGrinding
 {
     public class ReducedGrindingWorld : ModWorld
     {
+		public static bool skipToDay = false;
+		public static bool skipToNight = false;
+		
+		//Gets recording into world save
         public static bool infectionChestMined = false;
         public static bool hallowedChestMined = false;
         public static bool frozenChestMined = false;
@@ -68,6 +72,36 @@ namespace ReducedGrinding
 			
 			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
         }
+		
+		/*public override void LoadLegacy(BinaryReader reader)
+		{
+			int loadVersion = reader.ReadInt32();
+			if (loadVersion == 0)
+			{
+				BitsByte flags = reader.ReadByte();
+				skipToDay = flags[0];
+				skipToNight = flags[1];
+			}
+			else
+			{
+				ErrorLogger.Log("ReducedGrinding: Unknown loadVersion: " + loadVersion);
+			}
+		}
+		
+		public override void NetSend(BinaryWriter writer)
+		{
+			BitsByte flags = new BitsByte();
+			flags[0] = skipToDay;
+			flags[1] = skipToNight;
+			writer.Write(flags);
+		}
+		
+		public override void NetReceive(BinaryReader reader)
+		{
+			BitsByte flags = reader.ReadByte();
+			skipToDay = flags[0];
+			skipToNight = flags[1];
+		}*/
 		
 		public override void PostUpdate()
 		{
@@ -128,6 +162,52 @@ namespace ReducedGrinding
 				NPC.MoonLordCountdown = 1;
 			//if (NPC.MoonLordCountdown > 1 && Main.player.Any(x => x.HasItem(mod.ItemType("Celestial_Beacon"))))
 				//NPC.MoonLordCountdown = 1;
+
+			if (skipToNight)
+			{
+				if (Main.sundialCooldown > 0)
+					ReducedGrindingWorld.skippedToDayOrNight = true;
+				Main.time = 54000;
+				skipToDay = false;
+				skipToNight = false;
+				
+				if (Main.netMode == 2) //Server
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
+					netMessage.Write(ReducedGrindingWorld.skipToNight);
+					netMessage.Send();
+					NetMessage.SendData(7);
+					
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
+					netMessage.Write(ReducedGrindingWorld.skipToDay);
+					netMessage.Send();
+					NetMessage.SendData(7);
+				}
+			}
+
+			if (skipToDay)
+			{
+				if (Main.sundialCooldown > 0)
+					ReducedGrindingWorld.skippedToDayOrNight = true;
+				Main.time = 32400;
+				skipToDay = false;
+				skipToNight = false;
+				
+				if (Main.netMode == 2) //Server
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
+					netMessage.Write(ReducedGrindingWorld.skipToNight);
+					netMessage.Send();
+					NetMessage.SendData(7);
+					
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
+					netMessage.Write(ReducedGrindingWorld.skipToDay);
+					netMessage.Send();
+					NetMessage.SendData(7);
+				}
+			}
 			
 			if (Main.dayTime && skippedToDayOrNight)
 			{

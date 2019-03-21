@@ -36,20 +36,24 @@ namespace ReducedGrinding
 	class ReducedGrindingPlayer : ModPlayer
     {
 
-		/*public override void PreUpdate()
+		public override void PreUpdate()
 		{
-			if (Main.time % 180 == 0)
+			if (Main.time % 60 == 0)
 			{
 				Main.NewText("Debug Client:");
-				Main.NewText("DropTriesForAllEnemyDroppedLoot: "+Config.DropTriesForAllEnemyDroppedLoot.ToString());
+				Main.NewText("Main.time: "+Main.time.ToString());
+				Main.NewText("Main.dayTime: "+Main.dayTime.ToString());
+				Main.NewText("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
 				Main.NewText("");
 				
-				//Console.WriteLine("Debug Server:");
-				//Console.WriteLine("DropTriesForAllEnemyDroppedLoot: "+Config.DropTriesForAllEnemyDroppedLoot.ToString());
-				//Console.WriteLine("");
+				Console.WriteLine("Debug Server:");
+				Console.WriteLine("Main.time: "+Main.time.ToString());
+				Console.WriteLine("Main.dayTime: "+Main.dayTime.ToString());
+				Console.WriteLine("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
+				Console.WriteLine("");
 			}
-		}*/
-	
+		}
+		
 		public bool currentlyActive = false;
 
         public struct ClientConf
@@ -1937,7 +1941,7 @@ namespace ReducedGrinding
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 ModPacket packet = mod.GetPacket();
-                packet.Write((byte)RGMessageType.SendClientChanges);
+                packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
                 packet.Write((byte)player.whoAmI);
                 BitsByte flags = new BitsByte();
                 flags[0] = currentlyActive;
@@ -1959,7 +1963,7 @@ namespace ReducedGrinding
         {
             //server sends its config to player
             ModPacket packet = mod.GetPacket();
-            packet.Write((byte)RGMessageType.SyncPlayer);
+            packet.Write((byte)ReducedGrindingMessageType.SyncPlayer);
             packet.Write((byte)player.whoAmI);
 			
             packet.Write((int)Config.DropTriesForAllEnemyDroppedLoot);

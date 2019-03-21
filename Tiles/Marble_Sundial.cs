@@ -62,9 +62,14 @@ namespace ReducedGrinding.Tiles
 		{
 			if (!Main.dayTime)
 			{
-				if (Main.sundialCooldown > 0)
-					ReducedGrindingWorld.skippedToDayOrNight = true;
-				Main.time = 32400.0;
+				ReducedGrindingWorld.skipToDay = true;
+				if (Main.netMode == 1) //Client
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
+					netMessage.Write(ReducedGrindingWorld.skipToDay);
+					netMessage.Send();
+				}
 				Main.PlaySound(SoundID.Item4); //Crystal Ball
 			}
 		}

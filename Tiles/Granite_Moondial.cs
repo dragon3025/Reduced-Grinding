@@ -1,21 +1,21 @@
-using Terraria;
-using Terraria.World.Generation;
-using Terraria.ObjectData;
-using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.Localization;
-using Terraria.ID;
-using Terraria.GameContent.Generation;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Achievements;
-using Terraria.Enums;
-using Terraria.DataStructures;
-using System;
-using System.Linq;
-using System.IO;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent.Achievements;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Generation;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader.IO;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using Terraria.World.Generation;
+using Terraria;
 
 
 namespace ReducedGrinding.Tiles
@@ -62,9 +62,14 @@ namespace ReducedGrinding.Tiles
 		{
 			if (Main.dayTime)
 			{
-				if (Main.sundialCooldown > 0)
-					ReducedGrindingWorld.skippedToDayOrNight = true;
-				Main.time = 54000.0;
+				ReducedGrindingWorld.skipToNight = true;
+				if (Main.netMode == 1) //Client
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
+					netMessage.Write(ReducedGrindingWorld.skipToNight);
+					netMessage.Send();
+				}
 				Main.PlaySound(SoundID.Item4); //Crystal Ball
 			}
 		}

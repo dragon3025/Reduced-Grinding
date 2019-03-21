@@ -50,7 +50,7 @@ namespace ReducedGrinding
 		
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            RGMessageType msgType = (RGMessageType)reader.ReadByte();
+            ReducedGrindingMessageType msgType = (ReducedGrindingMessageType)reader.ReadByte();
             byte playernumber;
 			
             int DropTriesForAllEnemyDroppedLoot;
@@ -526,12 +526,21 @@ namespace ReducedGrinding
             byte arrayLength;
 
             BitsByte flags1;
-            //bool currentlyActive;
-
             ReducedGrindingPlayer mPlayer;
+			ReducedGrindingWorld world = GetModWorld<ReducedGrindingWorld>();
+			
             switch (msgType)
             {
-                case RGMessageType.SyncPlayer:
+				case ReducedGrindingMessageType.skipToDay:
+					bool skipToDay = reader.ReadBoolean();
+					ReducedGrindingWorld.skipToDay = skipToDay;
+					break;
+				// This message sent by the server to initialize the Volcano Rubble.
+				case ReducedGrindingMessageType.skipToNight:
+					bool skipToNight = reader.ReadBoolean();
+					ReducedGrindingWorld.skipToNight = skipToNight;
+					break;
+                case ReducedGrindingMessageType.SyncPlayer:
                     if(Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         playernumber = reader.ReadByte();  //byte
@@ -1482,7 +1491,7 @@ namespace ReducedGrinding
                         arrayLength = reader.ReadByte();
                     }
                     break;
-                case RGMessageType.SendClientChanges:
+                case ReducedGrindingMessageType.SendClientChanges:
                     playernumber = reader.ReadByte();
 
                     flags1 = reader.ReadByte();        //byte
@@ -1491,7 +1500,7 @@ namespace ReducedGrinding
                     if (Main.netMode == NetmodeID.Server)
                     {
                         ModPacket packet = GetPacket();
-                        packet.Write((byte)RGMessageType.SendClientChanges);
+                        packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
                         packet.Write(playernumber);
                         packet.Write((byte)flags1);
                         packet.Send(-1, playernumber);
@@ -3538,25 +3547,19 @@ namespace ReducedGrinding
 						//Chest Drop
 						if (mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop > 0)
 						{
-							if (player.ZoneOverworldHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 831, 1, false, -1, false, false); //Living Wood Chest
-							if ((player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 306, 1, false, -1, false, false); //Gold Chest
-							if (player.ZoneSnow && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
-							if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
-							if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
-							if (player.ZoneSkyHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 838, 1, false, -1, false, false); //Skyware Chest
 							if ((npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1298, 1, false, -1, false, false); //Water Chest
-							if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
+							else if (player.ZoneSnow && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
+							else if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
+							else if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
+							else if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 952, 1, false, -1, false, false); //Web Covered Chest
-							if (player.ZoneUnderworldHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+							else if (player.ZoneUnderworldHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 328, 1, false, -1, false, false); //Shadow Chest
-							if (player.ZoneDungeon && NPC.downedPlantBoss)
+							else if (player.ZoneDungeon && NPC.downedPlantBoss)
 							{
 								if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.jungleChestMined)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1528, 1, false, -1, false, false); //Jungle Chest
@@ -3572,6 +3575,12 @@ namespace ReducedGrinding
 								if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.frozenChestMined)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1532, 1, false, -1, false, false); //Frozen Chest
 							}
+							else if (player.ZoneOverworldHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 831, 1, false, -1, false, false); //Living Wood Chest
+							else if ((player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 306, 1, false, -1, false, false); //Gold Chest
+							else if (player.ZoneSkyHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 838, 1, false, -1, false, false); //Skyware Chest
 						}
 
 						//Modded Loot
@@ -3968,22 +3977,13 @@ namespace ReducedGrinding
 			}
 		}
     }
-	
-	
-	
-	
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-	enum RGMessageType : byte
+	enum ReducedGrindingMessageType : byte
 	{
 		SyncPlayer,
-		SendClientChanges
+		SendClientChanges,
+		skipToNight,
+		skipToDay
 	}
 
 }
