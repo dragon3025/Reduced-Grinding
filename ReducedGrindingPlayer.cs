@@ -38,7 +38,7 @@ namespace ReducedGrinding
 
 		public override void PreUpdate()
 		{
-			if (Main.time % 180 == 0) //Debug
+			/*if (Main.time % 180 == 0) //Debug
 			{
 				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
 				Main.NewText("Debug Client:");
@@ -48,7 +48,7 @@ namespace ReducedGrinding
 				Console.WriteLine("Debug Server:");
 				Console.WriteLine("mplayer.clientConf.CrateJungleFeralClawsIncrease: "+mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop.ToString());
 				Console.WriteLine("");
-			}
+			}*/
 			
 			Player player = Main.player[Main.myPlayer];
 			bool biomeChestMined = false;
