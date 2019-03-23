@@ -81,13 +81,16 @@ namespace ReducedGrinding
 			}
 			if (biomeChestMined == false)
 			{
-				var netMessage = mod.GetPacket();
-				netMessage.Write((byte)ReducedGrindingMessageType.biomeChestMined);
-				netMessage.Write(ReducedGrindingWorld.jungleChestMined);
-				netMessage.Write(ReducedGrindingWorld.infectionChestMined);
-				netMessage.Write(ReducedGrindingWorld.hallowedChestMined);
-				netMessage.Write(ReducedGrindingWorld.frozenChestMined);
-				netMessage.Send();
+				if (Main.netMode == 1)
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.biomeChestMined);
+					netMessage.Write(ReducedGrindingWorld.jungleChestMined);
+					netMessage.Write(ReducedGrindingWorld.infectionChestMined);
+					netMessage.Write(ReducedGrindingWorld.hallowedChestMined);
+					netMessage.Write(ReducedGrindingWorld.frozenChestMined);
+					netMessage.Send();
+				}
 			}
 			
 		}
