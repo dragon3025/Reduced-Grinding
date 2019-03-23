@@ -3555,7 +3555,7 @@ namespace ReducedGrinding
 						}
 					
 						//Chest Drop
-						if (true)//mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop > 0)
+						if (mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop > 0)
 						{
 							if ((npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1298, 1, false, -1, false, false); //Water Chest
@@ -3571,21 +3571,21 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 328, 1, false, -1, false, false); //Shadow Chest
 							else if (player.ZoneDungeon && NPC.downedPlantBoss)
 							{
-								if (Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/ && ReducedGrindingWorld.jungleChestMined)
+								if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.jungleChestMined)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1528, 1, false, -1, false, false); //Jungle Chest
 								if (ReducedGrindingWorld.infectionChestMined)
 								{
-									if (Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/)
+									if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1529, 1, false, -1, false, false); //Corruption Chest
-									if (Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/)
+									if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1530, 1, false, -1, false, false); //Crimson Chest
 								}
-								if (Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/ && ReducedGrindingWorld.hallowedChestMined)
+								if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.hallowedChestMined)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1531, 1, false, -1, false, false); //Hallowed Chest
-								if (Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/ && ReducedGrindingWorld.frozenChestMined)
+								if (Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.frozenChestMined)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1532, 1, false, -1, false, false); //Frozen Chest
 							}
-							else if (player.ZoneOverworldHeight && Main.rand.NextFloat() < 2/*mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop*/)
+							else if (player.ZoneOverworldHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 831, 1, false, -1, false, false); //Living Wood Chest
 							else if ((player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 306, 1, false, -1, false, false); //Gold Chest
