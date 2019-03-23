@@ -38,20 +38,18 @@ namespace ReducedGrinding
 
 		public override void PreUpdate()
 		{
-			/*if (Main.time % 180 == 0) //Debug
+			if (Main.time % 180 == 0) //Debug
 			{
+				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
 				Main.NewText("Debug Client:");
-				Main.NewText("Main.time: "+Main.time.ToString());
-				Main.NewText("Main.dayTime: "+Main.dayTime.ToString());
-				Main.NewText("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
+				Main.NewText("mplayer.clientConf.CrateJungleFeralClawsIncrease: "+mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop.ToString());
 				Main.NewText("");
 				
 				Console.WriteLine("Debug Server:");
-				Console.WriteLine("Main.time: "+Main.time.ToString());
-				Console.WriteLine("Main.dayTime: "+Main.dayTime.ToString());
-				Console.WriteLine("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
+				Console.WriteLine("mplayer.clientConf.CrateJungleFeralClawsIncrease: "+mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop.ToString());
 				Console.WriteLine("");
-			}*/
+			}
+			
 			Player player = Main.player[Main.myPlayer];
 			bool biomeChestMined = false;
 			if (player.HasItem(1528)) //Jungle Chest
@@ -81,7 +79,7 @@ namespace ReducedGrinding
 			}
 			if (biomeChestMined == false)
 			{
-				if (Main.netMode == 1)
+				if (Main.netMode > 0)
 				{
 					var netMessage = mod.GetPacket();
 					netMessage.Write((byte)ReducedGrindingMessageType.biomeChestMined);
@@ -96,6 +94,475 @@ namespace ReducedGrinding
 		}
 		
 		public bool currentlyActive = false;
+
+        public ClientConf clientConf = new ClientConf(
+			1, //DropTriesForAllEnemyDroppedLoot
+			0.5f, //NormalModeLootMultiplierForLootWithSeperateDifficultyRates
+			
+			0.2f, //CrateDungeonBoneWelder
+			0.45f, //CrateEnchantedSundialGoldenIncrease
+			0.2333f, //CrateEnchantedSundialIronIncrease
+			0.12f, //CrateEnchantedSundialWoodenIncrease
+			0f, //CrateJungleAnkeltOfTheWindIncrease
+			0f, //CrateJungleFeralClawsIncrease
+			0.25f, //CrateJungleFlowerBoots
+			0f, //CrateJungleLeafWand
+			0f, //CrateJungleLivingLoom
+			0f, //CrateJungleLivingMahoganyWand
+			0f, //CrateJungleLivingWoodWand
+			0f, //CrateJungleRichMahoganyLeafWand
+			0.25f, //CrateJungleSeaweed
+			0f, //CrateJungleStaffOfRegrowth
+			0.3333f, //CrateSkySkyMill
+			0f, //CrateFlippersGolden
+			0f, //CrateFlippersIron
+			0f, //CrateFlippersWooden
+			0f, //CrateWaterWalkingBootsGolden
+			0f, //CrateWaterWalkingBootsIron
+			0f, //CrateWaterWalkingBootsWooden
+			0f, //CrateWoodenAgletIncrease
+			0f, //CrateWoodenClimbingClawsIncrease
+			0f, //CrateWoodenRadarIncrease
+			0f, //PresentCandyCaneBlock
+			0f, //PresentCandyCaneHook
+			0f, //PresentCandyCanePickaxe
+			0f, //PresentCandyCaneSword
+			0f, //PresentChristmasPudding
+			0f, //PresentCoal
+			0f, //PresentDogWhistle
+			0f, //PresentEggnog
+			0f, //PresentFruitcakeChakram
+			0f, //PresentGingerbreadCookie
+			0f, //PresentGreenCandyCaneBlock
+			0f, //PresentHandWarmer
+			0f, //PresentHardmodeSnowGlobe
+			0f, //PresentHolly
+			0f, //PresentMrsClausCostume
+			0f, //PresentParkaOutfit
+			0f, //PresentPineTreeBlock
+			0f, //PresentRedRyderPlusMusketBall
+			0f, //PresentReindeerAntlers
+			0f, //PresentSnowHat
+			0f, //PresentStarAnise
+			0f, //PresentSugarCookie
+			0f, //PresentToolbox
+			0f, //PresentTreeCostume
+			0f, //PresentUglySweater
+			
+			0f, //LootBookofSkullsIncrease
+			0.375f, //LootPicksawIncrease
+			0.15f, //LootSeedlingIncrease
+			0f, //LootSkeletronBoneKey
+			0.467f, //LootBinocularsIncrease
+			0.2f, //LootBoneRattleIncrease
+			0.1071f, //LootBossMaskIncrease
+			0f, //LootBossTrophyIncrease
+			0.2f, //LootEatersBoneIncrease
+			0.5f, //LootFishronTruffleworm
+			0.15f, //LootFishronWingsIncrease
+			0.14f, //LootHoneyedGogglesIncrease
+			0.14f, //LootNectarIncrease
+			0.20f, //LootTheAxeIncrease
+			
+			0.0004f, //BiomeKeyIncreaseForOneMechBossDown
+			0.0012f, //BiomeKeyIncreaseForTwoMechBossDown
+			0.0028f, //BiomeKeyIncreaseForThreeMechBossDown
+			
+			0.01f, //AllEnemiesLootBiomeMatchingFoundOnlyChestDrop
+			0f, //HellBatLootMagmaStoneIncrease
+			0f, //LavaBatLootMagmaStoneIncrease
+			0f, //LootAdhesiveBandageIncrease
+			0.833f, //LootAleTosser
+			0.0067f, //LootAmarokIncrease
+			0f, //LootAncientClothIncrease
+			0f, //LootAncientCobaltBreastplateIncrease
+			0f, //LootAncientCobaltHelmetIncrease
+			0f, //LootAncientCobaltLeggingsIncrease
+			0.015f, //LootAncientGoldHelmetIncrease
+			0.03f, //LootAncientHornIncrease
+			0f, //LootAncientIronHelmetIncrease
+			0.0028f, //LootAncientNecroHelmetIncrease
+			0f, //LootAncientShadowGreavesIncrease
+			0f, //LootAncientShadowHelmetIncrease
+			0f, //LootAncientShadowScalemailIncrease
+			0.0024f, //LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory
+			0f, //LootArmorPolishIncrease
+			0.05f, //LootBabyGrinchsMischiefWhistleIncrease
+			0.3f, //LootBananarangIncrease
+			0f, //LootBeamSwordIncrease
+			0f, //LootBezoarIncrease
+			0f, //LootBlackBeltIncrease
+			0f, //LootBlackLensIncrease
+			0.0066f, //LootBlessedAppleIncrease
+			0f, //LootBlindfoldIncrease
+			0.0015f, //LootBloodyMacheteAndBladedGlovesIncrease
+			0.0078f, //LootBoneFeatherIncrease
+			0.0867f, //LootBonePickaxeIncrease
+			0.0051f, //LootBoneSwordIncrease
+			0.006f, //LootBoneWandIncrease
+			0.01f, //LootBrainScramblerIncrease
+			0.075f, //LootBrokenBatWingIncrease
+			0f, //LootBunnyHoodIncrease
+			0.0025f, //LootCascadeIncrease
+			0f, //LootChainGuillotinesIncrease
+			0.0027f, //LootChainKnifeIncrease
+			0.875f, //LootClassyCane
+			0f, //LootClingerStaffIncrease
+			0.0467f, //LootClothierVoodooDollIncrease
+			0f, //LootCompassIncrease
+			0f, //LootCrossNecklaceIncrease
+			0f, //LootCrystalVileShardIncrease
+			0f, //LootDaedalusStormbowIncrease
+			0f, //LootDarkShardIncrease
+			0f, //LootDartPistolIncrease
+			0f, //LootDartRifleIncrease
+			0.025f, //LootDeathSickleIncrease
+			0.0214f, //LootDemonScytheIncrease
+			0f, //LootDepthMeterIncrease
+			0f, //LootDesertSpiritLampIncrease
+			0.03f, //LootDivingHelmetIncrease
+			0f, //LootDualHookIncrease
+			0.00833f, //LootElfHatIncrease
+			0.00833f, //LootElfPantsIncrease
+			0.00833f, //LootElfShirtIncrease
+			0f, //LootEskimoCoatIncrease
+			0f, //LootEskimoHoodIncrease
+			0f, //LootEskimoPantsIncrease
+			0.875f, //LootExoticScimitar
+			0f, //LootEyePatchIncrease
+			0f, //LootEyeSpringIncrease
+			0f, //LootFastClockBaseIncrease
+			0.05f, //LootFestiveWingsIncrease
+			0f, //LootFetidBaghnakhsIncrease
+			0.0367f, //LootFireFeatherIncrease
+			0f, //LootFleshKnucklesIncrease
+			0f, //LootFlyingKnifeIncrease
+			0f, //LootFrostStaffIncrease
+			0.19f, //LootFrozenTurtleShellIncrease
+			0f, //LootGiantBowIncrease
+			0.005f, //LootGiantHarpyFeatherIncrease
+			0f, //LootGoldenFurnitureIncrease
+			0f, //LootGoldenKeyIncrease
+			0f, //LootGoodieBagIncrease
+			1f, //LootGreenCap
+			0.75f, //LootHappyGrenade
+			0.0075f, //LootHarpoonIncrease
+			0.0025f, //LootHelFireIncrease
+			0f, //LootHookIncrease
+			0.0011f, //LootIceSickleIncrease
+			0f, //LootIlluminantHookIncrease
+			0.04f, //LootJellyfishNecklaceIncrease
+			0.001f, //LootKOCannonIncrease
+			0f, //LootKeybrandIncrease
+			0.0075f, //LootKrakenIncrease
+			0.01f, //LootLamiaClothesIncrease
+			0f, //LootLifeDrainIncrease
+			0f, //LootLightShardIncrease
+			0f, //LootLihzahrdPowerCellIncrease
+			0f, //LootLivingFireBlockIncrease
+			0.009f, //LootLizardEggIncrease
+			0f, //LootMagicDaggerIncrease
+			0.0375f, //LootMagicQuiverIncrease
+			0.0017f, //LootMagnetSphereIncrease
+			0f, //LootMandibleBladeIncrease
+			0.045f, //LootMarrowIncrease
+			0f, //LootMeatGrinderIncrease
+			0f, //LootMegaphoneBaseIncrease
+			0f, //LootMeteoriteIncrease
+			0.2833f, //LootMiningHelmetIncrease
+			0.3093f, //LootMiningPantsIncrease
+			0.3093f, //LootMiningShirtIncrease
+			0.04f, //LootMoneyTroughIncrease
+			0f, //LootMoonCharmIncrease
+			0f, //LootMoonMaskIncrease
+			0f, //LootMoonStoneIncrease
+			0.1381f, //LootMothronWingsIncrease
+			0f, //LootMummyCostumeIncrease
+			0f, //LootNazarIncrease
+			0f, //LootNimbusRodIncrease
+			0.03f, //LootObsidianRoseIncrease
+			0.9f, //LootPaintballGun
+			0.35f, //LootPaladinsShieldIncrease
+			0f, //LootPedguinssuitIncrease
+			0f, //LootPhilosophersStoneIncrease
+			0.015f, //LootPirateMapIncrease
+			0.048f, //LootPlumbersHatIncrease
+			0.105f, //LootPocketMirrorIncrease
+			0f, //LootPresentIncrease
+			0.1125f, //LootPsychoKnifeIncrease
+			0f, //LootPutridScentIncrease
+			0f, //LootRainArmorIncrease
+			0, //LootRainbowBlockDropMaxIncrease
+			0, //LootRainbowBlockDropMinIncrease
+			0.061f, //LootRallyIncrease
+			0.0917f, //LootReindeerBellsIncrease
+			0f, //LootRifleScopeIncrease
+			0f, //LootRobotHatIncrease
+			0f, //LootRocketLauncherIncrease
+			0.1291f, //LootRodofDiscordIncrease
+			0f, //LootSWATHelmetIncrease
+			0f, //LootSailorHatIncrease
+			0f, //LootSailorPantsIncrease
+			0f, //LootSailorShirtIncrease
+			0f, //LootShackleIncrease
+			0.048f, //LootSkullIncrease
+			0.075f, //LootSlimeStaffIncrease
+			0f, //LootSniperRifleIncrease
+			0.0133f, //LootSnowballLauncherIncrease
+			0f, //LootSoulofLightIncrease
+			0f, //LootSoulofNightIncrease
+			0f, //LootStarCloakIncrease
+			0.875f, //LootStylishScissors
+			0f, //LootSunMaskIncrease
+			0f, //LootTabiIncrease
+			0f, //LootTacticalShotgunIncrease
+			0f, //LootTallyCounterIncrease
+			0f, //LootTatteredBeeWingIncrease
+			0f, //LootTendonHookIncrease
+			0f, //LootTitanGloveIncrease
+			0.15f, //LootToySledIncrease
+			0f, //LootTrifoldMapIncrease
+			0.1412f, //LootTurtleShellIncrease
+			0f, //LootUmbrellaHatIncrease
+			0.04f, //LootUnicornonaStickIncrease
+			0f, //LootUziIncrease
+			0f, //LootVikingHelmetIncrease
+			0f, //LootVitaminsIncrease
+			0f, //LootWhoopieCushionIncrease
+			0.0063f, //LootWispinaBottleIncrease
+			0f, //LootWormHookIncrease
+			0f, //LootYeletsIncrease
+			0.016f, //LootZombieArmIncrease
+			0.0027f, //PirateLootCoinGunBaseIncrease
+			0.0117f, //PirateLootCutlassBaseIncrease
+			0.0045f, //PirateLootDiscountCardBaseIncrease
+			0.0043f, //PirateLootGoldRingBaseIncrease
+			0.0039f, //PirateLootLuckyCoinBaseIncrease
+			0.0045f, //PirateLootPirateStaffBaseIncrease
+			true, //LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense
+			false, //SlimeStaffIncreaseToSurfaceSlimes
+			false, //SlimeStaffIncreaseToUndergroundSlimes
+			false, //SlimeStaffIncreaseToCavernSlimess
+			true, //SlimeStaffIncreaseToIceSpikedSlimes
+			true, //SlimeStaffIncreaseToSpikedJungleSlimes
+
+			0.01f, //CavernModdedCavernLockBoxLoot
+			0.01f, //DungeonModdedBiomeLockBoxLoot
+			0.01f, //DungeonFurnitureLockBoxLoot
+			2.0f, //HardmodeModdedLockBoxDropRateModifier
+			0.01f, //HellBiomeModdedShadowLockBoxLoot
+			0.01f, //JungleTempleLihzahrd_Lock_Box
+			1f, //NormalmodeModdedLockBoxDropRateModifier
+			0.01f, //SandstormAndUndergroundDesertPyramidLockBoxLoot
+			0.01f, //SkyModdedSkywareLockBoxLoot
+			0.01f, //SpiderNestWebCoveredLockBoxLoot
+			0.01f, //SurfaceModdedLivingWoodLockBoxLoot
+			0.01f, //UndergroundJungleBiomeModdedIvyLockBoxLoot
+			0.01f, //UndergroundSnowBiomeModdedIceLockBoxLoot
+			0.01f, //WaterEnemyModdedWaterLockBoxLoot
+			
+			0f, //TravelingMerchantAcornsIncrease
+			0f, //TravelingMerchantAmmoBoxIncrease
+			0f, //TravelingMerchantAngelHaloIncrease
+			0f, //TravelingMerchantArcaneRuneWallIncrease
+			0f, //TravelingMerchantBlackCounterweightIncrease
+			0f, //TravelingMerchantBlueDynastyShinglesIncrease
+			0f, //TravelingMerchantBlueTeamBlockIncrease
+			0f, //TravelingMerchantBlueTeamPlatformIncrease
+			0f, //TravelingMerchantBrickLayerIncrease
+			0f, //TravelingMerchantCastleMarsbergIncrease
+			0f, //TravelingMerchantCelestialMagnetIncrease
+			0f, //TravelingMerchantChaliceIncrease
+			0f, //TravelingMerchantCode1Increase
+			0f, //TravelingMerchantCode2Increase
+			0f, //TravelingMerchantColdSnapIncrease
+			0f, //TravelingMerchantCompanionCubeIncrease
+			0f, //TravelingMerchantCrimsonCapeIncrease
+			0f, //TravelingMerchantCursedSaintIncrease
+			0f, //TravelingMerchantDPSMeterIncrease
+			0f, //TravelingMerchantDiamondRingIncrease
+			0f, //TravelingMerchantDynastyWoodIncrease
+			0f, //TravelingMerchantExtendoGripIncrease
+			0f, //TravelingMerchantFancyDishesIncrease
+			0f, //TravelingMerchantFezIncrease
+			0f, //TravelingMerchantGatligatorIncrease
+			0f, //TravelingMerchantGiIncrease
+			0f, //TravelingMerchantGreenTeamBlockIncrease
+			0f, //TravelingMerchantGreenTeamPlatformIncrease
+			0f, //TravelingMerchantGypsyRobeIncrease
+			0f, //TravelingMerchantKatanaIncrease
+			0f, //TravelingMerchantKimonoIncrease
+			0f, //TravelingMerchantLeopardSkinIncrease
+			0f, //TravelingMerchantLifeformAnalyzerIncrease
+			0f, //TravelingMerchantMagicHatIncrease
+			0f, //TravelingMerchantMartiaLisaIncrease
+			0f, //TravelingMerchantMetalDetector
+			0f, //TravelingMerchantMysteriousCapeIncrease
+			0f, //TravelingMerchantNotAKidNorASquidIncrease
+			0f, //TravelingMerchantPadThaiIncrease
+			0f, //TravelingMerchantPaintSprayerIncrease
+			0f, //TravelingMerchantPhoIncrease
+			0f, //TravelingMerchantPinkTeamBlockIncrease
+			0f, //TravelingMerchantPinkTeamPlatformIncrease
+			0f, //TravelingMerchantPortableCementMixerIncrease
+			0f, //TravelingMerchantPresseratorIncrease
+			0f, //TravelingMerchantPulseBowIncrease
+			0f, //TravelingMerchantRedCapeIncrease
+			0f, //TravelingMerchantRedDynastyShinglesIncrease
+			0f, //TravelingMerchantRedTeamBlockIncrease
+			0f, //TravelingMerchantRedTeamPlatformIncrease
+			0f, //TravelingMerchantRevolverIncrease
+			0f, //TravelingMerchantSakeIncrease
+			0f, //TravelingMerchantSittingDucksFishingPoleIncrease
+			0f, //TravelingMerchantSnowfellasIncrease
+			0f, //TravelingMerchantStopwatchIncrease
+			0f, //TravelingMerchantTheSeasonIncrease
+			0f, //TravelingMerchantTheTruthIsUpThereIncrease
+			0f, //TravelingMerchantTigerSkinIncrease
+			0f, //TravelingMerchantUltraBrightTorchIncrease
+			0f, //TravelingMerchantWaterGunIncrease
+			0f, //TravelingMerchantWhiteTeamBlockIncrease
+			0f, //TravelingMerchantWhiteTeamPlatformIncrease
+			0f, //TravelingMerchantWinterCapeIncrease
+			0f, //TravelingMerchantYellowCounterweightIncrease
+			0f, //TravelingMerchantYellowTeamBlockIncrease
+			0f, //TravelingMerchantYellowTeamPlatformIncrease
+			0f, //TravelingMerchantZebraSkinIncrease
+			false, //TravelingMerchantAlwaysXMasForConfigurations
+			0.02f, //ChanceThatEnemyKillWillResetTravelingMerchant
+			true, //StationaryMerchant
+			0.166f, //StationaryMerchantStockingChance
+			0.1668f, //S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate
+			
+			0.025f, //QuestAnglerEarringIncrease
+			0.05f, //QuestAnglerHatIncrease
+			0.05f, //QuestAnglerPantsIncrease
+			0.05f, //QuestAnglerVestIncrease
+			0.04f, //QuestCoralstoneBlockIncrease
+			0.04f, //QuestDecorativeFurnitureIncrease
+			0f, //QuestFishCostumeIncrease
+			0.033f, //QuestFishHookIncrease
+			0.025f, //QuestFishermansGuideIncrease
+			0.012f, //QuestGoldenBugNetIncrease
+			0f, //QuestGoldenFishingRodIncrease
+			0.04f, //QuestHardcoreBottomlessBucketIncrease
+			0.04f, //QuestHardcoreFinWingsIncrease
+			0.086f, //QuestHardcoreHotlineFishingHookIncrease
+			0.086f, //QuestHardcoreSuperAbsorbantSpongeIncrease
+			0.025f, //QuestHighTestFishingLineIncrease
+			0f, //QuestMermaidCostumeIncrease
+			0.025f, //QuestSextantIncrease
+			0.025f, //QuestTackleBoxIncrease
+			0.09f, //QuestTrophyIncrease
+			0.025f, //QuestWeatherRadioIncrease
+			
+			false, //ChestSalesmanPreHardmodeChestsRequireHardmodeActivated
+			true, //ChestSalesmanSellsBiomeChests
+			true, //ChestSalesmanSellsGoldChest
+			true, //ChestSalesmanSellsIceChest
+			true, //ChestSalesmanSellsIvyChest
+			true, //ChestSalesmanSellsLihzahrdChest
+			false, //ChestSalesmanSellsLivingWoodChest
+			true, //ChestSalesmanSellsOceanChest
+			true, //ChestSalesmanSellsShadowChest
+			true, //ChestSalesmanSellsSkywareChest
+			true, //ChestSalesmanSellsWebCoveredChest
+			false, //ChestSalesmanSpawnable
+			
+			true, //MechanicSellsDartTrapAfterSkeletronDefeated
+			true, //MechanicSellsGeyserAfterWallofFleshDefeated
+			true, //MechanicSellsLihzahrdTrapsAfterGolemDefeated
+			false, //MechanicSellsWoodenSpikesAfterGolemDefeated
+			true, //MerchantSellsAllMiningGear
+			false, //MerchantSellsBlizzardInABottleWhenInSnow
+			false, //MerchantSellsCloudInABottleWhenInSky
+			false, //MerchantSellsFishItem
+			false, //MerchantSellsPyramidItems
+			false, //MerchantSellsSandstormInABottleWhenInDesert
+			false, //WitchDoctorSellsFlowerBoots
+			false, //WitchDoctorSellsHoneyDispenser
+			false, //WitchDoctorSellsSeaweed
+			false, //WitchDoctorSellsStaffofRegrowth
+			50000, //TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight
+			
+			true, //GoblinTinkererSellsGoblinRetreatOrder
+			true, //PirateSellsPirateRetreatOrder
+			true, //WizardSellsMoonBall
+			1f, //BattlePotionMaxSpawnsMultiplier
+			1f, //BattlePotionSpawnrateMultiplier
+			0.1f, //BloodZombieAndDripplerDropsBloodMoonMedallion
+			20f, //ChaosPotionMaxSpawnsMultiplier
+			20f, //ChaosPotionSpawnrateMultiplier
+			10f, //WarPotionMaxSpawnsMultiplier
+			10f, //WarPotionSpawnrateMultiplier
+			
+			0, //NewCharacterBarrels
+			0, //NewCharacterCopperBars
+			0, //NewCharacterCopperCoins
+			0, //NewCharacterGoldBars
+			0, //NewCharacterGoldCoins
+			0, //NewCharacterIronBars
+			3, //NewCharacterMiningPotions
+			0, //NewCharacterPlatinumCoins
+			0, //NewCharacterSilverBars
+			0, //NewCharacterSilverCoins
+			0, //NewCharacterWarPotions
+
+			0f, //ExtractinatorGivesAmber
+			0.0014f, //ExtractinatorGivesAmberMosquito
+			0f, //ExtractinatorGivesAmethyst
+			0f, //ExtractinatorGivesCopperCoin
+			0f, //ExtractinatorGivesCopperOre
+			0f, //ExtractinatorGivesDiamond
+			0f, //ExtractinatorGivesEmerald
+			0f, //ExtractinatorGivesFossilOre
+			0f, //ExtractinatorGivesGoldCoin
+			0f, //ExtractinatorGivesGoldOre
+			0f, //ExtractinatorGivesIronOre
+			0f, //ExtractinatorGivesLeadOre
+			0f, //ExtractinatorGivesPlatinumCoin
+			0f, //ExtractinatorGivesPlatinumOre
+			0f, //ExtractinatorGivesRuby
+			0f, //ExtractinatorGivesSapphire
+			0f, //ExtractinatorGivesSilverCoin
+			0f, //ExtractinatorGivesSilverOre
+			0f, //ExtractinatorGivesTinOre
+			0f, //ExtractinatorGivesTopaz
+			0f, //ExtractinatorGivesTungstenOre
+			
+			true, //CrateUpgradesDependingOnFishingPower
+			0.01f, //FishCatchBecomesBalloonPufferfish
+			0.02f, //FishCatchBecomesBladetongue
+			0.01f, //FishCatchBecomesBlueJellyfish
+			0f, //FishCatchBecomesChaosFish
+			0f, //FishCatchBecomesCorruptCrate
+			0f, //FishCatchBecomesCrimsonCrate
+			0.02f, //FishCatchBecomesCrystalSerpent
+			0f, //FishCatchBecomesDungeonCrate
+			0.01f, //FishCatchBecomesFrogLeg
+			0f, //FishCatchBecomesFrostDaggerfish
+			0f, //FishCatchBecomesGoldenCarp
+			0f, //FishCatchBecomesGoldenCrate
+			0.01f, //FishCatchBecomesGreenJellyfish
+			0f, //FishCatchBecomesHallowedCrate
+			0f, //FishCatchBecomesIronCrate
+			0f, //FishCatchBecomesJungleCrate
+			0.01f, //FishCatchBecomesPinkJellyfish
+			0f, //FishCatchBecomesPurpleClubberfish
+			0f, //FishCatchBecomesReaverSharkAfterAllMechBossesDowned
+			0.02f, //FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
+			0f, //FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
+			0f, //FishCatchBecomesRockfish
+			0f, //FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned
+			0.02f, //FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
+			0f, //FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
+			0.05f, //FishCatchBecomesScalyTruffle
+			0f, //FishCatchBecomesSkyCrate
+			0f, //FishCatchBecomesSwordfish
+			0.02f, //FishCatchBecomesToxikarp
+			0f, //FishCatchBecomesWoodenCrate
+			0.01f //FishCatchBecomesZephyrFish
+		);
 
         public struct ClientConf
         {
@@ -489,7 +956,6 @@ namespace ReducedGrinding
 			public int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight;
 			
 			public bool GoblinTinkererSellsGoblinRetreatOrder;
-			public bool MerchantSellsExpertChangePotion;
 			public bool PirateSellsPirateRetreatOrder;
 			public bool WizardSellsMoonBall;
 			public float BattlePotionMaxSpawnsMultiplier;
@@ -617,7 +1083,7 @@ namespace ReducedGrinding
 				float CC_PresentSnowHat,
 				float CC_PresentStarAnise,
 				float CC_PresentSugarCookie,
-				float CC_PresentToolbox ,
+				float CC_PresentToolbox,
 				float CC_PresentTreeCostume,
 				float CC_PresentUglySweater,
 				
@@ -958,7 +1424,6 @@ namespace ReducedGrinding
 				int CC_TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight,
 				
 				bool CC_GoblinTinkererSellsGoblinRetreatOrder,
-				bool CC_MerchantSellsExpertChangePotion,
 				bool CC_PirateSellsPirateRetreatOrder,
 				bool CC_WizardSellsMoonBall,
 				float CC_BattlePotionMaxSpawnsMultiplier,
@@ -1086,7 +1551,7 @@ namespace ReducedGrinding
 				PresentSnowHat = CC_PresentSnowHat;
 				PresentStarAnise = CC_PresentStarAnise;
 				PresentSugarCookie = CC_PresentSugarCookie;
-				PresentToolbox  = CC_PresentToolbox ;
+				PresentToolbox  = CC_PresentToolbox;
 				PresentTreeCostume = CC_PresentTreeCostume;
 				PresentUglySweater = CC_PresentUglySweater;
 						
@@ -1427,7 +1892,6 @@ namespace ReducedGrinding
 				TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = CC_TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight;
 						
 				GoblinTinkererSellsGoblinRetreatOrder = CC_GoblinTinkererSellsGoblinRetreatOrder;
-				MerchantSellsExpertChangePotion = CC_MerchantSellsExpertChangePotion;
 				PirateSellsPirateRetreatOrder = CC_PirateSellsPirateRetreatOrder;
 				WizardSellsMoonBall = CC_WizardSellsMoonBall;
 				BattlePotionMaxSpawnsMultiplier = CC_BattlePotionMaxSpawnsMultiplier;
@@ -1507,475 +1971,14 @@ namespace ReducedGrinding
             }
         }
 
-        public ClientConf clientConf = new ClientConf(
-			1, //DropTriesForAllEnemyDroppedLoot
-			0.5f, //NormalModeLootMultiplierForLootWithSeperateDifficultyRates
-			
-			0.2f, //CrateDungeonBoneWelder
-			0.45f, //CrateEnchantedSundialGoldenIncrease
-			0.2333f, //CrateEnchantedSundialIronIncrease
-			0.12f, //CrateEnchantedSundialWoodenIncrease
-			0f, //CrateJungleAnkeltOfTheWindIncrease
-			0f, //CrateJungleFeralClawsIncrease
-			0.25f, //CrateJungleFlowerBoots
-			0f, //CrateJungleLeafWand
-			0f, //CrateJungleLivingLoom
-			0f, //CrateJungleLivingMahoganyWand
-			0f, //CrateJungleLivingWoodWand
-			0f, //CrateJungleRichMahoganyLeafWand
-			0.25f, //CrateJungleSeaweed
-			0f, //CrateJungleStaffOfRegrowth
-			0.3333f, //CrateSkySkyMill
-			0f, //CrateFlippersGolden
-			0f, //CrateFlippersIron
-			0f, //CrateFlippersWooden
-			0f, //CrateWaterWalkingBootsGolden
-			0f, //CrateWaterWalkingBootsIron
-			0f, //CrateWaterWalkingBootsWooden
-			0f, //CrateWoodenAgletIncrease
-			0f, //CrateWoodenClimbingClawsIncrease
-			0f, //CrateWoodenRadarIncrease
-			0f, //PresentCandyCaneBlock
-			0f, //PresentCandyCaneHook
-			0f, //PresentCandyCanePickaxe
-			0f, //PresentCandyCaneSword
-			0f, //PresentChristmasPudding
-			0f, //PresentCoal
-			0f, //PresentDogWhistle
-			0f, //PresentEggnog
-			0f, //PresentFruitcakeChakram
-			0f, //PresentGingerbreadCookie
-			0f, //PresentGreenCandyCaneBlock
-			0f, //PresentHandWarmer
-			0f, //PresentHardmodeSnowGlobe
-			0f, //PresentHolly
-			0f, //PresentMrsClausCostume
-			0f, //PresentParkaOutfit
-			0f, //PresentPineTreeBlock
-			0f, //PresentRedRyderPlusMusketBall
-			0f, //PresentReindeerAntlers
-			0f, //PresentSnowHat
-			0f, //PresentStarAnise
-			0f, //PresentSugarCookie
-			0f, //PresentToolbox
-			0f, //PresentTreeCostume
-			0f, //PresentUglySweater
-			
-			0f, //LootBookofSkullsIncrease
-			0.375f, //LootPicksawIncrease
-			0.15f, //LootSeedlingIncrease
-			0f, //LootSkeletronBoneKey
-			0.467f, //LootBinocularsIncrease
-			0.2f, //LootBoneRattleIncrease
-			0.1071f, //LootBossMaskIncrease
-			0f, //LootBossTrophyIncrease
-			0.2f, //LootEatersBoneIncrease
-			0.5f, //LootFishronTruffleworm
-			0.15f, //LootFishronWingsIncrease
-			0.14f, //LootHoneyedGogglesIncrease
-			0.14f, //LootNectarIncrease
-			0.20f, //LootTheAxeIncrease
-			
-			0.0004f, //BiomeKeyIncreaseForOneMechBossDown
-			0.0012f, //BiomeKeyIncreaseForTwoMechBossDown
-			0.0028f, //BiomeKeyIncreaseForThreeMechBossDown
-			
-			0.01f, //AllEnemiesLootBiomeMatchingFoundOnlyChestDrop
-			0f, //HellBatLootMagmaStoneIncrease
-			0f, //LavaBatLootMagmaStoneIncrease
-			0f, //LootAdhesiveBandageIncrease
-			0.833f, //LootAleTosser
-			0.0067f, //LootAmarokIncrease
-			0f, //LootAncientClothIncrease
-			0f, //LootAncientCobaltBreastplateIncrease
-			0f, //LootAncientCobaltHelmetIncrease
-			0f, //LootAncientCobaltLeggingsIncrease
-			0.015f, //LootAncientGoldHelmetIncrease
-			0.03f, //LootAncientHornIncrease
-			0f, //LootAncientIronHelmetIncrease
-			0.0028f, //LootAncientNecroHelmetIncrease
-			0f, //LootAncientShadowGreavesIncrease
-			0f, //LootAncientShadowHelmetIncrease
-			0f, //LootAncientShadowScalemailIncrease
-			0.0024f, //LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory
-			0f, //LootArmorPolishIncrease
-			0.05f, //LootBabyGrinchsMischiefWhistleIncrease
-			0.3f, //LootBananarangIncrease
-			0f, //LootBeamSwordIncrease
-			0f, //LootBezoarIncrease
-			0f, //LootBlackBeltIncrease
-			0f, //LootBlackLensIncrease
-			0.0066f, //LootBlessedAppleIncrease
-			0f, //LootBlindfoldIncrease
-			0.0015f, //LootBloodyMacheteAndBladedGlovesIncrease
-			0.0078f, //LootBoneFeatherIncrease
-			0.0867f, //LootBonePickaxeIncrease
-			0.0051f, //LootBoneSwordIncrease
-			0.006f, //LootBoneWandIncrease
-			0.01f, //LootBrainScramblerIncrease
-			0.075f, //LootBrokenBatWingIncrease
-			0f, //LootBunnyHoodIncrease
-			0.0025f, //LootCascadeIncrease
-			0f, //LootChainGuillotinesIncrease
-			0.0027f, //LootChainKnifeIncrease
-			0.875f, //LootClassyCane
-			0f, //LootClingerStaffIncrease
-			0.0467f, //LootClothierVoodooDollIncrease
-			0f, //LootCompassIncrease
-			0f, //LootCrossNecklaceIncrease
-			0f, //LootCrystalVileShardIncrease
-			0f, //LootDaedalusStormbowIncrease
-			0f, //LootDarkShardIncrease
-			0f, //LootDartPistolIncrease
-			0f, //LootDartRifleIncrease
-			0.025f, //LootDeathSickleIncrease
-			0.0214f, //LootDemonScytheIncrease
-			0f, //LootDepthMeterIncrease
-			0f, //LootDesertSpiritLampIncrease
-			0.03f, //LootDivingHelmetIncrease
-			0f, //LootDualHookIncrease
-			0.00833f, //LootElfHatIncrease
-			0.00833f, //LootElfPantsIncrease
-			0.00833f, //LootElfShirtIncrease
-			0f, //LootEskimoCoatIncrease
-			0f, //LootEskimoHoodIncrease
-			0f, //LootEskimoPantsIncrease
-			0.875f, //LootExoticScimitar
-			0f, //LootEyePatchIncrease
-			0f, //LootEyeSpringIncrease
-			0f, //LootFastClockBaseIncrease
-			0.05f, //LootFestiveWingsIncrease
-			0f, //LootFetidBaghnakhsIncrease
-			0.0367f, //LootFireFeatherIncrease
-			0f, //LootFleshKnucklesIncrease
-			0f, //LootFlyingKnifeIncrease
-			0f, //LootFrostStaffIncrease
-			0.19f, //LootFrozenTurtleShellIncrease
-			0f, //LootGiantBowIncrease
-			0.005f, //LootGiantHarpyFeatherIncrease
-			0f, //LootGoldenFurnitureIncrease
-			0f, //LootGoldenKeyIncrease
-			0f, //LootGoodieBagIncrease
-			1f, //LootGreenCap
-			0.75f, //LootHappyGrenade
-			0.0075f, //LootHarpoonIncrease
-			0.0025f, //LootHelFireIncrease
-			0f, //LootHookIncrease
-			0.0011f, //LootIceSickleIncrease
-			0f, //LootIlluminantHookIncrease
-			0.04f, //LootJellyfishNecklaceIncrease
-			0.001f, //LootKOCannonIncrease
-			0f, //LootKeybrandIncrease
-			0.0075f, //LootKrakenIncrease
-			0.01f, //LootLamiaClothesIncrease
-			0f, //LootLifeDrainIncrease
-			0f, //LootLightShardIncrease
-			0f, //LootLihzahrdPowerCellIncrease
-			0f, //LootLivingFireBlockIncrease
-			0.009f, //LootLizardEggIncrease
-			0f, //LootMagicDaggerIncrease
-			0.0375f, //LootMagicQuiverIncrease
-			0.0017f, //LootMagnetSphereIncrease
-			0f, //LootMandibleBladeIncrease
-			0.045f, //LootMarrowIncrease
-			0f, //LootMeatGrinderIncrease
-			0f, //LootMegaphoneBaseIncrease
-			0f, //LootMeteoriteIncrease
-			0.2833f, //LootMiningHelmetIncrease
-			0.3093f, //LootMiningPantsIncrease
-			0.3093f, //LootMiningShirtIncrease
-			0.04f, //LootMoneyTroughIncrease
-			0f, //LootMoonCharmIncrease
-			0f, //LootMoonMaskIncrease
-			0f, //LootMoonStoneIncrease
-			0.1381f, //LootMothronWingsIncrease
-			0f, //LootMummyCostumeIncrease
-			0f, //LootNazarIncrease
-			0f, //LootNimbusRodIncrease
-			0.03f, //LootObsidianRoseIncrease
-			0.9f, //LootPaintballGun
-			0.35f, //LootPaladinsShieldIncrease
-			0f, //LootPedguinssuitIncrease
-			0f, //LootPhilosophersStoneIncrease
-			0.015f, //LootPirateMapIncrease
-			0.048f, //LootPlumbersHatIncrease
-			0.105f, //LootPocketMirrorIncrease
-			0f, //LootPresentIncrease
-			0.1125f, //LootPsychoKnifeIncrease
-			0f, //LootPutridScentIncrease
-			0f, //LootRainArmorIncrease
-			0, //LootRainbowBlockDropMaxIncrease
-			0, //LootRainbowBlockDropMinIncrease
-			0.061f, //LootRallyIncrease
-			0.0917f, //LootReindeerBellsIncrease
-			0f, //LootRifleScopeIncrease
-			0f, //LootRobotHatIncrease
-			0f, //LootRocketLauncherIncrease
-			0.1291f, //LootRodofDiscordIncrease
-			0f, //LootSWATHelmetIncrease
-			0f, //LootSailorHatIncrease
-			0f, //LootSailorPantsIncrease
-			0f, //LootSailorShirtIncrease
-			0f, //LootShackleIncrease
-			0.048f, //LootSkullIncrease
-			0.075f, //LootSlimeStaffIncrease
-			0f, //LootSniperRifleIncrease
-			0.0133f, //LootSnowballLauncherIncrease
-			0f, //LootSoulofLightIncrease
-			0f, //LootSoulofNightIncrease
-			0f, //LootStarCloakIncrease
-			0.875f, //LootStylishScissors
-			0f, //LootSunMaskIncrease
-			0f, //LootTabiIncrease
-			0f, //LootTacticalShotgunIncrease
-			0f, //LootTallyCounterIncrease
-			0f, //LootTatteredBeeWingIncrease
-			0f, //LootTendonHookIncrease
-			0f, //LootTitanGloveIncrease
-			0.15f, //LootToySledIncrease
-			0f, //LootTrifoldMapIncrease
-			0.1412f, //LootTurtleShellIncrease
-			0f, //LootUmbrellaHatIncrease
-			0.04f, //LootUnicornonaStickIncrease
-			0f, //LootUziIncrease
-			0f, //LootVikingHelmetIncrease
-			0f, //LootVitaminsIncrease
-			0f, //LootWhoopieCushionIncrease
-			0.0063f, //LootWispinaBottleIncrease
-			0f, //LootWormHookIncrease
-			0f, //LootYeletsIncrease
-			0.016f, //LootZombieArmIncrease
-			0.0027f, //PirateLootCoinGunBaseIncrease
-			0.0117f, //PirateLootCutlassBaseIncrease
-			0.0045f, //PirateLootDiscountCardBaseIncrease
-			0.0043f, //PirateLootGoldRingBaseIncrease
-			0.0039f, //PirateLootLuckyCoinBaseIncrease
-			0.0045f, //PirateLootPirateStaffBaseIncrease
-			true, //LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense
-			false, //SlimeStaffIncreaseToSurfaceSlimes
-			false, //SlimeStaffIncreaseToUndergroundSlimes
-			false, //SlimeStaffIncreaseToCavernSlimess
-			true, //SlimeStaffIncreaseToIceSpikedSlimes
-			true, //SlimeStaffIncreaseToSpikedJungleSlimes
-
-			0.01f, //CavernModdedCavernLockBoxLoot
-			0.01f, //DungeonModdedBiomeLockBoxLoot
-			0.01f, //DungeonFurnitureLockBoxLoot
-			2.0f, //HardmodeModdedLockBoxDropRateModifier
-			0.01f, //HellBiomeModdedShadowLockBoxLoot
-			0.01f, //JungleTempleLihzahrd_Lock_Box
-			1f, //NormalmodeModdedLockBoxDropRateModifier
-			0.01f, //SandstormAndUndergroundDesertPyramidLockBoxLoot
-			0.01f, //SkyModdedSkywareLockBoxLoot
-			0.01f, //SpiderNestWebCoveredLockBoxLoot
-			0.01f, //SurfaceModdedLivingWoodLockBoxLoot
-			0.01f, //UndergroundJungleBiomeModdedIvyLockBoxLoot
-			0.01f, //UndergroundSnowBiomeModdedIceLockBoxLoot
-			0.01f, //WaterEnemyModdedWaterLockBoxLoot
-			
-			0f, //TravelingMerchantAcornsIncrease
-			0f, //TravelingMerchantAmmoBoxIncrease
-			0f, //TravelingMerchantAngelHaloIncrease
-			0f, //TravelingMerchantArcaneRuneWallIncrease
-			0f, //TravelingMerchantBlackCounterweightIncrease
-			0f, //TravelingMerchantBlueDynastyShinglesIncrease
-			0f, //TravelingMerchantBlueTeamBlockIncrease
-			0f, //TravelingMerchantBlueTeamPlatformIncrease
-			0f, //TravelingMerchantBrickLayerIncrease
-			0f, //TravelingMerchantCastleMarsbergIncrease
-			0f, //TravelingMerchantCelestialMagnetIncrease
-			0f, //TravelingMerchantChaliceIncrease
-			0f, //TravelingMerchantCode1Increase
-			0f, //TravelingMerchantCode2Increase
-			0f, //TravelingMerchantColdSnapIncrease
-			0f, //TravelingMerchantCompanionCubeIncrease
-			0f, //TravelingMerchantCrimsonCapeIncrease
-			0f, //TravelingMerchantCursedSaintIncrease
-			0f, //TravelingMerchantDPSMeterIncrease
-			0f, //TravelingMerchantDiamondRingIncrease
-			0f, //TravelingMerchantDynastyWoodIncrease
-			0f, //TravelingMerchantExtendoGripIncrease
-			0f, //TravelingMerchantFancyDishesIncrease
-			0f, //TravelingMerchantFezIncrease
-			0f, //TravelingMerchantGatligatorIncrease
-			0f, //TravelingMerchantGiIncrease
-			0f, //TravelingMerchantGreenTeamBlockIncrease
-			0f, //TravelingMerchantGreenTeamPlatformIncrease
-			0f, //TravelingMerchantGypsyRobeIncrease
-			0f, //TravelingMerchantKatanaIncrease
-			0f, //TravelingMerchantKimonoIncrease
-			0f, //TravelingMerchantLeopardSkinIncrease
-			0f, //TravelingMerchantLifeformAnalyzerIncrease
-			0f, //TravelingMerchantMagicHatIncrease
-			0f, //TravelingMerchantMartiaLisaIncrease
-			0f, //TravelingMerchantMetalDetector
-			0f, //TravelingMerchantMysteriousCapeIncrease
-			0f, //TravelingMerchantNotAKidNorASquidIncrease
-			0f, //TravelingMerchantPadThaiIncrease
-			0f, //TravelingMerchantPaintSprayerIncrease
-			0f, //TravelingMerchantPhoIncrease
-			0f, //TravelingMerchantPinkTeamBlockIncrease
-			0f, //TravelingMerchantPinkTeamPlatformIncrease
-			0f, //TravelingMerchantPortableCementMixerIncrease
-			0f, //TravelingMerchantPresseratorIncrease
-			0f, //TravelingMerchantPulseBowIncrease
-			0f, //TravelingMerchantRedCapeIncrease
-			0f, //TravelingMerchantRedDynastyShinglesIncrease
-			0f, //TravelingMerchantRedTeamBlockIncrease
-			0f, //TravelingMerchantRedTeamPlatformIncrease
-			0f, //TravelingMerchantRevolverIncrease
-			0f, //TravelingMerchantSakeIncrease
-			0f, //TravelingMerchantSittingDucksFishingPoleIncrease
-			0f, //TravelingMerchantSnowfellasIncrease
-			0f, //TravelingMerchantStopwatchIncrease
-			0f, //TravelingMerchantTheSeasonIncrease
-			0f, //TravelingMerchantTheTruthIsUpThereIncrease
-			0f, //TravelingMerchantTigerSkinIncrease
-			0f, //TravelingMerchantUltraBrightTorchIncrease
-			0f, //TravelingMerchantWaterGunIncrease
-			0f, //TravelingMerchantWhiteTeamBlockIncrease
-			0f, //TravelingMerchantWhiteTeamPlatformIncrease
-			0f, //TravelingMerchantWinterCapeIncrease
-			0f, //TravelingMerchantYellowCounterweightIncrease
-			0f, //TravelingMerchantYellowTeamBlockIncrease
-			0f, //TravelingMerchantYellowTeamPlatformIncrease
-			0f, //TravelingMerchantZebraSkinIncrease
-			false, //TravelingMerchantAlwaysXMasForConfigurations
-			0.02f, //ChanceThatEnemyKillWillResetTravelingMerchant
-			true, //StationaryMerchant
-			0.166f, //StationaryMerchantStockingChance
-			0.1668f, //S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate
-			
-			0.025f, //QuestAnglerEarringIncrease
-			0.05f, //QuestAnglerHatIncrease
-			0.05f, //QuestAnglerPantsIncrease
-			0.05f, //QuestAnglerVestIncrease
-			0.04f, //QuestCoralstoneBlockIncrease
-			0.04f, //QuestDecorativeFurnitureIncrease
-			0f, //QuestFishCostumeIncrease
-			0.033f, //QuestFishHookIncrease
-			0.025f, //QuestFishermansGuideIncrease
-			0.012f, //QuestGoldenBugNetIncrease
-			0f, //QuestGoldenFishingRodIncrease
-			0.04f, //QuestHardcoreBottomlessBucketIncrease
-			0.04f, //QuestHardcoreFinWingsIncrease
-			0.086f, //QuestHardcoreHotlineFishingHookIncrease
-			0.086f, //QuestHardcoreSuperAbsorbantSpongeIncrease
-			0.025f, //QuestHighTestFishingLineIncrease
-			0f, //QuestMermaidCostumeIncrease
-			0.025f, //QuestSextantIncrease
-			0.025f, //QuestTackleBoxIncrease
-			0.09f, //QuestTrophyIncrease
-			0.025f, //QuestWeatherRadioIncrease
-			
-			false, //ChestSalesmanPreHardmodeChestsRequireHardmodeActivated
-			true, //ChestSalesmanSellsBiomeChests
-			true, //ChestSalesmanSellsGoldChest
-			true, //ChestSalesmanSellsIceChest
-			true, //ChestSalesmanSellsIvyChest
-			true, //ChestSalesmanSellsLihzahrdChest
-			false, //ChestSalesmanSellsLivingWoodChest
-			true, //ChestSalesmanSellsOceanChest
-			true, //ChestSalesmanSellsShadowChest
-			true, //ChestSalesmanSellsSkywareChest
-			true, //ChestSalesmanSellsWebCoveredChest
-			false, //ChestSalesmanSpawnable
-			
-			true, //MechanicSellsDartTrapAfterSkeletronDefeated
-			true, //MechanicSellsGeyserAfterWallofFleshDefeated
-			true, //MechanicSellsLihzahrdTrapsAfterGolemDefeated
-			false, //MechanicSellsWoodenSpikesAfterGolemDefeated
-			true, //MerchantSellsAllMiningGear
-			false, //MerchantSellsBlizzardInABottleWhenInSnow
-			false, //MerchantSellsCloudInABottleWhenInSky
-			false, //MerchantSellsFishItem
-			false, //MerchantSellsPyramidItems
-			false, //MerchantSellsSandstormInABottleWhenInDesert
-			false, //WitchDoctorSellsFlowerBoots
-			false, //WitchDoctorSellsHoneyDispenser
-			false, //WitchDoctorSellsSeaweed
-			false, //WitchDoctorSellsStaffofRegrowth
-			50000, //TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight
-			
-			true, //GoblinTinkererSellsGoblinRetreatOrder
-			true, //MerchantSellsExpertChangePotion
-			true, //PirateSellsPirateRetreatOrder
-			true, //WizardSellsMoonBall
-			1f, //BattlePotionMaxSpawnsMultiplier
-			1f, //BattlePotionSpawnrateMultiplier
-			0.1f, //BloodZombieAndDripplerDropsBloodMoonMedallion
-			20f, //ChaosPotionMaxSpawnsMultiplier
-			20f, //ChaosPotionSpawnrateMultiplier
-			10f, //WarPotionMaxSpawnsMultiplier
-			10f, //WarPotionSpawnrateMultiplier
-			
-			0, //NewCharacterBarrels
-			0, //NewCharacterCopperBars
-			0, //NewCharacterCopperCoins
-			0, //NewCharacterGoldBars
-			0, //NewCharacterGoldCoins
-			0, //NewCharacterIronBars
-			3, //NewCharacterMiningPotions
-			0, //NewCharacterPlatinumCoins
-			0, //NewCharacterSilverBars
-			0, //NewCharacterSilverCoins
-			0, //NewCharacterWarPotions
-
-			0f, //ExtractinatorGivesAmber
-			0.0014f, //ExtractinatorGivesAmberMosquito
-			0f, //ExtractinatorGivesAmethyst
-			0f, //ExtractinatorGivesCopperCoin
-			0f, //ExtractinatorGivesCopperOre
-			0f, //ExtractinatorGivesDiamond
-			0f, //ExtractinatorGivesEmerald
-			0f, //ExtractinatorGivesFossilOre
-			0f, //ExtractinatorGivesGoldCoin
-			0f, //ExtractinatorGivesGoldOre
-			0f, //ExtractinatorGivesIronOre
-			0f, //ExtractinatorGivesLeadOre
-			0f, //ExtractinatorGivesPlatinumCoin
-			0f, //ExtractinatorGivesPlatinumOre
-			0f, //ExtractinatorGivesRuby
-			0f, //ExtractinatorGivesSapphire
-			0f, //ExtractinatorGivesSilverCoin
-			0f, //ExtractinatorGivesSilverOre
-			0f, //ExtractinatorGivesTinOre
-			0f, //ExtractinatorGivesTopaz
-			0f, //ExtractinatorGivesTungstenOre
-			
-			true, //CrateUpgradesDependingOnFishingPower
-			0.01f, //FishCatchBecomesBalloonPufferfish
-			0.02f, //FishCatchBecomesBladetongue
-			0.01f, //FishCatchBecomesBlueJellyfish
-			0f, //FishCatchBecomesChaosFish
-			0f, //FishCatchBecomesCorruptCrate
-			0f, //FishCatchBecomesCrimsonCrate
-			0.02f, //FishCatchBecomesCrystalSerpent
-			0f, //FishCatchBecomesDungeonCrate
-			0.01f, //FishCatchBecomesFrogLeg
-			0f, //FishCatchBecomesFrostDaggerfish
-			0f, //FishCatchBecomesGoldenCarp
-			0f, //FishCatchBecomesGoldenCrate
-			0.01f, //FishCatchBecomesGreenJellyfish
-			0f, //FishCatchBecomesHallowedCrate
-			0f, //FishCatchBecomesIronCrate
-			0f, //FishCatchBecomesJungleCrate
-			0.01f, //FishCatchBecomesPinkJellyfish
-			0f, //FishCatchBecomesPurpleClubberfish
-			0f, //FishCatchBecomesReaverSharkAfterAllMechBossesDowned
-			0.02f, //FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
-			0f, //FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
-			0f, //FishCatchBecomesRockfish
-			0f, //FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned
-			0.02f, //FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
-			0f, //FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned
-			0.05f, //FishCatchBecomesScalyTruffle
-			0f, //FishCatchBecomesSkyCrate
-			0f, //FishCatchBecomesSwordfish
-			0.02f, //FishCatchBecomesToxikarp
-			0f, //FishCatchBecomesWoodenCrate
-			0.01f //FishCatchBecomesZephyrFish
-		);
+        /*public override void SendClientChanges(ModPlayer clientPlayer)
+        {
+            ReducedGrindingPlayer clone = clientPlayer as ReducedGrindingPlayer;
+            if (clone.currentlyActive != currentlyActive)
+            {
+                SendClientChangesPacket();
+            }
+        }*/
 
         private void SendClientChangesPacket()
         {
@@ -1984,19 +1987,10 @@ namespace ReducedGrinding
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
                 packet.Write((byte)player.whoAmI);
-                BitsByte flags = new BitsByte();
-                flags[0] = currentlyActive;
-                packet.Write((byte)flags);
+                //BitsByte flags = new BitsByte();
+                //flags[0] = currentlyActive;
+                //packet.Write((byte)flags);
                 packet.Send();
-            }
-        }
-
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            ReducedGrindingPlayer clone = clientPlayer as ReducedGrindingPlayer;
-            if (clone.currentlyActive != currentlyActive)
-            {
-                SendClientChangesPacket();
             }
         }
 		
@@ -2397,7 +2391,6 @@ namespace ReducedGrinding
 			packet.Write((int)Config.TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight);
 			
 			packet.Write((bool)Config.GoblinTinkererSellsGoblinRetreatOrder);
-			packet.Write((bool)Config.MerchantSellsExpertChangePotion);
 			packet.Write((bool)Config.PirateSellsPirateRetreatOrder);
 			packet.Write((bool)Config.WizardSellsMoonBall);
 			packet.Write((float)Config.BattlePotionMaxSpawnsMultiplier);
@@ -2476,11 +2469,6 @@ namespace ReducedGrinding
 			packet.Write((float)Config.FishCatchBecomesZephyrFish);
 			
             player.GetModPlayer<ReducedGrindingPlayer>().clientConf = new ClientConf(
-			
-			
-			
-			
-			
 				Config.DropTriesForAllEnemyDroppedLoot,
 				Config.NormalModeLootMultiplierForLootWithSeperateDifficultyRates,
 				
@@ -2871,7 +2859,6 @@ namespace ReducedGrinding
 				Config.TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight,
 				
 				Config.GoblinTinkererSellsGoblinRetreatOrder,
-				Config.MerchantSellsExpertChangePotion,
 				Config.PirateSellsPirateRetreatOrder,
 				Config.WizardSellsMoonBall,
 				Config.BattlePotionMaxSpawnsMultiplier,
@@ -2948,22 +2935,16 @@ namespace ReducedGrinding
 				Config.FishCatchBecomesToxikarp,
 				Config.FishCatchBecomesWoodenCrate,
 				Config.FishCatchBecomesZephyrFish
-				
-				
-				
 			);
 			
             packet.Send(toWho/*, fromWho*/);
         }
 		
-		
-		
         public override void OnEnterWorld(Player player)
         {
-            if (Main.netMode == NetmodeID.SinglePlayer)
+			if (Main.netMode == NetmodeID.SinglePlayer)
             {
                 clientConf = new ClientConf(
-			
 					Config.DropTriesForAllEnemyDroppedLoot,
 					Config.NormalModeLootMultiplierForLootWithSeperateDifficultyRates,
 					
@@ -3354,7 +3335,6 @@ namespace ReducedGrinding
 					Config.TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight,
 					
 					Config.GoblinTinkererSellsGoblinRetreatOrder,
-					Config.MerchantSellsExpertChangePotion,
 					Config.PirateSellsPirateRetreatOrder,
 					Config.WizardSellsMoonBall,
 					Config.BattlePotionMaxSpawnsMultiplier,
@@ -3431,9 +3411,6 @@ namespace ReducedGrinding
 					Config.FishCatchBecomesToxikarp,
 					Config.FishCatchBecomesWoodenCrate,
 					Config.FishCatchBecomesZephyrFish
-				
-				
-				
 				);
             }
             else if (Main.netMode == NetmodeID.MultiplayerClient)

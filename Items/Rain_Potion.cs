@@ -52,7 +52,8 @@ namespace ReducedGrinding.Items
                 StopRain();
             else
                 StartRain();
-           
+			if (Main.netMode == 2) // Server
+				NetMessage.SendData(7);
             return true;
         }
        
@@ -60,7 +61,7 @@ namespace ReducedGrinding.Items
         {
 			if (Main.netMode == 2) // Server
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
-			else if (Main.netMode == 0) // Single Player
+			else
 				Main.NewText("The rain started to fade away.", 0, 128, 255);
             Main.rainTime = 0;
             Main.raining = false;
@@ -70,13 +71,9 @@ namespace ReducedGrinding.Items
         private static void StartRain()
         {
 			if (Main.netMode == 2) // Server
-			{
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade in."), new Color(0, 128, 255));
-			}
-			else if (Main.netMode == 0) // Single Player
-			{
+			else
 				Main.NewText("The rain started to fade in.", 0, 128, 255);
-			}
             int num = 86400;
             int num2 = num / 24;
             Main.rainTime = Main.rand.Next(num2 * 8, num);

@@ -18,7 +18,7 @@ namespace ReducedGrinding.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Expert Change Potion");
-			Tooltip.SetDefault("Switches World Difficulty.");
+			Tooltip.SetDefault("Switches World Difficulty in Single Player.");
 		}
 		
 		public override void SetDefaults()
@@ -37,19 +37,15 @@ namespace ReducedGrinding.Items
 
 		public override bool CanUseItem(Player player)
 		{
-			return true;
+			if (Main.netMode == 0) // Single Player
+				return true;
+			else
+				return false;
 		}
 
 		public override bool UseItem(Player player)
 		{
-			if (Main.netMode == 2) // Server
-			{
-				if (Main.expertMode)
-					NetMessage.BroadcastChatMessage(NetworkText.FromKey("World difficulty is now Normal Mode."), new Color(255, 255, 0));
-				else
-					NetMessage.BroadcastChatMessage(NetworkText.FromKey("World difficulty is now Expert Mode."), new Color(207, 136, 255));
-			}
-			else if (Main.netMode == 0) // Single Player
+			if (Main.netMode == 0) // Single Player
 			{
 				if (Main.expertMode)
 					Main.NewText("World difficulty is now Normal Mode.", 255, 255, 0);

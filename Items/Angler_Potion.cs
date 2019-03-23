@@ -38,6 +38,8 @@ namespace ReducedGrinding.Items
         {
 			Main.NewText("The angler has a new quest for you.", 0, 128, 255);
 			Main.AnglerQuestSwap();
+			if (Main.netMode == 2) // Server
+				NetMessage.SendData(7);
 			return true;
         }
 

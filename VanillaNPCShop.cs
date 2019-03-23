@@ -71,7 +71,7 @@ namespace ReducedGrinding.NPCs
 						shop.item[nextSlot].SetDefaults(ItemID.SandstorminaBottle);
 						nextSlot++;
 					}
-					if (mPlayer.clientConf.MerchantSellsExpertChangePotion)
+					if (Main.netMode == 0) //Singleplayer
 					{
 						shop.item[nextSlot].SetDefaults(mod.ItemType("Expert_Change_Potion"));
 						nextSlot++;

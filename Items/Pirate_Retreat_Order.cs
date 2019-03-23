@@ -52,8 +52,15 @@ namespace ReducedGrinding.Items
 
         public override bool UseItem(Player player)
         {
-			Main.invasionProgress = Main.invasionProgressMax;
 			Main.invasionSize = 0;
+			if (Main.netMode != 1)
+			{
+				Main.ReportInvasionProgress(Main.invasionSizeStart - Main.invasionSize, Main.invasionSizeStart, 6, 0);
+			}
+			if (Main.netMode == 2)
+			{
+				NetMessage.SendData(78, -1, -1, null, Main.invasionProgress, Main.invasionProgressMax, Main.invasionProgressIcon);
+			}
 			return true;
         }
     }

@@ -58,6 +58,8 @@ namespace ReducedGrinding.Items
 			}
 			Main.halloween = false;
 			Main.xMas = true;
+			if (Main.netMode == 2) // Server
+				NetMessage.SendData(7);
 			return true;
         }
 

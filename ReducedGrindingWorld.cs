@@ -73,34 +73,34 @@ namespace ReducedGrinding
 			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
         }
 		
-		/*public override void LoadLegacy(BinaryReader reader)
-		{
+		/*public override void LoadLegacy(BinaryReader reader) {
 			int loadVersion = reader.ReadInt32();
-			if (loadVersion == 0)
-			{
+			if (loadVersion == 0) {
 				BitsByte flags = reader.ReadByte();
-				skipToDay = flags[0];
-				skipToNight = flags[1];
-			}
-			else
-			{
-				ErrorLogger.Log("ReducedGrinding: Unknown loadVersion: " + loadVersion);
+				infectionChestMined = flags[0];
+				hallowedChestMined = flags[1];
+				frozenChestMined = flags[2];
+				jungleChestMined = flags[3];
 			}
 		}
 		
 		public override void NetSend(BinaryWriter writer)
 		{
 			BitsByte flags = new BitsByte();
-			flags[0] = skipToDay;
-			flags[1] = skipToNight;
+			flags[0] = infectionChestMined;
+			flags[1] = hallowedChestMined;
+			flags[2] = frozenChestMined;
+			flags[3] = jungleChestMined;
 			writer.Write(flags);
 		}
 		
 		public override void NetReceive(BinaryReader reader)
 		{
 			BitsByte flags = reader.ReadByte();
-			skipToDay = flags[0];
-			skipToNight = flags[1];
+			infectionChestMined = flags[0];
+			hallowedChestMined = flags[1];
+			frozenChestMined = flags[2];
+			jungleChestMined = flags[3];
 		}*/
 		
 		public override void PostUpdate()

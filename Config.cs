@@ -401,7 +401,6 @@ namespace ReducedGrinding
 		public static int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = 50000;
 		
 		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
-		public static bool MerchantSellsExpertChangePotion = true;
 		public static bool PirateSellsPirateRetreatOrder = true;
 		public static bool WizardSellsMoonBall = true;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
@@ -892,7 +891,6 @@ namespace ReducedGrinding
 				Configuration.Get("ChaosPotionMaxSpawnsMultiplier", ref ChaosPotionMaxSpawnsMultiplier);
 				Configuration.Get("ChaosPotionSpawnrateMultiplier", ref ChaosPotionSpawnrateMultiplier);
 				Configuration.Get("GoblinTinkererSellsGoblinRetreatOrder", ref GoblinTinkererSellsGoblinRetreatOrder);
-				Configuration.Get("MerchantSellsExpertChangePotion", ref MerchantSellsExpertChangePotion);
 				Configuration.Get("PirateSellsPirateRetreatOrder", ref PirateSellsPirateRetreatOrder);
 				Configuration.Get("WarPotionMaxSpawnsMultiplier", ref WarPotionMaxSpawnsMultiplier);
 				Configuration.Get("WarPotionSpawnrateMultiplier", ref WarPotionSpawnrateMultiplier);
@@ -1405,7 +1403,6 @@ namespace ReducedGrinding
 			Configuration.Put("ChaosPotionMaxSpawnsMultiplier", ChaosPotionMaxSpawnsMultiplier);
 			Configuration.Put("ChaosPotionSpawnrateMultiplier", ChaosPotionSpawnrateMultiplier);
 			Configuration.Put("GoblinTinkererSellsGoblinRetreatOrder", GoblinTinkererSellsGoblinRetreatOrder);
-			Configuration.Put("MerchantSellsExpertChangePotion", MerchantSellsExpertChangePotion);
 			Configuration.Put("JungleTempleLihzahrd_Lock_Box", JungleTempleLihzahrd_Lock_Box);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
 			Configuration.Put("PirateSellsPirateRetreatOrder", PirateSellsPirateRetreatOrder);
