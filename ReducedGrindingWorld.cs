@@ -106,7 +106,6 @@ namespace ReducedGrinding
 		public override void PostUpdate()
 		{
 			Player player = Main.player[Main.myPlayer];
-			//Player localPlayer = Main.LocalPlayer;
 			if (player.HasItem(1528)) //Jungle Chest
 				jungleChestMined = true;
 			if (player.HasItem(1529)) //Corruption Chest

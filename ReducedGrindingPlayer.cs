@@ -36,9 +36,9 @@ namespace ReducedGrinding
 	class ReducedGrindingPlayer : ModPlayer
     {
 
-		/*public override void PreUpdate()
+		public override void PreUpdate()
 		{
-			if (Main.time % 60 == 0) //Debug
+			/*if (Main.time % 180 == 0) //Debug
 			{
 				Main.NewText("Debug Client:");
 				Main.NewText("Main.time: "+Main.time.ToString());
@@ -51,8 +51,46 @@ namespace ReducedGrinding
 				Console.WriteLine("Main.dayTime: "+Main.dayTime.ToString());
 				Console.WriteLine("ReducedGrindingWorld.skipToNight: "+ReducedGrindingWorld.skipToNight.ToString());
 				Console.WriteLine("");
+			}*/
+			Player player = Main.player[Main.myPlayer];
+			bool biomeChestMined = false;
+			if (player.HasItem(1528)) //Jungle Chest
+			{
+				biomeChestMined = ReducedGrindingWorld.jungleChestMined;
+				ReducedGrindingWorld.jungleChestMined = true;
 			}
-		}*/
+			if (player.HasItem(1529)) //Corruption Chest
+			{
+				biomeChestMined = ReducedGrindingWorld.infectionChestMined;
+				ReducedGrindingWorld.infectionChestMined = true;
+			}
+			if (player.HasItem(1530)) //Crimson Chest
+			{
+				biomeChestMined = ReducedGrindingWorld.infectionChestMined;
+				ReducedGrindingWorld.infectionChestMined = true;
+			}
+			if (player.HasItem(1531)) //Hallowed Chest
+			{
+				biomeChestMined = ReducedGrindingWorld.hallowedChestMined;
+				ReducedGrindingWorld.hallowedChestMined = true;
+			}
+			if (player.HasItem(1532)) //Frozen Chest
+			{
+				biomeChestMined = ReducedGrindingWorld.frozenChestMined;
+				ReducedGrindingWorld.frozenChestMined = true;
+			}
+			if (biomeChestMined == false)
+			{
+				var netMessage = mod.GetPacket();
+				netMessage.Write((byte)ReducedGrindingMessageType.biomeChestMined);
+				netMessage.Write(ReducedGrindingWorld.jungleChestMined);
+				netMessage.Write(ReducedGrindingWorld.infectionChestMined);
+				netMessage.Write(ReducedGrindingWorld.hallowedChestMined);
+				netMessage.Write(ReducedGrindingWorld.frozenChestMined);
+				netMessage.Send();
+			}
+			
+		}
 		
 		public bool currentlyActive = false;
 
