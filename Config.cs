@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.48.json";
+		static string filename = "Reduced Grinding v4.49.json";
 		
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
@@ -1411,7 +1411,7 @@ namespace ReducedGrinding
 			Configuration.Put("WizardSellsMoonBall", WizardSellsMoonBall);
 			
 			Configuration.Put("===================================================================================================W", 0);
-			Configuration.Put("|                                       STARTING ITEMS                                             |", 0);
+			Configuration.Put("|                         STARTING ITEMS (THIS IS DISABLED FOR NOW)                                |", 0);
 			Configuration.Put("------------------------------------------------------------------------------------------------1418", 0);
 			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk and Recipe Browser.                    1419", 0);
 			Configuration.Put("================================================================================================1420", 0);

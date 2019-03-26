@@ -3716,7 +3716,7 @@ namespace ReducedGrinding
 			}
 		}
 		
-		public override void SetupStartInventory(IList<Item> items)
+		/*public override void SetupStartInventory(IList<Item> items)
 		{
 			//Prevent Crashes
 			Mod antiaris = ModLoader.GetMod("Antiaris");
@@ -3801,7 +3801,7 @@ namespace ReducedGrinding
 				item11.stack = mPlayer.clientConf.NewCharacterWarPotions;
 				items.Add(item11);
 			}
-		}
+		}*/
 		
 		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
 		{
