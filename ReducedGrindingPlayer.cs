@@ -3718,9 +3718,31 @@ namespace ReducedGrinding
 		
 		public override void SetupStartInventory(IList<Item> items)
 		{
-			Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent crashes when using Luiafk
-			Mod recipebrowser = ModLoader.GetMod("RecipeBrowser"); //Prevent crashes when using RecipeBrowser
-			if (luiafk == null && recipebrowser == null)
+			//Prevent Crashes
+			Mod antiaris = ModLoader.GetMod("Antiaris");
+			Mod autoTrash = ModLoader.GetMod("AutoTrash");
+			Mod expeditions = ModLoader.GetMod("Expeditions");
+			Mod leveled = ModLoader.GetMod("Leveled");
+			Mod luiafk = ModLoader.GetMod("Luiafk");
+			Mod recipebrowser = ModLoader.GetMod("RecipeBrowser");
+			Mod rewards = ModLoader.GetMod("Rewards");
+			Mod terrariaOverhaul = ModLoader.GetMod("TerrariaOverhaul");
+			Mod terrariaOverload = ModLoader.GetMod("TerrariaOverload");
+			Mod unleveled = ModLoader.GetMod("Unleveled");
+			Mod worldGenPreviewer = ModLoader.GetMod("WorldGenPreviewer");
+			if (
+				antiaris == null &&
+				autoTrash == null &&
+				expeditions == null &&
+				leveled == null && 
+				luiafk == null && 
+				recipebrowser == null && 
+				rewards == null &&
+				terrariaOverhaul == null && 
+				terrariaOverload == null && 
+				unleveled == null && 
+				worldGenPreviewer == null
+			)
 			{
 				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
 			
