@@ -486,7 +486,7 @@ namespace ReducedGrinding
         {
             bool success = ReadConfig();
 
-            if(!success)
+            if(!success/* && Main.netMode == 0*/) //Singleplayer
             {
                 ErrorLogger.Log("Failed to read Reduced Grinding's config file! Recreating config...");
                 CreateConfig();
@@ -495,7 +495,7 @@ namespace ReducedGrinding
 
         static bool ReadConfig()
         {
-            if(Configuration.Load())
+            if(Configuration.Load()/* && Main.netMode == 0*/) //Singleplayer
             {
 				Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent adding items that Luiafk already adds
 				

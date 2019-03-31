@@ -3719,7 +3719,7 @@ namespace ReducedGrinding
 		/*public override void SetupStartInventory(IList<Item> items)
 		{
 			//Prevent Crashes
-			Mod antiaris = ModLoader.GetMod("Antiaris");
+			/*Mod antiaris = ModLoader.GetMod("Antiaris");
 			Mod autoTrash = ModLoader.GetMod("AutoTrash");
 			Mod expeditions = ModLoader.GetMod("Expeditions");
 			Mod leveled = ModLoader.GetMod("Leveled");
@@ -3743,7 +3743,7 @@ namespace ReducedGrinding
 				unleveled == null && 
 				worldGenPreviewer == null
 			)
-			{
+			{*//*
 				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
 			
 				Item item = new Item();
@@ -3800,14 +3800,18 @@ namespace ReducedGrinding
 				item11.SetDefaults(mod.ItemType("War_Potion"));
 				item11.stack = mPlayer.clientConf.NewCharacterWarPotions;
 				items.Add(item11);
-			}
+			//}
 		}*/
 		
 		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
 		{
 			
 			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
+
+			if (Main.rand.NextFloat() < mPlayer.clientConf.FishCatchBecomesGoldenCarp)
+				caughtType = ItemID.GoldenCarp;
 			
+			/*
 			if (junk)
 			{
 				return;
@@ -4043,7 +4047,7 @@ namespace ReducedGrinding
 							break;
 					}
 				}
-			}
+			}*/
 		}
 		
 		public override void PostUpdate()

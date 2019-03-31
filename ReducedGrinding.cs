@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework.Graphics;
+/*using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +12,7 @@ using Terraria.Localization;
 using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
 using Terraria.World.Generation;
-using Terraria;
+using Terraria;*/
 
 /*To debug, use:
 ErrorLogger.Log(<string>);
@@ -28,6 +28,13 @@ Main.NewText(string, red, green, blue);
 Chatting a value:
 Main.NewText(Value.ToString(), 255, 255, 255);
 */
+
+using System.IO;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ReducedGrinding
 {
@@ -2464,7 +2471,7 @@ namespace ReducedGrinding
 		{
 			public override void OpenVanillaBag(string context, Player player, int arg)
 			{
-				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
+				ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 				
 				//Boss Bags
 				if (arg == ItemID.BrainOfCthulhuBossBag)
@@ -2983,8 +2990,8 @@ namespace ReducedGrinding
 				
 				if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall && (npc.townNPC == false) && !npc.SpawnedFromStatue)
 				{
-					ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
 					Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
+					ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 					float difficultyMultiplier = 1f;
 					if (!Main.expertMode)
 						difficultyMultiplier = mPlayer.clientConf.NormalModeLootMultiplierForLootWithSeperateDifficultyRates;
@@ -3100,7 +3107,7 @@ namespace ReducedGrinding
 						float AnkhMaterialBonus = AnkhCharmInInventory * mPlayer.clientConf.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory * difficultyMultiplier;
 						
 						//Boss Loot
-						if (npc.type == NPCID.SkeletronHead) //Skeletron
+						if (npc.type == NPCID.SkeletronHead)
 						{
 							if (!Main.expertMode)
 							{
@@ -3114,7 +3121,7 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1363, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 266) //Brain of Cthulhu
+						if (npc.type == NPCID.BrainofCthulhu)
 						{
 							if (!Main.expertMode)
 							{
@@ -3126,7 +3133,7 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1362, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 370) //Duke Fishron
+						if (npc.type == NPCID.DukeFishron)
 						{
 							if (!Main.expertMode)
 							{
@@ -3152,7 +3159,7 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1361, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 4) //Eye of Cthulhu
+						if (npc.type == NPCID.EyeofCthulhu)
 						{
 							if (!Main.expertMode)
 							{
@@ -3164,7 +3171,7 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1360, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 262) //Plantera
+						if (npc.type == NPCID.Plantera)
 						{
 							if (!Main.expertMode)
 							{
@@ -3178,7 +3185,7 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1370, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 222) //Queen Bee
+						if (npc.type == NPCID.QueenBee)
 						{
 							if (!Main.expertMode)
 							{
@@ -3192,28 +3199,28 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1364, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 50) //Slime King
+						if (npc.type == NPCID.KingSlime)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2493, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2489, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 113) //Wall of Flesh
+						if (npc.type == NPCID.WallofFlesh)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2105, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1365, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 134) //The Destroyer
+						if (npc.type == NPCID.TheDestroyer)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2113, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1366, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 125 || npc.type == 126) //The Twins
+						if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism) //The Twins
 						{
 							if (!Main.expertMode)
 							{
@@ -3228,14 +3235,14 @@ namespace ReducedGrinding
 							if (npc.type == 126 && Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease) //Spazmatism
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1369, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 127) //Skeletron Prime
+						if (npc.type == NPCID.SkeletronPrime)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2113, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1367, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 245) //Golem
+						if (npc.type == NPCID.Golem)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2110, 1, false, -1, false, false); //Mask
@@ -3244,80 +3251,80 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPicksawIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1371, 1, false, -1, false, false); //Picksaw
 						}
-						if (npc.type == 370) //Duke Fishron
+						if (npc.type == NPCID.DukeFishron)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2588, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 2589, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 439) //Lunatic Cultist
+						if (npc.type == NPCID.CultistBoss)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3372, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3357, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 398) //Moon Lord
+						if (npc.type == NPCID.MoonLordCore)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3373, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3595, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 551) //Betsy
+						if (npc.type == NPCID.DD2Betsy)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3863, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3866, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 564) //Dark Mage T1
+						if (npc.type == NPCID.DD2DarkMageT1)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3864, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3867, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 565) //Dark Mage T3
+						if (npc.type == NPCID.DD2DarkMageT3)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease / 2)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3864, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3867, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 576) //Ogre T2
+						if (npc.type == NPCID.DD2OgreT2)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3865, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3868, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 577) //Ogre T3
+						if (npc.type == NPCID.DD2OgreT3)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease / 2)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3865, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3868, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 344) //Everscream
+						if (npc.type == NPCID.Everscream)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootFestiveWingsIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FestiveWings, 1, false, -1, false, false);
 						}
-						if (npc.type == 345) //Ice Queen
+						if (npc.type == NPCID.IceQueen)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBabyGrinchsMischiefWhistleIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.BabyGrinchMischiefWhistle, 1, false, -1, false, false);
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootReindeerBellsIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.ReindeerBells, 1, false, -1, false, false);
 						}
-						if (npc.type == 491) //Flying Dutchman
+						if (npc.type == NPCID.PirateShip)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3359, 1, false, -1, false, false); //Trophy
 						}
-						if (npc.type == 395) //Martian Saucer
+						if (npc.type == NPCID.MartianSaucerCore)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3358, 1, false, -1, false, false); //Trophy
@@ -3368,7 +3375,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Nazar, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 42 || (npc.type >= 231 && npc.type <= 235)) //Hornet
+						if (npc.type == NPCID.Hornet || (npc.type >= 231 && npc.type <= 235)) //Hornet
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootMegaphoneBaseIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
@@ -3572,7 +3579,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Megaphone, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 77 || (npc.type >= 273 && npc.type <= 276)) //Blue Amored Bones and Armored Skeleton
+						if (npc.type == NPCID.ArmoredSkeleton || (npc.type >= 273 && npc.type <= 276)) //Blue Amored Bones and Armored Skeleton
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootArmorPolishIncrease * difficultyMultiplier + AnkhMaterialBonus)
 							{
@@ -4438,56 +4445,56 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DepthMeter, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 22) //Guide NPC
+						if (npc.type == NPCID.Guide) //Guide NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootGreenCap)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 207) //Dye Trader NPC
+						if (npc.type == NPCID.DyeTrader) //Dye Trader NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootExoticScimitar)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 550) //Tavernkeep NPC
+						if (npc.type == NPCID.DD2Bartender) //Tavernkeep NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootAleTosser)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 353) //Stylist NPC
+						if (npc.type == NPCID.Stylist) //Stylist NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissors)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 227) //Painter NPC
+						if (npc.type == NPCID.Painter) //Painter NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissors)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 208) //Party Girl NPC
+						if (npc.type == NPCID.PartyGirl) //Party Girl NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPaintballGun)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
 							}
 						}
-						if (npc.type == 441) //Tax Collector Guide NPC
+						if (npc.type == NPCID.TaxCollector) //Tax Collector Guide NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootClassyCane)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3351, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == 244 && (mPlayer.clientConf.LootRainbowBlockDropMinIncrease < mPlayer.clientConf.LootRainbowBlockDropMaxIncrease)) //RainbowSlime
+						if (npc.type == NPCID.RainbowSlime && (mPlayer.clientConf.LootRainbowBlockDropMinIncrease < mPlayer.clientConf.LootRainbowBlockDropMaxIncrease)) //RainbowSlime
 						{
 							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 662, Main.rand.Next(mPlayer.clientConf.LootRainbowBlockDropMinIncrease - 30, mPlayer.clientConf.LootRainbowBlockDropMaxIncrease - 60), false, -1, false, false); //Rainbow Block
 						}
@@ -4501,7 +4508,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
 							else if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
-							else if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+							else if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Lihzahrd Temple Enemies
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
 							else if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 952, 1, false, -1, false, false); //Web Covered Chest
@@ -4602,7 +4609,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pyramid_Lock_Box"), 1, false, -1, false, false);
 							}
 						}
-						else if (npc.type == 198 || npc.type == 199 || npc.type == 226) //Lihzard Temple Enemies
+						else if (npc.type == 198 || npc.type == 199 || npc.type == 226) //Lihzahrd Temple Enemies
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.JungleTempleLihzahrd_Lock_Box*lockboxDropModdifier)
 							{
