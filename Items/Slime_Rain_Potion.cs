@@ -62,7 +62,7 @@ namespace ReducedGrinding.Items
 			}
 			Main.slimeRainTime = (double)(-(double)Main.rand.Next(3024, 6048) * 100);
 			Main.slimeRain = false;
-			if (Main.netMode == 0)
+			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
 				if (announce)
 				{
@@ -98,7 +98,7 @@ namespace ReducedGrinding.Items
 			Main.slimeRainTime = (double)Main.rand.Next(32400, 54000);
 			Main.slimeRain = true;
 			Main.slimeRainKillCount = 0;
-			if (Main.netMode == 0)
+			if (Main.netMode == NetmodeID.SinglePlayer)
 			{
 				SkyManager.Instance.Activate("Slime", default(Vector2), new object[0]);
 				if (announce)

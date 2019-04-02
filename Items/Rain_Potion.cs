@@ -1,25 +1,12 @@
 using Terraria;
-using Terraria.World.Generation;
-using Terraria.ObjectData;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.Localization;
 using Terraria.ID;
-using Terraria.GameContent.Generation;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Achievements;
-using Terraria.Enums;
-using Terraria.DataStructures;
-using System;
-using System.Linq;
-using System.IO;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ReducedGrinding.Items
 {
-    public class Rain_Potion : ModItem
+	public class Rain_Potion : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -52,14 +39,14 @@ namespace ReducedGrinding.Items
                 StopRain();
             else
                 StartRain();
-			if (Main.netMode == 2) // Server
+			if (Main.netMode == NetmodeID.Server)
 				NetMessage.SendData(7);
             return true;
         }
        
         private static void StopRain()
         {
-			if (Main.netMode == 2) // Server
+			if (Main.netMode == NetmodeID.Server)
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
 			else
 				Main.NewText("The rain started to fade away.", 0, 128, 255);
@@ -70,7 +57,7 @@ namespace ReducedGrinding.Items
 
         private static void StartRain()
         {
-			if (Main.netMode == 2) // Server
+			if (Main.netMode == NetmodeID.Server)
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade in."), new Color(0, 128, 255));
 			else
 				Main.NewText("The rain started to fade in.", 0, 128, 255);

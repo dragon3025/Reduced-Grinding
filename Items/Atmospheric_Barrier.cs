@@ -1,25 +1,12 @@
 using Terraria;
-using Terraria.World.Generation;
-using Terraria.ObjectData;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.Localization;
 using Terraria.ID;
-using Terraria.GameContent.Generation;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Achievements;
-using Terraria.Enums;
-using Terraria.DataStructures;
-using System;
-using System.Linq;
-using System.IO;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ReducedGrinding.Items
 {
-    public class Atmospheric_Barrier : ModItem
+	public class Atmospheric_Barrier : ModItem
     {
         public override void SetStaticDefaults()
         {
@@ -48,9 +35,9 @@ namespace ReducedGrinding.Items
 
         public override bool UseItem(Player player)
         {
-			if (Main.netMode == 2) // Server
+			if (Main.netMode == NetmodeID.Server)
 				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));
-			else if (Main.netMode == 0) // Single Player
+			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				Main.NewText("The Celestial Invasion was stopped.", 255, 0, 255);
 			NPC.TowerActiveVortex = false;
 			NPC.TowerActiveNebula = false;

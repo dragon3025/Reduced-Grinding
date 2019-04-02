@@ -1,16 +1,8 @@
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Linq;
-using System;
-using Terraria.ID;
-using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using Terraria;
 
 namespace ReducedGrinding.Items
 {
-    public class Moon_Ball : ModItem
+	public class Moon_Ball : ModItem
     {
         public override void SetStaticDefaults()
         {

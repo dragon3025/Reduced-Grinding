@@ -1,25 +1,10 @@
 using Terraria;
-using Terraria.World.Generation;
-using Terraria.ObjectData;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.Localization;
 using Terraria.ID;
-using Terraria.GameContent.Generation;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Achievements;
-using Terraria.Enums;
-using Terraria.DataStructures;
-using System;
-using System.Linq;
-using System.IO;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ReducedGrinding.Items
 {
-    public class Goblin_Retreat_Order : ModItem
+	public class Goblin_Retreat_Order : ModItem
 	{
 		
         public override void SetStaticDefaults()
@@ -57,7 +42,7 @@ namespace ReducedGrinding.Items
 			{
 				Main.ReportInvasionProgress(Main.invasionSizeStart - Main.invasionSize, Main.invasionSizeStart, 4, 0);
 			}
-			if (Main.netMode == 2)
+			if (Main.netMode == NetmodeID.Server)
 			{
 				NetMessage.SendData(78, -1, -1, null, Main.invasionProgress, Main.invasionProgressMax, Main.invasionProgressIcon);
 			}

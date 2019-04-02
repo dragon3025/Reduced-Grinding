@@ -1,14 +1,5 @@
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.IO;
-using Terraria.DataStructures;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
 using Terraria;
 
 namespace ReducedGrinding.Items
@@ -37,7 +28,7 @@ namespace ReducedGrinding.Items
 
 		public override bool CanUseItem(Player player)
 		{
-			if (Main.netMode == 0) // Single Player
+			if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				return true;
 			else
 				return false;
@@ -45,7 +36,7 @@ namespace ReducedGrinding.Items
 
 		public override bool UseItem(Player player)
 		{
-			if (Main.netMode == 0) // Single Player
+			if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 			{
 				if (Main.expertMode)
 					Main.NewText("World difficulty is now Normal Mode.", 255, 255, 0);

@@ -24,15 +24,15 @@ namespace ReducedGrinding.Items
 		public override bool CanRightClick()
 		{
 			Player player = Main.player[Main.myPlayer];
-				if (player.HasItem(1533) && ReducedGrindingWorld.jungleChestMined)
+				if (player.HasItem(ItemID.JungleKey) && ReducedGrindingWorld.jungleChestMined)
 					return true;
-				else if (player.HasItem(1534) && ReducedGrindingWorld.infectionChestMined) //Corruption Key
+				else if (player.HasItem(ItemID.CorruptionKey) && ReducedGrindingWorld.infectionChestMined)
 					return true;
-				else if (player.HasItem(1535) && ReducedGrindingWorld.infectionChestMined) //Crimson Key
+				else if (player.HasItem(ItemID.CrimsonKey) && ReducedGrindingWorld.infectionChestMined)
 					return true;
-				else if (player.HasItem(1536) && ReducedGrindingWorld.hallowedChestMined)
+				else if (player.HasItem(ItemID.HallowedKey) && ReducedGrindingWorld.hallowedChestMined)
 					return true;
-				else if (player.HasItem(1537) && ReducedGrindingWorld.frozenChestMined)
+				else if (player.HasItem(ItemID.FrozenKey) && ReducedGrindingWorld.frozenChestMined)
 					return true;
 				else
 					return false;
@@ -44,30 +44,30 @@ namespace ReducedGrinding.Items
 			
 			//Rare Biome Chest Item
 			int itemDiscarded = 0;
-			if (player.HasItem(1533) && ReducedGrindingWorld.jungleChestMined)
+			if (player.HasItem(ItemID.JungleKey) && ReducedGrindingWorld.jungleChestMined)
 			{
-				player.QuickSpawnItem(1156, 1); //Piranha Gun
-				itemDiscarded = 1533;
+				player.QuickSpawnItem(ItemID.PiranhaGun, 1);
+				itemDiscarded = ItemID.JungleKey;
 			}
-			else if (player.HasItem(1534) && ReducedGrindingWorld.infectionChestMined)
+			else if (player.HasItem(ItemID.CorruptionKey) && ReducedGrindingWorld.infectionChestMined)
 			{
-				player.QuickSpawnItem(1571, 1); //Scourge of the Corruptor
-				itemDiscarded = 1534;
+				player.QuickSpawnItem(ItemID.ScourgeoftheCorruptor, 1);
+				itemDiscarded = ItemID.CorruptionKey;
 			}
-			else if (player.HasItem(1535) && ReducedGrindingWorld.infectionChestMined)
+			else if (player.HasItem(ItemID.CrimsonKey) && ReducedGrindingWorld.infectionChestMined)
 			{
-				player.QuickSpawnItem(1569, 1); //Vampire Knives
-				itemDiscarded = 1535;
+				player.QuickSpawnItem(ItemID.VampireKnives, 1);
+				itemDiscarded = ItemID.CrimsonKey;
 			}
-			else if (player.HasItem(1536) && ReducedGrindingWorld.hallowedChestMined)
+			else if (player.HasItem(ItemID.HallowedKey) && ReducedGrindingWorld.hallowedChestMined)
 			{
-				player.QuickSpawnItem(1260, 1); //Rainbow Gun
-				itemDiscarded = 1536;
+				player.QuickSpawnItem(ItemID.RainbowGun, 1);
+				itemDiscarded = ItemID.HallowedKey;
 			}
-			else if (player.HasItem(1537) && ReducedGrindingWorld.frozenChestMined)
+			else if (player.HasItem(ItemID.FrozenKey) && ReducedGrindingWorld.frozenChestMined)
 			{
-				player.QuickSpawnItem(1572, 1); //Staff of the Frost Hydra
-				itemDiscarded = 1537;
+				player.QuickSpawnItem(ItemID.StaffoftheFrostHydra, 1);
+				itemDiscarded = ItemID.FrozenKey;
 			}
 			for (int i = 0; i < 58; i++)
 			{
@@ -77,11 +77,11 @@ namespace ReducedGrinding.Items
 			
 			//Cavern Gold Chest Common Items
 			if (Main.rand.Next(5) == 0)
-				player.QuickSpawnItem(43, 1); //Suspicious Looking Eye
+				player.QuickSpawnItem(ItemID.SuspiciousLookingEye, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(167, 1); //Dynamite
+				player.QuickSpawnItem(ItemID.Dynamite, 1); //Dynamite
 			if (Main.rand.Next(4) == 0)
-				player.QuickSpawnItem(51, Main.rand.Next(25, 51)); //Jester's Arrow
+				player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(25, 51)); //Jester's Arrow
 			if (Main.rand.Next(2) == 0)
 			{
 				switch (Main.rand.Next(4))
@@ -103,37 +103,37 @@ namespace ReducedGrinding.Items
 				switch (Main.rand.Next(2))
 				{
 					case 0:
-						itemid = 41; //Flaming Arrow
+						itemid = ItemID.FlamingArrow;
 						break;
 					case 1:
-						itemid = 279; //Throwing Knife
+						itemid = ItemID.ThrowingKnife;
 						break;
 				}
 				player.QuickSpawnItem(itemid, Main.rand.Next(25, 51));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(188, Main.rand.Next(3, 6)); //Healing Potion
+				player.QuickSpawnItem(ItemID.HealingPotion, Main.rand.Next(3, 6));
 			if (Main.rand.Next(3) <= 1)
 			{
 				switch (Main.rand.Next(6))
 				{
 					case 0:
-						itemid = 296; //Spelunker Potion
+						itemid = ItemID.SpelunkerPotion;
 						break;
 					case 1:
-						itemid = 295; //Featherfall Potion
+						itemid = ItemID.FeatherfallPotion;
 						break;
 					case 2:
-						itemid = 299; //Night Owl Potion
+						itemid = ItemID.NightOwlPotion;
 						break;
 					case 3:
-						itemid = 302; //Water Walking Potion
+						itemid = ItemID.WaterWalkingPotion;
 						break;
 					case 4:
-						itemid = 303; //Archery Potion
+						itemid = ItemID.ArcheryPotion;
 						break;
 					case 5:
-						itemid = 305; //Gravitation Potion
+						itemid = ItemID.GravitationPotion;
 						break;
 				}
 				player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
@@ -143,43 +143,43 @@ namespace ReducedGrinding.Items
 				switch (Main.rand.Next(6))
 				{
 					case 0:
-						itemid = 301; //Thorns Potion
+						itemid = ItemID.ThornsPotion;
 						break;
 					case 1:
-						itemid = 302; //Water Walking Potion
+						itemid = ItemID.WaterWalkingPotion;
 						break;
 					case 2:
-						itemid = 297; //Invisiblity Potion
+						itemid = ItemID.InvisibilityPotion;
 						break;
 					case 3:
-						itemid = 304; //Hunter Potion
+						itemid = ItemID.HunterPotion;
 						break;
 					case 4:
-						itemid = 2329; //Dangersense Potion
+						itemid = ItemID.TrapsightPotion; //Dangersense Potion
 						break;
 					case 5:
-						itemid = 2351; //Teleportation Potion
+						itemid = ItemID.TeleportationPotion;
 						break;
 				}
 				player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(2350, Main.rand.Next(1, 3)); //Recal Potion
+				player.QuickSpawnItem(ItemID.RecallPotion, Main.rand.Next(1, 3));
 			if (Main.rand.Next(2) == 0)
 			{
 				switch (Main.rand.Next(2))
 				{
 					case 0:
-						itemid = 8; //Torch
+						itemid = ItemID.Torch;
 						break;
 					case 1:
-						itemid = 282; //Glowstick
+						itemid = ItemID.Glowstick;
 						break;
 				}
 				player.QuickSpawnItem(itemid, Main.rand.Next(15, 30));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(73, Main.rand.Next(2, 3)); //Gold Coin
+				player.QuickSpawnItem(ItemID.GoldCoin, Main.rand.Next(2, 3));
 		}
 	}
 }
