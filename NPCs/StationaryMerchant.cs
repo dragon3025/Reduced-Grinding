@@ -1,19 +1,7 @@
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System;
-using System;
-using Terraria.DataStructures;
-using Terraria.GameContent.Achievements;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
 using Terraria;
 
 namespace ReducedGrinding.NPCs
@@ -23,7 +11,6 @@ namespace ReducedGrinding.NPCs
     {
 		
 		public static bool baseshop = false;
-		public static List<int> stationaryMerchantItemsChosen;
 		
 		public override void SetStaticDefaults()
 		{
@@ -34,8 +21,8 @@ namespace ReducedGrinding.NPCs
         {
             npc.townNPC = true;
             npc.friendly = true;
-            npc.width = 32;
-            npc.height = 50;
+            npc.width = 32; //His hitbox, the visual width/height is affected by frame count below.
+			npc.height = 50;
             npc.aiStyle = 7;
             npc.damage = 10;
             npc.defense = 15;
@@ -94,26 +81,34 @@ namespace ReducedGrinding.NPCs
 
 
         public override string GetChat()
-        {
-			if (Terraria.GameContent.Events.BirthdayParty.PartyIsUp && Main.rand.Next(3) == 0)
-			{
-				return "I bet travelers miss parties a lot.";
-			}
+		{
+			if (!ReducedGrindingWorld.smItemDecorShopNotEmpty && !ReducedGrindingWorld.smItemShopNotEmpty)
+				return "I don't have anything at the moment. I usually get supplies from merchants who travel by here. Check back later.";
+			else if (!ReducedGrindingWorld.smItemDecorShopNotEmpty)
+				return "I don't have decor at the moment. I usually get supplies from merchants who travel by here. Check back later if you want decor.";
+			else if (!ReducedGrindingWorld.smItemShopNotEmpty)
+				return "I don't have non-decor at the moment. I usually get supplies from merchants who travel by here. Check back later if you want non-decor.";
 			else
 			{
-				switch (Main.rand.Next(4))
+				if (Terraria.GameContent.Events.BirthdayParty.PartyIsUp && Main.rand.Next(3) == 0)
 				{
-					case 0:
-						return "Don't worry, I'm not going anywhere!";
-					case 1:
-						return "I like to stock up on goods from merchants that pass by here.";
-					case 2:
-						return "I could go hunting for rare items, but I'd rather buy them from those who do.";
-					default:
-						return "Would you like to see some goods that I've aquired from travelers?";
+					return "I bet travelers miss parties a lot.";
+				}
+				else
+				{
+					switch (Main.rand.Next(4))
+					{
+						case 0:
+							return "Don't worry, I'm not going anywhere!";
+						case 1:
+							return "I like to stock up on goods from merchants that pass by here.";
+						case 2:
+							return "I could go hunting for rare items, but I'd rather buy them from those who do.";
+						default:
+							return "Would you like to see some goods that I've aquired from travelers?";
+					}
 				}
 			}
-
         }
 
         public override void SetChatButtons(ref string button, ref string button2)
@@ -138,192 +133,318 @@ namespace ReducedGrinding.NPCs
 
         public override void SetupShop(Chest shop, ref int nextSlot)
         {
-			if (Main.netMode == 0) // Single Player
+			if (baseshop)
 			{
-				if (baseshop)
+				if (ReducedGrindingWorld.smItemSake)
 				{
-					stationaryMerchantItemsChosen = ReducedGrindingWorld.stationaryMerchantItems.ToList();
-				}
-				else //Docor Shop
-				{
-					stationaryMerchantItemsChosen = ReducedGrindingWorld.stationaryMerchantStructureItems.ToList();
-				}
-				int stationaryMerchantItemsCount = 0;
-				foreach (int i in stationaryMerchantItemsChosen)
-					stationaryMerchantItemsCount++;
-				int j = 0;
-				while (j < stationaryMerchantItemsCount)
-				{
-					shop.item[nextSlot].SetDefaults(stationaryMerchantItemsChosen[j]);
+					shop.item[nextSlot].SetDefaults(ItemID.Sake);
 					nextSlot++;
-					j++;
+				}
+				if (ReducedGrindingWorld.smItemPho)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Pho);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPadThai)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PadThai);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemUltrabrightTorch)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.UltrabrightTorch);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemAmmoBox)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.AmmoBox);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemMagicHat)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.MagicHat);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemGypsyRobe)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.GypsyRobe);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemGi)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Gi);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCelestialMagnet)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemDPSMeter)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.DPSMeter);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemLifeformAnalyzer)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.LifeformAnalyzer);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemStopwatch)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Stopwatch);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPaintSprayer)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintSprayer);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemBrickLayer)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.BrickLayer);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPortableCementMixer)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PortableCementMixer);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemExtendoGrip)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.ExtendoGrip);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPresserator)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.ActuationAccessory);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemBlackCounterweight)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.BlackCounterweight);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemYellowCounterweight)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.YellowCounterweight);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemSittingDucksFishingPole)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemKatana)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Katana);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCode1)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Code1);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemRevolver)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Revolver);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemGatligator)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCode2)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Code2);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPulseBow)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PulseBow);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemDiamondRing)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.DiamondRing);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemAngelHalo)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.AngelHalo);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemFez)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Fez);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemWinterCape)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.WinterCape);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemRedCape)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.RedCape);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCrimsonCloak)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.CrimsonCloak);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemMysteriousCape)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.MysteriousCape);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemKimono)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Kimono);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemWaterGun)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.WaterGun);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCompanionCube)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.CompanionCube);
+					nextSlot++;
 				}
 			}
-			else //I tried for days to get ReducedGrindingWorld.stationaryMerchantItems and ReducedGrindingWorld.stationaryMerchantStructureItems to sync in multiplayer but couldn't. So instead, the stationary merchant works differently in multiplayer.
+			else //Docor Shop
 			{
-				if (baseshop)
+				if (ReducedGrindingWorld.smItemRedTeamBlock)
 				{
-					if (NPC.downedSlimeKing)
-					{
-						for (int i = 2266; i <= 2268; i++)
-						{
-							shop.item[nextSlot].SetDefaults(i);
-							nextSlot++;
-						}
-						shop.item[nextSlot].SetDefaults(3119);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3118);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3099);
-						nextSlot++;
-					}
-					if (NPC.downedBoss1)
-					{
-						shop.item[nextSlot].SetDefaults(2274);
-						nextSlot++;
-						for (int i = 2214; i <= 2217; i++)
-						{
-							shop.item[nextSlot].SetDefaults(i);
-							nextSlot++;
-						}
-						shop.item[nextSlot].SetDefaults(3624);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3262);
-						nextSlot++;
-					}
-					if (NPC.downedBoss2)
-					{
-						shop.item[nextSlot].SetDefaults(2273);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2177);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2275);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2279);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2277);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(1988);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2269);
-						nextSlot++;
-					}
-					if (NPC.downedQueenBee)
-					{
-						shop.item[nextSlot].SetDefaults(2219);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3314);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2296);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2276);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2284);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2285);
-						nextSlot++;
-					}
-					if (NPC.downedBoss3)
-					{
-						shop.item[nextSlot].SetDefaults(1987);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2272);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2278);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2286);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2287);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3309);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3628);
-						nextSlot++;
-					}
-					if (Main.hardMode)
-					{
-						shop.item[nextSlot].SetDefaults(2270);
-						nextSlot++;
-					}
-					if (NPC.downedMechBossAny)
-					{
-						shop.item[nextSlot].SetDefaults(3284);
-						nextSlot++;
-					}
-					if (NPC.downedPlantBoss)
-					{
-						shop.item[nextSlot].SetDefaults(2223);
-						nextSlot++;
-					}
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRed);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRedPlatform);
+					nextSlot++;
 				}
-				else //Docor Shop
+				if (ReducedGrindingWorld.smItemYellowTeamBlock)
 				{
-					shop.item[nextSlot].SetDefaults(3621);
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellow);
 					nextSlot++;
-					shop.item[nextSlot].SetDefaults(3622);
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellowPlatform);
 					nextSlot++;
-					for (int i = 3633; i <= 3642; i++)
-					{
-						shop.item[nextSlot].SetDefaults(i);
-						nextSlot++;
-					}
-					if (NPC.downedSlimeKing)
-					{
-						shop.item[nextSlot].SetDefaults(2258);
-						nextSlot++;
-					}
-					if (NPC.downedBoss1)
-					{
-						shop.item[nextSlot].SetDefaults(2242);
-						nextSlot++;
-					}
-					if (NPC.downedBoss2)
-					{
-						shop.item[nextSlot].SetDefaults(2260);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2261);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2262);
-						nextSlot++;
-					}
-					if (NPC.downedQueenBee)
-					{
-						for (int i = 2281; i <= 2283; i++)
-						{
-							shop.item[nextSlot].SetDefaults(i);
-							nextSlot++;
-						}
-					}
-					if (NPC.downedBoss3)
-					{
-						shop.item[nextSlot].SetDefaults(2271);
-						nextSlot++;
-					}
-					if (NPC.downedFrost)
-					{
-						for (int i = 3055; i <= 3059; i++)
-						{
-							shop.item[nextSlot].SetDefaults(i);
-							nextSlot++;
-						}
-					}
-					if (NPC.downedMartians)
-					{
-						shop.item[nextSlot].SetDefaults(2865);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2866);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(2867);
-						nextSlot++;
-					}
-					if (NPC.downedMoonlord)
-					{
-						shop.item[nextSlot].SetDefaults(3596);
-						nextSlot++;
-					}
+				}
+				if (ReducedGrindingWorld.smItemGreenTeamBlock)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreen);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreenPlatform);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemBlueTeamBlock)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBlue);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBluePlatform);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemPinkTeamBlock)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPink);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPinkPlatform);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemWhiteTeamBlock)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhite);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhitePlatform);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemChalice)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.SteampunkCup);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemArcaneRuneWall)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.ArcaneRuneWall);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemFancyDishes)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.FancyDishes);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemDynastyWood)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.DynastyWood);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.RedDynastyShingles);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(ItemID.BlueDynastyShingles);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemZebraSkin)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.ZebraSkin);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemLeopardSkin)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.LeopardSkin);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemTigerSkin)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.TigerSkin);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCastleMarsberg)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingCastleMarsberg);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemMartiaLisa)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingMartiaLisa);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemTheTruthIsUpThere)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingTheTruthIsUpThere);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemNotAKidNorASquid)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.MoonLordPainting);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemAcorns)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingAcorns);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemColdSnap)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingColdSnap);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemCursedSaint)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingCursedSaint);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemSnowfellas)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingSnowfellas);
+					nextSlot++;
+				}
+				if (ReducedGrindingWorld.smItemTheSeason)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingTheSeason);
+					nextSlot++;
 				}
 			}
-				
-        }
+		}
     }
 }

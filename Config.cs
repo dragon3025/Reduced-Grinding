@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.49.json";
+		static string filename = "Reduced Grinding v4.51.json";
 		
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
@@ -344,11 +344,17 @@ namespace ReducedGrinding
 		public static float TravelingMerchantYellowTeamPlatformIncrease = 0f;
 		public static float TravelingMerchantZebraSkinIncrease = 0f;
 		public static bool TravelingMerchantAlwaysXMasForConfigurations = false;
-		public static float ChanceThatEnemyKillWillResetTravelingMerchant = 0.02f;
+		public static float ChanceThatEnemyKillWillResetTravelingMerchant = 0f;
+		public static float ChanceEachMorningTravelingMerchantWillSpawn = 1.0f;
+		public static float ChanceEachInGameMinuteWillResetTravelingMerchant = 0.0432f;
 		public static bool StationaryMerchant = true;
-		public static float StationaryMerchantStockingChance = 0.166f;
-		public static float S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate = 0.1668f;
-		
+		public static float StationaryMerchantStockingChance = 0.143f;
+		public static float S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate = 0.857f;
+
+		public static bool BoneMerchant = true;
+		public static bool BoneMerchantDisabledWhenLuiafkIsInstalled = false;
+		public static bool Santa = true;
+
 		public static float QuestAnglerEarringIncrease = 0.025f;
 		public static float QuestAnglerHatIncrease = 0.05f;
 		public static float QuestAnglerPantsIncrease = 0.05f;
@@ -382,7 +388,7 @@ namespace ReducedGrinding
 		public static bool ChestSalesmanSellsShadowChest = true;
 		public static bool ChestSalesmanSellsSkywareChest = true;
 		public static bool ChestSalesmanSellsWebCoveredChest = true;
-		public static bool ChestSalesmanSpawnable = false;
+		public static bool ChestSalesman = false;
 		
 		public static bool MechanicSellsDartTrapAfterSkeletronDefeated = true;
 		public static bool MechanicSellsGeyserAfterWallofFleshDefeated = true;
@@ -486,7 +492,7 @@ namespace ReducedGrinding
         {
             bool success = ReadConfig();
 
-            if(!success/* && Main.netMode == 0*/) //Singleplayer
+            if(!success)
             {
                 ErrorLogger.Log("Failed to read Reduced Grinding's config file! Recreating config...");
                 CreateConfig();
@@ -495,7 +501,7 @@ namespace ReducedGrinding
 
         static bool ReadConfig()
         {
-            if(Configuration.Load()/* && Main.netMode == 0*/) //Singleplayer
+            if(Configuration.Load())
             {
 				Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent adding items that Luiafk already adds
 				
@@ -762,7 +768,9 @@ namespace ReducedGrinding
 				Configuration.Get("UndergroundJungleBiomeModdedIvyLockBoxLoot", ref UndergroundJungleBiomeModdedIvyLockBoxLoot);
 				Configuration.Get("UndergroundSnowBiomeModdedIceLockBoxLoot", ref UndergroundSnowBiomeModdedIceLockBoxLoot);
 				Configuration.Get("WaterEnemyModdedWaterLockBoxLoot", ref WaterEnemyModdedWaterLockBoxLoot);
-			
+
+				Configuration.Get("ChanceEachInGameMinuteWillResetTravelingMerchant", ref ChanceEachInGameMinuteWillResetTravelingMerchant);
+				Configuration.Get("ChanceEachMorningTravelingMerchantWillSpawn", ref ChanceEachMorningTravelingMerchantWillSpawn);
 				Configuration.Get("ChanceThatEnemyKillWillResetTravelingMerchant", ref ChanceThatEnemyKillWillResetTravelingMerchant);
 				Configuration.Get("S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate", ref S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate);
 				Configuration.Get("StationaryMerchant", ref StationaryMerchant);
@@ -835,7 +843,11 @@ namespace ReducedGrinding
 				Configuration.Get("TravelingMerchantYellowTeamBlockIncrease", ref TravelingMerchantYellowTeamBlockIncrease);
 				Configuration.Get("TravelingMerchantYellowTeamPlatformIncrease", ref TravelingMerchantYellowTeamPlatformIncrease);
 				Configuration.Get("TravelingMerchantZebraSkinIncrease", ref TravelingMerchantZebraSkinIncrease);
-			
+
+				Configuration.Get("BoneMerchant", ref BoneMerchant);
+				Configuration.Get("BoneMerchantDisabledWhenLuiafkIsInstalled", ref BoneMerchantDisabledWhenLuiafkIsInstalled);
+				Configuration.Get("Santa", ref Santa);
+
 				Configuration.Get("QuestAnglerEarringIncrease", ref QuestAnglerEarringIncrease);
 				Configuration.Get("QuestAnglerHatIncrease", ref QuestAnglerHatIncrease);
 				Configuration.Get("QuestAnglerPantsIncrease", ref QuestAnglerPantsIncrease);
@@ -867,7 +879,7 @@ namespace ReducedGrinding
 				Configuration.Get("ChestSalesmanSellsShadowChest", ref ChestSalesmanSellsShadowChest);
 				Configuration.Get("ChestSalesmanSellsSkywareChest", ref ChestSalesmanSellsSkywareChest);
 				Configuration.Get("ChestSalesmanSellsWebCoveredChest", ref ChestSalesmanSellsWebCoveredChest);
-				Configuration.Get("ChestSalesmanSpawnable", ref ChestSalesmanSpawnable);
+				Configuration.Get("ChestSalesman", ref ChestSalesman);
 				
 				Configuration.Get("MechanicSellsDartTrapAfterSkeletronDefeated", ref MechanicSellsDartTrapAfterSkeletronDefeated);
 				Configuration.Get("MechanicSellsGeyserAfterWallofFleshDefeated", ref MechanicSellsGeyserAfterWallofFleshDefeated);
@@ -985,9 +997,9 @@ namespace ReducedGrinding
 			
 			Configuration.Put("DropTriesForAllEnemyDroppedLoot", DropTriesForAllEnemyDroppedLoot);
 			Configuration.Put("NormalModeLootMultiplierForLootWithSeperateDifficultyRates", NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
-			Configuration.Put("===================================================================================================A", 0);
+			Configuration.Put("=================================================================================================GB1", 0);
 			Configuration.Put("|                                            GRAB BAGS                                             |", 0);
-			Configuration.Put("===================================================================================================B", 0);
+			Configuration.Put("=================================================================================================GB2", 0);
 			Configuration.Put("CrateDungeonBoneWelder", CrateDungeonBoneWelder);
 			Configuration.Put("CrateEnchantedSundialGoldenIncrease", CrateEnchantedSundialGoldenIncrease);
 			Configuration.Put("CrateEnchantedSundialIronIncrease", CrateEnchantedSundialIronIncrease);
@@ -1038,9 +1050,9 @@ namespace ReducedGrinding
 			Configuration.Put("PresentTreeCostume", PresentTreeCostume);
 			Configuration.Put("PresentUglySweater", PresentUglySweater);
 			
-			Configuration.Put("===================================================================================================C", 0);
+			Configuration.Put("=================================================================================================BL1", 0);
 			Configuration.Put("|               BOSS LOOT (Affects normal mode loot and expert mode Grab Bags)                     |", 0);
-			Configuration.Put("===================================================================================================D", 0);
+			Configuration.Put("=================================================================================================BL2", 0);
 			Configuration.Put("LootBinocularsIncrease", LootBinocularsIncrease);
 			Configuration.Put("LootBoneRattleIncrease", LootBoneRattleIncrease);
 			Configuration.Put("LootBookofSkullsIncrease", LootBookofSkullsIncrease);
@@ -1056,16 +1068,16 @@ namespace ReducedGrinding
 			Configuration.Put("LootSkeletronBoneKey", LootSkeletronBoneKey);
 			Configuration.Put("LootTheAxeIncrease", LootTheAxeIncrease);
 			
-			Configuration.Put("===================================================================================================E", 0);
+			Configuration.Put("=================================================================================================BK1", 0);
 			Configuration.Put("|                                      BIOME KEYS                                                  |", 0);
-			Configuration.Put("===================================================================================================F", 0);
+			Configuration.Put("=================================================================================================BK2", 0);
 			Configuration.Put("BiomeKeyIncreaseForOneMechBossDown", BiomeKeyIncreaseForOneMechBossDown);
 			Configuration.Put("BiomeKeyIncreaseForTwoMechBossDown", BiomeKeyIncreaseForTwoMechBossDown);
 			Configuration.Put("BiomeKeyIncreaseForThreeMechBossDown", BiomeKeyIncreaseForThreeMechBossDown);
 			
-			Configuration.Put("===================================================================================================G", 0);
+			Configuration.Put("=================================================================================================EL1", 0);
 			Configuration.Put("|                                      ENEMY LOOT                                                  |", 0);
-			Configuration.Put("===================================================================================================H", 0);
+			Configuration.Put("=================================================================================================EL2", 0);
 			Configuration.Put("AllEnemiesLootBiomeMatchingFoundOnlyChestDrop", AllEnemiesLootBiomeMatchingFoundOnlyChestDrop);
 			Configuration.Put("HellBatLootMagmaStoneIncrease", HellBatLootMagmaStoneIncrease);
 			Configuration.Put("LavaBatLootMagmaStoneIncrease", LavaBatLootMagmaStoneIncrease);
@@ -1243,9 +1255,14 @@ namespace ReducedGrinding
 			Configuration.Put("SlimeStaffIncreaseToSurfaceSlimes", SlimeStaffIncreaseToSurfaceSlimes);
 			Configuration.Put("SlimeStaffIncreaseToUndergroundSlimes", SlimeStaffIncreaseToUndergroundSlimes);
 		
-			Configuration.Put("===================================================================================================I", 0);
+			Configuration.Put("===============================================================================================TASM1", 0);
 			Configuration.Put("|                           TRAVELING AND STATIONARY MERCHANT                                      |", 0);
-			Configuration.Put("===================================================================================================J", 0);
+			Configuration.Put("------------------------------------------------------------------------------------------------TASM", 0);
+			Configuration.Put("| The chance for spawning the Traveling Merchant and for Restocking is divided by the amount       |", 0);
+			Configuration.Put("| of stationary Vanilla and Reduced Grinding NPC's.                                                |", 0);
+			Configuration.Put("===============================================================================================TASM2", 0);
+			Configuration.Put("ChanceEachInGameMinuteWillResetTravelingMerchant", ChanceEachInGameMinuteWillResetTravelingMerchant);
+			Configuration.Put("ChanceEachMorningTravelingMerchantWillSpawn", ChanceEachMorningTravelingMerchantWillSpawn);
 			Configuration.Put("ChanceThatEnemyKillWillResetTravelingMerchant", ChanceThatEnemyKillWillResetTravelingMerchant);
 			Configuration.Put("S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate", S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate);
 			Configuration.Put("StationaryMerchant", StationaryMerchant);
@@ -1318,10 +1335,17 @@ namespace ReducedGrinding
 			Configuration.Put("TravelingMerchantYellowTeamBlockIncrease", TravelingMerchantYellowTeamBlockIncrease);
 			Configuration.Put("TravelingMerchantYellowTeamPlatformIncrease", TravelingMerchantYellowTeamPlatformIncrease);
 			Configuration.Put("TravelingMerchantZebraSkinIncrease", TravelingMerchantZebraSkinIncrease);
-		
-			Configuration.Put("===================================================================================================K", 0);
+
+			Configuration.Put("=================================================================================================FQ1", 0);
+			Configuration.Put("|                                      OTHER MOD NPCS                                              |", 0);
+			Configuration.Put("=================================================================================================FQ2", 0);
+			Configuration.Put("BoneMerchant", BoneMerchant);
+			Configuration.Put("BoneMerchantDisabledWhenLuiafkIsInstalled", BoneMerchantDisabledWhenLuiafkIsInstalled);
+			Configuration.Put("Santa", Santa);
+
+			Configuration.Put("=================================================================================================FQ1", 0);
 			Configuration.Put("|                                       FISHING QUEST                                              |", 0);
-			Configuration.Put("===================================================================================================L", 0);
+			Configuration.Put("=================================================================================================FQ2", 0);
 			Configuration.Put("QuestAnglerEarringIncrease", QuestAnglerEarringIncrease);
 			Configuration.Put("QuestAnglerHatIncrease", QuestAnglerHatIncrease);
 			Configuration.Put("QuestAnglerPantsIncrease", QuestAnglerPantsIncrease);
@@ -1342,9 +1366,9 @@ namespace ReducedGrinding
 			Configuration.Put("QuestTrophyIncrease", QuestTrophyIncrease);
 			Configuration.Put("QuestWeatherRadioIncrease", QuestWeatherRadioIncrease);
 		
-			Configuration.Put("===================================================================================================M", 0);
+			Configuration.Put("=================================================================================================CH1", 0);
 			Configuration.Put("|                                        CHEST SALESMAN                                            |", 0);
-			Configuration.Put("===================================================================================================N", 0);
+			Configuration.Put("=================================================================================================CH2", 0);
 			Configuration.Put("ChestSalesmanPreHardmodeChestsRequireHardmodeActivated", ChestSalesmanPreHardmodeChestsRequireHardmodeActivated);
 			Configuration.Put("ChestSalesmanSellsBiomeChest", ChestSalesmanSellsBiomeChests);
 			Configuration.Put("ChestSalesmanSellsGoldChest", ChestSalesmanSellsGoldChest);
@@ -1356,11 +1380,11 @@ namespace ReducedGrinding
 			Configuration.Put("ChestSalesmanSellsShadowChest", ChestSalesmanSellsShadowChest);
 			Configuration.Put("ChestSalesmanSellsSkywareChest", ChestSalesmanSellsSkywareChest);
 			Configuration.Put("ChestSalesmanSellsWebCoveredChest", ChestSalesmanSellsWebCoveredChest);
-			Configuration.Put("ChestSalesmanSpawnable", ChestSalesmanSpawnable);
+			Configuration.Put("ChestSalesman", ChestSalesman);
 			
-			Configuration.Put("===================================================================================================O", 0);
+			Configuration.Put("=================================================================================================VS1", 0);
 			Configuration.Put("|                                        VANILLA SHOPS                                             |", 0);
-			Configuration.Put("===================================================================================================P", 0);
+			Configuration.Put("=================================================================================================VS2", 0);
 			Configuration.Put("MechanicSellsDartTrapAfterSkeletronDefeated", MechanicSellsDartTrapAfterSkeletronDefeated);
 			Configuration.Put("MechanicSellsGeyserAfterWallofFleshDefeated", MechanicSellsGeyserAfterWallofFleshDefeated);
 			Configuration.Put("MechanicSellsLihzahrdTrapsAfterGolemDefeated", MechanicSellsLihzahrdTrapsAfterGolemDefeated);
@@ -1377,9 +1401,9 @@ namespace ReducedGrinding
 			Configuration.Put("WitchDoctorSellsSeaweed", WitchDoctorSellsSeaweed);
 			Configuration.Put("WitchDoctorSellsStaffofRegrowth", WitchDoctorSellsStaffofRegrowth);
 			
-			Configuration.Put("===================================================================================================Q", 0);
+			Configuration.Put("=================================================================================================ML1", 0);
 			Configuration.Put("|                                          MOD LOCKBOXES                                           |", 0);
-			Configuration.Put("===================================================================================================R", 0);
+			Configuration.Put("=================================================================================================ML2", 0);
 			Configuration.Put("CavernModdedCavernLockBoxLoot", CavernModdedCavernLockBoxLoot);
 			Configuration.Put("DungeonModdedBiomeLockBoxLoot", DungeonModdedBiomeLockBoxLoot);
 			Configuration.Put("DungeonFurnitureLockBoxLoot", DungeonFurnitureLockBoxLoot);
@@ -1394,9 +1418,9 @@ namespace ReducedGrinding
 			Configuration.Put("UndergroundSnowBiomeModdedIceLockBoxLoot", UndergroundSnowBiomeModdedIceLockBoxLoot);
 			Configuration.Put("WaterEnemyModdedWaterLockBoxLoot", WaterEnemyModdedWaterLockBoxLoot);
 			
-			Configuration.Put("===================================================================================================S", 0);
+			Configuration.Put("================================================================================================OMO1", 0);
 			Configuration.Put("|                                      OTHER MOD OBJECTS                                           |", 0);
-			Configuration.Put("===================================================================================================T", 0);
+			Configuration.Put("================================================================================================OMO2", 0);
 			Configuration.Put("BattlePotionMaxSpawnsMultiplier", BattlePotionMaxSpawnsMultiplier);
 			Configuration.Put("BattlePotionSpawnrateMultiplier", BattlePotionSpawnrateMultiplier);
 			Configuration.Put("BloodZombieAndDripplerDropsBloodMoonMedallion", BloodZombieAndDripplerDropsBloodMoonMedallion);
@@ -1410,11 +1434,11 @@ namespace ReducedGrinding
 			Configuration.Put("WarPotionSpawnrateMultiplier", WarPotionSpawnrateMultiplier);
 			Configuration.Put("WizardSellsMoonBall", WizardSellsMoonBall);
 			
-			Configuration.Put("===================================================================================================W", 0);
+			Configuration.Put("=================================================================================================SI1", 0);
 			Configuration.Put("|                         STARTING ITEMS (THIS IS DISABLED FOR NOW)                                |", 0);
-			Configuration.Put("------------------------------------------------------------------------------------------------1418", 0);
-			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk and Recipe Browser.                    1419", 0);
-			Configuration.Put("================================================================================================1420", 0);
+			Configuration.Put("--------------------------------------------------------------------------------------------------SI", 0);
+			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk and Recipe Browser.                       |", 0);
+			Configuration.Put("=================================================================================================SI2", 0);
 			Configuration.Put("NewCharacterBarrels", NewCharacterBarrels);
 			Configuration.Put("NewCharacterCopperBars", NewCharacterCopperBars);
 			Configuration.Put("NewCharacterCopperCoins", NewCharacterCopperCoins);
@@ -1427,12 +1451,12 @@ namespace ReducedGrinding
 			Configuration.Put("NewCharacterSilverCoins", NewCharacterSilverCoins);
 			Configuration.Put("NewCharacterWarPotions", NewCharacterWarPotions);
 			
-			Configuration.Put("===================================================================================================================================================================Y", 0);
+			Configuration.Put("=================================================================================================================================================================EL1", 0);
 			Configuration.Put("|              EXTRACTINATOR LOOT (Loots in this category may override each other and blocks may have a decreasing multiplier compared to other blocks)            |", 0);
-			Configuration.Put("-------------------------------------------------------------------------------------------------------------------------------------------------------------------Z", 0);
+			Configuration.Put("------------------------------------------------------------------------------------------------------------------------------------------------------------------EL", 0);
 			Configuration.Put(" Loots in this category may override each other and some have a drop decreasing multiplier for certain blocks (for example, Sturdy Fossil only drops when using    |", 0);
 			Configuration.Put(" Desert Fossil).                                                                                                                                                   |", 0);
-			Configuration.Put("==================================================================================================================================================================Z2", 0);
+			Configuration.Put("=================================================================================================================================================================EL2", 0);
 			Configuration.Put("ExtractinatorGivesAmber", ExtractinatorGivesAmber);
 			Configuration.Put("ExtractinatorGivesAmberMosquito", ExtractinatorGivesAmberMosquito);
 			Configuration.Put("ExtractinatorGivesAmethyst", ExtractinatorGivesAmethyst);
@@ -1455,12 +1479,12 @@ namespace ReducedGrinding
 			Configuration.Put("ExtractinatorGivesTopaz", ExtractinatorGivesTopaz);
 			Configuration.Put("ExtractinatorGivesTungstenOre", ExtractinatorGivesTungstenOre);
 			
-			Configuration.Put("==================================================================================================AA", 0);
+			Configuration.Put("=================================================================================================FC1", 0);
 			Configuration.Put("|                                       FISHING CATCHES                                            |", 0);
-			Configuration.Put("------------------------------------------------------------------------------------------------1655", 0);
-			Configuration.Put(" Fish catches here are still affected by Fishing Power and some fish are limited to certain     1656", 0);
-			Configuration.Put(" locations.                                                                                     1657", 0);
-			Configuration.Put("==================================================================================================AB", 0);
+			Configuration.Put("--------------------------------------------------------------------------------------------------FC", 0);
+			Configuration.Put(" Fish catches here are still affected by Fishing Power and some fish are limited to certain        |", 0);
+			Configuration.Put(" locations.                                                                                        |", 0);
+			Configuration.Put("=================================================================================================FC2", 0);
 			Configuration.Put("CrateUpgradesDependingOnFishingPower", CrateUpgradesDependingOnFishingPower);
 			Configuration.Put("FishCatchBecomesBalloonPufferfish", FishCatchBecomesBalloonPufferfish);
 			Configuration.Put("FishCatchBecomesBladetongue", FishCatchBecomesBladetongue);

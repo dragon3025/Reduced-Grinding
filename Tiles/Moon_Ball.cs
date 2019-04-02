@@ -1,21 +1,11 @@
 using Terraria;
-using Terraria.World.Generation;
 using Terraria.ObjectData;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
-using Terraria.Localization;
 using Terraria.ID;
-using Terraria.GameContent.Generation;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Achievements;
 using Terraria.Enums;
 using Terraria.DataStructures;
 using System;
-using System.Linq;
-using System.IO;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 
 namespace ReducedGrinding.Tiles

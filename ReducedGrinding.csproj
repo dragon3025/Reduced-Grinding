@@ -33,6 +33,46 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
@@ -68,13 +108,115 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MOD.cs" />
+    <Compile Include="Buffs\Chaos.cs" />
+    <Compile Include="Buffs\War.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Items\Angler_Potion.cs" />
+    <Compile Include="Items\Atmospheric_Barrier.cs" />
+    <Compile Include="Items\Biome_Lock_Box.cs" />
+    <Compile Include="Items\Blood_Moon_Medallion.cs" />
+    <Compile Include="Items\Blue_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\Cavern_Lock_Box.cs" />
+    <Compile Include="Items\Celestial Beacon.cs" />
+    <Compile Include="Items\Chaos_Potion.cs" />
+    <Compile Include="Items\Chlorophyte_Accelerator.cs" />
+    <Compile Include="Items\Christmas_Spirit.cs" />
+    <Compile Include="Items\Expert_Change_Potion.cs" />
+    <Compile Include="Items\Goblin_Retreat_Order.cs" />
+    <Compile Include="Items\Granite_Moondial.cs" />
+    <Compile Include="Items\Green_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\Halloween Spirit.cs" />
+    <Compile Include="Items\Ice_Lock_Box.cs" />
+    <Compile Include="Items\Ivy_Lock_Box.cs" />
+    <Compile Include="Items\Lihzahrd_Lock_Box.cs" />
+    <Compile Include="Items\Living_Wood_Lock_Box.cs" />
+    <Compile Include="Items\Marble_Sundial.cs" />
+    <Compile Include="Items\Moon_Ball.cs" />
+    <Compile Include="Items\Pink_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\Pirate_Retreat_Order.cs" />
+    <Compile Include="Items\Pyramid_Lock_Box.cs" />
+    <Compile Include="Items\Rain_Potion.cs" />
+    <Compile Include="Items\Sandstorm_Potion.cs" />
+    <Compile Include="Items\Shadow_Lock_Box.cs" />
+    <Compile Include="Items\Skull_Call.cs" />
+    <Compile Include="Items\Skyware_Lock_Box.cs" />
+    <Compile Include="Items\Slime_Rain_Potion.cs" />
+    <Compile Include="Items\Underground_Lock_Box.cs" />
+    <Compile Include="Items\War_Potion.cs" />
+    <Compile Include="Items\Water_Lock_Box.cs" />
+    <Compile Include="Items\Web_Covered_Lock_Box.cs" />
+    <Compile Include="NPCs\BoneMerchant.cs" />
+    <Compile Include="NPCs\ChestSalesman.cs" />
+    <Compile Include="NPCs\Santa.cs" />
+    <Compile Include="NPCs\StationaryMerchant.cs" />
+    <Compile Include="ReducedGrinding.cs" />
+    <Compile Include="ReducedGrindingPlayer.cs" />
+    <Compile Include="ReducedGrindingWorld.cs" />
+    <Compile Include="Tiles\Chlorophyte_Accelerator.cs" />
+    <Compile Include="Tiles\Granite_Moondial.cs" />
+    <Compile Include="Tiles\Marble_Sundial.cs" />
+    <Compile Include="Tiles\Moon_Ball.cs" />
+    <Compile Include="VanillaNPCShop.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Buffs\Chaos.png" />
+    <Content Include="Buffs\War.png" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
+    <Content Include="Items\Angler_Potion.png" />
+    <Content Include="Items\Atmospheric_Barrier.png" />
+    <Content Include="Items\Biome_Lock_Box.png" />
+    <Content Include="Items\Blood_Moon_Medallion.png" />
+    <Content Include="Items\Blue_Dungeon_Lock_Box.png" />
+    <Content Include="Items\Cavern_Lock_Box.png" />
+    <Content Include="Items\Celestial_Beacon.png" />
+    <Content Include="Items\Chaos_Potion.png" />
+    <Content Include="Items\Chlorophyte_Accelerator.png" />
+    <Content Include="Items\Christmas_Spirit.png" />
+    <Content Include="Items\Expert_Change_Potion.png" />
+    <Content Include="Items\Goblin_Retreat_Order.png" />
+    <Content Include="Items\Granite_Moondial.png" />
+    <Content Include="Items\Green_Dungeon_Lock_Box.png" />
+    <Content Include="Items\Halloween_Spirit.png" />
+    <Content Include="Items\Ice_Lock_Box.png" />
+    <Content Include="Items\Ivy_Lock_Box.png" />
+    <Content Include="Items\Lihzahrd_Lock_Box.png" />
+    <Content Include="Items\Living_Wood_Lock_Box.png" />
+    <Content Include="Items\Marble_Sundial.png" />
+    <Content Include="Items\Moon_Ball.png" />
+    <Content Include="Items\Pink_Dungeon_Lock_Box.png" />
+    <Content Include="Items\Pirate_Retreat_Order.png" />
+    <Content Include="Items\Pyramid_Lock_Box.png" />
+    <Content Include="Items\Rain_Potion.png" />
+    <Content Include="Items\Sandstorm_Potion.png" />
+    <Content Include="Items\Shadow_Lock_Box.png" />
+    <Content Include="Items\Skull_Call.png" />
+    <Content Include="Items\Skyware_Lock_Box.png" />
+    <Content Include="Items\Slime_Rain_Potion.png" />
+    <Content Include="Items\Underground_Lock_Box.png" />
+    <Content Include="Items\War_Potion.png" />
+    <Content Include="Items\Water_Lock_Box.png" />
+    <Content Include="Items\Web_Covered_Lock_Box.png" />
+    <Content Include="NPCs\BoneMerchant.png" />
+    <Content Include="NPCs\BoneMerchant_Head.png" />
+    <Content Include="NPCs\ChestSalesman.png" />
+    <Content Include="NPCs\ChestSalesman_Head.png" />
+    <Content Include="NPCs\Santa.png" />
+    <Content Include="NPCs\Santa_Head.png" />
+    <Content Include="NPCs\StationaryMerchant.png" />
+    <Content Include="NPCs\StationaryMerchant_Head.png" />
+    <Content Include="Tiles\Chlorophyte_Accelerator.png" />
+    <Content Include="Tiles\Granite_Moondial.png" />
+    <Content Include="Tiles\Granite_Moondial_Highlight.png" />
+    <Content Include="Tiles\Marble_Sundial.png" />
+    <Content Include="Tiles\Marble_Sundial_Highlight.png" />
+    <Content Include="Tiles\Moon_Ball.png" />
+    <Content Include="Tiles\Moon_Ball_Highlight.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>-eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

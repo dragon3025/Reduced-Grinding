@@ -1,19 +1,3 @@
-/*using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.IO;
-using System;
-using Terraria.DataStructures;
-using Terraria.GameContent.Achievements;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Generation;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
-using Terraria.ModLoader;
-using Terraria.World.Generation;
-using Terraria;*/
-
 /*To debug, use:
 ErrorLogger.Log(<string>);
 
@@ -393,11 +377,17 @@ namespace ReducedGrinding
 			float TravelingMerchantYellowTeamPlatformIncrease;
 			float TravelingMerchantZebraSkinIncrease;
 			bool TravelingMerchantAlwaysXMasForConfigurations;
+			float ChanceEachInGameMinuteWillResetTravelingMerchant;
+			float ChanceEachMorningTravelingMerchantWillSpawn;
 			float ChanceThatEnemyKillWillResetTravelingMerchant;
 			bool StationaryMerchant;
 			float StationaryMerchantStockingChance;
 			float S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate;
-			
+
+			bool BoneMerchant;
+			bool BoneMerchantDisabledWhenLuiafkIsInstalled;
+			bool Santa;
+
 			float QuestAnglerEarringIncrease;
 			float QuestAnglerHatIncrease;
 			float QuestAnglerPantsIncrease;
@@ -431,7 +421,7 @@ namespace ReducedGrinding
 			bool ChestSalesmanSellsShadowChest;
 			bool ChestSalesmanSellsSkywareChest;
 			bool ChestSalesmanSellsWebCoveredChest;
-			bool ChestSalesmanSpawnable;
+			bool ChestSalesman;
 			
 			bool MechanicSellsDartTrapAfterSkeletronDefeated;
 			bool MechanicSellsGeyserAfterWallofFleshDefeated;
@@ -527,9 +517,7 @@ namespace ReducedGrinding
 			float FishCatchBecomesWoodenCrate;
 			float FishCatchBecomesZephyrFish;
 			
-			
-			
-            byte arrayLength;
+			byte arrayLength;
 
             BitsByte flags1;
             ReducedGrindingPlayer mPlayer;
@@ -560,8 +548,8 @@ namespace ReducedGrinding
                     if(Main.netMode == NetmodeID.MultiplayerClient)
                     {
                         playernumber = reader.ReadByte();  //byte
-						
-                        DropTriesForAllEnemyDroppedLoot = reader.ReadInt32();
+
+						DropTriesForAllEnemyDroppedLoot = reader.ReadInt32();
 						NormalModeLootMultiplierForLootWithSeperateDifficultyRates = reader.ReadSingle();
 						
 						CrateDungeonBoneWelder = reader.ReadSingle();
@@ -894,11 +882,17 @@ namespace ReducedGrinding
 						TravelingMerchantYellowTeamPlatformIncrease = reader.ReadSingle();
 						TravelingMerchantZebraSkinIncrease = reader.ReadSingle();
 						TravelingMerchantAlwaysXMasForConfigurations = reader.ReadBoolean();
+						ChanceEachInGameMinuteWillResetTravelingMerchant = reader.ReadSingle();
+						ChanceEachMorningTravelingMerchantWillSpawn = reader.ReadSingle();
 						ChanceThatEnemyKillWillResetTravelingMerchant = reader.ReadSingle();
 						StationaryMerchant = reader.ReadBoolean();
 						StationaryMerchantStockingChance = reader.ReadSingle();
 						S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate = reader.ReadSingle();
-						
+
+						BoneMerchant = reader.ReadBoolean();
+						BoneMerchantDisabledWhenLuiafkIsInstalled = reader.ReadBoolean();
+						Santa = reader.ReadBoolean();
+
 						QuestAnglerEarringIncrease = reader.ReadSingle();
 						QuestAnglerHatIncrease = reader.ReadSingle();
 						QuestAnglerPantsIncrease = reader.ReadSingle();
@@ -932,7 +926,7 @@ namespace ReducedGrinding
 						ChestSalesmanSellsShadowChest = reader.ReadBoolean();
 						ChestSalesmanSellsSkywareChest = reader.ReadBoolean();
 						ChestSalesmanSellsWebCoveredChest = reader.ReadBoolean();
-						ChestSalesmanSpawnable = reader.ReadBoolean();
+						ChestSalesman = reader.ReadBoolean();
 						
 						MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
 						MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
@@ -1363,11 +1357,17 @@ namespace ReducedGrinding
 							TravelingMerchantYellowTeamPlatformIncrease,
 							TravelingMerchantZebraSkinIncrease,
 							TravelingMerchantAlwaysXMasForConfigurations,
+							ChanceEachInGameMinuteWillResetTravelingMerchant,
+							ChanceEachMorningTravelingMerchantWillSpawn,
 							ChanceThatEnemyKillWillResetTravelingMerchant,
 							StationaryMerchant,
 							StationaryMerchantStockingChance,
 							S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate,
-							
+
+							BoneMerchant,
+							BoneMerchantDisabledWhenLuiafkIsInstalled,
+							Santa,
+
 							QuestAnglerEarringIncrease,
 							QuestAnglerHatIncrease,
 							QuestAnglerPantsIncrease,
@@ -1401,7 +1401,7 @@ namespace ReducedGrinding
 							ChestSalesmanSellsShadowChest,
 							ChestSalesmanSellsSkywareChest,
 							ChestSalesmanSellsWebCoveredChest,
-							ChestSalesmanSpawnable,
+							ChestSalesman,
 							
 							MechanicSellsDartTrapAfterSkeletronDefeated,
 							MechanicSellsGeyserAfterWallofFleshDefeated,
@@ -1503,10 +1503,6 @@ namespace ReducedGrinding
                 case ReducedGrindingMessageType.SendClientChanges:
                     playernumber = reader.ReadByte();
 
-					
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					DropTriesForAllEnemyDroppedLoot = reader.ReadInt32();
 					NormalModeLootMultiplierForLootWithSeperateDifficultyRates = reader.ReadSingle();
 					
@@ -1840,11 +1836,17 @@ namespace ReducedGrinding
 					TravelingMerchantYellowTeamPlatformIncrease = reader.ReadSingle();
 					TravelingMerchantZebraSkinIncrease = reader.ReadSingle();
 					TravelingMerchantAlwaysXMasForConfigurations = reader.ReadBoolean();
+					ChanceEachInGameMinuteWillResetTravelingMerchant = reader.ReadSingle();
+					ChanceEachMorningTravelingMerchantWillSpawn = reader.ReadSingle();
 					ChanceThatEnemyKillWillResetTravelingMerchant = reader.ReadSingle();
 					StationaryMerchant = reader.ReadBoolean();
 					StationaryMerchantStockingChance = reader.ReadSingle();
 					S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate = reader.ReadSingle();
-					
+
+					BoneMerchant = reader.ReadBoolean();
+					BoneMerchantDisabledWhenLuiafkIsInstalled = reader.ReadBoolean();
+					Santa = reader.ReadBoolean();
+
 					QuestAnglerEarringIncrease = reader.ReadSingle();
 					QuestAnglerHatIncrease = reader.ReadSingle();
 					QuestAnglerPantsIncrease = reader.ReadSingle();
@@ -1878,7 +1880,7 @@ namespace ReducedGrinding
 					ChestSalesmanSellsShadowChest = reader.ReadBoolean();
 					ChestSalesmanSellsSkywareChest = reader.ReadBoolean();
 					ChestSalesmanSellsWebCoveredChest = reader.ReadBoolean();
-					ChestSalesmanSpawnable = reader.ReadBoolean();
+					ChestSalesman = reader.ReadBoolean();
 					
 					MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
 					MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
@@ -1973,9 +1975,6 @@ namespace ReducedGrinding
 					FishCatchBecomesToxikarp = reader.ReadSingle();
 					FishCatchBecomesWoodenCrate = reader.ReadSingle();
 					FishCatchBecomesZephyrFish = reader.ReadSingle();
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-					///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					
                     flags1 = reader.ReadByte();        //byte
 
@@ -1985,9 +1984,7 @@ namespace ReducedGrinding
                         ModPacket packet = GetPacket();
                         packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
                         packet.Write(playernumber);
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 						packet.Write((int)Config.DropTriesForAllEnemyDroppedLoot);
 						packet.Write((float)Config.NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
 						
@@ -2321,10 +2318,16 @@ namespace ReducedGrinding
 						packet.Write((float)Config.TravelingMerchantYellowTeamPlatformIncrease);
 						packet.Write((float)Config.TravelingMerchantZebraSkinIncrease);
 						packet.Write((bool)Config.TravelingMerchantAlwaysXMasForConfigurations);
+						packet.Write((float)Config.ChanceEachInGameMinuteWillResetTravelingMerchant);
+						packet.Write((float)Config.ChanceEachMorningTravelingMerchantWillSpawn);
 						packet.Write((float)Config.ChanceThatEnemyKillWillResetTravelingMerchant);
 						packet.Write((bool)Config.StationaryMerchant);
 						packet.Write((float)Config.StationaryMerchantStockingChance);
 						packet.Write((float)Config.S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate);
+
+						packet.Write((bool)Config.BoneMerchant);
+						packet.Write((bool)Config.BoneMerchantDisabledWhenLuiafkIsInstalled);
+						packet.Write((bool)Config.Santa);
 						
 						packet.Write((float)Config.QuestAnglerEarringIncrease);
 						packet.Write((float)Config.QuestAnglerHatIncrease);
@@ -2359,7 +2362,7 @@ namespace ReducedGrinding
 						packet.Write((bool)Config.ChestSalesmanSellsShadowChest);
 						packet.Write((bool)Config.ChestSalesmanSellsSkywareChest);
 						packet.Write((bool)Config.ChestSalesmanSellsWebCoveredChest);
-						packet.Write((bool)Config.ChestSalesmanSpawnable);
+						packet.Write((bool)Config.ChestSalesman);
 						
 						packet.Write((bool)Config.MechanicSellsDartTrapAfterSkeletronDefeated);
 						packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
@@ -2454,9 +2457,6 @@ namespace ReducedGrinding
 						packet.Write((float)Config.FishCatchBecomesToxikarp);
 						packet.Write((float)Config.FishCatchBecomesWoodenCrate);
 						packet.Write((float)Config.FishCatchBecomesZephyrFish);
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-						///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                         packet.Write((byte)flags1);
                         packet.Send(-1, playernumber);
                     }
@@ -2985,11 +2985,11 @@ namespace ReducedGrinding
 		
 		public class ModGlobalNPC : GlobalNPC
 		{
-				public override void NPCLoot(NPC npc)
+			public override void NPCLoot(NPC npc)
+			{
+				if (npc.lifeMax > 5 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
 				{
-				
-				if (npc.type != 46 && npc.type != 74 && npc.type != 297 && npc.type != 298 && npc.type != 299 && npc.type != 300 && npc.type != 355 && npc.type != 357 && npc.type != 358 && npc.type != 359 && npc.type != 360 && npc.type != 361 && npc.type != 366 && npc.type != 367 && npc.type != 377 && npc.type != 442 && npc.type != 443 && npc.type != 445 && npc.type != 446 && npc.type != 447 && npc.type != 448 && npc.type != 484 && npc.type != 485 && npc.type != 486 && npc.type != 487 && npc.type != 538 && npc.type != 539 && npc.type != 55 && npc.type != 230 && npc.type != 148 && npc.type != 149 && npc.type != 362 && npc.type != 363 && npc.type != 364 && npc.type != 365 && npc.type != 374 && npc.type != 375 && npc.type != 356 && npc.type != 444 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall && (npc.townNPC == false) && !npc.SpawnedFromStatue)
-				{
+
 					Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
 					ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 					float difficultyMultiplier = 1f;
@@ -3063,7 +3063,7 @@ namespace ReducedGrinding
 						}
 					}
 					
-					for (int j=0; j<player.GetModPlayer<ReducedGrindingPlayer>().clientConf.DropTriesForAllEnemyDroppedLoot; j++)
+					for (int j=0; j< mPlayer.clientConf.DropTriesForAllEnemyDroppedLoot; j++)
 					{
 						int AnkhCharmInInventory = 0;
 						if (player.HasItem(888)) //Blindfold
@@ -4652,9 +4652,18 @@ namespace ReducedGrinding
 							}
 						}
 					}
-					
+
 					//Restock Traveling Merchant
-					if (mPlayer.clientConf.ChanceThatEnemyKillWillResetTravelingMerchant > 0)
+					bool travelingMerchantExists = false; //This is done when Luiafk is installed, because it causes restocks to happen even when the vanilla traveling merchant isn't there.
+					for (int i = 0; i < Terraria.Main.npc.Length; i++)
+					{
+						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+						{
+							travelingMerchantExists = true;
+							break;
+						}
+					}
+					if (travelingMerchantExists && mPlayer.clientConf.ChanceThatEnemyKillWillResetTravelingMerchant > 0)
 					{
 						int travelingMerchantResetChanceModifier = 22; //There are 22 vanilla NPCs as of 5/26/2017
 						bool tryToResetTravelingMerchant = false;
@@ -4664,7 +4673,28 @@ namespace ReducedGrinding
 								tryToResetTravelingMerchant = true;
 							if (Terraria.Main.npc[i].townNPC == true)
 							{
-								if (Terraria.Main.npc[i].type == NPCID.Merchant || Terraria.Main.npc[i].type == NPCID.Nurse || Terraria.Main.npc[i].type == NPCID.Demolitionist || Terraria.Main.npc[i].type == NPCID.DyeTrader || Terraria.Main.npc[i].type == NPCID.Dryad || Terraria.Main.npc[i].type == NPCID.DD2Bartender || Terraria.Main.npc[i].type == NPCID.ArmsDealer || Terraria.Main.npc[i].type == NPCID.Stylist || Terraria.Main.npc[i].type == NPCID.Painter || Terraria.Main.npc[i].type == NPCID.Angler || Terraria.Main.npc[i].type == NPCID.GoblinTinkerer || Terraria.Main.npc[i].type == NPCID.WitchDoctor || Terraria.Main.npc[i].type == NPCID.Clothier || Terraria.Main.npc[i].type == NPCID.Mechanic || Terraria.Main.npc[i].type == NPCID.PartyGirl || Terraria.Main.npc[i].type == NPCID.Wizard || Terraria.Main.npc[i].type == NPCID.TaxCollector || Terraria.Main.npc[i].type == NPCID.Truffle || Terraria.Main.npc[i].type == NPCID.Pirate || Terraria.Main.npc[i].type == NPCID.Steampunker || Terraria.Main.npc[i].type == NPCID.Cyborg) //Any Permenant Town Residents other than the Guide
+								if (
+									Terraria.Main.npc[i].type == NPCID.Merchant ||
+									Terraria.Main.npc[i].type == NPCID.Nurse ||
+									Terraria.Main.npc[i].type == NPCID.Demolitionist ||
+									Terraria.Main.npc[i].type == NPCID.DyeTrader ||
+									Terraria.Main.npc[i].type == NPCID.Dryad ||
+									Terraria.Main.npc[i].type == NPCID.DD2Bartender ||
+									Terraria.Main.npc[i].type == NPCID.ArmsDealer ||
+									Terraria.Main.npc[i].type == NPCID.Stylist ||
+									Terraria.Main.npc[i].type == NPCID.Painter ||
+									Terraria.Main.npc[i].type == NPCID.Angler ||
+									Terraria.Main.npc[i].type == NPCID.GoblinTinkerer ||
+									Terraria.Main.npc[i].type == NPCID.WitchDoctor ||
+									Terraria.Main.npc[i].type == NPCID.Clothier ||
+									Terraria.Main.npc[i].type == NPCID.Mechanic ||
+									Terraria.Main.npc[i].type == NPCID.PartyGirl ||
+									Terraria.Main.npc[i].type == NPCID.Wizard ||
+									Terraria.Main.npc[i].type == NPCID.TaxCollector ||
+									Terraria.Main.npc[i].type == NPCID.Truffle ||
+									Terraria.Main.npc[i].type == NPCID.Pirate ||
+									Terraria.Main.npc[i].type == NPCID.Steampunker ||
+									Terraria.Main.npc[i].type == NPCID.Cyborg) //Any Permenant Town Residents other than the Guide
 									travelingMerchantResetChanceModifier--;
 							}
 						}
@@ -4675,9 +4705,9 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceThatEnemyKillWillResetTravelingMerchant/travelingMerchantResetChanceModifier)
 							{
 								Chest.SetupTravelShop();
-								if (Main.netMode == 2) // Server
+								if (Main.netMode == NetmodeID.Server)
 									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The Traveling Merchant restocked his items."), new Color(0, 127, 255));
-								else if (Main.netMode == 0) // Single Player
+								else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 									Main.NewText("The Traveling Merchant restocked his items.", 0, 127, 255);
 							}
 						}

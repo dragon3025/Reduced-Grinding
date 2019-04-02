@@ -1,20 +1,10 @@
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System;
 using Terraria.DataStructures;
 using Terraria.Enums;
-using Terraria.GameContent.Achievements;
-using Terraria.GameContent.Events;
-using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
-using Terraria.World.Generation;
 using Terraria;
 
 

@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -21,8 +17,8 @@ namespace ReducedGrinding.NPCs
         {
             npc.townNPC = true;
             npc.friendly = true;
-            npc.width = 18;
-            npc.height = 40;
+            npc.width = 18; //His hitbox, the visual width/height is affected by frame count below.
+			npc.height = 40;
             npc.aiStyle = 7;
             npc.damage = 10;
             npc.defense = 15;
@@ -36,7 +32,7 @@ namespace ReducedGrinding.NPCs
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
 			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
-			if (mPlayer.clientConf.ChestSalesmanSpawnable)
+			if (mPlayer.clientConf.ChestSalesman)
 				return true;
 			else
 				return false;
