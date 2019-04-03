@@ -674,8 +674,18 @@ namespace ReducedGrinding
 						WorldGen.SpawnTravelNPC();
 					}
 				}
+				bool TravelingMerchantRestockOrder = false;
+				for (int i = 0; i < 255; i++)
+				{
+					if (Main.player[i].active && Main.player[i].HasItem(mod.ItemType("Traveling_Merchant_Restock_Order")))
+					{
+						Main.NewText("Player has restock order.");
+						TravelingMerchantRestockOrder = true;
+						break;
+					}
+				}
 				//Each Second there is an item that has a chance to appear in Traveling Merchant shop and isn't in Stationary Merchant shop.
-				if (Main.time % 60 == 0 && (!mPlayer.clientConf.StationaryMerchant ||
+				if (Main.time % 60 == 0 && (TravelingMerchantRestockOrder || !mPlayer.clientConf.StationaryMerchant ||
 				(
 					smItemSake == false ||
 					smItemPho == false ||
@@ -746,9 +756,9 @@ namespace ReducedGrinding
 							{
 								Chest.SetupTravelShop();
 								if (Main.netMode == NetmodeID.Server)
-									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 64, 255));
+									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 127, 255));
 								else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-									Main.NewText("The traveling merchant restocked his shop.", 0, 64, 255);
+									Main.NewText("The traveling merchant restocked his shop.", 0, 127, 255);
 							}
 							break;
 						}

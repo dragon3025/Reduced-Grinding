@@ -1258,8 +1258,8 @@ namespace ReducedGrinding
 			Configuration.Put("===============================================================================================TASM1", 0);
 			Configuration.Put("|                           TRAVELING AND STATIONARY MERCHANT                                      |", 0);
 			Configuration.Put("------------------------------------------------------------------------------------------------TASM", 0);
-			Configuration.Put("| The chance for spawning the Traveling Merchant and for Restocking is divided by the amount       |", 0);
-			Configuration.Put("| of stationary Vanilla and Reduced Grinding NPC's.                                                |", 0);
+			Configuration.Put("| The chance for spawning the Traveling Merchant and for Restocking is affected by the amount      |", 0);
+			Configuration.Put("| of stationary Reduced Grinding and Vanilla npcs.                                                 |", 0);
 			Configuration.Put("===============================================================================================TASM2", 0);
 			Configuration.Put("ChanceEachInGameMinuteWillResetTravelingMerchant", ChanceEachInGameMinuteWillResetTravelingMerchant);
 			Configuration.Put("ChanceEachMorningTravelingMerchantWillSpawn", ChanceEachMorningTravelingMerchantWillSpawn);
