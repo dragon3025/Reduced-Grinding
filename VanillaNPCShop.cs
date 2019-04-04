@@ -18,6 +18,11 @@ namespace ReducedGrinding.NPCs
 			switch (type)
 			{
 				case NPCID.Merchant:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.GreenCap);
+						nextSlot++;
+					}
 					if (mPlayer.clientConf.MerchantSellsAllMiningGear)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
@@ -62,6 +67,48 @@ namespace ReducedGrinding.NPCs
 					if (Main.netMode == NetmodeID.SinglePlayer) //Singleplayer
 					{
 						shop.item[nextSlot].SetDefaults(mod.ItemType("Expert_Change_Potion"));
+						nextSlot++;
+					}
+					break;
+				case NPCID.DyeTrader:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.DyeTradersScimitar);
+						nextSlot++;
+					}
+					break;
+				case NPCID.DD2Bartender:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.AleThrowingGlove);
+						nextSlot++;
+					}
+					break;
+				case NPCID.Stylist:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.StylistKilLaKillScissorsIWish);
+						nextSlot++;
+					}
+					break;
+				case NPCID.Painter:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.PainterPaintballGun);
+						nextSlot++;
+					}
+					break;
+				case NPCID.Clothier:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.RedHat);
+						nextSlot++;
+					}
+					break;
+				case NPCID.TaxCollector:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.TaxCollectorsStickOfDoom);
 						nextSlot++;
 					}
 					break;
@@ -191,6 +238,13 @@ namespace ReducedGrinding.NPCs
 					if (mPlayer.clientConf.GoblinTinkererSellsGoblinRetreatOrder)
 					{
 						shop.item[nextSlot].SetDefaults(mod.ItemType("Goblin_Retreat_Order"));
+						nextSlot++;
+					}
+					break;
+				case NPCID.TravellingMerchant:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.PeddlersHat);
 						nextSlot++;
 					}
 					break;

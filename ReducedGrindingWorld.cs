@@ -544,7 +544,32 @@ namespace ReducedGrinding
 				Main.time = 54000;
 				skipToDay = false;
 				skipToNight = false;
-
+				//Force Traveling Merchant despawn in order to prevent exploiting.
+				int travelingMerchantTarget = -1;
+				for (int i = 0; i < 200; i++)
+				{
+					if (Main.npc[i].active && Main.npc[i].type == 368)
+					{
+						travelingMerchantTarget = i;
+						break;
+					}
+				}
+				if (travelingMerchantTarget > -1)
+				{
+					string fullName = Main.npc[travelingMerchantTarget].FullName;
+					if (Main.netMode == NetmodeID.SinglePlayer)//0)
+					{
+						Main.NewText(Lang.misc[35].Format(fullName), 50, 125);
+					}
+					else if (Main.netMode == NetmodeID.Server)//2)
+					{
+						NetMessage.BroadcastChatMessage(NetworkText.FromKey(Lang.misc[35].Key, Main.npc[travelingMerchantTarget].GetFullNetName()), new Color(50, 125, 255));
+					}
+					Main.npc[travelingMerchantTarget].active = false;
+					Main.npc[travelingMerchantTarget].netSkip = -1;
+					Main.npc[travelingMerchantTarget].life = 0;
+					NetMessage.SendData(23, -1, -1, null, travelingMerchantTarget);
+				}
 				if (Main.netMode == NetmodeID.Server) //Server
 				{
 					var netMessage = mod.GetPacket();

@@ -337,6 +337,8 @@ namespace ReducedGrinding
 			public bool SlimeStaffIncreaseToIceSpikedSlimes;
 			public bool SlimeStaffIncreaseToSpikedJungleSlimes;
 
+			public bool LockBoxesGiveFurniture;
+			public bool LockBoxesGiveNonFurniture;
 			public float CavernModdedCavernLockBoxLoot;
 			public float DungeonModdedBiomeLockBoxLoot;
 			public float DungeonFurnitureLockBoxLoot;
@@ -465,7 +467,8 @@ namespace ReducedGrinding
 			public bool ChestSalesmanSellsSkywareChest;
 			public bool ChestSalesmanSellsWebCoveredChest;
 			public bool ChestSalesman;
-			
+
+			public bool AllNPCsSellTheirDeathLoot;
 			public bool MechanicSellsDartTrapAfterSkeletronDefeated;
 			public bool MechanicSellsGeyserAfterWallofFleshDefeated;
 			public bool MechanicSellsLihzahrdTrapsAfterGolemDefeated;
@@ -811,6 +814,8 @@ namespace ReducedGrinding
 				bool CC_SlimeStaffIncreaseToIceSpikedSlimes,
 				bool CC_SlimeStaffIncreaseToSpikedJungleSlimes,
 
+				bool CC_LockBoxesGiveFurniture,
+				bool CC_LockBoxesGiveNonFurniture,
 				float CC_CavernModdedCavernLockBoxLoot,
 				float CC_DungeonModdedBiomeLockBoxLoot,
 				float CC_DungeonFurnitureLockBoxLoot,
@@ -939,7 +944,8 @@ namespace ReducedGrinding
 				bool CC_ChestSalesmanSellsSkywareChest,
 				bool CC_ChestSalesmanSellsWebCoveredChest,
 				bool CC_ChestSalesman,
-				
+
+				bool CC_AllNPCsSellTheirDeathLoot,
 				bool CC_MechanicSellsDartTrapAfterSkeletronDefeated,
 				bool CC_MechanicSellsGeyserAfterWallofFleshDefeated,
 				bool CC_MechanicSellsLihzahrdTrapsAfterGolemDefeated,
@@ -1284,7 +1290,9 @@ namespace ReducedGrinding
 				SlimeStaffIncreaseToCavernSlimess = CC_SlimeStaffIncreaseToCavernSlimess;
 				SlimeStaffIncreaseToIceSpikedSlimes = CC_SlimeStaffIncreaseToIceSpikedSlimes;
 				SlimeStaffIncreaseToSpikedJungleSlimes = CC_SlimeStaffIncreaseToSpikedJungleSlimes;
-						
+
+				LockBoxesGiveFurniture = CC_LockBoxesGiveFurniture;
+				LockBoxesGiveNonFurniture = CC_LockBoxesGiveNonFurniture;
 				CavernModdedCavernLockBoxLoot = CC_CavernModdedCavernLockBoxLoot;
 				DungeonModdedBiomeLockBoxLoot = CC_DungeonModdedBiomeLockBoxLoot;
 				DungeonFurnitureLockBoxLoot = CC_DungeonFurnitureLockBoxLoot;
@@ -1413,7 +1421,8 @@ namespace ReducedGrinding
 				ChestSalesmanSellsSkywareChest = CC_ChestSalesmanSellsSkywareChest;
 				ChestSalesmanSellsWebCoveredChest = CC_ChestSalesmanSellsWebCoveredChest;
 				ChestSalesman = CC_ChestSalesman;
-						
+
+				AllNPCsSellTheirDeathLoot = CC_AllNPCsSellTheirDeathLoot;
 				MechanicSellsDartTrapAfterSkeletronDefeated = CC_MechanicSellsDartTrapAfterSkeletronDefeated;
 				MechanicSellsGeyserAfterWallofFleshDefeated = CC_MechanicSellsGeyserAfterWallofFleshDefeated;
 				MechanicSellsLihzahrdTrapsAfterGolemDefeated = CC_MechanicSellsLihzahrdTrapsAfterGolemDefeated;
@@ -1791,6 +1800,8 @@ namespace ReducedGrinding
 			packet.Write((bool)Config.SlimeStaffIncreaseToIceSpikedSlimes);
 			packet.Write((bool)Config.SlimeStaffIncreaseToSpikedJungleSlimes);
 
+			packet.Write((bool)Config.LockBoxesGiveFurniture);
+			packet.Write((bool)Config.LockBoxesGiveNonFurniture);
 			packet.Write((float)Config.CavernModdedCavernLockBoxLoot);
 			packet.Write((float)Config.DungeonModdedBiomeLockBoxLoot);
 			packet.Write((float)Config.DungeonFurnitureLockBoxLoot);
@@ -1919,7 +1930,8 @@ namespace ReducedGrinding
 			packet.Write((bool)Config.ChestSalesmanSellsSkywareChest);
 			packet.Write((bool)Config.ChestSalesmanSellsWebCoveredChest);
 			packet.Write((bool)Config.ChestSalesman);
-			
+
+			packet.Write((bool)Config.AllNPCsSellTheirDeathLoot);
 			packet.Write((bool)Config.MechanicSellsDartTrapAfterSkeletronDefeated);
 			packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
 			packet.Write((bool)Config.MechanicSellsLihzahrdTrapsAfterGolemDefeated);
@@ -2265,6 +2277,8 @@ namespace ReducedGrinding
 				Config.SlimeStaffIncreaseToIceSpikedSlimes,
 				Config.SlimeStaffIncreaseToSpikedJungleSlimes,
 
+				Config.LockBoxesGiveFurniture,
+				Config.LockBoxesGiveNonFurniture,
 				Config.CavernModdedCavernLockBoxLoot,
 				Config.DungeonModdedBiomeLockBoxLoot,
 				Config.DungeonFurnitureLockBoxLoot,
@@ -2393,7 +2407,8 @@ namespace ReducedGrinding
 				Config.ChestSalesmanSellsSkywareChest,
 				Config.ChestSalesmanSellsWebCoveredChest,
 				Config.ChestSalesman,
-				
+
+				Config.AllNPCsSellTheirDeathLoot,
 				Config.MechanicSellsDartTrapAfterSkeletronDefeated,
 				Config.MechanicSellsGeyserAfterWallofFleshDefeated,
 				Config.MechanicSellsLihzahrdTrapsAfterGolemDefeated,
@@ -2747,6 +2762,8 @@ namespace ReducedGrinding
 					Config.SlimeStaffIncreaseToIceSpikedSlimes,
 					Config.SlimeStaffIncreaseToSpikedJungleSlimes,
 
+					Config.LockBoxesGiveFurniture,
+					Config.LockBoxesGiveNonFurniture,
 					Config.CavernModdedCavernLockBoxLoot,
 					Config.DungeonModdedBiomeLockBoxLoot,
 					Config.DungeonFurnitureLockBoxLoot,
@@ -2875,7 +2892,8 @@ namespace ReducedGrinding
 					Config.ChestSalesmanSellsSkywareChest,
 					Config.ChestSalesmanSellsWebCoveredChest,
 					Config.ChestSalesman,
-					
+
+					Config.AllNPCsSellTheirDeathLoot,
 					Config.MechanicSellsDartTrapAfterSkeletronDefeated,
 					Config.MechanicSellsGeyserAfterWallofFleshDefeated,
 					Config.MechanicSellsLihzahrdTrapsAfterGolemDefeated,

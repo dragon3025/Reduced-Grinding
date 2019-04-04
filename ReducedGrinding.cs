@@ -294,6 +294,8 @@ namespace ReducedGrinding
 			bool SlimeStaffIncreaseToIceSpikedSlimes;
 			bool SlimeStaffIncreaseToSpikedJungleSlimes;
 
+			bool LockBoxesGiveFurniture;
+			bool LockBoxesGiveNonFurniture;
 			float CavernModdedCavernLockBoxLoot;
 			float DungeonModdedBiomeLockBoxLoot;
 			float DungeonFurnitureLockBoxLoot;
@@ -422,7 +424,8 @@ namespace ReducedGrinding
 			bool ChestSalesmanSellsSkywareChest;
 			bool ChestSalesmanSellsWebCoveredChest;
 			bool ChestSalesman;
-			
+
+			bool AllNPCsSellTheirDeathLoot;
 			bool MechanicSellsDartTrapAfterSkeletronDefeated;
 			bool MechanicSellsGeyserAfterWallofFleshDefeated;
 			bool MechanicSellsLihzahrdTrapsAfterGolemDefeated;
@@ -799,6 +802,8 @@ namespace ReducedGrinding
 						SlimeStaffIncreaseToIceSpikedSlimes = reader.ReadBoolean();
 						SlimeStaffIncreaseToSpikedJungleSlimes = reader.ReadBoolean();
 
+						LockBoxesGiveFurniture = reader.ReadBoolean();
+						LockBoxesGiveNonFurniture = reader.ReadBoolean();
 						CavernModdedCavernLockBoxLoot = reader.ReadSingle();
 						DungeonModdedBiomeLockBoxLoot = reader.ReadSingle();
 						DungeonFurnitureLockBoxLoot = reader.ReadSingle();
@@ -927,7 +932,8 @@ namespace ReducedGrinding
 						ChestSalesmanSellsSkywareChest = reader.ReadBoolean();
 						ChestSalesmanSellsWebCoveredChest = reader.ReadBoolean();
 						ChestSalesman = reader.ReadBoolean();
-						
+
+						AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
 						MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
 						MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
 						MechanicSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
@@ -1274,6 +1280,8 @@ namespace ReducedGrinding
 							SlimeStaffIncreaseToIceSpikedSlimes,
 							SlimeStaffIncreaseToSpikedJungleSlimes,
 
+							LockBoxesGiveFurniture,
+							LockBoxesGiveNonFurniture,
 							CavernModdedCavernLockBoxLoot,
 							DungeonModdedBiomeLockBoxLoot,
 							DungeonFurnitureLockBoxLoot,
@@ -1402,7 +1410,8 @@ namespace ReducedGrinding
 							ChestSalesmanSellsSkywareChest,
 							ChestSalesmanSellsWebCoveredChest,
 							ChestSalesman,
-							
+
+							AllNPCsSellTheirDeathLoot,
 							MechanicSellsDartTrapAfterSkeletronDefeated,
 							MechanicSellsGeyserAfterWallofFleshDefeated,
 							MechanicSellsLihzahrdTrapsAfterGolemDefeated,
@@ -1753,6 +1762,8 @@ namespace ReducedGrinding
 					SlimeStaffIncreaseToIceSpikedSlimes = reader.ReadBoolean();
 					SlimeStaffIncreaseToSpikedJungleSlimes = reader.ReadBoolean();
 
+					LockBoxesGiveFurniture = reader.ReadBoolean();
+					LockBoxesGiveNonFurniture = reader.ReadBoolean();
 					CavernModdedCavernLockBoxLoot = reader.ReadSingle();
 					DungeonModdedBiomeLockBoxLoot = reader.ReadSingle();
 					DungeonFurnitureLockBoxLoot = reader.ReadSingle();
@@ -1881,7 +1892,8 @@ namespace ReducedGrinding
 					ChestSalesmanSellsSkywareChest = reader.ReadBoolean();
 					ChestSalesmanSellsWebCoveredChest = reader.ReadBoolean();
 					ChestSalesman = reader.ReadBoolean();
-					
+
+					AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
 					MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
 					MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
 					MechanicSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
@@ -2235,6 +2247,8 @@ namespace ReducedGrinding
 						packet.Write((bool)Config.SlimeStaffIncreaseToIceSpikedSlimes);
 						packet.Write((bool)Config.SlimeStaffIncreaseToSpikedJungleSlimes);
 
+						packet.Write((bool)Config.LockBoxesGiveFurniture);
+						packet.Write((bool)Config.LockBoxesGiveNonFurniture);
 						packet.Write((float)Config.CavernModdedCavernLockBoxLoot);
 						packet.Write((float)Config.DungeonModdedBiomeLockBoxLoot);
 						packet.Write((float)Config.DungeonFurnitureLockBoxLoot);
@@ -2363,7 +2377,8 @@ namespace ReducedGrinding
 						packet.Write((bool)Config.ChestSalesmanSellsSkywareChest);
 						packet.Write((bool)Config.ChestSalesmanSellsWebCoveredChest);
 						packet.Write((bool)Config.ChestSalesman);
-						
+
+						packet.Write((bool)Config.AllNPCsSellTheirDeathLoot);
 						packet.Write((bool)Config.MechanicSellsDartTrapAfterSkeletronDefeated);
 						packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
 						packet.Write((bool)Config.MechanicSellsLihzahrdTrapsAfterGolemDefeated);
@@ -4545,7 +4560,7 @@ namespace ReducedGrinding
 						else
 							lockboxDropModdifier = mPlayer.clientConf.NormalmodeModdedLockBoxDropRateModifier;
 						
-						if (npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
+						if (mPlayer.clientConf.LockBoxesGiveNonFurniture && (npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465)) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.WaterEnemyModdedWaterLockBoxLoot*lockboxDropModdifier)
 							{
@@ -4554,19 +4569,22 @@ namespace ReducedGrinding
 						}
 						else if (player.ZoneDungeon)
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
+							if (mPlayer.clientConf.LockBoxesGiveFurniture)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Blue_Dungeon_Lock_Box"), 1, false, -1, false, false);
+								if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Blue_Dungeon_Lock_Box"), 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Green_Dungeon_Lock_Box"), 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pink_Dungeon_Lock_Box"), 1, false, -1, false, false);
+								}
 							}
-							if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
-							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Green_Dungeon_Lock_Box"), 1, false, -1, false, false);
-							}
-							if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonFurnitureLockBoxLoot*lockboxDropModdifier)
-							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pink_Dungeon_Lock_Box"), 1, false, -1, false, false);
-							}
-							if (NPC.downedPlantBoss)
+							if (mPlayer.clientConf.LockBoxesGiveNonFurniture && NPC.downedPlantBoss)
 							{
 								if (Main.rand.NextFloat() < mPlayer.clientConf.DungeonModdedBiomeLockBoxLoot*lockboxDropModdifier)
 								{
@@ -4616,7 +4634,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Lihzahrd_Lock_Box"), 1, false, -1, false, false);
 							}
 						}
-						else if ((npc.type >= 163 && npc.type <= 165) || npc.type == 238) //Spider Nest Enemies
+						else if (mPlayer.clientConf.LockBoxesGiveNonFurniture && ((npc.type >= 163 && npc.type <= 165) || npc.type == 238)) //Spider Nest Enemies
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.SpiderNestWebCoveredLockBoxLoot*lockboxDropModdifier)
 							{
@@ -4715,11 +4733,11 @@ namespace ReducedGrinding
 				}
 			}
 		}
-	
+
 		public override void AddRecipes()
 		{
+			//Arkhalis Crafting Tree
 			ModRecipe recipe = new ModRecipe(this);
-			
 			recipe.AddIngredient(ItemID.EnchantedBoomerang,1);
 			recipe.AddIngredient(ItemID.Katana,1);
 			recipe.AddTile(TileID.TinkerersWorkbench);
@@ -4733,111 +4751,114 @@ namespace ReducedGrinding
 			recipe.SetResult(ItemID.Arkhalis);
 			recipe.AddRecipe();
 
+			//Easier Celestial Sigil
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.FragmentSolar, 1);
-			recipe.AddIngredient(ItemID.FragmentVortex, 1);
-			recipe.AddIngredient(ItemID.FragmentNebula, 1);
-			recipe.AddIngredient(ItemID.FragmentStardust, 1);
+			recipe.AddIngredient(ItemID.FragmentSolar);
+			recipe.AddIngredient(ItemID.FragmentVortex);
+			recipe.AddIngredient(ItemID.FragmentNebula);
+			recipe.AddIngredient(ItemID.FragmentStardust);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(ItemID.CelestialSigil);
 			recipe.AddRecipe();
 
+			//Crate Downgrading
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.DoubleCod, 1);
-			recipe.AddIngredient(ItemID.VariegatedLardfish, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.DoubleCod);
+			recipe.AddIngredient(ItemID.VariegatedLardfish);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.JungleFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.Ebonkoi, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.Ebonkoi);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.CorruptFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.CrimsonTigerfish, 1);
-			recipe.AddIngredient(ItemID.Hemopiranha, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.CrimsonTigerfish);
+			recipe.AddIngredient(ItemID.Hemopiranha);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.CrimsonFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.Prismite, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.Prismite);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.HallowedFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.GoldenKey, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.GoldenKey);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.DungeonFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
-			recipe.AddIngredient(ItemID.Damselfish, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.Damselfish);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.FloatingIslandFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate, 1);
+			recipe.AddIngredient(ItemID.GoldenCrate);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.IronCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 1);
+			recipe.AddIngredient(ItemID.IronCrate);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.WoodenCrate);
 			recipe.AddRecipe();
 
+			//Crate Upgrading
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.DoubleCod, 1);
-			recipe.AddIngredient(ItemID.VariegatedLardfish, 1);
+			recipe.AddIngredient(ItemID.DoubleCod);
+			recipe.AddIngredient(ItemID.VariegatedLardfish);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.JungleFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Ebonkoi, 1);
+			recipe.AddIngredient(ItemID.Ebonkoi);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.CorruptFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.CrimsonTigerfish, 1);
-			recipe.AddIngredient(ItemID.Hemopiranha, 1);
+			recipe.AddIngredient(ItemID.CrimsonTigerfish);
+			recipe.AddIngredient(ItemID.Hemopiranha);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.CrimsonFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Prismite, 1);
+			recipe.AddIngredient(ItemID.Prismite);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.HallowedFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.GoldenKey, 1);
+			recipe.AddIngredient(ItemID.GoldenKey);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.DungeonFishingCrate);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Damselfish, 1);
+			recipe.AddIngredient(ItemID.Damselfish);
 			recipe.AddTile(TileID.CrystalBall);
 			recipe.SetResult(ItemID.FloatingIslandFishingCrate);
 			recipe.AddRecipe();
@@ -4890,51 +4911,110 @@ namespace ReducedGrinding
 			recipe.SetResult(ItemID.GoldenCrate);
 			recipe.AddRecipe();
 			
+			//Infection Key Switching
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(1534, 1); //Corruption Key
-			recipe.SetResult(1535); //Crimson Key
+			recipe.AddIngredient(ItemID.CorruptionKey);
+			recipe.SetResult(ItemID.CrimsonKey);
 			recipe.AddRecipe();
 				
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(1535, 1); //Crimson Key
-			recipe.SetResult(1534); //Corruption Key
+			recipe.AddIngredient(ItemID.CrimsonKey);
+			recipe.SetResult(ItemID.CorruptionKey);
 			recipe.AddRecipe();
 
+			//Giant Shelly, Salamander, Crawdad Banner Switching
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(3392, 1); //Giant Shelly Banner
-			recipe.AddIngredient(3391, 1); //Salamander Banner
+			recipe.AddIngredient(ItemID.GiantShellyBanner);
+			recipe.AddIngredient(ItemID.SalamanderBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(3393); //Crawdad Banner
+			recipe.SetResult(ItemID.CrawdadBanner);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(3393, 1); //Crawdad Banner
-			recipe.AddIngredient(3392, 1); //Giant Shelly Banner
+			recipe.AddIngredient(ItemID.CrawdadBanner);
+			recipe.AddIngredient(ItemID.GiantShellyBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(3391); //Salamander Banner
+			recipe.SetResult(ItemID.SalamanderBanner);
 			recipe.AddRecipe();
 			
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(3391, 1); //Salamander Banner
-			recipe.AddIngredient(3393, 1); //Crawdad Banner
+			recipe.AddIngredient(ItemID.SalamanderBanner);
+			recipe.AddIngredient(ItemID.CrawdadBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(3392); //Giant Shelly Banner
+			recipe.SetResult(ItemID.GiantShellyBanner);
+			recipe.AddRecipe();
+
+			//Easier Hardmode Voodoo Doll
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.ClothierVoodooDoll);
+			recipe.AddIngredient(ItemID.SoulofLight);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.SetResult(ItemID.GuideVoodooDoll);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(1307, 1); //ClothierVoodooDoll
-			recipe.AddIngredient(520, 1); //Soul of Light
+			recipe.AddIngredient(ItemID.ClothierVoodooDoll);
+			recipe.AddIngredient(ItemID.SoulofNight);
 			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(267); //Guide Voodoo Doll
+			recipe.SetResult(ItemID.GuideVoodooDoll);
+			recipe.AddRecipe();
+
+			//Golden Critters
+			recipe = new ModRecipe(this);
+			recipe.AddRecipeGroup("Birds");
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldBird);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
-			recipe.AddIngredient(1307, 1); //ClothierVoodooDoll
-			recipe.AddIngredient(521, 1); //Soul of Night
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(267); //Guide Voodoo Doll
+			recipe.AddIngredient(ItemID.Bunny);
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldBunny);
 			recipe.AddRecipe();
-		
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.Frog);
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldFrog);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.Grasshopper);
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldGrasshopper);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.Mouse);
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldMouse);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddRecipeGroup("Squirrels");
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.SquirrelGold);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.Worm);
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldWorm);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddRecipeGroup("Butterflies");
+			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddTile(TileID.DemonAltar);
+			recipe.SetResult(ItemID.GoldButterfly);
+			recipe.AddRecipe();
 		}
 		
     }

@@ -9,7 +9,8 @@ namespace ReducedGrinding.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Biome Lock Box");
-			Tooltip.SetDefault("Right click to open\nRequires a Biome Key.\nWill only drop loot from Biome Chest that any player has obtained in this world.");
+			Tooltip.SetDefault("Right click to open\nRequires a Biome Key.\n" +
+							   "Will only drop loot from Biome Chest that any player has obtained in this world.");
 		}
 
 		public override void SetDefaults()

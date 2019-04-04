@@ -127,7 +127,7 @@ namespace ReducedGrinding.Items
 				chosenID = 0;
 			}
 			
-			//Ruined House Paintings
+			//Dungeon Paintings
 			dropChance = 0.0556f; //About 2 paintings when rolling 3 times for 12 paintings
 			for (int i = 0; i <= 2; i++)
 			{

@@ -8,8 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.52.json";
-		
+		static string filename = "Reduced Grinding v4.53.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -261,6 +260,8 @@ namespace ReducedGrinding
 		public static bool SlimeStaffIncreaseToIceSpikedSlimes = true;
 		public static bool SlimeStaffIncreaseToSpikedJungleSlimes = true;
 
+		public static bool LockBoxesGiveFurniture = true;
+		public static bool LockBoxesGiveNonFurniture = true;
 		public static float CavernModdedCavernLockBoxLoot = 0.01f;
 		public static float DungeonModdedBiomeLockBoxLoot = 0.01f;
 		public static float DungeonFurnitureLockBoxLoot = 0.01f;
@@ -389,7 +390,8 @@ namespace ReducedGrinding
 		public static bool ChestSalesmanSellsSkywareChest = true;
 		public static bool ChestSalesmanSellsWebCoveredChest = true;
 		public static bool ChestSalesman = false;
-		
+
+		public static bool AllNPCsSellTheirDeathLoot = false;
 		public static bool MechanicSellsDartTrapAfterSkeletronDefeated = true;
 		public static bool MechanicSellsGeyserAfterWallofFleshDefeated = true;
 		public static bool MechanicSellsLihzahrdTrapsAfterGolemDefeated = true;
@@ -752,7 +754,9 @@ namespace ReducedGrinding
 				Configuration.Get("SlimeStaffIncreaseToSpikedJungleSlimes", ref SlimeStaffIncreaseToSpikedJungleSlimes);
 				Configuration.Get("SlimeStaffIncreaseToSurfaceSlimes", ref SlimeStaffIncreaseToSurfaceSlimes);
 				Configuration.Get("SlimeStaffIncreaseToUndergroundSlimes", ref SlimeStaffIncreaseToUndergroundSlimes);
-				
+
+				Configuration.Get("LockBoxesGiveFurniture", ref LockBoxesGiveFurniture);
+				Configuration.Get("LockBoxesGiveNonFurniture", ref LockBoxesGiveNonFurniture);
 				Configuration.Get("CavernModdedCavernLockBoxLoot", ref CavernModdedCavernLockBoxLoot);
 				Configuration.Get("DungeonModdedBiomeLockBoxLoot", ref DungeonModdedBiomeLockBoxLoot);
 				Configuration.Get("DungeonFurnitureLockBoxLoot", ref DungeonFurnitureLockBoxLoot);
@@ -880,7 +884,8 @@ namespace ReducedGrinding
 				Configuration.Get("ChestSalesmanSellsSkywareChest", ref ChestSalesmanSellsSkywareChest);
 				Configuration.Get("ChestSalesmanSellsWebCoveredChest", ref ChestSalesmanSellsWebCoveredChest);
 				Configuration.Get("ChestSalesman", ref ChestSalesman);
-				
+
+				Configuration.Get("AllNPCsSellTheirDeathLoot", ref AllNPCsSellTheirDeathLoot);
 				Configuration.Get("MechanicSellsDartTrapAfterSkeletronDefeated", ref MechanicSellsDartTrapAfterSkeletronDefeated);
 				Configuration.Get("MechanicSellsGeyserAfterWallofFleshDefeated", ref MechanicSellsGeyserAfterWallofFleshDefeated);
 				Configuration.Get("MechanicSellsLihzahrdTrapsAfterGolemDefeated", ref MechanicSellsLihzahrdTrapsAfterGolemDefeated);
@@ -1384,7 +1389,11 @@ namespace ReducedGrinding
 			
 			Configuration.Put("=================================================================================================VS1", 0);
 			Configuration.Put("|                                        VANILLA SHOPS                                             |", 0);
+			Configuration.Put("--------------------------------------------------------------------------------------------------VS", 0);
+			Configuration.Put("| (If NPCs are set to sell their death loot, the Merchant will sell the Guides (even if his name   |", 0);
+			Configuration.Put("| isn't Andrew.                                                                                    |", 0);
 			Configuration.Put("=================================================================================================VS2", 0);
+			Configuration.Put("AllNPCsSellTheirDeathLoot", AllNPCsSellTheirDeathLoot);
 			Configuration.Put("MechanicSellsDartTrapAfterSkeletronDefeated", MechanicSellsDartTrapAfterSkeletronDefeated);
 			Configuration.Put("MechanicSellsGeyserAfterWallofFleshDefeated", MechanicSellsGeyserAfterWallofFleshDefeated);
 			Configuration.Put("MechanicSellsLihzahrdTrapsAfterGolemDefeated", MechanicSellsLihzahrdTrapsAfterGolemDefeated);
@@ -1404,6 +1413,8 @@ namespace ReducedGrinding
 			Configuration.Put("=================================================================================================ML1", 0);
 			Configuration.Put("|                                          MOD LOCKBOXES                                           |", 0);
 			Configuration.Put("=================================================================================================ML2", 0);
+			Configuration.Put("LockBoxesGiveFurniture", LockBoxesGiveFurniture);
+			Configuration.Put("LockBoxesGiveNonFurniture", LockBoxesGiveNonFurniture);
 			Configuration.Put("CavernModdedCavernLockBoxLoot", CavernModdedCavernLockBoxLoot);
 			Configuration.Put("DungeonModdedBiomeLockBoxLoot", DungeonModdedBiomeLockBoxLoot);
 			Configuration.Put("DungeonFurnitureLockBoxLoot", DungeonFurnitureLockBoxLoot);
@@ -1437,7 +1448,7 @@ namespace ReducedGrinding
 			Configuration.Put("=================================================================================================SI1", 0);
 			Configuration.Put("|                         STARTING ITEMS (THIS IS DISABLED FOR NOW)                                |", 0);
 			Configuration.Put("--------------------------------------------------------------------------------------------------SI", 0);
-			Configuration.Put("| To prevent crashes, this is disabled when using Luiafk and Recipe Browser.                       |", 0);
+			Configuration.Put("| After multiplayer syncing changes were made, it started crashing with many other mods.           |", 0);
 			Configuration.Put("=================================================================================================SI2", 0);
 			Configuration.Put("NewCharacterBarrels", NewCharacterBarrels);
 			Configuration.Put("NewCharacterCopperBars", NewCharacterCopperBars);
