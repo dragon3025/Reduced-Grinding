@@ -248,6 +248,25 @@ namespace ReducedGrinding.NPCs
 						nextSlot++;
 					}
 					break;
+				case NPCID.PartyGirl:
+					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+					{
+						bool hasPartyGrenade = false;
+						for (int i = 0; i < shop.item.Length; i++)
+						{
+							if (shop.item[i].type == ItemID.PartyGirlGrenade)
+							{
+								hasPartyGrenade = true;
+								break;
+							}
+						}
+						if (!hasPartyGrenade)
+						{
+							shop.item[nextSlot].SetDefaults(ItemID.PartyGirlGrenade);
+							nextSlot++;
+						}
+					}
+					break;
 				case NPCID.SkeletonMerchant:
 					if (mPlayer.clientConf.BoneMerchant && !(luiafk != null && mPlayer.clientConf.BoneMerchantDisabledWhenLuiafkIsInstalled))
 					{
