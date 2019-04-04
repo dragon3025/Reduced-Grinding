@@ -25,7 +25,9 @@ namespace ReducedGrinding.Items
 
 		public override void SetDefaults(Item item)
 		{
-			if (item.type == ItemID.GreenCap)
+			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
+
+			if (item.type == ItemID.GreenCap && mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
 			{
 				item.value = Item.buyPrice(0, 3);
 			}
