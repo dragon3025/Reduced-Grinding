@@ -27,7 +27,7 @@ namespace ReducedGrinding.Items
 		{
 			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
 
-			if (item.type == ItemID.GreenCap && mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
+			if (item.type == ItemID.GreenCap)// && mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
 			{
 				item.value = Item.buyPrice(0, 3);
 			}
