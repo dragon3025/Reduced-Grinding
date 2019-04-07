@@ -8,15 +8,16 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.53.json";
+		static string filename = "Reduced Grinding v4.55.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
-		
+
 		public static float CrateDungeonBoneWelder = 0.2f;
-		public static float CrateEnchantedSundialGoldenIncrease = 0.45f;
-		public static float CrateEnchantedSundialIronIncrease = 0.2333f;
-		public static float CrateEnchantedSundialWoodenIncrease = 0.12f;
+		public static float CrateDungeonHardmodeGoldenLockBoxIncrease = (5.0f / 6);
+		public static float CrateEnchantedSundialGoldenIncrease = (1f / 4) - (1f / 20);
+		public static float CrateEnchantedSundialIronIncrease = (1f / 16) - (1f / 60);
+		public static float CrateEnchantedSundialWoodenIncrease = (1f / 64) - (1f / 200);
 		public static float CrateJungleAnkeltOfTheWindIncrease = 0f;
 		public static float CrateJungleFeralClawsIncrease = 0f;
 		public static float CrateJungleFlowerBoots = 0.25f;
@@ -74,8 +75,9 @@ namespace ReducedGrinding
         public static float LootEatersBoneIncrease = 0.2f;
         public static float LootFishronTruffleworm = 0.5f;
         public static float LootFishronWingsIncrease = 0.15f;
-        public static float LootHoneyedGogglesIncrease = 0.14f;
-        public static float LootNectarIncrease = 0.14f;
+		public static float LootHoneyedGogglesIncrease = 0.14f;
+		public static float LootMoonLordEachWeaponIncrease = (1f / 3) - (1f / 9);
+		public static float LootNectarIncrease = 0.14f;
         public static float LootTheAxeIncrease = 0.20f;
 		
 		public static float BiomeKeyIncreaseForOneMechBossDown = 0.0004f;
@@ -86,7 +88,7 @@ namespace ReducedGrinding
 		public static float HellBatLootMagmaStoneIncrease = 0f;
 		public static float LavaBatLootMagmaStoneIncrease = 0f;
 		public static float LootAdhesiveBandageIncrease = 0f;
-		public static float LootAleTosser = 0.833f;
+		public static float LootAleTosserIncrease = 0.833f;
 		public static float LootAmarokIncrease = 0.0067f;
 		public static float LootAncientClothIncrease = 0f;
 		public static float LootAncientCobaltBreastplateIncrease = 0f;
@@ -99,7 +101,7 @@ namespace ReducedGrinding
 		public static float LootAncientShadowGreavesIncrease = 0f;
 		public static float LootAncientShadowHelmetIncrease = 0f;
 		public static float LootAncientShadowScalemailIncrease = 0f;
-		public static float LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory = 0.0024f;
+		public static float LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory = 0.0025f;
 		public static float LootArmorPolishIncrease = 0f;
 		public static float LootBabyGrinchsMischiefWhistleIncrease = 0.05f;
 		public static float LootBananarangIncrease = 0.3f;
@@ -123,6 +125,7 @@ namespace ReducedGrinding
 		public static float LootClassyCane = 0.875f;
 		public static float LootClingerStaffIncrease = 0f;
 		public static float LootClothierVoodooDollIncrease = 0.0467f;
+		public static float LootCloudFromHarpies = 1f;
 		public static float LootCompassIncrease = 0f;
 		public static float LootCrossNecklaceIncrease = 0f;
 		public static float LootCrystalVileShardIncrease = 0f;
@@ -133,6 +136,7 @@ namespace ReducedGrinding
 		public static float LootDeathSickleIncrease = 0.025f;
 		public static float LootDemonScytheIncrease = 0.0214f;
 		public static float LootDepthMeterIncrease = 0f;
+		public static float LootDesertFossilFromDuneSplicer = 1f;
 		public static float LootDesertSpiritLampIncrease = 0f;
 		public static float LootDivingHelmetIncrease = 0.03f;
 		public static float LootDualHookIncrease = 0f;
@@ -142,7 +146,7 @@ namespace ReducedGrinding
 		public static float LootEskimoCoatIncrease = 0f;
 		public static float LootEskimoHoodIncrease = 0f;
 		public static float LootEskimoPantsIncrease = 0f;
-		public static float LootExoticScimitar = 0.875f;
+		public static float LootExoticScimitarIncrease = 0.875f;
 		public static float LootEyePatchIncrease = 0f;
 		public static float LootEyeSpringIncrease = 0f;
 		public static float LootFastClockBaseIncrease = 0f;
@@ -158,10 +162,11 @@ namespace ReducedGrinding
 		public static float LootGoldenFurnitureIncrease = 0f;
 		public static float LootGoldenKeyIncrease = 0f;
 		public static float LootGoodieBagIncrease = 0f;
-		public static float LootGreenCap = 1f;
-		public static float LootHappyGrenade = 0.75f;
+		public static float LootGreenCapForNonAndrewGuide = 1f;
+		public static float LootHappyGrenadeIncrease = 0.75f;
 		public static float LootHarpoonIncrease = 0.0075f;
 		public static float LootHelFireIncrease = 0.0025f;
+		public static float LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned = 1f;
 		public static float LootHookIncrease = 0f;
 		public static float LootIceSickleIncrease = 0.0011f;
 		public static float LootIlluminantHookIncrease = 0f;
@@ -195,7 +200,7 @@ namespace ReducedGrinding
 		public static float LootNazarIncrease = 0f;
 		public static float LootNimbusRodIncrease = 0f;
 		public static float LootObsidianRoseIncrease = 0.03f;
-		public static float LootPaintballGun = 0.9f;
+		public static float LootPaintballGunIncrease = 0.9f;
 		public static float LootPaladinsShieldIncrease = 0.35f;
 		public static float LootPedguinssuitIncrease = 0f;
 		public static float LootPhilosophersStoneIncrease = 0f;
@@ -226,7 +231,7 @@ namespace ReducedGrinding
 		public static float LootSoulofLightIncrease = 0f;
 		public static float LootSoulofNightIncrease = 0f;
 		public static float LootStarCloakIncrease = 0f;
-		public static float LootStylishScissors = 0.875f;
+		public static float LootStylishScissorsIncrease = 0.875f;
 		public static float LootSunMaskIncrease = 0f;
 		public static float LootTabiIncrease = 0f;
 		public static float LootTacticalShotgunIncrease = 0f;
@@ -392,16 +397,18 @@ namespace ReducedGrinding
 		public static bool ChestSalesman = false;
 
 		public static bool AllNPCsSellTheirDeathLoot = false;
-		public static bool MechanicSellsDartTrapAfterSkeletronDefeated = true;
+		public static bool DryadSellsPlanteraBulbAfterPlanteraDefeated = true;
+		public static bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = true;
 		public static bool MechanicSellsGeyserAfterWallofFleshDefeated = true;
-		public static bool MechanicSellsLihzahrdTrapsAfterGolemDefeated = true;
-		public static bool MechanicSellsWoodenSpikesAfterGolemDefeated = false;
+		public static bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = true;
+		public static bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated = true;
 		public static bool MerchantSellsAllMiningGear = true;
 		public static bool MerchantSellsBlizzardInABottleWhenInSnow = false;
 		public static bool MerchantSellsCloudInABottleWhenInSky = false;
 		public static bool MerchantSellsFishItem = false;
 		public static bool MerchantSellsPyramidItems = false;
 		public static bool MerchantSellsSandstormInABottleWhenInDesert = false;
+		public static bool MerchantSellsSwiftnessPotion = true;
 		public static bool WitchDoctorSellsFlowerBoots = false;
 		public static bool WitchDoctorSellsHoneyDispenser = false;
 		public static bool WitchDoctorSellsSeaweed = false;
@@ -409,6 +416,7 @@ namespace ReducedGrinding
 		public static int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = 50000;
 		
 		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
+		public static bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = false;
 		public static bool PirateSellsPirateRetreatOrder = true;
 		public static bool WizardSellsMoonBall = true;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
@@ -416,20 +424,9 @@ namespace ReducedGrinding
 		public static float BloodZombieAndDripplerDropsBloodMoonMedallion = 0.1f;
 		public static float ChaosPotionMaxSpawnsMultiplier = 20f;
 		public static float ChaosPotionSpawnrateMultiplier = 20f;
+		public static float MartianSaucerMartianCallDrop = 1f;
 		public static float WarPotionMaxSpawnsMultiplier = 10f;
 		public static float WarPotionSpawnrateMultiplier = 10f;
-		
-		public static int NewCharacterBarrels = 0;
-		public static int NewCharacterCopperBars = 0;
-		public static int NewCharacterCopperCoins = 0;
-		public static int NewCharacterGoldBars = 0;
-		public static int NewCharacterGoldCoins = 0;
-		public static int NewCharacterIronBars = 0;
-		public static int NewCharacterMiningPotions = 3;
-		public static int NewCharacterPlatinumCoins = 0;
-		public static int NewCharacterSilverBars = 0;
-		public static int NewCharacterSilverCoins = 0;
-		public static int NewCharacterWarPotions = 0;
 
 		public static float ExtractinatorGivesAmber = 0f;
 		public static float ExtractinatorGivesAmberMosquito = 0.0014f;
@@ -452,39 +449,6 @@ namespace ReducedGrinding
 		public static float ExtractinatorGivesTinOre = 0f;
 		public static float ExtractinatorGivesTopaz = 0f;
 		public static float ExtractinatorGivesTungstenOre = 0f;
-		
-		public static bool CrateUpgradesDependingOnFishingPower = true;
-		public static float FishCatchBecomesBalloonPufferfish = 0.01f;
-		public static float FishCatchBecomesBladetongue = 0.02f;
-		public static float FishCatchBecomesBlueJellyfish = 0.01f;
-		public static float FishCatchBecomesChaosFish = 0f;
-		public static float FishCatchBecomesCorruptCrate = 0f;
-		public static float FishCatchBecomesCrimsonCrate = 0f;
-		public static float FishCatchBecomesCrystalSerpent = 0.02f;
-		public static float FishCatchBecomesDungeonCrate = 0f;
-		public static float FishCatchBecomesFrogLeg = 0.01f;
-		public static float FishCatchBecomesFrostDaggerfish = 0f;
-		public static float FishCatchBecomesGoldenCarp = 0f;
-		public static float FishCatchBecomesGoldenCrate = 0f;
-		public static float FishCatchBecomesGreenJellyfish = 0.01f;
-		public static float FishCatchBecomesHallowedCrate = 0f;
-		public static float FishCatchBecomesIronCrate = 0f;
-		public static float FishCatchBecomesJungleCrate = 0f;
-		public static float FishCatchBecomesPinkJellyfish = 0.01f;
-		public static float FishCatchBecomesPurpleClubberfish = 0f;
-		public static float FishCatchBecomesReaverSharkAfterAllMechBossesDowned = 0f;
-		public static float FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = 0.02f;
-		public static float FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = 0f;
-		public static float FishCatchBecomesRockfish = 0f;
-		public static float FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned = 0f;
-		public static float FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = 0.02f;
-		public static float FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = 0f;
-		public static float FishCatchBecomesScalyTruffle = 0.05f;
-		public static float FishCatchBecomesSkyCrate = 0f;
-		public static float FishCatchBecomesSwordfish = 0f;
-		public static float FishCatchBecomesToxikarp = 0.02f;
-		public static float FishCatchBecomesWoodenCrate = 0f;
-		public static float FishCatchBecomesZephyrFish = 0.01f;
 		
         static string ConfigPath = Path.Combine(Main.SavePath, "Mod Configs", filename);
 
@@ -510,6 +474,7 @@ namespace ReducedGrinding
 				Configuration.Get("NormalModeLootMultiplierForLootWithSeperateDifficultyRates", ref NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
 				
 				Configuration.Get("CrateDungeonBoneWelder", ref CrateDungeonBoneWelder);
+				Configuration.Get("CrateDungeonHardmodeGoldenLockBoxIncrease", ref CrateDungeonHardmodeGoldenLockBoxIncrease);
 				Configuration.Get("CrateEnchantedSundialGoldenIncrease", ref CrateEnchantedSundialGoldenIncrease);
 				Configuration.Get("CrateEnchantedSundialIronIncrease", ref CrateEnchantedSundialIronIncrease);
 				Configuration.Get("CrateEnchantedSundialWoodenIncrease", ref CrateEnchantedSundialWoodenIncrease);
@@ -568,6 +533,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootFishronTruffleworm", ref LootFishronTruffleworm);
 				Configuration.Get("LootFishronWingsIncrease", ref LootFishronWingsIncrease);
 				Configuration.Get("LootHoneyedGogglesIncrease", ref LootHoneyedGogglesIncrease);
+				Configuration.Get("LootMoonLordEachWeaponIncrease", ref LootMoonLordEachWeaponIncrease);
 				Configuration.Get("LootNectarIncrease", ref LootNectarIncrease);
 				Configuration.Get("LootPicksawIncrease", ref LootPicksawIncrease);
 				Configuration.Get("LootSeedlingIncrease", ref LootSeedlingIncrease);
@@ -582,7 +548,7 @@ namespace ReducedGrinding
 				Configuration.Get("HellBatLootMagmaStoneIncrease", ref HellBatLootMagmaStoneIncrease);
 				Configuration.Get("LavaBatLootMagmaStoneIncrease", ref LavaBatLootMagmaStoneIncrease);
 				Configuration.Get("LootAdhesiveBandageIncrease", ref LootAdhesiveBandageIncrease);
-				Configuration.Get("LootAleTosser", ref LootAleTosser);
+				Configuration.Get("LootAleTosserIncrease", ref LootAleTosserIncrease);
 				Configuration.Get("LootAmarokIncrease", ref LootAmarokIncrease);
 				Configuration.Get("LootAncientClothIncrease", ref LootAncientClothIncrease);
 				Configuration.Get("LootAncientCobaltBreastplateIncrease", ref LootAncientCobaltBreastplateIncrease);
@@ -620,6 +586,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootClassyCane", ref LootClassyCane);
 				Configuration.Get("LootClingerStaffIncrease", ref LootClingerStaffIncrease);
 				Configuration.Get("LootClothierVoodooDollIncrease", ref LootClothierVoodooDollIncrease);
+				Configuration.Get("LootCloudFromHarpies", ref LootCloudFromHarpies);
 				Configuration.Get("LootCrossNecklaceIncrease", ref LootCrossNecklaceIncrease);
 				Configuration.Get("LootCrystalVileShardIncrease", ref LootCrystalVileShardIncrease);
 				Configuration.Get("LootDaedalusStormbowIncrease", ref LootDaedalusStormbowIncrease);
@@ -629,6 +596,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootDeathSickleIncrease", ref LootDeathSickleIncrease);
 				Configuration.Get("LootDemonScytheIncrease", ref LootDemonScytheIncrease);
 				Configuration.Get("LootDepthMeterIncrease", ref LootDepthMeterIncrease);
+				Configuration.Get("LootDesertFossilFromDuneSplicer", ref LootDesertFossilFromDuneSplicer);
 				Configuration.Get("LootDesertSpiritLampIncrease", ref LootDesertSpiritLampIncrease);
 				Configuration.Get("LootDivingHelmetIncrease", ref LootDivingHelmetIncrease);
 				Configuration.Get("LootDualHookIncrease", ref LootDualHookIncrease);
@@ -638,7 +606,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootEskimoCoatIncrease", ref LootEskimoCoatIncrease);
 				Configuration.Get("LootEskimoHoodIncrease", ref LootEskimoHoodIncrease);
 				Configuration.Get("LootEskimoPantsIncrease", ref LootEskimoPantsIncrease);
-				Configuration.Get("LootExoticScimitar", ref LootExoticScimitar);
+				Configuration.Get("LootExoticScimitarIncrease", ref LootExoticScimitarIncrease);
 				Configuration.Get("LootEyePatchIncrease", ref LootEyePatchIncrease);
 				Configuration.Get("LootEyeSpringIncrease", ref LootEyeSpringIncrease);
 				Configuration.Get("LootFastClockBaseIncrease", ref LootFastClockBaseIncrease);
@@ -654,10 +622,11 @@ namespace ReducedGrinding
 				Configuration.Get("LootGoldenFurnitureIncrease", ref LootGoldenFurnitureIncrease);
 				Configuration.Get("LootGoldenKeyIncrease", ref LootGoldenKeyIncrease);
 				Configuration.Get("LootGoodieBagIncrease", ref LootGoodieBagIncrease);
-				Configuration.Get("LootGreenCap", ref LootGreenCap);
-				Configuration.Get("LootHappyGrenade", ref LootHappyGrenade);
+				Configuration.Get("LootGreenCapForNonAndrewGuide", ref LootGreenCapForNonAndrewGuide);
+				Configuration.Get("LootHappyGrenadeIncrease", ref LootHappyGrenadeIncrease);
 				Configuration.Get("LootHarpoonIncrease", ref LootHarpoonIncrease);
 				Configuration.Get("LootHelFireIncrease", ref LootHelFireIncrease);
+				Configuration.Get("LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned", ref LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned);
 				Configuration.Get("LootHookIncrease", ref LootHookIncrease);
 				Configuration.Get("LootIceSickleIncrease", ref LootIceSickleIncrease);
 				Configuration.Get("LootIlluminantHookIncrease", ref LootIlluminantHookIncrease);
@@ -691,7 +660,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootNazarIncrease", ref LootNazarIncrease);
 				Configuration.Get("LootNimbusRodIncrease", ref LootNimbusRodIncrease);
 				Configuration.Get("LootObsidianRoseIncrease", ref LootObsidianRoseIncrease);
-				Configuration.Get("LootPaintballGun", ref LootPaintballGun);
+				Configuration.Get("LootPaintballGunIncrease", ref LootPaintballGunIncrease);
 				Configuration.Get("LootPaladinsShieldIncrease", ref LootPaladinsShieldIncrease);
 				Configuration.Get("LootPedguinssuitIncrease", ref LootPedguinssuitIncrease);
 				Configuration.Get("LootPhilosophersStoneIncrease", ref LootPhilosophersStoneIncrease);
@@ -722,7 +691,7 @@ namespace ReducedGrinding
 				Configuration.Get("LootSoulofLightIncrease", ref LootSoulofLightIncrease);
 				Configuration.Get("LootSoulofNightIncrease", ref LootSoulofNightIncrease);
 				Configuration.Get("LootStarCloakIncrease", ref LootStarCloakIncrease);
-				Configuration.Get("LootStylishScissors", ref LootStylishScissors);
+				Configuration.Get("LootStylishScissorsIncrease", ref LootStylishScissorsIncrease);
 				Configuration.Get("LootSunMaskIncrease", ref LootSunMaskIncrease);
 				Configuration.Get("LootTabiIncrease", ref LootTabiIncrease);
 				Configuration.Get("LootTacticalShotgunIncrease", ref LootTacticalShotgunIncrease);
@@ -886,10 +855,11 @@ namespace ReducedGrinding
 				Configuration.Get("ChestSalesman", ref ChestSalesman);
 
 				Configuration.Get("AllNPCsSellTheirDeathLoot", ref AllNPCsSellTheirDeathLoot);
-				Configuration.Get("MechanicSellsDartTrapAfterSkeletronDefeated", ref MechanicSellsDartTrapAfterSkeletronDefeated);
+				Configuration.Get("DryadSellsPlanteraBulbAfterPlanteraDefeated", ref DryadSellsPlanteraBulbAfterPlanteraDefeated);
+				Configuration.Get("MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated", ref MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 				Configuration.Get("MechanicSellsGeyserAfterWallofFleshDefeated", ref MechanicSellsGeyserAfterWallofFleshDefeated);
-				Configuration.Get("MechanicSellsLihzahrdTrapsAfterGolemDefeated", ref MechanicSellsLihzahrdTrapsAfterGolemDefeated);
-				Configuration.Get("MechanicSellsWoodenSpikesAfterGolemDefeated", ref MechanicSellsWoodenSpikesAfterGolemDefeated);
+				Configuration.Get("WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated", ref WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated);
+				Configuration.Get("WitchDoctorSellsWoodenSpikesAfterGolemDefeated", ref WitchDoctorSellsWoodenSpikesAfterGolemDefeated);
 				Configuration.Get("MerchantSellsAllMiningGear", ref MerchantSellsAllMiningGear);
 				Configuration.Get("MerchantSellsBlizzardInABottleWhenInSnow", ref MerchantSellsBlizzardInABottleWhenInSnow);
 				Configuration.Get("MerchantSellsCloudInABottleWhenInSky", ref MerchantSellsCloudInABottleWhenInSky);
@@ -897,6 +867,7 @@ namespace ReducedGrinding
 				Configuration.Get("MerchantSellsPyramidItems", ref MerchantSellsPyramidItems);
 				Configuration.Get("MerchantSellsSandstormInABottleWhenInDesert", ref MerchantSellsSandstormInABottleWhenInDesert);
 				Configuration.Get("TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight", ref TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight);
+				Configuration.Get("MerchantSellsSwiftnessPotion", ref MerchantSellsSwiftnessPotion);
 				Configuration.Get("WitchDoctorSellsFlowerBoots", ref WitchDoctorSellsFlowerBoots);
 				Configuration.Get("WitchDoctorSellsHoneyDispenser", ref WitchDoctorSellsHoneyDispenser);
 				Configuration.Get("WitchDoctorSellsSeaweed", ref WitchDoctorSellsSeaweed);
@@ -908,22 +879,12 @@ namespace ReducedGrinding
 				Configuration.Get("ChaosPotionMaxSpawnsMultiplier", ref ChaosPotionMaxSpawnsMultiplier);
 				Configuration.Get("ChaosPotionSpawnrateMultiplier", ref ChaosPotionSpawnrateMultiplier);
 				Configuration.Get("GoblinTinkererSellsGoblinRetreatOrder", ref GoblinTinkererSellsGoblinRetreatOrder);
+				Configuration.Get("MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem", ref MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 				Configuration.Get("PirateSellsPirateRetreatOrder", ref PirateSellsPirateRetreatOrder);
+				Configuration.Get("MartianSaucerMartianCallDrop", ref MartianSaucerMartianCallDrop);
 				Configuration.Get("WarPotionMaxSpawnsMultiplier", ref WarPotionMaxSpawnsMultiplier);
 				Configuration.Get("WarPotionSpawnrateMultiplier", ref WarPotionSpawnrateMultiplier);
 				Configuration.Get("WizardSellsMoonBall", ref WizardSellsMoonBall);
-			
-				Configuration.Get("NewCharacterBarrels", ref NewCharacterBarrels);
-				Configuration.Get("NewCharacterCopperBars", ref NewCharacterCopperBars);
-				Configuration.Get("NewCharacterCopperCoins", ref NewCharacterCopperCoins);
-				Configuration.Get("NewCharacterGoldBars", ref NewCharacterGoldBars);
-				Configuration.Get("NewCharacterGoldCoins", ref NewCharacterGoldCoins);
-				Configuration.Get("NewCharacterIronBars", ref NewCharacterIronBars);
-				Configuration.Get("NewCharacterMiningPotions", ref NewCharacterMiningPotions);
-				Configuration.Get("NewCharacterPlatinumCoins", ref NewCharacterPlatinumCoins);
-				Configuration.Get("NewCharacterSilverBars", ref NewCharacterSilverBars);
-				Configuration.Get("NewCharacterSilverCoins", ref NewCharacterSilverCoins);
-				Configuration.Get("NewCharacterWarPotions", ref NewCharacterWarPotions);
 				
 				Configuration.Get("ExtractinatorGivesAmber", ref ExtractinatorGivesAmber);
 				Configuration.Get("ExtractinatorGivesAmberMosquito", ref ExtractinatorGivesAmberMosquito);
@@ -946,39 +907,6 @@ namespace ReducedGrinding
 				Configuration.Get("ExtractinatorGivesTinOre", ref ExtractinatorGivesTinOre);
 				Configuration.Get("ExtractinatorGivesTopaz", ref ExtractinatorGivesTopaz);
 				Configuration.Get("ExtractinatorGivesTungstenOre", ref ExtractinatorGivesTungstenOre);
-				
-				Configuration.Get("CrateUpgradesDependingOnFishingPower", ref CrateUpgradesDependingOnFishingPower);
-				Configuration.Get("FishCatchBecomesBalloonPufferfish", ref FishCatchBecomesBalloonPufferfish);
-				Configuration.Get("FishCatchBecomesBladetongue", ref FishCatchBecomesBladetongue);
-				Configuration.Get("FishCatchBecomesBlueJellyfish", ref FishCatchBecomesBlueJellyfish);
-				Configuration.Get("FishCatchBecomesChaosFish", ref FishCatchBecomesChaosFish);
-				Configuration.Get("FishCatchBecomesCorruptCrate", ref FishCatchBecomesCorruptCrate);
-				Configuration.Get("FishCatchBecomesCrimsonCrate", ref FishCatchBecomesCrimsonCrate);
-				Configuration.Get("FishCatchBecomesCrystalSerpent", ref FishCatchBecomesCrystalSerpent);
-				Configuration.Get("FishCatchBecomesDungeonCrate", ref FishCatchBecomesDungeonCrate);
-				Configuration.Get("FishCatchBecomesFrogLeg", ref FishCatchBecomesFrogLeg);
-				Configuration.Get("FishCatchBecomesFrostDaggerfish", ref FishCatchBecomesFrostDaggerfish);
-				Configuration.Get("FishCatchBecomesGoldenCarp", ref FishCatchBecomesGoldenCarp);
-				Configuration.Get("FishCatchBecomesGoldenCrate", ref FishCatchBecomesGoldenCrate);
-				Configuration.Get("FishCatchBecomesGreenJellyfish", ref FishCatchBecomesGreenJellyfish);
-				Configuration.Get("FishCatchBecomesHallowedCrate", ref FishCatchBecomesHallowedCrate);
-				Configuration.Get("FishCatchBecomesIronCrate", ref FishCatchBecomesIronCrate);
-				Configuration.Get("FishCatchBecomesJungleCrate", ref FishCatchBecomesJungleCrate);
-				Configuration.Get("FishCatchBecomesPinkJellyfish", ref FishCatchBecomesPinkJellyfish);
-				Configuration.Get("FishCatchBecomesPurpleClubberfish", ref FishCatchBecomesPurpleClubberfish);
-				Configuration.Get("FishCatchBecomesReaverSharkAfterAllMechBossesDowned", ref FishCatchBecomesReaverSharkAfterAllMechBossesDowned);
-				Configuration.Get("FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", ref FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-				Configuration.Get("FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", ref FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-				Configuration.Get("FishCatchBecomesRockfish", ref FishCatchBecomesRockfish);
-				Configuration.Get("FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned", ref FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned);
-				Configuration.Get("FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", ref FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-				Configuration.Get("FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", ref FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-				Configuration.Get("FishCatchBecomesScalyTruffle", ref FishCatchBecomesScalyTruffle);
-				Configuration.Get("FishCatchBecomesSkyCrate", ref FishCatchBecomesSkyCrate);
-				Configuration.Get("FishCatchBecomesSwordfish", ref FishCatchBecomesSwordfish);
-				Configuration.Get("FishCatchBecomesToxikarp", ref FishCatchBecomesToxikarp);
-				Configuration.Get("FishCatchBecomesWoodenCrate", ref FishCatchBecomesWoodenCrate);
-				Configuration.Get("FishCatchBecomesZephyrFish", ref FishCatchBecomesZephyrFish);
 				
 				Configuration.Get("DropTriesForAllEnemyDroppedLoot", ref DropTriesForAllEnemyDroppedLoot);
 				
@@ -1006,6 +934,7 @@ namespace ReducedGrinding
 			Configuration.Put("|                                            GRAB BAGS                                             |", 0);
 			Configuration.Put("=================================================================================================GB2", 0);
 			Configuration.Put("CrateDungeonBoneWelder", CrateDungeonBoneWelder);
+			Configuration.Put("CrateDungeonHardmodeGoldenLockBoxIncrease", CrateDungeonHardmodeGoldenLockBoxIncrease);
 			Configuration.Put("CrateEnchantedSundialGoldenIncrease", CrateEnchantedSundialGoldenIncrease);
 			Configuration.Put("CrateEnchantedSundialIronIncrease", CrateEnchantedSundialIronIncrease);
 			Configuration.Put("CrateEnchantedSundialWoodenIncrease", CrateEnchantedSundialWoodenIncrease);
@@ -1067,6 +996,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootFishronTruffleworm", LootFishronTruffleworm);
 			Configuration.Put("LootFishronWingsIncrease", LootFishronWingsIncrease);
 			Configuration.Put("LootHoneyedGogglesIncrease", LootHoneyedGogglesIncrease);
+			Configuration.Put("LootMoonLordEachWeaponIncrease", LootMoonLordEachWeaponIncrease);
 			Configuration.Put("LootNectarIncrease", LootNectarIncrease);
 			Configuration.Put("LootPicksawIncrease", LootPicksawIncrease);
 			Configuration.Put("LootSeedlingIncrease", LootSeedlingIncrease);
@@ -1087,7 +1017,7 @@ namespace ReducedGrinding
 			Configuration.Put("HellBatLootMagmaStoneIncrease", HellBatLootMagmaStoneIncrease);
 			Configuration.Put("LavaBatLootMagmaStoneIncrease", LavaBatLootMagmaStoneIncrease);
 			Configuration.Put("LootAdhesiveBandageIncrease", LootAdhesiveBandageIncrease);
-			Configuration.Put("LootAleTosser", LootAleTosser);
+			Configuration.Put("LootAleTosserIncrease", LootAleTosserIncrease);
 			Configuration.Put("LootAmarokIncrease", LootAmarokIncrease);
 			Configuration.Put("LootAncientClothIncrease", LootAncientClothIncrease);
 			Configuration.Put("LootAncientCobaltBreastplateIncrease", LootAncientCobaltBreastplateIncrease);
@@ -1125,6 +1055,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootClassyCane", LootClassyCane);
 			Configuration.Put("LootClingerStaffIncrease", LootClingerStaffIncrease);
 			Configuration.Put("LootClothierVoodooDollIncrease", LootClothierVoodooDollIncrease);
+			Configuration.Put("LootCloudFromHarpies", LootCloudFromHarpies);
 			Configuration.Put("LootCrossNecklaceIncrease", LootCrossNecklaceIncrease);
 			Configuration.Put("LootCrystalVileShardIncrease", LootCrystalVileShardIncrease);
 			Configuration.Put("LootDaedalusStormbowIncrease", LootDaedalusStormbowIncrease);
@@ -1134,6 +1065,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootDeathSickleIncrease", LootDeathSickleIncrease);
 			Configuration.Put("LootDemonScytheIncrease", LootDemonScytheIncrease);
 			Configuration.Put("LootDepthMeterIncrease", LootDepthMeterIncrease);
+			Configuration.Put("LootDesertFossilFromDuneSplicer", LootDesertFossilFromDuneSplicer);
 			Configuration.Put("LootDesertSpiritLampIncrease", LootDesertSpiritLampIncrease);
 			Configuration.Put("LootDivingHelmetIncrease", LootDivingHelmetIncrease);
 			Configuration.Put("LootDualHookIncrease", LootDualHookIncrease);
@@ -1143,7 +1075,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootEskimoCoatIncrease", LootEskimoCoatIncrease);
 			Configuration.Put("LootEskimoHoodIncrease", LootEskimoHoodIncrease);
 			Configuration.Put("LootEskimoPantsIncrease", LootEskimoPantsIncrease);
-			Configuration.Put("LootExoticScimitar", LootExoticScimitar);
+			Configuration.Put("LootExoticScimitarIncrease", LootExoticScimitarIncrease);
 			Configuration.Put("LootEyePatchIncrease", LootEyePatchIncrease);
 			Configuration.Put("LootEyeSpringIncrease", LootEyeSpringIncrease);
 			Configuration.Put("LootFastClockBaseIncrease", LootFastClockBaseIncrease);
@@ -1159,10 +1091,11 @@ namespace ReducedGrinding
 			Configuration.Put("LootGoldenFurnitureIncrease", LootGoldenFurnitureIncrease);
 			Configuration.Put("LootGoldenKeyIncrease", LootGoldenKeyIncrease);
 			Configuration.Put("LootGoodieBagIncrease", LootGoodieBagIncrease);
-			Configuration.Put("LootGreenCap", LootGreenCap);
-			Configuration.Put("LootHappyGrenade", LootHappyGrenade);
+			Configuration.Put("LootGreenCapForNonAndrewGuide", LootGreenCapForNonAndrewGuide);
+			Configuration.Put("LootHappyGrenadeIncrease", LootHappyGrenadeIncrease);
 			Configuration.Put("LootHarpoonIncrease", LootHarpoonIncrease);
 			Configuration.Put("LootHelFireIncrease", LootHelFireIncrease);
+			Configuration.Put("LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned", LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned);
 			Configuration.Put("LootHookIncrease", LootHookIncrease);
 			Configuration.Put("LootIceSickleIncrease", LootIceSickleIncrease);
 			Configuration.Put("LootIlluminantHookIncrease", LootIlluminantHookIncrease);
@@ -1196,7 +1129,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootNazarIncrease", LootNazarIncrease);
 			Configuration.Put("LootNimbusRodIncrease", LootNimbusRodIncrease);
 			Configuration.Put("LootObsidianRoseIncrease", LootObsidianRoseIncrease);
-			Configuration.Put("LootPaintballGun", LootPaintballGun);
+			Configuration.Put("LootPaintballGunIncrease", LootPaintballGunIncrease);
 			Configuration.Put("LootPaladinsShieldIncrease", LootPaladinsShieldIncrease);
 			Configuration.Put("LootPedguinssuitIncrease", LootPedguinssuitIncrease);
 			Configuration.Put("LootPhilosophersStoneIncrease", LootPhilosophersStoneIncrease);
@@ -1227,7 +1160,7 @@ namespace ReducedGrinding
 			Configuration.Put("LootSoulofLightIncrease", LootSoulofLightIncrease);
 			Configuration.Put("LootSoulofNightIncrease", LootSoulofNightIncrease);
 			Configuration.Put("LootStarCloakIncrease", LootStarCloakIncrease);
-			Configuration.Put("LootStylishScissors", LootStylishScissors);
+			Configuration.Put("LootStylishScissorsIncrease", LootStylishScissorsIncrease);
 			Configuration.Put("LootSunMaskIncrease", LootSunMaskIncrease);
 			Configuration.Put("LootTabiIncrease", LootTabiIncrease);
 			Configuration.Put("LootTacticalShotgunIncrease", LootTacticalShotgunIncrease);
@@ -1394,10 +1327,9 @@ namespace ReducedGrinding
 			Configuration.Put("| isn't Andrew.                                                                                    |", 0);
 			Configuration.Put("=================================================================================================VS2", 0);
 			Configuration.Put("AllNPCsSellTheirDeathLoot", AllNPCsSellTheirDeathLoot);
-			Configuration.Put("MechanicSellsDartTrapAfterSkeletronDefeated", MechanicSellsDartTrapAfterSkeletronDefeated);
+			Configuration.Put("DryadSellsPlanteraBulbAfterPlanteraDefeated", DryadSellsPlanteraBulbAfterPlanteraDefeated);
+			Configuration.Put("MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated", MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 			Configuration.Put("MechanicSellsGeyserAfterWallofFleshDefeated", MechanicSellsGeyserAfterWallofFleshDefeated);
-			Configuration.Put("MechanicSellsLihzahrdTrapsAfterGolemDefeated", MechanicSellsLihzahrdTrapsAfterGolemDefeated);
-			Configuration.Put("MechanicSellsWoodenSpikesAfterGolemDefeated", MechanicSellsWoodenSpikesAfterGolemDefeated);
 			Configuration.Put("MerchantSellsAllMiningGear", MerchantSellsAllMiningGear);
 			Configuration.Put("MerchantSellsBlizzardInABottleWhenInSnow", MerchantSellsBlizzardInABottleWhenInSnow);
 			Configuration.Put("MerchantSellsCloudInABottleWhenInSky", MerchantSellsCloudInABottleWhenInSky);
@@ -1405,11 +1337,14 @@ namespace ReducedGrinding
 			Configuration.Put("MerchantSellsPyramidItems", MerchantSellsPyramidItems);
 			Configuration.Put("MerchantSellsSandstormInABottleWhenInDesert", MerchantSellsSandstormInABottleWhenInDesert);
 			Configuration.Put("TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight", TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight);
+			Configuration.Put("MerchantSellsSwiftnessPotion", MerchantSellsSwiftnessPotion);
 			Configuration.Put("WitchDoctorSellsFlowerBoots", WitchDoctorSellsFlowerBoots);
 			Configuration.Put("WitchDoctorSellsHoneyDispenser", WitchDoctorSellsHoneyDispenser);
+			Configuration.Put("WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated", WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated);
 			Configuration.Put("WitchDoctorSellsSeaweed", WitchDoctorSellsSeaweed);
 			Configuration.Put("WitchDoctorSellsStaffofRegrowth", WitchDoctorSellsStaffofRegrowth);
-			
+			Configuration.Put("WitchDoctorSellsWoodenSpikesAfterGolemDefeated", WitchDoctorSellsWoodenSpikesAfterGolemDefeated);
+
 			Configuration.Put("=================================================================================================ML1", 0);
 			Configuration.Put("|                                          MOD LOCKBOXES                                           |", 0);
 			Configuration.Put("=================================================================================================ML2", 0);
@@ -1440,28 +1375,13 @@ namespace ReducedGrinding
 			Configuration.Put("GoblinTinkererSellsGoblinRetreatOrder", GoblinTinkererSellsGoblinRetreatOrder);
 			Configuration.Put("JungleTempleLihzahrd_Lock_Box", JungleTempleLihzahrd_Lock_Box);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
+			Configuration.Put("MartianSaucerMartianCallDrop", MartianSaucerMartianCallDrop);
+			Configuration.Put("MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem", MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 			Configuration.Put("PirateSellsPirateRetreatOrder", PirateSellsPirateRetreatOrder);
 			Configuration.Put("WarPotionMaxSpawnsMultiplier", WarPotionMaxSpawnsMultiplier);
 			Configuration.Put("WarPotionSpawnrateMultiplier", WarPotionSpawnrateMultiplier);
 			Configuration.Put("WizardSellsMoonBall", WizardSellsMoonBall);
-			
-			Configuration.Put("=================================================================================================SI1", 0);
-			Configuration.Put("|                         STARTING ITEMS (THIS IS DISABLED FOR NOW)                                |", 0);
-			Configuration.Put("--------------------------------------------------------------------------------------------------SI", 0);
-			Configuration.Put("| After multiplayer syncing changes were made, it started crashing with many other mods.           |", 0);
-			Configuration.Put("=================================================================================================SI2", 0);
-			Configuration.Put("NewCharacterBarrels", NewCharacterBarrels);
-			Configuration.Put("NewCharacterCopperBars", NewCharacterCopperBars);
-			Configuration.Put("NewCharacterCopperCoins", NewCharacterCopperCoins);
-			Configuration.Put("NewCharacterGoldBars", NewCharacterGoldBars);
-			Configuration.Put("NewCharacterGoldCoins", NewCharacterGoldCoins);
-			Configuration.Put("NewCharacterIronBars", NewCharacterIronBars);
-			Configuration.Put("NewCharacterMiningPotions", NewCharacterMiningPotions);
-			Configuration.Put("NewCharacterPlatinumCoins", NewCharacterPlatinumCoins);
-			Configuration.Put("NewCharacterSilverBars", NewCharacterSilverBars);
-			Configuration.Put("NewCharacterSilverCoins", NewCharacterSilverCoins);
-			Configuration.Put("NewCharacterWarPotions", NewCharacterWarPotions);
-			
+
 			Configuration.Put("=================================================================================================================================================================EL1", 0);
 			Configuration.Put("|              EXTRACTINATOR LOOT (Loots in this category may override each other and blocks may have a decreasing multiplier compared to other blocks)            |", 0);
 			Configuration.Put("------------------------------------------------------------------------------------------------------------------------------------------------------------------EL", 0);
@@ -1489,45 +1409,6 @@ namespace ReducedGrinding
 			Configuration.Put("ExtractinatorGivesTinOre", ExtractinatorGivesTinOre);
 			Configuration.Put("ExtractinatorGivesTopaz", ExtractinatorGivesTopaz);
 			Configuration.Put("ExtractinatorGivesTungstenOre", ExtractinatorGivesTungstenOre);
-			
-			Configuration.Put("=================================================================================================FC1", 0);
-			Configuration.Put("|                                       FISHING CATCHES                                            |", 0);
-			Configuration.Put("--------------------------------------------------------------------------------------------------FC", 0);
-			Configuration.Put(" Fish catches here are still affected by Fishing Power and some fish are limited to certain        |", 0);
-			Configuration.Put(" locations.                                                                                        |", 0);
-			Configuration.Put("=================================================================================================FC2", 0);
-			Configuration.Put("CrateUpgradesDependingOnFishingPower", CrateUpgradesDependingOnFishingPower);
-			Configuration.Put("FishCatchBecomesBalloonPufferfish", FishCatchBecomesBalloonPufferfish);
-			Configuration.Put("FishCatchBecomesBladetongue", FishCatchBecomesBladetongue);
-			Configuration.Put("FishCatchBecomesBlueJellyfish", FishCatchBecomesBlueJellyfish);
-			Configuration.Put("FishCatchBecomesChaosFish", FishCatchBecomesChaosFish);
-			Configuration.Put("FishCatchBecomesCorruptCrate", FishCatchBecomesCorruptCrate);
-			Configuration.Put("FishCatchBecomesCrimsonCrate", FishCatchBecomesCrimsonCrate);
-			Configuration.Put("FishCatchBecomesCrystalSerpent", FishCatchBecomesCrystalSerpent);
-			Configuration.Put("FishCatchBecomesDungeonCrate", FishCatchBecomesDungeonCrate);
-			Configuration.Put("FishCatchBecomesFrogLeg", FishCatchBecomesFrogLeg);
-			Configuration.Put("FishCatchBecomesFrostDaggerfish", FishCatchBecomesFrostDaggerfish);
-			Configuration.Put("FishCatchBecomesGoldenCarp", FishCatchBecomesGoldenCarp);
-			Configuration.Put("FishCatchBecomesGoldenCrate", FishCatchBecomesGoldenCrate);
-			Configuration.Put("FishCatchBecomesGreenJellyfish", FishCatchBecomesGreenJellyfish);
-			Configuration.Put("FishCatchBecomesHallowedCrate", FishCatchBecomesHallowedCrate);
-			Configuration.Put("FishCatchBecomesIronCrate", FishCatchBecomesIronCrate);
-			Configuration.Put("FishCatchBecomesJungleCrate", FishCatchBecomesJungleCrate);
-			Configuration.Put("FishCatchBecomesPinkJellyfish", FishCatchBecomesPinkJellyfish);
-			Configuration.Put("FishCatchBecomesPurpleClubberfish", FishCatchBecomesPurpleClubberfish);
-			Configuration.Put("FishCatchBecomesReaverSharkAfterAllMechBossesDowned", FishCatchBecomesReaverSharkAfterAllMechBossesDowned);
-			Configuration.Put("FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-			Configuration.Put("FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-			Configuration.Put("FishCatchBecomesRockfish", FishCatchBecomesRockfish);
-			Configuration.Put("FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned", FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned);
-			Configuration.Put("FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-			Configuration.Put("FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned", FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-			Configuration.Put("FishCatchBecomesScalyTruffle", FishCatchBecomesScalyTruffle);
-			Configuration.Put("FishCatchBecomesSkyCrate", FishCatchBecomesSkyCrate);
-			Configuration.Put("FishCatchBecomesSwordfish", FishCatchBecomesSwordfish);
-			Configuration.Put("FishCatchBecomesToxikarp", FishCatchBecomesToxikarp);
-			Configuration.Put("FishCatchBecomesWoodenCrate", FishCatchBecomesWoodenCrate);
-			Configuration.Put("FishCatchBecomesZephyrFish", FishCatchBecomesZephyrFish);
 			
             Configuration.Save();
         }

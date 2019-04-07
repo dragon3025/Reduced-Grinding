@@ -523,19 +523,31 @@ namespace ReducedGrinding
 				}
 			}
 
-			bool anyPlayerHasItem = false;
+			bool anyPlayerHasCelestialBeacon = false;
 			for (int i = 0; i < 255; i++)
 			{
 				if (Main.player[i].active && Main.player[i].HasItem(mod.ItemType("Celestial_Beacon")))
 				{
-					anyPlayerHasItem = true;
+					anyPlayerHasCelestialBeacon = true;
 					break;
 				}
 			}
-			if (NPC.MoonLordCountdown > 1 && anyPlayerHasItem)
+			if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
 				NPC.MoonLordCountdown = 1;
 			//if (NPC.MoonLordCountdown > 1 && Main.player.Any(x => x.HasItem(mod.ItemType("Celestial_Beacon"))))
 			//NPC.MoonLordCountdown = 1;
+
+			if (Main.time % 600 == 0 && !NPC.downedMoonlord)
+			{
+				for (int i = 0; i < Main.npc.Length; i++)
+				{
+					if (Main.npc[i].type == NPCID.MoonLordCore && !anyPlayerHasCelestialBeacon)
+					{
+						Main.player[(int)Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)].QuickSpawnItem(mod.ItemType("Celestial_Beacon"));
+						break;
+					}
+				}
+			}
 
 			if (skipToNight)
 			{

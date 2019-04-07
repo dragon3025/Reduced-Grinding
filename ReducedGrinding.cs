@@ -48,6 +48,7 @@ namespace ReducedGrinding
 			float NormalModeLootMultiplierForLootWithSeperateDifficultyRates;
 			
 			float CrateDungeonBoneWelder;
+			float CrateDungeonHardmodeGoldenLockBoxIncrease;
 			float CrateEnchantedSundialGoldenIncrease;
 			float CrateEnchantedSundialIronIncrease;
 			float CrateEnchantedSundialWoodenIncrease;
@@ -109,6 +110,7 @@ namespace ReducedGrinding
 			float LootFishronTruffleworm;
 			float LootFishronWingsIncrease;
 			float LootHoneyedGogglesIncrease;
+			float LootMoonLordEachWeaponIncrease;
 			float LootNectarIncrease;
 			float LootTheAxeIncrease;
 			
@@ -120,7 +122,7 @@ namespace ReducedGrinding
 			float HellBatLootMagmaStoneIncrease;
 			float LavaBatLootMagmaStoneIncrease;
 			float LootAdhesiveBandageIncrease;
-			float LootAleTosser;
+			float LootAleTosserIncrease;
 			float LootAmarokIncrease;
 			float LootAncientClothIncrease;
 			float LootAncientCobaltBreastplateIncrease;
@@ -157,6 +159,7 @@ namespace ReducedGrinding
 			float LootClassyCane;
 			float LootClingerStaffIncrease;
 			float LootClothierVoodooDollIncrease;
+			float LootCloudFromHarpies;
 			float LootCompassIncrease;
 			float LootCrossNecklaceIncrease;
 			float LootCrystalVileShardIncrease;
@@ -167,6 +170,7 @@ namespace ReducedGrinding
 			float LootDeathSickleIncrease;
 			float LootDemonScytheIncrease;
 			float LootDepthMeterIncrease;
+			float LootDesertFossilFromDuneSplicer;
 			float LootDesertSpiritLampIncrease;
 			float LootDivingHelmetIncrease;
 			float LootDualHookIncrease;
@@ -176,7 +180,7 @@ namespace ReducedGrinding
 			float LootEskimoCoatIncrease;
 			float LootEskimoHoodIncrease;
 			float LootEskimoPantsIncrease;
-			float LootExoticScimitar;
+			float LootExoticScimitarIncrease;
 			float LootEyePatchIncrease;
 			float LootEyeSpringIncrease;
 			float LootFastClockBaseIncrease;
@@ -192,10 +196,11 @@ namespace ReducedGrinding
 			float LootGoldenFurnitureIncrease;
 			float LootGoldenKeyIncrease;
 			float LootGoodieBagIncrease;
-			float LootGreenCap;
-			float LootHappyGrenade;
+			float LootGreenCapForNonAndrewGuide;
+			float LootHappyGrenadeIncrease;
 			float LootHarpoonIncrease;
 			float LootHelFireIncrease;
+			float LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
 			float LootHookIncrease;
 			float LootIceSickleIncrease;
 			float LootIlluminantHookIncrease;
@@ -229,7 +234,7 @@ namespace ReducedGrinding
 			float LootNazarIncrease;
 			float LootNimbusRodIncrease;
 			float LootObsidianRoseIncrease;
-			float LootPaintballGun;
+			float LootPaintballGunIncrease;
 			float LootPaladinsShieldIncrease;
 			float LootPedguinssuitIncrease;
 			float LootPhilosophersStoneIncrease;
@@ -260,7 +265,7 @@ namespace ReducedGrinding
 			float LootSoulofLightIncrease;
 			float LootSoulofNightIncrease;
 			float LootStarCloakIncrease;
-			float LootStylishScissors;
+			float LootStylishScissorsIncrease;
 			float LootSunMaskIncrease;
 			float LootTabiIncrease;
 			float LootTacticalShotgunIncrease;
@@ -426,16 +431,18 @@ namespace ReducedGrinding
 			bool ChestSalesman;
 
 			bool AllNPCsSellTheirDeathLoot;
-			bool MechanicSellsDartTrapAfterSkeletronDefeated;
+			bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
+			bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
 			bool MechanicSellsGeyserAfterWallofFleshDefeated;
-			bool MechanicSellsLihzahrdTrapsAfterGolemDefeated;
-			bool MechanicSellsWoodenSpikesAfterGolemDefeated;
+			bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
+			bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
 			bool MerchantSellsAllMiningGear;
 			bool MerchantSellsBlizzardInABottleWhenInSnow;
 			bool MerchantSellsCloudInABottleWhenInSky;
 			bool MerchantSellsFishItem;
 			bool MerchantSellsPyramidItems;
 			bool MerchantSellsSandstormInABottleWhenInDesert;
+			bool MerchantSellsSwiftnessPotion;
 			bool WitchDoctorSellsFlowerBoots;
 			bool WitchDoctorSellsHoneyDispenser;
 			bool WitchDoctorSellsSeaweed;
@@ -443,6 +450,7 @@ namespace ReducedGrinding
 			int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight;
 			
 			bool GoblinTinkererSellsGoblinRetreatOrder;
+			bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 			bool PirateSellsPirateRetreatOrder;
 			bool WizardSellsMoonBall;
 			float BattlePotionMaxSpawnsMultiplier;
@@ -450,20 +458,9 @@ namespace ReducedGrinding
 			float BloodZombieAndDripplerDropsBloodMoonMedallion;
 			float ChaosPotionMaxSpawnsMultiplier;
 			float ChaosPotionSpawnrateMultiplier;
+			float MartianSaucerMartianCallDrop;
 			float WarPotionMaxSpawnsMultiplier;
 			float WarPotionSpawnrateMultiplier;
-			
-			int NewCharacterBarrels;
-			int NewCharacterCopperBars;
-			int NewCharacterCopperCoins;
-			int NewCharacterGoldBars;
-			int NewCharacterGoldCoins;
-			int NewCharacterIronBars;
-			int NewCharacterMiningPotions;
-			int NewCharacterPlatinumCoins;
-			int NewCharacterSilverBars;
-			int NewCharacterSilverCoins;
-			int NewCharacterWarPotions;
 
 			float ExtractinatorGivesAmber;
 			float ExtractinatorGivesAmberMosquito;
@@ -486,39 +483,6 @@ namespace ReducedGrinding
 			float ExtractinatorGivesTinOre;
 			float ExtractinatorGivesTopaz;
 			float ExtractinatorGivesTungstenOre;
-			
-			bool CrateUpgradesDependingOnFishingPower;
-			float FishCatchBecomesBalloonPufferfish;
-			float FishCatchBecomesBladetongue;
-			float FishCatchBecomesBlueJellyfish;
-			float FishCatchBecomesChaosFish;
-			float FishCatchBecomesCorruptCrate;
-			float FishCatchBecomesCrimsonCrate;
-			float FishCatchBecomesCrystalSerpent;
-			float FishCatchBecomesDungeonCrate;
-			float FishCatchBecomesFrogLeg;
-			float FishCatchBecomesFrostDaggerfish;
-			float FishCatchBecomesGoldenCarp;
-			float FishCatchBecomesGoldenCrate;
-			float FishCatchBecomesGreenJellyfish;
-			float FishCatchBecomesHallowedCrate;
-			float FishCatchBecomesIronCrate;
-			float FishCatchBecomesJungleCrate;
-			float FishCatchBecomesPinkJellyfish;
-			float FishCatchBecomesPurpleClubberfish;
-			float FishCatchBecomesReaverSharkAfterAllMechBossesDowned;
-			float FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned;
-			float FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned;
-			float FishCatchBecomesRockfish;
-			float FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned;
-			float FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned;
-			float FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned;
-			float FishCatchBecomesScalyTruffle;
-			float FishCatchBecomesSkyCrate;
-			float FishCatchBecomesSwordfish;
-			float FishCatchBecomesToxikarp;
-			float FishCatchBecomesWoodenCrate;
-			float FishCatchBecomesZephyrFish;
 			
 			byte arrayLength;
 
@@ -556,6 +520,7 @@ namespace ReducedGrinding
 						NormalModeLootMultiplierForLootWithSeperateDifficultyRates = reader.ReadSingle();
 						
 						CrateDungeonBoneWelder = reader.ReadSingle();
+						CrateDungeonHardmodeGoldenLockBoxIncrease = reader.ReadSingle();
 						CrateEnchantedSundialGoldenIncrease = reader.ReadSingle();
 						CrateEnchantedSundialIronIncrease = reader.ReadSingle();
 						CrateEnchantedSundialWoodenIncrease = reader.ReadSingle();
@@ -617,6 +582,7 @@ namespace ReducedGrinding
 						LootFishronTruffleworm = reader.ReadSingle();
 						LootFishronWingsIncrease = reader.ReadSingle();
 						LootHoneyedGogglesIncrease = reader.ReadSingle();
+						LootMoonLordEachWeaponIncrease = reader.ReadSingle();
 						LootNectarIncrease = reader.ReadSingle();
 						LootTheAxeIncrease = reader.ReadSingle();
 						
@@ -628,7 +594,7 @@ namespace ReducedGrinding
 						HellBatLootMagmaStoneIncrease = reader.ReadSingle();
 						LavaBatLootMagmaStoneIncrease = reader.ReadSingle();
 						LootAdhesiveBandageIncrease = reader.ReadSingle();
-						LootAleTosser = reader.ReadSingle();
+						LootAleTosserIncrease = reader.ReadSingle();
 						LootAmarokIncrease = reader.ReadSingle();
 						LootAncientClothIncrease = reader.ReadSingle();
 						LootAncientCobaltBreastplateIncrease = reader.ReadSingle();
@@ -665,6 +631,7 @@ namespace ReducedGrinding
 						LootClassyCane = reader.ReadSingle();
 						LootClingerStaffIncrease = reader.ReadSingle();
 						LootClothierVoodooDollIncrease = reader.ReadSingle();
+						LootCloudFromHarpies = reader.ReadSingle();
 						LootCompassIncrease = reader.ReadSingle();
 						LootCrossNecklaceIncrease = reader.ReadSingle();
 						LootCrystalVileShardIncrease = reader.ReadSingle();
@@ -675,6 +642,7 @@ namespace ReducedGrinding
 						LootDeathSickleIncrease = reader.ReadSingle();
 						LootDemonScytheIncrease = reader.ReadSingle();
 						LootDepthMeterIncrease = reader.ReadSingle();
+						LootDesertFossilFromDuneSplicer = reader.ReadSingle();
 						LootDesertSpiritLampIncrease = reader.ReadSingle();
 						LootDivingHelmetIncrease = reader.ReadSingle();
 						LootDualHookIncrease = reader.ReadSingle();
@@ -684,7 +652,7 @@ namespace ReducedGrinding
 						LootEskimoCoatIncrease = reader.ReadSingle();
 						LootEskimoHoodIncrease = reader.ReadSingle();
 						LootEskimoPantsIncrease = reader.ReadSingle();
-						LootExoticScimitar = reader.ReadSingle();
+						LootExoticScimitarIncrease = reader.ReadSingle();
 						LootEyePatchIncrease = reader.ReadSingle();
 						LootEyeSpringIncrease = reader.ReadSingle();
 						LootFastClockBaseIncrease = reader.ReadSingle();
@@ -700,10 +668,11 @@ namespace ReducedGrinding
 						LootGoldenFurnitureIncrease = reader.ReadSingle();
 						LootGoldenKeyIncrease = reader.ReadSingle();
 						LootGoodieBagIncrease = reader.ReadSingle();
-						LootGreenCap = reader.ReadSingle();
-						LootHappyGrenade = reader.ReadSingle();
+						LootGreenCapForNonAndrewGuide = reader.ReadSingle();
+						LootHappyGrenadeIncrease = reader.ReadSingle();
 						LootHarpoonIncrease = reader.ReadSingle();
 						LootHelFireIncrease = reader.ReadSingle();
+						LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned = reader.ReadSingle();
 						LootHookIncrease = reader.ReadSingle();
 						LootIceSickleIncrease = reader.ReadSingle();
 						LootIlluminantHookIncrease = reader.ReadSingle();
@@ -737,7 +706,7 @@ namespace ReducedGrinding
 						LootNazarIncrease = reader.ReadSingle();
 						LootNimbusRodIncrease = reader.ReadSingle();
 						LootObsidianRoseIncrease = reader.ReadSingle();
-						LootPaintballGun = reader.ReadSingle();
+						LootPaintballGunIncrease = reader.ReadSingle();
 						LootPaladinsShieldIncrease = reader.ReadSingle();
 						LootPedguinssuitIncrease = reader.ReadSingle();
 						LootPhilosophersStoneIncrease = reader.ReadSingle();
@@ -768,7 +737,7 @@ namespace ReducedGrinding
 						LootSoulofLightIncrease = reader.ReadSingle();
 						LootSoulofNightIncrease = reader.ReadSingle();
 						LootStarCloakIncrease = reader.ReadSingle();
-						LootStylishScissors = reader.ReadSingle();
+						LootStylishScissorsIncrease = reader.ReadSingle();
 						LootSunMaskIncrease = reader.ReadSingle();
 						LootTabiIncrease = reader.ReadSingle();
 						LootTacticalShotgunIncrease = reader.ReadSingle();
@@ -934,16 +903,18 @@ namespace ReducedGrinding
 						ChestSalesman = reader.ReadBoolean();
 
 						AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
-						MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
+						DryadSellsPlanteraBulbAfterPlanteraDefeated = reader.ReadBoolean();
+						MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = reader.ReadBoolean();
 						MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
-						MechanicSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
-						MechanicSellsWoodenSpikesAfterGolemDefeated = reader.ReadBoolean();
+						WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
+						WitchDoctorSellsWoodenSpikesAfterGolemDefeated = reader.ReadBoolean();
 						MerchantSellsAllMiningGear = reader.ReadBoolean();
 						MerchantSellsBlizzardInABottleWhenInSnow = reader.ReadBoolean();
 						MerchantSellsCloudInABottleWhenInSky = reader.ReadBoolean();
 						MerchantSellsFishItem = reader.ReadBoolean();
 						MerchantSellsPyramidItems = reader.ReadBoolean();
 						MerchantSellsSandstormInABottleWhenInDesert = reader.ReadBoolean();
+						MerchantSellsSwiftnessPotion = reader.ReadBoolean();
 						WitchDoctorSellsFlowerBoots = reader.ReadBoolean();
 						WitchDoctorSellsHoneyDispenser = reader.ReadBoolean();
 						WitchDoctorSellsSeaweed = reader.ReadBoolean();
@@ -951,6 +922,7 @@ namespace ReducedGrinding
 						TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = reader.ReadInt32();
 						
 						GoblinTinkererSellsGoblinRetreatOrder = reader.ReadBoolean();
+						MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = reader.ReadBoolean();
 						PirateSellsPirateRetreatOrder = reader.ReadBoolean();
 						WizardSellsMoonBall = reader.ReadBoolean();
 						BattlePotionMaxSpawnsMultiplier = reader.ReadSingle();
@@ -958,20 +930,9 @@ namespace ReducedGrinding
 						BloodZombieAndDripplerDropsBloodMoonMedallion = reader.ReadSingle();
 						ChaosPotionMaxSpawnsMultiplier = reader.ReadSingle();
 						ChaosPotionSpawnrateMultiplier = reader.ReadSingle();
+						MartianSaucerMartianCallDrop = reader.ReadSingle();
 						WarPotionMaxSpawnsMultiplier = reader.ReadSingle();
 						WarPotionSpawnrateMultiplier = reader.ReadSingle();
-						
-						NewCharacterBarrels = reader.ReadInt32();
-						NewCharacterCopperBars = reader.ReadInt32();
-						NewCharacterCopperCoins = reader.ReadInt32();
-						NewCharacterGoldBars = reader.ReadInt32();
-						NewCharacterGoldCoins = reader.ReadInt32();
-						NewCharacterIronBars = reader.ReadInt32();
-						NewCharacterMiningPotions = reader.ReadInt32();
-						NewCharacterPlatinumCoins = reader.ReadInt32();
-						NewCharacterSilverBars = reader.ReadInt32();
-						NewCharacterSilverCoins = reader.ReadInt32();
-						NewCharacterWarPotions = reader.ReadInt32();
 
 						ExtractinatorGivesAmber = reader.ReadSingle();
 						ExtractinatorGivesAmberMosquito = reader.ReadSingle();
@@ -994,39 +955,6 @@ namespace ReducedGrinding
 						ExtractinatorGivesTinOre = reader.ReadSingle();
 						ExtractinatorGivesTopaz = reader.ReadSingle();
 						ExtractinatorGivesTungstenOre = reader.ReadSingle();
-						
-						CrateUpgradesDependingOnFishingPower = reader.ReadBoolean();
-						FishCatchBecomesBalloonPufferfish = reader.ReadSingle();
-						FishCatchBecomesBladetongue = reader.ReadSingle();
-						FishCatchBecomesBlueJellyfish = reader.ReadSingle();
-						FishCatchBecomesChaosFish = reader.ReadSingle();
-						FishCatchBecomesCorruptCrate = reader.ReadSingle();
-						FishCatchBecomesCrimsonCrate = reader.ReadSingle();
-						FishCatchBecomesCrystalSerpent = reader.ReadSingle();
-						FishCatchBecomesDungeonCrate = reader.ReadSingle();
-						FishCatchBecomesFrogLeg = reader.ReadSingle();
-						FishCatchBecomesFrostDaggerfish = reader.ReadSingle();
-						FishCatchBecomesGoldenCarp = reader.ReadSingle();
-						FishCatchBecomesGoldenCrate = reader.ReadSingle();
-						FishCatchBecomesGreenJellyfish = reader.ReadSingle();
-						FishCatchBecomesHallowedCrate = reader.ReadSingle();
-						FishCatchBecomesIronCrate = reader.ReadSingle();
-						FishCatchBecomesJungleCrate = reader.ReadSingle();
-						FishCatchBecomesPinkJellyfish = reader.ReadSingle();
-						FishCatchBecomesPurpleClubberfish = reader.ReadSingle();
-						FishCatchBecomesReaverSharkAfterAllMechBossesDowned = reader.ReadSingle();
-						FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-						FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-						FishCatchBecomesRockfish = reader.ReadSingle();
-						FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned = reader.ReadSingle();
-						FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-						FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-						FishCatchBecomesScalyTruffle = reader.ReadSingle();
-						FishCatchBecomesSkyCrate = reader.ReadSingle();
-						FishCatchBecomesSwordfish = reader.ReadSingle();
-						FishCatchBecomesToxikarp = reader.ReadSingle();
-						FishCatchBecomesWoodenCrate = reader.ReadSingle();
-						FishCatchBecomesZephyrFish = reader.ReadSingle();
 									
                         mPlayer = Main.player[playernumber].GetModPlayer<ReducedGrindingPlayer>();
                         mPlayer.clientConf = new ReducedGrindingPlayer.ClientConf(
@@ -1034,6 +962,7 @@ namespace ReducedGrinding
 							NormalModeLootMultiplierForLootWithSeperateDifficultyRates,
 							
 							CrateDungeonBoneWelder,
+							CrateDungeonHardmodeGoldenLockBoxIncrease,
 							CrateEnchantedSundialGoldenIncrease,
 							CrateEnchantedSundialIronIncrease,
 							CrateEnchantedSundialWoodenIncrease,
@@ -1095,6 +1024,7 @@ namespace ReducedGrinding
 							LootFishronTruffleworm,
 							LootFishronWingsIncrease,
 							LootHoneyedGogglesIncrease,
+							LootMoonLordEachWeaponIncrease,
 							LootNectarIncrease,
 							LootTheAxeIncrease,
 							
@@ -1106,7 +1036,7 @@ namespace ReducedGrinding
 							HellBatLootMagmaStoneIncrease,
 							LavaBatLootMagmaStoneIncrease,
 							LootAdhesiveBandageIncrease,
-							LootAleTosser,
+							LootAleTosserIncrease,
 							LootAmarokIncrease,
 							LootAncientClothIncrease,
 							LootAncientCobaltBreastplateIncrease,
@@ -1143,6 +1073,7 @@ namespace ReducedGrinding
 							LootClassyCane,
 							LootClingerStaffIncrease,
 							LootClothierVoodooDollIncrease,
+							LootCloudFromHarpies,
 							LootCompassIncrease,
 							LootCrossNecklaceIncrease,
 							LootCrystalVileShardIncrease,
@@ -1153,6 +1084,7 @@ namespace ReducedGrinding
 							LootDeathSickleIncrease,
 							LootDemonScytheIncrease,
 							LootDepthMeterIncrease,
+							LootDesertFossilFromDuneSplicer,
 							LootDesertSpiritLampIncrease,
 							LootDivingHelmetIncrease,
 							LootDualHookIncrease,
@@ -1162,7 +1094,7 @@ namespace ReducedGrinding
 							LootEskimoCoatIncrease,
 							LootEskimoHoodIncrease,
 							LootEskimoPantsIncrease,
-							LootExoticScimitar,
+							LootExoticScimitarIncrease,
 							LootEyePatchIncrease,
 							LootEyeSpringIncrease,
 							LootFastClockBaseIncrease,
@@ -1178,10 +1110,11 @@ namespace ReducedGrinding
 							LootGoldenFurnitureIncrease,
 							LootGoldenKeyIncrease,
 							LootGoodieBagIncrease,
-							LootGreenCap,
-							LootHappyGrenade,
+							LootGreenCapForNonAndrewGuide,
+							LootHappyGrenadeIncrease,
 							LootHarpoonIncrease,
 							LootHelFireIncrease,
+							LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned,
 							LootHookIncrease,
 							LootIceSickleIncrease,
 							LootIlluminantHookIncrease,
@@ -1215,7 +1148,7 @@ namespace ReducedGrinding
 							LootNazarIncrease,
 							LootNimbusRodIncrease,
 							LootObsidianRoseIncrease,
-							LootPaintballGun,
+							LootPaintballGunIncrease,
 							LootPaladinsShieldIncrease,
 							LootPedguinssuitIncrease,
 							LootPhilosophersStoneIncrease,
@@ -1246,7 +1179,7 @@ namespace ReducedGrinding
 							LootSoulofLightIncrease,
 							LootSoulofNightIncrease,
 							LootStarCloakIncrease,
-							LootStylishScissors,
+							LootStylishScissorsIncrease,
 							LootSunMaskIncrease,
 							LootTabiIncrease,
 							LootTacticalShotgunIncrease,
@@ -1412,16 +1345,18 @@ namespace ReducedGrinding
 							ChestSalesman,
 
 							AllNPCsSellTheirDeathLoot,
-							MechanicSellsDartTrapAfterSkeletronDefeated,
+							DryadSellsPlanteraBulbAfterPlanteraDefeated,
+							MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated,
 							MechanicSellsGeyserAfterWallofFleshDefeated,
-							MechanicSellsLihzahrdTrapsAfterGolemDefeated,
-							MechanicSellsWoodenSpikesAfterGolemDefeated,
+							WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated,
+							WitchDoctorSellsWoodenSpikesAfterGolemDefeated,
 							MerchantSellsAllMiningGear,
 							MerchantSellsBlizzardInABottleWhenInSnow,
 							MerchantSellsCloudInABottleWhenInSky,
 							MerchantSellsFishItem,
 							MerchantSellsPyramidItems,
 							MerchantSellsSandstormInABottleWhenInDesert,
+							MerchantSellsSwiftnessPotion,
 							WitchDoctorSellsFlowerBoots,
 							WitchDoctorSellsHoneyDispenser,
 							WitchDoctorSellsSeaweed,
@@ -1430,26 +1365,16 @@ namespace ReducedGrinding
 							
 							GoblinTinkererSellsGoblinRetreatOrder,
 							PirateSellsPirateRetreatOrder,
+							PirateSellsPirateRetreatOrder,
 							WizardSellsMoonBall,
 							BattlePotionMaxSpawnsMultiplier,
 							BattlePotionSpawnrateMultiplier,
 							BloodZombieAndDripplerDropsBloodMoonMedallion,
 							ChaosPotionMaxSpawnsMultiplier,
 							ChaosPotionSpawnrateMultiplier,
+							MartianSaucerMartianCallDrop,
 							WarPotionMaxSpawnsMultiplier,
 							WarPotionSpawnrateMultiplier,
-							
-							NewCharacterBarrels,
-							NewCharacterCopperBars,
-							NewCharacterCopperCoins,
-							NewCharacterGoldBars,
-							NewCharacterGoldCoins,
-							NewCharacterIronBars,
-							NewCharacterMiningPotions,
-							NewCharacterPlatinumCoins,
-							NewCharacterSilverBars,
-							NewCharacterSilverCoins,
-							NewCharacterWarPotions,
 
 							ExtractinatorGivesAmber,
 							ExtractinatorGivesAmberMosquito,
@@ -1471,40 +1396,7 @@ namespace ReducedGrinding
 							ExtractinatorGivesSilverOre,
 							ExtractinatorGivesTinOre,
 							ExtractinatorGivesTopaz,
-							ExtractinatorGivesTungstenOre,
-							
-							CrateUpgradesDependingOnFishingPower,
-							FishCatchBecomesBalloonPufferfish,
-							FishCatchBecomesBladetongue,
-							FishCatchBecomesBlueJellyfish,
-							FishCatchBecomesChaosFish,
-							FishCatchBecomesCorruptCrate,
-							FishCatchBecomesCrimsonCrate,
-							FishCatchBecomesCrystalSerpent,
-							FishCatchBecomesDungeonCrate,
-							FishCatchBecomesFrogLeg,
-							FishCatchBecomesFrostDaggerfish,
-							FishCatchBecomesGoldenCarp,
-							FishCatchBecomesGoldenCrate,
-							FishCatchBecomesGreenJellyfish,
-							FishCatchBecomesHallowedCrate,
-							FishCatchBecomesIronCrate,
-							FishCatchBecomesJungleCrate,
-							FishCatchBecomesPinkJellyfish,
-							FishCatchBecomesPurpleClubberfish,
-							FishCatchBecomesReaverSharkAfterAllMechBossesDowned,
-							FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned,
-							FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned,
-							FishCatchBecomesRockfish,
-							FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned,
-							FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned,
-							FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned,
-							FishCatchBecomesScalyTruffle,
-							FishCatchBecomesSkyCrate,
-							FishCatchBecomesSwordfish,
-							FishCatchBecomesToxikarp,
-							FishCatchBecomesWoodenCrate,
-							FishCatchBecomesZephyrFish
+							ExtractinatorGivesTungstenOre
 						);
                         arrayLength = reader.ReadByte();
                     }
@@ -1516,6 +1408,7 @@ namespace ReducedGrinding
 					NormalModeLootMultiplierForLootWithSeperateDifficultyRates = reader.ReadSingle();
 					
 					CrateDungeonBoneWelder = reader.ReadSingle();
+					CrateDungeonHardmodeGoldenLockBoxIncrease = reader.ReadSingle();
 					CrateEnchantedSundialGoldenIncrease = reader.ReadSingle();
 					CrateEnchantedSundialIronIncrease = reader.ReadSingle();
 					CrateEnchantedSundialWoodenIncrease = reader.ReadSingle();
@@ -1577,6 +1470,7 @@ namespace ReducedGrinding
 					LootFishronTruffleworm = reader.ReadSingle();
 					LootFishronWingsIncrease = reader.ReadSingle();
 					LootHoneyedGogglesIncrease = reader.ReadSingle();
+					LootMoonLordEachWeaponIncrease = reader.ReadSingle();
 					LootNectarIncrease = reader.ReadSingle();
 					LootTheAxeIncrease = reader.ReadSingle();
 					
@@ -1588,7 +1482,7 @@ namespace ReducedGrinding
 					HellBatLootMagmaStoneIncrease = reader.ReadSingle();
 					LavaBatLootMagmaStoneIncrease = reader.ReadSingle();
 					LootAdhesiveBandageIncrease = reader.ReadSingle();
-					LootAleTosser = reader.ReadSingle();
+					LootAleTosserIncrease = reader.ReadSingle();
 					LootAmarokIncrease = reader.ReadSingle();
 					LootAncientClothIncrease = reader.ReadSingle();
 					LootAncientCobaltBreastplateIncrease = reader.ReadSingle();
@@ -1625,6 +1519,7 @@ namespace ReducedGrinding
 					LootClassyCane = reader.ReadSingle();
 					LootClingerStaffIncrease = reader.ReadSingle();
 					LootClothierVoodooDollIncrease = reader.ReadSingle();
+					LootCloudFromHarpies = reader.ReadSingle();
 					LootCompassIncrease = reader.ReadSingle();
 					LootCrossNecklaceIncrease = reader.ReadSingle();
 					LootCrystalVileShardIncrease = reader.ReadSingle();
@@ -1635,6 +1530,7 @@ namespace ReducedGrinding
 					LootDeathSickleIncrease = reader.ReadSingle();
 					LootDemonScytheIncrease = reader.ReadSingle();
 					LootDepthMeterIncrease = reader.ReadSingle();
+					LootDesertFossilFromDuneSplicer = reader.ReadSingle();
 					LootDesertSpiritLampIncrease = reader.ReadSingle();
 					LootDivingHelmetIncrease = reader.ReadSingle();
 					LootDualHookIncrease = reader.ReadSingle();
@@ -1644,7 +1540,7 @@ namespace ReducedGrinding
 					LootEskimoCoatIncrease = reader.ReadSingle();
 					LootEskimoHoodIncrease = reader.ReadSingle();
 					LootEskimoPantsIncrease = reader.ReadSingle();
-					LootExoticScimitar = reader.ReadSingle();
+					LootExoticScimitarIncrease = reader.ReadSingle();
 					LootEyePatchIncrease = reader.ReadSingle();
 					LootEyeSpringIncrease = reader.ReadSingle();
 					LootFastClockBaseIncrease = reader.ReadSingle();
@@ -1660,10 +1556,11 @@ namespace ReducedGrinding
 					LootGoldenFurnitureIncrease = reader.ReadSingle();
 					LootGoldenKeyIncrease = reader.ReadSingle();
 					LootGoodieBagIncrease = reader.ReadSingle();
-					LootGreenCap = reader.ReadSingle();
-					LootHappyGrenade = reader.ReadSingle();
+					LootGreenCapForNonAndrewGuide = reader.ReadSingle();
+					LootHappyGrenadeIncrease = reader.ReadSingle();
 					LootHarpoonIncrease = reader.ReadSingle();
 					LootHelFireIncrease = reader.ReadSingle();
+					LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned = reader.ReadSingle();
 					LootHookIncrease = reader.ReadSingle();
 					LootIceSickleIncrease = reader.ReadSingle();
 					LootIlluminantHookIncrease = reader.ReadSingle();
@@ -1697,7 +1594,7 @@ namespace ReducedGrinding
 					LootNazarIncrease = reader.ReadSingle();
 					LootNimbusRodIncrease = reader.ReadSingle();
 					LootObsidianRoseIncrease = reader.ReadSingle();
-					LootPaintballGun = reader.ReadSingle();
+					LootPaintballGunIncrease = reader.ReadSingle();
 					LootPaladinsShieldIncrease = reader.ReadSingle();
 					LootPedguinssuitIncrease = reader.ReadSingle();
 					LootPhilosophersStoneIncrease = reader.ReadSingle();
@@ -1728,7 +1625,7 @@ namespace ReducedGrinding
 					LootSoulofLightIncrease = reader.ReadSingle();
 					LootSoulofNightIncrease = reader.ReadSingle();
 					LootStarCloakIncrease = reader.ReadSingle();
-					LootStylishScissors = reader.ReadSingle();
+					LootStylishScissorsIncrease = reader.ReadSingle();
 					LootSunMaskIncrease = reader.ReadSingle();
 					LootTabiIncrease = reader.ReadSingle();
 					LootTacticalShotgunIncrease = reader.ReadSingle();
@@ -1894,16 +1791,18 @@ namespace ReducedGrinding
 					ChestSalesman = reader.ReadBoolean();
 
 					AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
-					MechanicSellsDartTrapAfterSkeletronDefeated = reader.ReadBoolean();
+					DryadSellsPlanteraBulbAfterPlanteraDefeated = reader.ReadBoolean();
+					MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = reader.ReadBoolean();
 					MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
-					MechanicSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
-					MechanicSellsWoodenSpikesAfterGolemDefeated = reader.ReadBoolean();
+					WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
+					WitchDoctorSellsWoodenSpikesAfterGolemDefeated = reader.ReadBoolean();
 					MerchantSellsAllMiningGear = reader.ReadBoolean();
 					MerchantSellsBlizzardInABottleWhenInSnow = reader.ReadBoolean();
 					MerchantSellsCloudInABottleWhenInSky = reader.ReadBoolean();
 					MerchantSellsFishItem = reader.ReadBoolean();
 					MerchantSellsPyramidItems = reader.ReadBoolean();
 					MerchantSellsSandstormInABottleWhenInDesert = reader.ReadBoolean();
+					MerchantSellsSwiftnessPotion = reader.ReadBoolean();
 					WitchDoctorSellsFlowerBoots = reader.ReadBoolean();
 					WitchDoctorSellsHoneyDispenser = reader.ReadBoolean();
 					WitchDoctorSellsSeaweed = reader.ReadBoolean();
@@ -1912,26 +1811,16 @@ namespace ReducedGrinding
 					
 					GoblinTinkererSellsGoblinRetreatOrder = reader.ReadBoolean();
 					PirateSellsPirateRetreatOrder = reader.ReadBoolean();
+					PirateSellsPirateRetreatOrder = reader.ReadBoolean();
 					WizardSellsMoonBall = reader.ReadBoolean();
 					BattlePotionMaxSpawnsMultiplier = reader.ReadSingle();
 					BattlePotionSpawnrateMultiplier = reader.ReadSingle();
 					BloodZombieAndDripplerDropsBloodMoonMedallion = reader.ReadSingle();
 					ChaosPotionMaxSpawnsMultiplier = reader.ReadSingle();
 					ChaosPotionSpawnrateMultiplier = reader.ReadSingle();
+					MartianSaucerMartianCallDrop = reader.ReadSingle();
 					WarPotionMaxSpawnsMultiplier = reader.ReadSingle();
 					WarPotionSpawnrateMultiplier = reader.ReadSingle();
-					
-					NewCharacterBarrels = reader.ReadInt32();
-					NewCharacterCopperBars = reader.ReadInt32();
-					NewCharacterCopperCoins = reader.ReadInt32();
-					NewCharacterGoldBars = reader.ReadInt32();
-					NewCharacterGoldCoins = reader.ReadInt32();
-					NewCharacterIronBars = reader.ReadInt32();
-					NewCharacterMiningPotions = reader.ReadInt32();
-					NewCharacterPlatinumCoins = reader.ReadInt32();
-					NewCharacterSilverBars = reader.ReadInt32();
-					NewCharacterSilverCoins = reader.ReadInt32();
-					NewCharacterWarPotions = reader.ReadInt32();
 
 					ExtractinatorGivesAmber = reader.ReadSingle();
 					ExtractinatorGivesAmberMosquito = reader.ReadSingle();
@@ -1955,39 +1844,6 @@ namespace ReducedGrinding
 					ExtractinatorGivesTopaz = reader.ReadSingle();
 					ExtractinatorGivesTungstenOre = reader.ReadSingle();
 					
-					CrateUpgradesDependingOnFishingPower = reader.ReadBoolean();
-					FishCatchBecomesBalloonPufferfish = reader.ReadSingle();
-					FishCatchBecomesBladetongue = reader.ReadSingle();
-					FishCatchBecomesBlueJellyfish = reader.ReadSingle();
-					FishCatchBecomesChaosFish = reader.ReadSingle();
-					FishCatchBecomesCorruptCrate = reader.ReadSingle();
-					FishCatchBecomesCrimsonCrate = reader.ReadSingle();
-					FishCatchBecomesCrystalSerpent = reader.ReadSingle();
-					FishCatchBecomesDungeonCrate = reader.ReadSingle();
-					FishCatchBecomesFrogLeg = reader.ReadSingle();
-					FishCatchBecomesFrostDaggerfish = reader.ReadSingle();
-					FishCatchBecomesGoldenCarp = reader.ReadSingle();
-					FishCatchBecomesGoldenCrate = reader.ReadSingle();
-					FishCatchBecomesGreenJellyfish = reader.ReadSingle();
-					FishCatchBecomesHallowedCrate = reader.ReadSingle();
-					FishCatchBecomesIronCrate = reader.ReadSingle();
-					FishCatchBecomesJungleCrate = reader.ReadSingle();
-					FishCatchBecomesPinkJellyfish = reader.ReadSingle();
-					FishCatchBecomesPurpleClubberfish = reader.ReadSingle();
-					FishCatchBecomesReaverSharkAfterAllMechBossesDowned = reader.ReadSingle();
-					FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-					FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-					FishCatchBecomesRockfish = reader.ReadSingle();
-					FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned = reader.ReadSingle();
-					FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-					FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned = reader.ReadSingle();
-					FishCatchBecomesScalyTruffle = reader.ReadSingle();
-					FishCatchBecomesSkyCrate = reader.ReadSingle();
-					FishCatchBecomesSwordfish = reader.ReadSingle();
-					FishCatchBecomesToxikarp = reader.ReadSingle();
-					FishCatchBecomesWoodenCrate = reader.ReadSingle();
-					FishCatchBecomesZephyrFish = reader.ReadSingle();
-					
                     flags1 = reader.ReadByte();        //byte
 
                     mPlayer = Main.player[playernumber].GetModPlayer<ReducedGrindingPlayer>();
@@ -2001,6 +1857,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.NormalModeLootMultiplierForLootWithSeperateDifficultyRates);
 						
 						packet.Write((float)Config.CrateDungeonBoneWelder);
+						packet.Write((float)Config.CrateDungeonHardmodeGoldenLockBoxIncrease);
 						packet.Write((float)Config.CrateEnchantedSundialGoldenIncrease);
 						packet.Write((float)Config.CrateEnchantedSundialIronIncrease);
 						packet.Write((float)Config.CrateEnchantedSundialWoodenIncrease);
@@ -2062,6 +1919,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootFishronTruffleworm);
 						packet.Write((float)Config.LootFishronWingsIncrease);
 						packet.Write((float)Config.LootHoneyedGogglesIncrease);
+						packet.Write((float)Config.LootMoonLordEachWeaponIncrease);
 						packet.Write((float)Config.LootNectarIncrease);
 						packet.Write((float)Config.LootTheAxeIncrease);
 						
@@ -2073,7 +1931,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.HellBatLootMagmaStoneIncrease);
 						packet.Write((float)Config.LavaBatLootMagmaStoneIncrease);
 						packet.Write((float)Config.LootAdhesiveBandageIncrease);
-						packet.Write((float)Config.LootAleTosser);
+						packet.Write((float)Config.LootAleTosserIncrease);
 						packet.Write((float)Config.LootAmarokIncrease);
 						packet.Write((float)Config.LootAncientClothIncrease);
 						packet.Write((float)Config.LootAncientCobaltBreastplateIncrease);
@@ -2110,6 +1968,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootClassyCane);
 						packet.Write((float)Config.LootClingerStaffIncrease);
 						packet.Write((float)Config.LootClothierVoodooDollIncrease);
+						packet.Write((float)Config.LootCloudFromHarpies);
 						packet.Write((float)Config.LootCompassIncrease);
 						packet.Write((float)Config.LootCrossNecklaceIncrease);
 						packet.Write((float)Config.LootCrystalVileShardIncrease);
@@ -2120,6 +1979,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootDeathSickleIncrease);
 						packet.Write((float)Config.LootDemonScytheIncrease);
 						packet.Write((float)Config.LootDepthMeterIncrease);
+						packet.Write((float)Config.LootDesertFossilFromDuneSplicer);
 						packet.Write((float)Config.LootDesertSpiritLampIncrease);
 						packet.Write((float)Config.LootDivingHelmetIncrease);
 						packet.Write((float)Config.LootDualHookIncrease);
@@ -2129,7 +1989,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootEskimoCoatIncrease);
 						packet.Write((float)Config.LootEskimoHoodIncrease);
 						packet.Write((float)Config.LootEskimoPantsIncrease);
-						packet.Write((float)Config.LootExoticScimitar);
+						packet.Write((float)Config.LootExoticScimitarIncrease);
 						packet.Write((float)Config.LootEyePatchIncrease);
 						packet.Write((float)Config.LootEyeSpringIncrease);
 						packet.Write((float)Config.LootFastClockBaseIncrease);
@@ -2145,10 +2005,11 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootGoldenFurnitureIncrease);
 						packet.Write((float)Config.LootGoldenKeyIncrease);
 						packet.Write((float)Config.LootGoodieBagIncrease);
-						packet.Write((float)Config.LootGreenCap);
-						packet.Write((float)Config.LootHappyGrenade);
+						packet.Write((float)Config.LootGreenCapForNonAndrewGuide);
+						packet.Write((float)Config.LootHappyGrenadeIncrease);
 						packet.Write((float)Config.LootHarpoonIncrease);
 						packet.Write((float)Config.LootHelFireIncrease);
+						packet.Write((float)Config.LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned);
 						packet.Write((float)Config.LootHookIncrease);
 						packet.Write((float)Config.LootIceSickleIncrease);
 						packet.Write((float)Config.LootIlluminantHookIncrease);
@@ -2182,7 +2043,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootNazarIncrease);
 						packet.Write((float)Config.LootNimbusRodIncrease);
 						packet.Write((float)Config.LootObsidianRoseIncrease);
-						packet.Write((float)Config.LootPaintballGun);
+						packet.Write((float)Config.LootPaintballGunIncrease);
 						packet.Write((float)Config.LootPaladinsShieldIncrease);
 						packet.Write((float)Config.LootPedguinssuitIncrease);
 						packet.Write((float)Config.LootPhilosophersStoneIncrease);
@@ -2213,7 +2074,7 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootSoulofLightIncrease);
 						packet.Write((float)Config.LootSoulofNightIncrease);
 						packet.Write((float)Config.LootStarCloakIncrease);
-						packet.Write((float)Config.LootStylishScissors);
+						packet.Write((float)Config.LootStylishScissorsIncrease);
 						packet.Write((float)Config.LootSunMaskIncrease);
 						packet.Write((float)Config.LootTabiIncrease);
 						packet.Write((float)Config.LootTacticalShotgunIncrease);
@@ -2379,16 +2240,18 @@ namespace ReducedGrinding
 						packet.Write((bool)Config.ChestSalesman);
 
 						packet.Write((bool)Config.AllNPCsSellTheirDeathLoot);
-						packet.Write((bool)Config.MechanicSellsDartTrapAfterSkeletronDefeated);
+						packet.Write((bool)Config.DryadSellsPlanteraBulbAfterPlanteraDefeated);
+						packet.Write((bool)Config.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 						packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
-						packet.Write((bool)Config.MechanicSellsLihzahrdTrapsAfterGolemDefeated);
-						packet.Write((bool)Config.MechanicSellsWoodenSpikesAfterGolemDefeated);
+						packet.Write((bool)Config.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated);
+						packet.Write((bool)Config.WitchDoctorSellsWoodenSpikesAfterGolemDefeated);
 						packet.Write((bool)Config.MerchantSellsAllMiningGear);
 						packet.Write((bool)Config.MerchantSellsBlizzardInABottleWhenInSnow);
 						packet.Write((bool)Config.MerchantSellsCloudInABottleWhenInSky);
 						packet.Write((bool)Config.MerchantSellsFishItem);
 						packet.Write((bool)Config.MerchantSellsPyramidItems);
 						packet.Write((bool)Config.MerchantSellsSandstormInABottleWhenInDesert);
+						packet.Write((bool)Config.MerchantSellsSwiftnessPotion);
 						packet.Write((bool)Config.WitchDoctorSellsFlowerBoots);
 						packet.Write((bool)Config.WitchDoctorSellsHoneyDispenser);
 						packet.Write((bool)Config.WitchDoctorSellsSeaweed);
@@ -2396,6 +2259,7 @@ namespace ReducedGrinding
 						packet.Write((int)Config.TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight);
 						
 						packet.Write((bool)Config.GoblinTinkererSellsGoblinRetreatOrder);
+						packet.Write((bool)Config.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 						packet.Write((bool)Config.PirateSellsPirateRetreatOrder);
 						packet.Write((bool)Config.WizardSellsMoonBall);
 						packet.Write((float)Config.BattlePotionMaxSpawnsMultiplier);
@@ -2403,20 +2267,9 @@ namespace ReducedGrinding
 						packet.Write((float)Config.BloodZombieAndDripplerDropsBloodMoonMedallion);
 						packet.Write((float)Config.ChaosPotionMaxSpawnsMultiplier);
 						packet.Write((float)Config.ChaosPotionSpawnrateMultiplier);
+						packet.Write((float)Config.MartianSaucerMartianCallDrop);
 						packet.Write((float)Config.WarPotionMaxSpawnsMultiplier);
 						packet.Write((float)Config.WarPotionSpawnrateMultiplier);
-						
-						packet.Write((int)Config.NewCharacterBarrels);
-						packet.Write((int)Config.NewCharacterCopperBars);
-						packet.Write((int)Config.NewCharacterCopperCoins);
-						packet.Write((int)Config.NewCharacterGoldBars);
-						packet.Write((int)Config.NewCharacterGoldCoins);
-						packet.Write((int)Config.NewCharacterIronBars);
-						packet.Write((int)Config.NewCharacterMiningPotions);
-						packet.Write((int)Config.NewCharacterPlatinumCoins);
-						packet.Write((int)Config.NewCharacterSilverBars);
-						packet.Write((int)Config.NewCharacterSilverCoins);
-						packet.Write((int)Config.NewCharacterWarPotions);
 
 						packet.Write((float)Config.ExtractinatorGivesAmber);
 						packet.Write((float)Config.ExtractinatorGivesAmberMosquito);
@@ -2439,39 +2292,6 @@ namespace ReducedGrinding
 						packet.Write((float)Config.ExtractinatorGivesTinOre);
 						packet.Write((float)Config.ExtractinatorGivesTopaz);
 						packet.Write((float)Config.ExtractinatorGivesTungstenOre);
-						
-						packet.Write((bool)Config.CrateUpgradesDependingOnFishingPower);
-						packet.Write((float)Config.FishCatchBecomesBalloonPufferfish);
-						packet.Write((float)Config.FishCatchBecomesBladetongue);
-						packet.Write((float)Config.FishCatchBecomesBlueJellyfish);
-						packet.Write((float)Config.FishCatchBecomesChaosFish);
-						packet.Write((float)Config.FishCatchBecomesCorruptCrate);
-						packet.Write((float)Config.FishCatchBecomesCrimsonCrate);
-						packet.Write((float)Config.FishCatchBecomesCrystalSerpent);
-						packet.Write((float)Config.FishCatchBecomesDungeonCrate);
-						packet.Write((float)Config.FishCatchBecomesFrogLeg);
-						packet.Write((float)Config.FishCatchBecomesFrostDaggerfish);
-						packet.Write((float)Config.FishCatchBecomesGoldenCarp);
-						packet.Write((float)Config.FishCatchBecomesGoldenCrate);
-						packet.Write((float)Config.FishCatchBecomesGreenJellyfish);
-						packet.Write((float)Config.FishCatchBecomesHallowedCrate);
-						packet.Write((float)Config.FishCatchBecomesIronCrate);
-						packet.Write((float)Config.FishCatchBecomesJungleCrate);
-						packet.Write((float)Config.FishCatchBecomesPinkJellyfish);
-						packet.Write((float)Config.FishCatchBecomesPurpleClubberfish);
-						packet.Write((float)Config.FishCatchBecomesReaverSharkAfterAllMechBossesDowned);
-						packet.Write((float)Config.FishCatchBecomesReaverSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-						packet.Write((float)Config.FishCatchBecomesReaverSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-						packet.Write((float)Config.FishCatchBecomesRockfish);
-						packet.Write((float)Config.FishCatchBecomesSawtoothSharkAfterAllMechBossesDowned);
-						packet.Write((float)Config.FishCatchBecomesSawtoothSharkAfterEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-						packet.Write((float)Config.FishCatchBecomesSawtoothSharkBeforeEyeOfCthulhuEaterOfWorldsAndSkeletronDowned);
-						packet.Write((float)Config.FishCatchBecomesScalyTruffle);
-						packet.Write((float)Config.FishCatchBecomesSkyCrate);
-						packet.Write((float)Config.FishCatchBecomesSwordfish);
-						packet.Write((float)Config.FishCatchBecomesToxikarp);
-						packet.Write((float)Config.FishCatchBecomesWoodenCrate);
-						packet.Write((float)Config.FishCatchBecomesZephyrFish);
                         packet.Write((byte)flags1);
                         packet.Send(-1, playernumber);
                     }
@@ -2567,6 +2387,45 @@ namespace ReducedGrinding
 						player.QuickSpawnItem(2108, 1); //Mask
 					}
 				}
+				else if (arg == ItemID.MoonLordBossBag)
+				{
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.Meowmere, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.Terrarian, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.StarWrath, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.SDMG, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.FireworksLauncher, 1); //Celebration
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.LastPrism, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.LunarFlareBook, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.RainbowCrystalStaff, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease)
+					{
+						player.QuickSpawnItem(ItemID.MoonlordTurretStaff, 1); //Lunar Portal Staff
+					}
+				}
 				else if (arg == ItemID.SkeletronBossBag)
 				{
 					if (Main.rand.NextFloat() < mPlayer.clientConf.LootBookofSkullsIncrease)
@@ -2648,7 +2507,11 @@ namespace ReducedGrinding
 				{
 					if (Main.rand.NextFloat() < mPlayer.clientConf.CrateDungeonBoneWelder)
 					{
-						player.QuickSpawnItem(2192, 1); //Bone Welder
+						player.QuickSpawnItem(ItemID.BoneWelder, 1);
+					}
+					if (Main.rand.NextFloat() < mPlayer.clientConf.CrateDungeonHardmodeGoldenLockBoxIncrease && Main.hardMode)
+					{
+						player.QuickSpawnItem(ItemID.LockBox, 1);
 					}
 				}
 				else if (arg == ItemID.JungleFishingCrate)
@@ -3004,123 +2867,212 @@ namespace ReducedGrinding
 			{
 				if (npc.lifeMax > 5 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
 				{
-
 					Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
 					ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 					float difficultyMultiplier = 1f;
 					if (!Main.expertMode)
 						difficultyMultiplier = mPlayer.clientConf.NormalModeLootMultiplierForLootWithSeperateDifficultyRates;
-					
-					//Biome Keys
+
+					int npcTileX;
+					int npcTileY;
+					npcTileX = (int)(npc.position.X + (float)(npc.width / 2)) / 16;
+					npcTileY = (int)(npc.position.Y + (float)(npc.height / 2)) / 16;
+
+					//Biome Key Bonus From Mech Bosses Downed
 					int mechBossesDowned = 0;
-					if (Main.hardMode)
+					float keyDropRateIncrease = 0;
+
+					if (NPC.downedMechBoss1)//The Destroyer
 					{
-						if (NPC.downedMechBoss1)//The Destroyer
+						mechBossesDowned += 1;
+					}
+					if (NPC.downedMechBoss2)//The Twins
+					{
+						mechBossesDowned += 1;
+					}
+					if (NPC.downedMechBoss3)//	Skeletron Prime
+					{
+						mechBossesDowned += 1;
+					}
+					if (mechBossesDowned > 0)
+					{
+						if (mechBossesDowned == 1)
 						{
-							mechBossesDowned += 1;
+							keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForOneMechBossDown;
 						}
-						if (NPC.downedMechBoss2)//The Twins
+						else if (mechBossesDowned == 2)
 						{
-							mechBossesDowned += 1;
+							keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForTwoMechBossDown;
 						}
-						if (NPC.downedMechBoss3)//	Skeletron Prime
+						else if (mechBossesDowned == 3)
 						{
-							mechBossesDowned += 1;
-						}
-						if (mechBossesDowned > 0)
-						{
-							float keyDropRateIncrease = 0;
-							if (mechBossesDowned == 1)
-							{
-								keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForOneMechBossDown;
-							}
-							else if (mechBossesDowned == 2)
-							{
-								keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForTwoMechBossDown;
-							}
-							else if (mechBossesDowned == 3)
-							{
-								keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForThreeMechBossDown;
-							}
-							if (Main.rand.NextFloat() < keyDropRateIncrease)
-							{
-								if (player.ZoneJungle)
-								{
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JungleKey, 1, false, -1, false, false);
-									}
-								}
-								else if (player.ZoneCorrupt)
-								{
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CorruptionKey, 1, false, -1, false, false);
-									}
-								}
-								else if (player.ZoneCrimson)
-								{
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrimsonKey, 1, false, -1, false, false);
-									}
-								}
-								else if (player.ZoneHoly)
-								{
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HallowedKey, 1, false, -1, false, false);
-									}
-								}
-								else if (player.ZoneSnow)
-								{
-									{
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrozenKey, 1, false, -1, false, false);
-									}
-								}
-							}
+							keyDropRateIncrease = mPlayer.clientConf.BiomeKeyIncreaseForThreeMechBossDown;
 						}
 					}
-					
-					for (int j=0; j< mPlayer.clientConf.DropTriesForAllEnemyDroppedLoot; j++)
+
+					//Ankh Charm Material Bonus
+					bool hasBlindfold = false;
+					bool hasArmorPolish = false;
+					bool hasVitamins = false;
+					bool hasBezoar = false;
+					bool hasAdhesiveBandage = false;
+					bool hasMegaphone = false;
+					bool hasNazar = false;
+					bool hasFastClock = false;
+					bool hasTrifoldMap = false;
+					int AnkhCharmInInventory = 0;
+
+					for (int i = 0; i < player.armor.Length; i++)
 					{
-						int AnkhCharmInInventory = 0;
-						if (player.HasItem(888)) //Blindfold
-							AnkhCharmInInventory++;
-						if (player.HasItem(901)) //Armor Bracing
-							AnkhCharmInInventory += 2;
-						else
+						if (player.armor[i].type == ItemID.Blindfold)
+							hasBlindfold = true;
+						else if (player.armor[i].type == ItemID.ArmorPolish)
+							hasArmorPolish = true;
+						else if (player.armor[i].type == ItemID.Vitamins)
+							hasVitamins = true;
+						else if (player.armor[i].type == ItemID.ArmorBracing)
 						{
-							if (player.HasItem(886)) //Armor Polish
-								AnkhCharmInInventory++;
-							if (player.HasItem(892)) //Vitamins
-								AnkhCharmInInventory++;
+							hasArmorPolish = true;
+							hasVitamins = true;
 						}
-						if (player.HasItem(902)) //Medicated Bandage
-							AnkhCharmInInventory += 2;
-						else
+						else if (player.armor[i].type == ItemID.AdhesiveBandage)
+							hasAdhesiveBandage = true;
+						else if (player.armor[i].type == ItemID.Bezoar)
+							hasBezoar = true;
+						else if (player.armor[i].type == ItemID.MedicatedBandage)
 						{
-							if (player.HasItem(887)) //Bezoar
-								AnkhCharmInInventory++;
-							if (player.HasItem(885)) //Adhesive Bandage
-								AnkhCharmInInventory++;
+							hasAdhesiveBandage = true;
+							hasBezoar = true;
 						}
-						if (player.HasItem(904)) //Countercurse Mantra
-							AnkhCharmInInventory += 2;
-						else
+						else if (player.armor[i].type == ItemID.Nazar)
+							hasNazar = true;
+						else if (player.armor[i].type == ItemID.Megaphone)
+							hasMegaphone = true;
+						else if (player.armor[i].type == ItemID.CountercurseMantra)
 						{
-							if (player.HasItem(890)) //Megaphone
-								AnkhCharmInInventory++;
-							if (player.HasItem(891)) //Nazar
-								AnkhCharmInInventory++;
+							hasNazar = true;
+							hasMegaphone = true;
 						}
-						if (player.HasItem(903)) //The Plan
-							AnkhCharmInInventory += 2;
-						else
+						else if (player.armor[i].type == ItemID.TrifoldMap)
+							hasTrifoldMap = true;
+						else if (player.armor[i].type == ItemID.FastClock)
+							hasFastClock = true;
+						else if (player.armor[i].type == ItemID.ThePlan)
 						{
-							if (player.HasItem(889)) //Fast Clock
-								AnkhCharmInInventory++;
-							if (player.HasItem(893)) //Trifold Map
-								AnkhCharmInInventory++;
+							hasTrifoldMap = true;
+							hasFastClock = true;
 						}
-						float AnkhMaterialBonus = AnkhCharmInInventory * mPlayer.clientConf.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory * difficultyMultiplier;
-						
+					}
+
+					if (player.HasItem(ItemID.Blindfold))
+						hasBlindfold = true;
+					if (player.HasItem(ItemID.ArmorBracing))
+					{
+						hasArmorPolish = true;
+						hasVitamins = true;
+					}
+					else
+					{
+						if (player.HasItem(ItemID.ArmorPolish))
+							hasArmorPolish = true;
+						if (player.HasItem(ItemID.Vitamins))
+							hasVitamins = true;
+					}
+					if (player.HasItem(ItemID.MedicatedBandage))
+					{
+						hasBezoar = true;
+						hasAdhesiveBandage = true;
+					}
+					else
+					{
+						if (player.HasItem(ItemID.Bezoar))
+							hasBezoar = true;
+						if (player.HasItem(ItemID.AdhesiveBandage))
+							hasAdhesiveBandage = true;
+					}
+					if (player.HasItem(ItemID.CountercurseMantra))
+					{
+						hasMegaphone = true;
+						hasNazar = true;
+					}
+					else
+					{
+						if (player.HasItem(ItemID.Megaphone))
+							hasMegaphone = true;
+						if (player.HasItem(ItemID.Nazar))
+							hasNazar = true;
+					}
+					if (player.HasItem(903)) //The Plan
+					{
+						hasFastClock = true;
+						hasTrifoldMap = true;
+					}
+					else
+					{
+						if (player.HasItem(889)) //Fast Clock
+							hasFastClock = true;
+						if (player.HasItem(893)) //Trifold Map
+							hasTrifoldMap = true;
+					}
+
+					if (hasBlindfold)
+						AnkhCharmInInventory++;
+					if (hasArmorPolish)
+						AnkhCharmInInventory++;
+					if (hasVitamins)
+						AnkhCharmInInventory++;
+					if (hasBezoar)
+						AnkhCharmInInventory++;
+					if (hasAdhesiveBandage)
+						AnkhCharmInInventory++;
+					if (hasMegaphone)
+						AnkhCharmInInventory++;
+					if (hasNazar)
+						AnkhCharmInInventory++;
+					if (hasFastClock)
+						AnkhCharmInInventory++;
+					if (hasTrifoldMap)
+						AnkhCharmInInventory++;
+
+					float AnkhMaterialBonus = AnkhCharmInInventory * mPlayer.clientConf.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory * difficultyMultiplier;
+
+					for (int j = 0; j < mPlayer.clientConf.DropTriesForAllEnemyDroppedLoot; j++)
+					{
+						//Biome Keys
+						if (Main.hardMode && Main.rand.NextFloat() < keyDropRateIncrease)
+						{
+							if (player.ZoneJungle)
+							{
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.JungleKey, 1, false, -1, false, false);
+								}
+							}
+							else if (player.ZoneCorrupt)
+							{
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CorruptionKey, 1, false, -1, false, false);
+								}
+							}
+							else if (player.ZoneCrimson)
+							{
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrimsonKey, 1, false, -1, false, false);
+								}
+							}
+							else if (player.ZoneHoly)
+							{
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HallowedKey, 1, false, -1, false, false);
+								}
+							}
+							else if (player.ZoneSnow)
+							{
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FrozenKey, 1, false, -1, false, false);
+								}
+							}
+						}
+
 						//Boss Loot
 						if (npc.type == NPCID.SkeletronHead)
 						{
@@ -3282,10 +3234,49 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.MoonLordCore)
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease && !Main.expertMode)
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3373, 1, false, -1, false, false); //Mask
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3595, 1, false, -1, false, false); //Trophy
+							if (!Main.expertMode)
+							{
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossMaskIncrease)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3373, 1, false, -1, false, false); //Mask
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Meowmere, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Terrarian, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.StarWrath, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SDMG, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FireworksLauncher, 1, false, -1, false, false); //Celebration
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LastPrism, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.LunarFlareBook, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainbowCrystalStaff, 1, false, -1, false, false);
+								}
+								if (Main.rand.NextFloat() < mPlayer.clientConf.LootMoonLordEachWeaponIncrease * difficultyMultiplier)
+								{
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.MoonlordTurretStaff, 1, false, -1, false, false); //Lunar Portal Staff
+								}
+							}
 						}
 						if (npc.type == NPCID.DD2Betsy)
 						{
@@ -3343,11 +3334,20 @@ namespace ReducedGrinding
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootBossTrophyIncrease)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3358, 1, false, -1, false, false); //Trophy
+							if (Main.rand.NextFloat() < mPlayer.clientConf.MartianSaucerMartianCallDrop)
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Martian_Call"), 1, false, -1, false, false);
 						}
-						
-						
-						
+
+
+
 						//Other Loot
+						if (npc.type == NPCID.DuneSplicerHead)
+						{
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootDesertFossilFromDuneSplicer)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DesertFossil, 1, false, -1, false, false);
+							}
+						}
 						if (npc.type == NPCID.AnglerFish || npc.type == NPCID.Piranha)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootRobotHatIncrease)
@@ -3408,6 +3408,21 @@ namespace ReducedGrinding
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AncientCobaltLeggings, 1, false, -1, false, false);
 							}
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned && NPC.downedQueenBee)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hive, 1, false, -1, false, false);
+							}
+						}
+						if (npc.type == NPCID.MossHornet)
+						{
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootTatteredBeeWingIncrease)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TatteredBeeWing, 1, false, -1, false, false);
+							}
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned && NPC.downedQueenBee)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Hive, 1, false, -1, false, false);
+							}
 						}
 						if (npc.type == NPCID.Corruptor || npc.type == NPCID.FloatyGross)
 						{
@@ -3433,7 +3448,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
 							}
 						}
-						if (npc.type == NPCID.FlyingSnake || npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler)
+						if (Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootLizardEggIncrease)
 							{
@@ -3869,6 +3884,10 @@ namespace ReducedGrinding
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GiantHarpyFeather, 1, false, -1, false, false);
 							}
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootCloudFromHarpies)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.Cloud, 1, false, -1, false, false);
+							}
 						}
 						if ((npc.type >= 26 && npc.type <= 29) || npc.type == 111) //Goblin Army (Excluding Summoner)
 						{
@@ -3971,13 +3990,6 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootSnowballLauncherIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SnowballLauncher, 1, false, -1, false, false);
-							}
-						}
-						if (npc.type == NPCID.MossHornet)
-						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootTatteredBeeWingIncrease)
-							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TatteredBeeWing, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.ScutlixRider)
@@ -4462,42 +4474,42 @@ namespace ReducedGrinding
 						}
 						if (npc.type == NPCID.Guide) //Guide NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootGreenCap)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootGreenCapForNonAndrewGuide)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DyeTrader) //Dye Trader NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootExoticScimitar)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootExoticScimitarIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DD2Bartender) //Tavernkeep NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootAleTosser)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootAleTosserIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Stylist) //Stylist NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissors)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissorsIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Painter) //Painter NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissors)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissorsIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.PartyGirl) //Party Girl NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPaintballGun)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPaintballGunIncrease)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
 							}
@@ -4761,156 +4773,6 @@ namespace ReducedGrinding
 			recipe.SetResult(ItemID.CelestialSigil);
 			recipe.AddRecipe();
 
-			//Crate Downgrading
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.DoubleCod);
-			recipe.AddIngredient(ItemID.VariegatedLardfish);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.JungleFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.Ebonkoi);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.CorruptFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.CrimsonTigerfish);
-			recipe.AddIngredient(ItemID.Hemopiranha);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.CrimsonFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.Prismite);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.HallowedFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.GoldenKey);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.DungeonFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddIngredient(ItemID.Damselfish);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.FloatingIslandFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.GoldenCrate);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.IronCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.WoodenCrate);
-			recipe.AddRecipe();
-
-			//Crate Upgrading
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.DoubleCod);
-			recipe.AddIngredient(ItemID.VariegatedLardfish);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.JungleFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Ebonkoi);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.CorruptFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.CrimsonTigerfish);
-			recipe.AddIngredient(ItemID.Hemopiranha);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.CrimsonFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Prismite);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.HallowedFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.GoldenKey);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.DungeonFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddIngredient(ItemID.Damselfish);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.FloatingIslandFishingCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.WoodenCrate, 5);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.IronCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.IronCrate, 4);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.JungleFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.FloatingIslandFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.CorruptFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.CrimsonFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.HallowedFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
-			recipe = new ModRecipe(this);
-			recipe.AddIngredient(ItemID.DungeonFishingCrate, 2);
-			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GoldenCrate);
-			recipe.AddRecipe();
-			
 			//Infection Key Switching
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.CorruptionKey);
@@ -4962,56 +4824,56 @@ namespace ReducedGrinding
 			//Golden Critters
 			recipe = new ModRecipe(this);
 			recipe.AddRecipeGroup("Birds");
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldBird);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.Bunny);
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldBunny);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.Frog);
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldFrog);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.Grasshopper);
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldGrasshopper);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.Mouse);
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldMouse);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddRecipeGroup("Squirrels");
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.SquirrelGold);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddIngredient(ItemID.Worm);
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldWorm);
 			recipe.AddRecipe();
 
 			recipe = new ModRecipe(this);
 			recipe.AddRecipeGroup("Butterflies");
-			recipe.AddIngredient(ItemID.GoldCoin, 12);
+			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldButterfly);
 			recipe.AddRecipe();

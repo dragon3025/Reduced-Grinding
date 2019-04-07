@@ -8,8 +8,15 @@ namespace ReducedGrinding.NPCs
 {
 	public class VanillaNPCShop : GlobalNPC
     {
-		
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+
+		public override void GetChat(NPC npc, ref string chat)
+		{
+			Player player = Main.player[Main.myPlayer];
+			if (npc.type == NPCID.Angler)
+				Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
+		}
+
+		public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
 			Player player = Main.player[Main.myPlayer];
 			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
@@ -18,6 +25,16 @@ namespace ReducedGrinding.NPCs
 			switch (type)
 			{
 				case NPCID.Merchant:
+					if (mPlayer.clientConf.MerchantSellsSwiftnessPotion)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
+						nextSlot++;
+					}
+					if (mPlayer.clientConf.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem)
+					{
+						shop.item[nextSlot].SetDefaults(mod.ItemType("Gold_Reflection_Mirror"));
+						nextSlot++;
+					}
 					if (mPlayer.clientConf.AllNPCsSellTheirDeathLoot)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.GreenCap);
@@ -159,6 +176,25 @@ namespace ReducedGrinding.NPCs
 						shop.item[nextSlot].SetDefaults(ItemID.StaffofRegrowth);
 						nextSlot++;
 					}
+					if (NPC.downedGolemBoss)
+					{
+						if (mPlayer.clientConf.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated)
+						{
+							shop.item[nextSlot].SetDefaults(ItemID.FlameTrap);
+							nextSlot++;
+							shop.item[nextSlot].SetDefaults(ItemID.SpearTrap);
+							nextSlot++;
+							shop.item[nextSlot].SetDefaults(ItemID.SpikyBallTrap);
+							nextSlot++;
+							shop.item[nextSlot].SetDefaults(ItemID.SuperDartTrap);
+							nextSlot++;
+						}
+						if (mPlayer.clientConf.WitchDoctorSellsWoodenSpikesAfterGolemDefeated)
+						{
+							shop.item[nextSlot].SetDefaults(ItemID.WoodenSpike);
+							nextSlot++;
+						}
+					}
 					break;
 				case NPCID.Dryad:
 					if (luiafk == null)
@@ -188,36 +224,24 @@ namespace ReducedGrinding.NPCs
 								shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
 						}
 					}
+					if (mPlayer.clientConf.DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
+					{
+						shop.item[nextSlot].SetDefaults(mod.ItemType("Plantera_Bulb"));
+						nextSlot++;
+					}
 					break;
 				case NPCID.Mechanic:
-					if (mPlayer.clientConf.MechanicSellsDartTrapAfterSkeletronDefeated && NPC.downedBoss3)
+					if (mPlayer.clientConf.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated && NPC.downedBoss3)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.DartTrap);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(ItemID.Spike);
 						nextSlot++;
 					}
 					if (mPlayer.clientConf.MechanicSellsGeyserAfterWallofFleshDefeated && Main.hardMode)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.GeyserTrap);
 						nextSlot++;
-					}
-					if (NPC.downedGolemBoss)
-					{
-						if (mPlayer.clientConf.MechanicSellsLihzahrdTrapsAfterGolemDefeated)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.FlameTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SpearTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SpikyBallTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SuperDartTrap);
-							nextSlot++;
-						}
-						if (mPlayer.clientConf.MechanicSellsWoodenSpikesAfterGolemDefeated)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.WoodenSpike);
-							nextSlot++;
-						}
 					}
 					break;
 				case NPCID.Wizard:
