@@ -16,10 +16,10 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-			item.width = 28;
-			item.height = 30;
+			item.width = 36;
+			item.height = 40;
 			item.maxStack = 1;
-			item.value = 34600;
+			item.value = Item.buyPrice(0, 3, 46);
 			item.rare = 10;
             item.useAnimation = 20;
             item.useTime = 45;

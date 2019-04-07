@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items
 			item.width = 28;
 			item.height = 30;
 			item.maxStack = 99;
-			item.value = 2000;
+			item.value = Item.buyPrice(0, 0, 20, 0);
 			item.rare = 1;
             item.useAnimation = 20;
             item.useTime = 45;

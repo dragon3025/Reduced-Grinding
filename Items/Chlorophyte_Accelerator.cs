@@ -1,4 +1,5 @@
 using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -24,7 +25,7 @@ namespace ReducedGrinding.Items
 			item.useStyle = 1;
 			item.consumable = true;
 			item.rare = 7;
-			item.value = 5880;
+			item.value = Item.buyPrice(0, 0, 58, 80);
 			item.createTile = mod.TileType("Chlorophyte_Accelerator");
 		}
 	

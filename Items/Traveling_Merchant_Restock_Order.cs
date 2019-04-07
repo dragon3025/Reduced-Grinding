@@ -18,8 +18,8 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
+            item.width = 32;
+            item.height = 32;
             item.maxStack = 1;
             item.rare = 0;
             item.useAnimation = 45;

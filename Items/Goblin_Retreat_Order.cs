@@ -15,15 +15,15 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
+            item.width = 32;
+            item.height = 32;
             item.maxStack = 99;
             item.rare = 0;
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = 2000;
-            item.UseSound = SoundID.Item4;
+			item.value = Item.buyPrice(0, 0, 20);
+			item.UseSound = SoundID.Item4;
             item.consumable = true;
         }
 

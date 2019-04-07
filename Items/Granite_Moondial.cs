@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
@@ -13,7 +14,7 @@ namespace ReducedGrinding.Items
 		public override void SetDefaults()
 		{
 			item.width = 20;
-			item.height = 32;
+			item.height = 38;
 			item.maxStack = 99;
 			item.useTurn = true;
 			item.autoReuse = true;
@@ -21,7 +22,7 @@ namespace ReducedGrinding.Items
 			item.useTime = 10;
 			item.useStyle = 1;
 			item.consumable = true;
-			item.value = 300;
+			item.value = Item.buyPrice(0, 0, 3, 0);
 			item.rare = 1;
 			item.createTile = mod.TileType("Granite_Moondial");
 		}

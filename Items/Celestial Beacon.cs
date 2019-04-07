@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -16,7 +17,7 @@ namespace ReducedGrinding.Items
 			item.width = 32;
 			item.height = 32;
 			item.maxStack = 1;
-			item.value = 18000;
+			item.value = 0; //You can get this item infintely, so it shouldn't have a price.
 			item.rare = 10;
 		}
 
@@ -32,6 +33,5 @@ namespace ReducedGrinding.Items
 			recipe.SetResult(this);
 			recipe.AddRecipe();
         }
-		
 	}
 }

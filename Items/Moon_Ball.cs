@@ -1,3 +1,4 @@
+using Terraria;
 using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
@@ -12,7 +13,7 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-            item.width = 12;
+            item.width = 28;
             item.height = 30;
             item.maxStack = 99;
 			item.useTurn = true;
@@ -22,7 +23,7 @@ namespace ReducedGrinding.Items
             item.useTime = 45;
             item.useStyle = 4;
 			item.consumable = true;
-            item.value = 10000;
+			item.value = Item.buyPrice(0, 1, 0, 0);
 			item.rare = 3;
 			item.createTile = mod.TileType("Moon_Ball");
 		}

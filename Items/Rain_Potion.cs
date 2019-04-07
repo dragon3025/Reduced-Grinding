@@ -11,7 +11,7 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Rain Potion");
-            Tooltip.SetDefault("Starts/stops rain.");
+            Tooltip.SetDefault("Toggles the rain; the amount of cloud coverage will also match it.");
         }
 
         public override void SetDefaults()
@@ -23,7 +23,7 @@ namespace ReducedGrinding.Items
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = 200;
+            item.value = Item.buyPrice(0, 0, 2, 0);
             item.UseSound = SoundID.Item3;
             item.consumable = true;
         }
@@ -35,10 +35,20 @@ namespace ReducedGrinding.Items
 
         public override bool UseItem(Player player)
         {
-            if (Main.raining)
-                StopRain();
-            else
-                StartRain();
+			if (Main.raining)
+			{
+				StopRain();
+				Main.cloudBGActive = 0f;
+				Main.cloudBGAlpha = 0f;
+				Main.numClouds = 0;
+			}
+			else
+			{
+				StartRain();
+				Main.cloudBGActive = 1f;
+				Main.cloudBGAlpha = 1f;
+				Main.numClouds = Main.cloudLimit;
+			}
 			if (Main.netMode == NetmodeID.Server)
 				NetMessage.SendData(7);
             return true;
