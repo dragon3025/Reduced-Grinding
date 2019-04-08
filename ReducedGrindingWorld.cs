@@ -698,7 +698,6 @@ namespace ReducedGrinding
 						{
 							int chanceRoll = (int)(27000.0 / (double)Main.dayRate);
 							chanceRoll *= 4;
-							chanceRoll = 1;
 							for (int i = 0; i < 3; i++)
 							{
 								if (Main.rand.Next(chanceRoll) == 0)
@@ -794,7 +793,7 @@ namespace ReducedGrinding
 					{
 						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 						{
-							if (Main.rand.NextFloat() < 1)//mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(vanillaTownNPCs / merchantSpawnChanceDivisor, 2))
+							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(vanillaTownNPCs / merchantSpawnChanceDivisor, 2))
 							{
 								Chest.SetupTravelShop();
 								if (Main.netMode == NetmodeID.Server)
