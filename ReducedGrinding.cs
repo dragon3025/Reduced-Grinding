@@ -4746,6 +4746,21 @@ namespace ReducedGrinding
 			}
 		}
 
+		public override void AddRecipeGroups()
+		{
+			RecipeGroup goldAndBiomeCrates = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Golden or Biome Crate", new int[]
+			{
+				ItemID.JungleFishingCrate,
+				ItemID.FloatingIslandFishingCrate,
+				ItemID.CorruptFishingCrate,
+				ItemID.CrimsonFishingCrate,
+				ItemID.HallowedFishingCrate,
+				ItemID.DungeonFishingCrate,
+				ItemID.GoldenCrate
+			});
+			RecipeGroup.RegisterGroup("ReducedGrinding:goldAndBiomeCrates", goldAndBiomeCrates);
+		}
+
 		public override void AddRecipes()
 		{
 			//Arkhalis Crafting Tree
@@ -4877,8 +4892,19 @@ namespace ReducedGrinding
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(ItemID.GoldButterfly);
 			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddRecipeGroup("ReducedGrinding:goldAndBiomeCrates");
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(ItemID.IronCrate);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.IronCrate);
+			recipe.AddTile(TileID.TinkerersWorkbench);
+			recipe.SetResult(ItemID.WoodenCrate);
+			recipe.AddRecipe();
 		}
-		
     }
 
     class SpawnRateMultiplierGlobalNPC : GlobalNPC

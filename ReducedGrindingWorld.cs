@@ -626,6 +626,7 @@ namespace ReducedGrinding
 			}
 
 			float vanillaTownNPCs = 0f;
+			bool travelingMerchantExists = false;
 			bool tryToSpawnTravelingMerchant = true;
 			float merchantSpawnChanceDivisor = 21.0f; //There are 21 stationary vanilla NPCs (excluding Guide) as of 5/26/2017
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
@@ -634,6 +635,7 @@ namespace ReducedGrinding
 				{
 					if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 					{
+						travelingMerchantExists = true;
 						tryToSpawnTravelingMerchant = false;
 						break;
 					}
@@ -696,6 +698,7 @@ namespace ReducedGrinding
 						{
 							int chanceRoll = (int)(27000.0 / (double)Main.dayRate);
 							chanceRoll *= 4;
+							chanceRoll = 1;
 							for (int i = 0; i < 3; i++)
 							{
 								if (Main.rand.Next(chanceRoll) == 0)
@@ -711,18 +714,20 @@ namespace ReducedGrinding
 						WorldGen.SpawnTravelNPC();
 					}
 				}
+			}
+			if (travelingMerchantExists)
+			{
 				bool TravelingMerchantRestockOrder = false;
 				for (int i = 0; i < 255; i++)
 				{
 					if (Main.player[i].active && Main.player[i].HasItem(mod.ItemType("Traveling_Merchant_Restock_Order")))
 					{
-						Main.NewText("Player has restock order.");
 						TravelingMerchantRestockOrder = true;
 						break;
 					}
 				}
 				//Each Second there is an item that has a chance to appear in Traveling Merchant shop and isn't in Stationary Merchant shop.
-				if (Main.time % 60 == 0 && (TravelingMerchantRestockOrder || !mPlayer.clientConf.StationaryMerchant ||
+				if (Main.time % 60 == 0 && (TravelingMerchantRestockOrder ||
 				(
 					smItemSake == false ||
 					smItemPho == false ||
@@ -789,7 +794,7 @@ namespace ReducedGrinding
 					{
 						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(vanillaTownNPCs / merchantSpawnChanceDivisor, 2))
+							if (Main.rand.NextFloat() < 1)//mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(vanillaTownNPCs / merchantSpawnChanceDivisor, 2))
 							{
 								Chest.SetupTravelShop();
 								if (Main.netMode == NetmodeID.Server)

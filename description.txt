@@ -26,9 +26,8 @@ more info see the link below. How this mod does this:
 * Permanent stationary versions of Santa and Skeleton
    Merchant.
 * Crates catches may upgrade to a better crate depending on
-   the fishing power you have. They can also be upgraded and
-   downgraded through crafting at a Crystal Ball at the cost
-   of some items.
+   the fishing power you have. They can also be downgraded
+   through crafting at a Tinker's Workshop.
 * New Lockboxes for different chest you'd find in the world
    and possible furniture items that would be located around
    it.
@@ -40,7 +39,8 @@ more info see the link below. How this mod does this:
 * New Sundials to instantly skip to Night or Day (Enchanted
    Sundial cooldown and Tax Collector wont benefit from this).
 * New Moon Ball to change the Moon Phase.
-* New Blood Moon Medalion to summon the Blood Moon.
+* Items to summon some defeated Invasions/Bosses and items to
+  cancel some defeated Invasions.
 * Crimson/Corruption versions of Seeds/Solutions are available
    in both worlds.
 * Keep in mind, that the drop rate increases in configuration

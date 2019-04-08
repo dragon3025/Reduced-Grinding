@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.55.json";
+		static string filename = "Reduced Grinding v4.55.1.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -1274,9 +1274,9 @@ namespace ReducedGrinding
 			Configuration.Put("TravelingMerchantYellowTeamPlatformIncrease", TravelingMerchantYellowTeamPlatformIncrease);
 			Configuration.Put("TravelingMerchantZebraSkinIncrease", TravelingMerchantZebraSkinIncrease);
 
-			Configuration.Put("=================================================================================================FQ1", 0);
+			Configuration.Put("================================================================================================OMN1", 0);
 			Configuration.Put("|                                      OTHER MOD NPCS                                              |", 0);
-			Configuration.Put("=================================================================================================FQ2", 0);
+			Configuration.Put("================================================================================================OMN2", 0);
 			Configuration.Put("BoneMerchant", BoneMerchant);
 			Configuration.Put("BoneMerchantDisabledWhenLuiafkIsInstalled", BoneMerchantDisabledWhenLuiafkIsInstalled);
 			Configuration.Put("Santa", Santa);
