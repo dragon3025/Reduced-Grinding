@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using Terraria.Localization;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace ReducedGrinding.NPCs
 {

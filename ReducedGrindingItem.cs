@@ -48,6 +48,7 @@ namespace ReducedGrinding.Items
 
 		public override void SetDefaults(Item item)
 		{
+			int originalValue;
 			if (item.type == ItemID.GreenCap)
 			{
 				item.value = Item.buyPrice(0, 0, 2);
@@ -59,6 +60,17 @@ namespace ReducedGrinding.Items
 			if (item.type == ItemID.WoodenSpike)
 			{
 				item.value = Item.buyPrice(0, 0, 20);
+			}
+			//The items below assume that the configurations for all these drops are set to 100% (because GetModPlayer doesn't work here).
+			if (item.type == ItemID.DyeTradersScimitar || item.type == ItemID.AleThrowingGlove || item.type == ItemID.StylistKilLaKillScissorsIWish || item.type == ItemID.TaxCollectorsStickOfDoom)
+			{
+				originalValue = item.value;
+				item.value = (int)(originalValue * 0.125);
+			}
+			if (item.type == ItemID.PainterPaintballGun)
+			{
+				originalValue = item.value;
+				item.value = (int)(originalValue * 0.1);
 			}
 		}
 	}

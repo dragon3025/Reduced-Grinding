@@ -627,6 +627,7 @@ namespace ReducedGrinding
 
 			float vanillaTownNPCs = 0f;
 			bool travelingMerchantExists = false;
+			bool stationaryMerchantExists = false;
 			bool tryToSpawnTravelingMerchant = true;
 			float merchantSpawnChanceDivisor = 21.0f; //There are 21 stationary vanilla NPCs (excluding Guide) as of 5/26/2017
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
@@ -637,10 +638,10 @@ namespace ReducedGrinding
 					{
 						travelingMerchantExists = true;
 						tryToSpawnTravelingMerchant = false;
-						break;
 					}
-					if (
-						Terraria.Main.npc[i].type == NPCID.Merchant ||
+					if (Terraria.Main.npc[i].type == mod.NPCType("Stationary Merchant"))
+						stationaryMerchantExists = true;
+					if (Terraria.Main.npc[i].type == NPCID.Merchant ||
 						Terraria.Main.npc[i].type == NPCID.Nurse ||
 						Terraria.Main.npc[i].type == NPCID.Demolitionist ||
 						Terraria.Main.npc[i].type == NPCID.DyeTrader ||
@@ -714,7 +715,7 @@ namespace ReducedGrinding
 					}
 				}
 			}
-			if (travelingMerchantExists)
+			if (travelingMerchantExists && stationaryMerchantExists)
 			{
 				bool TravelingMerchantRestockOrder = false;
 				for (int i = 0; i < 255; i++)

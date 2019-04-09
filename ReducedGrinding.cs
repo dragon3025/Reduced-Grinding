@@ -1364,7 +1364,7 @@ namespace ReducedGrinding
 							TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight,
 							
 							GoblinTinkererSellsGoblinRetreatOrder,
-							PirateSellsPirateRetreatOrder,
+							MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem,
 							PirateSellsPirateRetreatOrder,
 							WizardSellsMoonBall,
 							BattlePotionMaxSpawnsMultiplier,
@@ -1810,7 +1810,7 @@ namespace ReducedGrinding
 					TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = reader.ReadInt32();
 					
 					GoblinTinkererSellsGoblinRetreatOrder = reader.ReadBoolean();
-					PirateSellsPirateRetreatOrder = reader.ReadBoolean();
+					MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = reader.ReadBoolean();
 					PirateSellsPirateRetreatOrder = reader.ReadBoolean();
 					WizardSellsMoonBall = reader.ReadBoolean();
 					BattlePotionMaxSpawnsMultiplier = reader.ReadSingle();
@@ -3448,7 +3448,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.FastClock, 1, false, -1, false, false);
 							}
 						}
-						if (Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe)
+						if (Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe && NPC.downedPlantBoss)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootLizardEggIncrease)
 							{
@@ -4535,7 +4535,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
 							else if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
-							else if ((npc.type == 198 || npc.type == 199 || npc.type == 226) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Lihzahrd Temple Enemies
+							else if ((Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe && NPC.downedPlantBoss) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Lihzahrd Temple Enemies
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
 							else if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < mPlayer.clientConf.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 952, 1, false, -1, false, false); //Web Covered Chest
@@ -4639,7 +4639,7 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("Pyramid_Lock_Box"), 1, false, -1, false, false);
 							}
 						}
-						else if (npc.type == 198 || npc.type == 199 || npc.type == 226) //Lihzahrd Temple Enemies
+						else if (Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe && NPC.downedPlantBoss) //Lihzahrd Temple Enemies
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.JungleTempleLihzahrd_Lock_Box*lockboxDropModdifier)
 							{
