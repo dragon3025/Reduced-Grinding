@@ -475,6 +475,7 @@ namespace ReducedGrinding
 
 			public bool AllNPCsSellTheirDeathLoot;
 			public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
+			public bool LootMerchant;
 			public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
 			public bool MechanicSellsGeyserAfterWallofFleshDefeated;
 			public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
@@ -491,7 +492,7 @@ namespace ReducedGrinding
 			public bool WitchDoctorSellsSeaweed;
 			public bool WitchDoctorSellsStaffofRegrowth;
 			public int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight;
-			
+
 			public bool GoblinTinkererSellsGoblinRetreatOrder;
 			public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 			public bool PirateSellsPirateRetreatOrder;
@@ -916,6 +917,7 @@ namespace ReducedGrinding
 
 				bool CC_AllNPCsSellTheirDeathLoot,
 				bool CC_DryadSellsPlanteraBulbAfterPlanteraDefeated,
+				bool CC_LootMerchant,
 				bool CC_MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated,
 				bool CC_MechanicSellsGeyserAfterWallofFleshDefeated,
 				bool CC_WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated,
@@ -1357,6 +1359,7 @@ namespace ReducedGrinding
 
 				AllNPCsSellTheirDeathLoot = CC_AllNPCsSellTheirDeathLoot;
 				DryadSellsPlanteraBulbAfterPlanteraDefeated = CC_DryadSellsPlanteraBulbAfterPlanteraDefeated;
+				LootMerchant = CC_LootMerchant;
 				MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = CC_MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
 				MechanicSellsGeyserAfterWallofFleshDefeated = CC_MechanicSellsGeyserAfterWallofFleshDefeated;
 				WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = CC_WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
@@ -1830,6 +1833,7 @@ namespace ReducedGrinding
 
 			packet.Write((bool)Config.AllNPCsSellTheirDeathLoot);
 			packet.Write((bool)Config.DryadSellsPlanteraBulbAfterPlanteraDefeated);
+			packet.Write((bool)Config.LootMerchant);
 			packet.Write((bool)Config.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 			packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
 			packet.Write((bool)Config.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated);
@@ -2271,6 +2275,7 @@ namespace ReducedGrinding
 
 				Config.AllNPCsSellTheirDeathLoot,
 				Config.DryadSellsPlanteraBulbAfterPlanteraDefeated,
+				Config.LootMerchant,
 				Config.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated,
 				Config.MechanicSellsGeyserAfterWallofFleshDefeated,
 				Config.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated,
@@ -2720,6 +2725,7 @@ namespace ReducedGrinding
 
 					Config.AllNPCsSellTheirDeathLoot,
 					Config.DryadSellsPlanteraBulbAfterPlanteraDefeated,
+					Config.LootMerchant,
 					Config.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated,
 					Config.MechanicSellsGeyserAfterWallofFleshDefeated,
 					Config.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated,

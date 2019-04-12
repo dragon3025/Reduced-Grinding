@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.58.json";
+		static string filename = "Reduced Grinding v4.59.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -398,6 +398,7 @@ namespace ReducedGrinding
 
 		public static bool AllNPCsSellTheirDeathLoot = false;
 		public static bool DryadSellsPlanteraBulbAfterPlanteraDefeated = true;
+		public static bool LootMerchant = false;
 		public static bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = true;
 		public static bool MechanicSellsGeyserAfterWallofFleshDefeated = true;
 		public static bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = true;
@@ -414,7 +415,7 @@ namespace ReducedGrinding
 		public static bool WitchDoctorSellsSeaweed = false;
 		public static bool WitchDoctorSellsStaffofRegrowth = false;
 		public static int TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight = 50000;
-		
+
 		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
 		public static bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = false;
 		public static bool PirateSellsPirateRetreatOrder = true;
@@ -867,6 +868,7 @@ namespace ReducedGrinding
 				Configuration.Get("MerchantSellsPyramidItems", ref MerchantSellsPyramidItems);
 				Configuration.Get("MerchantSellsSandstormInABottleWhenInDesert", ref MerchantSellsSandstormInABottleWhenInDesert);
 				Configuration.Get("TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight", ref TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight);
+				Configuration.Get("LootMerchant", ref LootMerchant);
 				Configuration.Get("MerchantSellsSwiftnessPotion", ref MerchantSellsSwiftnessPotion);
 				Configuration.Get("WitchDoctorSellsFlowerBoots", ref WitchDoctorSellsFlowerBoots);
 				Configuration.Get("WitchDoctorSellsHoneyDispenser", ref WitchDoctorSellsHoneyDispenser);
@@ -1328,6 +1330,7 @@ namespace ReducedGrinding
 			Configuration.Put("=================================================================================================VS2", 0);
 			Configuration.Put("AllNPCsSellTheirDeathLoot", AllNPCsSellTheirDeathLoot);
 			Configuration.Put("DryadSellsPlanteraBulbAfterPlanteraDefeated", DryadSellsPlanteraBulbAfterPlanteraDefeated);
+			Configuration.Put("LootMerchant", LootMerchant);
 			Configuration.Put("MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated", MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 			Configuration.Put("MechanicSellsGeyserAfterWallofFleshDefeated", MechanicSellsGeyserAfterWallofFleshDefeated);
 			Configuration.Put("MerchantSellsAllMiningGear", MerchantSellsAllMiningGear);

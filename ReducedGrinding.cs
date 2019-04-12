@@ -432,6 +432,7 @@ namespace ReducedGrinding
 
 			bool AllNPCsSellTheirDeathLoot;
 			bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
+			bool LootMerchant;
 			bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
 			bool MechanicSellsGeyserAfterWallofFleshDefeated;
 			bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
@@ -904,6 +905,7 @@ namespace ReducedGrinding
 
 						AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
 						DryadSellsPlanteraBulbAfterPlanteraDefeated = reader.ReadBoolean();
+						LootMerchant = reader.ReadBoolean();
 						MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = reader.ReadBoolean();
 						MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
 						WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
@@ -1346,6 +1348,7 @@ namespace ReducedGrinding
 
 							AllNPCsSellTheirDeathLoot,
 							DryadSellsPlanteraBulbAfterPlanteraDefeated,
+							LootMerchant,
 							MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated,
 							MechanicSellsGeyserAfterWallofFleshDefeated,
 							WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated,
@@ -1792,6 +1795,7 @@ namespace ReducedGrinding
 
 					AllNPCsSellTheirDeathLoot = reader.ReadBoolean();
 					DryadSellsPlanteraBulbAfterPlanteraDefeated = reader.ReadBoolean();
+					LootMerchant = reader.ReadBoolean();
 					MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated = reader.ReadBoolean();
 					MechanicSellsGeyserAfterWallofFleshDefeated = reader.ReadBoolean();
 					WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated = reader.ReadBoolean();
@@ -2241,6 +2245,7 @@ namespace ReducedGrinding
 
 						packet.Write((bool)Config.AllNPCsSellTheirDeathLoot);
 						packet.Write((bool)Config.DryadSellsPlanteraBulbAfterPlanteraDefeated);
+						packet.Write((bool)Config.LootMerchant);
 						packet.Write((bool)Config.MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated);
 						packet.Write((bool)Config.MechanicSellsGeyserAfterWallofFleshDefeated);
 						packet.Write((bool)Config.WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated);
