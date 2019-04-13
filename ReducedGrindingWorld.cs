@@ -625,11 +625,26 @@ namespace ReducedGrinding
 				skippedToDayOrNight = false;
 			}
 
-			float vanillaTownNPCs = 0f;
+			//There are 21 stationary vanilla NPCs (excluding Guide and Santa) as of 5/26/2017; 15 Pre-Hardmode and 6 Hardmode.
+			float TownNPCs = 0f;
+			float TownNPCsMax = 15f;
+			float TownHardmodeNPCs = 0f;
+			float TownHardmodeNPCsMax = 6f;
 			bool travelingMerchantExists = false;
 			bool stationaryMerchantExists = false;
 			bool tryToSpawnTravelingMerchant = true;
-			float merchantSpawnChanceDivisor = 21.0f; //There are 21 stationary vanilla NPCs (excluding Guide) as of 5/26/2017
+
+			if (mPlayer.clientConf.BoneMerchant)
+				TownNPCsMax++;
+			if (mPlayer.clientConf.ChestSalesman)
+				TownNPCsMax++;
+			if (mPlayer.clientConf.StationaryMerchant)
+				TownNPCsMax++;
+			if (mPlayer.clientConf.LootMerchant)
+				TownNPCsMax++;
+			if (mPlayer.clientConf.Santa)
+				TownHardmodeNPCsMax++;
+
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
 			{
 				if (Terraria.Main.npc[i].townNPC == true)
@@ -639,9 +654,10 @@ namespace ReducedGrinding
 						travelingMerchantExists = true;
 						tryToSpawnTravelingMerchant = false;
 					}
-					if (Terraria.Main.npc[i].type == mod.NPCType("Stationary Merchant"))
+					if (Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant"))
 						stationaryMerchantExists = true;
-					if (Terraria.Main.npc[i].type == NPCID.Merchant ||
+					if (
+						Terraria.Main.npc[i].type == NPCID.Merchant ||
 						Terraria.Main.npc[i].type == NPCID.Nurse ||
 						Terraria.Main.npc[i].type == NPCID.Demolitionist ||
 						Terraria.Main.npc[i].type == NPCID.DyeTrader ||
@@ -656,41 +672,40 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Clothier ||
 						Terraria.Main.npc[i].type == NPCID.Mechanic ||
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
+						(Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant") && mPlayer.clientConf.BoneMerchant) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("ChestSalesman") && mPlayer.clientConf.ChestSalesman) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant") && mPlayer.clientConf.StationaryMerchant) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("LootMerchant") && mPlayer.clientConf.LootMerchant)
+					)
+						TownNPCs++;
+					else if (
 						Terraria.Main.npc[i].type == NPCID.Wizard ||
 						Terraria.Main.npc[i].type == NPCID.TaxCollector ||
 						Terraria.Main.npc[i].type == NPCID.Truffle ||
 						Terraria.Main.npc[i].type == NPCID.Pirate ||
 						Terraria.Main.npc[i].type == NPCID.Steampunker ||
 						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant") && mPlayer.clientConf.BoneMerchant) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("ChestSalesman") && mPlayer.clientConf.ChestSalesman) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("Santa") && mPlayer.clientConf.Santa) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant") && mPlayer.clientConf.StationaryMerchant)
-					) //Any Permenant Town Residents other than the Guide
-						vanillaTownNPCs++;
+						(Terraria.Main.npc[i].type == mod.NPCType("Santa") && mPlayer.clientConf.Santa)
+					)
+					{
+						TownHardmodeNPCs++;
+					}
 				}
 			}
-			if (mPlayer.clientConf.BoneMerchant)
-				merchantSpawnChanceDivisor++;
-			if (mPlayer.clientConf.ChestSalesman)
-				merchantSpawnChanceDivisor++;
-			if (mPlayer.clientConf.Santa)
-				merchantSpawnChanceDivisor++;
-			if (mPlayer.clientConf.StationaryMerchant)
-				merchantSpawnChanceDivisor++;
 
+			float TownNPCPercent = (TownNPCs / TownNPCsMax + TownHardmodeNPCs / TownHardmodeNPCsMax) / 2;
 
 			if (!Main.fastForwardTime && Main.dayTime && Main.time < 27000.0)
 			{
-				int townNPCs = 0;
+				int alltownNPCs = 0;
 				for (int j = 0; j < 200; j++)
 				{
 					if (Main.npc[j].active && Main.npc[j].townNPC && Main.npc[j].type != 37 && Main.npc[j].type != 453)
 					{
-						townNPCs++;
+						alltownNPCs++;
 					}
 				}
-				if (townNPCs >= 2)
+				if (alltownNPCs >= 2)
 				{
 					if (tryToSpawnTravelingMerchant)
 					{
@@ -709,10 +724,8 @@ namespace ReducedGrinding
 							}
 						}
 					}
-					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachMorningTravelingMerchantWillSpawn * vanillaTownNPCs / merchantSpawnChanceDivisor)
-					{
+					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachMorningTravelingMerchantWillSpawn * Math.Pow(TownNPCPercent, 2))
 						WorldGen.SpawnTravelNPC();
-					}
 				}
 			}
 			if (travelingMerchantExists && stationaryMerchantExists)
@@ -794,7 +807,7 @@ namespace ReducedGrinding
 					{
 						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(vanillaTownNPCs / merchantSpawnChanceDivisor, 2))
+							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
 							{
 								Chest.SetupTravelShop();
 								if (Main.netMode == NetmodeID.Server)
