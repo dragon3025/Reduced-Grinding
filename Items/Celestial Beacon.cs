@@ -24,11 +24,11 @@ namespace ReducedGrinding.Items
 		public override void AddRecipes()
         {
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(3456); //Vortext Fragment
-			recipe.AddIngredient(3457); //Nebula Fragment
-			recipe.AddIngredient(3458); //Solar Fragment
-			recipe.AddIngredient(3459); //Stardust Fragment
-			recipe.AddIngredient(3467); //Luminite Bar
+			recipe.AddIngredient(ItemID.FragmentVortex);
+			recipe.AddIngredient(ItemID.FragmentNebula);
+			recipe.AddIngredient(ItemID.FragmentSolar);
+			recipe.AddIngredient(ItemID.FragmentStardust);
+			recipe.AddIngredient(ItemID.LunarBar);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

@@ -33,7 +33,7 @@ namespace ReducedGrinding.Items
 
 		public override bool UseItem(Player player)
 		{
-			player.AddBuff(13, 25200); //Battle
+			player.AddBuff(BuffID.Battle, 25200);
 			player.AddBuff(mod.BuffType("War"), 25200);
 			player.AddBuff(mod.BuffType("Chaos"), 25200);
 			return true;
@@ -43,7 +43,7 @@ namespace ReducedGrinding.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(mod.ItemType("War_Potion"));
-			recipe.AddIngredient(501, 1); //Pixie Dust
+			recipe.AddIngredient(ItemID.PixieDust, 1);
 			recipe.AddTile(TileID.Bottles);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

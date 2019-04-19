@@ -15,9 +15,7 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-			//ReducedGrindingPlayer mPlayer = Main.player[Main.myPlayer].GetModPlayer<ReducedGrindingPlayer>();
-		
-            item.width = 20;
+			item.width = 20;
             item.height = 30;
             item.maxStack = 30;
             item.rare = 2;
@@ -47,8 +45,8 @@ namespace ReducedGrinding.Items
         {
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.BottledWater, 1);
-			recipe.AddIngredient(2309, 1); //Specular Fish
-			recipe.AddIngredient(314, 1); //Moonglow
+			recipe.AddIngredient(ItemID.SpecularFish);
+			recipe.AddIngredient(ItemID.Moonglow);
 			recipe.AddTile(TileID.Bottles);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
