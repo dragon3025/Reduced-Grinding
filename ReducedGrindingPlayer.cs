@@ -2813,7 +2813,9 @@ namespace ReducedGrinding
 		{
 			Player player = Main.player[Main.myPlayer];
 			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
-			
+
+			Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
+
 			if (mPlayer.clientConf.QuestFishermansGuideIncrease > 0)
 			{
 				if (Main.rand.NextFloat() < mPlayer.clientConf.QuestFishermansGuideIncrease)
@@ -3106,104 +3108,18 @@ namespace ReducedGrinding
 			}
 		}
 		
-		/*public override void SetupStartInventory(IList<Item> items)
-		{
-			//Prevent Crashes
-			/*Mod antiaris = ModLoader.GetMod("Antiaris");
-			Mod autoTrash = ModLoader.GetMod("AutoTrash");
-			Mod expeditions = ModLoader.GetMod("Expeditions");
-			Mod leveled = ModLoader.GetMod("Leveled");
-			Mod luiafk = ModLoader.GetMod("Luiafk");
-			Mod recipebrowser = ModLoader.GetMod("RecipeBrowser");
-			Mod rewards = ModLoader.GetMod("Rewards");
-			Mod terrariaOverhaul = ModLoader.GetMod("TerrariaOverhaul");
-			Mod terrariaOverload = ModLoader.GetMod("TerrariaOverload");
-			Mod unleveled = ModLoader.GetMod("Unleveled");
-			Mod worldGenPreviewer = ModLoader.GetMod("WorldGenPreviewer");
-			if (
-				antiaris == null &&
-				autoTrash == null &&
-				expeditions == null &&
-				leveled == null && 
-				luiafk == null && 
-				recipebrowser == null && 
-				rewards == null &&
-				terrariaOverhaul == null && 
-				terrariaOverload == null && 
-				unleveled == null && 
-				worldGenPreviewer == null
-			)
-			{*//*
-				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
-			
-				Item item = new Item();
-				item.SetDefaults(ItemID.MiningPotion);
-				item.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item);
-				
-				Item item2 = new Item();
-				item2.SetDefaults(ItemID.CopperBar);
-				item2.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item2);
-				
-				Item item3 = new Item();
-				item3.SetDefaults(ItemID.IronBar);
-				item3.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item3);
-				
-				Item item4 = new Item();
-				item4.SetDefaults(ItemID.SilverBar);
-				item4.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item4);
-
-				Item item5 = new Item();
-				item5.SetDefaults(ItemID.GoldBar);
-				item5.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item5);
-
-				Item item6 = new Item();
-				item6.SetDefaults(ItemID.Barrel);
-				item6.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item6);
-
-				Item item7 = new Item();
-				item7.SetDefaults(ItemID.CopperCoin);
-				item7.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item7);
-
-				Item item8 = new Item();
-				item8.SetDefaults(ItemID.SilverCoin);
-				item8.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item8);
-
-				Item item9 = new Item();
-				item9.SetDefaults(ItemID.GoldCoin);
-				item9.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item9);
-
-				Item item10 = new Item();
-				item10.SetDefaults(ItemID.PlatinumCoin);
-				item10.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item10);
-
-				Item item11 = new Item();
-				item11.SetDefaults(mod.ItemType("War_Potion"));
-				item11.stack = mPlayer.clientConf.DELETEME;
-				items.Add(item11);
-			//}
-		}*/
-		
 		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
 		{
 			//The maximum amount of fishing power is 282: https://terraria.gamepedia.com/Fishing#Notes
 
 			if (junk)
 				return;
-			bool enableFishUpgrade = true;
+			bool enableFishUpgrade = (player.FindBuffIndex(mod.BuffType("Fish_Upgrade")) != -1);
 
-			Mod luiafkInstalled = ModLoader.GetMod("Luiafk");
-			if (luiafkInstalled != null && !(fishingRod.type == 2289 || (fishingRod.type >= 2291 && fishingRod.type <= 2296) || fishingRod.type == 2421 || fishingRod.type == 2422))
-				enableFishUpgrade = false;
+			Main.NewText("enableFishUpgrade: " + enableFishUpgrade);
+
+			if (!(fishingRod.type == 2289 || (fishingRod.type >= 2291 && fishingRod.type <= 2296) || fishingRod.type == 2421 || fishingRod.type == 2422))
+				enableFishUpgrade = false; //Vanilla Rods Only
 
 			float upgradeRate = (power - 141) / 141;
 
