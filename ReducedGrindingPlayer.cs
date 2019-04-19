@@ -301,6 +301,10 @@ namespace ReducedGrinding
 			public float LootSailorPantsIncrease;
 			public float LootSailorShirtIncrease;
 			public float LootShackleIncrease;
+			public int LootMaxSandFromDuneSplicer;
+			public int LootMaxSandFromTombCrawler;
+			public int LootMinSandFromDuneSplicer;
+			public int LootMinSandFromTombCrawler;
 			public float LootSkullIncrease;
 			public float LootSlimeStaffIncrease;
 			public float LootSniperRifleIncrease;
@@ -743,6 +747,10 @@ namespace ReducedGrinding
 				float CC_LootSailorPantsIncrease,
 				float CC_LootSailorShirtIncrease,
 				float CC_LootShackleIncrease,
+				int CC_LootMaxSandFromDuneSplicer,
+				int CC_LootMaxSandFromTombCrawler,
+				int CC_LootMinSandFromDuneSplicer,
+				int CC_LootMinSandFromTombCrawler,
 				float CC_LootSkullIncrease,
 				float CC_LootSlimeStaffIncrease,
 				float CC_LootSniperRifleIncrease,
@@ -1185,6 +1193,10 @@ namespace ReducedGrinding
 				LootSailorPantsIncrease = CC_LootSailorPantsIncrease;
 				LootSailorShirtIncrease = CC_LootSailorShirtIncrease;
 				LootShackleIncrease = CC_LootShackleIncrease;
+				LootMaxSandFromDuneSplicer = CC_LootMaxSandFromDuneSplicer;
+				LootMaxSandFromTombCrawler = CC_LootMaxSandFromTombCrawler;
+				LootMinSandFromDuneSplicer = CC_LootMinSandFromDuneSplicer;
+				LootMinSandFromTombCrawler = CC_LootMinSandFromTombCrawler;
 				LootSkullIncrease = CC_LootSkullIncrease;
 				LootSlimeStaffIncrease = CC_LootSlimeStaffIncrease;
 				LootSniperRifleIncrease = CC_LootSniperRifleIncrease;
@@ -1659,6 +1671,10 @@ namespace ReducedGrinding
 			packet.Write((float)Config.LootSailorPantsIncrease);
 			packet.Write((float)Config.LootSailorShirtIncrease);
 			packet.Write((float)Config.LootShackleIncrease);
+			packet.Write((int)Config.LootMaxSandFromDuneSplicer);
+			packet.Write((int)Config.LootMaxSandFromTombCrawler);
+			packet.Write((int)Config.LootMinSandFromDuneSplicer);
+			packet.Write((int)Config.LootMinSandFromTombCrawler);
 			packet.Write((float)Config.LootSkullIncrease);
 			packet.Write((float)Config.LootSlimeStaffIncrease);
 			packet.Write((float)Config.LootSniperRifleIncrease);
@@ -2101,6 +2117,10 @@ namespace ReducedGrinding
 				Config.LootSailorPantsIncrease,
 				Config.LootSailorShirtIncrease,
 				Config.LootShackleIncrease,
+				Config.LootMaxSandFromDuneSplicer,
+				Config.LootMaxSandFromTombCrawler,
+				Config.LootMinSandFromDuneSplicer,
+				Config.LootMinSandFromTombCrawler,
 				Config.LootSkullIncrease,
 				Config.LootSlimeStaffIncrease,
 				Config.LootSniperRifleIncrease,
@@ -2551,6 +2571,10 @@ namespace ReducedGrinding
 					Config.LootSailorPantsIncrease,
 					Config.LootSailorShirtIncrease,
 					Config.LootShackleIncrease,
+					Config.LootMaxSandFromDuneSplicer,
+					Config.LootMaxSandFromTombCrawler,
+					Config.LootMinSandFromDuneSplicer,
+					Config.LootMinSandFromTombCrawler,
 					Config.LootSkullIncrease,
 					Config.LootSlimeStaffIncrease,
 					Config.LootSniperRifleIncrease,

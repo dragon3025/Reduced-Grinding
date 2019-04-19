@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.59.json";
+		static string filename = "Reduced Grinding v4.60.1.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -224,6 +224,10 @@ namespace ReducedGrinding
 		public static float LootSailorPantsIncrease = 0f;
 		public static float LootSailorShirtIncrease = 0f;
 		public static float LootShackleIncrease = 0f;
+		public static int LootMaxSandFromDuneSplicer = 50;
+		public static int LootMaxSandFromTombCrawler = 0;
+		public static int LootMinSandFromDuneSplicer = 20;
+		public static int LootMinSandFromTombCrawler = 0;
 		public static float LootSkullIncrease = 0.048f;
 		public static float LootSlimeStaffIncrease = 0.075f;
 		public static float LootSniperRifleIncrease = 0f;
@@ -685,6 +689,10 @@ namespace ReducedGrinding
 				Configuration.Get("LootSailorPantsIncrease", ref LootSailorPantsIncrease);
 				Configuration.Get("LootSailorShirtIncrease", ref LootSailorShirtIncrease);
 				Configuration.Get("LootShackleIncrease", ref LootShackleIncrease);
+				Configuration.Get("LootMaxSandFromDuneSplicer", ref LootMaxSandFromDuneSplicer);
+				Configuration.Get("LootMaxSandFromTombCrawler", ref LootMaxSandFromTombCrawler);
+				Configuration.Get("LootMinSandFromDuneSplicer", ref LootMinSandFromDuneSplicer);
+				Configuration.Get("LootMinSandFromTombCrawler", ref LootMinSandFromTombCrawler);
 				Configuration.Get("LootSkullIncrease", ref LootSkullIncrease);
 				Configuration.Get("LootSlimeStaffIncrease", ref LootSlimeStaffIncrease);
 				Configuration.Get("LootSniperRifleIncrease", ref LootSniperRifleIncrease);
@@ -1155,6 +1163,10 @@ namespace ReducedGrinding
 			Configuration.Put("LootSailorPantsIncrease", LootSailorPantsIncrease);
 			Configuration.Put("LootSailorShirtIncrease", LootSailorShirtIncrease);
 			Configuration.Put("LootShackleIncrease", LootShackleIncrease);
+			Configuration.Put("LootMaxSandFromDuneSplicer", LootMaxSandFromDuneSplicer);
+			Configuration.Put("LootMaxSandFromTombCrawler", LootMaxSandFromTombCrawler);
+			Configuration.Put("LootMinSandFromDuneSplicer", LootMinSandFromDuneSplicer);
+			Configuration.Put("LootMinSandFromTombCrawler", LootMinSandFromTombCrawler);
 			Configuration.Put("LootSkullIncrease", LootSkullIncrease);
 			Configuration.Put("LootSlimeStaffIncrease", LootSlimeStaffIncrease);
 			Configuration.Put("LootSniperRifleIncrease", LootSniperRifleIncrease);

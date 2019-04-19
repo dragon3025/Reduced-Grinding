@@ -258,6 +258,10 @@ namespace ReducedGrinding
 			float LootSailorPantsIncrease;
 			float LootSailorShirtIncrease;
 			float LootShackleIncrease;
+			int LootMaxSandFromDuneSplicer;
+			int LootMaxSandFromTombCrawler;
+			int LootMinSandFromDuneSplicer;
+			int LootMinSandFromTombCrawler;
 			float LootSkullIncrease;
 			float LootSlimeStaffIncrease;
 			float LootSniperRifleIncrease;
@@ -731,6 +735,10 @@ namespace ReducedGrinding
 						LootSailorPantsIncrease = reader.ReadSingle();
 						LootSailorShirtIncrease = reader.ReadSingle();
 						LootShackleIncrease = reader.ReadSingle();
+						LootMaxSandFromDuneSplicer = reader.ReadInt32();
+						LootMaxSandFromTombCrawler = reader.ReadInt32();
+						LootMinSandFromDuneSplicer = reader.ReadInt32();
+						LootMinSandFromTombCrawler = reader.ReadInt32();
 						LootSkullIncrease = reader.ReadSingle();
 						LootSlimeStaffIncrease = reader.ReadSingle();
 						LootSniperRifleIncrease = reader.ReadSingle();
@@ -1174,6 +1182,10 @@ namespace ReducedGrinding
 							LootSailorPantsIncrease,
 							LootSailorShirtIncrease,
 							LootShackleIncrease,
+							LootMaxSandFromDuneSplicer,
+							LootMaxSandFromTombCrawler,
+							LootMinSandFromDuneSplicer,
+							LootMinSandFromTombCrawler,
 							LootSkullIncrease,
 							LootSlimeStaffIncrease,
 							LootSniperRifleIncrease,
@@ -1621,6 +1633,10 @@ namespace ReducedGrinding
 					LootSailorPantsIncrease = reader.ReadSingle();
 					LootSailorShirtIncrease = reader.ReadSingle();
 					LootShackleIncrease = reader.ReadSingle();
+					LootMaxSandFromDuneSplicer = reader.ReadInt32();
+					LootMaxSandFromTombCrawler = reader.ReadInt32();
+					LootMinSandFromDuneSplicer = reader.ReadInt32();
+					LootMinSandFromTombCrawler = reader.ReadInt32();
 					LootSkullIncrease = reader.ReadSingle();
 					LootSlimeStaffIncrease = reader.ReadSingle();
 					LootSniperRifleIncrease = reader.ReadSingle();
@@ -2071,6 +2087,10 @@ namespace ReducedGrinding
 						packet.Write((float)Config.LootSailorPantsIncrease);
 						packet.Write((float)Config.LootSailorShirtIncrease);
 						packet.Write((float)Config.LootShackleIncrease);
+						packet.Write((int)Config.LootMaxSandFromDuneSplicer);
+						packet.Write((int)Config.LootMaxSandFromTombCrawler);
+						packet.Write((int)Config.LootMinSandFromDuneSplicer);
+						packet.Write((int)Config.LootMinSandFromTombCrawler);
 						packet.Write((float)Config.LootSkullIncrease);
 						packet.Write((float)Config.LootSlimeStaffIncrease);
 						packet.Write((float)Config.LootSniperRifleIncrease);
@@ -3346,11 +3366,28 @@ namespace ReducedGrinding
 
 
 						//Other Loot
+						int sandmin = 0;
+						int sandmax = 0;
 						if (npc.type == NPCID.DuneSplicerHead)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootDesertFossilFromDuneSplicer)
 							{
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DesertFossil, 1, false, -1, false, false);
+							}
+							sandmin = mPlayer.clientConf.LootMinSandFromDuneSplicer;
+							sandmax = mPlayer.clientConf.LootMaxSandFromDuneSplicer;
+							if (sandmin > 0 && sandmax > 0 && sandmax > sandmin)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
+							}
+						}
+						if (npc.type == NPCID.TombCrawlerHead)
+						{
+							sandmin = mPlayer.clientConf.LootMinSandFromTombCrawler;
+							sandmax = mPlayer.clientConf.LootMaxSandFromTombCrawler;
+							if (sandmin > 0 && sandmax > 0 && sandmax > sandmin)
+							{
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.AnglerFish || npc.type == NPCID.Piranha)
