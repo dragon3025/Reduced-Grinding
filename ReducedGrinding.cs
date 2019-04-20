@@ -4518,54 +4518,54 @@ namespace ReducedGrinding
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootGreenCapForNonAndrewGuide)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 867, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.GreenCap, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DyeTrader) //Dye Trader NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootExoticScimitarIncrease)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3349, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.DyeTradersScimitar, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.DD2Bartender) //Tavernkeep NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootAleTosserIncrease)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3821, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.AleThrowingGlove, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Stylist) //Stylist NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissorsIncrease)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.StylistKilLaKillScissorsIWish, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.Painter) //Painter NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootStylishScissorsIncrease)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPaintballGunIncrease)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3352, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PainterPaintballGun, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.PartyGirl) //Party Girl NPC
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.LootPaintballGunIncrease)
+							if (Main.rand.NextFloat() < mPlayer.clientConf.LootHappyGrenadeIncrease)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3350, Main.rand.Next(30, 61), false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.PartyGirlGrenade, Main.rand.Next(30, 61), false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.TaxCollector) //Tax Collector Guide NPC
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootClassyCane)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 3351, 1, false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.TaxCollectorsStickOfDoom, 1, false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.RainbowSlime && (mPlayer.clientConf.LootRainbowBlockDropMinIncrease < mPlayer.clientConf.LootRainbowBlockDropMaxIncrease)) //RainbowSlime
 						{
-							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 662, Main.rand.Next(mPlayer.clientConf.LootRainbowBlockDropMinIncrease - 30, mPlayer.clientConf.LootRainbowBlockDropMaxIncrease - 60), false, -1, false, false); //Rainbow Block
+							Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainbowBrick, Main.rand.Next(mPlayer.clientConf.LootRainbowBlockDropMinIncrease - 30, mPlayer.clientConf.LootRainbowBlockDropMaxIncrease - 60), false, -1, false, false); //Rainbow Block
 						}
 					
 						//Chest Drop
