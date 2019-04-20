@@ -2814,8 +2814,6 @@ namespace ReducedGrinding
 			Player player = Main.player[Main.myPlayer];
 			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 
-			Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
-
 			if (mPlayer.clientConf.QuestFishermansGuideIncrease > 0)
 			{
 				if (Main.rand.NextFloat() < mPlayer.clientConf.QuestFishermansGuideIncrease)
