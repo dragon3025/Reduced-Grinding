@@ -3368,6 +3368,13 @@ namespace ReducedGrinding
 						//Other Loot
 						int sandmin = 0;
 						int sandmax = 0;
+						int sandtype = ItemID.SandBlock;
+						if (player.ZoneHoly)
+							sandtype = ItemID.PearlsandBlock;
+						else if (player.ZoneCorrupt)
+							sandtype = ItemID.EbonsandBlock;
+						else if (player.ZoneCrimson)
+							sandtype = ItemID.CrimsandBlock;
 						if (npc.type == NPCID.DuneSplicerHead)
 						{
 							if (Main.rand.NextFloat() < mPlayer.clientConf.LootDesertFossilFromDuneSplicer)
@@ -3378,7 +3385,7 @@ namespace ReducedGrinding
 							sandmax = mPlayer.clientConf.LootMaxSandFromDuneSplicer;
 							if (sandmin > 0 && sandmax > 0 && sandmax > sandmin)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, sandtype, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.TombCrawlerHead)
@@ -3387,7 +3394,7 @@ namespace ReducedGrinding
 							sandmax = mPlayer.clientConf.LootMaxSandFromTombCrawler;
 							if (sandmin > 0 && sandmax > 0 && sandmax > sandmin)
 							{
-								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SandBlock, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
+								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, sandtype, Main.rand.Next(sandmin, sandmax + 1), false, -1, false, false);
 							}
 						}
 						if (npc.type == NPCID.AnglerFish || npc.type == NPCID.Piranha)
