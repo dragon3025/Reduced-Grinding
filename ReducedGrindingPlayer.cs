@@ -2814,6 +2814,8 @@ namespace ReducedGrinding
 			Player player = Main.player[Main.myPlayer];
 			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 
+			Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
+
 			if (mPlayer.clientConf.QuestFishermansGuideIncrease > 0)
 			{
 				if (Main.rand.NextFloat() < mPlayer.clientConf.QuestFishermansGuideIncrease)
@@ -3113,8 +3115,6 @@ namespace ReducedGrinding
 			if (junk)
 				return;
 			bool enableFishUpgrade = (player.FindBuffIndex(mod.BuffType("Fish_Upgrade")) != -1);
-
-			Main.NewText("enableFishUpgrade: " + enableFishUpgrade);
 
 			if (!(fishingRod.type == 2289 || (fishingRod.type >= 2291 && fishingRod.type <= 2296) || fishingRod.type == 2421 || fishingRod.type == 2422))
 				enableFishUpgrade = false; //Vanilla Rods Only
