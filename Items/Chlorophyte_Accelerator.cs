@@ -43,7 +43,7 @@ namespace ReducedGrinding.Items
 			recipe.AddIngredient(ItemID.MudBlock, 60);
 			recipe.AddIngredient(ItemID.LihzahrdPowerCell, 1);
 			recipe.AddTile(mod.TileType("Chlorophyte_Accelerator"));
-			recipe.SetResult(ItemID.ChlorophyteOre, Math.Max(1, 60));
+			recipe.SetResult(ItemID.ChlorophyteOre, 60);
 			recipe.AddRecipe();
 		}
 	}
