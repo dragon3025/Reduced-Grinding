@@ -4976,6 +4976,18 @@ namespace ReducedGrinding
 			recipe.AddTile(TileID.TinkerersWorkbench);
 			recipe.SetResult(ItemID.WoodenCrate);
 			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.RottenChunk, 2);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(ItemID.Leather);
+			recipe.AddRecipe();
+
+			recipe = new ModRecipe(this);
+			recipe.AddIngredient(ItemID.Vertebrae, 2);
+			recipe.AddTile(TileID.WorkBenches);
+			recipe.SetResult(ItemID.Leather);
+			recipe.AddRecipe();
 		}
     }
 
