@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.67.json";
+		static string filename = "Reduced Grinding v4.67.1.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
