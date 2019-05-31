@@ -21,7 +21,8 @@ namespace ReducedGrinding.NPCs
         {
 			Player player = Main.player[Main.myPlayer];
 			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
-			Mod luiafk = ModLoader.GetMod("Luiafk"); //Prevent adding items that Luiafk already adds
+			Mod luiafk = ModLoader.GetMod("Luiafk");
+			Mod thorium = ModLoader.GetMod("ThoriumMod");
 
 			switch (type)
 			{
@@ -195,6 +196,17 @@ namespace ReducedGrinding.NPCs
 							shop.item[nextSlot].SetDefaults(ItemID.WoodenSpike);
 							nextSlot++;
 						}
+					}
+					if (mPlayer.clientConf.WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled && (thorium != null))
+					{
+						shop.item[nextSlot].SetDefaults(mod.ItemType("SwallowtailButterfly"));
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(mod.ItemType("BloodiedButterfly"));
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(mod.ItemType("FuschiaButterfly"));
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(mod.ItemType("TempleButterfly"));
+						nextSlot++;
 					}
 					break;
 				case NPCID.Dryad:

@@ -457,12 +457,14 @@ namespace ReducedGrinding
 			bool GoblinTinkererSellsGoblinRetreatOrder;
 			bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 			bool PirateSellsPirateRetreatOrder;
+			bool WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled;
 			bool WizardSellsMoonBall;
 			float BattlePotionMaxSpawnsMultiplier;
 			float BattlePotionSpawnrateMultiplier;
 			float BloodZombieAndDripplerDropsBloodMoonMedallion;
 			float ChaosPotionMaxSpawnsMultiplier;
 			float ChaosPotionSpawnrateMultiplier;
+			bool LunarCall;
 			float MartianSaucerMartianCallDrop;
 			float WarPotionMaxSpawnsMultiplier;
 			float WarPotionSpawnrateMultiplier;
@@ -934,12 +936,14 @@ namespace ReducedGrinding
 						GoblinTinkererSellsGoblinRetreatOrder = reader.ReadBoolean();
 						MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = reader.ReadBoolean();
 						PirateSellsPirateRetreatOrder = reader.ReadBoolean();
+						WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled = reader.ReadBoolean();
 						WizardSellsMoonBall = reader.ReadBoolean();
 						BattlePotionMaxSpawnsMultiplier = reader.ReadSingle();
 						BattlePotionSpawnrateMultiplier = reader.ReadSingle();
 						BloodZombieAndDripplerDropsBloodMoonMedallion = reader.ReadSingle();
 						ChaosPotionMaxSpawnsMultiplier = reader.ReadSingle();
 						ChaosPotionSpawnrateMultiplier = reader.ReadSingle();
+						LunarCall = reader.ReadBoolean();
 						MartianSaucerMartianCallDrop = reader.ReadSingle();
 						WarPotionMaxSpawnsMultiplier = reader.ReadSingle();
 						WarPotionSpawnrateMultiplier = reader.ReadSingle();
@@ -1381,12 +1385,14 @@ namespace ReducedGrinding
 							GoblinTinkererSellsGoblinRetreatOrder,
 							MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem,
 							PirateSellsPirateRetreatOrder,
+							WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled,
 							WizardSellsMoonBall,
 							BattlePotionMaxSpawnsMultiplier,
 							BattlePotionSpawnrateMultiplier,
 							BloodZombieAndDripplerDropsBloodMoonMedallion,
 							ChaosPotionMaxSpawnsMultiplier,
 							ChaosPotionSpawnrateMultiplier,
+							LunarCall,
 							MartianSaucerMartianCallDrop,
 							WarPotionMaxSpawnsMultiplier,
 							WarPotionSpawnrateMultiplier,
@@ -1832,12 +1838,14 @@ namespace ReducedGrinding
 					GoblinTinkererSellsGoblinRetreatOrder = reader.ReadBoolean();
 					MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = reader.ReadBoolean();
 					PirateSellsPirateRetreatOrder = reader.ReadBoolean();
+					WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled = reader.ReadBoolean();
 					WizardSellsMoonBall = reader.ReadBoolean();
 					BattlePotionMaxSpawnsMultiplier = reader.ReadSingle();
 					BattlePotionSpawnrateMultiplier = reader.ReadSingle();
 					BloodZombieAndDripplerDropsBloodMoonMedallion = reader.ReadSingle();
 					ChaosPotionMaxSpawnsMultiplier = reader.ReadSingle();
 					ChaosPotionSpawnrateMultiplier = reader.ReadSingle();
+					LunarCall = reader.ReadBoolean();
 					MartianSaucerMartianCallDrop = reader.ReadSingle();
 					WarPotionMaxSpawnsMultiplier = reader.ReadSingle();
 					WarPotionSpawnrateMultiplier = reader.ReadSingle();
@@ -2286,12 +2294,14 @@ namespace ReducedGrinding
 						packet.Write((bool)Config.GoblinTinkererSellsGoblinRetreatOrder);
 						packet.Write((bool)Config.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 						packet.Write((bool)Config.PirateSellsPirateRetreatOrder);
+						packet.Write((bool)Config.WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled);
 						packet.Write((bool)Config.WizardSellsMoonBall);
 						packet.Write((float)Config.BattlePotionMaxSpawnsMultiplier);
 						packet.Write((float)Config.BattlePotionSpawnrateMultiplier);
 						packet.Write((float)Config.BloodZombieAndDripplerDropsBloodMoonMedallion);
 						packet.Write((float)Config.ChaosPotionMaxSpawnsMultiplier);
 						packet.Write((float)Config.ChaosPotionSpawnrateMultiplier);
+						packet.Write((bool)Config.LunarCall);
 						packet.Write((float)Config.MartianSaucerMartianCallDrop);
 						packet.Write((float)Config.WarPotionMaxSpawnsMultiplier);
 						packet.Write((float)Config.WarPotionSpawnrateMultiplier);

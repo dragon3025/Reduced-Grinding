@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.61.json";
+		static string filename = "Reduced Grinding v4.67.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -423,12 +423,14 @@ namespace ReducedGrinding
 		public static bool GoblinTinkererSellsGoblinRetreatOrder = true;
 		public static bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = false;
 		public static bool PirateSellsPirateRetreatOrder = true;
+		public static bool WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled = true;
 		public static bool WizardSellsMoonBall = true;
 		public static float BattlePotionMaxSpawnsMultiplier = 1f;
 		public static float BattlePotionSpawnrateMultiplier = 1f;
 		public static float BloodZombieAndDripplerDropsBloodMoonMedallion = 0.1f;
 		public static float ChaosPotionMaxSpawnsMultiplier = 20f;
 		public static float ChaosPotionSpawnrateMultiplier = 20f;
+		public static bool LunarCall = true;
 		public static float MartianSaucerMartianCallDrop = 1f;
 		public static float WarPotionMaxSpawnsMultiplier = 10f;
 		public static float WarPotionSpawnrateMultiplier = 10f;
@@ -891,11 +893,13 @@ namespace ReducedGrinding
 				Configuration.Get("GoblinTinkererSellsGoblinRetreatOrder", ref GoblinTinkererSellsGoblinRetreatOrder);
 				Configuration.Get("MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem", ref MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 				Configuration.Get("PirateSellsPirateRetreatOrder", ref PirateSellsPirateRetreatOrder);
+				Configuration.Get("LunarCall", ref LunarCall);
 				Configuration.Get("MartianSaucerMartianCallDrop", ref MartianSaucerMartianCallDrop);
 				Configuration.Get("WarPotionMaxSpawnsMultiplier", ref WarPotionMaxSpawnsMultiplier);
 				Configuration.Get("WarPotionSpawnrateMultiplier", ref WarPotionSpawnrateMultiplier);
+				Configuration.Get("WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled", ref WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled);
 				Configuration.Get("WizardSellsMoonBall", ref WizardSellsMoonBall);
-				
+
 				Configuration.Get("ExtractinatorGivesAmber", ref ExtractinatorGivesAmber);
 				Configuration.Get("ExtractinatorGivesAmberMosquito", ref ExtractinatorGivesAmberMosquito);
 				Configuration.Get("ExtractinatorGivesAmethyst", ref ExtractinatorGivesAmethyst);
@@ -1390,11 +1394,13 @@ namespace ReducedGrinding
 			Configuration.Put("GoblinTinkererSellsGoblinRetreatOrder", GoblinTinkererSellsGoblinRetreatOrder);
 			Configuration.Put("JungleTempleLihzahrd_Lock_Box", JungleTempleLihzahrd_Lock_Box);
 			Configuration.Put("LootCompassIncrease", LootCompassIncrease);
+			Configuration.Put("LunarCall", LunarCall);
 			Configuration.Put("MartianSaucerMartianCallDrop", MartianSaucerMartianCallDrop);
 			Configuration.Put("MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem", MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 			Configuration.Put("PirateSellsPirateRetreatOrder", PirateSellsPirateRetreatOrder);
 			Configuration.Put("WarPotionMaxSpawnsMultiplier", WarPotionMaxSpawnsMultiplier);
 			Configuration.Put("WarPotionSpawnrateMultiplier", WarPotionSpawnrateMultiplier);
+			Configuration.Put("IGNORE_THIS_LINE_ITS_A_PLACEHOLDER", WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled);
 			Configuration.Put("WizardSellsMoonBall", WizardSellsMoonBall);
 
 			Configuration.Put("=================================================================================================================================================================EL1", 0);

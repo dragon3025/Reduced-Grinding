@@ -500,12 +500,14 @@ namespace ReducedGrinding
 			public bool GoblinTinkererSellsGoblinRetreatOrder;
 			public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 			public bool PirateSellsPirateRetreatOrder;
+			public bool WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled;
 			public bool WizardSellsMoonBall;
 			public float BattlePotionMaxSpawnsMultiplier;
 			public float BattlePotionSpawnrateMultiplier;
 			public float BloodZombieAndDripplerDropsBloodMoonMedallion;
 			public float ChaosPotionMaxSpawnsMultiplier;
 			public float ChaosPotionSpawnrateMultiplier;
+			public bool LunarCall;
 			public float MartianSaucerMartianCallDrop;
 			public float WarPotionMaxSpawnsMultiplier;
 			public float WarPotionSpawnrateMultiplier;
@@ -946,12 +948,14 @@ namespace ReducedGrinding
 				bool CC_GoblinTinkererSellsGoblinRetreatOrder,
 				bool CC_MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem,
 				bool CC_PirateSellsPirateRetreatOrder,
+				bool CC_WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled,
 				bool CC_WizardSellsMoonBall,
 				float CC_BattlePotionMaxSpawnsMultiplier,
 				float CC_BattlePotionSpawnrateMultiplier,
 				float CC_BloodZombieAndDripplerDropsBloodMoonMedallion,
 				float CC_ChaosPotionMaxSpawnsMultiplier,
 				float CC_ChaosPotionSpawnrateMultiplier,
+				bool CC_LunarCall,
 				float CC_MartianSaucerMartianCallDrop,
 				float CC_WarPotionMaxSpawnsMultiplier,
 				float CC_WarPotionSpawnrateMultiplier,
@@ -1392,12 +1396,14 @@ namespace ReducedGrinding
 				GoblinTinkererSellsGoblinRetreatOrder = CC_GoblinTinkererSellsGoblinRetreatOrder;
 				MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem = CC_MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 				PirateSellsPirateRetreatOrder = CC_PirateSellsPirateRetreatOrder;
+				WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled = CC_WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled;
 				WizardSellsMoonBall = CC_WizardSellsMoonBall;
 				BattlePotionMaxSpawnsMultiplier = CC_BattlePotionMaxSpawnsMultiplier;
 				BattlePotionSpawnrateMultiplier = CC_BattlePotionSpawnrateMultiplier;
 				BloodZombieAndDripplerDropsBloodMoonMedallion = CC_BloodZombieAndDripplerDropsBloodMoonMedallion;
 				ChaosPotionMaxSpawnsMultiplier = CC_ChaosPotionMaxSpawnsMultiplier;
 				ChaosPotionSpawnrateMultiplier = CC_ChaosPotionSpawnrateMultiplier;
+				LunarCall = CC_LunarCall;
 				MartianSaucerMartianCallDrop = CC_MartianSaucerMartianCallDrop;
 				WarPotionMaxSpawnsMultiplier = CC_WarPotionMaxSpawnsMultiplier;
 				WarPotionSpawnrateMultiplier = CC_WarPotionSpawnrateMultiplier;
@@ -1870,12 +1876,14 @@ namespace ReducedGrinding
 			packet.Write((bool)Config.GoblinTinkererSellsGoblinRetreatOrder);
 			packet.Write((bool)Config.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem);
 			packet.Write((bool)Config.PirateSellsPirateRetreatOrder);
+			packet.Write((bool)Config.WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled);
 			packet.Write((bool)Config.WizardSellsMoonBall);
 			packet.Write((float)Config.BattlePotionMaxSpawnsMultiplier);
 			packet.Write((float)Config.BattlePotionSpawnrateMultiplier);
 			packet.Write((float)Config.BloodZombieAndDripplerDropsBloodMoonMedallion);
 			packet.Write((float)Config.ChaosPotionMaxSpawnsMultiplier);
 			packet.Write((float)Config.ChaosPotionSpawnrateMultiplier);
+			packet.Write((bool)Config.LunarCall);
 			packet.Write((float)Config.MartianSaucerMartianCallDrop);
 			packet.Write((float)Config.WarPotionMaxSpawnsMultiplier);
 			packet.Write((float)Config.WarPotionSpawnrateMultiplier);
@@ -2316,12 +2324,14 @@ namespace ReducedGrinding
 				Config.GoblinTinkererSellsGoblinRetreatOrder,
 				Config.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem,
 				Config.PirateSellsPirateRetreatOrder,
+				Config.WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled,
 				Config.WizardSellsMoonBall,
 				Config.BattlePotionMaxSpawnsMultiplier,
 				Config.BattlePotionSpawnrateMultiplier,
 				Config.BloodZombieAndDripplerDropsBloodMoonMedallion,
 				Config.ChaosPotionMaxSpawnsMultiplier,
 				Config.ChaosPotionSpawnrateMultiplier,
+				Config.LunarCall,
 				Config.MartianSaucerMartianCallDrop,
 				Config.WarPotionMaxSpawnsMultiplier,
 				Config.WarPotionSpawnrateMultiplier,
@@ -2770,12 +2780,14 @@ namespace ReducedGrinding
 					Config.GoblinTinkererSellsGoblinRetreatOrder,
 					Config.MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem,
 					Config.PirateSellsPirateRetreatOrder,
+					Config.WitchDoctorSellsThoriumButterfliesWhenThoriumInstalled,
 					Config.WizardSellsMoonBall,
 					Config.BattlePotionMaxSpawnsMultiplier,
 					Config.BattlePotionSpawnrateMultiplier,
 					Config.BloodZombieAndDripplerDropsBloodMoonMedallion,
 					Config.ChaosPotionMaxSpawnsMultiplier,
 					Config.ChaosPotionSpawnrateMultiplier,
+					Config.LunarCall,
 					Config.MartianSaucerMartianCallDrop,
 					Config.WarPotionMaxSpawnsMultiplier,
 					Config.WarPotionSpawnrateMultiplier,
