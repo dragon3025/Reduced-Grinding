@@ -38,8 +38,21 @@ namespace ReducedGrinding
                 Autoload = true,
             };
         }
-		
-        public override void HandlePacket(BinaryReader reader, int whoAmI)
+
+		public override void PostSetupContent()
+		{
+			Mod censusMod = ModLoader.GetMod("Census");
+			if (censusMod != null)
+			{
+				censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "Summon with a \"Skull Call\".");
+				censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "No conditions.");
+				censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), "No conditions.");
+				censusMod.Call("TownNPCCondition", NPCType("Santa"), "Defeat the Frost Legion.");
+				censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "No conditions.");
+			}
+		}
+
+		public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             ReducedGrindingMessageType msgType = (ReducedGrindingMessageType)reader.ReadByte();
             byte playernumber;
