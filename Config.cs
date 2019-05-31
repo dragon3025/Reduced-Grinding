@@ -271,21 +271,21 @@ namespace ReducedGrinding
 
 		public static bool LockBoxesGiveFurniture = true;
 		public static bool LockBoxesGiveNonFurniture = true;
-		public static float CavernModdedCavernLockBoxLoot = 0.01f;
-		public static float DungeonModdedBiomeLockBoxLoot = 0.01f;
-		public static float DungeonFurnitureLockBoxLoot = 0.01f;
-		public static float HardmodeModdedLockBoxDropRateModifier = 2.0f;
-		public static float HellBiomeModdedShadowLockBoxLoot = 0.01f;
-		public static float JungleTempleLihzahrd_Lock_Box = 0.01f;
+		public static float CavernModdedCavernLockBoxLoot = 0.0025f;
+		public static float DungeonModdedBiomeLockBoxLoot = 0.0025f;
+		public static float DungeonFurnitureLockBoxLoot = 0.0025f;
+		public static float HardmodeModdedLockBoxDropRateModifier = 1f;
+		public static float HellBiomeModdedShadowLockBoxLoot = 0.0025f;
+		public static float JungleTempleLihzahrd_Lock_Box = 0.0025f;
 		public static float NormalmodeModdedLockBoxDropRateModifier = 1f;
-		public static float SandstormAndUndergroundDesertPyramidLockBoxLoot = 0.01f;
-		public static float SkyModdedSkywareLockBoxLoot = 0.01f;
-		public static float SpiderNestWebCoveredLockBoxLoot = 0.01f;
-		public static float SurfaceModdedLivingWoodLockBoxLoot = 0.01f;
-		public static float UndergroundJungleBiomeModdedIvyLockBoxLoot = 0.01f;
-		public static float UndergroundSnowBiomeModdedIceLockBoxLoot = 0.01f;
-		public static float WaterEnemyModdedWaterLockBoxLoot = 0.01f;
-		
+		public static float SandstormAndUndergroundDesertPyramidLockBoxLoot = 0.0025f;
+		public static float SkyModdedSkywareLockBoxLoot = 0.0025f;
+		public static float SpiderNestWebCoveredLockBoxLoot = 0.0025f;
+		public static float SurfaceModdedLivingWoodLockBoxLoot = 0.0025f;
+		public static float UndergroundJungleBiomeModdedIvyLockBoxLoot = 0.0025f;
+		public static float UndergroundSnowBiomeModdedIceLockBoxLoot = 0.0025f;
+		public static float WaterEnemyModdedWaterLockBoxLoot = 0.0025f;
+
 		public static float TravelingMerchantAcornsIncrease = 0f;
 		public static float TravelingMerchantAmmoBoxIncrease = 0f;
 		public static float TravelingMerchantAngelHaloIncrease = 0f;
