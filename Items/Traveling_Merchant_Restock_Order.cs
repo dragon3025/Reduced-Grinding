@@ -25,7 +25,7 @@ namespace ReducedGrinding.Items
             item.useAnimation = 45;
             item.useTime = 45;
             item.useStyle = 4;
-            item.value = 10;
+			item.value = Item.buyPrice(0, 0, 0, 10);
             item.UseSound = SoundID.Item4;
             item.consumable = false;
         }
