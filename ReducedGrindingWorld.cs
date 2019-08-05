@@ -739,69 +739,8 @@ namespace ReducedGrinding
 						break;
 					}
 				}
-				//Each Second there is an item that has a chance to appear in Traveling Merchant shop and isn't in Stationary Merchant shop.
-				if (Main.time % 60 == 0 && (TravelingMerchantRestockOrder ||
-				(
-					smItemSake == false ||
-					smItemPho == false ||
-					smItemPadThai == false ||
-					smItemUltrabrightTorch == false ||
-					smItemAmmoBox == false ||
-					smItemMagicHat == false ||
-					smItemGypsyRobe == false ||
-					smItemGi == false ||
-					smItemCelestialMagnet == false ||
-					smItemDPSMeter == false ||
-					smItemLifeformAnalyzer == false ||
-					smItemStopwatch == false ||
-					smItemPaintSprayer == false ||
-					smItemBrickLayer == false ||
-					smItemPortableCementMixer == false ||
-					smItemExtendoGrip == false ||
-					smItemPresserator == false ||
-					smItemBlackCounterweight == false ||
-					smItemYellowCounterweight == false ||
-					smItemSittingDucksFishingPole == false ||
-					smItemKatana == false ||
-					(smItemCode1 == false && NPC.downedBoss1) || //Eye of Cthulhu
-					(smItemRevolver == false && WorldGen.shadowOrbSmashed) ||
-					(smItemGatligator == false && Main.hardMode) ||
-					(smItemCode2 == false && NPC.downedMechBossAny) ||
-					(smItemPulseBow == false && NPC.downedPlantBoss) ||
-					smItemRedTeamBlock == false ||
-					smItemYellowTeamBlock == false ||
-					smItemGreenTeamBlock == false ||
-					smItemBlueTeamBlock == false ||
-					smItemPinkTeamBlock == false ||
-					smItemWhiteTeamBlock == false ||
-					smItemDiamondRing == false ||
-					smItemAngelHalo == false ||
-					smItemFez == false ||
-					smItemWinterCape == false ||
-					smItemRedCape == false ||
-					smItemCrimsonCloak == false ||
-					smItemMysteriousCape == false ||
-					smItemKimono == false ||
-					smItemWaterGun == false ||
-					smItemCompanionCube == false ||
-					smItemChalice == false ||
-					smItemArcaneRuneWall == false ||
-					smItemFancyDishes == false ||
-					smItemDynastyWood == false ||
-					smItemZebraSkin == false ||
-					smItemLeopardSkin == false ||
-					smItemTigerSkin == false ||
-					(smItemCastleMarsberg == false && NPC.downedMartians) ||
-					(smItemMartiaLisa == false && NPC.downedMartians) ||
-					(smItemTheTruthIsUpThere == false && NPC.downedMartians) ||
-					(smItemNotAKidNorASquid == false && NPC.downedMoonlord) ||
-					(smItemAcorns == false && Main.xMas) ||
-					(smItemColdSnap == false && Main.xMas) ||
-					(smItemCursedSaint == false && Main.xMas) ||
-					(smItemSnowfellas == false && Main.xMas) ||
-					(smItemTheSeason == false && Main.xMas)
-				)
-				))
+				//Each Second there is an item that has a chance to appear in Traveling Merchant if a player is holding a Traveling Merchant Restock Order.
+				if (Main.time % 60 == 0 && TravelingMerchantRestockOrder)
 				{
 					for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
 					{

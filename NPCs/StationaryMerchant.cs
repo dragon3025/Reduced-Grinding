@@ -3,6 +3,7 @@ using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using System;
 
 namespace ReducedGrinding.NPCs
 {
@@ -135,75 +136,8 @@ namespace ReducedGrinding.NPCs
         {
 			if (baseshop)
 			{
-				bool addTravelingMerchantRestockOrder = true;
-				if (
-					ReducedGrindingWorld.smItemSake == false ||
-					ReducedGrindingWorld.smItemPho == false ||
-					ReducedGrindingWorld.smItemPadThai == false ||
-					ReducedGrindingWorld.smItemUltrabrightTorch == false ||
-					ReducedGrindingWorld.smItemAmmoBox == false ||
-					ReducedGrindingWorld.smItemMagicHat == false ||
-					ReducedGrindingWorld.smItemGypsyRobe == false ||
-					ReducedGrindingWorld.smItemGi == false ||
-					ReducedGrindingWorld.smItemCelestialMagnet == false ||
-					ReducedGrindingWorld.smItemDPSMeter == false ||
-					ReducedGrindingWorld.smItemLifeformAnalyzer == false ||
-					ReducedGrindingWorld.smItemStopwatch == false ||
-					ReducedGrindingWorld.smItemPaintSprayer == false ||
-					ReducedGrindingWorld.smItemBrickLayer == false ||
-					ReducedGrindingWorld.smItemPortableCementMixer == false ||
-					ReducedGrindingWorld.smItemExtendoGrip == false ||
-					ReducedGrindingWorld.smItemPresserator == false ||
-					ReducedGrindingWorld.smItemBlackCounterweight == false ||
-					ReducedGrindingWorld.smItemYellowCounterweight == false ||
-					ReducedGrindingWorld.smItemSittingDucksFishingPole == false ||
-					ReducedGrindingWorld.smItemKatana == false ||
-					(ReducedGrindingWorld.smItemCode1 == false && NPC.downedBoss1) || //Eye of Cthulhu
-					(ReducedGrindingWorld.smItemRevolver == false && WorldGen.shadowOrbSmashed) ||
-					(ReducedGrindingWorld.smItemGatligator == false && Main.hardMode) ||
-					(ReducedGrindingWorld.smItemCode2 == false && NPC.downedMechBossAny) ||
-					(ReducedGrindingWorld.smItemPulseBow == false && NPC.downedPlantBoss) ||
-					ReducedGrindingWorld.smItemRedTeamBlock == false ||
-					ReducedGrindingWorld.smItemYellowTeamBlock == false ||
-					ReducedGrindingWorld.smItemGreenTeamBlock == false ||
-					ReducedGrindingWorld.smItemBlueTeamBlock == false ||
-					ReducedGrindingWorld.smItemPinkTeamBlock == false ||
-					ReducedGrindingWorld.smItemWhiteTeamBlock == false ||
-					ReducedGrindingWorld.smItemDiamondRing == false ||
-					ReducedGrindingWorld.smItemAngelHalo == false ||
-					ReducedGrindingWorld.smItemFez == false ||
-					ReducedGrindingWorld.smItemWinterCape == false ||
-					ReducedGrindingWorld.smItemRedCape == false ||
-					ReducedGrindingWorld.smItemCrimsonCloak == false ||
-					ReducedGrindingWorld.smItemMysteriousCape == false ||
-					ReducedGrindingWorld.smItemKimono == false ||
-					ReducedGrindingWorld.smItemWaterGun == false ||
-					ReducedGrindingWorld.smItemCompanionCube == false ||
-					ReducedGrindingWorld.smItemChalice == false ||
-					ReducedGrindingWorld.smItemArcaneRuneWall == false ||
-					ReducedGrindingWorld.smItemFancyDishes == false ||
-					ReducedGrindingWorld.smItemDynastyWood == false ||
-					ReducedGrindingWorld.smItemZebraSkin == false ||
-					ReducedGrindingWorld.smItemLeopardSkin == false ||
-					ReducedGrindingWorld.smItemTigerSkin == false ||
-					(ReducedGrindingWorld.smItemCastleMarsberg == false && NPC.downedMartians) ||
-					(ReducedGrindingWorld.smItemMartiaLisa == false && NPC.downedMartians) ||
-					(ReducedGrindingWorld.smItemTheTruthIsUpThere == false && NPC.downedMartians) ||
-					(ReducedGrindingWorld.smItemNotAKidNorASquid == false && NPC.downedMoonlord) ||
-					(ReducedGrindingWorld.smItemAcorns == false && Main.xMas) ||
-					(ReducedGrindingWorld.smItemColdSnap == false && Main.xMas) ||
-					(ReducedGrindingWorld.smItemCursedSaint == false && Main.xMas) ||
-					(ReducedGrindingWorld.smItemSnowfellas == false && Main.xMas) ||
-					(ReducedGrindingWorld.smItemTheSeason == false && Main.xMas)
-				)
-				{
-					addTravelingMerchantRestockOrder = false;
-				}
-				if (addTravelingMerchantRestockOrder)
-				{
-					shop.item[nextSlot].SetDefaults(mod.ItemType("Traveling_Merchant_Restock_Order"));
-					nextSlot++;
-				}
+				shop.item[nextSlot].SetDefaults(mod.ItemType("Traveling_Merchant_Restock_Order"));
+				nextSlot++;
 				if (ReducedGrindingWorld.smItemSake)
 				{
 					shop.item[nextSlot].SetDefaults(ItemID.Sake);
