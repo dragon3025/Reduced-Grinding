@@ -490,7 +490,6 @@ namespace ReducedGrinding
 		public override void PostUpdate()
 		{
 			Player player = Main.player[Main.myPlayer];
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 
 			if (player.HasItem(1528)) //Jungle Chest
 				jungleChestMined = true;
@@ -634,15 +633,15 @@ namespace ReducedGrinding
 			bool stationaryMerchantExists = false;
 			bool tryToSpawnTravelingMerchant = true;
 
-			if (mPlayer.clientConf.BoneMerchant)
+			if (Config.BoneMerchant)
 				TownNPCsMax++;
-			if (mPlayer.clientConf.ChestSalesman)
+			if (Config.ChestSalesman)
 				TownNPCsMax++;
-			if (mPlayer.clientConf.StationaryMerchant)
+			if (Config.StationaryMerchant)
 				TownNPCsMax++;
-			if (mPlayer.clientConf.LootMerchant)
+			if (Config.LootMerchant)
 				TownNPCsMax++;
-			if (mPlayer.clientConf.Santa)
+			if (Config.Santa)
 				TownHardmodeNPCsMax++;
 
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
@@ -672,10 +671,10 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Clothier ||
 						Terraria.Main.npc[i].type == NPCID.Mechanic ||
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
-						(Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant") && mPlayer.clientConf.BoneMerchant) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("ChestSalesman") && mPlayer.clientConf.ChestSalesman) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant") && mPlayer.clientConf.StationaryMerchant) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("LootMerchant") && mPlayer.clientConf.LootMerchant)
+						(Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant") && Config.BoneMerchant) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("ChestSalesman") && Config.ChestSalesman) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant") && Config.StationaryMerchant) ||
+						(Terraria.Main.npc[i].type == mod.NPCType("LootMerchant") && Config.LootMerchant)
 					)
 						TownNPCs++;
 					else if (
@@ -685,7 +684,7 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Pirate ||
 						Terraria.Main.npc[i].type == NPCID.Steampunker ||
 						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == mod.NPCType("Santa") && mPlayer.clientConf.Santa)
+						(Terraria.Main.npc[i].type == mod.NPCType("Santa") && Config.Santa)
 					)
 					{
 						TownHardmodeNPCs++;
@@ -724,7 +723,7 @@ namespace ReducedGrinding
 							}
 						}
 					}
-					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachMorningTravelingMerchantWillSpawn * Math.Pow(TownNPCPercent, 2))
+					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < Config.ChanceEachMorningTravelingMerchantWillSpawn * Math.Pow(TownNPCPercent, 2))
 						WorldGen.SpawnTravelNPC();
 				}
 			}
@@ -746,7 +745,7 @@ namespace ReducedGrinding
 					{
 						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 						{
-							if (Main.rand.NextFloat() < mPlayer.clientConf.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
+							if (Main.rand.NextFloat() < Config.ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
 							{
 								Chest.SetupTravelShop();
 								if (Main.netMode == NetmodeID.Server)

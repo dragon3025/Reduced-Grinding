@@ -5,11 +5,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{31EFD09E-37C1-4CB4-9050-1388F949EFC5}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MOD</RootNamespace>
     <AssemblyName>MOD</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -73,16 +73,18 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Terraria\Microsoft.Xna.Framework.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Games\Terraria\Modding\XNA dlls\Microsoft.Xna.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework.Avatar, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <HintPath>..\..\..\..\..\..\..\Games\Terraria\Modding\XNA dlls\Microsoft.Xna.Framework.Content.Pipeline.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.EffectImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.FBXImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
@@ -91,60 +93,71 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Terraria\Microsoft.Xna.Framework.Game.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Games\Terraria\Modding\XNA dlls\Microsoft.Xna.Framework.Game.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Terraria\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Games\Terraria\Modding\XNA dlls\Microsoft.Xna.Framework.Graphics.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework.Input.Touch, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Storage, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Xna.Framework.Video, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <HintPath>..\..\..\..\..\..\..\Games\Terraria\Modding\XNA dlls\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
     <Reference Include="Terraria">
       <HintPath>..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Steam\SteamApps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffs\Chaos.cs" />
+    <Compile Include="Buffs\Fish_Upgrade.cs" />
     <Compile Include="Buffs\War.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Items\Fish_Upgrade_Potion.cs" />
     <Compile Include="Items\Angler_Potion.cs" />
     <Compile Include="Items\Atmospheric_Barrier.cs" />
-    <Compile Include="Items\Biome_Lock_Box.cs" />
+    <Compile Include="Items\Lunar_Call.cs" />
+    <Compile Include="Items\Martian_Call.cs" />
+    <Compile Include="Items\Gold_Reflection_Mirror.cs" />
+    <Compile Include="Items\LockBoxes\Biome_Lock_Box.cs" />
     <Compile Include="Items\Blood_Moon_Medallion.cs" />
-    <Compile Include="Items\Blue_Dungeon_Lock_Box.cs" />
-    <Compile Include="Items\Cavern_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Blue_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Cavern_Lock_Box.cs" />
     <Compile Include="Items\Celestial Beacon.cs" />
     <Compile Include="Items\Chaos_Potion.cs" />
     <Compile Include="Items\Chlorophyte_Accelerator.cs" />
     <Compile Include="Items\Christmas_Spirit.cs" />
+    <Compile Include="Items\Plantera_Bulb.cs" />
+    <Compile Include="NPCs\LootMerchant.cs" />
+    <Compile Include="ReducedGrindingItem.cs" />
     <Compile Include="Items\Expert_Change_Potion.cs" />
     <Compile Include="Items\Goblin_Retreat_Order.cs" />
     <Compile Include="Items\Granite_Moondial.cs" />
-    <Compile Include="Items\Green_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Green_Dungeon_Lock_Box.cs" />
     <Compile Include="Items\Halloween Spirit.cs" />
-    <Compile Include="Items\Ice_Lock_Box.cs" />
-    <Compile Include="Items\Ivy_Lock_Box.cs" />
-    <Compile Include="Items\Lihzahrd_Lock_Box.cs" />
-    <Compile Include="Items\Living_Wood_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Ice_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Ivy_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Lihzahrd_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Living_Wood_Lock_Box.cs" />
     <Compile Include="Items\Marble_Sundial.cs" />
     <Compile Include="Items\Moon_Ball.cs" />
-    <Compile Include="Items\Pink_Dungeon_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Pink_Dungeon_Lock_Box.cs" />
     <Compile Include="Items\Pirate_Retreat_Order.cs" />
-    <Compile Include="Items\Pyramid_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Pyramid_Lock_Box.cs" />
     <Compile Include="Items\Rain_Potion.cs" />
     <Compile Include="Items\Sandstorm_Potion.cs" />
-    <Compile Include="Items\Shadow_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Shadow_Lock_Box.cs" />
     <Compile Include="Items\Skull_Call.cs" />
-    <Compile Include="Items\Skyware_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Skyware_Lock_Box.cs" />
     <Compile Include="Items\Slime_Rain_Potion.cs" />
-    <Compile Include="Items\Underground_Lock_Box.cs" />
+    <Compile Include="Items\Traveling_Merchant_Restock_Order.cs" />
+    <Compile Include="Items\LockBoxes\Underground_Lock_Box.cs" />
     <Compile Include="Items\War_Potion.cs" />
-    <Compile Include="Items\Water_Lock_Box.cs" />
-    <Compile Include="Items\Web_Covered_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Water_Lock_Box.cs" />
+    <Compile Include="Items\LockBoxes\Web_Covered_Lock_Box.cs" />
     <Compile Include="NPCs\BoneMerchant.cs" />
     <Compile Include="NPCs\ChestSalesman.cs" />
     <Compile Include="NPCs\Santa.cs" />
@@ -160,15 +173,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Buffs\Chaos.png" />
+    <Content Include="Buffs\Fish_Upgrade.png" />
     <Content Include="Buffs\War.png" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
+    <Content Include="Items\Fish_Upgrade_Potion.png" />
     <Content Include="Items\Angler_Potion.png" />
     <Content Include="Items\Atmospheric_Barrier.png" />
-    <Content Include="Items\Biome_Lock_Box.png" />
+    <Content Include="Items\Gold_Reflection_Mirror.png" />
+    <Content Include="Items\LockBoxes\Biome_Lock_Box.png" />
     <Content Include="Items\Blood_Moon_Medallion.png" />
-    <Content Include="Items\Blue_Dungeon_Lock_Box.png" />
-    <Content Include="Items\Cavern_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Blue_Dungeon_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Cavern_Lock_Box.png" />
     <Content Include="Items\Celestial_Beacon.png" />
     <Content Include="Items\Chaos_Potion.png" />
     <Content Include="Items\Chlorophyte_Accelerator.png" />
@@ -176,31 +192,36 @@
     <Content Include="Items\Expert_Change_Potion.png" />
     <Content Include="Items\Goblin_Retreat_Order.png" />
     <Content Include="Items\Granite_Moondial.png" />
-    <Content Include="Items\Green_Dungeon_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Green_Dungeon_Lock_Box.png" />
     <Content Include="Items\Halloween_Spirit.png" />
-    <Content Include="Items\Ice_Lock_Box.png" />
-    <Content Include="Items\Ivy_Lock_Box.png" />
-    <Content Include="Items\Lihzahrd_Lock_Box.png" />
-    <Content Include="Items\Living_Wood_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Ice_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Ivy_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Lihzahrd_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Living_Wood_Lock_Box.png" />
+    <Content Include="Items\Lunar_Call.png" />
     <Content Include="Items\Marble_Sundial.png" />
     <Content Include="Items\Moon_Ball.png" />
-    <Content Include="Items\Pink_Dungeon_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Pink_Dungeon_Lock_Box.png" />
     <Content Include="Items\Pirate_Retreat_Order.png" />
-    <Content Include="Items\Pyramid_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Pyramid_Lock_Box.png" />
     <Content Include="Items\Rain_Potion.png" />
     <Content Include="Items\Sandstorm_Potion.png" />
-    <Content Include="Items\Shadow_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Shadow_Lock_Box.png" />
+    <Content Include="Items\Plantera_Bulb.png" />
     <Content Include="Items\Skull_Call.png" />
-    <Content Include="Items\Skyware_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Skyware_Lock_Box.png" />
     <Content Include="Items\Slime_Rain_Potion.png" />
-    <Content Include="Items\Underground_Lock_Box.png" />
+    <Content Include="Items\Traveling_Merchant_Restock_Order.png" />
+    <Content Include="Items\LockBoxes\Underground_Lock_Box.png" />
     <Content Include="Items\War_Potion.png" />
-    <Content Include="Items\Water_Lock_Box.png" />
-    <Content Include="Items\Web_Covered_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Water_Lock_Box.png" />
+    <Content Include="Items\LockBoxes\Web_Covered_Lock_Box.png" />
     <Content Include="NPCs\BoneMerchant.png" />
     <Content Include="NPCs\BoneMerchant_Head.png" />
     <Content Include="NPCs\ChestSalesman.png" />
     <Content Include="NPCs\ChestSalesman_Head.png" />
+    <Content Include="NPCs\LootMerchant.png" />
+    <Content Include="NPCs\LootMerchant_Head.png" />
     <Content Include="NPCs\Santa.png" />
     <Content Include="NPCs\Santa_Head.png" />
     <Content Include="NPCs\StationaryMerchant.png" />

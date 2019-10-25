@@ -10,9 +10,8 @@ namespace ReducedGrinding.Items
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
 
-			if (mPlayer.clientConf.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
+			if (Config.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
 			{
 				if (item.type >= 885 && item.type <= 893) //All low-tier materials for Ankh Charm.
 				{
@@ -71,6 +70,11 @@ namespace ReducedGrinding.Items
 			{
 				originalValue = item.value;
 				item.value = (int)(originalValue * 0.1);
+			}
+			if (item.type == ItemID.PinkPricklyPear)
+			{
+				item.placeStyle = 0;
+				item.createTile = TileID.Cactus;
 			}
 		}
 	}
