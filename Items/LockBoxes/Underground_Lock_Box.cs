@@ -28,14 +28,12 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
-
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
 			int itemid = 0;
 
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Cabin Statues
 				dropChance = 0.0169f;
@@ -113,7 +111,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				chosenID = 0;
 			}
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Underground Rare Items
 				if (Main.rand.Next(20) == 0)

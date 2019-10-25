@@ -31,8 +31,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
-			if (mPlayer.clientConf.ChestSalesman)
+			if (Config.ChestSalesman)
 				return true;
 			else
 				return false;
@@ -145,54 +144,54 @@ namespace ReducedGrinding.NPCs
 			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
             shop.item[nextSlot].SetDefaults(48); //Default Chest
 			nextSlot++;
-			if (Main.hardMode || !mPlayer.clientConf.ChestSalesmanPreHardmodeChestsRequireHardmodeActivated)
+			if (Main.hardMode || !Config.ChestSalesmanPreHardmodeChestsRequireHardmodeActivated)
 			{
-				if (mPlayer.clientConf.ChestSalesmanSellsGoldChest)
+				if (Config.ChestSalesmanSellsGoldChest)
 				{
 					shop.item[nextSlot].SetDefaults(306);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsIceChest && (NPC.downedBoss1 || Main.hardMode)) //Eye of Cthulhu
+				if (Config.ChestSalesmanSellsIceChest && (NPC.downedBoss1 || Main.hardMode)) //Eye of Cthulhu
 				{
 					shop.item[nextSlot].SetDefaults(681);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsIvyChest && (NPC.downedBoss2 || Main.hardMode)) //Eater of Worlds or Brain of Cthulhu
+				if (Config.ChestSalesmanSellsIvyChest && (NPC.downedBoss2 || Main.hardMode)) //Eater of Worlds or Brain of Cthulhu
 				{
 					shop.item[nextSlot].SetDefaults(680);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsLivingWoodChest)
+				if (Config.ChestSalesmanSellsLivingWoodChest)
 				{
 					shop.item[nextSlot].SetDefaults(831);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsSkywareChest && (NPC.downedBoss2 || Main.hardMode))
+				if (Config.ChestSalesmanSellsSkywareChest && (NPC.downedBoss2 || Main.hardMode))
 				{
 					shop.item[nextSlot].SetDefaults(838);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsOceanChest)
+				if (Config.ChestSalesmanSellsOceanChest)
 				{
 					shop.item[nextSlot].SetDefaults(1298);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsWebCoveredChest && (NPC.downedBoss1 || Main.hardMode))
+				if (Config.ChestSalesmanSellsWebCoveredChest && (NPC.downedBoss1 || Main.hardMode))
 				{
 					shop.item[nextSlot].SetDefaults(952);
 					nextSlot++;
 				}
-				if (mPlayer.clientConf.ChestSalesmanSellsShadowChest && (NPC.downedBoss3 || Main.hardMode)) //Skeletron
+				if (Config.ChestSalesmanSellsShadowChest && (NPC.downedBoss3 || Main.hardMode)) //Skeletron
 				{
 					shop.item[nextSlot].SetDefaults(328); //Shadow Chest
 					nextSlot++;
 				}
 			}
-			if (NPC.downedGolemBoss && mPlayer.clientConf.ChestSalesmanSellsLihzahrdChest){
+			if (NPC.downedGolemBoss && Config.ChestSalesmanSellsLihzahrdChest){
 				shop.item[nextSlot].SetDefaults(1142); //Lihzahrd Chest
 				nextSlot++;
 			}
-			if (NPC.downedPlantBoss && mPlayer.clientConf.ChestSalesmanSellsBiomeChests)
+			if (NPC.downedPlantBoss && Config.ChestSalesmanSellsBiomeChests)
 			{//Dungeon Chest
 				shop.item[nextSlot].SetDefaults(1529);
 				nextSlot++;

@@ -28,10 +28,9 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 			int itemid = 0;
 
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Pyramid Banners
 				if (Main.rand.Next(3) <= 1)
@@ -42,7 +41,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					player.QuickSpawnItem(791, 1); //Omega Banner
 			}
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Pyramid Gold Chest Items
 				switch (Main.rand.Next(3))

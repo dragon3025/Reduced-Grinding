@@ -8,7 +8,7 @@ namespace ReducedGrinding.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Gold Reflection Mirror");
-			Tooltip.SetDefault("Used to transform some Critters a Golden Critters.");
+			Tooltip.SetDefault("Used to transform some Critters into Golden Critters.");
 		}
 
 		public override void SetDefaults()

@@ -28,10 +28,8 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
-
 			int itemid = 0;
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Floating Island Banners
 				if (Main.rand.Next(3) <= 1)
@@ -43,7 +41,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			}
 
 			//Skyware Chest Items
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				switch (Main.rand.Next(3))
 				{
@@ -58,10 +56,10 @@ namespace ReducedGrinding.Items.LockBoxes
 						break;
 				}
 			}
-			if (Main.rand.Next(3) == 0 && mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Main.rand.Next(3) == 0 && Config.LockBoxesGiveFurniture)
 				player.QuickSpawnItem(2197, 1); //Skymill
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Surface Chest Common Items
 				if (Main.rand.Next(3) == 0)

@@ -28,10 +28,9 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 			int itemid = 0;
 
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Living Wood Chest Items
 				switch (Main.rand.Next(3))
@@ -48,7 +47,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				}
 			}
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Surface Chest Rare Items
 				switch (Main.rand.Next(11))

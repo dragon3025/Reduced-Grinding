@@ -28,25 +28,24 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
 
 			int itemid = 0;
 			float itemroll = Main.rand.NextFloat();
 			
 			player.QuickSpawnItem(ItemID.LihzahrdBrick, Main.rand.Next(10, 21));
 
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Lihzahrd Temple Statues
 				player.QuickSpawnItem(Main.rand.Next(1152, 1155));
 			}
 
 			//Lihzahrd Chest Primary Items
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				player.QuickSpawnItem(2195, 1); //Lihzahrd Furnace
 			}
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				player.QuickSpawnItem(1293, 1); //Lihzahrd Power Cell
 				if (Main.rand.Next(5) == 0)
@@ -55,7 +54,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					player.QuickSpawnItem(2766, 1); //Solar Tablet Fragment
 			}
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Cavern Gold Chest Common Items
 				if (Main.rand.Next(5) == 0)

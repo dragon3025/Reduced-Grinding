@@ -36,8 +36,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-			ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>();
-			if (mPlayer.clientConf.StationaryMerchant)
+			if (Config.StationaryMerchant)
 				return true;
 			else
 				return false;

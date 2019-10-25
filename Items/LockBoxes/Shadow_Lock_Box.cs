@@ -32,13 +32,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			ReducedGrindingPlayer mPlayer = player.GetModPlayer<ReducedGrindingPlayer>(mod);
-
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
 
-			if (mPlayer.clientConf.LockBoxesGiveFurniture)
+			if (Config.LockBoxesGiveFurniture)
 			{
 				//Ruined House Banners
 				if (Main.rand.Next(3) == 0)
@@ -127,7 +125,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				}
 			}
 
-			if (mPlayer.clientConf.LockBoxesGiveNonFurniture)
+			if (Config.LockBoxesGiveNonFurniture)
 			{
 				//Shadow Lock Box Rare Items
 				switch (Main.rand.Next(5))
