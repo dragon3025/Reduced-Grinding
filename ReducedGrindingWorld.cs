@@ -417,7 +417,7 @@ namespace ReducedGrinding
 			BitsByte smitemflags7 = reader.ReadByte();
 			BitsByte smitemflags8 = reader.ReadByte();
 
-			smItemShopNotEmpty = smstoreflags[0];
+            smItemShopNotEmpty = smstoreflags[0];
 			smItemDecorShopNotEmpty = smstoreflags[1];
 
 			smItemSake = smitemflags[0];
@@ -550,7 +550,7 @@ namespace ReducedGrinding
 
 			if (skipToNight)
 			{
-				if (Main.sundialCooldown > 0)
+                if (Main.sundialCooldown > 0)
 					ReducedGrindingWorld.skippedToDayOrNight = true;
 				Main.time = 54000;
 				skipToDay = false;
@@ -569,13 +569,9 @@ namespace ReducedGrinding
 				{
 					string fullName = Main.npc[travelingMerchantTarget].FullName;
 					if (Main.netMode == NetmodeID.SinglePlayer)//0)
-					{
 						Main.NewText(Lang.misc[35].Format(fullName), 50, 125);
-					}
 					else if (Main.netMode == NetmodeID.Server)//2)
-					{
 						NetMessage.BroadcastChatMessage(NetworkText.FromKey(Lang.misc[35].Key, Main.npc[travelingMerchantTarget].GetFullNetName()), new Color(50, 125, 255));
-					}
 					Main.npc[travelingMerchantTarget].active = false;
 					Main.npc[travelingMerchantTarget].netSkip = -1;
 					Main.npc[travelingMerchantTarget].life = 0;

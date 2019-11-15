@@ -47,14 +47,15 @@ namespace ReducedGrinding.Tiles
 			return true;
 		}
 
-		public override void RightClick(int i, int j)
-		{
+        public override bool NewRightClick(int x, int y)
+        {
 			Main.moonPhase++;
 			if (Main.moonPhase >= 8)
 			{
 				Main.moonPhase = 0;
 			}
-			Main.PlaySound(SoundID.Item4); //Crystal Ball
+            Main.PlaySound(SoundID.Item4); //Crystal Ball
+            return true;
 		}
 
 		public override void MouseOver(int i, int j)

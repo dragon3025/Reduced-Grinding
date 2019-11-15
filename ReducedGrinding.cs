@@ -14,6 +14,7 @@ Main.NewText(Value.ToString(), 255, 255, 255);
 */
 
 using System.IO;
+using System.Messaging;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -51,8 +52,16 @@ namespace ReducedGrinding
 				censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "No conditions.");
 			}
 		}
-		
-		public class BossBags : GlobalItem  //Rates show in comments are in addition to vanilla rates.
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            //base.HandlePacket(reader, whoAmI);
+            MessageType type = (MessageType)reader.ReadByte();
+            ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
+            ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
+        }
+
+        public class BossBags : GlobalItem  //Rates show in comments are in addition to vanilla rates.
 		{
 			public override void OpenVanillaBag(string context, Player player, int arg)
 			{

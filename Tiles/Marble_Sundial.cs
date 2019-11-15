@@ -6,7 +6,7 @@ using Terraria.Enums;
 using Terraria.DataStructures;
 using System;
 using Microsoft.Xna.Framework;
-
+using Terraria.Localization;
 
 namespace ReducedGrinding.Tiles
 {
@@ -48,12 +48,12 @@ namespace ReducedGrinding.Tiles
 			return true;
 		}
 
-		public override void RightClick(int i, int j)
-		{
-			if (!Main.dayTime)
+        public override bool NewRightClick(int x, int y)
+        {
+            if (!Main.dayTime)
 			{
 				ReducedGrindingWorld.skipToDay = true;
-				if (Main.netMode == 1) //Client
+				if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 				{
 					var netMessage = mod.GetPacket();
 					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
@@ -62,6 +62,7 @@ namespace ReducedGrinding.Tiles
 				}
 				Main.PlaySound(SoundID.Item4); //Crystal Ball
 			}
+            return true;
 		}
 
 		public override void MouseOver(int i, int j)
