@@ -57,9 +57,9 @@ namespace ReducedGrinding
         {
             //base.HandlePacket(reader, whoAmI);
             MessageType type = (MessageType)reader.ReadByte();
-            ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
-            ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
-        }
+			ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
+			ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
+		}
 
         public class BossBags : GlobalItem  //Rates show in comments are in addition to vanilla rates.
 		{
@@ -2726,8 +2726,7 @@ namespace ReducedGrinding
 		SyncPlayer,
 		SendClientChanges,
 		skipToNight,
-		skipToDay,
-		biomeChestMined
+		skipToDay
 	}
 
 }

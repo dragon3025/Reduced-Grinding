@@ -8,7 +8,7 @@ namespace ReducedGrinding
 {
     public static class Config
     {
-		static string filename = "Reduced Grinding v4.67.json";
+		static string filename = "Reduced Grinding v5.2.json";
 		
 		public static int DropTriesForAllEnemyDroppedLoot = 1;
 		public static float NormalModeLootMultiplierForLootWithSeperateDifficultyRates = 0.5f;
@@ -355,7 +355,7 @@ namespace ReducedGrinding
 		public static float TravelingMerchantZebraSkinIncrease = 0f;
 		public static bool TravelingMerchantAlwaysXMasForConfigurations = false;
 		public static float ChanceThatEnemyKillWillResetTravelingMerchant = 0f;
-		public static float ChanceEachMorningTravelingMerchantWillSpawn = 1.0f;
+		public static float BaseMorningTMerchantSpawnChance = 1.0f;
 		public static float ChanceEachInGameMinuteWillResetTravelingMerchant = 0.0432f;
 		public static bool StationaryMerchant = true;
 		public static float StationaryMerchantStockingChance = 0.143f;
@@ -754,7 +754,7 @@ namespace ReducedGrinding
 				Configuration.Get("WaterEnemyModdedWaterLockBoxLoot", ref WaterEnemyModdedWaterLockBoxLoot);
 
 				Configuration.Get("ChanceEachInGameMinuteWillResetTravelingMerchant", ref ChanceEachInGameMinuteWillResetTravelingMerchant);
-				Configuration.Get("ChanceEachMorningTravelingMerchantWillSpawn", ref ChanceEachMorningTravelingMerchantWillSpawn);
+				Configuration.Get("BaseMorningTMerchantSpawnChance", ref BaseMorningTMerchantSpawnChance);
 				Configuration.Get("ChanceThatEnemyKillWillResetTravelingMerchant", ref ChanceThatEnemyKillWillResetTravelingMerchant);
 				Configuration.Get("S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate", ref S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate);
 				Configuration.Get("StationaryMerchant", ref StationaryMerchant);
@@ -1218,7 +1218,7 @@ namespace ReducedGrinding
 			Configuration.Put("| of stationary Reduced Grinding and Vanilla npcs.                                                 |", 0);
 			Configuration.Put("===============================================================================================TASM2", 0);
 			Configuration.Put("ChanceEachInGameMinuteWillResetTravelingMerchant", ChanceEachInGameMinuteWillResetTravelingMerchant);
-			Configuration.Put("ChanceEachMorningTravelingMerchantWillSpawn", ChanceEachMorningTravelingMerchantWillSpawn);
+			Configuration.Put("BaseMorningTMerchantSpawnChance", BaseMorningTMerchantSpawnChance);
 			Configuration.Put("ChanceThatEnemyKillWillResetTravelingMerchant", ChanceThatEnemyKillWillResetTravelingMerchant);
 			Configuration.Put("S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate", S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate);
 			Configuration.Put("StationaryMerchant", StationaryMerchant);

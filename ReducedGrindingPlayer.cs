@@ -25,62 +25,6 @@ namespace ReducedGrinding
 	class ReducedGrindingPlayer : ModPlayer
     {
 
-		public override void PreUpdate()
-		{
-			/*if (Main.time % 180 == 0) //Debug
-			{
-				ReducedGrindingPlayer mPlayer = Main.LocalPlayer.GetModPlayer<ReducedGrindingPlayer>(mod);
-				Main.NewText("Debug Client:");
-				Main.NewText("Config.CrateJungleFeralClawsIncrease: "+Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop.ToString());
-				Main.NewText("");
-				
-				Console.WriteLine("Debug Server:");
-				Console.WriteLine("Config.CrateJungleFeralClawsIncrease: "+Config.AllEnemiesLootBiomeMatchingFoundOnlyChestDrop.ToString());
-				Console.WriteLine("");
-			}*/
-			
-			Player player = Main.player[Main.myPlayer];
-			bool updateBiomeChestMined = false;
-			if (player.HasItem(ItemID.JungleChest) && !ReducedGrindingWorld.jungleChestMined)
-			{
-				updateBiomeChestMined = true;
-				ReducedGrindingWorld.jungleChestMined = true;
-			}
-			if (player.HasItem(ItemID.CorruptionChest) && !ReducedGrindingWorld.infectionChestMined)
-			{
-				updateBiomeChestMined = true;
-				ReducedGrindingWorld.infectionChestMined = true;
-			}
-			if (player.HasItem(ItemID.CrimsonChest) && !ReducedGrindingWorld.infectionChestMined)
-			{
-				updateBiomeChestMined = true;
-				ReducedGrindingWorld.infectionChestMined = true;
-			}
-			if (player.HasItem(ItemID.HallowedChest) && !ReducedGrindingWorld.hallowedChestMined)
-			{
-				updateBiomeChestMined = true;
-				ReducedGrindingWorld.hallowedChestMined = true;
-			}
-			if (player.HasItem(ItemID.FrozenChest) && !ReducedGrindingWorld.frozenChestMined)
-			{
-				updateBiomeChestMined = true;
-				ReducedGrindingWorld.frozenChestMined = true;
-			}
-			if (updateBiomeChestMined)
-			{
-				if (Main.netMode > 0)
-				{
-					var netMessage = mod.GetPacket();
-					netMessage.Write((byte)ReducedGrindingMessageType.biomeChestMined);
-					netMessage.Write(ReducedGrindingWorld.jungleChestMined);
-					netMessage.Write(ReducedGrindingWorld.infectionChestMined);
-					netMessage.Write(ReducedGrindingWorld.hallowedChestMined);
-					netMessage.Write(ReducedGrindingWorld.frozenChestMined);
-					netMessage.Send();
-				}
-			}
-		}
-
         private void SendClientChangesPacket()
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -756,3 +700,4 @@ namespace ReducedGrinding
 		}
     }
 }
+ 

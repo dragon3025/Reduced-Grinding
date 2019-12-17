@@ -12,11 +12,10 @@ namespace ReducedGrinding
 {
 	public class ReducedGrindingWorld : ModWorld
     {
+		//Gets recording into world save
 		public static bool skipToDay = false;
 		public static bool skipToNight = false;
-		
-		//Gets recording into world save
-        public static bool infectionChestMined = false;
+		public static bool infectionChestMined = false;
         public static bool hallowedChestMined = false;
         public static bool frozenChestMined = false;
         public static bool jungleChestMined = false;
@@ -302,17 +301,6 @@ namespace ReducedGrinding
 			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
         }
 		
-		/*public override void LoadLegacy(BinaryReader reader) {
-			int loadVersion = reader.ReadInt32();
-			if (loadVersion == 0) {
-				BitsByte flags = reader.ReadByte();
-				infectionChestMined = flags[0];
-				hallowedChestMined = flags[1];
-				frozenChestMined = flags[2];
-				jungleChestMined = flags[3];
-			}
-		}*/
-		
 		public override void NetSend(BinaryWriter writer)
 		{
 			BitsByte smstoreflags = new BitsByte();
@@ -324,6 +312,8 @@ namespace ReducedGrinding
 			BitsByte smitemflags6 = new BitsByte();
 			BitsByte smitemflags7 = new BitsByte();
 			BitsByte smitemflags8 = new BitsByte();
+
+			BitsByte bcitemflags = new BitsByte();
 
 			smstoreflags[0] = smItemShopNotEmpty;
 			smstoreflags[1] = smItemDecorShopNotEmpty;
@@ -394,6 +384,11 @@ namespace ReducedGrinding
 			smitemflags8[0] = smItemSnowfellas;
 			smitemflags8[1] = smItemTheSeason;
 
+			bcitemflags[0] = infectionChestMined;
+			bcitemflags[1] = hallowedChestMined;
+			bcitemflags[2] = frozenChestMined;
+			bcitemflags[3] = jungleChestMined;
+
 			writer.Write(smstoreflags);
 			writer.Write(smitemflags);
 			writer.Write(smitemflags2);
@@ -403,6 +398,8 @@ namespace ReducedGrinding
 			writer.Write(smitemflags6);
 			writer.Write(smitemflags7);
 			writer.Write(smitemflags8);
+
+			writer.Write(bcitemflags);
 		}
 		
 		public override void NetReceive(BinaryReader reader)
@@ -417,7 +414,9 @@ namespace ReducedGrinding
 			BitsByte smitemflags7 = reader.ReadByte();
 			BitsByte smitemflags8 = reader.ReadByte();
 
-            smItemShopNotEmpty = smstoreflags[0];
+			BitsByte bcitemflags = reader.ReadByte();
+
+			smItemShopNotEmpty = smstoreflags[0];
 			smItemDecorShopNotEmpty = smstoreflags[1];
 
 			smItemSake = smitemflags[0];
@@ -485,22 +484,16 @@ namespace ReducedGrinding
 
 			smItemSnowfellas = smitemflags8[0];
 			smItemTheSeason = smitemflags8[1];
+
+			infectionChestMined = bcitemflags[0];
+			hallowedChestMined = bcitemflags[1];
+			frozenChestMined = bcitemflags[2];
+			jungleChestMined = bcitemflags[3];
 		}
 
 		public override void PostUpdate()
 		{
 			Player player = Main.player[Main.myPlayer];
-
-			if (player.HasItem(1528)) //Jungle Chest
-				jungleChestMined = true;
-			if (player.HasItem(1529)) //Corruption Chest
-				infectionChestMined = true;
-			if (player.HasItem(1530)) //Crimson Chest
-				infectionChestMined = true;
-			if (player.HasItem(1531)) //Hallowed Chest
-				hallowedChestMined = true;
-			if (player.HasItem(1532)) //Frozen Chest
-				frozenChestMined = true;
 
 			int playerCoinAmount = 0;
 			foreach (Item i in player.inventory)
@@ -523,18 +516,47 @@ namespace ReducedGrinding
 			}
 
 			bool anyPlayerHasCelestialBeacon = false;
+			bool biomechestchange = false;
 			for (int i = 0; i < 255; i++)
 			{
-				if (Main.player[i].active && Main.player[i].HasItem(mod.ItemType("Celestial_Beacon")))
+				if (Main.player[i].active)
 				{
-					anyPlayerHasCelestialBeacon = true;
-					break;
+					if (Main.player[i].HasItem(mod.ItemType("Celestial_Beacon")))
+						anyPlayerHasCelestialBeacon = true;
+					if (Main.player[i].HasItem(ItemID.JungleChest) && !jungleChestMined)
+					{
+						jungleChestMined = true;
+						biomechestchange = true;
+					}
+					if (Main.player[i].HasItem(ItemID.CorruptionChest) && !infectionChestMined)
+					{
+						infectionChestMined = true;
+						biomechestchange = true;
+					}
+					if (Main.player[i].HasItem(ItemID.CrimsonChest) && !infectionChestMined)
+					{
+						infectionChestMined = true;
+						biomechestchange = true;
+					}
+					if (Main.player[i].HasItem(ItemID.HallowedChest) && !hallowedChestMined)
+					{
+						hallowedChestMined = true;
+						biomechestchange = true;
+					}
+					if (Main.player[i].HasItem(ItemID.FrozenChest) && !frozenChestMined)
+					{
+						frozenChestMined = true;
+						biomechestchange = true;
+					}
 				}
 			}
+
+			if (biomechestchange && Main.netMode == NetmodeID.Server)
+				NetMessage.SendData(MessageID.WorldData);
+
+
 			if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
 				NPC.MoonLordCountdown = 1;
-			//if (NPC.MoonLordCountdown > 1 && Main.player.Any(x => x.HasItem(mod.ItemType("Celestial_Beacon"))))
-			//NPC.MoonLordCountdown = 1;
 
 			if (Main.time % 600 == 0 && !NPC.downedMoonlord)
 			{
@@ -559,7 +581,7 @@ namespace ReducedGrinding
 				int travelingMerchantTarget = -1;
 				for (int i = 0; i < 200; i++)
 				{
-					if (Main.npc[i].active && Main.npc[i].type == 368)
+					if (Main.npc[i].active && Main.npc[i].type == NPCID.TravellingMerchant)
 					{
 						travelingMerchantTarget = i;
 						break;
@@ -719,7 +741,7 @@ namespace ReducedGrinding
 							}
 						}
 					}
-					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < Config.ChanceEachMorningTravelingMerchantWillSpawn * Math.Pow(TownNPCPercent, 2))
+					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < Config.BaseMorningTMerchantSpawnChance * Math.Pow(TownNPCPercent, 2))
 						WorldGen.SpawnTravelNPC();
 				}
 			}
