@@ -48,3 +48,4 @@ more info see the link below. How this mod does this:
    example: if an item's vanilla rate = 10% and mod rate = 90%
    then the combined rate is 100% which means that it's likely
    to always drop, but if both chances fail it wont).
+   
