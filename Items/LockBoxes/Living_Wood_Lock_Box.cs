@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -30,7 +30,7 @@ namespace ReducedGrinding.Items.LockBoxes
 		{
 			int itemid = 0;
 
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Living Wood Chest Items
 				switch (Main.rand.Next(3))
@@ -47,7 +47,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				}
 			}
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Surface Chest Rare Items
 				switch (Main.rand.Next(11))

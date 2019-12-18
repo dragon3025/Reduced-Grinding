@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -30,7 +30,7 @@ namespace ReducedGrinding.Items.LockBoxes
 		{
 			int itemid = 0;
 
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Pyramid Banners
 				if (Main.rand.Next(3) <= 1)
@@ -41,7 +41,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					player.QuickSpawnItem(791, 1); //Omega Banner
 			}
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Pyramid Gold Chest Items
 				switch (Main.rand.Next(3))

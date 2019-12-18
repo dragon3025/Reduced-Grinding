@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -36,7 +37,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			int testItemID = 0;
 			int chosenID = 0;
 
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Ruined House Banners
 				if (Main.rand.Next(3) == 0)
@@ -125,7 +126,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				}
 			}
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Shadow Lock Box Rare Items
 				switch (Main.rand.Next(5))

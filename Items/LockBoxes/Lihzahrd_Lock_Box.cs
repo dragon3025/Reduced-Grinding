@@ -1,6 +1,7 @@
- using Terraria;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -34,18 +35,18 @@ namespace ReducedGrinding.Items.LockBoxes
 			
 			player.QuickSpawnItem(ItemID.LihzahrdBrick, Main.rand.Next(10, 21));
 
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Lihzahrd Temple Statues
 				player.QuickSpawnItem(Main.rand.Next(1152, 1155));
 			}
 
 			//Lihzahrd Chest Primary Items
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				player.QuickSpawnItem(2195, 1); //Lihzahrd Furnace
 			}
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				player.QuickSpawnItem(1293, 1); //Lihzahrd Power Cell
 				if (Main.rand.Next(5) == 0)
@@ -54,7 +55,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					player.QuickSpawnItem(2766, 1); //Solar Tablet Fragment
 			}
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Cavern Gold Chest Common Items
 				if (Main.rand.Next(5) == 0)

@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -33,7 +33,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			int testItemID = 0;
 			int chosenID = 0;
 
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Cabin Statues
 				dropChance = 0.0169f;
@@ -117,7 +117,7 @@ namespace ReducedGrinding.Items.LockBoxes
 				}
 			}
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				float itemroll = Main.rand.NextFloat();
 

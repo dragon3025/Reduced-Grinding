@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -29,7 +29,7 @@ namespace ReducedGrinding.Items.LockBoxes
 		public override void RightClick(Player player)
 		{
 			int itemid = 0;
-			if (Config.LockBoxesGiveFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Floating Island Banners
 				if (Main.rand.Next(3) <= 1)
@@ -41,7 +41,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			}
 
 			//Skyware Chest Items
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				switch (Main.rand.Next(3))
 				{
@@ -56,10 +56,10 @@ namespace ReducedGrinding.Items.LockBoxes
 						break;
 				}
 			}
-			if (Main.rand.Next(3) == 0 && Config.LockBoxesGiveFurniture)
+			if (Main.rand.Next(3) == 0 && GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 				player.QuickSpawnItem(2197, 1); //Skymill
 
-			if (Config.LockBoxesGiveNonFurniture)
+			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Surface Chest Common Items
 				if (Main.rand.Next(3) == 0)
