@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.NPCs
 {
@@ -30,7 +31,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-			if (Config.Santa && NPC.downedFrost)
+			if (GetInstance<IOtherCustomNPCsConfig>().Santa && NPC.downedFrost)
 				return true;
 			else
 				return false;

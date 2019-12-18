@@ -1,0 +1,46 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\cntdr\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\cntdr\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\cntdr\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj",
+        "projectName": "ReducedGrinding",
+        "projectPath": "C:\\Users\\cntdr\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj",
+        "packagesPath": "C:\\Users\\cntdr\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cntdr\\OneDrive\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\cntdr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net45"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net45": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net45": {
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

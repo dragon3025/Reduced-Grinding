@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
@@ -11,7 +12,7 @@ namespace ReducedGrinding.Items
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
 
-			if (Config.LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
+			if (GetInstance<AEnemyDropConfig>().LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
 			{
 				if (item.type >= 885 && item.type <= 893) //All low-tier materials for Ankh Charm.
 				{

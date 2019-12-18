@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.NPCs
 {
@@ -31,7 +32,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-			if (Config.LootMerchant)
+			if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
 				return true;
 			else
 				return false;

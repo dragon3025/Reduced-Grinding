@@ -1,6 +1,6 @@
 {
   "DropTriesForAllEnemyDroppedLoot": 0,
-  "NormalModeLootMultiplierForLootWithSeperateDifficultyRates": 0.0,
+  "NormalModeMultiplierForLootWithSeperateDiffRates": 0.0,
   "=================================================================================================GB1": 0,
   "|                                            GRAB BAGS                                             |": 0,
   "=================================================================================================GB2": 0,
@@ -404,7 +404,7 @@
   "MerchantSellsFishItem": false,
   "MerchantSellsPyramidItems": false,
   "MerchantSellsSandstormInABottleWhenInDesert": false,
-  "TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight": 0,
+  "TaxCollectorTaxRequiredToChatTaxatMorningAndNight": 0,
   "MerchantSellsSwiftnessPotion": false,
   "WitchDoctorSellsFlowerBoots": false,
   "WitchDoctorSellsHoneyDispenser": false,

@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
@@ -45,9 +46,9 @@ namespace ReducedGrinding
 
 			Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
 
-			if (Config.QuestFishermansGuideIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestFishermansGuideIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestFishermansGuideIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestFishermansGuideIncrease)
 				{
 					Item rewardItem = new Item();
 					rewardItem.SetDefaults(ItemID.FishermansGuide);
@@ -55,9 +56,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem);
 				}
 			}
-			if (Config.QuestWeatherRadioIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestWeatherRadioIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestWeatherRadioIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestWeatherRadioIncrease)
 				{
 					Item rewardItem2 = new Item();
 					rewardItem2.SetDefaults(ItemID.WeatherRadio);
@@ -65,9 +66,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem2);
 				}
 			}
-			if (Config.QuestSextantIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestSextantIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestSextantIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestSextantIncrease)
 				{
 					Item rewardItem3 = new Item();
 					rewardItem3.SetDefaults(ItemID.Sextant);
@@ -75,9 +76,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem3);
 				}
 			}
-			if (Config.QuestAnglerHatIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerHatIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestAnglerHatIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerHatIncrease)
 				{
 					Item rewardItem4 = new Item();
 					rewardItem4.SetDefaults(ItemID.AnglerHat);
@@ -85,9 +86,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem4);
 				}
 			}
-			if (Config.QuestAnglerVestIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerVestIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestAnglerVestIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerVestIncrease)
 				{
 					Item rewardItem5 = new Item();
 					rewardItem5.SetDefaults(ItemID.AnglerVest);
@@ -95,9 +96,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem5);
 				}
 			}
-			if (Config.QuestAnglerPantsIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerPantsIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestAnglerPantsIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerPantsIncrease)
 				{
 					Item rewardItem6 = new Item();
 					rewardItem6.SetDefaults(ItemID.AnglerPants);
@@ -105,9 +106,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem6);
 				}
 			}
-			if (Config.QuestHighTestFishingLineIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestHighTestFishingLineIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestHighTestFishingLineIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestHighTestFishingLineIncrease)
 				{
 					Item rewardItem7 = new Item();
 					rewardItem7.SetDefaults(ItemID.HighTestFishingLine);
@@ -115,9 +116,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem7);
 				}
 			}
-			if (Config.QuestAnglerEarringIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerEarringIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestAnglerEarringIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestAnglerEarringIncrease)
 				{
 					Item rewardItem8 = new Item();
 					rewardItem8.SetDefaults(ItemID.AnglerEarring);
@@ -125,9 +126,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem8);
 				}
 			}
-			if (Config.QuestTackleBoxIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestTackleBoxIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestTackleBoxIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestTackleBoxIncrease)
 				{
 					Item rewardItem9 = new Item();
 					rewardItem9.SetDefaults(ItemID.TackleBox);
@@ -135,9 +136,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem9);
 				}
 			}
-			if (Config.QuestGoldenFishingRodIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestGoldenFishingRodIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestGoldenFishingRodIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestGoldenFishingRodIncrease)
 				{
 					Item rewardItem10 = new Item();
 					rewardItem10.SetDefaults(ItemID.GoldenFishingRod);
@@ -145,9 +146,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem10);
 				}
 			}
-			if (Config.QuestCoralstoneBlockIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestCoralstoneBlockIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestCoralstoneBlockIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestCoralstoneBlockIncrease)
 				{
 					Item rewardItem11 = new Item();
 					rewardItem11.SetDefaults(ItemID.CoralstoneBlock);
@@ -155,9 +156,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem11);
 				}
 			}
-			if (Config.QuestGoldenBugNetIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestGoldenBugNetIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestGoldenBugNetIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestGoldenBugNetIncrease)
 				{
 					Item rewardItem10 = new Item();
 					rewardItem10.SetDefaults(3183);
@@ -165,9 +166,9 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem10);
 				}
 			}
-			if (Config.QuestFishHookIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestFishHookIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestFishHookIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestFishHookIncrease)
 				{
 					Item rewardItem10 = new Item();
 					rewardItem10.SetDefaults(2360);
@@ -177,9 +178,9 @@ namespace ReducedGrinding
 			}
 			if (Main.hardMode)
 			{
-				if (Config.QuestHardcoreFinWingsIncrease > 0)
+				if (GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreFinWingsIncrease > 0)
 				{
-					if (Main.rand.NextFloat() < Config.QuestHardcoreFinWingsIncrease)
+					if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreFinWingsIncrease)
 					{
 						Item rewardItem12 = new Item();
 						rewardItem12.SetDefaults(ItemID.FinWings);
@@ -187,9 +188,9 @@ namespace ReducedGrinding
 						rewardItems.Add(rewardItem12);
 					}
 				}
-				if (Config.QuestHardcoreBottomlessBucketIncrease > 0)
+				if (GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreBottomlessBucketIncrease > 0)
 				{
-					if (Main.rand.NextFloat() < Config.QuestHardcoreBottomlessBucketIncrease)
+					if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreBottomlessBucketIncrease)
 					{
 						Item rewardItem13 = new Item();
 						rewardItem13.SetDefaults(ItemID.BottomlessBucket);
@@ -197,9 +198,9 @@ namespace ReducedGrinding
 						rewardItems.Add(rewardItem13);
 					}
 				}
-				if (Config.QuestHardcoreSuperAbsorbantSpongeIncrease > 0)
+				if (GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreSuperAbsorbantSpongeIncrease > 0)
 				{
-					if (Main.rand.NextFloat() < Config.QuestHardcoreSuperAbsorbantSpongeIncrease)
+					if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreSuperAbsorbantSpongeIncrease)
 					{
 						Item rewardItem14 = new Item();
 						rewardItem14.SetDefaults(ItemID.SuperAbsorbantSponge);
@@ -207,9 +208,9 @@ namespace ReducedGrinding
 						rewardItems.Add(rewardItem14);
 					}
 				}
-				if (Config.QuestHardcoreHotlineFishingHookIncrease > 0)
+				if (GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreHotlineFishingHookIncrease > 0)
 				{
-					if (Main.rand.NextFloat() < Config.QuestHardcoreHotlineFishingHookIncrease)
+					if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestHardcoreHotlineFishingHookIncrease)
 					{
 						Item rewardItem15 = new Item();
 						rewardItem15.SetDefaults(ItemID.HotlineFishingHook);
@@ -218,30 +219,30 @@ namespace ReducedGrinding
 					}
 				}
 			}
-			if (Config.QuestTrophyIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestTrophyIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestTrophyIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestTrophyIncrease)
 				{
 					Item rewardItem16 = new Item();
 					rewardItem16.SetDefaults(2446);
 					rewardItem16.stack = 1;
 					rewardItems.Add(rewardItem16);
 				}
-				if (Main.rand.NextFloat() < Config.QuestTrophyIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestTrophyIncrease)
 				{
 					Item rewardItem17 = new Item();
 					rewardItem17.SetDefaults(2447);
 					rewardItem17.stack = 1;
 					rewardItems.Add(rewardItem17);
 				}
-				if (Main.rand.NextFloat() < Config.QuestTrophyIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestTrophyIncrease)
 				{
 					Item rewardItem18 = new Item();
 					rewardItem18.SetDefaults(2448);
 					rewardItem18.stack = 1;
 					rewardItems.Add(rewardItem18);
 				}
-				if (Main.rand.NextFloat() < Config.QuestTrophyIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestTrophyIncrease)
 				{
 					Item rewardItem19 = new Item();
 					rewardItem19.SetDefaults(2449);
@@ -249,58 +250,58 @@ namespace ReducedGrinding
 					rewardItems.Add(rewardItem19);
 				}
 			}
-			if (Config.QuestDecorativeFurnitureIncrease > 0)
+			if (GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease > 0)
 			{
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem20 = new Item();
 					rewardItem20.SetDefaults(2496);
 					rewardItem20.stack = 1;
 					rewardItems.Add(rewardItem20);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem21 = new Item();
 					rewardItem21.SetDefaults(2497);
 					rewardItem21.stack = 1;
 					rewardItems.Add(rewardItem21);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem22 = new Item();
 					rewardItem22.SetDefaults(2442);
 					rewardItem22.stack = 1;
 					rewardItems.Add(rewardItem22);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem23 = new Item();
 					rewardItem23.SetDefaults(2443);
 					rewardItem23.stack = 1;
 					rewardItems.Add(rewardItem23);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem24 = new Item();
 					rewardItem24.SetDefaults(2444);
 					rewardItem24.stack = 1;
 					rewardItems.Add(rewardItem24);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem25 = new Item();
 					rewardItem25.SetDefaults(2445);
 					rewardItem25.stack = 1;
 					rewardItems.Add(rewardItem25);
 				}
-				if (Main.rand.NextFloat() < Config.QuestDecorativeFurnitureIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestDecorativeFurnitureIncrease)
 				{
 					Item rewardItem26 = new Item();
 					rewardItem26.SetDefaults(2490);
 					rewardItem26.stack = 1;
 					rewardItems.Add(rewardItem26);
 				}
-				if (Main.rand.NextFloat() < Config.QuestFishCostumeIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestFishCostumeIncrease)
 				{
 					Item rewardItem26 = new Item();
 					rewardItem26.SetDefaults(2498); //Mask
@@ -317,7 +318,7 @@ namespace ReducedGrinding
 					rewardItem28.stack = 1;
 					rewardItems.Add(rewardItem28);
 				}
-				if (Main.rand.NextFloat() < Config.QuestMermaidCostumeIncrease)
+				if (Main.rand.NextFloat() < GetInstance<CAnglerQuestRewardsConfig>().QuestMermaidCostumeIncrease)
 				{
 					Item rewardItem26 = new Item();
 					rewardItem26.SetDefaults(2417); //Hairpin
@@ -679,7 +680,7 @@ namespace ReducedGrinding
 			if (NPC.taxCollector && Main.time == 1.0)
 			{
 
-				if (player.taxMoney >= Config.TaxCollectorMinTaxRequiredToChatTaxEachMorningAndNight)
+				if (player.taxMoney >= GetInstance<FOtherVanillaNPCConfig>().TaxCollectorTaxRequiredToChatTaxatMorningAndNight)
 				{
 					int taxGold = player.taxMoney;
 					int taxSilver = 0;
