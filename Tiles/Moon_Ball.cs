@@ -49,13 +49,16 @@ namespace ReducedGrinding.Tiles
 
         public override bool NewRightClick(int x, int y)
         {
-			Main.moonPhase++;
-			if (Main.moonPhase >= 8)
+			ReducedGrindingWorld.advanceMoonPhase = true;
+			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 			{
-				Main.moonPhase = 0;
+				var netMessage = mod.GetPacket();
+				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
+				netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+				netMessage.Send();
 			}
-            Main.PlaySound(SoundID.Item4); //Crystal Ball
-            return true;
+			Main.PlaySound(SoundID.Item4); //Crystal Ball
+			return true;
 		}
 
 		public override void MouseOver(int i, int j)

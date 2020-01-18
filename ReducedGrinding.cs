@@ -54,12 +54,21 @@ namespace ReducedGrinding
 			}
 		}
 
-        public override void HandlePacket(BinaryReader reader, int whoAmI)
-        {
-            //base.HandlePacket(reader, whoAmI);
-            MessageType type = (MessageType)reader.ReadByte();
-			ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
-			ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
+		public override void HandlePacket(BinaryReader reader, int whoAmI)
+		{
+			ReducedGrindingMessageType msgType = (ReducedGrindingMessageType)reader.ReadByte();
+			switch (msgType)
+			{
+				case ReducedGrindingMessageType.skipToNight:
+					ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
+					break;
+				case ReducedGrindingMessageType.skipToDay:
+					ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
+					break;
+				case ReducedGrindingMessageType.advanceMoonPhase:
+					ReducedGrindingWorld.advanceMoonPhase = reader.ReadBoolean();
+					break;
+			}
 		}
 
         public class BossBags : GlobalItem  //Rates show in comments are in addition to vanilla rates.
@@ -2728,7 +2737,8 @@ namespace ReducedGrinding
 		SyncPlayer,
 		SendClientChanges,
 		skipToNight,
-		skipToDay
+		skipToDay,
+		advanceMoonPhase
 	}
 
 }

@@ -676,11 +676,12 @@ namespace ReducedGrinding
 		public override void PostUpdate()
 		{
 			Player player = Main.LocalPlayer;
-			
+			int taxAlertRequirement = GetInstance<FOtherVanillaNPCConfig>().TaxCollectorTaxRequiredToChatTaxatMorningAndNight;
+
 			if (NPC.taxCollector && Main.time == 1.0)
 			{
 
-				if (player.taxMoney >= GetInstance<FOtherVanillaNPCConfig>().TaxCollectorTaxRequiredToChatTaxatMorningAndNight)
+				if (player.taxMoney >= taxAlertRequirement && taxAlertRequirement > 0)
 				{
 					int taxGold = player.taxMoney;
 					int taxSilver = 0;

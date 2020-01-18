@@ -14,6 +14,7 @@ namespace ReducedGrinding
 	public class ReducedGrindingWorld : ModWorld
     {
 		//Gets recording into world save
+		public static bool advanceMoonPhase = false;
 		public static bool skipToDay = false;
 		public static bool skipToNight = false;
 		public static bool infectionChestMined = false;
@@ -571,9 +572,35 @@ namespace ReducedGrinding
 				}
 			}
 
+			if (advanceMoonPhase)
+			{
+
+				if (Main.netMode == NetmodeID.SinglePlayer)//0)
+					Main.NewText("advanceMoonPhase", 50, 125);
+				else if (Main.netMode == NetmodeID.Server)//2)
+					NetMessage.BroadcastChatMessage(NetworkText.FromKey("advanceMoonPhase"), new Color(50, 125, 255));
+
+
+				advanceMoonPhase = false;
+				Main.moonPhase++;
+				if (Main.moonPhase >= 8)
+				{
+					Main.moonPhase = 0;
+				}
+				if (Main.netMode == NetmodeID.Server)
+				{
+					var netMessage = mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
+					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+					netMessage.Send();
+
+					NetMessage.SendData(7);
+				}
+			}
+
 			if (skipToNight)
 			{
-                if (Main.sundialCooldown > 0)
+				if (Main.sundialCooldown > 0)
 					ReducedGrindingWorld.skippedToDayOrNight = true;
 				Main.time = 54000;
 				skipToDay = false;
@@ -605,7 +632,6 @@ namespace ReducedGrinding
 					var netMessage = mod.GetPacket();
 					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
 					netMessage.Write(ReducedGrindingWorld.skipToNight);
-					netMessage.Send();
 
 					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
 					netMessage.Write(ReducedGrindingWorld.skipToDay);
@@ -627,7 +653,6 @@ namespace ReducedGrinding
 					var netMessage = mod.GetPacket();
 					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
 					netMessage.Write(ReducedGrindingWorld.skipToNight);
-					netMessage.Send();
 
 					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
 					netMessage.Write(ReducedGrindingWorld.skipToDay);

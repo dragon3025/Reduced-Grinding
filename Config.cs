@@ -496,7 +496,9 @@ namespace ReducedGrinding
 		[DefaultValue(false)] public bool WitchDoctorSellsHoneyDispenser;
 		[DefaultValue(false)] public bool WitchDoctorSellsSeaweed;
 		[DefaultValue(false)] public bool WitchDoctorSellsStaffofRegrowth;
-		[Range(1, 100000)]
+		[Label("Tax Collector Alert Requirement")]
+		[Tooltip("Once the Tax Collector has this much money collected, he will let the player know each morning. Set to 0 to disable.")]
+		[Range(0, 100000)]
 		[Slider]
 		[DefaultValue(50000)] public int TaxCollectorTaxRequiredToChatTaxatMorningAndNight;
 
