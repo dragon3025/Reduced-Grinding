@@ -7,8 +7,11 @@ namespace ReducedGrinding.NPCs
 {
 	[AutoloadHead]
     public class StationaryMerchant : ModNPC
-    {
-		
+	{
+		public override string Texture => "ReducedGrinding/NPCs/StationaryMerchant";
+
+		public override string[] AltTextures => new[] { "ReducedGrinding/NPCs/StationaryMerchant_alt" };
+
 		public static bool baseshop = false;
 		
 		public override void SetStaticDefaults()
@@ -42,7 +45,7 @@ namespace ReducedGrinding.NPCs
 
         public override string TownNPCName()
         {										//NPC names
-            switch (Main.rand.Next(14))
+            switch (Main.rand.Next(18))
             {
                 case 0:
                     return "Abe";
@@ -68,15 +71,20 @@ namespace ReducedGrinding.NPCs
 					return "Galahan";
                 case 11:
 					return "Mervin";
-                case 12:
+				case 12:
 					return "Rico";
-                default:
+				case 13:
+					return "Albert";
+				case 14:
+					return "Archibald";
+				case 15:
+					return "Graham";
+				case 16:
+					return "Gray";
+				default:
 					return "Stephan";
             }
         }
-
-
-
 
         public override string GetChat()
 		{

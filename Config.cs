@@ -552,8 +552,8 @@ namespace ReducedGrinding
 		[DefaultValue(false)] public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 		[DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
 		[DefaultValue(true)] public bool WizardSellsMoonBall;
-		[Increment(.0001f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
-		[Increment(.0001f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;
+		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
+		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;
 		[Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
 		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionMaxSpawnsMultiplier;
 		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionSpawnrateMultiplier;
