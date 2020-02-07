@@ -28,10 +28,45 @@ namespace ReducedGrinding
 	class ReducedGrinding : Mod
     {
 		
-		/*public override void Load()
+		public override void Load()
 		{
-		   GetInstance<AEnemyDropConfig>().Load();
-		}*/
+			ModTranslation text = CreateTranslation("Common.CavernLockboxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Cavern_Lock_Box>()}] Cavern Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.DungeonBiomeLockboxLabel");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Biome_Lock_Box>()}] Biome Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.DungeonFurnitureLockboxLabel");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Blue_Dungeon_Lock_Box>()}] Dungeon Furniture Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.ShadowLockboxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Shadow_Lock_Box>()}] Shadow Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.LihzahrdLockboxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Lihzahrd_Lock_Box>()}] Lihzahrd Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.PyramidLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Pyramid_Lock_Box>()}] Pyramid Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.SkywareLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Skyware_Lock_Box>()}] Skyware Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.WebCoveredLockboxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Web_Covered_Lock_Box>()}] Web Covered Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.LivingWoodLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Living_Wood_Lock_Box>()}] Living Wood Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.IvyLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ivy_Lock_Box>()}] Ivy Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.IceLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ice_Lock_Box>()}] Ice Lockbox");
+			AddTranslation(text);
+			text = CreateTranslation("Common.WaterLockBoxLable");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Water_Lock_Box>()}] Water Lockbox");
+			AddTranslation(text);
+		}
 
 		public ReducedGrinding()
         {

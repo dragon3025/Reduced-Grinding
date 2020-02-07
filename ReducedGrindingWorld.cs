@@ -793,10 +793,13 @@ namespace ReducedGrinding
 							if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
 							{
 								Chest.SetupTravelShop();
-								if (Main.netMode == NetmodeID.Server)
-									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 127, 255));
-								else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-									Main.NewText("The traveling merchant restocked his shop.", 0, 127, 255);
+							if (Main.netMode == NetmodeID.Server)
+							{
+								NetMessage.SendTravelShop(-1);
+								NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 127, 255));
+							}
+							else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+								Main.NewText("The traveling merchant restocked his shop.", 0, 127, 255);
 							}
 							//break;
 						//}

@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
@@ -15,50 +16,75 @@ namespace ReducedGrinding
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		[Header("Universal Extra Drop Settings")]
+		[Label("Drop Tries For All Enemy Loot")]
 		[Tooltip("When an enemy drops loot from vanilla functions, this mod will roll a certain number of\n" +
 			"extra chances to drop the loot. How many times should this mod roll an extra chance?")]
 		[DefaultValue(1)] public int DropTriesForAllEnemyDroppedLoot;
-		[Tooltip("It's a vanilla mechanic that some loot have higher drops in Expert Mode than Normal\n" +
+		[Label("Nrml Mode Mult. For Enemy Loot Wth Sep. Diff. Rates")]
+		[Tooltip("It's a vanilla mechanic that some enemy loot have higher drops in Expert Mode than Normal\n" +
 			"Mode. When playing on Normal Mode and this mod rolls an extra chance to drop those types of\n" +
 			"items, the rate of that extra chance will multiplied by this amount.")]
 		[Increment(.0001f)] [DefaultValue(0.5f)] public float NormalModeMultiplierForLootWithSeperateDiffRates;
 
 		[Header("Boss Loot")]
+		[Label("[i:1313] Book of Skulls Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBookofSkullsIncrease;
+		[Label("[i:1294] Picksaw Increase")]
 		[Increment(.0001f)] [DefaultValue(0.375f)] public float LootPicksawIncrease;
+		[Label("[i:1182] Seedling Increase")]
 		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootSeedlingIncrease;
+		[Label("[i:1169] Bone Key Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootSkeletronBoneKey;
+		[Label("[i:1299] Binoculars Increase")]
 		[Increment(.0001f)] [DefaultValue(0.467f)] public float LootBinocularsIncrease;
+		[Label("[i:3060] Bone Rattle Increase")]
 		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootBoneRattleIncrease;
+		[Label("[i:3373] Boss Mask Increase")]
 		[Increment(.0001f)] [DefaultValue(0.1071f)] public float LootBossMaskIncrease;
+		[Label("[i:3595] Boss Trophy Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBossTrophyIncrease;
+		[Label("[i:994] Eater's Bone Increase")]
 		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootEatersBoneIncrease;
+		[Label("[i:2673] Truffle Worm Increase")]
 		[Increment(.0001f)] [DefaultValue(0.5f)] public float LootFishronTruffleworm;
+		[Label("[i:2609] Fishron Wings Increase")]
 		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootFishronWingsIncrease;
+		[Label("[i:2502] Honeyed Goggles Increase")]
 		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootHoneyedGogglesIncrease;
+		[Label("[i:3063] Moon Lord Weapons Increase")]
 		[Increment(.0001f)] [DefaultValue((1f / 3) - (1f / 9))] public float LootMoonLordEachWeaponIncrease;
+		[Label("[i:1170] Nectar Increase")]
 		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootNectarIncrease;
+		[Label("[i:1305] The Axe Increase")]
 		[Increment(.0001f)] [DefaultValue(0.20f)] public float LootTheAxeIncrease;
 
 		[Header("Non-Boss Loot")]
-		//[Range(0f, 0.004f)] //Set to be the value multiplied by 10 (no greater than 1f though).
+		[Label("Biome Key Increase For 1 Mech Boss Down")]
 		[Increment(.0001f)] [DefaultValue(0.0004f)] public float BiomeKeyIncreaseForOneMechBossDown;
-		//[Range(0f, 0.012f)]
+		[Label("Biome Key Increase For 2 Mech Bosses Down")]
 		[Increment(.0001f)] [DefaultValue(0.0012f)] public float BiomeKeyIncreaseForTwoMechBossDown;
-		//[Range(0f, 0.028f)]
+		[Label("Biome Key Increase For 3 Mech Bosses Down")]
 		[Increment(.0001f)] [DefaultValue(0.0028f)] public float BiomeKeyIncreaseForThreeMechBossDown;
 		[Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
-		//[Range(0f, 0.1f)]
+		[Label("Chest Drop From a Matching Biome")]
 		[Increment(.0001f)] [DefaultValue(0.01f)] public float AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
+		[Label("Magma Stone Increase From Hellbat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float HellBatLootMagmaStoneIncrease;
+		[Label("Magma Stone Increase From Lavabat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LavaBatLootMagmaStoneIncrease;
+		[Label("Adhesive Bandage Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAdhesiveBandageIncrease;
+		[Label("Ale Tosser Increase")]
 		[Increment(.0001f)] [DefaultValue(0.833f)] public float LootAleTosserIncrease;
-		//[Range(0f, 0.0667f)]
+		[Label("Amarok Increase")]
 		[Increment(.0001f)] [DefaultValue((1f / 100) - (1f / 300))] public float LootAmarokIncrease;
+		[Label("Ancient Cloth Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientClothIncrease;
+		[Label("Ancient Cobalt Breastplate Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltBreastplateIncrease;
+		[Label("Ancient Cobalt Helmet Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltHelmetIncrease;
+		[Label("Ancient Cobalt Leggings Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltLeggingsIncrease;
 		[Increment(.0001f)] [DefaultValue(0.015f)] public float LootAncientGoldHelmetIncrease;
 		[Increment(.0001f)] [DefaultValue(0.03f)] public float LootAncientHornIncrease;
@@ -520,20 +546,33 @@ namespace ReducedGrinding
 		[DefaultValue(true)] public bool LockBoxesGiveNonFurniture;
 		[Increment(.0001f)] [DefaultValue(1f)] public float HardmodeModdedLockBoxDropRateModifier;
 		[Increment(.0001f)] [DefaultValue(1f)] public float NormalmodeModdedLockBoxDropRateModifier;
+		[Label("$Mods.ReducedGrinding.Common.CavernLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float CavernModdedCavernLockBoxLoot;
 		[Tooltip("Biome Lockboxes will only give loot from Dungeon Biome Chest that any player has obtained in the current world and requires a Biome Key to open.")]
+		[Label("$Mods.ReducedGrinding.Common.DungeonBiomeLockboxLabel")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float DungeonModdedBiomeLockBoxLoot;
 		[Tooltip("Comes in 3 forms (no matter what dungeon your world has): Blue Dungeon, Green Dungeon, and Pink Dungeon.")]
+		[Label("$Mods.ReducedGrinding.Common.DungeonFurnitureLockboxLabel")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float DungeonFurnitureLockBoxLoot;
-		[Tooltip("Shadow Lockboxes require a shadow key")]
+		[Label("$Mods.ReducedGrinding.Common.ShadowLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float HellBiomeModdedShadowLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.LihzahrdLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float JungleTempleLihzahrd_Lock_Box;
+		[Tooltip("Drops in Underground Desert and Sandstorms")]
+		[Label("$Mods.ReducedGrinding.Common.PyramidLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float SandstormAndUndergroundDesertPyramidLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.SkywareLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float SkyModdedSkywareLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.WebCoveredLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float SpiderNestWebCoveredLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.LivingWoodLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float SurfaceModdedLivingWoodLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.IvyLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float UndergroundJungleBiomeModdedIvyLockBoxLoot;
+		[Label("$Mods.ReducedGrinding.Common.IceLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float UndergroundSnowBiomeModdedIceLockBoxLoot;
+		[Tooltip("Drops from water enemies.")]
+		[Label("$Mods.ReducedGrinding.Common.WaterLockBoxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float WaterEnemyModdedWaterLockBoxLoot;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
