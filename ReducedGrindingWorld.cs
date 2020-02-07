@@ -786,25 +786,25 @@ namespace ReducedGrinding
 				//Each Second there is an item that has a chance to appear in Traveling Merchant if a player is holding a Traveling Merchant Restock Order.
 				if (Main.time % 60 == 0 && TravelingMerchantRestockOrder)
 				{
-					//for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
-					//{     (I DON'T KNOW IF THERE IS A REASON I CHECK FOR THE T.MERCHANT TWICE, I COMMENTED JUST IN CASE REMOVING WOULD CAUSE A PROBLEM
-						//if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
-						//{
-							if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
-							{
-								Chest.SetupTravelShop();
-							if (Main.netMode == NetmodeID.Server)
-							{
-								NetMessage.SendTravelShop(-1);
-								NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 127, 255));
-							}
-							else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-								Main.NewText("The traveling merchant restocked his shop.", 0, 127, 255);
-							}
-							//break;
-						//}
-					//}
-				}
+                    //for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
+                    //{     (I DON'T KNOW IF THERE IS A REASON I CHECK FOR THE T.MERCHANT TWICE, I COMMENTED JUST IN CASE REMOVING WOULD CAUSE A PROBLEM
+                    //if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+                    //{
+                    if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().ChanceEachInGameMinuteWillResetTravelingMerchant * Math.Pow(TownNPCPercent, 2))
+                    {
+                        Chest.SetupTravelShop();
+                        if (Main.netMode == NetmodeID.Server)
+                        {
+                            NetMessage.SendTravelShop(-1);
+                            NetMessage.BroadcastChatMessage(NetworkText.FromKey("The traveling merchant restocked his shop."), new Color(0, 127, 255));
+                        }
+                        else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+                            Main.NewText("The traveling merchant restocked his shop.", 0, 127, 255);
+                    }
+                    //break;
+                    //}
+                    //}
+                }
 			}
 		}
 	}
