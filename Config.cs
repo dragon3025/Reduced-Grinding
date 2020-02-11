@@ -59,40 +59,53 @@ namespace ReducedGrinding
 		[Increment(.0001f)] [DefaultValue(0.20f)] public float LootTheAxeIncrease;
 
 		[Header("Non-Boss Loot")]
-		[Label("Biome Key Increase For 1 Mech Boss Down")]
+		[Label("[i:1533] Biome Key Increase For 1 Mech Boss Down")]
 		[Increment(.0001f)] [DefaultValue(0.0004f)] public float BiomeKeyIncreaseForOneMechBossDown;
-		[Label("Biome Key Increase For 2 Mech Bosses Down")]
+		[Label("[i:1534] Biome Key Increase For 2 Mech Bosses Down")]
 		[Increment(.0001f)] [DefaultValue(0.0012f)] public float BiomeKeyIncreaseForTwoMechBossDown;
-		[Label("Biome Key Increase For 3 Mech Bosses Down")]
+		[Label("[i:1537] Biome Key Increase For 3 Mech Bosses Down")]
 		[Increment(.0001f)] [DefaultValue(0.0028f)] public float BiomeKeyIncreaseForThreeMechBossDown;
 		[Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
-		[Label("Chest Drop From a Matching Biome")]
+		[Label("[i:306] Chest Drop From a Matching Biome")]
 		[Increment(.0001f)] [DefaultValue(0.01f)] public float AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
-		[Label("Magma Stone Increase From Hellbat")]
+		[Label("[i:1322] Magma Stone Increase From Hellbat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float HellBatLootMagmaStoneIncrease;
-		[Label("Magma Stone Increase From Lavabat")]
+		[Label("[i:1322] Magma Stone Increase From Lavabat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LavaBatLootMagmaStoneIncrease;
-		[Label("Adhesive Bandage Increase")]
+		[Label("[i:885] Adhesive Bandage Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAdhesiveBandageIncrease;
-		[Label("Ale Tosser Increase")]
+		[Label("[i:3821] Ale Tosser Increase")]
 		[Increment(.0001f)] [DefaultValue(0.833f)] public float LootAleTosserIncrease;
-		[Label("Amarok Increase")]
+		[Label("[i:3289] Amarok Increase")]
 		[Increment(.0001f)] [DefaultValue((1f / 100) - (1f / 300))] public float LootAmarokIncrease;
-		[Label("Ancient Cloth Increase")]
+		[Label("[i:3794] Ancient Cloth Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientClothIncrease;
-		[Label("Ancient Cobalt Breastplate Increase")]
+		[Label("[i:961] Ancient Cobalt Breastplate Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltBreastplateIncrease;
-		[Label("Ancient Cobalt Helmet Increase")]
+		[Label("[i:960] Ancient Cobalt Helmet Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltHelmetIncrease;
-		[Label("Ancient Cobalt Leggings Increase")]
+		[Label("[i:962] Ancient Cobalt Leggings Increase")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltLeggingsIncrease;
+		[Label("[i:955] Ancient Gold Helmet Increase")]
 		[Increment(.0001f)] [DefaultValue(0.015f)] public float LootAncientGoldHelmetIncrease;
+		[Label("[i:3771] Ancient Horn Increase")]
 		[Increment(.0001f)] [DefaultValue(0.03f)] public float LootAncientHornIncrease;
+		[Label("[i:954] Ancient Iron Helmet")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientIronHelmetIncrease;
+		[Label("[i:959] Ancient Necro Helmet")]
 		[Increment(.0001f)] [DefaultValue(0.0028f)] public float LootAncientNecroHelmetIncrease;
+		[Label("[i:958] Ancient Shadow Greeves")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientShadowGreavesIncrease;
+		[Label("[i:956] Ancient Shadow Helmet")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientShadowHelmetIncrease;
+		[Label("[i:957] Ancient Shadow Scalemail")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientShadowScalemailIncrease;
+		[Tooltip("Increases chance of Ankh Charm material item drops for every different\n" +
+			"Ankh Charm material item in your inventory (or in equipped items). Ankh\n" +
+			"Charm material crafted into a new Ankh charm material counts as 2 (for\n" +
+			"example: Armor Bracing counts as having Armor Polish and Vitamins). Max\n" +
+			"Ankh Charm items in inventory is 9")]
+		[Label("[i:1612] Ankh Charm Material Incr. Per Material in Inven.")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory;
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootArmorPolishIncrease;
 		[Increment(.0001f)] [DefaultValue(0.05f)] public float LootBabyGrinchsMischiefWhistleIncrease;
