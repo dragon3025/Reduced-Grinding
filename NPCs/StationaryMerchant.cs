@@ -44,45 +44,17 @@ namespace ReducedGrinding.NPCs
         }
 
         public override string TownNPCName()
-        {										//NPC names
-            switch (Main.rand.Next(18))
+        {
+            switch (Main.rand.Next(4)) //Names are requrest by sprite artist, Lonley Star; don't change them.
             {
                 case 0:
-                    return "Abe";
-                case 1:
-                    return "Alph";
-                case 2:
-                    return "Elmer";
-                case 3:
-                    return "Lewis";
-                case 4:
-					return "Ralph";
-                case 5:
-					return "Rodney";
-                case 6:
-					return "Romero";
-                case 7:
-					return "Will";
-                case 8:
-					return "Dan";
-                case 9:
-					return "Boyd";
-                case 10:
-					return "Galahan";
-                case 11:
-					return "Mervin";
-				case 12:
-					return "Rico";
-				case 13:
 					return "Albert";
-				case 14:
+				case 1:
 					return "Archibald";
-				case 15:
+				case 2:
 					return "Graham";
-				case 16:
-					return "Gray";
 				default:
-					return "Stephan";
+					return "Gray";
             }
         }
 

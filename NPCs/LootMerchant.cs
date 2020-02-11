@@ -27,7 +27,7 @@ namespace ReducedGrinding.NPCs
             npc.HitSound = SoundID.NPCHit1;
             npc.DeathSound = SoundID.NPCDeath1;
             npc.knockBackResist = 0.5f;
-            Main.npcFrameCount[npc.type] = 25;            
+            Main.npcFrameCount[npc.type] = 26;
             animationType = NPCID.Merchant;
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
