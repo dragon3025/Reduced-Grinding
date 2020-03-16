@@ -81,11 +81,30 @@ namespace ReducedGrinding
 			Mod censusMod = ModLoader.GetMod("Census");
 			if (censusMod != null)
 			{
-				censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "Summon with a \"Skull Call\".");
-				censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "No conditions.");
-				censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), "No conditions.");
-				censusMod.Call("TownNPCCondition", NPCType("Santa"), "Defeat the Frost Legion.");
-				censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "No conditions.");
+				if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
+					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "Summon with a \"Skull Call\".");
+				else
+					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
+
+				if (GetInstance<IOtherCustomNPCsConfig>().ChestSalesman)
+					censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "No conditions.");
+				else
+					censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
+
+				if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
+					censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), "No conditions.");
+				else
+					censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), " [c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
+
+				if (GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
+					censusMod.Call("TownNPCCondition", NPCType("Christmas_Elf"), "Defeat the Frost Legion.");
+				else
+					censusMod.Call("TownNPCCondition", NPCType("Christmas_Elf"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
+
+				if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
+					censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "No conditions.");
+				else
+					censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
 			}
 		}
 

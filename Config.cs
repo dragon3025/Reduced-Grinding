@@ -627,7 +627,7 @@ namespace ReducedGrinding
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		[DefaultValue(true)] public bool BoneMerchant;
-		[DefaultValue(true)] public bool Santa;
+		[DefaultValue(true)] public bool ChristmasElf;
 		[DefaultValue(false)] public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
 		[DefaultValue(false)] public bool LootMerchant;
 		[DefaultValue(false)] public bool ChestSalesman;

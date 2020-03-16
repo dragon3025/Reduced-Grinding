@@ -686,7 +686,7 @@ namespace ReducedGrinding
 				TownNPCsMax++;
 			if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
 				TownNPCsMax++;
-			if (GetInstance<IOtherCustomNPCsConfig>().Santa)
+			if (GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
 				TownHardmodeNPCsMax++;
 
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
@@ -729,7 +729,7 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Pirate ||
 						Terraria.Main.npc[i].type == NPCID.Steampunker ||
 						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == mod.NPCType("Santa") && GetInstance<IOtherCustomNPCsConfig>().Santa)
+						(Terraria.Main.npc[i].type == mod.NPCType("Christmas Elf") && GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
 					)
 					{
 						TownHardmodeNPCs++;

@@ -32,7 +32,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-			if (GetInstance<IOtherCustomNPCsConfig>().Santa && NPC.downedFrost)
+			if (GetInstance<IOtherCustomNPCsConfig>().ChristmasElf && NPC.downedFrost)
 				return true;
 			else
 				return false;
