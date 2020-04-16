@@ -34,7 +34,8 @@ namespace ReducedGrinding.NPCs
             npc.knockBackResist = 0.5f;
             Main.npcFrameCount[npc.type] = 26;
             animationType = NPCID.Guide;
-        }
+			NPCID.Sets.HatOffsetY[npc.type] = 12;
+		}
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
 			if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
