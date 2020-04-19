@@ -429,7 +429,7 @@ namespace ReducedGrinding
 		[Label("[i:3380] Sturdy Fossil")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesFossilOre;
 
 		[Header("This chance is divided by 3 if the block used is [i:424]Silt or [i:1103]Slush.")]
-		[Label("[i:1242] Amber Mosquito")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmberMosquito;
+		[Label("[i:1242] Amber Mosquito")] [Increment(.0001f)] [DefaultValue((1f / 100) - 0.00027f)] public float ExtractinatorGivesAmberMosquito;
 		[Header("This chance is divided by 2 if the block used is [i:424]Silt or [i:1103]Slush.")]
 		[Label("[i:999] Amber")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmber;
 
