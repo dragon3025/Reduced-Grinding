@@ -224,7 +224,7 @@ namespace ReducedGrinding.NPCs
 								shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
 						}
 					}
-					if (GetInstance<FOtherVanillaNPCConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
+					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
 						shop.item[nextSlot].SetDefaults(mod.ItemType("Plantera_Bulb"));
 						nextSlot++;
@@ -315,14 +315,14 @@ namespace ReducedGrinding.NPCs
 			if (travelingMerchantExists)
 			{
 				float StockingChance = GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchantStockingChance;
-				float HMCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate;
+				float PreHardModeCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingBonusForPreH_ModeCompletionRate;
 
 				if (Main.netMode == NetmodeID.SinglePlayer) //I can't get this to run in a server, I get errors instead.
 				{
 					Player player = Main.player[Main.myPlayer];
 
 					StockingChance = GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchantStockingChance;
-					HMCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate;
+					PreHardModeCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingBonusForPreH_ModeCompletionRate;
 
 					bool addItem = false;
 					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease > 0)
@@ -1281,7 +1281,7 @@ namespace ReducedGrinding.NPCs
 					if (NPC.downedQueenBee)
 						PreHardmodeCompletion++;
 				}
-				StockingChance += (HMCompletionBonus * PreHardmodeCompletion / 6);
+				StockingChance += (PreHardModeCompletionBonus * PreHardmodeCompletion / 6);
 				for (int i = 0; i < shop.Length; i++)
 				{
 					if (shop[i] != 0 && Main.rand.NextFloat() < StockingChance)

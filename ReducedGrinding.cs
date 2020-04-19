@@ -561,116 +561,116 @@ namespace ReducedGrinding
 			public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
 			{
 				
-				if(extractType == 3347 || extractType == 424 || extractType == 1103)
+				if(extractType == ItemID.DesertFossil || extractType == ItemID.SiltBlock || extractType == ItemID.SlushBlock)
 				{
 					float amberMosquitoMultiplier = 3f;
 					float gemMultiplier = 1f;
 					float amberMultiplier = 2f;
-					if (extractType == 3347)
+					if (extractType == ItemID.DesertFossil)
 					{
-						amberMosquitoMultiplier /= 3;
-						gemMultiplier *= 2;
-						amberMultiplier /= 2;
+						amberMosquitoMultiplier = 1f;
+						gemMultiplier = 2f;
+						amberMultiplier = 1f;
 					}
-					if (Main.rand.NextFloat() * amberMosquitoMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmberMosquito)
-					{
-						resultStack = 1;
-						resultType = ItemID.AmberMosquito;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesDiamond)
-					{
-						resultStack = 1;
-						resultType = ItemID.Diamond;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesRuby)
-					{
-						resultStack = 1;
-						resultType = ItemID.Ruby;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesEmerald)
-					{
-						resultStack = 1;
-						resultType = ItemID.Emerald;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesSapphire)
-					{
-						resultStack = 1;
-						resultType = ItemID.Sapphire;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTopaz)
-					{
-						resultStack = 1;
-						resultType = ItemID.Topaz;
-					}
-					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmethyst)
-					{
-						resultStack = 1;
-						resultType = ItemID.Amethyst;
-					}
-					else if (Main.rand.NextFloat() * amberMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmber)
-					{
-						resultStack = 1;
-						resultType = ItemID.Amber;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesGoldOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.GoldOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.PlatinumOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesFossilOre && extractType == 3347)
-					{
-						resultStack = 1;
-						resultType = ItemID.FossilOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesSilverOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.SilverOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTungstenOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.TungstenOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesIronOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.IronOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesLeadOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.LeadOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesCopperOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.CopperOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTinOre)
-					{
-						resultStack = 1;
-						resultType = ItemID.TinOre;
-					}
-					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumCoin)
+					if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.PlatinumCoin;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmberMosquito / amberMosquitoMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.AmberMosquito;
 					}
 					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesGoldCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.GoldCoin;
 					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesDiamond / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Diamond;
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesRuby / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Ruby;
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesEmerald / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Emerald;
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesSapphire / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Sapphire;
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTopaz / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Topaz;
+					}
+					else if (Main.rand.NextFloat() * gemMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmethyst / gemMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Amethyst;
+					}
+					else if (Main.rand.NextFloat() * amberMultiplier < GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmber / amberMultiplier)
+					{
+						resultStack = 1;
+						resultType = ItemID.Amber;
+					}
 					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesSilverCoin)
 					{
 						resultStack = 1;
 						resultType = ItemID.SilverCoin;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.PlatinumOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesGoldOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.GoldOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTungstenOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.TungstenOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesLeadOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.LeadOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesIronOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.IronOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesTinOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.TinOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesCopperOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.CopperOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesSilverOre)
+					{
+						resultStack = 1;
+						resultType = ItemID.SilverOre;
+					}
+					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesFossilOre && extractType == ItemID.DesertFossil)
+					{
+						resultStack = 1;
+						resultType = ItemID.FossilOre;
 					}
 					else if (Main.rand.NextFloat() < GetInstance<DExtractinatorConfig>().ExtractinatorGivesCopperCoin)
 					{

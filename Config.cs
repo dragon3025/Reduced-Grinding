@@ -27,35 +27,35 @@ namespace ReducedGrinding
 		[Increment(.0001f)] [DefaultValue(0.5f)] public float NormalModeMultiplierForLootWithSeperateDiffRates;
 
 		[Header("Boss Loot")]
-		[Label("[i:1313] Book of Skulls Increase")]
+		[Label("[i:1313] Book of Skulls")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBookofSkullsIncrease;
-		[Label("[i:1294] Picksaw Increase")]
+		[Label("[i:1294] Picksaw")]
 		[Increment(.0001f)] [DefaultValue(0.375f)] public float LootPicksawIncrease;
-		[Label("[i:1182] Seedling Increase")]
+		[Label("[i:1182] Seedling")]
 		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootSeedlingIncrease;
-		[Label("[i:1169] Bone Key Increase")]
+		[Label("[i:1169] Bone Key")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootSkeletronBoneKey;
-		[Label("[i:1299] Binoculars Increase")]
+		[Label("[i:1299] Binoculars")]
 		[Increment(.0001f)] [DefaultValue(0.467f)] public float LootBinocularsIncrease;
-		[Label("[i:3060] Bone Rattle Increase")]
+		[Label("[i:3060] Bone Rattle")]
 		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootBoneRattleIncrease;
-		[Label("[i:3373] Boss Mask Increase")]
+		[Label("[i:3373] Boss Mask")]
 		[Increment(.0001f)] [DefaultValue(0.1071f)] public float LootBossMaskIncrease;
-		[Label("[i:3595] Boss Trophy Increase")]
+		[Label("[i:3595] Boss Trophy")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBossTrophyIncrease;
-		[Label("[i:994] Eater's Bone Increase")]
+		[Label("[i:994] Eater's Bone")]
 		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootEatersBoneIncrease;
-		[Label("[i:2673] Truffle Worm Increase")]
+		[Label("[i:2673] Truffle Worm")]
 		[Increment(.0001f)] [DefaultValue(0.5f)] public float LootFishronTruffleworm;
-		[Label("[i:2609] Fishron Wings Increase")]
+		[Label("[i:2609] Fishron Wings")]
 		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootFishronWingsIncrease;
-		[Label("[i:2502] Honeyed Goggles Increase")]
+		[Label("[i:2502] Honeyed Goggles")]
 		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootHoneyedGogglesIncrease;
-		[Label("[i:3063] Moon Lord Weapons Increase")]
+		[Label("[i:3063] Moon Lord Weapons")]
 		[Increment(.0001f)] [DefaultValue((1f / 3) - (1f / 9))] public float LootMoonLordEachWeaponIncrease;
-		[Label("[i:1170] Nectar Increase")]
+		[Label("[i:1170] Nectar")]
 		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootNectarIncrease;
-		[Label("[i:1305] The Axe Increase")]
+		[Label("[i:1305] The Axe")]
 		[Increment(.0001f)] [DefaultValue(0.20f)] public float LootTheAxeIncrease;
 
 		[Header("Non-Boss Loot")]
@@ -66,29 +66,29 @@ namespace ReducedGrinding
 		[Label("[i:1537] Biome Key Increase For 3 Mech Bosses Down")]
 		[Increment(.0001f)] [DefaultValue(0.0028f)] public float BiomeKeyIncreaseForThreeMechBossDown;
 		[Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
-		[Label("[i:306] Chest Drop From a Matching Biome")]
+		[Label("[i:831] Chest Drop From a Matching Biome")]
 		[Increment(.0001f)] [DefaultValue(0.01f)] public float AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
-		[Label("[i:1322] Magma Stone Increase From Hellbat")]
+		[Label("[i:1322] Magma Stone From Hellbat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float HellBatLootMagmaStoneIncrease;
-		[Label("[i:1322] Magma Stone Increase From Lavabat")]
+		[Label("[i:1322] Magma Stone From Lavabat")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LavaBatLootMagmaStoneIncrease;
-		[Label("[i:885] Adhesive Bandage Increase")]
+		[Label("[i:885] Adhesive Bandage")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAdhesiveBandageIncrease;
-		[Label("[i:3821] Ale Tosser Increase")]
+		[Label("[i:3821] Ale Tosser")]
 		[Increment(.0001f)] [DefaultValue(0.833f)] public float LootAleTosserIncrease;
-		[Label("[i:3289] Amarok Increase")]
+		[Label("[i:3289] Amarok")]
 		[Increment(.0001f)] [DefaultValue((1f / 100) - (1f / 300))] public float LootAmarokIncrease;
-		[Label("[i:3794] Ancient Cloth Increase")]
+		[Label("[i:3794] Ancient Cloth")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientClothIncrease;
-		[Label("[i:961] Ancient Cobalt Breastplate Increase")]
+		[Label("[i:961] Ancient Cobalt Breastplate")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltBreastplateIncrease;
-		[Label("[i:960] Ancient Cobalt Helmet Increase")]
+		[Label("[i:960] Ancient Cobalt Helmet")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltHelmetIncrease;
-		[Label("[i:962] Ancient Cobalt Leggings Increase")]
+		[Label("[i:962] Ancient Cobalt Leggings")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientCobaltLeggingsIncrease;
-		[Label("[i:955] Ancient Gold Helmet Increase")]
+		[Label("[i:955] Ancient Gold Helmet")]
 		[Increment(.0001f)] [DefaultValue(0.015f)] public float LootAncientGoldHelmetIncrease;
-		[Label("[i:3771] Ancient Horn Increase")]
+		[Label("[i:3771] Ancient Horn")]
 		[Increment(.0001f)] [DefaultValue(0.03f)] public float LootAncientHornIncrease;
 		[Label("[i:954] Ancient Iron Helmet")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootAncientIronHelmetIncrease;
@@ -107,184 +107,200 @@ namespace ReducedGrinding
 			"Ankh Charm items in inventory is 9")]
 		[Label("[i:1612] Ankh Charm Material Incr. Per Material in Inven.")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory;
+		[Label("[i:886] Armor Polish")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootArmorPolishIncrease;
+		[Label("[i:1959] Baby Grinch's Mischief Whistle")]
 		[Increment(.0001f)] [DefaultValue(0.05f)] public float LootBabyGrinchsMischiefWhistleIncrease;
+		[Label("[i:1324] Bananarang")]
 		[Increment(.0001f)] [DefaultValue(0.3f)] public float LootBananarangIncrease;
+		[Label("[i:723] Beam Sword")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBeamSwordIncrease;
+		[Label("[i:887] Bezoar")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBezoarIncrease;
+		[Label("[i:963] Black Belt")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBlackBeltIncrease;
+		[Label("[i:236] Black Lens")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBlackLensIncrease;
+		[Label("[i:3260] Blessed Apple")]
 		[Increment(.0001f)] [DefaultValue(0.0066f)] public float LootBlessedAppleIncrease;
+		[Label("[i:888] Blindfold")]
 		[Increment(.0001f)] [DefaultValue(0f)] public float LootBlindfoldIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0015f)] public float LootBloodyMacheteAndBladedGlovesIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0078f)] public float LootBoneFeatherIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0867f)] public float LootBonePickaxeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0051f)] public float LootBoneSwordIncrease;
-		[Increment(.0001f)] [DefaultValue(0.006f)] public float LootBoneWandIncrease;
-		[Increment(.0001f)] [DefaultValue(0.01f)] public float LootBrainScramblerIncrease;
-		[Increment(.0001f)] [DefaultValue(0.075f)] public float LootBrokenBatWingIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootBunnyHoodIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0025f)] public float LootCascadeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootChainGuillotinesIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0027f)] public float LootChainKnifeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.875f)] public float LootClassyCane;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootClingerStaffIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0467f)] public float LootClothierVoodooDollIncrease;
-		[Increment(.0001f)] [DefaultValue(1f)] public float LootCloudFromHarpies;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootCompassIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootCrossNecklaceIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootCrystalVileShardIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDaedalusStormbowIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDarkShardIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDartPistolIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDartRifleIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float LootDeathSickleIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0214f)] public float LootDemonScytheIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDepthMeterIncrease;
-		[Increment(.0001f)] [DefaultValue(1f)] public float LootDesertFossilFromDuneSplicer;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDesertSpiritLampIncrease;
-		[Increment(.0001f)] [DefaultValue(0.03f)] public float LootDivingHelmetIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootDualHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfPantsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfShirtIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoCoatIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoHoodIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoPantsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.875f)] public float LootExoticScimitarIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootEyePatchIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootEyeSpringIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootFastClockBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.05f)] public float LootFestiveWingsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootFetidBaghnakhsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0367f)] public float LootFireFeatherIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootFleshKnucklesIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootFlyingKnifeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootFrostStaffIncrease;
-		[Increment(.0001f)] [DefaultValue(0.19f)] public float LootFrozenTurtleShellIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootGiantBowIncrease;
-		[Increment(.0001f)] [DefaultValue(0.005f)] public float LootGiantHarpyFeatherIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootGoldenFurnitureIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootGoldenKeyIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootGoodieBagIncrease;
-		[Increment(.0001f)] [DefaultValue(1f)] public float LootGreenCapForNonAndrewGuide;
-		[Increment(.0001f)] [DefaultValue(0.75f)] public float LootHappyGrenadeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0075f)] public float LootHarpoonIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0025f)] public float LootHelFireIncrease;
-		[Increment(.0001f)] [DefaultValue(1f)] public float LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0011f)] public float LootIceSickleIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootIlluminantHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float LootJellyfishNecklaceIncrease;
-		[Increment(.0001f)] [DefaultValue(0.001f)] public float LootKOCannonIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootKeybrandIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0075f)] public float LootKrakenIncrease;
-		[Increment(.0001f)] [DefaultValue(0.01f)] public float LootLamiaClothesIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootLifeDrainIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootLightShardIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootLihzahrdPowerCellIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootLivingFireBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0.009f)] public float LootLizardEggIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMagicDaggerIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0375f)] public float LootMagicQuiverIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0017f)] public float LootMagnetSphereIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMandibleBladeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.045f)] public float LootMarrowIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMeatGrinderIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMegaphoneBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMeteoriteIncrease;
-		[Increment(.0001f)] [DefaultValue(0.2833f)] public float LootMiningHelmetIncrease;
-		[Increment(.0001f)] [DefaultValue(0.3093f)] public float LootMiningPantsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.3093f)] public float LootMiningShirtIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float LootMoneyTroughIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMoonCharmIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMoonMaskIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMoonStoneIncrease;
-		[Increment(.0001f)] [DefaultValue(0.1381f)] public float LootMothronWingsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootMummyCostumeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootNazarIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootNimbusRodIncrease;
-		[Increment(.0001f)] [DefaultValue(0.03f)] public float LootObsidianRoseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.9f)] public float LootPaintballGunIncrease;
-		[Increment(.0001f)] [DefaultValue(0.35f)] public float LootPaladinsShieldIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootPedguinssuitIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootPhilosophersStoneIncrease;
-		[Increment(.0001f)] [DefaultValue(0.015f)] public float LootPirateMapIncrease;
-		[Increment(.0001f)] [DefaultValue(0.048f)] public float LootPlumbersHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0.105f)] public float LootPocketMirrorIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootPresentIncrease;
-		[Increment(.0001f)] [DefaultValue(0.1125f)] public float LootPsychoKnifeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootPutridScentIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootRainArmorIncrease;
-		[Range(1, 1000)]
+		[Label("[i:1825] Bloody Machete")] [Increment(.0001f)] [DefaultValue(0.0015f)] public float LootBloodyMacheteAndBladedGlovesIncrease;
+		[Label("[i:1517] Bone Feather")] [Increment(.0001f)] [DefaultValue(0.0078f)] public float LootBoneFeatherIncrease;
+		[Label("[i:1320] Bone Pickaxe")] [Increment(.0001f)] [DefaultValue(0.0867f)] public float LootBonePickaxeIncrease;
+		[Label("[i:1166] Bone Sword")] [Increment(.0001f)] [DefaultValue(0.0051f)] public float LootBoneSwordIncrease;
+		[Label("[i:932] Bone Ward")] [Increment(.0001f)] [DefaultValue(0.006f)] public float LootBoneWandIncrease;
+		[Label("[i:2771] Brain Scrambler")] [Increment(.0001f)] [DefaultValue(0.01f)] public float LootBrainScramblerIncrease;
+		[Label("[i:1520] Broken Bat Wing")] [Increment(.0001f)] [DefaultValue(0.075f)] public float LootBrokenBatWingIncrease;
+		[Label("[i:243] Bunny Hood")] [Increment(.0001f)] [DefaultValue(0f)] public float LootBunnyHoodIncrease;
+		[Label("[i:3282] Cascade")] [Increment(.0001f)] [DefaultValue(0.0025f)] public float LootCascadeIncrease;
+		[Label("[i:3012] Chain Guillotines")] [Increment(.0001f)] [DefaultValue(0f)] public float LootChainGuillotinesIncrease;
+		[Label("[i:1325] Chain Knife")] [Increment(.0001f)] [DefaultValue(0.0027f)] public float LootChainKnifeIncrease;
+		[Label("[i:3351] Classy Cane")] [Increment(.0001f)] [DefaultValue(0.875f)] public float LootClassyCane;
+		[Label("[i:3014] Clinger Staff")] [Increment(.0001f)] [DefaultValue(0f)] public float LootClingerStaffIncrease;
+		[Label("[i:1307] Clothier Voodoo Doll")] [Increment(.0001f)] [DefaultValue(0.0467f)] public float LootClothierVoodooDollIncrease;
+		[Label("[i:751] Cloud (From Harpies)")] [Increment(.0001f)] [DefaultValue(1f)] public float LootCloudFromHarpies;
+		[Label("[i:393] Compass")] [Increment(.0001f)] [DefaultValue(0f)] public float LootCompassIncrease;
+		[Label("[i:554] Cross Necklace")] [Increment(.0001f)] [DefaultValue(0f)] public float LootCrossNecklaceIncrease;
+		[Label("[i:3051] Crystal Vile Shard")] [Increment(.0001f)] [DefaultValue(0f)] public float LootCrystalVileShardIncrease;
+		[Label("[i:3029] Daedalus Stormbow")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDaedalusStormbowIncrease;
+		[Label("[i:527] Dark Shard")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDarkShardIncrease;
+		[Label("[i:3007] Dart Pistol")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDartPistolIncrease;
+		[Label("[i:3008] Dart Rifle")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDartRifleIncrease;
+		[Label("[i:1327] Death Sickle")] [Increment(.0001f)] [DefaultValue(0.025f)] public float LootDeathSickleIncrease;
+		[Label("[i:272] Demon Sythe")] [Increment(.0001f)] [DefaultValue(0.0214f)] public float LootDemonScytheIncrease;
+		[Label("[i:18] Depth Meter")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDepthMeterIncrease;
+		[Label("[i:3347] Desert Fossil (From Dune Splicer)")] [Increment(.0001f)] [DefaultValue(1f)] public float LootDesertFossilFromDuneSplicer;
+		[Label("[i:3795] Desert Spirit Lamp")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDesertSpiritLampIncrease;
+		[Label("[i:268] Diving Helmet")] [Increment(.0001f)] [DefaultValue(0.03f)] public float LootDivingHelmetIncrease;
+		[Label("[i:437] Dual Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootDualHookIncrease;
+		[Label("[i:1943] Elf Hat")] [Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfHatIncrease;
+		[Label("[i:1945] Elf Pants")] [Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfPantsIncrease;
+		[Label("[i:1944] Elf Shirt")] [Increment(.0001f)] [DefaultValue(0.00833f)] public float LootElfShirtIncrease;
+		[Label("[i:804] Eskimo Coat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoCoatIncrease;
+		[Label("[i:803] Eskimo Hood")] [Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoHoodIncrease;
+		[Label("[i:805] Eskimo Pants")] [Increment(.0001f)] [DefaultValue(0f)] public float LootEskimoPantsIncrease;
+		[Label("[i:3349] Exotic Scimitar")] [Increment(.0001f)] [DefaultValue(0.875f)] public float LootExoticScimitarIncrease;
+		[Label("[i:1278] Eye Patch")] [Increment(.0001f)] [DefaultValue(0f)] public float LootEyePatchIncrease;
+		[Label("[i:1311] Eye Spring")] [Increment(.0001f)] [DefaultValue(0f)] public float LootEyeSpringIncrease;
+		[Label("[i:889] Fast Clock")] [Increment(.0001f)] [DefaultValue(0f)] public float LootFastClockBaseIncrease;
+		[Label("[i:1871] Festive Wings")] [Increment(.0001f)] [DefaultValue(0.05f)] public float LootFestiveWingsIncrease;
+		[Label("[i:3013] Fetid Baghnakhs")] [Increment(.0001f)] [DefaultValue(0f)] public float LootFetidBaghnakhsIncrease;
+		[Label("[i:1518] Fire Feather")] [Increment(.0001f)] [DefaultValue(0.0367f)] public float LootFireFeatherIncrease;
+		[Label("[i:3016] Flesh Knuckles")] [Increment(.0001f)] [DefaultValue(0f)] public float LootFleshKnucklesIncrease;
+		[Label("[i:3030] Flying Knife")] [Increment(.0001f)] [DefaultValue(0f)] public float LootFlyingKnifeIncrease;
+		[Label("[i:726] Frost Staff")] [Increment(.0001f)] [DefaultValue(0f)] public float LootFrostStaffIncrease;
+		[Label("[i:1253] Frozen Turtle Shell")] [Increment(.0001f)] [DefaultValue(0.19f)] public float LootFrozenTurtleShellIncrease;
+		[Label("[i:1906] Giant Bow")] [Increment(.0001f)] [DefaultValue(0f)] public float LootGiantBowIncrease;
+		[Label("[i:1516] Giant Harpy Feather")] [Increment(.0001f)] [DefaultValue(0.005f)] public float LootGiantHarpyFeatherIncrease;
+		[Label("[i:1704] Gold Furniture")] [Increment(.0001f)] [DefaultValue(0f)] public float LootGoldenFurnitureIncrease;
+		[Label("[i:327] Golden Key")] [Increment(.0001f)] [DefaultValue(0f)] public float LootGoldenKeyIncrease;
+		[Label("[i:1774] Goodie Bag")] [Increment(.0001f)] [DefaultValue(0f)] public float LootGoodieBagIncrease;
+		[Label("[i:867] Green Cap (For non-Andrew Guide)")] [Increment(.0001f)] [DefaultValue(1f)] public float LootGreenCapForNonAndrewGuide;
+		[Label("[i:3548] Happy Grenade")] [Increment(.0001f)] [DefaultValue(0.75f)] public float LootHappyGrenadeIncrease;
+		[Label("[i:160] Harpoon")] [Increment(.0001f)] [DefaultValue(0.0075f)] public float LootHarpoonIncrease;
+		[Label("[i:3290] Hel-Fire")] [Increment(.0001f)] [DefaultValue(0.0025f)] public float LootHelFireIncrease;
+		[Label("[i:1124] Hive Block (From Hornet and Moss Hornets after Defeating Queen Bee)")] [Increment(.0001f)] [DefaultValue(1f)] public float LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
+		[Label("[i:118] Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootHookIncrease;
+		[Label("[i:1306] Sickle")] [Increment(.0001f)] [DefaultValue(0.0011f)] public float LootIceSickleIncrease;
+		[Label("[i:3022] Illuminant Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootIlluminantHookIncrease;
+		[Label("[i:1303] Jellyfish Necklace")] [Increment(.0001f)] [DefaultValue(0.04f)] public float LootJellyfishNecklaceIncrease;
+		[Label("[i:1314] KO Cannon")] [Increment(.0001f)] [DefaultValue(0.001f)] public float LootKOCannonIncrease;
+		[Label("[i:671] Keybrand")] [Increment(.0001f)] [DefaultValue(0f)] public float LootKeybrandIncrease;
+		[Label("[i:3291] Kraken")] [Increment(.0001f)] [DefaultValue(0.0075f)] public float LootKrakenIncrease;
+		[Label("[i:3784] Lamia Clothes")] [Increment(.0001f)] [DefaultValue(0.01f)] public float LootLamiaClothesIncrease;
+		[Label("[i:3006] Life Drain")] [Increment(.0001f)] [DefaultValue(0f)] public float LootLifeDrainIncrease;
+		[Label("[i:528] Light Shard")] [Increment(.0001f)] [DefaultValue(0f)] public float LootLightShardIncrease;
+		[Label("[i:1293] Lihzahrd Power Cell")] [Increment(.0001f)] [DefaultValue(0f)] public float LootLihzahrdPowerCellIncrease;
+		[Label("[i:2701] Living Fire Block")] [Increment(.0001f)] [DefaultValue(0f)] public float LootLivingFireBlockIncrease;
+		[Label("[i:1172] Lizard Egg")] [Increment(.0001f)] [DefaultValue(0.009f)] public float LootLizardEggIncrease;
+		[Label("[i:517] Magic Dagger")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMagicDaggerIncrease;
+		[Label("[i:1321] Magic Quiver")] [Increment(.0001f)] [DefaultValue(0.0375f)] public float LootMagicQuiverIncrease;
+		[Label("[i:1266] Magnet Sphere")] [Increment(.0001f)] [DefaultValue(0.0017f)] public float LootMagnetSphereIncrease;
+		[Label("[i:3772] Mandible Blade")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMandibleBladeIncrease;
+		[Label("[i:682] Marrow")] [Increment(.0001f)] [DefaultValue(0.045f)] public float LootMarrowIncrease;
+		[Label("[i:996] Meat Grinder")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMeatGrinderIncrease;
+		[Label("[i:890] Megaphone")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMegaphoneBaseIncrease;
+		[Label("[i:116] Meteorite")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMeteoriteIncrease;
+		[Label("[i:88] Mining Helmet")] [Increment(.0001f)] [DefaultValue(0.2833f)] public float LootMiningHelmetIncrease;
+		[Label("[i:411] Mining Pants")] [Increment(.0001f)] [DefaultValue(0.3093f)] public float LootMiningPantsIncrease;
+		[Label("[i:410] Mining Shirt")] [Increment(.0001f)] [DefaultValue(0.3093f)] public float LootMiningShirtIncrease;
+		[Label("[i:3213] Money Trough")] [Increment(.0001f)] [DefaultValue(0.04f)] public float LootMoneyTroughIncrease;
+		[Label("[i:485] Moon Charm")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMoonCharmIncrease;
+		[Label("[i:2801] Moon Mask")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMoonMaskIncrease;
+		[Label("[i:900] Moon Stone")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMoonStoneIncrease;
+		[Label("[i:2770] Mothron Wings")] [Increment(.0001f)] [DefaultValue(0.1381f)] public float LootMothronWingsIncrease;
+		[Label("[i:870] Mummy Costume")] [Increment(.0001f)] [DefaultValue(0f)] public float LootMummyCostumeIncrease;
+		[Label("[i:891] Nazar")] [Increment(.0001f)] [DefaultValue(0f)] public float LootNazarIncrease;
+		[Label("[i:1244] Nimbus Rod")] [Increment(.0001f)] [DefaultValue(0f)] public float LootNimbusRodIncrease;
+		[Label("[i:1323] Obsidian Rose")] [Increment(.0001f)] [DefaultValue(0.03f)] public float LootObsidianRoseIncrease;
+		[Label("[i:3350] Paintball Gun")] [Increment(.0001f)] [DefaultValue(0.9f)] public float LootPaintballGunIncrease;
+		[Label("[i:938] Paladin’s Shield")] [Increment(.0001f)] [DefaultValue(0.35f)] public float LootPaladinsShieldIncrease;
+		[Label("[i:3757] Pedguin’s Suit")] [Increment(.0001f)] [DefaultValue(0f)] public float LootPedguinssuitIncrease;
+		[Label("[i:535] Philosopher’s Stone")] [Increment(.0001f)] [DefaultValue(0f)] public float LootPhilosophersStoneIncrease;
+		[Label("[i:1315] Pirate Map")] [Increment(.0001f)] [DefaultValue(0.015f)] public float LootPirateMapIncrease;
+		[Label("[i:244] Plumber’s Hat")] [Increment(.0001f)] [DefaultValue(0.048f)] public float LootPlumbersHatIncrease;
+		[Label("[i:3781] Pocket Mirror")] [Increment(.0001f)] [DefaultValue(0.105f)] public float LootPocketMirrorIncrease;
+		[Label("[i:1869] Present")] [Increment(.0001f)] [DefaultValue(0f)] public float LootPresentIncrease;
+		[Label("[i:3106] Psycho Knife")] [Increment(.0001f)] [DefaultValue(0.1125f)] public float LootPsychoKnifeIncrease;
+		[Label("[i:3015] Putrid Scent")] [Increment(.0001f)] [DefaultValue(0f)] public float LootPutridScentIncrease;
+		[Label("[i:1135] Rain Armor")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRainArmorIncrease;
+
+		[Label("[i:662] Rainbow Brick Max Increase")]
+		[Range(0, 1000)]
 		[Slider]
 		[DefaultValue(0)] public int LootRainbowBlockDropMaxIncrease;
-		[Range(1, 1000)]
+		[Label("[i:662] Rainbow Brick Min Increase")]
+		[Range(0, 1000)]
 		[Slider]
 		[DefaultValue(0)] public int LootRainbowBlockDropMinIncrease;
-		[Increment(.0001f)] [DefaultValue(0.061f)] public float LootRallyIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0917f)] public float LootReindeerBellsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootRifleScopeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootRobotHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootRocketLauncherIncrease;
-		[Increment(.0001f)] [DefaultValue(0.1291f)] public float LootRodofDiscordIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSWATHelmetIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSailorHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSailorPantsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSailorShirtIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootShackleIncrease;
-		[Range(1, 1000)]
-		[Slider]
-		[DefaultValue(50)] public int LootMaxSandFromDuneSplicer;
-		[Range(1, 1000)]
-		[Slider]
-		[DefaultValue(0)] public int LootMaxSandFromTombCrawler;
+		[Label("[i:3285] Rally")] [Increment(.0001f)] [DefaultValue(0.061f)] public float LootRallyIncrease;
+		[Label("[i:1914] Reindeer Bells")] [Increment(.0001f)] [DefaultValue(0.0917f)] public float LootReindeerBellsIncrease;
+		[Label("[i:1300] Rifle Scope")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRifleScopeIncrease;
+		[Label("[i:263] Robot Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRobotHatIncrease;
+		[Label("[i:759] Rocket Launcher")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRocketLauncherIncrease;
+		[Label("[i:1326] Rod of Discord")] [Increment(.0001f)] [DefaultValue(0.1291f)] public float LootRodofDiscordIncrease;
+		[Label("[i:1514] SWAT Helmet")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSWATHelmetIncrease;
+		[Label("[i:1277] Sailor Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorHatIncrease;
+		[Label("[i:1280] Sailor Pants")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorPantsIncrease;
+		[Label("[i:1279] Sailor Shirt")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorShirtIncrease;
+		[Label("[i:216] Shackle")] [Increment(.0001f)] [DefaultValue(0f)] public float LootShackleIncrease;
+		[Label("[i:169] Min Sand (From Dune Splicer)")]
 		[Range(1, 1000)]
 		[Slider]
 		[DefaultValue(20)] public int LootMinSandFromDuneSplicer;
+		[Label("[i:169] Max Sand (From Dune Splicer)")]
+		[Range(1, 1000)]
+		[Slider]
+		[DefaultValue(50)] public int LootMaxSandFromDuneSplicer;
+		[Label("[i:169] Min Sand (From Tomb Crawler)")]
 		[Range(1, 1000)]
 		[Slider]
 		[DefaultValue(0)] public int LootMinSandFromTombCrawler;
-		[Increment(.0001f)] [DefaultValue(0.048f)] public float LootSkullIncrease;
-		[Increment(.0001f)] [DefaultValue(0.075f)] public float LootSlimeStaffIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSniperRifleIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0133f)] public float LootSnowballLauncherIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSoulofLightIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSoulofNightIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootStarCloakIncrease;
-		[Increment(.0001f)] [DefaultValue(0.875f)] public float LootStylishScissorsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSunMaskIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTabiIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTacticalShotgunIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTallyCounterIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTatteredBeeWingIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTendonHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTitanGloveIncrease;
-		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootToySledIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootTrifoldMapIncrease;
-		[Increment(.0001f)] [DefaultValue(0.1412f)] public float LootTurtleShellIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootUmbrellaHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float LootUnicornonaStickIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootUziIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootVikingHelmetIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootVitaminsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootWhoopieCushionIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0063f)] public float LootWispinaBottleIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootWormHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootYeletsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.016f)] public float LootZombieArmIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0027f)] public float PirateLootCoinGunBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0117f)] public float PirateLootCutlassBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0045f)] public float PirateLootDiscountCardBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0043f)] public float PirateLootGoldRingBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0039f)] public float PirateLootLuckyCoinBaseIncrease;
-		[Increment(.0001f)] [DefaultValue(0.0045f)] public float PirateLootPirateStaffBaseIncrease;
-		[DefaultValue(true)] public bool LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense;
-		[DefaultValue(false)] public bool SlimeStaffIncreaseToSurfaceSlimes;
-		[DefaultValue(false)] public bool SlimeStaffIncreaseToUndergroundSlimes;
-		[DefaultValue(false)] public bool SlimeStaffIncreaseToCavernSlimess;
-		[DefaultValue(true)] public bool SlimeStaffIncreaseToIceSpikedSlimes;
-		[DefaultValue(true)] public bool SlimeStaffIncreaseToSpikedJungleSlimes;
+		[Label("[i:169] Max Sand (From Tomb Crawler)")]
+		[Range(1, 1000)]
+		[Slider]
+		[DefaultValue(0)] public int LootMaxSandFromTombCrawler;
+		[Label("[i:1274] Skull")] [Increment(.0001f)] [DefaultValue(0.048f)] public float LootSkullIncrease;
+		[Label("[i:1309] Slime Staff")] [Increment(.0001f)] [DefaultValue(0.075f)] public float LootSlimeStaffIncrease;
+		[Label("[i:1309] Slime Staff configuration affects Surface Slimes")] [DefaultValue(false)] public bool SlimeStaffIncreaseToSurfaceSlimes;
+		[Label("[i:1309] Slime Staff configuration affects Underground Slimes")] [DefaultValue(false)] public bool SlimeStaffIncreaseToUndergroundSlimes;
+		[Label("[i:1309] Slime Staff configuration affects Cavern Slimes")] [DefaultValue(false)] public bool SlimeStaffIncreaseToCavernSlimess;
+		[Label("[i:1309] Slime Staff configuration affects Ice Spiked Slimes")] [DefaultValue(true)] public bool SlimeStaffIncreaseToIceSpikedSlimes;
+		[Label("[i:1309] Slime Staff configuration affects Spiked Jungle Slimes")] [DefaultValue(true)] public bool SlimeStaffIncreaseToSpikedJungleSlimes;
+		[Label("[i:1254] Sniper Rifle")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSniperRifleIncrease;
+		[Label("[i:951] Snowball Launcher")] [Increment(.0001f)] [DefaultValue(0.0133f)] public float LootSnowballLauncherIncrease;
+		[Label("[i:520] Soul of Light")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSoulofLightIncrease;
+		[Label("[i:521] Soul of Night")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSoulofNightIncrease;
+		[Label("[i:532] Star Cloak")] [Increment(.0001f)] [DefaultValue(0f)] public float LootStarCloakIncrease;
+		[Label("[i:3352] Stylish Scissors")] [Increment(.0001f)] [DefaultValue(0.875f)] public float LootStylishScissorsIncrease;
+		[Label("[i:2802] Sun Mask")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSunMaskIncrease;
+		[Label("[i:977] Tabi")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTabiIncrease;
+		[Label("[i:679] Tactical Shotgun")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTacticalShotgunIncrease;
+		[Label("[i:3095] Tally Counter")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTallyCounterIncrease;
+		[Label("[i:1521] Tattered Bee Wing")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTatteredBeeWingIncrease;
+		[Label("[i:3020] Tendon Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTendonHookIncrease;
+		[Label("[i:536] Titan Glove")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTitanGloveIncrease;
+		[Label("[i:1312] Toy Sled")] [Increment(.0001f)] [DefaultValue(0.15f)] public float LootToySledIncrease;
+		[Label("[i:893] Trifold Map")] [Increment(.0001f)] [DefaultValue(0f)] public float LootTrifoldMapIncrease;
+		[Label("[i:1328] Turtle Shell")] [Increment(.0001f)] [DefaultValue(0.1412f)] public float LootTurtleShellIncrease;
+		[Label("[i:1243] Umbrella Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootUmbrellaHatIncrease;
+		[Label("[i:856] Unicorn on a Stick")] [Increment(.0001f)] [DefaultValue(0.04f)] public float LootUnicornonaStickIncrease;
+		[Label("[i:1265] Uzi")] [Increment(.0001f)] [DefaultValue(0f)] public float LootUziIncrease;
+		[Label("[i:879] Viking Helmet")] [Increment(.0001f)] [DefaultValue(0f)] public float LootVikingHelmetIncrease;
+		[Label("[i:892] Vitamins")] [Increment(.0001f)] [DefaultValue(0f)] public float LootVitaminsIncrease;
+		[Label("[i:215] Whoopie Cushion")] [Increment(.0001f)] [DefaultValue(0f)] public float LootWhoopieCushionIncrease;
+		[Label("[i:1183] Wisp in a Bottle")] [Increment(.0001f)] [DefaultValue(0.0063f)] public float LootWispinaBottleIncrease;
+		[Label("[i:3023] Worm Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootWormHookIncrease;
+		[Label("[i:3286] Yelets")] [Increment(.0001f)] [DefaultValue(0f)] public float LootYeletsIncrease;
+		[Label("[i:1304] Zombie Arm")] [Increment(.0001f)] [DefaultValue(0.016f)] public float LootZombieArmIncrease;
+		[Label("[i:905] Coin Gun")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0027f)] public float PirateLootCoinGunBaseIncrease;
+		[Label("[i:672] Cutlass")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0117f)] public float PirateLootCutlassBaseIncrease;
+		[Label("[i:854] Discount Card")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0045f)] public float PirateLootDiscountCardBaseIncrease;
+		[Label("[i:3033] Gold Ring")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0043f)] public float PirateLootGoldRingBaseIncrease;
+		[Label("[i:855] Lucky Coin")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0039f)] public float PirateLootLuckyCoinBaseIncrease;
+		[Label("[i:2584] Pirate Staff")] [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")] [Increment(.0001f)] [DefaultValue(0.0045f)] public float PirateLootPirateStaffBaseIncrease;
+		[Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove drop from non-weak enemies.")] [Tooltip("Makes it so their drop chance isn't limited to enemies with low defense, damage, and coin drop.")] [DefaultValue(true)] public bool LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -293,61 +309,74 @@ namespace ReducedGrinding
 		}
 	}
 
-	[Label("Grab Bags")]
+	[Label("Crate and Other Grab Bag Drops")]
 	public class BGrabBagConfig : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Increment(.0001f)] [DefaultValue(0.2f)] public float CrateDungeonBoneWelder;
-		[Increment(.0001f)] [DefaultValue(5.0f / 6)] public float CrateDungeonHardmodeGoldenLockBoxIncrease;
-		[Increment(.0001f)] [DefaultValue((1f / 4) - (1f / 20))] public float CrateEnchantedSundialGoldenIncrease;
-		[Increment(.0001f)] [DefaultValue((1f / 16) - (1f / 60))] public float CrateEnchantedSundialIronIncrease;
-		[Increment(.0001f)] [DefaultValue((1f / 64) - (1f / 200))] public float CrateEnchantedSundialWoodenIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleAnkeltOfTheWindIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleFeralClawsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.25f)] public float CrateJungleFlowerBoots;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLeafWand;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingLoom;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingMahoganyWand;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingWoodWand;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleRichMahoganyLeafWand;
-		[Increment(.0001f)] [DefaultValue(0.25f)] public float CrateJungleSeaweed;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleStaffOfRegrowth;
-		[Increment(.0001f)] [DefaultValue(0.3333f)] public float CrateSkySkyMill;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersGolden;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersIron;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersWooden;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsGolden;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsIron;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsWooden;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenAgletIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenClimbingClawsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenRadarIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneBlock;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneHook;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCanePickaxe;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneSword;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentChristmasPudding;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentCoal;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentDogWhistle;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentEggnog;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentFruitcakeChakram;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentGingerbreadCookie;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentGreenCandyCaneBlock;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentHandWarmer;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentHardmodeSnowGlobe;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentHolly;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentMrsClausCostume;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentParkaOutfit;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentPineTreeBlock;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentRedRyderPlusMusketBall;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentReindeerAntlers;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentSnowHat;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentStarAnise;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentSugarCookie;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentToolbox;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentTreeCostume;
-		[Increment(.0001f)] [DefaultValue(0f)] public float PresentUglySweater;
+		[Header("[i:3205] Dungeon Crate")]
+		[Label("[i:2192] Bone Welder")] [Increment(.0001f)] [DefaultValue(0.2f)] public float CrateDungeonBoneWelder;
+		[Label("[i:3085] Golden Lockbox")] [Increment(.0001f)] [DefaultValue(5.0f / 6)] public float CrateDungeonHardmodeGoldenLockBoxIncrease;
+
+		[Header("[i:2336] Golden Crate")]
+		[Label("[i:3064] Enchanted Sundial")] [Increment(.0001f)] [DefaultValue((1f / 4) - (1f / 20))] public float CrateEnchantedSundialGoldenIncrease;
+		[Label("[i:187] Flipper")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersGolden;
+		[Label("[i:863] Water Walking Boots")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsGolden;
+
+		[Header("[i:2335] Iron Crate")]
+		[Label("[i:3064] Enchanted Sundial")] [Increment(.0001f)] [DefaultValue((1f / 16) - (1f / 60))] public float CrateEnchantedSundialIronIncrease;
+		[Label("[i:187] Fipper")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersIron;
+		[Label("[i:863] Water Walking Boots")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsIron;
+		
+		[Header("[i:2334] Wooden Crate")]
+		[Label("[i:3064] Enchanted Sundial")] [Increment(.0001f)] [DefaultValue((1f / 64) - (1f / 200))] public float CrateEnchantedSundialWoodenIncrease;
+		[Label("[i:187] Flipper")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateFlippersWooden;
+		[Label("[i:863] Water Walking Boots")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWaterWalkingBootsWooden;
+		[Label("[i:285] Aglet")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenAgletIncrease;
+		[Label("[i:953] Climbing Claws")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenClimbingClawsIncrease;
+		[Label("[i:3084] Radar")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateWoodenRadarIncrease;
+
+		[Header("[i:3208] Jungle Crate")]
+		[Label("[i:212] Anklet of the Wind")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleAnkeltOfTheWindIncrease;
+		[Label("[i:211] Feral Claws")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleFeralClawsIncrease;
+		[Label("[i:3017] Flower Boots")] [Increment(.0001f)] [DefaultValue(0.25f)] public float CrateJungleFlowerBoots;
+		[Label("[i:933] Leaf Wand")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLeafWand;
+		[Label("[i:2196] Living Loom")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingLoom;
+		[Label("[i:3360] Mahogany Wand")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingMahoganyWand;
+		[Label("[i:832] Living Wood Wand")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleLivingWoodWand;
+		[Label("[i:3361] Rich Mahogany Leaf Wand")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleRichMahoganyLeafWand;
+		[Label("[i:753] Seaweed")] [Increment(.0001f)] [DefaultValue(0.25f)] public float CrateJungleSeaweed;
+		[Label("[i:213] Staff of Regrowth")] [Increment(.0001f)] [DefaultValue(0f)] public float CrateJungleStaffOfRegrowth;
+		
+		[Header("[i:3206] Sky Crate")]
+		[Label("[i:2197] Sky Mill")] [Increment(.0001f)] [DefaultValue(0.3333f)] public float CrateSkySkyMill;
+
+		[Header("[i:1869] Present")]
+		[Label("[i:586] Candy Cane Block")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneBlock;
+		[Label("[i:1915] Candy Cane Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneHook;
+		[Label("[i:1917] Candy Cane Pickaxe")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCanePickaxe;
+		[Label("[i:1909] Candy Cane Sword")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentCandyCaneSword;
+		[Label("[i:1911] Christmas Pudding")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentChristmasPudding;
+		[Label("[i:1922] Coal")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentCoal;
+		[Label("[i:1927] Dog Whistle")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentDogWhistle;
+		[Label("[i:1912] Eggnog")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentEggnog;
+		[Label("[i:1918] Fruitcake Chakram")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentFruitcakeChakram;
+		[Label("[i:1920] Ginderbread Cookie")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentGingerbreadCookie;
+		[Label("[i:591] Green Candy Cane Block")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentGreenCandyCaneBlock;
+		[Label("[i:1921] Hand Warmer")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentHandWarmer;
+		[Label("[i:602] Snow Glow (Hardmode only)")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentHardmodeSnowGlobe;
+		[Label("[i:1908] Holly")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentHolly;
+		[Label("[i:1933] Mrs. Clause Costume")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentMrsClausCostume;
+		[Label("[i:1936] Parka Outfit")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentParkaOutfit;
+		[Label("[i:1872] Pine Tree Block")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentPineTreeBlock;
+		[Label("[i:1870] Red Ryder (with Musket Balls)")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentRedRyderPlusMusketBall;
+		[Label("[i:1907] Reindeer Antlers")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentReindeerAntlers;
+		[Label("[i:1938] Snow Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentSnowHat;
+		[Label("[i:1913] Star Anise")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentStarAnise;
+		[Label("[i:1919] Sugar Cookie")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentSugarCookie;
+		[Label("[i:1923] Toolbox")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentToolbox;
+		[Label("[i:1940] Tree Costume")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentTreeCostume;
+		[Label("[i:1939] Ugly Sweater")] [Increment(.0001f)] [DefaultValue(0f)] public float PresentUglySweater;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -356,32 +385,32 @@ namespace ReducedGrinding
 		}
 	}
 
-	[Label("Angler, Extra Chances for Quest Rewards")]
+	[Label("Extra Chances for Angler Quest Rewards")]
 	public class CAnglerQuestRewardsConfig : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestAnglerEarringIncrease;
-		[Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerPantsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerVestIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float QuestCoralstoneBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float QuestDecorativeFurnitureIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float QuestFishCostumeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.033f)] public float QuestFishHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestFishermansGuideIncrease;
-		[Increment(.0001f)] [DefaultValue(0.012f)] public float QuestGoldenBugNetIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float QuestGoldenFishingRodIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float QuestHardcoreBottomlessBucketIncrease;
-		[Increment(.0001f)] [DefaultValue(0.04f)] public float QuestHardcoreFinWingsIncrease;
-		[Increment(.0001f)] [DefaultValue(0.086f)] public float QuestHardcoreHotlineFishingHookIncrease;
-		[Increment(.0001f)] [DefaultValue(0.086f)] public float QuestHardcoreSuperAbsorbantSpongeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestHighTestFishingLineIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float QuestMermaidCostumeIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestSextantIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestTackleBoxIncrease;
-		[Increment(.0001f)] [DefaultValue(0.09f)] public float QuestTrophyIncrease;
-		[Increment(.0001f)] [DefaultValue(0.025f)] public float QuestWeatherRadioIncrease;
+		[Label("[i:2374] Earring")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestAnglerEarringIncrease;
+		[Label("[i:2367] Angler Hat")] [Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerHatIncrease;
+		[Label("[i:2369] Angler Pants")] [Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerPantsIncrease;
+		[Label("[i:2368] Angler Vest")] [Increment(.0001f)] [DefaultValue(0.05f)] public float QuestAnglerVestIncrease;
+		[Label("[i:2435] Coralstone Block")] [Increment(.0001f)] [DefaultValue(0.04f)] public float QuestCoralstoneBlockIncrease;
+		[Label("[i:2490] Furniture")] [Increment(.0001f)] [DefaultValue(0.04f)] public float QuestDecorativeFurnitureIncrease;
+		[Label("[i:2498] Fish Costume")] [Increment(.0001f)] [DefaultValue(0f)] public float QuestFishCostumeIncrease;
+		[Label("[i:2360] Fish Hook")] [Increment(.0001f)] [DefaultValue(0.033f)] public float QuestFishHookIncrease;
+		[Label("[i:3120] Fisherman's Pocket Guide")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestFishermansGuideIncrease;
+		[Label("[i:3183] Golden Bug Net")] [Increment(.0001f)] [DefaultValue(0.012f)] public float QuestGoldenBugNetIncrease;
+		[Label("[i:2294] Golden Fishing Rod")] [Increment(.0001f)] [DefaultValue(0f)] public float QuestGoldenFishingRodIncrease;
+		[Label("[i:3031] Bottomless Bucket (Hardcore only)")] [Increment(.0001f)] [DefaultValue(0.04f)] public float QuestHardcoreBottomlessBucketIncrease;
+		[Label("[i:2494] Fin Wings (Hardcore only)")] [Increment(.0001f)] [DefaultValue(0.04f)] public float QuestHardcoreFinWingsIncrease;
+		[Label("[i:2422] Hotline Fishing Hook (Hardcore only)")] [Increment(.0001f)] [DefaultValue(0.086f)] public float QuestHardcoreHotlineFishingHookIncrease;
+		[Label("[i:3032] Super Absorbant Sponge (Hardcore only)")] [Increment(.0001f)] [DefaultValue(0.086f)] public float QuestHardcoreSuperAbsorbantSpongeIncrease;
+		[Label("[i:2373] High Test Fishing Line")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestHighTestFishingLineIncrease;
+		[Label("[i:2419] Mermaid Costume")] [Increment(.0001f)] [DefaultValue(0f)] public float QuestMermaidCostumeIncrease;
+		[Label("[i:3096] Sextant")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestSextantIncrease;
+		[Label("[i:2375] Tackle Box")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestTackleBoxIncrease;
+		[Label("[i:2448] Trophy")] [Increment(.0001f)] [DefaultValue(0.09f)] public float QuestTrophyIncrease;
+		[Label("[i:3037] Weather Radio")] [Increment(.0001f)] [DefaultValue(0.025f)] public float QuestWeatherRadioIncrease;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -390,32 +419,41 @@ namespace ReducedGrinding
 		}
 	}
 
-	[Label("Extractinator")]
+	[Label("Extractinator Override Chances")]
 	public class DExtractinatorConfig : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmber;
-		[Increment(.0001f)] [DefaultValue(0.0014f)] public float ExtractinatorGivesAmberMosquito;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmethyst;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesCopperCoin;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesCopperOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesDiamond;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesEmerald;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesFossilOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesGoldCoin;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesGoldOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesIronOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesLeadOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesPlatinumCoin;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesPlatinumOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesRuby;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSapphire;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSilverCoin;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSilverOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTinOre;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTopaz;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTungstenOre;
+		//[Header("This mod will go through all the vanilla extractinator loot from rarest to least rarest then highest to lowest value and will roll for a chance to override the extractinator result with that item using the chances listed below. If it sucessfully overrides the drop, it will stop going through the rest of the loot and give that item.")]
+		[Header("This mod will try to override the [i:997] Extractinator result with the chances below. It will go through each item below from rarest to least rarest (for ties: highest to lowest value). If it sucessfully overrides, it will stop going through the chances and give the overriding item.\n\n\nThis only drops if the block used is [i:3347]Desert Fossil.")]
+		[Label("[i:3380] Sturdy Fossil")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesFossilOre;
+
+		[Header("This chance is divided by 3 if the block used is [i:424]Silt or [i:1103]Slush.")]
+		[Label("[i:1242] Amber Mosquito")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmberMosquito;
+		[Header("This chance is divided by 2 if the block used is [i:424]Silt or [i:1103]Slush.")]
+		[Label("[i:999] Amber")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmber;
+
+		[Header("These chances are divided by 2 if the block used is [i:3347]Desert Fossil.")]
+		[Label("[i:181] Amethyst")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesAmethyst;
+		[Label("[i:180] Topaz")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTopaz;
+		[Label("[i:177] Sapphire")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSapphire;
+		[Label("[i:179] Emerald")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesEmerald;
+		[Label("[i:178] Ruby")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesRuby;
+		[Label("[i:182] Diamond")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesDiamond;
+
+		[Header("The block used doesn't affect these chances.")]
+		[Label("[i:71] Copper Coin")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesCopperCoin;
+		[Label("[i:72] Silver Coin")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSilverCoin;
+		[Label("[i:73] Gold Coin")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesGoldCoin;
+		[Label("[i:74] Platinum Coin")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesPlatinumCoin;
+		[Label("[i:12] Copper Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesCopperOre;
+		[Label("[i:699] Tin Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTinOre;
+		[Label("[i:11] Iron Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesIronOre;
+		[Label("[i:700] Lead Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesLeadOre;
+		[Label("[i:14] Silver Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesSilverOre;
+		[Label("[i:701] Tungsten Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesTungstenOre;
+		[Label("[i:13] Gold Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesGoldOre;
+		[Label("[i:702] Platinum Ore")] [Increment(.0001f)] [DefaultValue(0f)] public float ExtractinatorGivesPlatinumOre;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -429,82 +467,88 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Tooltip("The chance of the Traveling Merchant spawning each morning is this amount when you have all permanent vanilla and Reduced Grinding NPCs.")]
-		[Increment(.0001f)] [DefaultValue(1.0f)] public float BaseMorningTMerchantSpawnChance;
-		[Increment(.0001f)] [DefaultValue(0.0432f)] public float ChanceEachInGameMinuteWillResetTravelingMerchant;
-		[Tooltip("This NPC's shop starts with nothing and each time the Traveling Merchant shop is reset from either vanilla or Reduced Grinding mechanics, the Stationary Merchant will have a chance to gain some of the Stationary Merchant's items.")]
-		[DefaultValue(true)] public bool StationaryMerchant;
-		[Increment(.0001f)] [DefaultValue(0.143f)] public float StationaryMerchantStockingChance;
-		[Increment(.0001f)] [DefaultValue(0.857f)] public float S_MerchantStockingChanceBonusWhichWillBeMultipliedByH_ModeCompletionRate;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAcornsIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAmmoBoxIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAngelHaloIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantArcaneRuneWallIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlackCounterweightIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueDynastyShinglesIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBrickLayerIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCastleMarsbergIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCelestialMagnetIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantChaliceIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCode1Increase;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCode2Increase;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantColdSnapIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCompanionCubeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCrimsonCapeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCursedSaintIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDPSMeterIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDiamondRingIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDynastyWoodIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantExtendoGripIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantFancyDishesIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantFezIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGatligatorIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGiIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGreenTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGreenTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGypsyRobeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantKatanaIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantKimonoIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantLeopardSkinIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantLifeformAnalyzerIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMagicHatIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMartiaLisaIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMetalDetector;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMysteriousCapeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantNotAKidNorASquidIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPadThaiIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPaintSprayerIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPhoIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPinkTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPinkTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPortableCementMixerIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPresseratorIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPulseBowIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedCapeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedDynastyShinglesIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRevolverIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSakeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSittingDucksFishingPoleIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSnowfellasIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantStopwatchIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTheSeasonIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTheTruthIsUpThereIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTigerSkinIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantUltraBrightTorchIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWaterGunIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWhiteTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWhiteTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWinterCapeIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowCounterweightIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowTeamBlockIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowTeamPlatformIncrease;
-		[Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantZebraSkinIncrease;
-		[DefaultValue(false)] public bool TravelingMerchantAlwaysXMasForConfigurations;
-		[Increment(.0001f)] [DefaultValue(0f)] public float ChanceThatEnemyKillWillResetTravelingMerchant;
+		//[Tooltip("The chance of the Traveling Merchant spawning each morning is this amount when you have all permanent vanilla and Reduced Grinding NPCs.")]
+		[Header("Stationary Merchant:\n\nThis NPC's shop starts with nothing and each time the Traveling Merchant shop is reset from either vanilla or Reduced Grinding mechanics, the Stationary Merchant will have a chance to gain some of the Stationary Merchant's items.")]
+		[Label("Spawns")] [DefaultValue(true)] public bool StationaryMerchant;
+		[Tooltip("When the Traveling Merchant shop resets, this is the chance each item in the Traveling Merchant's shop will be added to this shop.")] [Label("Stocking Chance")] [Increment(.0001f)] [DefaultValue(0.143f)] public float StationaryMerchantStockingChance;
+		[Tooltip("This will be multiplied by a percentage of Pre-Hardmode completion then added to the Stocking Chance")] [Label("Pre-Hard Completion Stocking Chance Bonus")] [Increment(.0001f)] [DefaultValue(0.857f)] public float S_MerchantStockingBonusForPreH_ModeCompletionRate;
+		[Header("Traveling Merchant")]
+		[Tooltip("This is an additional chance of the Traveling Merchant spawning each morning. This chance is" +
+			"\ngreatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have.")]
+		[Label("Base Extra Spawn Spawn Chance")] [Increment(.0001f)] [DefaultValue(1.0f)] public float BaseMorningTMerchantSpawnChance;
+		[Tooltip("This chance is greatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have. The" +
+			"\nshop wont reset unless you have a Traveling Merchant Restock Order (bought from the Stationary Merchant)")]
+		[Label("Chance Each Real-Time Second Resets Shop")] [Increment(.0001f)] [DefaultValue(0.0432f)] public float ChanceEachInGameMinuteWillResetTravelingMerchant;
+		[Header("Traveling Merchant Shop Item Chance Increases")]
+		[Label("Acorns")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAcornsIncrease;
+		[Label("Ammo Box")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAmmoBoxIncrease;
+		[Label("Angel Halo")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAngelHaloIncrease;
+		[Label("Arcane Rune Wall")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantArcaneRuneWallIncrease;
+		[Label("Black Counter Weight")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlackCounterweightIncrease;
+		[Label("Blue Dynasty Shingles")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueDynastyShinglesIncrease;
+		[Label("Blue Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueTeamBlockIncrease;
+		[Label("Blue Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBlueTeamPlatformIncrease;
+		[Label("Brick Layer")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantBrickLayerIncrease;
+		[Label("Castle Marsberg")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCastleMarsbergIncrease;
+		[Label("Celestial Magnet")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCelestialMagnetIncrease;
+		[Label("Chalice")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantChaliceIncrease;
+		[Label("Code 1")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCode1Increase;
+		[Label("Code 2")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCode2Increase;
+		[Label("Cold Snap")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantColdSnapIncrease;
+		[Label("Companion Cube")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCompanionCubeIncrease;
+		[Label("Crimson Cape")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCrimsonCapeIncrease;
+		[Label("Cursed Saint")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantCursedSaintIncrease;
+		[Label("DPS Meter")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDPSMeterIncrease;
+		[Label("Diamond Ring")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDiamondRingIncrease;
+		[Label("Dynasty Wood")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantDynastyWoodIncrease;
+		[Label("Extendo Grip")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantExtendoGripIncrease;
+		[Label("Fancy Dishes")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantFancyDishesIncrease;
+		[Label("Fez")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantFezIncrease;
+		[Label("Gatligator")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGatligatorIncrease;
+		[Label("Gil")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGiIncrease;
+		[Label("Green Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGreenTeamBlockIncrease;
+		[Label("Green Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGreenTeamPlatformIncrease;
+		[Label("Gypsy Robe")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantGypsyRobeIncrease;
+		[Label("Katana")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantKatanaIncrease;
+		[Label("Kimono")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantKimonoIncrease;
+		[Label("Leopard Skin")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantLeopardSkinIncrease;
+		[Label("Lifeform Analyzer")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantLifeformAnalyzerIncrease;
+		[Label("Magic Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMagicHatIncrease;
+		[Label("Martia Lisa")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMartiaLisaIncrease;
+		[Label("Metal Detector")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMetalDetector;
+		[Label("Mysterious Cape")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantMysteriousCapeIncrease;
+		[Label("Not a Kid Nor a Squid")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantNotAKidNorASquidIncrease;
+		[Label("Pad Thai")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPadThaiIncrease;
+		[Label("Paint Sprayer")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPaintSprayerIncrease;
+		[Label("Pho")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPhoIncrease;
+		[Label("Pink Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPinkTeamBlockIncrease;
+		[Label("Pink Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPinkTeamPlatformIncrease;
+		[Label("Portable Cement Mixer")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPortableCementMixerIncrease;
+		[Label("Presserator")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPresseratorIncrease;
+		[Label("Pulse Bow")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantPulseBowIncrease;
+		[Label("Red Cape")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedCapeIncrease;
+		[Label("Red Dynasty Shingles")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedDynastyShinglesIncrease;
+		[Label("Red Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedTeamBlockIncrease;
+		[Label("Red Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRedTeamPlatformIncrease;
+		[Label("Revelover")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantRevolverIncrease;
+		[Label("Sake")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSakeIncrease;
+		[Label("Sitting Duck’s Fishing Pole")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSittingDucksFishingPoleIncrease;
+		[Label("Snowfellas")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantSnowfellasIncrease;
+		[Label("Stopwatch")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantStopwatchIncrease;
+		[Label("The Season")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTheSeasonIncrease;
+		[Label("The Truth is Up There")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTheTruthIsUpThereIncrease;
+		[Label("Tiger Skin")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantTigerSkinIncrease;
+		[Label("Ultra Bright")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantUltraBrightTorchIncrease;
+		[Label("Water Gun")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWaterGunIncrease;
+		[Label("White Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWhiteTeamBlockIncrease;
+		[Label("White Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWhiteTeamPlatformIncrease;
+		[Label("Winter Cape")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantWinterCapeIncrease;
+		[Label("Yellow Counterweight")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowCounterweightIncrease;
+		[Label("Yellow Team Block")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowTeamBlockIncrease;
+		[Label("Yellow Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowTeamPlatformIncrease;
+		[Label("Zebra Skin")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantZebraSkinIncrease;
+		[Label("Increased Christmas Item chances requires Christmas")] [DefaultValue(true)] public bool TravelingMerchantAlwaysXMasForConfigurations;
+		[Label("Chance That Killing Enemies Resets T.Merchant")] [Increment(.0001f)] [DefaultValue(0f)] public float ChanceThatEnemyKillWillResetTravelingMerchant;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -513,29 +557,32 @@ namespace ReducedGrinding
 		}
 	}
 
-	[Label("Other Vanilla NPCs")]
+	[Label("Vanilla NPCs")]
 	public class FOtherVanillaNPCConfig : ModConfig
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[DefaultValue(false)] public bool AllNPCsSellTheirDeathLoot;
-		[DefaultValue(true)] public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
-		[DefaultValue(true)] public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
-		[DefaultValue(true)] public bool MechanicSellsGeyserAfterWallofFleshDefeated;
-		[DefaultValue(true)] public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
-		[DefaultValue(true)] public bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
-		[DefaultValue(true)] public bool MerchantSellsAllMiningGear;
-		[DefaultValue(false)] public bool MerchantSellsBlizzardInABottleWhenInSnow;
-		[DefaultValue(false)] public bool MerchantSellsCloudInABottleWhenInSky;
-		[DefaultValue(false)] public bool MerchantSellsFishItem;
-		[DefaultValue(false)] public bool MerchantSellsPyramidItems;
-		[DefaultValue(false)] public bool MerchantSellsSandstormInABottleWhenInDesert;
-		[DefaultValue(true)] public bool MerchantSellsSwiftnessPotion;
-		[DefaultValue(false)] public bool WitchDoctorSellsFlowerBoots;
-		[DefaultValue(false)] public bool WitchDoctorSellsHoneyDispenser;
-		[DefaultValue(false)] public bool WitchDoctorSellsSeaweed;
-		[DefaultValue(false)] public bool WitchDoctorSellsStaffofRegrowth;
-		[Label("Tax Collector Alert Requirement")]
+		[Label("All NPCs Sell Their Death Loot")] [DefaultValue(false)] public bool AllNPCsSellTheirDeathLoot;
+		[Header("Mechanic Sells")]
+		[Label("Dart Trap and Spikes After Skeleton Defeated")] [DefaultValue(true)] public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
+		[Label("Geyzer After Wall of Flesh Defeated")] [DefaultValue(true)] public bool MechanicSellsGeyserAfterWallofFleshDefeated;
+		[Header("Witch Doctor Sells")]
+		[Label("Lihzahrd Traps After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
+		[Label("Wooden Spikes After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
+		[Label("Flower Boots")] [DefaultValue(false)] public bool WitchDoctorSellsFlowerBoots;
+		[Label("Honey Dispenser")] [DefaultValue(false)] public bool WitchDoctorSellsHoneyDispenser;
+		[Label("Seaweed")] [DefaultValue(false)] public bool WitchDoctorSellsSeaweed;
+		[Label("Staff of Regrowth")] [DefaultValue(false)] public bool WitchDoctorSellsStaffofRegrowth;
+		[Header("Merchant Sells")]
+		[Label("All Mining Gear;")] [DefaultValue(true)] public bool MerchantSellsAllMiningGear;
+		[Label("Blizzard In A Bottle When In Snow")] [DefaultValue(false)] public bool MerchantSellsBlizzardInABottleWhenInSnow;
+		[Label("Cloud In A Bottle When In Sky")] [DefaultValue(false)] public bool MerchantSellsCloudInABottleWhenInSky;
+		[Label("Fish Item")] [DefaultValue(false)] public bool MerchantSellsFishItem;
+		[Label("Pyramid Items")] [DefaultValue(false)] public bool MerchantSellsPyramidItems;
+		[Label("Sandstorm In A Bottle When In Desert")] [DefaultValue(false)] public bool MerchantSellsSandstormInABottleWhenInDesert;
+		[Label("Swiftness Potion")] [DefaultValue(true)] public bool MerchantSellsSwiftnessPotion;
+		[Header("Tax Collector")]
+		[Label("Tax Requirement for Tax Alert")]
 		[Tooltip("Once the Tax Collector has this much money collected, he will let the player know each morning. Set to 0 to disable.")]
 		[Range(0, 100000)]
 		[Slider]
@@ -553,12 +600,10 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 		[Header("These are custom lockboxes that have a chance to drop from all enemies. The type of lockbox depends on either the enemy killed or the biome you're in. The lockbox gives loot that you would normally get from a chest of the matching biome and possibly furniture from the structures that the chest would be found in.")]
-		[Tooltip("Set to false to prevent getting funiture items from lockboxes")]
-		[DefaultValue(true)] public bool LockBoxesGiveFurniture;
-		[Tooltip("Set to false to preent getting non-funiture items from lockboxes")]
-		[DefaultValue(true)] public bool LockBoxesGiveNonFurniture;
-		[Increment(.0001f)] [DefaultValue(1f)] public float HardmodeModdedLockBoxDropRateModifier;
-		[Increment(.0001f)] [DefaultValue(1f)] public float NormalmodeModdedLockBoxDropRateModifier;
+		[Label("Lockboxes Give Furniture")] [DefaultValue(true)] public bool LockBoxesGiveFurniture;
+		[Label("Lock Boxes Give Non-Furniture")] [DefaultValue(true)] public bool LockBoxesGiveNonFurniture;
+		[Label("Hardmode Modded Lock Box Drop Rate Modifier")] [Increment(.0001f)] [DefaultValue(1f)] public float HardmodeModdedLockBoxDropRateModifier;
+		[Label("Normalmode Modded Lock Box Drop Rate Modifier")] [Increment(.0001f)] [DefaultValue(1f)] public float NormalmodeModdedLockBoxDropRateModifier;
 		[Label("$Mods.ReducedGrinding.Common.CavernLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float CavernModdedCavernLockBoxLoot;
 		[Tooltip("Biome Lockboxes will only give loot from Dungeon Biome Chest that any player has obtained in the current world and requires a Biome Key to open.")]
@@ -600,19 +645,22 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[DefaultValue(true)] public bool GoblinTinkererSellsGoblinRetreatOrder;
-		[DefaultValue(false)] public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
-		[DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
-		[DefaultValue(true)] public bool WizardSellsMoonBall;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;
-		[Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionMaxSpawnsMultiplier;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionSpawnrateMultiplier;
-		[DefaultValue(true)] public bool LunarCall;
-		[Increment(.0001f)] [DefaultValue(1f)] public float MartianSaucerMartianCallDrop;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionMaxSpawnsMultiplier;
-		[Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionSpawnrateMultiplier;
+		[Tooltip("Summons Plantera")] [Label("Dryad Sells Plantera Bulb After Plantera Defeated")] [DefaultValue(true)] public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
+		[Tooltip("Ends the Goblin Invasion")] [Label("Goblin Tinkerer Sells Goblin Retreat Order")] [DefaultValue(true)] public bool GoblinTinkererSellsGoblinRetreatOrder;
+		[Tooltip("Allows crafting golden critters")] [Label("Merchant Sells Gold Reflection Mirror For Crafting Gold Critters Item")] [DefaultValue(false)] public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
+		[Tooltip("Ends the Pirate Invasion")] [Label("Pirate Sells Pirate Retreat Order")] [DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
+		[Tooltip("Advances the Moon Phase")] [Label("Wizard Sells Moon Ball")] [DefaultValue(true)] public bool WizardSellsMoonBall;
+		[Tooltip("Starts a Martian Invasion")] [Label("Martian Saucer's Drops Martian Call")] [Increment(.0001f)] [DefaultValue(1f)] public float MartianSaucerMartianCallDrop;
+		[Tooltip("Starts the Blood Moon")] [Label("Blood Zombie And Drippler Drops Blood Moon Medallion")] [Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
+		[Header("Battle Potion")]
+		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Max Spawns Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
+		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Spawn Rate Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;
+		[Header("War Potion (Crafted with Battle Potion; gives Battle and War Buffs).")]
+		[Label("Max Spawns Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionMaxSpawnsMultiplier;
+		[Label("Spawn Rate Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionSpawnrateMultiplier;
+		[Header("Chaos Potion (Crafted with War Potion; gives Battle, War, and Chaos Buffs).")]
+		[Label("Max Spawns Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionMaxSpawnsMultiplier;
+		[Label("Spawn Rate Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionSpawnrateMultiplier;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -626,22 +674,23 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[DefaultValue(true)] public bool BoneMerchant;
-		[DefaultValue(true)] public bool ChristmasElf;
-		[DefaultValue(false)] public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
-		[DefaultValue(false)] public bool LootMerchant;
-		[DefaultValue(false)] public bool ChestSalesman;
-		[DefaultValue(false)] public bool ChestSalesmanPreHardmodeChestsRequireHardmodeActivated;
-		[DefaultValue(true)] public bool ChestSalesmanSellsBiomeChests;
-		[DefaultValue(true)] public bool ChestSalesmanSellsGoldChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsIceChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsIvyChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsLihzahrdChest;
-		[DefaultValue(false)] public bool ChestSalesmanSellsLivingWoodChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsOceanChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsShadowChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsSkywareChest;
-		[DefaultValue(true)] public bool ChestSalesmanSellsWebCoveredChest;
+		[Tooltip("Permanent version of the Skeleton Merchant")] [Label("Bone Merchant")] [DefaultValue(true)] public bool BoneMerchant;
+		[Label("Bone Merchant Disabled When Luiafk Is Installed")] [DefaultValue(false)] public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
+		[Tooltip("Permanent version of Santa Claus")] [Label("Christmas Elf")] [DefaultValue(true)] public bool ChristmasElf;
+		[Tooltip("Sells what's needed to fight the next Vanilla boss (you can still aquire these items normally)")] [Label("Loot Merchant")] [DefaultValue(false)] public bool LootMerchant;
+		[Tooltip("Sells vanilla chests that are normally limited. Note: This mod allows you to aquire these chests through monster drops.")] [Label("Chest Salesman")] [DefaultValue(false)] public bool ChestSalesman;
+		[Label("Chest Salesman Pre-Hardmode Chests Require Hardmode Activated")] [DefaultValue(false)] public bool ChestSalesmanPreHardmodeChestsRequireHardmodeActivated;
+		[Header("Chest Salesman Sells")]
+		[Label("Biome Chests")] [DefaultValue(true)] public bool ChestSalesmanSellsBiomeChests;
+		[Label("Gold Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsGoldChest;
+		[Label("Ice Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIceChest;
+		[Label("Ivy Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIvyChest;
+		[Label("Lihzahrd Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsLihzahrdChest;
+		[Label("Living Wood Chest")] [DefaultValue(false)] public bool ChestSalesmanSellsLivingWoodChest;
+		[Label("Ocean Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsOceanChest;
+		[Label("Shadow Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsShadowChest;
+		[Label("SkywareChest")] [DefaultValue(true)] public bool ChestSalesmanSellsSkywareChest;
+		[Label("Web Covered Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsWebCoveredChest;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
