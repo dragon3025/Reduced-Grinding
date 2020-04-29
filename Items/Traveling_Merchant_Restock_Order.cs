@@ -10,10 +10,10 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Traveling Merchant Restock Order");
-            Tooltip.SetDefault("Having this in your inventory will cause the Traveling Merchant\n" +
-							   "to restock his items even if the Stationary Merchant already\n" +
-							   "has all that he can get from him. USEFULL FOR TRAVELING\n" +
-							   "MERCHANT ITEMS THAT OTHER MODS ADD.");
+            Tooltip.SetDefault("If you have this in your inventory: each second will have a" +
+                               "chance of restocking the Traveling Merchant's showp. This" +
+                               "chance is greatly decreased by the amount of permanent" +
+                               "vanilla and Reduced Grinding NPCs that you don't have.");
         }
 
         public override void SetDefaults()
