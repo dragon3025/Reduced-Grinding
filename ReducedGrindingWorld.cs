@@ -17,10 +17,6 @@ namespace ReducedGrinding
 		public static bool advanceMoonPhase = false;
 		public static bool skipToDay = false;
 		public static bool skipToNight = false;
-		public static bool infectionChestMined = false;
-        public static bool hallowedChestMined = false;
-        public static bool frozenChestMined = false;
-        public static bool jungleChestMined = false;
 		public static bool smItemShopNotEmpty = false;
 		public static bool smItemDecorShopNotEmpty = false;
 		public static bool smItemSake = false;
@@ -85,10 +81,6 @@ namespace ReducedGrinding
 
         public override void Initialize()
         {
-			infectionChestMined = false;
-			hallowedChestMined = false;
-			frozenChestMined = false;
-			jungleChestMined = false;
 			smItemShopNotEmpty = false;
 			smItemDecorShopNotEmpty = false;
 			smItemSake = false;
@@ -154,12 +146,6 @@ namespace ReducedGrinding
 		
         public override TagCompound Save()
         {
-            var biomeChestMined = new List<string>();
-            if (infectionChestMined) biomeChestMined.Add("infectionChestMined");
-			if (hallowedChestMined) biomeChestMined.Add("hallowedChestMined");
-			if (frozenChestMined) biomeChestMined.Add("frozenChestMined");
-			if (jungleChestMined) biomeChestMined.Add("jungleChestMined");
-
 			var stationaryMerchant = new List<string>();
 			if (smItemShopNotEmpty) stationaryMerchant.Add("smItemShopNotEmpty");
 			if (smItemDecorShopNotEmpty) stationaryMerchant.Add("smItemDecorShopNotEmpty");
@@ -224,7 +210,6 @@ namespace ReducedGrinding
 
 			return new TagCompound
 			{
-				{"biomeChestMined", biomeChestMined},
 				{"stationaryMerchant", stationaryMerchant},
 				{"skippedToDayOrNight", skippedToDayOrNight}
 			};
@@ -232,12 +217,6 @@ namespace ReducedGrinding
 
         public override void Load(TagCompound tag)
         {
-            var biomeChestMined = tag.GetList<string>("biomeChestMined");
-            infectionChestMined = biomeChestMined.Contains("infectionChestMined");
-			hallowedChestMined = biomeChestMined.Contains("hallowedChestMined");
-			frozenChestMined = biomeChestMined.Contains("frozenChestMined");
-			jungleChestMined = biomeChestMined.Contains("jungleChestMined");
-			
 			var stationaryMerchant = tag.GetList<string>("stationaryMerchant");
 			smItemShopNotEmpty = stationaryMerchant.Contains("smItemShopNotEmpty");
 			smItemDecorShopNotEmpty = stationaryMerchant.Contains("smItemDecorShopNotEmpty");
@@ -386,11 +365,6 @@ namespace ReducedGrinding
 			smitemflags8[0] = smItemSnowfellas;
 			smitemflags8[1] = smItemTheSeason;
 
-			bcitemflags[0] = infectionChestMined;
-			bcitemflags[1] = hallowedChestMined;
-			bcitemflags[2] = frozenChestMined;
-			bcitemflags[3] = jungleChestMined;
-
 			writer.Write(smstoreflags);
 			writer.Write(smitemflags);
 			writer.Write(smitemflags2);
@@ -486,11 +460,6 @@ namespace ReducedGrinding
 
 			smItemSnowfellas = smitemflags8[0];
 			smItemTheSeason = smitemflags8[1];
-
-			infectionChestMined = bcitemflags[0];
-			hallowedChestMined = bcitemflags[1];
-			frozenChestMined = bcitemflags[2];
-			jungleChestMined = bcitemflags[3];
 		}
 
 		public override void PostUpdate()
@@ -518,44 +487,14 @@ namespace ReducedGrinding
 			}
 
 			bool anyPlayerHasCelestialBeacon = false;
-			bool biomechestchange = false;
 			for (int i = 0; i < 255; i++)
 			{
 				if (Main.player[i].active)
 				{
 					if (Main.player[i].HasItem(mod.ItemType("Celestial_Beacon")))
 						anyPlayerHasCelestialBeacon = true;
-					if (Main.player[i].HasItem(ItemID.JungleChest) && !jungleChestMined)
-					{
-						jungleChestMined = true;
-						biomechestchange = true;
-					}
-					if (Main.player[i].HasItem(ItemID.CorruptionChest) && !infectionChestMined)
-					{
-						infectionChestMined = true;
-						biomechestchange = true;
-					}
-					if (Main.player[i].HasItem(ItemID.CrimsonChest) && !infectionChestMined)
-					{
-						infectionChestMined = true;
-						biomechestchange = true;
-					}
-					if (Main.player[i].HasItem(ItemID.HallowedChest) && !hallowedChestMined)
-					{
-						hallowedChestMined = true;
-						biomechestchange = true;
-					}
-					if (Main.player[i].HasItem(ItemID.FrozenChest) && !frozenChestMined)
-					{
-						frozenChestMined = true;
-						biomechestchange = true;
-					}
 				}
 			}
-
-			if (biomechestchange && Main.netMode == NetmodeID.Server)
-				NetMessage.SendData(MessageID.WorldData);
-
 
 			if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
 				NPC.MoonLordCountdown = 1;

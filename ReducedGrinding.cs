@@ -66,6 +66,37 @@ namespace ReducedGrinding
 			text = CreateTranslation("Common.WaterLockBoxLable");
 			text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Water_Lock_Box>()}] Water Lockbox");
 			AddTranslation(text);
+
+			text = CreateTranslation("Common.PlanteraBulbLable");
+			text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
+			AddTranslation(text);
+			text = CreateTranslation("Common.GoblinRetreatOrderLable");
+			text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.Goblin_Retreat_Order>()}] Goblin Retreat Order");
+			AddTranslation(text);
+			text = CreateTranslation("Common.GoldReflectionMirror");
+			text.SetDefault($"Merchant Sells [i:{ModContent.ItemType<Items.Gold_Reflection_Mirror>()}] Gold Reflection Mirror For Crafting Gold Critters Item");
+			AddTranslation(text);
+			text = CreateTranslation("Common.PirateRetreatOrder");
+			text.SetDefault($"Pirate Sells [i:{ModContent.ItemType<Items.Pirate_Retreat_Order>()}] Pirate Retreat Order");
+			AddTranslation(text);
+			text = CreateTranslation("Common.MoonBall");
+			text.SetDefault($"Wizard Sells [i:{ModContent.ItemType<Items.Moon_Ball>()}] Moon Ball");
+			AddTranslation(text);
+			text = CreateTranslation("Common.MartianCall");
+			text.SetDefault($"Martian Saucer's Drops [i:{ModContent.ItemType<Items.Martian_Call>()}] Martian Call");
+			AddTranslation(text);
+			text = CreateTranslation("Common.BloodMoonMedallion");
+			text.SetDefault($"Blood Zombie And Drippler Drops [i:{ModContent.ItemType<Items.Blood_Moon_Medallion>()}] Blood Moon Medallion");
+			AddTranslation(text);
+			text = CreateTranslation("Common.BloodMoonMedallion");
+			text.SetDefault($"Bld. Zombie, Drippler Drops [i:{ModContent.ItemType<Items.Blood_Moon_Medallion>()}] Bld. Moon Medallion");
+			AddTranslation(text);
+			text = CreateTranslation("Common.WarPotion");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
+			AddTranslation(text);
+			text = CreateTranslation("Common.ChaosPotion");
+			text.SetDefault($"[i:{ModContent.ItemType<Items.Chaos_Potion>()}] Chaos Potion (Crafted with [i:{ModContent.ItemType<Items.War_Potion>()}] War Potion; gives Battle, War, and Chaos Buffs).");
+			AddTranslation(text);
 		}
 
 		public ReducedGrinding()
@@ -2382,18 +2413,15 @@ namespace ReducedGrinding
 								Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 328, 1, false, -1, false, false); //Shadow Chest
 							else if (player.ZoneDungeon && NPC.downedPlantBoss)
 							{
-								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.jungleChestMined)
+								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1528, 1, false, -1, false, false); //Jungle Chest
-								if (ReducedGrindingWorld.infectionChestMined)
-								{
-									if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1529, 1, false, -1, false, false); //Corruption Chest
-									if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-										Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1530, 1, false, -1, false, false); //Crimson Chest
-								}
-								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.hallowedChestMined)
+								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1529, 1, false, -1, false, false); //Corruption Chest
+								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
+									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1530, 1, false, -1, false, false); //Crimson Chest
+								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1531, 1, false, -1, false, false); //Hallowed Chest
-								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop && ReducedGrindingWorld.frozenChestMined)
+								if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
 									Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1532, 1, false, -1, false, false); //Frozen Chest
 							}
 							else if (player.ZoneOverworldHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)

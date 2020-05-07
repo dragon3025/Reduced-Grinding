@@ -564,25 +564,25 @@ namespace ReducedGrinding
 
 		[Label("All NPCs Sell Their Death Loot")] [DefaultValue(false)] public bool AllNPCsSellTheirDeathLoot;
 		[Header("Mechanic Sells")]
-		[Label("Dart Trap and Spikes After Skeleton Defeated")] [DefaultValue(true)] public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
-		[Label("Geyzer After Wall of Flesh Defeated")] [DefaultValue(true)] public bool MechanicSellsGeyserAfterWallofFleshDefeated;
+		[Label("[i:539] Dart Trap and [i:147]Spikes After Skeleton Defeated")] [DefaultValue(true)] public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
+		[Label("[i:3722] Geyzer After Wall of Flesh Defeated")] [DefaultValue(true)] public bool MechanicSellsGeyserAfterWallofFleshDefeated;
 		[Header("Witch Doctor Sells")]
-		[Label("Lihzahrd Traps After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
-		[Label("Wooden Spikes After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
-		[Label("Flower Boots")] [DefaultValue(false)] public bool WitchDoctorSellsFlowerBoots;
-		[Label("Honey Dispenser")] [DefaultValue(false)] public bool WitchDoctorSellsHoneyDispenser;
-		[Label("Seaweed")] [DefaultValue(false)] public bool WitchDoctorSellsSeaweed;
-		[Label("Staff of Regrowth")] [DefaultValue(false)] public bool WitchDoctorSellsStaffofRegrowth;
+		[Label("[i:1146] Lihzahrd Traps After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
+		[Label("[i:1150] Wooden Spikes After Golem Defeated")] [DefaultValue(true)] public bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
+		[Label("[i:3017] Flower Boots")] [DefaultValue(false)] public bool WitchDoctorSellsFlowerBoots;
+		[Label("[i:2204] Honey Dispenser")] [DefaultValue(false)] public bool WitchDoctorSellsHoneyDispenser;
+		[Label("[i:2338] Seaweed")] [DefaultValue(false)] public bool WitchDoctorSellsSeaweed;
+		[Label("[i:213] Staff of Regrowth")] [DefaultValue(false)] public bool WitchDoctorSellsStaffofRegrowth;
 		[Header("Merchant Sells")]
-		[Label("All Mining Gear;")] [DefaultValue(true)] public bool MerchantSellsAllMiningGear;
-		[Label("Blizzard In A Bottle When In Snow")] [DefaultValue(false)] public bool MerchantSellsBlizzardInABottleWhenInSnow;
-		[Label("Cloud In A Bottle When In Sky")] [DefaultValue(false)] public bool MerchantSellsCloudInABottleWhenInSky;
-		[Label("Fish Item")] [DefaultValue(false)] public bool MerchantSellsFishItem;
-		[Label("Pyramid Items")] [DefaultValue(false)] public bool MerchantSellsPyramidItems;
-		[Label("Sandstorm In A Bottle When In Desert")] [DefaultValue(false)] public bool MerchantSellsSandstormInABottleWhenInDesert;
-		[Label("Swiftness Potion")] [DefaultValue(true)] public bool MerchantSellsSwiftnessPotion;
+		[Label("[i:410] All Mining Gear;")] [DefaultValue(true)] public bool MerchantSellsAllMiningGear;
+		[Label("[i:987] Blizzard In A Bottle When In Snow")] [DefaultValue(false)] public bool MerchantSellsBlizzardInABottleWhenInSnow;
+		[Label("[i:53] Cloud In A Bottle When In Sky")] [DefaultValue(false)] public bool MerchantSellsCloudInABottleWhenInSky;
+		[Label("[i:669] Fish Item")] [DefaultValue(false)] public bool MerchantSellsFishItem;
+		[Label("[i:934] Pyramid Items")] [DefaultValue(false)] public bool MerchantSellsPyramidItems;
+		[Label("[i:857] Sandstorm In A Bottle When In Desert")] [DefaultValue(false)] public bool MerchantSellsSandstormInABottleWhenInDesert;
+		[Label("[i:290] Swiftness Potion")] [DefaultValue(true)] public bool MerchantSellsSwiftnessPotion;
 		[Header("Tax Collector")]
-		[Label("Tax Requirement for Tax Alert")]
+		[Label("[i:73] Tax Requirement for Tax Alert")]
 		[Tooltip("Once the Tax Collector has this much money collected, he will let the player know each morning. Set to 0 to disable.")]
 		[Range(0, 100000)]
 		[Slider]
@@ -606,9 +606,16 @@ namespace ReducedGrinding
 		[Label("Normalmode Modded Lock Box Drop Rate Modifier")] [Increment(.0001f)] [DefaultValue(1f)] public float NormalmodeModdedLockBoxDropRateModifier;
 		[Label("$Mods.ReducedGrinding.Common.CavernLockboxLable")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float CavernModdedCavernLockBoxLoot;
-		[Tooltip("Biome Lockboxes will only give loot from Dungeon Biome Chest that any player has obtained in the current world and requires a Biome Key to open.")]
 		[Label("$Mods.ReducedGrinding.Common.DungeonBiomeLockboxLabel")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float DungeonModdedBiomeLockBoxLoot;
+
+
+		[Tooltip("Required stack size of a single biome key type needed to open Biome Lockboxes. The type is randomly choosen from\n" +
+			"available keys in inventory that meet this required size. The rare item obtained will match the key used to open it.")]
+		[Label("Required [i:1533]Biome Key stack size to open Biome Lockboxes")]
+		[Range(1, 99)] [DefaultValue(3)] public int BiomeLockboxKeysRequired;
+
+
 		[Tooltip("Comes in 3 forms (no matter what dungeon your world has): Blue Dungeon, Green Dungeon, and Pink Dungeon.")]
 		[Label("$Mods.ReducedGrinding.Common.DungeonFurnitureLockboxLabel")]
 		[Increment(.0001f)] [DefaultValue(0.0025f)] public float DungeonFurnitureLockBoxLoot;
@@ -645,20 +652,20 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Tooltip("Summons Plantera")] [Label("Dryad Sells Plantera Bulb After Plantera Defeated")] [DefaultValue(true)] public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
-		[Tooltip("Ends the Goblin Invasion")] [Label("Goblin Tinkerer Sells Goblin Retreat Order")] [DefaultValue(true)] public bool GoblinTinkererSellsGoblinRetreatOrder;
-		[Tooltip("Allows crafting golden critters")] [Label("Merchant Sells Gold Reflection Mirror For Crafting Gold Critters Item")] [DefaultValue(false)] public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
-		[Tooltip("Ends the Pirate Invasion")] [Label("Pirate Sells Pirate Retreat Order")] [DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
-		[Tooltip("Advances the Moon Phase")] [Label("Wizard Sells Moon Ball")] [DefaultValue(true)] public bool WizardSellsMoonBall;
-		[Tooltip("Starts a Martian Invasion")] [Label("Martian Saucer's Drops Martian Call")] [Increment(.0001f)] [DefaultValue(1f)] public float MartianSaucerMartianCallDrop;
-		[Tooltip("Starts the Blood Moon")] [Label("Blood Zombie And Drippler Drops Blood Moon Medallion")] [Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
-		[Header("Battle Potion")]
+		[Tooltip("Summons Plantera")] [Label("$Mods.ReducedGrinding.Common.PlanteraBulbLable")] [DefaultValue(true)] public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
+		[Tooltip("Ends the Goblin Invasion")] [Label("$Mods.ReducedGrinding.Common.GoblinRetreatOrderLable")] [DefaultValue(true)] public bool GoblinTinkererSellsGoblinRetreatOrder;
+		[Tooltip("Allows crafting golden critters")] [Label("$Mods.ReducedGrinding.Common.GoldReflectionMirror")] [DefaultValue(false)] public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
+		[Tooltip("Ends the Pirate Invasion")] [Label("$Mods.ReducedGrinding.Common.PirateRetreatOrder")] [DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
+		[Tooltip("Advances the Moon Phase")] [Label("$Mods.ReducedGrinding.Common.MoonBall")] [DefaultValue(true)] public bool WizardSellsMoonBall;
+		[Tooltip("Starts a Martian Invasion")] [Label("$Mods.ReducedGrinding.Common.MartianCall")] [Increment(.0001f)] [DefaultValue(1f)] public float MartianSaucerMartianCallDrop;
+		[Tooltip("Starts the Blood Moon")] [Label("$Mods.ReducedGrinding.Common.BloodMoonMedallion")] [Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
+		[Header("[i:300] Battle Potion")]
 		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Max Spawns Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
 		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Spawn Rate Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;
-		[Header("War Potion (Crafted with Battle Potion; gives Battle and War Buffs).")]
+		[Header("$Mods.ReducedGrinding.Common.WarPotion")]
 		[Label("Max Spawns Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionMaxSpawnsMultiplier;
 		[Label("Spawn Rate Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(10f)] public float WarPotionSpawnrateMultiplier;
-		[Header("Chaos Potion (Crafted with War Potion; gives Battle, War, and Chaos Buffs).")]
+		[Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
 		[Label("Max Spawns Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionMaxSpawnsMultiplier;
 		[Label("Spawn Rate Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(20f)] public float ChaosPotionSpawnrateMultiplier;
 
@@ -681,16 +688,16 @@ namespace ReducedGrinding
 		[Tooltip("Sells vanilla chests that are normally limited. Note: This mod allows you to aquire these chests through monster drops.")] [Label("Chest Salesman")] [DefaultValue(false)] public bool ChestSalesman;
 		[Label("Chest Salesman Pre-Hardmode Chests Require Hardmode Activated")] [DefaultValue(false)] public bool ChestSalesmanPreHardmodeChestsRequireHardmodeActivated;
 		[Header("Chest Salesman Sells")]
-		[Label("Biome Chests")] [DefaultValue(true)] public bool ChestSalesmanSellsBiomeChests;
-		[Label("Gold Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsGoldChest;
-		[Label("Ice Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIceChest;
-		[Label("Ivy Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIvyChest;
-		[Label("Lihzahrd Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsLihzahrdChest;
-		[Label("Living Wood Chest")] [DefaultValue(false)] public bool ChestSalesmanSellsLivingWoodChest;
-		[Label("Ocean Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsOceanChest;
-		[Label("Shadow Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsShadowChest;
-		[Label("SkywareChest")] [DefaultValue(true)] public bool ChestSalesmanSellsSkywareChest;
-		[Label("Web Covered Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsWebCoveredChest;
+		[Label("[i:1529] Biome Chests")] [DefaultValue(true)] public bool ChestSalesmanSellsBiomeChests;
+		[Label("[i:306] Gold Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsGoldChest;
+		[Label("[i:681] Ice Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIceChest;
+		[Label("[i:680] Ivy Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsIvyChest;
+		[Label("[i:680] Lihzahrd Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsLihzahrdChest;
+		[Label("[i:831] Living Wood Chest")] [DefaultValue(false)] public bool ChestSalesmanSellsLivingWoodChest;
+		[Label("[i:1298] Water Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsOceanChest;
+		[Label("[i:328] Shadow Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsShadowChest;
+		[Label("[i:838] SkywareChest")] [DefaultValue(true)] public bool ChestSalesmanSellsSkywareChest;
+		[Label("[i:952] Web Covered Chest")] [DefaultValue(true)] public bool ChestSalesmanSellsWebCoveredChest;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{

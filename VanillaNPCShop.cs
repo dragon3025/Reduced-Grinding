@@ -325,7 +325,7 @@ namespace ReducedGrinding.NPCs
 					PreHardModeCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingBonusForPreH_ModeCompletionRate;
 
 					bool addItem = false;
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -339,7 +339,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDPSMeterIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDPSMeterIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -353,7 +353,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantStopwatchIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantStopwatchIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -367,7 +367,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMetalDetector > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMetalDetector > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -381,7 +381,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCelestialMagnetIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCelestialMagnetIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -395,7 +395,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAmmoBoxIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAmmoBoxIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -409,7 +409,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPaintSprayerIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPaintSprayerIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -423,7 +423,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBrickLayerIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBrickLayerIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -437,7 +437,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPortableCementMixerIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPortableCementMixerIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -451,7 +451,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantExtendoGripIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantExtendoGripIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -465,7 +465,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGatligatorIncrease > 0 && Main.hardMode)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGatligatorIncrease > 0 && nextSlot < 39 && Main.hardMode)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -479,7 +479,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPulseBowIncrease > 0 && Main.hardMode && NPC.downedPlantBoss)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPulseBowIncrease > 0 && nextSlot < 39 && Main.hardMode && NPC.downedPlantBoss)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -493,7 +493,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSakeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSakeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -507,7 +507,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPhoIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPhoIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -521,7 +521,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPadThaiIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPadThaiIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -535,7 +535,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantUltraBrightTorchIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantUltraBrightTorchIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -549,7 +549,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMagicHatIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMagicHatIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -563,7 +563,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGypsyRobeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGypsyRobeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -577,7 +577,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGiIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGiIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -591,7 +591,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPresseratorIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPresseratorIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -605,7 +605,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowCounterweightIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowCounterweightIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -619,7 +619,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlackCounterweightIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlackCounterweightIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -633,7 +633,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSittingDucksFishingPoleIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSittingDucksFishingPoleIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -647,7 +647,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKatanaIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKatanaIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -661,7 +661,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode1Increase > 0 && NPC.downedBoss1)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode1Increase > 0 && nextSlot < 39 && NPC.downedBoss1)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -675,7 +675,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease > 0 && WorldGen.shadowOrbSmashed)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease > 0 && nextSlot < 39 && WorldGen.shadowOrbSmashed)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -689,7 +689,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode2Increase > 0 && NPC.downedMechBossAny)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode2Increase > 0 && nextSlot < 39 && NPC.downedMechBossAny)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -703,7 +703,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -717,7 +717,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -731,7 +731,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -745,7 +745,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -759,7 +759,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -773,7 +773,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -787,7 +787,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -801,7 +801,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -815,7 +815,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -829,7 +829,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -843,7 +843,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamBlockIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamBlockIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -857,7 +857,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamPlatformIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamPlatformIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -871,7 +871,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDiamondRingIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDiamondRingIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -885,7 +885,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAngelHaloIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAngelHaloIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -899,7 +899,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFezIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFezIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -913,7 +913,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWinterCapeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWinterCapeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -927,7 +927,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedCapeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedCapeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -941,7 +941,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCrimsonCapeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCrimsonCapeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -955,7 +955,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMysteriousCapeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMysteriousCapeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -969,7 +969,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKimonoIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKimonoIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -983,7 +983,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWaterGunIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWaterGunIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -997,7 +997,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCompanionCubeIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCompanionCubeIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1011,7 +1011,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantChaliceIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantChaliceIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1025,7 +1025,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantArcaneRuneWallIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantArcaneRuneWallIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1039,7 +1039,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFancyDishesIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFancyDishesIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1053,7 +1053,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDynastyWoodIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDynastyWoodIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1067,7 +1067,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedDynastyShinglesIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedDynastyShinglesIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1081,7 +1081,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueDynastyShinglesIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueDynastyShinglesIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1095,7 +1095,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantZebraSkinIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantZebraSkinIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1109,7 +1109,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLeopardSkinIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLeopardSkinIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1123,7 +1123,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTigerSkinIncrease > 0)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTigerSkinIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1137,7 +1137,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCastleMarsbergIncrease > 0 && NPC.downedMartians)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCastleMarsbergIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1151,7 +1151,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMartiaLisaIncrease > 0 && NPC.downedMartians)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMartiaLisaIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1165,7 +1165,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheTruthIsUpThereIncrease > 0 && NPC.downedMartians)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheTruthIsUpThereIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1179,7 +1179,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantNotAKidNorASquidIncrease > 0 && NPC.downedMoonlord)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantNotAKidNorASquidIncrease > 0 && nextSlot < 39 && NPC.downedMoonlord)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1193,7 +1193,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAcornsIncrease > 0 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAcornsIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1207,7 +1207,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantColdSnapIncrease > 0 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantColdSnapIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1221,7 +1221,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCursedSaintIncrease > 0 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCursedSaintIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1235,7 +1235,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSnowfellasIncrease > 0 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSnowfellasIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
@@ -1249,7 +1249,7 @@ namespace ReducedGrinding.NPCs
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheSeasonIncrease > 0 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheSeasonIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
