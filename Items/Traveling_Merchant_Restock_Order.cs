@@ -10,9 +10,9 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Traveling Merchant Restock Order");
-            Tooltip.SetDefault("If you have this in your inventory: each second will have a" +
-                               "chance of restocking the Traveling Merchant's showp. This" +
-                               "chance is greatly decreased by the amount of permanent" +
+            Tooltip.SetDefault("If you have this in your inventory: each second will have a\n" +
+                               "chance of restocking the Traveling Merchant's showp. This\n" +
+                               "chance is greatly decreased by the amount of permanent\n" +
                                "vanilla and Reduced Grinding NPCs that you don't have.");
         }
 
