@@ -10,7 +10,7 @@ namespace ReducedGrinding.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Fish Upgrade Potion");
-			Tooltip.SetDefault("Every 5 Fishing Quest completed will increase the chance of catching rare fish (Vanilla rods only");
+			Tooltip.SetDefault("Every 5 Fishing Quest completed will increase the chance of catching rare fish (Vanilla rods only), 500 Quest max");
 		}
 
         public override void SetDefaults()

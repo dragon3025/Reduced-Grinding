@@ -33,10 +33,6 @@ namespace ReducedGrinding
                 ModPacket packet = mod.GetPacket();
                 packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
                 packet.Write((byte)player.whoAmI);
-                //BitsByte flags = new BitsByte();
-                //flags[0] = currentlyActive;
-                //packet.Write((byte)flags);
-                packet.Send();
             }
         }
 		
@@ -349,19 +345,15 @@ namespace ReducedGrinding
 			if (!(fishingRod.type == 2289 || (fishingRod.type >= 2291 && fishingRod.type <= 2296) || fishingRod.type == 2421 || fishingRod.type == 2422))
 				enableFishUpgrade = false; //Vanilla Rods Only
 
-			float upgradeRate = (power - 141) / 141;
-
-			if (Main.rand.NextFloat() < upgradeRate && enableFishUpgrade)
+			if (enableFishUpgrade)
 			{
 				bool common, uncommon, rare, veryRare, superRare, isCrate;
-				for (int i = 0; i < Math.Min(1000, (player.anglerQuestsFinished / 5)); i++)
+				for (int i = 0; i < Math.Min(100, player.anglerQuestsFinished / 5); i++)
 				{
-					if ((caughtType >= 2297 && caughtType <= 2302) || caughtType == 2290 || caughtType == 2316) //Non-Rare Fish
+					if ((caughtType >= 2297 && caughtType <= 2302) || caughtType == 2290 || caughtType == 2316 || caughtType == 2334 || caughtType == 2335) //Non-Rare Fish or Non-Rare Crate
 					{
 						caughtType = 0;
 						calculateCatchRates(power, out common, out uncommon, out rare, out veryRare, out superRare, out isCrate);
-
-						if (isCrate) return;
 
 						if (liquidType == 1) //Lava
 						{
@@ -371,7 +363,7 @@ namespace ReducedGrinding
 							}
 							else if (veryRare)
 							{
-								caughtType = 2331;
+								caughtType = 2312;
 							}
 							else if (rare)
 							{
@@ -606,44 +598,6 @@ namespace ReducedGrinding
 					}
 					else
 						break;
-				}
-			}
-			if ((caughtType >= 2334 && caughtType <= 2336) || (caughtType >= 3203 && caughtType <= 3208)) //Caught a crate
-			{
-				if (power > 70.5f && caughtType == ItemID.WoodenCrate)
-				{
-					upgradeRate = (power - 70.5f) / 70.5f;
-					if (Main.rand.NextFloat() < upgradeRate)
-					{
-						caughtType = ItemID.IronCrate;
-					}
-				}
-				if (power > 141 && caughtType == ItemID.IronCrate)
-				{
-					upgradeRate = (power - 141) / 70.5f;
-					if (Main.rand.NextFloat() < upgradeRate)
-					{
-						if (player.ZoneJungle)
-							caughtType = ItemID.JungleFishingCrate;
-						else if (worldLayer == 0)
-							caughtType = ItemID.FloatingIslandFishingCrate;
-						else if (player.ZoneCorrupt)
-							caughtType = ItemID.CorruptFishingCrate;
-						else if (player.ZoneCrimson)
-							caughtType = ItemID.CrimsonFishingCrate;
-						else if (player.ZoneHoly)
-							caughtType = ItemID.HallowedFishingCrate;
-						else if (player.ZoneDungeon)
-							caughtType = ItemID.DungeonFishingCrate;
-					}
-				}
-				if (power > 211.5f && (caughtType == ItemID.IronCrate))
-				{
-					upgradeRate = (power - 211.5f) / 70.5f;
-					if (Main.rand.NextFloat() < upgradeRate)
-					{
-						caughtType = ItemID.GoldenCrate;
-					}
 				}
 			}
 		}

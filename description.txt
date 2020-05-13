@@ -3,9 +3,11 @@ Reduced Grinding
 This mod isn't supposed to make the game too easy, but makes
 it so you don't have to spend huge amounts of time farming for
 loot, for example: AFK farms to get rare item like Biome Keys.
-It's highly configurable, so you can adjust to your liking.
+It's highly configurable, so you can adjust, enable, or
+disable features to your liking.
+
 This mod info breifly explains how it this mod  works, for
-more info see the link below. How this mod does this:
+more info see the link below. What's in this mod:
 
 * New War Potion and Chaos Potion to boost spawn rates. If you
    can handle it, you'll get items faster.
@@ -15,19 +17,21 @@ more info see the link below. How this mod does this:
 * Increased drop rates for many different loot items and added
    some additional drops. This is from Enemies, Grab Bags,
    Fishing, Quest Items, and Extractinator.
-* New Stationary Merchant, who gains items from the Traveling
-   Merchant (chance of gain items starts low when the world
-   starts, but rises to 100% at hardmode). The Traveling
-   Merchant will reset his items every now and then depending
-   on how many town NPCs you have (he'll stop once the
-   Stationary Merchant has all that he can currently get from
-   him, but will continue if you carry an item that the
-   Stationary Merchant sells during that time).
-* Permanent stationary versions of Santa and Skeleton
-   Merchant.
-* Crates catches may upgrade to a better crate depending on
-   the fishing power you have. They can also be downgraded
-   through crafting at a Tinker's Workshop.
+* New Stationary Merchant: This NPC sells everything the
+   Traveling Merchant has a chance to sell, but there's a
+   catch. By default, his prices are higher, especially when
+   the Traveling Merchant is away. Also by default, the rarer
+   the item, the more expensive the item is.
+* Christmas Elf, a new permanent stationary version of Santa.
+* Celestial Beacon, to make the Moon Lord summon right away.
+* New Sundials to instantly skip to Night or Day (Enchanted
+   Sundial cooldown and Tax Collector wont benefit from this).
+* New Moon Ball to change the Moon Phase. Having this in your
+   inventory removes the Moon Phase requirements from the
+   items in Skeleton Merchant's shop.
+* A potion that affects fishing catches. For every 5 fishing
+   quest completed it will re-roll the fishing chance if the
+   item caught is less than rare (100 re-rolls max).
 * New Lockboxes for different chest you'd find in the world
    and possible furniture items that would be located around
    it.
@@ -35,10 +39,6 @@ more info see the link below. How this mod does this:
    holliday for a day.
 * Items to instantly end the Goblin, Pirate, and Lunar
    invasion (without summoning Moonlord).
-* Celestial Beacon, to make the Moon Lord summon right away.
-* New Sundials to instantly skip to Night or Day (Enchanted
-   Sundial cooldown and Tax Collector wont benefit from this).
-* New Moon Ball to change the Moon Phase.
 * Items to summon some defeated Invasions/Bosses and items to
   cancel some defeated Invasions.
 * Crimson/Corruption versions of Seeds/Solutions are available

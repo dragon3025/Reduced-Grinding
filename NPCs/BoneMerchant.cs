@@ -109,86 +109,142 @@ namespace ReducedGrinding.NPCs
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
-			if (Main.moonPhase % 2 == 0)
+			Player player = Main.player[Main.myPlayer];
+			if (player.HasItem(mod.ItemType("Moon_Ball")))
 			{
 				shop.item[nextSlot].SetDefaults(3001);
-			}
-			else
-			{
+				nextSlot++;
 				shop.item[nextSlot].SetDefaults(28);
-			}
-			nextSlot++;
-			if (!Main.dayTime || Main.moonPhase == 0)
-			{
+				nextSlot++;
 				shop.item[nextSlot].SetDefaults(3002);
-			}
-			else
-			{
+				nextSlot++;
 				shop.item[nextSlot].SetDefaults(282);
-			}
-			nextSlot++;
-			if (Main.time % 60.0 * 60.0 * 6.0 <= 10800.0)
-			{
-				shop.item[nextSlot].SetDefaults(3004);
-			}
-			else
-			{
-				shop.item[nextSlot].SetDefaults(8);
-			}
-			nextSlot++;
-			if (Main.moonPhase == 0 || Main.moonPhase == 1 || Main.moonPhase == 4 || Main.moonPhase == 5)
-			{
-				shop.item[nextSlot].SetDefaults(3003);
-			}
-			else
-			{
-				shop.item[nextSlot].SetDefaults(40);
-			}
-			nextSlot++;
-			if (Main.moonPhase % 4 == 0)
-			{
-				shop.item[nextSlot].SetDefaults(3310);
-			}
-			else if (Main.moonPhase % 4 == 1)
-			{
-				shop.item[nextSlot].SetDefaults(3313);
-			}
-			else if (Main.moonPhase % 4 == 2)
-			{
-				shop.item[nextSlot].SetDefaults(3312);
-			}
-			else
-			{
-				shop.item[nextSlot].SetDefaults(3311);
-			}
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(166);
-			nextSlot++;
-			shop.item[nextSlot].SetDefaults(965);
-			nextSlot++;
-			if (Main.hardMode)
-			{
-				if (Main.moonPhase < 4)
+				nextSlot++;
+				if (Main.time % 60.0 * 60.0 * 6.0 <= 10800.0)
 				{
-					shop.item[nextSlot].SetDefaults(3316);
+					shop.item[nextSlot].SetDefaults(3004);
 				}
 				else
 				{
-					shop.item[nextSlot].SetDefaults(3315);
+					shop.item[nextSlot].SetDefaults(8);
 				}
 				nextSlot++;
-				shop.item[nextSlot].SetDefaults(3334);
+				shop.item[nextSlot].SetDefaults(3003);
 				nextSlot++;
-				if (Main.bloodMoon)
+				shop.item[nextSlot].SetDefaults(40);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(3310);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(3313);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(3312);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(3311);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(166);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(965);
+				nextSlot++;
+				if (Main.hardMode)
 				{
-					shop.item[nextSlot].SetDefaults(3258);
+					shop.item[nextSlot].SetDefaults(3316);
 					nextSlot++;
+					shop.item[nextSlot].SetDefaults(3315);
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(3334);
+					nextSlot++;
+					if (Main.bloodMoon)
+					{
+						shop.item[nextSlot].SetDefaults(3258);
+						nextSlot++;
+					}
 				}
-			}
-			if (Main.moonPhase == 0 && !Main.dayTime)
-			{
 				shop.item[nextSlot].SetDefaults(3043);
 				nextSlot++;
+			}
+			else
+			{
+				if (Main.moonPhase % 2 == 0)
+				{
+					shop.item[nextSlot].SetDefaults(3001);
+				}
+				else
+				{
+					shop.item[nextSlot].SetDefaults(28);
+				}
+				nextSlot++;
+				if (!Main.dayTime || Main.moonPhase == 0)
+				{
+					shop.item[nextSlot].SetDefaults(3002);
+				}
+				else
+				{
+					shop.item[nextSlot].SetDefaults(282);
+				}
+				nextSlot++;
+				if (Main.time % 60.0 * 60.0 * 6.0 <= 10800.0)
+				{
+					shop.item[nextSlot].SetDefaults(3004);
+				}
+				else
+				{
+					shop.item[nextSlot].SetDefaults(8);
+				}
+				nextSlot++;
+				if (Main.moonPhase == 0 || Main.moonPhase == 1 || Main.moonPhase == 4 || Main.moonPhase == 5)
+				{
+					shop.item[nextSlot].SetDefaults(3003);
+				}
+				else
+				{
+					shop.item[nextSlot].SetDefaults(40);
+				}
+				nextSlot++;
+				if (Main.moonPhase % 4 == 0)
+				{
+					shop.item[nextSlot].SetDefaults(3310);
+				}
+				else if (Main.moonPhase % 4 == 1)
+				{
+					shop.item[nextSlot].SetDefaults(3313);
+				}
+				else if (Main.moonPhase % 4 == 2)
+				{
+					shop.item[nextSlot].SetDefaults(3312);
+				}
+				else
+				{
+					shop.item[nextSlot].SetDefaults(3311);
+				}
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(166);
+				nextSlot++;
+				shop.item[nextSlot].SetDefaults(965);
+				nextSlot++;
+				if (Main.hardMode)
+				{
+					if (Main.moonPhase < 4)
+					{
+						shop.item[nextSlot].SetDefaults(3316);
+					}
+					else
+					{
+						shop.item[nextSlot].SetDefaults(3315);
+					}
+					nextSlot++;
+					shop.item[nextSlot].SetDefaults(3334);
+					nextSlot++;
+					if (Main.bloodMoon)
+					{
+						shop.item[nextSlot].SetDefaults(3258);
+						nextSlot++;
+					}
+				}
+				if (Main.moonPhase == 0 && !Main.dayTime)
+				{
+					shop.item[nextSlot].SetDefaults(3043);
+					nextSlot++;
+				}
 			}
 		}
     }

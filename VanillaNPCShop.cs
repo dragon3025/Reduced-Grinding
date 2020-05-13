@@ -292,6 +292,60 @@ namespace ReducedGrinding.NPCs
 					}
 					break;
 				case NPCID.SkeletonMerchant:
+					if (player.HasItem(mod.ItemType("Moon_Ball")))
+					{
+						nextSlot = 0;
+						shop.item[nextSlot].SetDefaults(3001);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(28);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3002);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(282);
+						nextSlot++;
+						if (Main.time % 60.0 * 60.0 * 6.0 <= 10800.0)
+						{
+							shop.item[nextSlot].SetDefaults(3004);
+						}
+						else
+						{
+							shop.item[nextSlot].SetDefaults(8);
+						}
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3003);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(40);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3310);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3313);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3312);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(3311);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(166);
+						nextSlot++;
+						shop.item[nextSlot].SetDefaults(965);
+						nextSlot++;
+						if (Main.hardMode)
+						{
+							shop.item[nextSlot].SetDefaults(3316);
+							nextSlot++;
+							shop.item[nextSlot].SetDefaults(3315);
+							nextSlot++;
+							shop.item[nextSlot].SetDefaults(3334);
+							nextSlot++;
+							if (Main.bloodMoon)
+							{
+								shop.item[nextSlot].SetDefaults(3258);
+								nextSlot++;
+							}
+						}
+						shop.item[nextSlot].SetDefaults(3043);
+						nextSlot++;
+
+					}
 					if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
 					{
 						shop.item[nextSlot].SetDefaults(mod.ItemType("Skull_Call"));
@@ -303,7 +357,7 @@ namespace ReducedGrinding.NPCs
 		
 		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
-			bool travelingMerchantExists = false; //This is done when Luiafk is installed, because it causes restocks to happen even when the vanilla traveling merchant isn't there.
+			bool travelingMerchantExists = false;
 			for (int i = 0; i < Terraria.Main.npc.Length; i++)
 			{
 				if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
@@ -314,17 +368,9 @@ namespace ReducedGrinding.NPCs
 			}
 			if (travelingMerchantExists)
 			{
-				float StockingChance = GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchantStockingChance;
-				float PreHardModeCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingBonusForPreH_ModeCompletionRate;
-
 				if (Main.netMode == NetmodeID.SinglePlayer) //I can't get this to run in a server, I get errors instead.
 				{
-					Player player = Main.player[Main.myPlayer];
-
-					StockingChance = GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchantStockingChance;
-					PreHardModeCompletionBonus = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantStockingBonusForPreH_ModeCompletionRate;
-
-					bool addItem = false;
+					bool addItem;
 					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease > 0 && nextSlot < 39)
 					{
 						addItem = true;
@@ -1262,516 +1308,6 @@ namespace ReducedGrinding.NPCs
 							shop[nextSlot] = ItemID.PaintingTheSeason;
 							nextSlot++;
 						}
-					}
-				}
-				int newGoods = 0;
-				int PreHardmodeCompletion = 0;
-				if (Main.hardMode)
-					PreHardmodeCompletion = 6;
-				else
-				{
-					if (NPC.downedSlimeKing)
-						PreHardmodeCompletion++;
-					if (NPC.downedBoss1)
-						PreHardmodeCompletion++;
-					if (NPC.downedBoss2)
-						PreHardmodeCompletion++;
-					if (NPC.downedBoss3)
-						PreHardmodeCompletion++;
-					if (NPC.downedQueenBee)
-						PreHardmodeCompletion++;
-				}
-				StockingChance += (PreHardModeCompletionBonus * PreHardmodeCompletion / 6);
-				for (int i = 0; i < shop.Length; i++)
-				{
-					if (shop[i] != 0 && Main.rand.NextFloat() < StockingChance)
-					{
-						switch (shop[i])
-						{
-							//Items
-							case ItemID.Sake:
-								if (ReducedGrindingWorld.smItemSake == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemSake = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Pho:
-								if (ReducedGrindingWorld.smItemPho == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPho = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PadThai:
-								if (ReducedGrindingWorld.smItemPadThai == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPadThai = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.UltrabrightTorch:
-								if (ReducedGrindingWorld.smItemUltrabrightTorch == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemUltrabrightTorch = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.AmmoBox:
-								if (ReducedGrindingWorld.smItemAmmoBox == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemAmmoBox = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.MagicHat:
-								if (ReducedGrindingWorld.smItemMagicHat == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemMagicHat = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.GypsyRobe:
-								if (ReducedGrindingWorld.smItemGypsyRobe == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemGypsyRobe = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Gi:
-								if (ReducedGrindingWorld.smItemGi == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemGi = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.CelestialMagnet:
-								if (ReducedGrindingWorld.smItemCelestialMagnet == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCelestialMagnet = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.DPSMeter:
-								if (ReducedGrindingWorld.smItemDPSMeter == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemDPSMeter = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.LifeformAnalyzer:
-								if (ReducedGrindingWorld.smItemLifeformAnalyzer == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemLifeformAnalyzer = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Stopwatch:
-								if (ReducedGrindingWorld.smItemStopwatch == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemStopwatch = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintSprayer:
-								if (ReducedGrindingWorld.smItemPaintSprayer == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPaintSprayer = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.BrickLayer:
-								if (ReducedGrindingWorld.smItemBrickLayer == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemBrickLayer = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PortableCementMixer:
-								if (ReducedGrindingWorld.smItemPortableCementMixer == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPortableCementMixer = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.ExtendoGrip:
-								if (ReducedGrindingWorld.smItemExtendoGrip == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemExtendoGrip = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.ActuationAccessory:
-								if (ReducedGrindingWorld.smItemPresserator == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPresserator = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.BlackCounterweight:
-								if (ReducedGrindingWorld.smItemBlackCounterweight == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemBlackCounterweight = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.YellowCounterweight:
-								if (ReducedGrindingWorld.smItemYellowCounterweight == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemYellowCounterweight = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.SittingDucksFishingRod:
-								if (ReducedGrindingWorld.smItemSittingDucksFishingPole == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemSittingDucksFishingPole = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Katana:
-								if (ReducedGrindingWorld.smItemKatana == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemKatana = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Code1:
-								if (ReducedGrindingWorld.smItemCode1 == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCode1 = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Revolver:
-								if (ReducedGrindingWorld.smItemRevolver == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemRevolver = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Gatligator:
-								if (ReducedGrindingWorld.smItemGatligator == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemGatligator = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Code2:
-								if (ReducedGrindingWorld.smItemCode2 == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCode2 = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PulseBow:
-								if (ReducedGrindingWorld.smItemPulseBow == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPulseBow = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.DiamondRing:
-								if (ReducedGrindingWorld.smItemDiamondRing == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemDiamondRing = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.AngelHalo:
-								if (ReducedGrindingWorld.smItemAngelHalo == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemAngelHalo = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Fez:
-								if (ReducedGrindingWorld.smItemFez == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemFez = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.WinterCape:
-								if (ReducedGrindingWorld.smItemWinterCape == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemWinterCape = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.RedCape:
-								if (ReducedGrindingWorld.smItemRedCape == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemRedCape = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.CrimsonCloak:
-								if (ReducedGrindingWorld.smItemCrimsonCloak == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCrimsonCloak = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.MysteriousCape:
-								if (ReducedGrindingWorld.smItemMysteriousCape == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemMysteriousCape = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.Kimono:
-								if (ReducedGrindingWorld.smItemKimono == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemKimono = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.WaterGun:
-								if (ReducedGrindingWorld.smItemWaterGun == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemWaterGun = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							case ItemID.CompanionCube:
-								if (ReducedGrindingWorld.smItemCompanionCube == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCompanionCube = true;
-									ReducedGrindingWorld.smItemDecorShopNotEmpty = true;
-								}
-								break;
-							//Decor Items
-							case ItemID.TeamBlockRed:
-								if (ReducedGrindingWorld.smItemRedTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemRedTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TeamBlockYellow:
-								if (ReducedGrindingWorld.smItemYellowTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemYellowTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TeamBlockGreen:
-								if (ReducedGrindingWorld.smItemGreenTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemGreenTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TeamBlockBlue:
-								if (ReducedGrindingWorld.smItemBlueTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemBlueTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TeamBlockPink:
-								if (ReducedGrindingWorld.smItemPinkTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemPinkTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TeamBlockWhite:
-								if (ReducedGrindingWorld.smItemWhiteTeamBlock == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemWhiteTeamBlock = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.SteampunkCup:
-								if (ReducedGrindingWorld.smItemChalice == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemChalice = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.ArcaneRuneWall:
-								if (ReducedGrindingWorld.smItemArcaneRuneWall == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemArcaneRuneWall = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.FancyDishes:
-								if (ReducedGrindingWorld.smItemFancyDishes == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemFancyDishes = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.DynastyWood:
-								if (ReducedGrindingWorld.smItemDynastyWood == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemDynastyWood = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.ZebraSkin:
-								if (ReducedGrindingWorld.smItemZebraSkin == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemZebraSkin = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.LeopardSkin:
-								if (ReducedGrindingWorld.smItemLeopardSkin == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemLeopardSkin = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.TigerSkin:
-								if (ReducedGrindingWorld.smItemTigerSkin == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemTigerSkin = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingCastleMarsberg:
-								if (ReducedGrindingWorld.smItemCastleMarsberg == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCastleMarsberg = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingMartiaLisa:
-								if (ReducedGrindingWorld.smItemMartiaLisa == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemMartiaLisa = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingTheTruthIsUpThere:
-								if (ReducedGrindingWorld.smItemTheTruthIsUpThere == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemTheTruthIsUpThere = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.MoonLordPainting:
-								if (ReducedGrindingWorld.smItemNotAKidNorASquid == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemNotAKidNorASquid = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingAcorns:
-								if (ReducedGrindingWorld.smItemAcorns == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemAcorns = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingColdSnap:
-								if (ReducedGrindingWorld.smItemColdSnap == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemColdSnap = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingCursedSaint:
-								if (ReducedGrindingWorld.smItemCursedSaint == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemCursedSaint = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingSnowfellas:
-								if (ReducedGrindingWorld.smItemSnowfellas == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemSnowfellas = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-							case ItemID.PaintingTheSeason:
-								if (ReducedGrindingWorld.smItemTheSeason == false)
-								{
-									newGoods++;
-									ReducedGrindingWorld.smItemTheSeason = true;
-									ReducedGrindingWorld.smItemShopNotEmpty = true;
-								}
-								break;
-						}
-					}
-				}
-				if (newGoods > 0)
-				{
-					if (newGoods > 1)
-					{
-						if (Main.netMode == NetmodeID.Server)
-							NetMessage.BroadcastChatMessage(NetworkText.FromKey("The stationary merchant has "+ newGoods.ToString()+" new items in his shop."), new Color(191, 255, 0));
-						else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-							Main.NewText("The stationary merchant has new items in his shop.", 191, 255, 0);
-					}
-					else
-					{
-						if (Main.netMode == NetmodeID.Server)
-							NetMessage.BroadcastChatMessage(NetworkText.FromKey("The stationary merchant a new item in his shop."), new Color(191, 255, 0));
-						else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-							Main.NewText("The stationary merchant a new item in his shop.", 191, 255, 0);
 					}
 				}
 				if (Main.netMode == NetmodeID.Server)

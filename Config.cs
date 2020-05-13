@@ -1,10 +1,4 @@
-using Newtonsoft.Json;
 using System.ComponentModel;
-using System.IO;
-using Terraria;
-using Terraria.ID;
-using Terraria.IO;
-using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding
@@ -468,17 +462,17 @@ namespace ReducedGrinding
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
 		//[Tooltip("The chance of the Traveling Merchant spawning each morning is this amount when you have all permanent vanilla and Reduced Grinding NPCs.")]
-		[Header("Stationary Merchant:\n\nThis NPC's shop starts with nothing and each time the Traveling Merchant shop is reset from either vanilla or Reduced Grinding mechanics, the Stationary Merchant will have a chance to gain some of the Stationary Merchant's items.")]
+		[Header("Stationary Merchant:\n\nThis NPC sells everything the Traveling Merchant has a chance to sell, but there's a catch. By default, his prices are higher, especially when the Traveling Merchant is away. Also by default, the rarer the item, the more expensive the item is. The price for each item will get modified by the configurations below.")]
 		[Label("Spawns")] [DefaultValue(true)] public bool StationaryMerchant;
-		[Tooltip("When the Traveling Merchant shop resets, this is the chance each item in the Traveling Merchant's shop will be added to this shop.")] [Label("Stocking Chance")] [Increment(.0001f)] [DefaultValue(0.143f)] public float StationaryMerchantStockingChance;
-		[Tooltip("This will be multiplied by a percentage of Pre-Hardmode completion then added to the Stocking Chance")] [Label("Pre-Hard Completion Stocking Chance Bonus")] [Increment(.0001f)] [DefaultValue(0.857f)] public float S_MerchantStockingBonusForPreH_ModeCompletionRate;
+		[Label("Base Multiplier When Merchant Present")] [Increment(.01f)] [Range(1f, 10f)] [DefaultValue(4f)] public float S_MerchantPriceMultiplierDuringSale;
+		[Label("Base Multiplier When Merchant Away")] [Increment(.01f)] [Range(1f, 10f)] [DefaultValue(8f)] public float S_MerchantPriceMultiplier;
+		[Tooltip("The Traveling Merchant Shop has 6 Rarity Tiers. The price each item in the Stationary Merchant's shop will be multiplied by 1 + ((Rarity_Tier - 1) * This_Configuration)")] [Label("Rarity Fee Rate")] [Increment(.1f)] [Range(0f, 10f)] [DefaultValue(1f)] public float S_MerchantRarityFee;
+
 		[Header("Traveling Merchant")]
 		[Tooltip("This is an additional chance of the Traveling Merchant spawning each morning. This chance is" +
 			"\ngreatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have.")]
 		[Label("Base Extra Spawn Spawn Chance")] [Increment(.0001f)] [DefaultValue(1.0f)] public float BaseMorningTMerchantSpawnChance;
-		[Tooltip("This chance is greatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have. The" +
-			"\nshop wont reset unless you have a Traveling Merchant Restock Order (bought from the Stationary Merchant)")]
-		[Label("Chance Each Real-Time Second Resets Shop")] [Increment(.0001f)] [DefaultValue(0.0432f)] public float ChanceEachInGameMinuteWillResetTravelingMerchant;
+
 		[Header("Traveling Merchant Shop Item Chance Increases")]
 		[Label("[i:3055] Acorns")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAcornsIncrease;
 		[Label("[i:2177] Ammo Box")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantAmmoBoxIncrease;
@@ -548,7 +542,6 @@ namespace ReducedGrinding
 		[Label("[i:3640] Yellow Team Platform")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantYellowTeamPlatformIncrease;
 		[Label("[i:2283] Zebra Skin")] [Increment(.0001f)] [DefaultValue(0f)] public float TravelingMerchantZebraSkinIncrease;
 		[Label("Increased Christmas Item chances requires Christmas")] [DefaultValue(true)] public bool TravelingMerchantAlwaysXMasForConfigurations;
-		[Label("Chance That Killing Enemies Resets T.Merchant")] [Increment(.0001f)] [DefaultValue(0f)] public float ChanceThatEnemyKillWillResetTravelingMerchant;
 
 		public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
 		{
@@ -681,7 +674,7 @@ namespace ReducedGrinding
 	{
 		public override ConfigScope Mode => ConfigScope.ServerSide;
 
-		[Tooltip("Permanent version of the Skeleton Merchant")] [Label("Bone Merchant")] [DefaultValue(true)] public bool BoneMerchant;
+		[Tooltip("Permanent version of the Skeleton Merchant")] [Label("Bone Merchant")] [DefaultValue(false)] public bool BoneMerchant;
 		[Label("Bone Merchant Disabled When Luiafk Is Installed")] [DefaultValue(false)] public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
 		[Tooltip("Permanent version of Santa Claus")] [Label("Christmas Elf")] [DefaultValue(true)] public bool ChristmasElf;
 		[Tooltip("Sells what's needed to fight the next Vanilla boss (you can still aquire these items normally)")] [Label("Loot Merchant")] [DefaultValue(false)] public bool LootMerchant;
