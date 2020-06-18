@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
@@ -18,13 +19,17 @@ namespace ReducedGrinding.Items
 			item.height = 30;
 			item.maxStack = 30;
 			item.rare = 2;
-			item.useAnimation = 45;
-			item.useTime = 45;
+			item.useAnimation = 15;
+			item.useTime = 15;
 			item.useStyle = 4;
-			item.value = Item.buyPrice(0, 0, 2, 34);
+            item.useTurn = true;
+            item.value = Item.buyPrice(0, 0, 2, 34);
 			item.UseSound = SoundID.Item3;
-			item.consumable = true;
-		}
+            item.useStyle = ItemUseStyleID.EatingUsing;
+            item.consumable = true;
+            item.buffType = BuffType<Buffs.Chaos>();
+            item.buffTime = 25200;
+        }
 
 		public override bool CanUseItem(Player player)
 		{
@@ -35,7 +40,6 @@ namespace ReducedGrinding.Items
 		{
 			player.AddBuff(BuffID.Battle, 25200);
 			player.AddBuff(mod.BuffType("War"), 25200);
-			player.AddBuff(mod.BuffType("Chaos"), 25200);
 			return true;
 		}
 	

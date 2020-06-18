@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
@@ -19,25 +20,17 @@ namespace ReducedGrinding.Items
             item.height = 30;
             item.maxStack = 30;
             item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
+            item.useAnimation = 15;
+            item.useTime = 15;
             item.useStyle = 4;
+            item.useTurn = true;
             item.value = Item.buyPrice(0, 0, 2);
             item.UseSound = SoundID.Item3;
+            item.useStyle = ItemUseStyleID.EatingUsing;
             item.consumable = true;
+            item.buffType = BuffType<Buffs.Fish_Upgrade>();
+            item.buffTime = 28800;
         }
-
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-		}
-
-		public override bool UseItem(Player player)
-		{
-			player.AddBuff(BuffID.Battle, 25200);
-			player.AddBuff(mod.BuffType("Fish_Upgrade"), 28800);
-			return true;
-		}
 
 		public override void AddRecipes()
         {

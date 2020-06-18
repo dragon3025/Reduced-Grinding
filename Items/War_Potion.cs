@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
@@ -18,27 +19,31 @@ namespace ReducedGrinding.Items
 			item.height = 30;
 			item.maxStack = 30;
 			item.rare = 2;
-			item.useAnimation = 45;
-			item.useTime = 45;
+			item.useAnimation = 15;
+			item.useTime = 15;
 			item.useStyle = 4;
-			item.value = Item.buyPrice(0, 0, 1, 13);
+            item.useTurn = true;
+            item.value = Item.buyPrice(0, 0, 1, 13);
 			item.UseSound = SoundID.Item3;
-			item.consumable = true;
-		}
+            item.useStyle = ItemUseStyleID.EatingUsing;
+            item.consumable = true;
+            item.buffType = BuffType<Buffs.War>();
+            item.buffTime = 25200;
 
-		public override bool CanUseItem(Player player)
-		{
-			return true;
-		}
+        }
 
-		public override bool UseItem(Player player)
-		{
-			player.AddBuff(13, 25200); //Battle
-			player.AddBuff(mod.BuffType("War"), 25200);
-			return true;
-		}
-	
-		public override void AddRecipes()
+        public override bool CanUseItem(Player player)
+        {
+            return true;
+        }
+
+        public override bool UseItem(Player player)
+        {
+            player.AddBuff(13, 25200); //Battle
+            return true;
+        }
+
+        public override void AddRecipes()
 		{
 			
 			//War Potion recipe for corruption
