@@ -22,28 +22,28 @@ namespace ReducedGrinding.Items
 			item.useAnimation = 15;
 			item.useTime = 15;
 			item.useStyle = 4;
-            item.useTurn = true;
-            item.value = Item.buyPrice(0, 0, 1, 13);
+		    	item.useTurn = true;
+		    	item.value = Item.buyPrice(0, 0, 1, 13);
 			item.UseSound = SoundID.Item3;
-            item.useStyle = ItemUseStyleID.EatingUsing;
-            item.consumable = true;
-            item.buffType = BuffType<Buffs.War>();
-            item.buffTime = 25200;
+		    	item.useStyle = ItemUseStyleID.EatingUsing;
+		    	item.consumable = true;
+		    	item.buffType = BuffType<Buffs.War>();
+            		item.buffTime = 25200;
 
-        }
+		}
 
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-        }
+        	public override bool CanUseItem(Player player)
+        	{
+            		return true;
+        	}
 
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(13, 25200); //Battle
-            return true;
-        }
+		public override bool UseItem(Player player)
+		{
+	 		player.AddBuff(13, 25200); //Battle
+		 	return true;
+		}
 
-        public override void AddRecipes()
+		public override void AddRecipes()
 		{
 			
 			//War Potion recipe for corruption
@@ -53,7 +53,7 @@ namespace ReducedGrinding.Items
 			recipe.AddTile(TileID.Bottles);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
-				
+
 			//War Potion recipe for crimson
 			recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.BattlePotion,1);
