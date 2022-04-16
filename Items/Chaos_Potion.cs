@@ -40,6 +40,7 @@ namespace ReducedGrinding.Items
 		{
 			player.AddBuff(BuffID.Battle, 25200);
 			player.AddBuff(mod.BuffType("War"), 25200);
+			player.AddBuff(mod.BuffType("Chaos"), 25200);
 			return true;
 		}
 	
