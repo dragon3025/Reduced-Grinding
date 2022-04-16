@@ -22,13 +22,13 @@ namespace ReducedGrinding.Items
 			item.useAnimation = 15;
 			item.useTime = 15;
 			item.useStyle = 4;
-		    	item.useTurn = true;
-		    	item.value = Item.buyPrice(0, 0, 2, 34);
+		    item.useTurn = true;
+		    item.value = Item.buyPrice(0, 0, 2, 34);
 			item.UseSound = SoundID.Item3;
-		    	item.useStyle = ItemUseStyleID.EatingUsing;
-		    	item.consumable = true;
-		    	item.buffType = BuffType<Buffs.Chaos>();
-		    	item.buffTime = 25200;
+		    item.useStyle = ItemUseStyleID.EatingUsing;
+		    item.consumable = true;
+		    item.buffType = BuffType<Buffs.Chaos>();
+		    item.buffTime = 25200;
 		}
 
 		public override bool CanUseItem(Player player)
