@@ -2554,66 +2554,6 @@ namespace ReducedGrinding
 							}
 						}
 					}
-
-					//Restock Traveling Merchant
-					bool travelingMerchantExists = false; //This is done when Luiafk is installed, because it causes restocks to happen even when the vanilla traveling merchant isn't there.
-					for (int i = 0; i < Terraria.Main.npc.Length; i++)
-					{
-						if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
-						{
-							travelingMerchantExists = true;
-							break;
-						}
-					}
-					if (travelingMerchantExists && GetInstance<ETravelingAndStationaryMerchantConfig>().ChanceThatEnemyKillWillResetTravelingMerchant > 0)
-					{
-						int travelingMerchantResetChanceModifier = 22; //There are 22 vanilla NPCs as of 5/26/2017
-						bool tryToResetTravelingMerchant = false;
-						for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
-						{
-							if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
-								tryToResetTravelingMerchant = true;
-							if (Terraria.Main.npc[i].townNPC == true)
-							{
-								if (
-									Terraria.Main.npc[i].type == NPCID.Merchant ||
-									Terraria.Main.npc[i].type == NPCID.Nurse ||
-									Terraria.Main.npc[i].type == NPCID.Demolitionist ||
-									Terraria.Main.npc[i].type == NPCID.DyeTrader ||
-									Terraria.Main.npc[i].type == NPCID.Dryad ||
-									Terraria.Main.npc[i].type == NPCID.DD2Bartender ||
-									Terraria.Main.npc[i].type == NPCID.ArmsDealer ||
-									Terraria.Main.npc[i].type == NPCID.Stylist ||
-									Terraria.Main.npc[i].type == NPCID.Painter ||
-									Terraria.Main.npc[i].type == NPCID.Angler ||
-									Terraria.Main.npc[i].type == NPCID.GoblinTinkerer ||
-									Terraria.Main.npc[i].type == NPCID.WitchDoctor ||
-									Terraria.Main.npc[i].type == NPCID.Clothier ||
-									Terraria.Main.npc[i].type == NPCID.Mechanic ||
-									Terraria.Main.npc[i].type == NPCID.PartyGirl ||
-									Terraria.Main.npc[i].type == NPCID.Wizard ||
-									Terraria.Main.npc[i].type == NPCID.TaxCollector ||
-									Terraria.Main.npc[i].type == NPCID.Truffle ||
-									Terraria.Main.npc[i].type == NPCID.Pirate ||
-									Terraria.Main.npc[i].type == NPCID.Steampunker ||
-									Terraria.Main.npc[i].type == NPCID.Cyborg) //Any Permenant Town Residents other than the Guide
-									travelingMerchantResetChanceModifier--;
-							}
-						}
-						if (travelingMerchantResetChanceModifier < 1)
-							travelingMerchantResetChanceModifier = 1;
-						if (tryToResetTravelingMerchant)
-						{
-							if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().ChanceThatEnemyKillWillResetTravelingMerchant/travelingMerchantResetChanceModifier)
-							{
-								Chest.SetupTravelShop();
-								if (Main.netMode == NetmodeID.Server)
-									NetMessage.BroadcastChatMessage(NetworkText.FromKey("The Traveling Merchant restocked his items."), new Color(0, 127, 255));
-								else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-									Main.NewText("The Traveling Merchant restocked his items.", 0, 127, 255);
-							}
-						}
-					}
 				}
 			}
 		}
@@ -2816,7 +2756,6 @@ namespace ReducedGrinding
 
 	enum ReducedGrindingMessageType : byte
 	{
-		SyncPlayer,
 		SendClientChanges,
 		skipToNight,
 		skipToDay,

@@ -2,6 +2,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
+using System;
 
 namespace ReducedGrinding.NPCs
 {
@@ -60,13 +61,28 @@ namespace ReducedGrinding.NPCs
         }
 
         public override string GetChat()
-		{
-			if (!ReducedGrindingWorld.smItemDecorShopNotEmpty && !ReducedGrindingWorld.smItemShopNotEmpty)
-				return "I don't have anything at the moment. I sometimes get supplies from merchants who travel by here. Check back later.";
-			else if (!ReducedGrindingWorld.smItemDecorShopNotEmpty)
-				return "I don't have decor at the moment. I sometimes get supplies from merchants who travel by here. Check back later if you want decor.";
-			else if (!ReducedGrindingWorld.smItemShopNotEmpty)
-				return "I don't have non-decor at the moment. I sometimes get supplies from merchants who travel by here. Check back later if you want non-decor.";
+        {
+			bool TravellingMerchantExists = false;
+
+			for (int i = 0; i < Terraria.Main.npc.Length; i++)
+			{
+				if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+				{
+					TravellingMerchantExists = true;
+					break;
+				}
+			}
+
+			int SaleType;
+			if (GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplierDuringSale < GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplier)
+				SaleType = 1;
+			else if (GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplierDuringSale > GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplier)
+				SaleType = -1;
+			else
+				SaleType = 0;
+
+			if ((TravellingMerchantExists && SaleType == 1) || (!TravellingMerchantExists && SaleType == -1))
+				return "Everything is on sale!";
 			else
 			{
 				if (Terraria.GameContent.Events.BirthdayParty.PartyIsUp && Main.rand.Next(3) == 0)
@@ -75,16 +91,17 @@ namespace ReducedGrinding.NPCs
 				}
 				else
 				{
-					switch (Main.rand.Next(4))
+					switch (Main.rand.Next(2))
 					{
 						case 0:
 							return "Don't worry, I'm not going anywhere!";
-						case 1:
-							return "I like to stock up on goods from merchants that pass by here.";
-						case 2:
-							return "I could go hunting for rare items, but I'd rather buy them from those who do.";
 						default:
-							return "Would you like to see some goods that I've aquired from travelers?";
+							if (SaleType == 1)
+								return "I like to have a sales when traveling merchants arrive.";
+							else if (SaleType == -1)
+								return "I like to have sales when traveling merchants are away.";
+							else
+								return "My prices never change.";
 					}
 				}
 			}
@@ -111,320 +128,328 @@ namespace ReducedGrinding.NPCs
         }
 
         public override void SetupShop(Chest shop, ref int nextSlot)
-        {
+		{
+			bool TravellingMerchantExists = false;
+			float BaseMultiplier;
+			for (int i = 0; i < Terraria.Main.npc.Length; i++)
+			{
+				if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+				{
+					TravellingMerchantExists = true;
+					break;
+				}
+			}
+			if (TravellingMerchantExists)
+				BaseMultiplier = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplierDuringSale;
+			else
+				BaseMultiplier = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantPriceMultiplier;
+
+			float RarityMultiplier = GetInstance<ETravelingAndStationaryMerchantConfig>().S_MerchantRarityFee;
+			int Rarity;
+
+			int MaxPrice = 999999999;
+
 			if (baseshop)
 			{
-				shop.item[nextSlot].SetDefaults(mod.ItemType("Traveling_Merchant_Restock_Order"));
+				Rarity = 1;
+				shop.item[nextSlot].SetDefaults(ItemID.DPSMeter);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 				nextSlot++;
-				if (ReducedGrindingWorld.smItemSake)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Sake);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPho)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Pho);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPadThai)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PadThai);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemUltrabrightTorch)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.UltrabrightTorch);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemAmmoBox)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.AmmoBox);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemMagicHat)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.MagicHat);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemGypsyRobe)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.GypsyRobe);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemGi)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Gi);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCelestialMagnet)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemDPSMeter)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.DPSMeter);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemLifeformAnalyzer)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.LifeformAnalyzer);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemStopwatch)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Stopwatch);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPaintSprayer)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintSprayer);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemBrickLayer)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.BrickLayer);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPortableCementMixer)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PortableCementMixer);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemExtendoGrip)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.ExtendoGrip);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPresserator)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.ActuationAccessory);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemBlackCounterweight)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.BlackCounterweight);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemYellowCounterweight)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.YellowCounterweight);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemSittingDucksFishingPole)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemKatana)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Katana);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCode1)
+
+				shop.item[nextSlot].SetDefaults(ItemID.LifeformAnalyzer);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.Stopwatch);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.Sake);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.Pho);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 30) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.PadThai);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 20) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				Rarity = 2;
+				shop.item[nextSlot].SetDefaults(ItemID.UltrabrightTorch);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 3) * BaseMultiplier * (1 + RarityMultiplier * (Rarity-1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.PaintSprayer);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.BrickLayer);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.PortableCementMixer);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.ExtendoGrip);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.ActuationAccessory);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.Katana);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 4) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				Rarity = 3;
+				shop.item[nextSlot].SetDefaults(ItemID.AmmoBox);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 15) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.MagicHat);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 3) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.GypsyRobe);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 3, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.Gi);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 2) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				if (NPC.downedBoss1)
 				{
 					shop.item[nextSlot].SetDefaults(ItemID.Code1);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 					nextSlot++;
 				}
-				if (ReducedGrindingWorld.smItemRevolver)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Revolver);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemGatligator)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCode2)
+
+				if (NPC.downedMechBossAny)
 				{
 					shop.item[nextSlot].SetDefaults(ItemID.Code2);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 25) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 					nextSlot++;
 				}
-				if (ReducedGrindingWorld.smItemPulseBow)
+
+				if (WorldGen.shadowOrbSmashed)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.Revolver);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 10) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+				}
+
+				shop.item[nextSlot].SetDefaults(ItemID.Fez);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 3, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+
+				Rarity = 4;
+				shop.item[nextSlot].SetDefaults(ItemID.CelestialMagnet);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 15) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.YellowCounterweight);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.SittingDucksFishingRod);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 35) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				if (NPC.downedPlantBoss)
 				{
 					shop.item[nextSlot].SetDefaults(ItemID.PulseBow);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 45) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 					nextSlot++;
 				}
-				if (ReducedGrindingWorld.smItemDiamondRing)
+
+				shop.item[nextSlot].SetDefaults(ItemID.DiamondRing);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(2) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.WinterCape);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.RedCape);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.CrimsonCloak);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.MysteriousCape);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.WaterGun);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 1, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.CompanionCube);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				Rarity = 5;
+				shop.item[nextSlot].SetDefaults(ItemID.BlackCounterweight);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 5) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				if (Main.hardMode)
 				{
-					shop.item[nextSlot].SetDefaults(ItemID.DiamondRing);
+					shop.item[nextSlot].SetDefaults(ItemID.Gatligator);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 35) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 					nextSlot++;
 				}
-				if (ReducedGrindingWorld.smItemAngelHalo)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.AngelHalo);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemFez)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Fez);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemWinterCape)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.WinterCape);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemRedCape)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.RedCape);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCrimsonCloak)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.CrimsonCloak);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemMysteriousCape)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.MysteriousCape);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemKimono)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.Kimono);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemWaterGun)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.WaterGun);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCompanionCube)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.CompanionCube);
-					nextSlot++;
-				}
+
+				shop.item[nextSlot].SetDefaults(ItemID.Kimono);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				Rarity = 6;
+				shop.item[nextSlot].SetDefaults(ItemID.AngelHalo);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 40) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
 			}
 			else //Docor Shop
 			{
-				if (ReducedGrindingWorld.smItemRedTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRed);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRedPlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemYellowTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellow);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellowPlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemGreenTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreen);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreenPlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemBlueTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBlue);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBluePlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemPinkTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPink);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPinkPlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemWhiteTeamBlock)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhite);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhitePlatform);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemChalice)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.SteampunkCup);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemArcaneRuneWall)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.ArcaneRuneWall);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemFancyDishes)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.FancyDishes);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemDynastyWood)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.DynastyWood);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.RedDynastyShingles);
-					nextSlot++;
-					shop.item[nextSlot].SetDefaults(ItemID.BlueDynastyShingles);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemZebraSkin)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.ZebraSkin);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemLeopardSkin)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.LeopardSkin);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemTigerSkin)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.TigerSkin);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCastleMarsberg)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingCastleMarsberg);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemMartiaLisa)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingMartiaLisa);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemTheTruthIsUpThere)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingTheTruthIsUpThere);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemNotAKidNorASquid)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.MoonLordPainting);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemAcorns)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingAcorns);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemColdSnap)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingColdSnap);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemCursedSaint)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingCursedSaint);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemSnowfellas)
-				{
-					shop.item[nextSlot].SetDefaults(ItemID.PaintingSnowfellas);
-					nextSlot++;
-				}
-				if (ReducedGrindingWorld.smItemTheSeason)
+				Rarity = 1;
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRed);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockRedPlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellow);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockYellowPlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreen);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockGreenPlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBlue);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockBluePlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPink);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockPinkPlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhite);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TeamBlockWhitePlatform);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.SteampunkCup);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.FancyDishes);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 20) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.DynastyWood);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.RedDynastyShingles);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.BlueDynastyShingles);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.ZebraSkin);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.LeopardSkin);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				shop.item[nextSlot].SetDefaults(ItemID.TigerSkin);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 1) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
+
+				Rarity = 3;
+				if (Main.xMas)
 				{
 					shop.item[nextSlot].SetDefaults(ItemID.PaintingTheSeason);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingSnowfellas);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingColdSnap);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingCursedSaint);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingAcorns);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
 					nextSlot++;
 				}
+
+				if (NPC.downedMartians)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingTheTruthIsUpThere);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 2) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingMartiaLisa);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 2) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+
+					shop.item[nextSlot].SetDefaults(ItemID.PaintingCastleMarsberg);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 2) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+				}
+
+				if (NPC.downedMoonlord)
+				{
+					shop.item[nextSlot].SetDefaults(ItemID.MoonLordPainting);
+					shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 3) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+					nextSlot++;
+				}
+
+				Rarity = 5;
+				shop.item[nextSlot].SetDefaults(ItemID.ArcaneRuneWall);
+				shop.item[nextSlot].shopCustomPrice = (int)Math.Min(MaxPrice, Item.buyPrice(0, 0, 2, 50) * BaseMultiplier * (1 + RarityMultiplier * (Rarity - 1)));
+				nextSlot++;
 			}
 		}
     }

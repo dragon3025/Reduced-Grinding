@@ -1,3 +1,0 @@
-C:\Users\cntdr\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ReducedGrinding\obj\Debug\net45\ReducedGrinding.csprojAssemblyReference.cache
-C:\Users\cntdr\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ReducedGrinding\obj\Debug\net45\ReducedGrinding.AssemblyInfoInputs.cache
-C:\Users\cntdr\OneDrive\Documents\My Games\Terraria\ModLoader\Mod Sources\ReducedGrinding\obj\Debug\net45\ReducedGrinding.AssemblyInfo.cs
