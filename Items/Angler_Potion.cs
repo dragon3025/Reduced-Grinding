@@ -6,7 +6,7 @@ namespace ReducedGrinding.Items
 {
     public class Angler_Potion : ModItem
     {
-		
+
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Angler Potion");
@@ -15,7 +15,7 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-			item.width = 20;
+            item.width = 20;
             item.height = 30;
             item.maxStack = 30;
             item.rare = 2;
@@ -34,22 +34,22 @@ namespace ReducedGrinding.Items
 
         public override bool UseItem(Player player)
         {
-			Main.NewText("The angler has a new quest for you.", 0, 128, 255);
-			Main.AnglerQuestSwap();
-			if (Main.netMode == NetmodeID.Server)
-				NetMessage.SendData(7);
-			return true;
+            Main.NewText("The angler has a new quest for you.", 0, 128, 255);
+            Main.AnglerQuestSwap();
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendData(7);
+            return true;
         }
 
         public override void AddRecipes()
         {
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BottledWater, 1);
-			recipe.AddIngredient(ItemID.SpecularFish);
-			recipe.AddIngredient(ItemID.Moonglow);
-			recipe.AddTile(TileID.Bottles);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+            ModRecipe recipe = new ModRecipe(mod);
+            recipe.AddIngredient(ItemID.BottledWater, 1);
+            recipe.AddIngredient(ItemID.SpecularFish);
+            recipe.AddIngredient(ItemID.Moonglow);
+            recipe.AddTile(TileID.Bottles);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
         }
     }
 }

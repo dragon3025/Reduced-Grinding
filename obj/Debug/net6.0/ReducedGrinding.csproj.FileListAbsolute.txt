@@ -1,0 +1,5 @@
+C:\Users\cntdr\Documents\My Games\Terraria\tModLoader\ModSources\ReducedGrinding\obj\Debug\net6.0\ReducedGrinding.csproj.AssemblyReference.cache
+C:\Users\cntdr\Documents\My Games\Terraria\tModLoader\ModSources\ReducedGrinding\obj\Debug\net6.0\ReducedGrinding.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cntdr\Documents\My Games\Terraria\tModLoader\ModSources\ReducedGrinding\obj\Debug\net6.0\ReducedGrinding.AssemblyInfoInputs.cache
+C:\Users\cntdr\Documents\My Games\Terraria\tModLoader\ModSources\ReducedGrinding\obj\Debug\net6.0\ReducedGrinding.AssemblyInfo.cs
+C:\Users\cntdr\Documents\My Games\Terraria\tModLoader\ModSources\ReducedGrinding\obj\Debug\net6.0\ReducedGrinding.csproj.CoreCompileInputs.cache

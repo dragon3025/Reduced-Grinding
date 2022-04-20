@@ -1,7 +1,7 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.5": {
+    "net6.0": {
       "tModLoader.CodeAssist/0.1.3": {
         "type": "package"
       }
@@ -26,7 +26,7 @@
     }
   },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.5": [
+    "net6.0": [
       "tModLoader.CodeAssist >= 0.1.*"
     ]
   },
@@ -36,26 +36,26 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj",
+      "projectUniqueName": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ReducedGrinding\\ReducedGrinding.csproj",
       "projectName": "ReducedGrinding",
-      "projectPath": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\ReducedGrinding.csproj",
+      "projectPath": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ReducedGrinding\\ReducedGrinding.csproj",
       "packagesPath": "C:\\Users\\cntdr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\ModLoader\\Mod Sources\\ReducedGrinding\\obj\\",
+      "outputPath": "C:\\Users\\cntdr\\Documents\\My Games\\Terraria\\tModLoader\\ModSources\\ReducedGrinding\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\cntdr\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net45"
+        "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
-        "net45": {
-          "targetAlias": "net45",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -66,12 +66,27 @@
       }
     },
     "frameworks": {
-      "net45": {
-        "targetAlias": "net45",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "dependencies": {
           "tModLoader.CodeAssist": {
             "target": "Package",
             "version": "[0.1.*, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
           }
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
