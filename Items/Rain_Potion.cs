@@ -50,7 +50,7 @@ namespace ReducedGrinding.Items
 				Main.numClouds = Main.cloudLimit;
 			}
 			if (Main.netMode == NetmodeID.Server)
-				NetMessage.SendData(7);
+				NetMessage.SendData(MessageID.WorldData);
             return true;
         }
        

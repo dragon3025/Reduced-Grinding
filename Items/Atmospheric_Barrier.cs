@@ -46,7 +46,7 @@ namespace ReducedGrinding.Items
 			NPC.LunarApocalypseIsUp = false;
 			for (int i = 0; i < Main.npc.Length; i++)
 			{
-				if ((Main.npc[i].type >= 402 && Main.npc[i].type <= 429) || Main.npc[i].type == 507 || (Main.npc[i].type >= 516 && Main.npc[i].type <= 519) || Main.npc[i].type == 493) //Celestial Pillars and all of their enemy spawns
+				if ((Main.npc[i].type >= NPCID.StardustWormHead && Main.npc[i].type <= NPCID.VortexSoldier) || Main.npc[i].type == NPCID.LunarTowerNebula || (Main.npc[i].type >= NPCID.SolarFlare && Main.npc[i].type <= NPCID.SolarGoop) || Main.npc[i].type == NPCID.LunarTowerStardust) //Celestial Pillars and all of their enemy spawns
 					Main.npc[i].life = 0;
 			}
 			Terraria.GameContent.Events.CultistRitual.delay = 0;

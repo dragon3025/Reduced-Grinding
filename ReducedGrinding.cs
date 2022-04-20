@@ -155,7 +155,7 @@ namespace ReducedGrinding
         {
             public override void OpenVanillaBag(string context, Player player, int arg)
             {
-                var source = //What goes here?
+                var source = player.GetSource_DropAsItem(); //EXAMPLE MOD DOESN'T HAVE THIS UPDATED, I DON'T KNOW IF THIS IS CORRECT
 
                 //Boss Bags
                 if (arg == ItemID.BrainOfCthulhuBossBag)
@@ -712,7 +712,7 @@ namespace ReducedGrinding
 
         public class ModGlobalNPC : GlobalNPC
         {
-            public override void OnKill(NPC npc) //THIS WILL HAVE TO CHANGED TO THE BESTIARY: https://github.com/tModLoader/tModLoader/wiki/Basic-NPC-Drops-and-Loot-1.4
+            /*public override void OnKill(NPC npc) //DISABLED FOR NOW. THIS WILL HAVE TO CHANGED TO THE BESTIARY: https://github.com/tModLoader/tModLoader/wiki/Basic-NPC-Drops-and-Loot-1.4
             {
                 if (npc.lifeMax > 5 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
                 {
@@ -2553,7 +2553,7 @@ namespace ReducedGrinding
                         }
                     }
                 }
-            }
+            }*/
         }
     }
 

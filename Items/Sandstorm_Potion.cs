@@ -61,9 +61,9 @@ namespace ReducedGrinding.Items
 					Sandstorm.IntendedSeverity = Main.rand.NextFloat() * 0.3f;
 				}
 			}
-			if (Main.netMode != 1)
+			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
-				NetMessage.SendData(7, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
+				NetMessage.SendData(MessageID.WorldData, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
 			}
 		}
        

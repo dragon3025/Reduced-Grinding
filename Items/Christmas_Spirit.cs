@@ -52,7 +52,7 @@ namespace ReducedGrinding.Items
 			Main.halloween = false;
 			Main.xMas = true;
 			if (Main.netMode == NetmodeID.Server)
-				NetMessage.SendData(7);
+				NetMessage.SendData(MessageID.WorldData);
 			return true;
         }
 

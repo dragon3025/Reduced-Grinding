@@ -63,7 +63,7 @@ namespace ReducedGrinding.Items
 			}
 			if (Main.netMode == NetmodeID.Server)
 			{
-				NetMessage.SendData(7);
+				NetMessage.SendData(MessageID.WorldData);
 			}
 			return true;
         }

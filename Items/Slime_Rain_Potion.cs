@@ -48,7 +48,7 @@ namespace ReducedGrinding.Items
 			{
 				return;
 			}
-			if (Main.netMode == 1)
+			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
 				Main.slimeRainTime = 0.0;
 				Main.slimeRain = false;
@@ -74,7 +74,7 @@ namespace ReducedGrinding.Items
 			if (announce)
 			{
 				Main.slimeWarningTime = Main.slimeWarningDelay;
-				NetMessage.SendData(7, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
+				NetMessage.SendData(MessageID.WorldData, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
 			}
 		}
 		
@@ -84,7 +84,7 @@ namespace ReducedGrinding.Items
 			{
 				return;
 			}
-			if (Main.netMode == 1)
+			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
 				Main.slimeRainTime = 54000.0;
 				Main.slimeRain = true;
@@ -112,7 +112,7 @@ namespace ReducedGrinding.Items
 				if (announce)
 				{
 					Main.slimeWarningTime = Main.slimeWarningDelay;
-					NetMessage.SendData(7, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
+					NetMessage.SendData(MessageID.WorldData, -1, -1, null, 0, 0f, 0f, 0f, 0, 0, 0);
 				}
 			}
 		}

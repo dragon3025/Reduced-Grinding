@@ -59,8 +59,8 @@ namespace ReducedGrinding.Items
 				}
 			}
 			WorldGen.TriggerLunarApocalypse();
-			NetMessage.SendData(7);
-			NetMessage.SendData(78, -1, -1, null, 0, 1f, Main.invasionType + 3);
+			NetMessage.SendData(MessageID.WorldData);
+			NetMessage.SendData(MessageID.InvasionProgressReport, -1, -1, null, 0, 1f, Main.invasionType + 3);
 			return true;
 		}
 

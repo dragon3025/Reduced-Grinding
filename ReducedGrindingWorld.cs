@@ -96,7 +96,7 @@ namespace ReducedGrinding
 					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
 					netMessage.Send();
 
-					NetMessage.SendData(7);
+					NetMessage.SendData(MessageID.WorldData);
 				}
 			}
 
@@ -127,7 +127,7 @@ namespace ReducedGrinding
 					Main.npc[travelingMerchantTarget].active = false;
 					Main.npc[travelingMerchantTarget].netSkip = -1;
 					Main.npc[travelingMerchantTarget].life = 0;
-					NetMessage.SendData(23, -1, -1, null, travelingMerchantTarget);
+					NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, travelingMerchantTarget);
 				}
 				if (Main.netMode == NetmodeID.Server) //Server
 				{
@@ -139,7 +139,7 @@ namespace ReducedGrinding
 					netMessage.Write(ReducedGrindingWorld.skipToDay);
 					netMessage.Send();
 
-					NetMessage.SendData(7);
+					NetMessage.SendData(MessageID.WorldData);
 				}
 			}
 
@@ -160,7 +160,7 @@ namespace ReducedGrinding
 					netMessage.Write(ReducedGrindingWorld.skipToDay);
 					netMessage.Send();
 
-					NetMessage.SendData(7);
+					NetMessage.SendData(MessageID.WorldData);
 				}
 			}
 
@@ -246,7 +246,7 @@ namespace ReducedGrinding
 				int alltownNPCs = 0;
 				for (int j = 0; j < 200; j++)
 				{
-					if (Main.npc[j].active && Main.npc[j].townNPC && Main.npc[j].type != 37 && Main.npc[j].type != 453)
+					if (Main.npc[j].active && Main.npc[j].townNPC && Main.npc[j].type != NPCID.OldMan && Main.npc[j].type != NPCID.SkeletonMerchant)
 					{
 						alltownNPCs++;
 					}

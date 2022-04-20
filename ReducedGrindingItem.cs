@@ -14,7 +14,7 @@ namespace ReducedGrinding.Items
 
 			if (GetInstance<AEnemyDropConfig>().LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
 			{
-				if (item.type >= 885 && item.type <= 893) //All low-tier materials for Ankh Charm.
+				if (item.type >= ItemID.AdhesiveBandage && item.type <= ItemID.TrifoldMap) //All low-tier materials for Ankh Charm.
 				{
 					var AnkhMaterialInfo = new TooltipLine(mod, "AnkhMaterialInfo", "Increases the drop rate of \"Ankh Charm\" material.");
 					tooltips.Add(AnkhMaterialInfo);

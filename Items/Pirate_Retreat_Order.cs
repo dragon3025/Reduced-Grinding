@@ -38,13 +38,13 @@ namespace ReducedGrinding.Items
         public override bool UseItem(Player player)
         {
 			Main.invasionSize = 0;
-			if (Main.netMode != 1)
+			if (Main.netMode != NetmodeID.MultiplayerClient)
 			{
 				Main.ReportInvasionProgress(Main.invasionSizeStart - Main.invasionSize, Main.invasionSizeStart, 6, 0);
 			}
 			if (Main.netMode == NetmodeID.Server)
 			{
-				NetMessage.SendData(78, -1, -1, null, Main.invasionProgress, Main.invasionProgressMax, Main.invasionProgressIcon);
+				NetMessage.SendData(MessageID.InvasionProgressReport, -1, -1, null, Main.invasionProgress, Main.invasionProgressMax, Main.invasionProgressIcon);
 			}
 			return true;
         }

@@ -342,7 +342,7 @@ namespace ReducedGrinding
 				return;
 			bool enableFishUpgrade = (player.FindBuffIndex(mod.BuffType("Fish_Upgrade")) != -1);
 
-			if (!(fishingRod.type == 2289 || (fishingRod.type >= 2291 && fishingRod.type <= 2296) || fishingRod.type == 2421 || fishingRod.type == 2422))
+			if (!(fishingRod.type == ItemID.WoodFishingPole || (fishingRod.type >= ItemID.ReinforcedFishingPole && fishingRod.type <= ItemID.SittingDucksFishingRod) || fishingRod.type == ItemID.Fleshcatcher || fishingRod.type == ItemID.HotlineFishingHook))
 				enableFishUpgrade = false; //Vanilla Rods Only
 
 			if (enableFishUpgrade)
