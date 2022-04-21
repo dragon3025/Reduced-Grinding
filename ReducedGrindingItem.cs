@@ -16,30 +16,30 @@ namespace ReducedGrinding.Items
 			{
 				if (item.type >= ItemID.AdhesiveBandage && item.type <= ItemID.TrifoldMap) //All low-tier materials for Ankh Charm.
 				{
-					var AnkhMaterialInfo = new TooltipLine(mod, "AnkhMaterialInfo", "Increases the drop rate of \"Ankh Charm\" material.");
+					var AnkhMaterialInfo = new TooltipLine(Mod, "AnkhMaterialInfo", "Increases the drop rate of \"Ankh Charm\" material.");
 					tooltips.Add(AnkhMaterialInfo);
 				}
 				if (item.type == ItemID.ArmorBracing)
 				{
-					var ArmorBracingInfo = new TooltipLine(mod, "ArmorBracingInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
+					var ArmorBracingInfo = new TooltipLine(Mod, "ArmorBracingInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
 						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Vitamins\" and \"Armor Polish\".");
 					tooltips.Add(ArmorBracingInfo);
 				}
 				if (item.type == ItemID.MedicatedBandage)
 				{
-					var MedicatedBandageInfo = new TooltipLine(mod, "MedicatedBandageInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
+					var MedicatedBandageInfo = new TooltipLine(Mod, "MedicatedBandageInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
 						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Adhesive Bandage\" and \"Bezoar\".");
 					tooltips.Add(MedicatedBandageInfo);
 				}
 				if (item.type == ItemID.CountercurseMantra)
 				{
-					var CountercurseMantraInfo = new TooltipLine(mod, "CountercurseMantraInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
+					var CountercurseMantraInfo = new TooltipLine(Mod, "CountercurseMantraInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
 						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Nazar\" and \"Megaphone\".");
 					tooltips.Add(CountercurseMantraInfo);
 				}
 				if (item.type == ItemID.ThePlan)
 				{
-					var ThePlanInfo = new TooltipLine(mod, "ThePlanInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
+					var ThePlanInfo = new TooltipLine(Mod, "ThePlanInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
 						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Trifold Map\" and \"Fast Clock\".");
 					tooltips.Add(ThePlanInfo);
 				}

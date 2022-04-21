@@ -19,6 +19,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using Terraria.DataStructures;
 
 namespace ReducedGrinding
 {
@@ -30,9 +32,9 @@ namespace ReducedGrinding
         {
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
-                ModPacket packet = mod.GetPacket();
+				ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)ReducedGrindingMessageType.SendClientChanges);
-                packet.Write((byte)player.whoAmI);
+                packet.Write((byte)Player.whoAmI);
             }
         }
 		
@@ -333,8 +335,9 @@ namespace ReducedGrinding
 				}
 			}
 		}
-		
-		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+
+		//public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
+		public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
 		{
 			//The maximum amount of fishing power is 282: https://terraria.gamepedia.com/Fishing#Notes
 
