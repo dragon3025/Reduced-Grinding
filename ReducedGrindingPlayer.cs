@@ -21,6 +21,12 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
+using Microsoft.Xna.Framework.Graphics;
+using ReducedGrinding;
+using System.IO;
+using Terraria.GameContent;
+using Terraria.GameContent.Creative;
+using Terraria.Localization;
 
 namespace ReducedGrinding
 {
@@ -336,10 +342,9 @@ namespace ReducedGrinding
 			}
 		}
 
-		//public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType, ref bool junk)
 		public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
 		{
-			//The maximum amount of fishing power is 282: https://terraria.gamepedia.com/Fishing#Notes
+			//The maximum amount of fishing power is 282 (did this change in 1.4?): https://terraria.gamepedia.com/Fishing#Notes
 
 			if (itemDrop >= ItemID.OldShoe && itemDrop <= ItemID.TinCan)
 				return;
@@ -389,7 +394,7 @@ namespace ReducedGrinding
 						}
 						else if (isCrate)
 						{
-							itemDrop = ((veryRare | superRare) ? 2336 : ((rare && Player.ZoneCorrupt) ? 3203 : ((rare && Player.ZoneCrimson) ? 3204 : ((rare && Player.ZoneHallow) ? 3207 : ((rare && Player.ZoneDungeon) ? 3205 : ((rare && Player.ZoneJungle) ? 3208 : ((rare && worldLayer == 0) ? 3206 : ((!uncommon) ? 2334 : 2335))))))));
+							itemDrop = ((veryRare | superRare) ? 2336 : ((rare && Player.ZoneCorrupt) ? 3203 : ((rare && Player.ZoneCrimson) ? 3204 : ((rare && Player.ZoneHallow) ? 3207 : ((rare && Player.ZoneDungeon) ? 3205 : ((rare && Player.ZoneJungle) ? 3208 : ((rare && attempt.heightLevel == 0) ? 3206 : ((!uncommon) ? 2334 : 2335))))))));
 						}
 						else if (superRare && Main.rand.Next(5) == 0)
 						{
@@ -424,7 +429,7 @@ namespace ReducedGrinding
 							}
 							if (flag8)
 							{
-								if (superRare && Main.hardMode && Player.ZoneSnow && worldLayer == 3 && Main.rand.Next(3) != 0)
+								if (superRare && Main.hardMode && Player.ZoneSnow && attempt.heightLevel == 3 && Main.rand.Next(3) != 0)
 								{
 									itemDrop = 2429;
 								}
@@ -455,7 +460,7 @@ namespace ReducedGrinding
 							}
 							else if (flag9)
 							{
-								if (superRare && Main.hardMode && Player.ZoneSnow && worldLayer == 3 && Main.rand.Next(3) != 0)
+								if (superRare && Main.hardMode && Player.ZoneSnow && attempt.heightLevel == 3 && Main.rand.Next(3) != 0)
 								{
 									itemDrop = 2429;
 								}
@@ -480,9 +485,9 @@ namespace ReducedGrinding
 									itemDrop = 2305;
 								}
 							}
-							else if (Player.ZoneHoly)
+							else if (Player.ZoneHallow)
 							{
-								if (superRare && Main.hardMode && Player.ZoneSnow && worldLayer == 3 && Main.rand.Next(3) != 0)
+								if (superRare && Main.hardMode && Player.ZoneSnow && attempt.heightLevel == 3 && Main.rand.Next(3) != 0)
 								{
 									itemDrop = 2429;
 								}
@@ -490,15 +495,15 @@ namespace ReducedGrinding
 								{
 									itemDrop = 3209;
 								}
-								else if (worldLayer > 1 && veryRare)
+								else if (attempt.heightLevel > 1 && veryRare)
 								{
 									itemDrop = 2317;
 								}
-								else if (worldLayer > 1 && rare && attempt.questFish == 2465)
+								else if (attempt.heightLevel > 1 && rare && attempt.questFish == 2465)
 								{
 									itemDrop = 2465;
 								}
-								else if (worldLayer < 2 && rare && attempt.questFish == 2468)
+								else if (attempt.heightLevel < 2 && rare && attempt.questFish == 2468)
 								{
 									itemDrop = 2468;
 								}
@@ -517,19 +522,19 @@ namespace ReducedGrinding
 							}
 							if (itemDrop == 0 && Player.ZoneSnow)
 							{
-								if (worldLayer < 2 && uncommon && attempt.questFish == 2467)
+								if (attempt.heightLevel < 2 && uncommon && attempt.questFish == 2467)
 								{
 									itemDrop = 2467;
 								}
-								else if (worldLayer == 1 && uncommon && attempt.questFish == 2470)
+								else if (attempt.heightLevel == 1 && uncommon && attempt.questFish == 2470)
 								{
 									itemDrop = 2470;
 								}
-								else if (worldLayer >= 2 && uncommon && attempt.questFish == 2484)
+								else if (attempt.heightLevel >= 2 && uncommon && attempt.questFish == 2484)
 								{
 									itemDrop = 2484;
 								}
-								else if (worldLayer > 1 && uncommon && attempt.questFish == 2466)
+								else if (attempt.heightLevel > 1 && uncommon && attempt.questFish == 2466)
 								{
 									itemDrop = 2466;
 								}
@@ -545,30 +550,30 @@ namespace ReducedGrinding
 								{
 									itemDrop = 2299;
 								}
-								else if (worldLayer > 1 && Main.rand.Next(3) == 0)
+								else if (attempt.heightLevel > 1 && Main.rand.Next(3) == 0)
 								{
 									itemDrop = 2309;
 								}
 							}
 							if (itemDrop == 0 && Player.ZoneJungle)
 							{
-								if (worldLayer == 1 && uncommon && attempt.questFish == 2452)
+								if (attempt.heightLevel == 1 && uncommon && attempt.questFish == 2452)
 								{
 									itemDrop = 2452;
 								}
-								else if (worldLayer == 1 && uncommon && attempt.questFish == 2483)
+								else if (attempt.heightLevel == 1 && uncommon && attempt.questFish == 2483)
 								{
 									itemDrop = 2483;
 								}
-								else if (worldLayer == 1 && uncommon && attempt.questFish == 2488)
+								else if (attempt.heightLevel == 1 && uncommon && attempt.questFish == 2488)
 								{
 									itemDrop = 2488;
 								}
-								else if (worldLayer >= 1 && uncommon && attempt.questFish == 2486)
+								else if (attempt.heightLevel >= 1 && uncommon && attempt.questFish == 2486)
 								{
 									itemDrop = 2486;
 								}
-								else if (worldLayer > 1 && uncommon)
+								else if (attempt.heightLevel > 1 && uncommon)
 								{
 									itemDrop = 2311;
 								}
@@ -581,24 +586,43 @@ namespace ReducedGrinding
 									itemDrop = 2302;
 								}
 							}
-							if (((itemDrop == 0 && Main.shroomTiles > 200) & uncommon) && attempt.questFish == 2475)
+							if (((itemDrop == 0 && Player.ZoneGlowshroom) & uncommon) && attempt.questFish == 2475)
 							{
 								itemDrop = 2475;
 							}
 							if (itemDrop == 0)
 							{
-								if (worldLayer <= 1 && Player.ZoneBeach && poolSize > 1000)
+								if (attempt.heightLevel <= 1 && Player.ZoneBeach && attempt.waterTilesCount > 1000)
 								{
 									itemDrop = ((veryRare && Main.rand.Next(2) == 0) ? 2341 : (veryRare ? 2342 : ((rare && Main.rand.Next(5) == 0) ? 2438 : ((rare && Main.rand.Next(2) == 0) ? 2332 : ((uncommon && attempt.questFish == 2480) ? 2480 : ((uncommon && attempt.questFish == 2481) ? 2481 : (uncommon ? 2316 : ((common && Main.rand.Next(2) == 0) ? 2301 : ((!common) ? 2297 : 2300)))))))));
 								}
-								else
+								else if (Player.ZoneDesert)
 								{
-									int sandTiles = Main.sandTiles;
+									if (uncommon && attempt.questFish == 4393)
+									{
+										itemDrop = 4393;
+									}
+									else if (uncommon && attempt.questFish == 4394)
+									{
+										itemDrop = 4394;
+									}
+									else if (uncommon)
+									{
+										itemDrop = 4410;
+									}
+									else if (Main.rand.Next(3) == 0)
+									{
+										itemDrop = 4402;
+									}
+									else
+									{
+										itemDrop = 4401;
+									}
 								}
 							}
 							if (itemDrop == 0)
 							{
-								itemDrop = ((worldLayer < 2 && uncommon && attempt.questFish == 2461) ? 2461 : ((worldLayer == 0 && uncommon && attempt.questFish == 2453) ? 2453 : ((worldLayer == 0 && uncommon && attempt.questFish == 2473) ? 2473 : ((worldLayer == 0 && uncommon && attempt.questFish == 2476) ? 2476 : ((worldLayer < 2 && uncommon && attempt.questFish == 2458) ? 2458 : ((worldLayer < 2 && uncommon && attempt.questFish == 2459) ? 2459 : ((worldLayer == 0 && uncommon) ? 2304 : ((((worldLayer > 0 && worldLayer < 3) & uncommon) && attempt.questFish == 2455) ? 2455 : ((worldLayer == 1 && uncommon && attempt.questFish == 2479) ? 2479 : ((worldLayer == 1 && uncommon && attempt.questFish == 2456) ? 2456 : ((worldLayer == 1 && uncommon && attempt.questFish == 2474) ? 2474 : ((worldLayer > 1 && rare && Main.rand.Next(5) == 0) ? ((!Main.hardMode || Main.rand.Next(2) != 0) ? 2436 : 2437) : ((worldLayer > 1 && superRare) ? 2308 : ((worldLayer > 1 && veryRare && Main.rand.Next(2) == 0) ? 2320 : ((worldLayer > 1 && rare) ? 2321 : ((worldLayer > 1 && uncommon && attempt.questFish == 2478) ? 2478 : ((worldLayer > 1 && uncommon && attempt.questFish == 2450) ? 2450 : ((worldLayer > 1 && uncommon && attempt.questFish == 2464) ? 2464 : ((worldLayer > 1 && uncommon && attempt.questFish == 2469) ? 2469 : ((worldLayer > 2 && uncommon && attempt.questFish == 2462) ? 2462 : ((worldLayer > 2 && uncommon && attempt.questFish == 2482) ? 2482 : ((worldLayer > 2 && uncommon && attempt.questFish == 2472) ? 2472 : ((worldLayer > 2 && uncommon && attempt.questFish == 2460) ? 2460 : ((worldLayer > 1 && uncommon && Main.rand.Next(4) != 0) ? 2303 : ((worldLayer > 1 && ((uncommon | common) || Main.rand.Next(4) == 0)) ? ((Main.rand.Next(4) != 0) ? 2309 : 2303) : ((uncommon && attempt.questFish == 2487) ? 2487 : ((poolSize <= 1000 || !common) ? 2290 : 2298)))))))))))))))))))))))))));
+								itemDrop = (attempt.heightLevel < 2 && uncommon && attempt.questFish == 2461) ? 2461 : ((attempt.heightLevel == 0 && uncommon && attempt.questFish == 2453) ? 2453 : ((attempt.heightLevel == 0 && uncommon && attempt.questFish == 2473) ? 2473 : ((attempt.heightLevel == 0 && uncommon && attempt.questFish == 2476) ? 2476 : ((attempt.heightLevel < 2 && uncommon && attempt.questFish == 2458) ? 2458 : ((attempt.heightLevel < 2 && uncommon && attempt.questFish == 2459) ? 2459 : ((attempt.heightLevel == 0 && uncommon) ? 2304 : ((((attempt.heightLevel > 0 && attempt.heightLevel < 3) & uncommon) && attempt.questFish == 2455) ? 2455 : ((attempt.heightLevel == 1 && uncommon && attempt.questFish == 2479) ? 2479 : ((attempt.heightLevel == 1 && uncommon && attempt.questFish == 2456) ? 2456 : ((attempt.heightLevel == 1 && uncommon && attempt.questFish == 2474) ? 2474 : ((attempt.heightLevel > 1 && rare && Main.rand.Next(5) == 0) ? ((!Main.hardMode || Main.rand.Next(2) != 0) ? 2436 : 2437) : ((attempt.heightLevel > 1 && superRare) ? 2308 : ((attempt.heightLevel > 1 && veryRare && Main.rand.Next(2) == 0) ? 2320 : ((attempt.heightLevel > 1 && rare) ? 2321 : ((attempt.heightLevel > 1 && uncommon && attempt.questFish == 2478) ? 2478 : ((attempt.heightLevel > 1 && uncommon && attempt.questFish == 2450) ? 2450 : ((attempt.heightLevel > 1 && uncommon && attempt.questFish == 2464) ? 2464 : ((attempt.heightLevel > 1 && uncommon && attempt.questFish == 2469) ? 2469 : ((attempt.heightLevel > 2 && uncommon && attempt.questFish == 2462) ? 2462 : ((attempt.heightLevel > 2 && uncommon && attempt.questFish == 2482) ? 2482 : ((attempt.heightLevel > 2 && uncommon && attempt.questFish == 2472) ? 2472 : ((attempt.heightLevel > 2 && uncommon && attempt.questFish == 2460) ? 2460 : ((attempt.heightLevel > 1 && uncommon && Main.rand.Next(4) != 0) ? 2303 : ((attempt.heightLevel > 1 && ((uncommon | common) || Main.rand.Next(4) == 0)) ? ((Main.rand.Next(4) != 0) ? 2309 : 2303) : ((uncommon && attempt.questFish == 2487) ? 2487 : ((attempt.waterTilesCount <= 1000 || !common) ? 2290 : 2298))))))))))))))))))))))))));
 							}
 						}
 					}

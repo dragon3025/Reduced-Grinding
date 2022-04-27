@@ -907,7 +907,7 @@ namespace ReducedGrinding
                                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.CrimsonKey, 1, false, -1, false, false);
                                 }
                             }
-                            else if (player.ZoneHoly)
+                            else if (player.ZoneHallow)
                             {
                                 {
                                     Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.HallowedKey, 1, false, -1, false, false);
@@ -1192,7 +1192,7 @@ namespace ReducedGrinding
                         int sandmin = 0;
                         int sandmax = 0;
                         int sandtype = ItemID.SandBlock;
-                        if (player.ZoneHoly)
+                        if (player.ZoneHallow)
                             sandtype = ItemID.PearlsandBlock;
                         else if (player.ZoneCorrupt)
                             sandtype = ItemID.EbonsandBlock;
@@ -1956,7 +1956,7 @@ namespace ReducedGrinding
                                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.SoulofNight, 1, false, -1, false, false);
                             }
                         }
-                        if (Main.hardMode && player.ZoneRockLayerHeight && player.ZoneHoly)
+                        if (Main.hardMode && player.ZoneRockLayerHeight && player.ZoneHallow)
                         {
                             if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().LootSoulofLightIncrease * difficultyMultiplier)
                             {
