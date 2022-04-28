@@ -12,7 +12,7 @@ namespace ReducedGrinding.Tiles
 {
 	public class Moon_Ball : ModTile
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileNoAttach[Type] = true;

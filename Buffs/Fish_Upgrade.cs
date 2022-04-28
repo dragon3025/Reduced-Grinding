@@ -7,7 +7,7 @@ namespace ReducedGrinding.Buffs
 {
     public class Fish_Upgrade : ModBuff
     {
-        public override void SetDefaults()
+        public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
             DisplayName.SetDefault("Fish Upgrade");

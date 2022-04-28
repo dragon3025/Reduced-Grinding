@@ -11,7 +11,7 @@ namespace ReducedGrinding.Tiles
 {
 	public class Chlorophyte_Accelerator : ModTile
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.tileSolidTop[Type] = false;
 			Main.tileFrameImportant[Type] = true;
