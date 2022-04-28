@@ -1,25 +1,22 @@
-using System.Collections.Generic;
 using Terraria.ID;
-using Terraria.ModLoader.IO;
 using Terraria.ModLoader;
 using Terraria;
-using System.IO;
-using Microsoft.Xna.Framework;
-using Terraria.Localization;
 using System;
 using static Terraria.ModLoader.ModContent;
+using Terraria.DataStructures;
 
 namespace ReducedGrinding
 {
-	public class ReducedGrindingWorld : ModWorld
+	public class ReducedGrindingWorld : ModSystem
     {
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
-		public static bool skipToDay = false;
-		public static bool skipToNight = false;
-        public static bool skippedToDayOrNight = false;
-		
-        public override TagCompound Save()
+        //public static bool skipToDay = false;
+        //public static bool skipToNight = false;
+        //public static bool skippedToDayOrNight = false;
+
+        //1.4 Broke this. With plans to have dials affect how fast beds pass the time, I don't think I'm going to use the save feature anyway though.
+        /*public override TagCompound Save()
         {
 			return new TagCompound
 			{
@@ -30,10 +27,10 @@ namespace ReducedGrinding
         public override void Load(TagCompound tag)
         {
 			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
-        }
+        }*/
 
-		public override void PostUpdate()
-		{
+        public override void PostUpdateWorld()
+        {
 			Player player = Main.player[Main.myPlayer];
 
 			int playerCoinAmount = 0;
@@ -61,7 +58,7 @@ namespace ReducedGrinding
 			{
 				if (Main.player[i].active)
 				{
-					if (Main.player[i].HasItem(mod.ItemType("Celestial_Beacon")))
+					if (Main.player[i].HasItem(ModContent.ItemType<Items.Celestial_Beacon>()))
 						anyPlayerHasCelestialBeacon = true;
 				}
 			}
@@ -75,13 +72,15 @@ namespace ReducedGrinding
 				{
 					if (Main.npc[i].type == NPCID.MoonLordCore && !anyPlayerHasCelestialBeacon)
 					{
-						Main.player[(int)Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)].QuickSpawnItem(mod.ItemType("Celestial_Beacon"));
+						var source = new EntitySource_Gift(Main.player[(int)Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)]);
+						player.QuickSpawnItem(source, ModContent.ItemType<Items.Celestial_Beacon>());
 						break;
 					}
 				}
 			}
 
-			if (advanceMoonPhase)
+			//I plan on having the dials enhance the speed of sleeping instead.
+			/*if (advanceMoonPhase)
 			{
 				advanceMoonPhase = false;
 				Main.moonPhase++;
@@ -168,15 +167,13 @@ namespace ReducedGrinding
 			{
 				Main.sundialCooldown++;
 				skippedToDayOrNight = false;
-			}
+			}*/
 
 			//There are 21 stationary vanilla NPCs (excluding Guide and Santa) as of 5/26/2017; 15 Pre-Hardmode and 6 Hardmode.
 			float TownNPCs = 0f;
 			float TownNPCsMax = 15f;
 			float TownHardmodeNPCs = 0f;
 			float TownHardmodeNPCsMax = 6f;
-			bool travelingMerchantExists = false;
-			bool stationaryMerchantExists = false;
 			bool tryToSpawnTravelingMerchant = true;
 
 			Mod luiafk = ModLoader.GetMod("Luiafk");
@@ -197,11 +194,8 @@ namespace ReducedGrinding
 				{
 					if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
 					{
-						travelingMerchantExists = true;
 						tryToSpawnTravelingMerchant = false;
 					}
-					if (Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant"))
-						stationaryMerchantExists = true;
 					if (
 						Terraria.Main.npc[i].type == NPCID.Merchant ||
 						Terraria.Main.npc[i].type == NPCID.Nurse ||
@@ -218,10 +212,10 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Clothier ||
 						Terraria.Main.npc[i].type == NPCID.Mechanic ||
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
-						(Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant") && GetInstance<IOtherCustomNPCsConfig>().BoneMerchant) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("ChestSalesman") && GetInstance<IOtherCustomNPCsConfig>().ChestSalesman) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("StationaryMerchant") && GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant) ||
-						(Terraria.Main.npc[i].type == mod.NPCType("LootMerchant") && GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
+						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherCustomNPCsConfig>().BoneMerchant) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.ChestSalesman>() && GetInstance<IOtherCustomNPCsConfig>().ChestSalesman) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<IOtherCustomNPCsConfig>().StationaryMerchant) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
 					)
 						TownNPCs++;
 					else if (
@@ -231,7 +225,7 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Pirate ||
 						Terraria.Main.npc[i].type == NPCID.Steampunker ||
 						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == mod.NPCType("Christmas Elf") && GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
+						(Terraria.Main.npc[i].type == NPCType<NPCs.Christmas_Elf>() && GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
 					)
 					{
 						TownHardmodeNPCs++;
