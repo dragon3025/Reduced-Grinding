@@ -1,8 +1,6 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using Terraria.Localization;
-using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.NPCs
@@ -32,7 +30,7 @@ namespace ReducedGrinding.NPCs
 					}
 					if (GetInstance<HOtherModdedItemsConfig>().MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem)
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Gold_Reflection_Mirror"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 						nextSlot++;
 					}
 					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
@@ -83,7 +81,7 @@ namespace ReducedGrinding.NPCs
 					}
 					if (Main.netMode == NetmodeID.SinglePlayer) //Singleplayer
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Expert_Change_Potion"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Expert_Change_Potion>());
 						nextSlot++;
 					}
 					break;
@@ -226,7 +224,7 @@ namespace ReducedGrinding.NPCs
 					}
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Plantera_Bulb"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Plantera_Bulb>());
 						nextSlot++;
 					}
 					break;
@@ -247,21 +245,21 @@ namespace ReducedGrinding.NPCs
 				case NPCID.Wizard:
 					if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Moon_Ball"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Moon_Ball>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.Pirate:
 					if (GetInstance<HOtherModdedItemsConfig>().PirateSellsPirateRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Pirate_Retreat_Order"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Pirate_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.GoblinTinkerer:
 					if (GetInstance<HOtherModdedItemsConfig>().GoblinTinkererSellsGoblinRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Goblin_Retreat_Order"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Goblin_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
@@ -292,7 +290,7 @@ namespace ReducedGrinding.NPCs
 					}
 					break;
 				case NPCID.SkeletonMerchant:
-					if (player.HasItem(mod.ItemType("Moon_Ball")))
+					if (player.HasItem(ModContent.ItemType<Items.Moon_Ball>()))
 					{
 						nextSlot = 0;
 						shop.item[nextSlot].SetDefaults(3001);
@@ -348,7 +346,7 @@ namespace ReducedGrinding.NPCs
 					}
 					if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
 					{
-						shop.item[nextSlot].SetDefaults(mod.ItemType("Skull_Call"));
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Skull_Call>());
 						nextSlot++;
 					}
 					break;
