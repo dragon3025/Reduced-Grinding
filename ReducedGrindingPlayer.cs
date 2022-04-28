@@ -21,12 +21,6 @@ using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
-using Microsoft.Xna.Framework.Graphics;
-using ReducedGrinding;
-using System.IO;
-using Terraria.GameContent;
-using Terraria.GameContent.Creative;
-using Terraria.Localization;
 
 namespace ReducedGrinding
 {

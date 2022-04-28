@@ -8,7 +8,6 @@ namespace ReducedGrinding
 
 	class ReducedGrindingRecipes : ModSystem
 	{
-	{
 		// A place to store the recipe group so we can easily use it later
 		public static RecipeGroup goldAndBiomeCrates;
 
@@ -35,158 +34,137 @@ namespace ReducedGrinding
 		public override void AddRecipes()
 		{
 			//Arkhalis Crafting Tree
-			ModRecipe recipe = new ModRecipe(this);
+
+			Recipe recipe = Mod.CreateRecipe(ItemID.EnchantedSword);
 			recipe.AddIngredient(ItemID.EnchantedBoomerang, 1);
 			recipe.AddIngredient(ItemID.Katana, 1);
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(ItemID.EnchantedSword);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.Arkhalis);
 			recipe.AddIngredient(ItemID.EnchantedSword, 1);
 			recipe.AddIngredient(ItemID.ShadowKey, 1);
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(ItemID.Arkhalis);
-			recipe.AddRecipe();
+			Register();
 
 			//Easier Celestial Sigil
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.CelestialSigil);
 			recipe.AddIngredient(ItemID.FragmentSolar);
 			recipe.AddIngredient(ItemID.FragmentVortex);
 			recipe.AddIngredient(ItemID.FragmentNebula);
 			recipe.AddIngredient(ItemID.FragmentStardust);
 			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(ItemID.CelestialSigil);
-			recipe.AddRecipe();
+			Register();
 
 			//Infection Key Switching
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.CrimsonKey);
 			recipe.AddIngredient(ItemID.CorruptionKey);
-			recipe.SetResult(ItemID.CrimsonKey);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.CorruptionKey);
 			recipe.AddIngredient(ItemID.CrimsonKey);
-			recipe.SetResult(ItemID.CorruptionKey);
-			recipe.AddRecipe();
+			Register();
 
 			//Giant Shelly, Salamander, Crawdad Banner Switching
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.CrawdadBanner);
 			recipe.AddIngredient(ItemID.GiantShellyBanner);
 			recipe.AddIngredient(ItemID.SalamanderBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(ItemID.CrawdadBanner);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.SalamanderBanner);
 			recipe.AddIngredient(ItemID.CrawdadBanner);
 			recipe.AddIngredient(ItemID.GiantShellyBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(ItemID.SalamanderBanner);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GiantShellyBanner);
 			recipe.AddIngredient(ItemID.SalamanderBanner);
 			recipe.AddIngredient(ItemID.CrawdadBanner);
 			recipe.AddTile(TileID.Loom);
-			recipe.SetResult(ItemID.GiantShellyBanner);
-			recipe.AddRecipe();
+			Register();
 
 			//Easier Hardmode Voodoo Doll
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GuideVoodooDoll);
 			recipe.AddIngredient(ItemID.ClothierVoodooDoll);
 			recipe.AddIngredient(ItemID.SoulofLight);
 			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GuideVoodooDoll);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GuideVoodooDoll);
 			recipe.AddIngredient(ItemID.ClothierVoodooDoll);
 			recipe.AddIngredient(ItemID.SoulofNight);
 			recipe.AddTile(TileID.CrystalBall);
-			recipe.SetResult(ItemID.GuideVoodooDoll);
-			recipe.AddRecipe();
+			Register();
 
 			//Golden Critters
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldBird);
 			recipe.AddRecipeGroup("Birds");
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldBird);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldBunny);
 			recipe.AddIngredient(ItemID.Bunny);
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldBunny);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldFrog);
 			recipe.AddIngredient(ItemID.Frog);
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldFrog);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldGrasshopper);
 			recipe.AddIngredient(ItemID.Grasshopper);
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldGrasshopper);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldMouse);
 			recipe.AddIngredient(ItemID.Mouse);
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldMouse);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.SquirrelGold);
 			recipe.AddRecipeGroup("Squirrels");
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.SquirrelGold);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldWorm);
 			recipe.AddIngredient(ItemID.Worm);
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldWorm);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.GoldButterfly);
 			recipe.AddRecipeGroup("Butterflies");
-			recipe.AddIngredient(this.ItemType("Gold_Reflection_Mirror"));
+			recipe.AddIngredient(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(ItemID.GoldButterfly);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.IronCrate);
 			recipe.AddRecipeGroup("ReducedGrinding:goldAndBiomeCrates");
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(ItemID.IronCrate);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.WoodenCrate);
 			recipe.AddIngredient(ItemID.IronCrate);
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(ItemID.WoodenCrate);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.Leather);
 			recipe.AddIngredient(ItemID.RottenChunk, 2);
 			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(ItemID.Leather);
-			recipe.AddRecipe();
+			Register();
 
-			recipe = new ModRecipe(this);
+			recipe = Mod.CreateRecipe(ItemID.Leather);
 			recipe.AddIngredient(ItemID.Vertebrae, 2);
 			recipe.AddTile(TileID.WorkBenches);
-			recipe.SetResult(ItemID.Leather);
-			recipe.AddRecipe();
+			Register();
 		}
 	}
 }
