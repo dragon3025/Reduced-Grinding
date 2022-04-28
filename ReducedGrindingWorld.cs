@@ -214,7 +214,7 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherCustomNPCsConfig>().BoneMerchant) ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.ChestSalesman>() && GetInstance<IOtherCustomNPCsConfig>().ChestSalesman) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<IOtherCustomNPCsConfig>().StationaryMerchant) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant) ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
 					)
 						TownNPCs++;
