@@ -55,18 +55,16 @@ namespace ReducedGrinding.Items.LockBoxes
 			int itemid = 0;
 			var source = player.GetSource_DropAsItem();
 
-			List<int> keys = new List<int>(new int[] { ItemID.JungleKey, ItemID.CorruptionKey, ItemID.CrimsonKey, ItemID.HallowedKey, ItemID.FrozenKey });
+			List<int> keys = new(new int[] { ItemID.JungleKey, ItemID.CorruptionKey, ItemID.CrimsonKey, ItemID.HallowedKey, ItemID.FrozenKey });
 			int n = keys.Count;
 			while (n > 1)
 			{
 				n--;
 				int k = Main.rand.Next(n + 1);
-				int value = keys[k];
-				keys[k] = keys[n];
-				keys[n] = value;
-			}
+                (keys[n], keys[k]) = (keys[k], keys[n]);
+            }
 
-			int KeyType = 0;
+            int KeyType = 0;
 
 			for (int i = 0; i < keys.Count; i++)
 			{
@@ -115,19 +113,13 @@ namespace ReducedGrinding.Items.LockBoxes
 				player.QuickSpawnItem(source, ItemID.JestersArrow, Main.rand.Next(25, 51)); //Jester's Arrow
 			if (Main.rand.Next(2) == 0)
 			{
-				switch (Main.rand.Next(4))
-				{
-					case 0:
-						itemid = WorldGen.silverBar;
-						break;
-					case 1:
-						itemid = WorldGen.goldBar;
-						break;
-					default:
-						itemid = 0;
-						break;
-				}
-				player.QuickSpawnItem(source, itemid, Main.rand.Next(3, 11));
+                itemid = Main.rand.Next(4) switch
+                {
+                    0 => WorldGen.silverBar,
+                    1 => WorldGen.goldBar,
+                    _ => 0,
+                };
+                player.QuickSpawnItem(source, itemid, Main.rand.Next(3, 11));
 			}
 			if (Main.rand.Next(2) == 0)
 			{

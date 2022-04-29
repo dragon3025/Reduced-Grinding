@@ -1,6 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
+using System;
 
 namespace ReducedGrinding.NPCs
 {
@@ -11,10 +12,10 @@ namespace ReducedGrinding.NPCs
 		{
 			DisplayName.SetDefault("Bone Merchant");
 		}
-		
-        public override void SetDefaults()
-        {
-            npc.townNPC = true;
+
+		public override void SetDefaults()
+		{
+			npc.townNPC = true;
             npc.friendly = true;
             npc.width = 20; //His hitbox, the visual width/height is affected by frame count below.
             npc.height = 38;
@@ -110,7 +111,7 @@ namespace ReducedGrinding.NPCs
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
 			Player player = Main.player[Main.myPlayer];
-			if (player.HasItem(mod.ItemType("Moon_Ball")))
+			if (player.HasItem(ModContent.ItemType<Items.Moon_Ball>()))
 			{
 				shop.item[nextSlot].SetDefaults(3001);
 				nextSlot++;

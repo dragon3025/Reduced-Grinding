@@ -32,10 +32,8 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void RightClick(Player player)
 		{
-			float dropChance = 0f;
-			int testItemID = 0;
-			int chosenID = 0;
-			var source = player.GetSource_DropAsItem();
+            int chosenID = 0;
+            var source = player.GetSource_DropAsItem();
 
 			player.QuickSpawnItem(source, ItemID.BlueBrick, Main.rand.Next(10, 21));
 
@@ -52,86 +50,87 @@ namespace ReducedGrinding.Items.LockBoxes
 				player.QuickSpawnItem(source, 1455, 1);
 			if (Main.rand.Next(3) == 0)
 				player.QuickSpawnItem(source, 1456, 1);
-			
-			//Dungeon Furniture
-			dropChance = 0.02f; //About 8 furniture for rollng 10 times for 40 furnitures.
-			for (int i = 0; i <= 9; i++)
-			{
-				//Blue Dungeon
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1384;
-				for (testItemID = 1396; testItemID <= 1398; testItemID++)
-				{
-					if (Main.rand.NextFloat() < dropChance)
-						chosenID = testItemID;
-				}
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1405;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1408;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1411;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1414;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1470;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2376;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2386;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2402;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2645;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2652;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2658;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2664;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 2837;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 3900;
-				//Other
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 136;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 149;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1138;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1376;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1377;
-				for (testItemID = 1388; testItemID <= 1395; testItemID++)
-				{
-					if (Main.rand.NextFloat() < dropChance)
-						chosenID = testItemID;
-				}
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1417;
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 1418;
-				for (testItemID = 1509; testItemID <= 1512; testItemID++)
-				{
-					if (Main.rand.NextFloat() < dropChance)
-						chosenID = testItemID;
-				}
-				if (Main.rand.NextFloat() < dropChance)
-					chosenID = 3000;
-				//Spawn Item
-				if (chosenID == 1384 || chosenID == 1418 || (chosenID >= 1387 && chosenID <= 1389))
-					player.QuickSpawnItem(source, chosenID, Main.rand.Next(2, 11));
-				else if (chosenID == 149)
-					player.QuickSpawnItem(source, chosenID, Main.rand.Next(10, 16));
-				else
-					player.QuickSpawnItem(source, chosenID);
-				chosenID = 0;
-			}
-			
-			//Dungeon Paintings
-			dropChance = 0.0556f; //About 2 paintings when rolling 3 times for 12 paintings
+
+            //Dungeon Furniture
+            float dropChance = 0.02f;
+            int testItemID;
+            for (int i = 0; i <= 9; i++)
+            {
+                //Blue Dungeon
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1384;
+                for (testItemID = 1396; testItemID <= 1398; testItemID++)
+                {
+                    if (Main.rand.NextFloat() < dropChance)
+                        chosenID = testItemID;
+                }
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1405;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1408;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1411;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1414;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1470;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2376;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2386;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2402;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2645;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2652;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2658;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2664;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 2837;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 3900;
+                //Other
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 136;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 149;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1138;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1376;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1377;
+                for (testItemID = 1388; testItemID <= 1395; testItemID++)
+                {
+                    if (Main.rand.NextFloat() < dropChance)
+                        chosenID = testItemID;
+                }
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1417;
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 1418;
+                for (testItemID = 1509; testItemID <= 1512; testItemID++)
+                {
+                    if (Main.rand.NextFloat() < dropChance)
+                        chosenID = testItemID;
+                }
+                if (Main.rand.NextFloat() < dropChance)
+                    chosenID = 3000;
+                //Spawn Item
+                if (chosenID == 1384 || chosenID == 1418 || (chosenID >= 1387 && chosenID <= 1389))
+                    player.QuickSpawnItem(source, chosenID, Main.rand.Next(2, 11));
+                else if (chosenID == 149)
+                    player.QuickSpawnItem(source, chosenID, Main.rand.Next(10, 16));
+                else
+                    player.QuickSpawnItem(source, chosenID);
+                chosenID = 0;
+            }
+
+            //Dungeon Paintings
+            dropChance = 0.0556f; //About 2 paintings when rolling 3 times for 12 paintings
 			for (int i = 0; i <= 2; i++)
 			{
 				for (testItemID = 1372; testItemID <= 1375; testItemID++)
