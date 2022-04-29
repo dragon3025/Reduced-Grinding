@@ -14,24 +14,24 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-			item.width = 28;
-			item.height = 30;
-			item.maxStack = 1;
-			item.value = 10;
-			item.rare = 1;
-            item.useAnimation = 20;
-            item.useTime = 45;
-            item.useStyle = 4;
-			item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ZombieMoan, 0);
-            item.consumable = false;
+			Item.width = 28;
+			Item.height = 30;
+			Item.maxStack = 1;
+			Item.value = 10;
+			Item.rare = ItemRarityID.Blue;
+            Item.useAnimation = 20;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ZombieMoan, 0);
+            Item.consumable = false;
 		}
 
         public override bool CanUseItem(Player player)
         {
 			bool boneMerchantExists = true;
-			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
+			for (int i = 0; i < Main.npc.Length; i++) //Do once for each NPC in the world
 			{
-				if (Terraria.Main.npc[i].type == mod.NPCType("BoneMerchant"))
+				if (Main.npc[i].type == ModContent.NPCType<NPCs.BoneMerchant>())
 				{
 					boneMerchantExists = false;
 					break;
@@ -40,9 +40,9 @@ namespace ReducedGrinding.Items
 			return boneMerchantExists;
 		}
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
-			NPC.SpawnOnPlayer(player.whoAmI, mod.NPCType("BoneMerchant"));
+			NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.BoneMerchant>());
 			return true;
 		}
 	}

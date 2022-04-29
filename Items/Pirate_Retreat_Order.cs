@@ -15,16 +15,16 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 32;
-            item.height = 32;
-            item.maxStack = 99;
-            item.rare = 0;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-            item.value = Item.buyPrice(0, 2, 0 , 0);
-            item.UseSound = SoundID.Item4;
-            item.consumable = true;
+            Item.width = 32;
+            Item.height = 32;
+            Item.maxStack = 99;
+            Item.rare = ItemRarityID.White;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.buyPrice(0, 2, 0 , 0);
+            Item.UseSound = SoundID.Item4;
+            Item.consumable = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -35,7 +35,7 @@ namespace ReducedGrinding.Items
 				return false;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
 			Main.invasionSize = 0;
 			if (Main.netMode != NetmodeID.MultiplayerClient)

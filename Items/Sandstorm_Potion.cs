@@ -17,16 +17,16 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-			item.value = Item.buyPrice(0, 0, 2, 0);
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
+            Item.width = 20;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = ItemRarityID.Green;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.value = Item.buyPrice(0, 0, 2, 0);
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -34,7 +34,7 @@ namespace ReducedGrinding.Items
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             if (Sandstorm.Happening)
                 StopSandstorm();
@@ -69,9 +69,9 @@ namespace ReducedGrinding.Items
        
 		private static void StopSandstorm()
 		{
-			if (Main.netMode == NetmodeID.Server)
-				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The sandstorm stopped."), new Color(0, 128, 255));
-			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			/*if (Main.netMode == NetmodeID.Server)
+				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm stopped."), new Color(0, 128, 255));
+			else*/ if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				Main.NewText("The sandstorm stopped.", 0, 128, 255);
 			Sandstorm.Happening = false;
 			Sandstorm.TimeLeft = 0;
@@ -80,11 +80,11 @@ namespace ReducedGrinding.Items
 
 		private static void StartSandstorm()
 		{
-			if (Main.netMode == NetmodeID.Server)
+			/*if (Main.netMode == NetmodeID.Server)
 			{
-				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The sandstorm started."), new Color(0, 128, 255));
+				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm started."), new Color(0, 128, 255));
 			}
-			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			else*/ if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 			{
 				Main.NewText("The sandstorm started.", 0, 128, 255);
 			}
@@ -95,13 +95,12 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BottledWater, 1);
-			recipe.AddIngredient(ItemID.Blinkroot, 1);
-			recipe.AddIngredient(ItemID.SandBlock, 1);
-			recipe.AddTile(TileID.Bottles);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe()
+				.AddIngredient(ItemID.BottledWater)
+				.AddIngredient(ItemID.Blinkroot)
+				.AddIngredient(ItemID.SandBlock)
+				.AddTile(TileID.Bottles)
+				.Register();
         }
     }
 }

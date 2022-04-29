@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -14,11 +15,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
-			item.maxStack = 99;
-			item.rare = 3;
-			item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.width = 32;
+			Item.height = 22;
+			Item.maxStack = 99;
+			Item.rare = ItemRarityID.Orange;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 
 		public override bool CanRightClick()
@@ -32,6 +33,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
+			var source = player.GetSource_DropAsItem();
 
 			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
@@ -77,9 +79,9 @@ namespace ReducedGrinding.Items.LockBoxes
 						chosenID = testItemID;
 				}
 				if (chosenID != 476 && chosenID != 477 && Main.rand.Next(10) == 0) //10% chance of being king or queen statue
-					player.QuickSpawnItem(Main.rand.Next(476, 478));
+					player.QuickSpawnItem(source, Main.rand.Next(476, 478));
 				else
-					player.QuickSpawnItem(chosenID);
+					player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 
 				//Cabin Paintings
@@ -107,13 +109,13 @@ namespace ReducedGrinding.Items.LockBoxes
 					if (Main.rand.NextFloat() < dropChance)
 						chosenID = testItemID;
 				}
-				player.QuickSpawnItem(chosenID);
+				player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 
 				//Undereground Jungle Cabin Sharpening Station
 				if (Main.rand.Next(5) <= 1)
 				{
-					player.QuickSpawnItem(3198, 1); //Sharpening Station
+					player.QuickSpawnItem(source, 3198, 1); //Sharpening Station
 				}
 			}
 
@@ -123,36 +125,36 @@ namespace ReducedGrinding.Items.LockBoxes
 
 				//Ivy Chest Primary Items
 				if (itemroll < 0.225f)
-					player.QuickSpawnItem(212, 1); //Anklet of the Wind
+					player.QuickSpawnItem(source, 212, 1); //Anklet of the Wind
 				else if (itemroll < 0.45f)
-					player.QuickSpawnItem(211, 1); //Feral Claws
+					player.QuickSpawnItem(source, 211, 1); //Feral Claws
 				else if (itemroll < 0.675f)
-					player.QuickSpawnItem(213, 1); //Staff of Regrowth
+					player.QuickSpawnItem(source, 213, 1); //Staff of Regrowth
 				else if (itemroll < 0.9f)
-					player.QuickSpawnItem(964, 1); //Boomstick
+					player.QuickSpawnItem(source, 964, 1); //Boomstick
 				else if (itemroll < 0.92f)
-					player.QuickSpawnItem(964, 1); //Seaweed
+					player.QuickSpawnItem(source, 964, 1); //Seaweed
 				else if (itemroll < 0.953f)
-					player.QuickSpawnItem(2292, 1); //Fiberglass Fishing Pole
+					player.QuickSpawnItem(source, 2292, 1); //Fiberglass Fishing Pole
 				else
-					player.QuickSpawnItem(3017, 1); //Flower Boots
+					player.QuickSpawnItem(source, 3017, 1); //Flower Boots
 
 				//Ivy Chest Secondary Items
 				if (Main.rand.Next(6) == 0)
 				{
-					player.QuickSpawnItem(3360, 1); //Living Mahogany Wand
-					player.QuickSpawnItem(3361, 1); //Living Mahogany Leaf Wand
+					player.QuickSpawnItem(source, 3360, 1); //Living Mahogany Wand
+					player.QuickSpawnItem(source, 3361, 1); //Living Mahogany Leaf Wand
 				}
 				if (Main.rand.Next(4) == 0)
-					player.QuickSpawnItem(2204, 1); //Honey Dispenser
+					player.QuickSpawnItem(source, 2204, 1); //Honey Dispenser
 
 				//Cavern Gold Chest Common Items
 				if (Main.rand.Next(5) == 0)
-					player.QuickSpawnItem(43, 1); //Suspicious Looking Eye
+					player.QuickSpawnItem(source, 43, 1); //Suspicious Looking Eye
 				if (Main.rand.Next(3) == 0)
-					player.QuickSpawnItem(167, 1); //Dynamite
+					player.QuickSpawnItem(source, 167, 1); //Dynamite
 				if (Main.rand.Next(4) == 0)
-					player.QuickSpawnItem(51, Main.rand.Next(25, 51)); //Jester's Arrow
+					player.QuickSpawnItem(source, 51, Main.rand.Next(25, 51)); //Jester's Arrow
 				if (Main.rand.Next(2) == 0)
 				{
 					switch (Main.rand.Next(4))
@@ -167,7 +169,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 0;
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(3, 11));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(3, 11));
 				}
 				if (Main.rand.Next(2) == 0)
 				{
@@ -180,10 +182,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 279; //Throwing Knife
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(25, 51));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(25, 51));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(188, Main.rand.Next(3, 6)); //Healing Potion
+					player.QuickSpawnItem(source, 188, Main.rand.Next(3, 6)); //Healing Potion
 				if (Main.rand.Next(3) <= 1)
 				{
 					switch (Main.rand.Next(6))
@@ -207,7 +209,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 305; //Gravitation Potion
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(1, 3));
 				}
 				else
 				{
@@ -232,10 +234,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 2351; //Teleportation Potion
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(1, 3));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(2350, Main.rand.Next(1, 3)); //Recal Potion
+					player.QuickSpawnItem(source, 2350, Main.rand.Next(1, 3)); //Recal Potion
 				if (Main.rand.Next(2) == 0)
 				{
 					switch (Main.rand.Next(2))
@@ -247,10 +249,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 282; //Glowstick
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(15, 30));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(15, 30));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(73, Main.rand.Next(2, 3)); //Gold Coin
+					player.QuickSpawnItem(source, 73, Main.rand.Next(2, 3)); //Gold Coin
 			}
 		}
 	}

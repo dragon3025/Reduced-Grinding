@@ -88,12 +88,6 @@ namespace ReducedGrinding
             text = LocalizationLoader.CreateTranslation("Common.MartianCall");
             text.SetDefault($"Martian Saucer's Drops [i:{ModContent.ItemType<Items.Martian_Call>()}] Martian Call");
             LocalizationLoader.AddTranslation(text);
-            text = LocalizationLoader.CreateTranslation("Common.BloodMoonMedallion");
-            text.SetDefault($"Blood Zombie And Drippler Drops [i:{ModContent.ItemType<Items.Blood_Moon_Medallion>()}] Blood Moon Medallion");
-            LocalizationLoader.AddTranslation(text);
-            text = LocalizationLoader.CreateTranslation("Common.BloodMoonMedallion");
-            text.SetDefault($"Bld. Zombie, Drippler Drops [i:{ModContent.ItemType<Items.Blood_Moon_Medallion>()}] Bld. Moon Medallion");
-            LocalizationLoader.AddTranslation(text);
             text = LocalizationLoader.CreateTranslation("Common.WarPotion");
             text.SetDefault($"[i:{ModContent.ItemType<Items.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
             LocalizationLoader.AddTranslation(text);
@@ -2541,14 +2535,6 @@ namespace ReducedGrinding
                             if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().CavernModdedCavernLockBoxLoot * lockboxDropModdifier)
                             {
                                 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Cavern_Lock_Box>(), 1, false, -1, false, false);
-                            }
-                        }
-
-                        if (npc.type == NPCID.Drippler || npc.type == NPCID.BloodZombie)
-                        {
-                            if (Main.rand.NextFloat() < GetInstance<HOtherModdedItemsConfig>().BloodZombieAndDripplerDropsBloodMoonMedallion)
-                            {
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.Blood_Moon_Medallion>(), 1, false, -1, false, false);
                             }
                         }
                     }

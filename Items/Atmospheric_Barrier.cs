@@ -16,16 +16,16 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-			item.width = 36;
-			item.height = 40;
-			item.maxStack = 1;
-			item.value = Item.buyPrice(0, 3, 46);
-			item.rare = 10;
-            item.useAnimation = 20;
-            item.useTime = 45;
-            item.useStyle = 4;
-			item.UseSound = SoundID.Item79;
-            item.consumable = false;
+			Item.width = 36;
+			Item.height = 40;
+			Item.maxStack = 1;
+			Item.value = Item.buyPrice(0, 3, 46);
+			Item.rare = ItemRarityID.Red;
+            Item.useAnimation = 20;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.UseSound = SoundID.Item79;
+            Item.consumable = false;
 		}
 
         public override bool CanUseItem(Player player)
@@ -33,11 +33,11 @@ namespace ReducedGrinding.Items
 			return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
-			if (Main.netMode == NetmodeID.Server)
-				NetMessage.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));
-			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			/*if (Main.netMode == NetmodeID.Server)
+				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));
+			else */if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				Main.NewText("The Celestial Invasion was stopped.", 255, 0, 255);
 			NPC.TowerActiveVortex = false;
 			NPC.TowerActiveNebula = false;
@@ -55,17 +55,15 @@ namespace ReducedGrinding.Items
 		
 		public override void AddRecipes()
         {
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(520); //Soul of Light
-			recipe.AddIngredient(521); //Soul of Night
-			recipe.AddIngredient(547); //Soul of Fright
-			recipe.AddIngredient(548); //Soul of Might
-			recipe.AddIngredient(549); //Soul of Sight
-			recipe.AddIngredient(575); //Soul of Flight
-			recipe.AddIngredient(3467); //Luminite Bar
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe()
+				.AddIngredient(ItemID.SoulofLight)
+				.AddIngredient(ItemID.SoulofNight)
+				.AddIngredient(ItemID.SoulofFright)
+				.AddIngredient(ItemID.SoulofMight)
+				.AddIngredient(ItemID.SoulofSight)
+				.AddIngredient(ItemID.SoulofFlight)
+				.AddIngredient(ItemID.LunarBar)
+				.Register();
         }
 	}
 }

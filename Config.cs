@@ -651,7 +651,6 @@ namespace ReducedGrinding
 		[Tooltip("Ends the Pirate Invasion")] [Label("$Mods.ReducedGrinding.Common.PirateRetreatOrder")] [DefaultValue(true)] public bool PirateSellsPirateRetreatOrder;
 		[Tooltip("Advances the Moon Phase")] [Label("$Mods.ReducedGrinding.Common.MoonBall")] [DefaultValue(true)] public bool WizardSellsMoonBall;
 		[Tooltip("Starts a Martian Invasion")] [Label("$Mods.ReducedGrinding.Common.MartianCall")] [Increment(.0001f)] [DefaultValue(1f)] public float MartianSaucerMartianCallDrop;
-		[Tooltip("Starts the Blood Moon")] [Label("$Mods.ReducedGrinding.Common.BloodMoonMedallion")] [Increment(.0001f)] [DefaultValue(0.1f)] public float BloodZombieAndDripplerDropsBloodMoonMedallion;
 		[Header("[i:300] Battle Potion")]
 		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Max Spawns Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionMaxSpawnsMultiplier;
 		[Tooltip("The vanilla multiplier will be multiplied further by this amount")] [Label("Spawn Rate Extra Multiplier")] [Increment(.0001f)] [Range(1f, 100f)] [DefaultValue(1f)] public float BattlePotionSpawnrateMultiplier;

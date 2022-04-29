@@ -14,24 +14,23 @@ namespace ReducedGrinding.Items
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 32;
-			item.maxStack = 1;
-			item.value = 0; //You can get this item infintely, so it shouldn't have a price.
-			item.rare = 10;
+			Item.width = 32;
+			Item.height = 32;
+			Item.maxStack = 1;
+			Item.value = 0; //You can get this item infintely, so it shouldn't have a price.
+			Item.rare = ItemRarityID.Red;
 		}
 
 		public override void AddRecipes()
         {
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.FragmentVortex);
-			recipe.AddIngredient(ItemID.FragmentNebula);
-			recipe.AddIngredient(ItemID.FragmentSolar);
-			recipe.AddIngredient(ItemID.FragmentStardust);
-			recipe.AddIngredient(ItemID.LunarBar);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe()
+				.AddIngredient(ItemID.FragmentVortex)
+				.AddIngredient(ItemID.FragmentNebula)
+				.AddIngredient(ItemID.FragmentSolar)
+				.AddIngredient(ItemID.FragmentStardust)
+				.AddIngredient(ItemID.LunarBar)
+				.AddTile(TileID.LunarCraftingStation)
+				.Register();
         }
 	}
 }

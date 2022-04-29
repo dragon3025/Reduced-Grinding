@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -14,11 +15,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
-			item.maxStack = 99;
-			item.rare = 1;
-			item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.width = 32;
+			Item.height = 22;
+			Item.maxStack = 99;
+			Item.rare = ItemRarityID.Blue;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 
 		public override bool CanRightClick()
@@ -33,6 +34,7 @@ namespace ReducedGrinding.Items.LockBoxes
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
+			var source = player.GetSource_DropAsItem();
 
 			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
@@ -78,9 +80,9 @@ namespace ReducedGrinding.Items.LockBoxes
 						chosenID = testItemID;
 				}
 				if (chosenID != 476 && chosenID != 477 && Main.rand.Next(10) == 0) //10% chance of being king or queen statue
-					player.QuickSpawnItem(Main.rand.Next(476, 478));
+					player.QuickSpawnItem(source, Main.rand.Next(476, 478));
 				else
-					player.QuickSpawnItem(chosenID);
+					player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 
 				//Cabin Paintings
@@ -108,7 +110,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					if (Main.rand.NextFloat() < dropChance)
 						chosenID = testItemID;
 				}
-				player.QuickSpawnItem(chosenID);
+				player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 			}
 
@@ -118,43 +120,43 @@ namespace ReducedGrinding.Items.LockBoxes
 				switch (Main.rand.Next(6))
 				{
 					case 0:
-						player.QuickSpawnItem(670, 1); //Ice Boomerang
+						player.QuickSpawnItem(source, 670, 1); //Ice Boomerang
 						break;
 					case 1:
-						player.QuickSpawnItem(724, 1); //Ice Blade
+						player.QuickSpawnItem(source, 724, 1); //Ice Blade
 						break;
 					case 2:
-						player.QuickSpawnItem(950, 1); //Ice Skates
+						player.QuickSpawnItem(source, 950, 1); //Ice Skates
 						break;
 					case 3:
-						player.QuickSpawnItem(166, 1); //Snowball Cannon
+						player.QuickSpawnItem(source, 166, 1); //Snowball Cannon
 						break;
 					case 4:
-						player.QuickSpawnItem(987, 1); //Blizzard in a Bottle
+						player.QuickSpawnItem(source, 987, 1); //Blizzard in a Bottle
 						break;
 					case 5:
-						player.QuickSpawnItem(1579, 1); //Flurry Boots
+						player.QuickSpawnItem(source, 1579, 1); //Flurry Boots
 						break;
 				}
 
 				//Ice Chest Rare Items
 				itemroll = Main.rand.NextFloat();
 				if (itemroll < 0.05f)
-					player.QuickSpawnItem(997, 1); //Extractinator
+					player.QuickSpawnItem(source, 997, 1); //Extractinator
 				else if (itemroll < 0.25f)
-					player.QuickSpawnItem(2198, 1); //Ice Machine
+					player.QuickSpawnItem(source, 2198, 1); //Ice Machine
 				else if (itemroll < 0.45f)
-					player.QuickSpawnItem(3199, 1); //Ice Mirror
+					player.QuickSpawnItem(source, 3199, 1); //Ice Mirror
 				else if (itemroll < 0.49f)
-					player.QuickSpawnItem(669, 1); //Fish (Item)
+					player.QuickSpawnItem(source, 669, 1); //Fish (Item)
 
 				//Cavern Gold Chest Common Items
 				if (Main.rand.Next(5) == 0)
-					player.QuickSpawnItem(43, 1); //Suspicious Looking Eye
+					player.QuickSpawnItem(source, 43, 1); //Suspicious Looking Eye
 				if (Main.rand.Next(3) == 0)
-					player.QuickSpawnItem(167, 1); //Dynamite
+					player.QuickSpawnItem(source, 167, 1); //Dynamite
 				if (Main.rand.Next(4) == 0)
-					player.QuickSpawnItem(51, Main.rand.Next(25, 51)); //Jester's Arrow
+					player.QuickSpawnItem(source, 51, Main.rand.Next(25, 51)); //Jester's Arrow
 				if (Main.rand.Next(2) == 0)
 				{
 					switch (Main.rand.Next(4))
@@ -169,7 +171,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 0;
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(3, 11));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(3, 11));
 				}
 				if (Main.rand.Next(2) == 0)
 				{
@@ -182,10 +184,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 279; //Throwing Knife
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(25, 51));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(25, 51));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(188, Main.rand.Next(3, 6)); //Healing Potion
+					player.QuickSpawnItem(source, 188, Main.rand.Next(3, 6)); //Healing Potion
 				if (Main.rand.Next(3) <= 1)
 				{
 					switch (Main.rand.Next(6))
@@ -209,7 +211,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 305; //Gravitation Potion
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(1, 3));
 				}
 				else
 				{
@@ -234,10 +236,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 2351; //Teleportation Potion
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(1, 3));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(1, 3));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(2350, Main.rand.Next(1, 3)); //Recal Potion
+					player.QuickSpawnItem(source, 2350, Main.rand.Next(1, 3)); //Recal Potion
 				if (Main.rand.Next(2) == 0)
 				{
 					switch (Main.rand.Next(2))
@@ -249,10 +251,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							chosenID = 282; //Glowstick
 							break;
 					}
-					player.QuickSpawnItem(chosenID, Main.rand.Next(15, 30));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(15, 30));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(73, Main.rand.Next(2, 3)); //Gold Coin
+					player.QuickSpawnItem(source, 73, Main.rand.Next(2, 3)); //Gold Coin
 			}
 		}
 	}

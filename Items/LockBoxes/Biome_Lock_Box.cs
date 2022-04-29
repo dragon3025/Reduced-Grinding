@@ -3,6 +3,13 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.GameContent.Creative;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -19,11 +26,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
-			item.maxStack = 99;
-			item.rare = 3;
-			item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.width = 32;
+			Item.height = 22;
+			Item.maxStack = 99;
+			Item.rare = ItemRarityID.Orange;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 
 		public override bool CanRightClick()
@@ -46,6 +53,7 @@ namespace ReducedGrinding.Items.LockBoxes
 		public override void RightClick(Player player)
 		{
 			int itemid = 0;
+			var source = player.GetSource_DropAsItem();
 
 			List<int> keys = new List<int>(new int[] { ItemID.JungleKey, ItemID.CorruptionKey, ItemID.CrimsonKey, ItemID.HallowedKey, ItemID.FrozenKey });
 			int n = keys.Count;
@@ -82,29 +90,29 @@ namespace ReducedGrinding.Items.LockBoxes
 			switch (KeyType)
 			{
 				case ItemID.JungleKey:
-					player.QuickSpawnItem(ItemID.PiranhaGun, 1);
+					player.QuickSpawnItem(source, ItemID.PiranhaGun);
 					break;
 				case ItemID.CorruptionKey:
-					player.QuickSpawnItem(ItemID.ScourgeoftheCorruptor, 1);
+					player.QuickSpawnItem(source, ItemID.ScourgeoftheCorruptor);
 					break;
 				case ItemID.CrimsonKey:
-					player.QuickSpawnItem(ItemID.VampireKnives, 1);
+					player.QuickSpawnItem(source, ItemID.VampireKnives);
 					break;
 				case ItemID.HallowedKey:
-					player.QuickSpawnItem(ItemID.RainbowGun, 1);
+					player.QuickSpawnItem(source, ItemID.RainbowGun);
 					break;
 				case ItemID.FrozenKey:
-					player.QuickSpawnItem(ItemID.StaffoftheFrostHydra, 1);
+					player.QuickSpawnItem(source, ItemID.StaffoftheFrostHydra);
 					break;
 			}
 
 			//Cavern Gold Chest Common Items
 			if (Main.rand.Next(5) == 0)
-				player.QuickSpawnItem(ItemID.SuspiciousLookingEye, 1);
+				player.QuickSpawnItem(source, ItemID.SuspiciousLookingEye);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(ItemID.Dynamite, 1); //Dynamite
+				player.QuickSpawnItem(source, ItemID.Dynamite); //Dynamite
 			if (Main.rand.Next(4) == 0)
-				player.QuickSpawnItem(ItemID.JestersArrow, Main.rand.Next(25, 51)); //Jester's Arrow
+				player.QuickSpawnItem(source, ItemID.JestersArrow, Main.rand.Next(25, 51)); //Jester's Arrow
 			if (Main.rand.Next(2) == 0)
 			{
 				switch (Main.rand.Next(4))
@@ -119,7 +127,7 @@ namespace ReducedGrinding.Items.LockBoxes
 						itemid = 0;
 						break;
 				}
-				player.QuickSpawnItem(itemid, Main.rand.Next(3, 11));
+				player.QuickSpawnItem(source, itemid, Main.rand.Next(3, 11));
 			}
 			if (Main.rand.Next(2) == 0)
 			{
@@ -132,10 +140,10 @@ namespace ReducedGrinding.Items.LockBoxes
 						itemid = ItemID.ThrowingKnife;
 						break;
 				}
-				player.QuickSpawnItem(itemid, Main.rand.Next(25, 51));
+				player.QuickSpawnItem(source, itemid, Main.rand.Next(25, 51));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(ItemID.HealingPotion, Main.rand.Next(3, 6));
+				player.QuickSpawnItem(source, ItemID.HealingPotion, Main.rand.Next(3, 6));
 			if (Main.rand.Next(3) <= 1)
 			{
 				switch (Main.rand.Next(6))
@@ -159,7 +167,7 @@ namespace ReducedGrinding.Items.LockBoxes
 						itemid = ItemID.GravitationPotion;
 						break;
 				}
-				player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
+				player.QuickSpawnItem(source, itemid, Main.rand.Next(1, 3));
 			}
 			else
 			{
@@ -184,10 +192,10 @@ namespace ReducedGrinding.Items.LockBoxes
 						itemid = ItemID.TeleportationPotion;
 						break;
 				}
-				player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
+				player.QuickSpawnItem(source, itemid, Main.rand.Next(1, 3));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(ItemID.RecallPotion, Main.rand.Next(1, 3));
+				player.QuickSpawnItem(source, ItemID.RecallPotion, Main.rand.Next(1, 3));
 			if (Main.rand.Next(2) == 0)
 			{
 				switch (Main.rand.Next(2))
@@ -199,10 +207,10 @@ namespace ReducedGrinding.Items.LockBoxes
 						itemid = ItemID.Glowstick;
 						break;
 				}
-				player.QuickSpawnItem(itemid, Main.rand.Next(15, 30));
+				player.QuickSpawnItem(source, itemid, Main.rand.Next(15, 30));
 			}
 			if (Main.rand.Next(2) == 0)
-				player.QuickSpawnItem(ItemID.GoldCoin, Main.rand.Next(2, 3));
+				player.QuickSpawnItem(source, ItemID.GoldCoin, Main.rand.Next(2, 3));
 		}
 	}
 }

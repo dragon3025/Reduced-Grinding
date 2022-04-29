@@ -15,39 +15,28 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 16;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-            item.value = Item.buyPrice(0, 0, 2);
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-        }
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(BuffID.Battle, 25200);
-            player.AddBuff(mod.BuffType("Fish_Upgrade"), 28800);
-            return true;
+            Item.width = 16;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = ItemRarityID.Green;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.buyPrice(0, 0, 2);
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.buffType = ModContent.BuffType<Buffs.Fish_Upgrade>();
+            Item.buffTime = 25200;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater);
-            recipe.AddIngredient(ItemID.NeonTetra);
-            recipe.AddIngredient(ItemID.Blinkroot);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater)
+                .AddIngredient(ItemID.NeonTetra)
+                .AddIngredient(ItemID.Blinkroot)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }

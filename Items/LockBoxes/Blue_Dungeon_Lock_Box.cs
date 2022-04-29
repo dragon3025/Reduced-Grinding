@@ -14,11 +14,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
-			item.maxStack = 99;
-			item.rare = 3;
-			item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.width = 32;
+			Item.height = 22;
+			Item.maxStack = 99;
+			Item.rare = ItemRarityID.Orange;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 
 		public override bool CanRightClick()
@@ -35,22 +35,23 @@ namespace ReducedGrinding.Items.LockBoxes
 			float dropChance = 0f;
 			int testItemID = 0;
 			int chosenID = 0;
+			var source = player.GetSource_DropAsItem();
 
-			player.QuickSpawnItem(ItemID.BlueBrick, Main.rand.Next(10, 21));
+			player.QuickSpawnItem(source, ItemID.BlueBrick, Main.rand.Next(10, 21));
 
 			//Faction Banners
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1451, 1);
+				player.QuickSpawnItem(source, 1451, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1452, 1);
+				player.QuickSpawnItem(source, 1452, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1453, 1);
+				player.QuickSpawnItem(source, 1453, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1454, 1);
+				player.QuickSpawnItem(source, 1454, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1455, 1);
+				player.QuickSpawnItem(source, 1455, 1);
 			if (Main.rand.Next(3) == 0)
-				player.QuickSpawnItem(1456, 1);
+				player.QuickSpawnItem(source, 1456, 1);
 			
 			//Dungeon Furniture
 			dropChance = 0.02f; //About 8 furniture for rollng 10 times for 40 furnitures.
@@ -121,11 +122,11 @@ namespace ReducedGrinding.Items.LockBoxes
 					chosenID = 3000;
 				//Spawn Item
 				if (chosenID == 1384 || chosenID == 1418 || (chosenID >= 1387 && chosenID <= 1389))
-					player.QuickSpawnItem(chosenID, Main.rand.Next(2, 11));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(2, 11));
 				else if (chosenID == 149)
-					player.QuickSpawnItem(chosenID, Main.rand.Next(10, 16));
+					player.QuickSpawnItem(source, chosenID, Main.rand.Next(10, 16));
 				else
-					player.QuickSpawnItem(chosenID);
+					player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 			}
 			
@@ -158,7 +159,7 @@ namespace ReducedGrinding.Items.LockBoxes
 					chosenID = 1573;
 				if (Main.rand.NextFloat() < dropChance)
 					chosenID = 2995;
-				player.QuickSpawnItem(chosenID);
+				player.QuickSpawnItem(source, chosenID);
 				chosenID = 0;
 			}
 		}

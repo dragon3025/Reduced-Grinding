@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ReducedGrinding.Items
 {
@@ -13,19 +14,19 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-            item.width = 28;
-            item.height = 30;
-            item.maxStack = 99;
-			item.useTurn = true;
-			item.autoReuse = true;
-            item.rare = 3;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-			item.consumable = true;
-			item.value = Item.buyPrice(0, 1, 0, 0);
-			item.rare = 3;
-			item.createTile = mod.TileType("Moon_Ball");
+            Item.width = 28;
+            Item.height = 30;
+            Item.maxStack = 99;
+			Item.useTurn = true;
+			Item.autoReuse = true;
+            Item.rare = ItemRarityID.Orange;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.consumable = true;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.rare = 3;
+			Item.createTile = mod.TileType("Moon_Ball");
 		}
 	}
 }

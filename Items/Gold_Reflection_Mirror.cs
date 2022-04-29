@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
+using Terraria.ID;
 
 namespace ReducedGrinding.Items
 {
@@ -13,11 +14,11 @@ namespace ReducedGrinding.Items
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 32;
-			item.maxStack = 1;
-			item.value = Item.buyPrice(0, 12);
-			item.rare = 0;
+			Item.width = 32;
+			Item.height = 32;
+			Item.maxStack = 1;
+			Item.value = Item.buyPrice(0, 12);
+			Item.rare = ItemRarityID.White;
 		}
 	}
 }

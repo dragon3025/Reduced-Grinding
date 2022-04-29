@@ -15,16 +15,16 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-            item.value = 200;
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
+            Item.width = 20;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = ItemRarityID.Green;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = 200;
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -32,7 +32,7 @@ namespace ReducedGrinding.Items
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             Main.NewText("The angler has a new quest for you.", 0, 128, 255);
             Main.AnglerQuestSwap();
@@ -43,13 +43,12 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BottledWater, 1);
-            recipe.AddIngredient(ItemID.SpecularFish);
-            recipe.AddIngredient(ItemID.Moonglow);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe()
+                .AddIngredient(ItemID.BottledWater, 1)
+                .AddIngredient(ItemID.SpecularFish)
+                .AddIngredient(ItemID.Moonglow)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }

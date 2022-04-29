@@ -14,16 +14,16 @@ namespace ReducedGrinding.Items
 		
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 32;
-			item.maxStack = 1;
-			item.value = Item.buyPrice(0, 10, 0, 0);
-			item.rare = 1;
-            item.useAnimation = 20;
-            item.useTime = 45;
-            item.useStyle = 4;
-			item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ForceRoar, 0);
-			item.consumable = true;
+			Item.width = 32;
+			Item.height = 32;
+			Item.maxStack = 1;
+			Item.value = Item.buyPrice(0, 10, 0, 0);
+			Item.rare = ItemRarityID.Blue;
+            Item.useAnimation = 20;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+			Item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ForceRoar, 0);
+			Item.consumable = true;
 		}
 
         public override bool CanUseItem(Player player)
@@ -34,7 +34,7 @@ namespace ReducedGrinding.Items
 				return false;
 		}
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
 			NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
 			return true;

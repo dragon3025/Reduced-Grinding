@@ -14,16 +14,16 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-            item.value = Item.buyPrice(0, 0, 2, 34);
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
+            Item.width = 20;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = ItemRarityID.Green;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.buyPrice(0, 0, 2, 34);
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
         }
 
         public override bool CanUseItem(Player player)
@@ -31,22 +31,21 @@ namespace ReducedGrinding.Items
             return true;
         }
 
-        public override bool UseItem(Player player)
+        public override bool? UseItem(Player player)
         {
             player.AddBuff(BuffID.Battle, 25200);
-            player.AddBuff(mod.BuffType("War"), 25200);
-            player.AddBuff(mod.BuffType("Chaos"), 25200);
+            player.AddBuff(ModContent.BuffType<Buffs.War>(), 25200);
+            player.AddBuff(ModContent.BuffType<Buffs.Chaos>(), 25200);
             return true;
         }
 
         public override void AddRecipes()
         {
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(mod.ItemType("War_Potion"));
-            recipe.AddIngredient(ItemID.PixieDust, 1);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe()
+                .AddIngredient(ModContent.ItemType<Items.War_Potion>())
+                .AddIngredient(ItemID.PixieDust, 1)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }

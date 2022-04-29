@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
 
 namespace ReducedGrinding.Items.LockBoxes
 {
@@ -14,11 +15,11 @@ namespace ReducedGrinding.Items.LockBoxes
 
 		public override void SetDefaults()
 		{
-			item.width = 32;
-			item.height = 22;
-			item.maxStack = 99;
-			item.rare = 0;
-			item.value = Item.buyPrice(0, 1, 0, 0);
+			Item.width = 32;
+			Item.height = 22;
+			Item.maxStack = 99;
+			Item.rare = ItemRarityID.White;
+			Item.value = Item.buyPrice(0, 1, 0, 0);
 		}
 
 		public override bool CanRightClick()
@@ -29,15 +30,17 @@ namespace ReducedGrinding.Items.LockBoxes
 		public override void RightClick(Player player)
 		{
 			int itemid = 0;
+			var source = player.GetSource_DropAsItem();
+
 			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
 			{
 				//Floating Island Banners
 				if (Main.rand.Next(3) <= 1)
-					player.QuickSpawnItem(845, 1); //World Banner
+					player.QuickSpawnItem(source, 845, 1); //World Banner
 				if (Main.rand.Next(3) <= 1)
-					player.QuickSpawnItem(846, 1); //Sun Banner
+					player.QuickSpawnItem(source, 846, 1); //Sun Banner
 				if (Main.rand.Next(3) <= 1)
-					player.QuickSpawnItem(847, 1); //Gravity Banner
+					player.QuickSpawnItem(source, 847, 1); //Gravity Banner
 			}
 
 			//Skyware Chest Items
@@ -46,24 +49,24 @@ namespace ReducedGrinding.Items.LockBoxes
 				switch (Main.rand.Next(3))
 				{
 					case 0:
-						player.QuickSpawnItem(159, 1); //Shiny Red Balloon
+						player.QuickSpawnItem(source, 159, 1); //Shiny Red Balloon
 						break;
 					case 1:
-						player.QuickSpawnItem(65, 1); //Starfury
+						player.QuickSpawnItem(source, 65, 1); //Starfury
 						break;
 					case 2:
-						player.QuickSpawnItem(158); //Lucky Horseshoe
+						player.QuickSpawnItem(source, 158); //Lucky Horseshoe
 						break;
 				}
 			}
 			if (Main.rand.Next(3) == 0 && GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
-				player.QuickSpawnItem(2197, 1); //Skymill
+				player.QuickSpawnItem(source, 2197, 1); //Skymill
 
 			if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture)
 			{
 				//Surface Chest Common Items
 				if (Main.rand.Next(3) == 0)
-					player.QuickSpawnItem(168, Main.rand.Next(3, 6)); //Grenade
+					player.QuickSpawnItem(source, 168, Main.rand.Next(3, 6)); //Grenade
 				if (Main.rand.Next(2) == 0)
 				{
 					switch (Main.rand.Next(2))
@@ -75,7 +78,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							itemid = WorldGen.ironBar;
 							break;
 					}
-					player.QuickSpawnItem(itemid, Main.rand.Next(3, 11));
+					player.QuickSpawnItem(source, itemid, Main.rand.Next(3, 11));
 				}
 				if (Main.rand.Next(3) <= 1)
 				{
@@ -88,10 +91,10 @@ namespace ReducedGrinding.Items.LockBoxes
 							itemid = 42; //Shuriken
 							break;
 					}
-					player.QuickSpawnItem(itemid, Main.rand.Next(25, 51));
+					player.QuickSpawnItem(source, itemid, Main.rand.Next(25, 51));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(28, Main.rand.Next(3, 6)); //Lesser Healing Potion
+					player.QuickSpawnItem(source, 28, Main.rand.Next(3, 6)); //Lesser Healing Potion
 				if (Main.rand.Next(2) <= 1)
 				{
 					switch (Main.rand.Next(6))
@@ -115,7 +118,7 @@ namespace ReducedGrinding.Items.LockBoxes
 							itemid = 2325; //Builder Potion
 							break;
 					}
-					player.QuickSpawnItem(itemid, Main.rand.Next(1, 3));
+					player.QuickSpawnItem(source, itemid, Main.rand.Next(1, 3));
 				}
 				if (Main.rand.Next(2) == 0)
 				{
@@ -128,16 +131,16 @@ namespace ReducedGrinding.Items.LockBoxes
 							itemid = 31; //Bottle
 							break;
 					}
-					player.QuickSpawnItem(itemid, Main.rand.Next(10, 21));
+					player.QuickSpawnItem(source, itemid, Main.rand.Next(10, 21));
 				}
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(965, Main.rand.Next(50, 101)); //Rope
+					player.QuickSpawnItem(source, 965, Main.rand.Next(50, 101)); //Rope
 				if (Main.rand.Next(6) == 0)
-					player.QuickSpawnItem(3093, Main.rand.Next(1, 5)); //Herb Bag
+					player.QuickSpawnItem(source, 3093, Main.rand.Next(1, 5)); //Herb Bag
 				if (Main.rand.Next(3) <= 1)
-					player.QuickSpawnItem(2350, Main.rand.Next(2, 5)); //Recall Potion
+					player.QuickSpawnItem(source, 2350, Main.rand.Next(2, 5)); //Recall Potion
 				if (Main.rand.Next(2) == 0)
-					player.QuickSpawnItem(72, Main.rand.Next(10, 30)); //Silver Coins
+					player.QuickSpawnItem(source, 72, Main.rand.Next(10, 30)); //Silver Coins
 			}
 		}
 	}

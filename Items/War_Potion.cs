@@ -14,48 +14,36 @@ namespace ReducedGrinding.Items
 
         public override void SetDefaults()
         {
-            item.width = 20;
-            item.height = 30;
-            item.maxStack = 30;
-            item.rare = 2;
-            item.useAnimation = 45;
-            item.useTime = 45;
-            item.useStyle = 4;
-            item.value = Item.buyPrice(0, 0, 1, 13);
-            item.UseSound = SoundID.Item3;
-            item.consumable = true;
-        }
-
-        public override bool CanUseItem(Player player)
-        {
-            return true;
-        }
-
-        public override bool UseItem(Player player)
-        {
-            player.AddBuff(13, 25200); //Battle
-            player.AddBuff(mod.BuffType("War"), 25200);
-            return true;
+            Item.width = 20;
+            Item.height = 30;
+            Item.maxStack = 30;
+            Item.rare = ItemRarityID.Green;
+            Item.useAnimation = 45;
+            Item.useTime = 45;
+            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.value = Item.buyPrice(0, 0, 1, 13);
+            Item.UseSound = SoundID.Item3;
+            Item.consumable = true;
+            Item.buffType = ModContent.BuffType<Buffs.War>();
+            Item.buffTime = 25200;
         }
 
         public override void AddRecipes()
         {
 
             //War Potion recipe for corruption
-            ModRecipe recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BattlePotion, 1);
-            recipe.AddIngredient(ItemID.VileMushroom, 1);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe()
+                .AddIngredient(ItemID.BattlePotion)
+                .AddIngredient(ItemID.VileMushroom)
+                .AddTile(TileID.Bottles)
+                .Register();
 
             //War Potion recipe for crimson
-            recipe = new ModRecipe(mod);
-            recipe.AddIngredient(ItemID.BattlePotion, 1);
-            recipe.AddIngredient(ItemID.ViciousMushroom, 1);
-            recipe.AddTile(TileID.Bottles);
-            recipe.SetResult(this);
-            recipe.AddRecipe();
+            CreateRecipe()
+                .AddIngredient(ItemID.BattlePotion)
+                .AddIngredient(ItemID.ViciousMushroom)
+                .AddTile(TileID.Bottles)
+                .Register();
         }
     }
 }
