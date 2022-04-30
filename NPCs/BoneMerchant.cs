@@ -1,7 +1,7 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using System;
+using System.Collections.Generic;
 
 namespace ReducedGrinding.NPCs
 {
@@ -15,53 +15,41 @@ namespace ReducedGrinding.NPCs
 
 		public override void SetDefaults()
 		{
-			npc.townNPC = true;
-            npc.friendly = true;
-            npc.width = 20; //His hitbox, the visual width/height is affected by frame count below.
-            npc.height = 38;
-            npc.aiStyle = 7;
-            npc.damage = 10;
-            npc.defense = 15;
-            npc.lifeMax = 250;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.5f;
-            Main.npcFrameCount[npc.type] = 26;
-            animationType = NPCID.SkeletonMerchant;
+			NPC.townNPC = true;
+            NPC.friendly = true;
+            NPC.width = 20; //His hitbox, the visual width/height is affected by frame count below.
+            NPC.height = 38;
+            NPC.aiStyle = 7;
+            NPC.damage = 10;
+            NPC.defense = 15;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0.5f;
+            Main.npcFrameCount[Type] = 26;
+			AnimationType = NPCID.SkeletonMerchant;
         }
         public override bool CanTownNPCSpawn(int nextSlotTownNPCs, int money)
         {
 			return false; //He's summoned with a Skull Call.
         }
 
-        public override string TownNPCName()
-        {
-			switch (Main.rand.Next(10))
-			{
-				case 0:
-					return "Billy Marrows";
-				case 1:
-					return "Gloomy Mays";
-				case 2:
-					return "Mandible Calavera";
-				case 3:
-					return "No-Eyed Wiley";
-				case 4:
-					return "Skellington";
-				case 5:
-					return "Bones McGee";
-				case 6:
-					return "Jack Sellington";
-				case 7:
-					return "Mika";
-				case 8:
-					return "Rattles Magoo";
-				default:
-					return "Tom";
-			}
-        }
-		
-        public override string GetChat()
+		public override List<string> SetNPCNameList()
+		{
+			return new List<string> {
+				"Billy Marrows",
+				"Gloomy Mays",
+				"No-Eyed Wiley",
+				"Skellington",
+				"Bones McGee",
+				"Jack Sellington",
+				"Mika",
+				"Rattles Magoo",
+				"Tom"
+			};
+		}
+
+		public override string GetChat()
 		{
 			if (!Main.dayTime)
 			{

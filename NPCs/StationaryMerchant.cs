@@ -3,15 +3,51 @@ using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
 using System;
+using Microsoft.Xna.Framework;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.Utilities;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
+using Terraria.GameContent.Personalities;
+using Terraria.DataStructures;
+using System.Collections.Generic;
+using ReLogic.Content;
 
 namespace ReducedGrinding.NPCs
 {
 	[AutoloadHead]
     public class StationaryMerchant : ModNPC
 	{
-		public override string Texture => "ReducedGrinding/NPCs/StationaryMerchant";
+		/*public override string Texture => "ReducedGrinding/NPCs/StationaryMerchant";
 
-		public override string[] AltTextures => new[] { "ReducedGrinding/NPCs/StationaryMerchant_alt" };
+		public override string[] AltTextures => new[] { "ReducedGrinding/NPCs/StationaryMerchant_alt" };*/
+
+		public class ExamplePersonProfile : ITownNPCProfile
+		{
+			public int RollVariation() => 0;
+			public string GetNameForVariant(NPC npc) => npc.getNewNPCName();
+
+			public Asset<Texture2D> GetTextureNPCShouldUse(NPC npc)
+			{
+				if (npc.IsABestiaryIconDummy && !npc.ForcePartyHatOn)
+					return ModContent.Request<Texture2D>("ReducedGrinding/NPCs/StationaryMerchant");
+
+				if (npc.altTexture == 1)
+					return ModContent.Request<Texture2D>("ReducedGrinding/NPCs/StationaryMerchant_alt");
+
+				return ModContent.Request<Texture2D>("ReducedGrinding/NPCs/StationaryMerchant");
+			}
+
+			public int GetHeadTextureIndex(NPC npc) => ModContent.GetModHeadSlot("ReducedGrinding/NPCs/StationaryMerchant_Head.png");
+		}
 
 		public static bool baseshop = false;
 		
@@ -22,20 +58,20 @@ namespace ReducedGrinding.NPCs
 		
         public override void SetDefaults()
         {
-            npc.townNPC = true;
-            npc.friendly = true;
-            npc.width = 32; //His hitbox, the visual width/height is affected by frame count below.
-			npc.height = 50;
-            npc.aiStyle = 7;
-            npc.damage = 10;
-            npc.defense = 15;
-            npc.lifeMax = 250;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.5f;
-            Main.npcFrameCount[npc.type] = 26;
-            animationType = NPCID.Guide;
-			NPCID.Sets.HatOffsetY[npc.type] = 12;
+            NPC.townNPC = true;
+            NPC.friendly = true;
+            NPC.width = 32; //His hitbox, the visual width/height is affected by frame count below.
+			NPC.height = 50;
+            NPC.aiStyle = 7;
+            NPC.damage = 10;
+            NPC.defense = 15;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0.5f;
+            Main.npcFrameCount[Type] = 26;
+            AnimationType = NPCID.Guide;
+			NPCID.Sets.HatOffsetY[Type] = 12;
 		}
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
@@ -45,19 +81,14 @@ namespace ReducedGrinding.NPCs
 				return false;
         }
 
-        public override string TownNPCName()
-        {
-            switch (Main.rand.Next(4)) //Names are requrest by sprite artist, Lonley Star; don't change them.
-            {
-                case 0:
-					return "Albert";
-				case 1:
-					return "Archibald";
-				case 2:
-					return "Graham";
-				default:
-					return "Gray";
-            }
+		public override List<string> SetNPCNameList()
+		{
+			return new List<string>() {
+				"Albert",
+				"Archibald",
+				"Graham",
+				"Gray"
+			};
         }
 
         public override string GetChat()

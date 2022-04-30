@@ -2,6 +2,23 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.Utilities;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
+using Terraria.GameContent.Personalities;
+using Terraria.DataStructures;
+using System.Collections.Generic;
+using ReLogic.Content;
 
 namespace ReducedGrinding.NPCs
 {
@@ -16,19 +33,19 @@ namespace ReducedGrinding.NPCs
 
         public override void SetDefaults()
         {
-            npc.townNPC = true;
-            npc.friendly = true;
-            npc.width = 20; //His hitbox, the visual width/height is affected by frame count below.
-            npc.height = 38;
-            npc.aiStyle = 7;
-            npc.damage = 10;
-            npc.defense = 15;
-            npc.lifeMax = 250;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.5f;
-            Main.npcFrameCount[npc.type] = 26;
-            animationType = NPCID.SantaClaus;
+            NPC.townNPC = true;
+            NPC.friendly = true;
+            NPC.width = 20; //His hitbox, the visual width/height is affected by frame count below.
+            NPC.height = 38;
+            NPC.aiStyle = 7;
+            NPC.damage = 10;
+            NPC.defense = 15;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0.5f;
+            Main.npcFrameCount[Type] = 26;
+            AnimationType = NPCID.SantaClaus;
         }
         public override bool CanTownNPCSpawn(int nextSlotTownNPCs, int money)
         {
@@ -38,15 +55,12 @@ namespace ReducedGrinding.NPCs
                 return false;
         }
 
-        public override string TownNPCName()
+        public override List<string> SetNPCNameList()
         {
-            switch (Main.rand.Next(2)) //Names are requrest by sprite artist, Lonley Star; don't change them.
-            {
-                case 0:
-                    return "Lilly";
-                default:
-                    return "Vanessa";
-            }
+            return new List<string>() {
+                "Lilly",
+                "Vanessa"
+            };
         }
 
         public override string GetChat()

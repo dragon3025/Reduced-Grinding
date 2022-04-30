@@ -2,6 +2,23 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using System;
+using System.Linq;
+using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.Utilities;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.ItemDropRules;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent;
+using Terraria.GameContent.Personalities;
+using Terraria.DataStructures;
+using System.Collections.Generic;
+using ReLogic.Content;
 
 namespace ReducedGrinding.NPCs
 {
@@ -16,19 +33,19 @@ namespace ReducedGrinding.NPCs
 		
         public override void SetDefaults()
         {
-            npc.townNPC = true;
-            npc.friendly = true;
-            npc.width = 18; //His hitbox, the visual width/height is affected by frame count below.
-			npc.height = 40;
-            npc.aiStyle = 7;
-            npc.damage = 10;
-            npc.defense = 15;
-            npc.lifeMax = 250;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.knockBackResist = 0.5f;
-            Main.npcFrameCount[npc.type] = 25;            
-            animationType = NPCID.Guide;
+            NPC.townNPC = true;
+            NPC.friendly = true;
+            NPC.width = 18; //His hitbox, the visual width/height is affected by frame count below.
+			NPC.height = 40;
+            NPC.aiStyle = 7;
+            NPC.damage = 10;
+            NPC.defense = 15;
+            NPC.lifeMax = 250;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.knockBackResist = 0.5f;
+            Main.npcFrameCount[Type] = 25;
+			AnimationType = NPCID.Guide;
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
@@ -38,69 +55,38 @@ namespace ReducedGrinding.NPCs
 				return false;
         }
 
-        public override string TownNPCName()
-        {										//NPC names
-            switch (Main.rand.Next(27))
-            {
-                case 0:
-                    return "Chester";
-                case 1:
-                    return "Chad";
-                case 2:
-                    return "Charlie";
-                case 3:
-                    return "Chace";
-                case 4:
-					return "Benedict";
-                case 5:
-					return "Ranulph";
-                case 6:
-					return "Mike";
-                case 7:
-					return "Locke";
-                case 8:
-					return "John";
-                case 9:
-					return "Ferdinand";
-                case 10:
-					return "Lewis";
-                case 11:
-					return "Nicholas";
-                case 12:
-					return "Aron";
-                case 13:
-					return "Robert";
-                case 14:
-					return "Thor";
-                case 15:
-					return "Jones";
-                case 16:
-					return "Rolf";
-                case 17:
-					return "Tobin";
-                case 18:
-					return "Alexander";
-                case 19:
-					return "George";
-                case 20:
-					return "Francis";
-                case 21:
-					return "Montgomery";
-                case 22:
-					return "Mark";
-                case 23:
-					return "Ross";
-                case 24:
-					return "Adrian";
-                case 25:
-					return "Samuel";
-                default:
-					return "Randy";
-            }
-        }
-
-
-
+		public override List<string> SetNPCNameList()
+		{
+			return new List<string>() {
+				"Chester",
+				"Chad",
+				"Charlie",
+				"Chace",
+				"Benedict",
+				"Ranulph",
+				"Mike",
+				"Locke",
+				"John",
+				"Ferdinand",
+				"Lewis",
+				"Nicholas",
+				"Aron",
+				"Robert",
+				"Thor",
+				"Jones",
+				"Rolf",
+				"Tobin",
+				"Alexander",
+				"George",
+				"Francis",
+				"Montgomery",
+				"Mark",
+				"Ross",
+				"Adrian",
+				"Samuel",
+				"Randy"
+			};
+		}
 
         public override string GetChat()
         {
