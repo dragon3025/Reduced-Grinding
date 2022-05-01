@@ -67,6 +67,25 @@ namespace ReducedGrinding
 				}
 			}
 
+			//I plan on having the dials enhance the speed of sleeping instead.
+			if (advanceMoonPhase)
+			{
+				advanceMoonPhase = false;
+				Main.moonPhase++;
+				if (Main.moonPhase >= 8)
+				{
+					Main.moonPhase = 0;
+				}
+				if (Main.netMode == NetmodeID.Server)
+				{
+					var netMessage = Mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
+					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+					netMessage.Send();
+					NetMessage.SendData(MessageID.WorldData);
+				}
+			}
+
 			//There are 21 stationary vanilla NPCs (excluding Guide and Santa) as of 5/26/2017; 15 Pre-Hardmode and 6 Hardmode.
 			float TownNPCs = 0f;
 			float TownNPCsMax = 15f;
