@@ -26,16 +26,20 @@ namespace ReducedGrinding.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Chlorophyte Accelerator");
 			AddMapEntry(new Color(155, 110, 71), name);
-			dustType = mod.DustType("Sparkle");
-			animationFrameHeight = 56;
-			disableSmartCursor = true;
+			DustType = DustID.Chlorophyte;
+			AnimationFrameHeight = 56;
+			TileID.Sets.DisableSmartCursor[Type] = true;
 		}
 
-		public override void MouseOver(int i, int j)
+		public override void MouseOverFar(int i, int j)
 		{
+			MouseOver(i, j);
 			Player player = Main.LocalPlayer;
-			player.showItemIcon = true;
-			player.showItemIcon2 = mod.ItemType("Chlorophyte_Accelerator");
+			if (player.cursorItemIconText == "")
+			{
+				player.cursorItemIconEnabled = false;
+				player.cursorItemIconID = 0;
+			}
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num)
@@ -45,7 +49,7 @@ namespace ReducedGrinding.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 32, 16, mod.ItemType("Chlorophyte_Accelerator"));
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Chlorophyte_Accelerator>());
 		}
 
 		public override void AnimateTile(ref int frame, ref int frameCounter)

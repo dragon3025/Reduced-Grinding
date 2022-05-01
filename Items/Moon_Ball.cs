@@ -26,7 +26,7 @@ namespace ReducedGrinding.Items
 			Item.consumable = true;
 			Item.value = Item.buyPrice(0, 1, 0, 0);
 			Item.rare = 3;
-			Item.createTile = mod.TileType("Moon_Ball");
+			Item.createTile = ModContent.TileType<Tiles.Moon_Ball>();
 		}
 	}
 }
