@@ -4,6 +4,11 @@ using Terraria;
 using System;
 using static Terraria.ModLoader.ModContent;
 using Terraria.DataStructures;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using Terraria.ID;
+using Terraria.WorldBuilding;
 
 namespace ReducedGrinding
 {
@@ -11,23 +16,6 @@ namespace ReducedGrinding
     {
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
-        //public static bool skipToDay = false;
-        //public static bool skipToNight = false;
-        //public static bool skippedToDayOrNight = false;
-
-        //1.4 Broke this. With plans to have dials affect how fast beds pass the time, I don't think I'm going to use the save feature anyway though.
-        /*public override TagCompound Save()
-        {
-			return new TagCompound
-			{
-				{"skippedToDayOrNight", skippedToDayOrNight}
-			};
-        }
-
-        public override void Load(TagCompound tag)
-        {
-			skippedToDayOrNight = tag.GetBool("skippedToDayOrNight");
-        }*/
 
         public override void PostUpdateWorld()
         {
@@ -78,96 +66,6 @@ namespace ReducedGrinding
 					}
 				}
 			}
-
-			//I plan on having the dials enhance the speed of sleeping instead.
-			/*if (advanceMoonPhase)
-			{
-				advanceMoonPhase = false;
-				Main.moonPhase++;
-				if (Main.moonPhase >= 8)
-				{
-					Main.moonPhase = 0;
-				}
-				if (Main.netMode == NetmodeID.Server)
-				{
-					var netMessage = mod.GetPacket();
-					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
-					netMessage.Send();
-
-					NetMessage.SendData(MessageID.WorldData);
-				}
-			}
-
-			if (skipToNight)
-			{
-				if (Main.sundialCooldown > 0)
-					ReducedGrindingWorld.skippedToDayOrNight = true;
-				Main.time = 54000;
-				skipToDay = false;
-				skipToNight = false;
-				//Force Traveling Merchant despawn in order to prevent exploiting.
-				int travelingMerchantTarget = -1;
-				for (int i = 0; i < 200; i++)
-				{
-					if (Main.npc[i].active && Main.npc[i].type == NPCID.TravellingMerchant)
-					{
-						travelingMerchantTarget = i;
-						break;
-					}
-				}
-				if (travelingMerchantTarget > -1)
-				{
-					string fullName = Main.npc[travelingMerchantTarget].FullName;
-					if (Main.netMode == NetmodeID.SinglePlayer)//0)
-						Main.NewText(Lang.misc[35].Format(fullName), 50, 125);
-					else if (Main.netMode == NetmodeID.Server)//2)
-						NetMessage.BroadcastChatMessage(NetworkText.FromKey(Lang.misc[35].Key, Main.npc[travelingMerchantTarget].GetFullNetName()), new Color(50, 125, 255));
-					Main.npc[travelingMerchantTarget].active = false;
-					Main.npc[travelingMerchantTarget].netSkip = -1;
-					Main.npc[travelingMerchantTarget].life = 0;
-					NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, travelingMerchantTarget);
-				}
-				if (Main.netMode == NetmodeID.Server) //Server
-				{
-					var netMessage = mod.GetPacket();
-					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
-					netMessage.Write(ReducedGrindingWorld.skipToNight);
-
-					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
-					netMessage.Write(ReducedGrindingWorld.skipToDay);
-					netMessage.Send();
-
-					NetMessage.SendData(MessageID.WorldData);
-				}
-			}
-
-			if (skipToDay)
-			{
-				if (Main.sundialCooldown > 0)
-					ReducedGrindingWorld.skippedToDayOrNight = true;
-				Main.time = 32400;
-				skipToDay = false;
-				skipToNight = false;
-				if (Main.netMode == NetmodeID.Server)
-				{
-					var netMessage = mod.GetPacket();
-					netMessage.Write((byte)ReducedGrindingMessageType.skipToNight);
-					netMessage.Write(ReducedGrindingWorld.skipToNight);
-
-					netMessage.Write((byte)ReducedGrindingMessageType.skipToDay);
-					netMessage.Write(ReducedGrindingWorld.skipToDay);
-					netMessage.Send();
-
-					NetMessage.SendData(MessageID.WorldData);
-				}
-			}
-
-			if (Main.dayTime && skippedToDayOrNight)
-			{
-				Main.sundialCooldown++;
-				skippedToDayOrNight = false;
-			}*/
 
 			//There are 21 stationary vanilla NPCs (excluding Guide and Santa) as of 5/26/2017; 15 Pre-Hardmode and 6 Hardmode.
 			float TownNPCs = 0f;

@@ -6,6 +6,27 @@ using Terraria.Enums;
 using Terraria.DataStructures;
 using System;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent;
+using Terraria.GameContent.ObjectInteractions;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent;
+using Terraria.GameContent.ObjectInteractions;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using Terraria.Audio;
 
 
 namespace ReducedGrinding.Tiles
@@ -22,7 +43,6 @@ namespace ReducedGrinding.Tiles
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(1, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
-			TileObjectData.newTile.HookCheck = new PlacementHook(new Func<int, int, int, int, int, int>(Chest.FindEmptyChest), -1, 0, true);
 			TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
@@ -31,41 +51,47 @@ namespace ReducedGrinding.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Moon Ball");
 			AddMapEntry(new Color(191, 191, 255), name);
-			dustType = mod.DustType("Sparkle");
-			disableSmartCursor = true;
-			dresser = "Moon Ball";
+			DustType = DustID.Cloud;
+			TileID.Sets.DisableSmartCursor[Type] = true;
 			Main.tileLighted[Type] = true;
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(i * 16, j * 16, 32, 32, mod.ItemType("Moon_Ball"));
+			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
 		}
 
-		public override bool HasSmartInteract()
+		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
 		{
 			return true;
 		}
 
-        public override bool NewRightClick(int x, int y)
-        {
-			ReducedGrindingWorld.advanceMoonPhase = true;
-			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
+		public override bool RightClick(int i, int j)
+		{
+			Player player = Main.LocalPlayer;
+
+			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance))
 			{
-				var netMessage = mod.GetPacket();
-				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-				netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
-				netMessage.Send();
+				ReducedGrindingWorld.advanceMoonPhase = true;
+				if (Main.netMode == NetmodeID.MultiplayerClient) //Client
+				{
+					var netMessage = Mod.GetPacket();
+					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
+					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+					netMessage.Send();
+				}
+				SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball
 			}
-			Main.PlaySound(SoundID.Item4); //Crystal Ball
+
 			return true;
 		}
 
 		public override void MouseOver(int i, int j)
 		{
 			Player player = Main.LocalPlayer;
-			player.showItemIcon = true;
-			player.showItemIcon2 = mod.ItemType("Moon_Ball");
+			player.noThrow = 2;
+			player.cursorItemIconEnabled = true;
+			player.cursorItemIconID = ModContent.ItemType<Items.Moon_Ball>();
 		}
 
 		public override void NumDust(int i, int j, bool fail, ref int num)

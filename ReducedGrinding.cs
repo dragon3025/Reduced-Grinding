@@ -133,12 +133,6 @@ namespace ReducedGrinding
             ReducedGrindingMessageType msgType = (ReducedGrindingMessageType)reader.ReadByte();
             switch (msgType)
             {
-                case ReducedGrindingMessageType.skipToNight:
-                    ReducedGrindingWorld.skipToNight = reader.ReadBoolean();
-                    break;
-                case ReducedGrindingMessageType.skipToDay:
-                    ReducedGrindingWorld.skipToDay = reader.ReadBoolean();
-                    break;
                 case ReducedGrindingMessageType.advanceMoonPhase:
                     ReducedGrindingWorld.advanceMoonPhase = reader.ReadBoolean();
                     break;
@@ -2568,9 +2562,6 @@ namespace ReducedGrinding
 
     enum ReducedGrindingMessageType : byte
     {
-        SendClientChanges,
-        skipToNight,
-        skipToDay,
         advanceMoonPhase
     }
 
