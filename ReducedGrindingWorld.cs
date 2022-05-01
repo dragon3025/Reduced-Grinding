@@ -93,8 +93,9 @@ namespace ReducedGrinding
 			float TownHardmodeNPCsMax = 6f;
 			bool tryToSpawnTravelingMerchant = true;
 
-			Mod luiafk = ModLoader.GetMod("Luiafk");
-			if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
+			//Mod luiafk = ModLoader.GetMod("Luiafk");
+			//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
+			if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
 				TownNPCsMax++;
 			if (GetInstance<IOtherCustomNPCsConfig>().ChestSalesman)
 				TownNPCsMax++;

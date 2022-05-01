@@ -18,7 +18,7 @@ namespace ReducedGrinding.NPCs
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
 			Player player = Main.player[Main.myPlayer];
-			Mod luiafk = ModLoader.GetMod("Luiafk");
+			//Mod luiafk = ModLoader.GetMod("Luiafk");
 
 			switch (type)
 			{
@@ -123,7 +123,7 @@ namespace ReducedGrinding.NPCs
 					}
 					break;
 				case NPCID.Steampunker:
-					if (luiafk == null)
+					/*if (luiafk == null)
 					{
 						if (WorldGen.crimson)
 						{
@@ -146,7 +146,7 @@ namespace ReducedGrinding.NPCs
 								nextSlot++;
 							}
 						}
-					}
+					}*/
 					break;
 				case NPCID.WitchDoctor:
 					if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsSeaweed)
@@ -190,7 +190,7 @@ namespace ReducedGrinding.NPCs
 					}
 					break;
 				case NPCID.Dryad:
-					if (luiafk == null)
+					/*if (luiafk == null)
 					{
 						if (WorldGen.crimson)
 						{
@@ -216,7 +216,7 @@ namespace ReducedGrinding.NPCs
 							if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
 								shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
 						}
-					}
+					}*/
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Plantera_Bulb>());
@@ -339,7 +339,8 @@ namespace ReducedGrinding.NPCs
 						nextSlot++;
 
 					}
-					if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
+					//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
+					if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Skull_Call>());
 						nextSlot++;
