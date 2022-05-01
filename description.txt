@@ -1,4 +1,11 @@
-Reduced Grinding
+Reduced Grinding 1.4 (Work In Progress)
+
+I'M CURRENTLY UPDATING THIS FOR 1.4:
+
+Some features listed below may be disabled. The major
+feature of this mod, increases loot npc drops, is
+temporarily disabled; I need to migrate to the new
+bestiary function, which may take some time.
 
 This mod isn't supposed to make the game too easy, but makes
 it so you don't have to spend huge amounts of time farming for
