@@ -9,7 +9,7 @@ namespace ReducedGrinding.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Marble Sundial");
-			Tooltip.SetDefault("Skips to day time.\nThis day won't count towards the Enchanted Sundial cooldown.");
+			Tooltip.SetDefault("MOD AUTHOR: DOESN'T DO ANYTHING AT THE MOMENT.");
 		}
 		
 		public override void SetDefaults()
