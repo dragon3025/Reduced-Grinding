@@ -60,8 +60,8 @@ namespace ReducedGrinding.Items
         {
             CreateRecipe()
                 .AddIngredient(ItemID.BottledWater, 1)
-                .AddIngredient(2358, 1)
-                .AddIngredient(593, 1)
+                .AddIngredient(ItemID.Shiverthorn, 1)
+                .AddIngredient(ItemID.SnowBlock, 1)
                 .AddTile(TileID.Bottles)
                 .Register();
         }

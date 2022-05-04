@@ -25,7 +25,7 @@ namespace ReducedGrinding.Items
             Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.consumable = true;
 			Item.value = Item.buyPrice(0, 1, 0, 0);
-			Item.rare = 3;
+			Item.rare = ItemRarityID.Orange;
 			Item.createTile = ModContent.TileType<Tiles.Moon_Ball>();
 		}
 	}

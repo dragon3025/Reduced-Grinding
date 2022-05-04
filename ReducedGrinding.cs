@@ -698,9 +698,9 @@ namespace ReducedGrinding
             }
         }
 
-        public class ModGlobalNPC : GlobalNPC
+        /*public class ModGlobalNPC : GlobalNPC
         {
-            /*public override void OnKill(NPC npc) //DISABLED FOR NOW. THIS WILL HAVE TO CHANGED TO THE BESTIARY: https://github.com/tModLoader/tModLoader/wiki/Basic-NPC-Drops-and-Loot-1.4
+            public override void OnKill(NPC npc) //DISABLED FOR NOW. THIS WILL HAVE TO CHANGED TO THE BESTIARY: https://github.com/tModLoader/tModLoader/wiki/Basic-NPC-Drops-and-Loot-1.4
             {
                 if (npc.lifeMax > 5 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
                 {
@@ -2533,8 +2533,8 @@ namespace ReducedGrinding
                         }
                     }
                 }
-            }*/
-        }
+            }
+        }*/
     }
 
     class SpawnRateMultiplierGlobalNPC : GlobalNPC
