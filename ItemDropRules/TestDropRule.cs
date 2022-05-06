@@ -9,7 +9,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 		{
 			if (!info.IsInSimulation)
 			{
-				return Main.moonPhase > -1; //THIS IS JUST A PLACE HOLDER
+				return Main.moonPhase > -1; //TODO This, is just a place holder.
 			}
 			return false;
 		}

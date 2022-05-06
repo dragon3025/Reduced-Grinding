@@ -1,5 +1,22 @@
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Runtime.Serialization;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.Config;
+using Terraria.ModLoader.Config.UI;
+using Terraria.UI;
 
 namespace ReducedGrinding
 {
@@ -233,8 +250,8 @@ namespace ReducedGrinding
 		[Label("[i:1300] Rifle Scope")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRifleScopeIncrease;
 		[Label("[i:263] Robot Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRobotHatIncrease;
 		[Label("[i:759] Rocket Launcher")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRocketLauncherIncrease;
-		[Label("[i:1326] Rod of Discord")] [Increment(.0001f)] [DefaultValue(0.1291f)] public float LootRodofDiscordIncrease;
-		[Label("[i:1514] SWAT Helmet")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSWATHelmetIncrease;
+		[Range(0, 10000)] [Label("[i:1326] Rod of Discord (1:Normal, 2:Expert)")] public int[] LootRodofDiscordIncrease = new int[] {8, 4}; //TODO These rates are temporary.
+		[Range(0, 10000)] [Label("[i:1514] SWAT Helmet (1:Normal, 2:Expert)")] public int[] LootSWATHelmetIncrease = new int[] {2, 1}; //TODO These rates are temporary.
 		[Label("[i:1277] Sailor Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorHatIncrease;
 		[Label("[i:1280] Sailor Pants")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorPantsIncrease;
 		[Label("[i:1279] Sailor Shirt")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorShirtIncrease;
