@@ -713,5 +713,5 @@ namespace ReducedGrinding
 			message = "Can't change settings in a server.";
 			return false;
 		}
-	}
+    }
 }
