@@ -250,8 +250,8 @@ namespace ReducedGrinding
 		[Label("[i:1300] Rifle Scope")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRifleScopeIncrease;
 		[Label("[i:263] Robot Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRobotHatIncrease;
 		[Label("[i:759] Rocket Launcher")] [Increment(.0001f)] [DefaultValue(0f)] public float LootRocketLauncherIncrease;
-		[Range(0, 10000)] [Label("[i:1326] Rod of Discord (1:Normal, 2:Expert)")] public int[] LootRodofDiscordIncrease = new int[] {8, 4}; //TODO These rates are temporary.
-		[Range(0, 10000)] [Label("[i:1514] SWAT Helmet (1:Normal, 2:Expert)")] public int[] LootSWATHelmetIncrease = new int[] {2, 1}; //TODO These rates are temporary.
+		[Range(0, 10000)] [Label("[i:1326] Rod of Discord (1:Normal, 2:Expert)")] public int[] LootRodofDiscordIncrease = new int[] {8, 7};
+		[Range(0, 10000)] [Label("[i:1514] SWAT Helmet (1:Normal, 2:Expert)")] public int[] LootSWATHelmetIncrease = new int[] {0, 0};
 		[Label("[i:1277] Sailor Hat")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorHatIncrease;
 		[Label("[i:1280] Sailor Pants")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorPantsIncrease;
 		[Label("[i:1279] Sailor Shirt")] [Increment(.0001f)] [DefaultValue(0f)] public float LootSailorShirtIncrease;

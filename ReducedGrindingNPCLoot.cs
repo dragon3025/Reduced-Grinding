@@ -24,12 +24,17 @@ namespace ReducedGrinding.Common.GlobalNPCs
         {
             if (npc.lifeMax > 1 && npc.damage > 0 && !npc.friendly && npc.type != NPCID.Slimer && npc.value > 0f)
             {
-
-                int itemType;
                 int normalDenominator;
                 int expertDenominator;
-
-                if (npc.type == NPCID.ChaosElemental)
+                void add_non_conditional_loot(int itemType, int[] denominators)
+                {
+                    normalDenominator = denominators[0];
+                    expertDenominator = Math.Min(normalDenominator, denominators[1]);
+                    if (expertDenominator > 0)
+                        npcLoot.Add(ItemDropRule.NormalvsExpert(itemType, normalDenominator, expertDenominator));
+                }
+                /*//CONDITIONAL RULE EXAMPLE
+                if (npc.type == NPCID.BlueSlime)
                 {
                     itemType = ItemID.RodofDiscord;
                     normalDenominator = GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease[0];
@@ -42,20 +47,15 @@ namespace ReducedGrinding.Common.GlobalNPCs
 
                         IItemDropRule rule = ItemDropRule.NormalvsExpert(itemType, normalDenominator, expertDenominator);
 
-                        conditionalRule.OnSuccess(rule); //TODO Temporary, wont actually have a custom condition.
+                        conditionalRule.OnSuccess(rule);
 
                         npcLoot.Add(conditionalRule);
                     }
-                }
+                }*/
+                if (npc.type == NPCID.ChaosElemental)
+                    add_non_conditional_loot(ItemID.RodofDiscord, GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease);
                 if (npc.type == NPCID.TacticalSkeleton)
-                {
-                    itemType = ItemID.SWATHelmet;
-                    normalDenominator = GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease[0];
-                    expertDenominator = Math.Min(normalDenominator, GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease[1]);
-
-                    if (expertDenominator > 0)
-                        npcLoot.Add(ItemDropRule.NormalvsExpert(itemType, normalDenominator, expertDenominator));
-                }
+                    add_non_conditional_loot(ItemID.SWATHelmet, GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease);
             }
         }
     }
