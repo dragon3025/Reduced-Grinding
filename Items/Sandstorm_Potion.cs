@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
+using Terraria.Chat;
 
 namespace ReducedGrinding.Items
 {
@@ -69,9 +70,9 @@ namespace ReducedGrinding.Items
        
 		private static void StopSandstorm()
 		{
-			/*if (Main.netMode == NetmodeID.Server)
-				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm stopped."), new Color(0, 128, 255));
-			else*/ if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			if (Main.netMode == NetmodeID.Server)
+				ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm stopped."), new Color(0, 128, 255));
+			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				Main.NewText("The sandstorm stopped.", 0, 128, 255);
 			Sandstorm.Happening = false;
 			Sandstorm.TimeLeft = 0;
@@ -80,11 +81,11 @@ namespace ReducedGrinding.Items
 
 		private static void StartSandstorm()
 		{
-			/*if (Main.netMode == NetmodeID.Server)
+			if (Main.netMode == NetmodeID.Server)
 			{
-				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm started."), new Color(0, 128, 255));
+				ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The sandstorm started."), new Color(0, 128, 255));
 			}
-			else*/ if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 			{
 				Main.NewText("The sandstorm started.", 0, 128, 255);
 			}

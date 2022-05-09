@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.Chat;
 
 namespace ReducedGrinding.Items
 {
@@ -35,9 +36,9 @@ namespace ReducedGrinding.Items
 
         public override bool? UseItem(Player player)
         {
-			/*if (Main.netMode == NetmodeID.Server)
-				Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));
-			else */if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+			if (Main.netMode == NetmodeID.Server)
+				ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));
+			else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
 				Main.NewText("The Celestial Invasion was stopped.", 255, 0, 255);
 			NPC.TowerActiveVortex = false;
 			NPC.TowerActiveNebula = false;

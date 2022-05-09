@@ -42,7 +42,7 @@ namespace ReducedGrinding.Tiles
 			TileID.Sets.HasOutlines[Type] = true;
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(1, 1);
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
+			//TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
@@ -56,37 +56,34 @@ namespace ReducedGrinding.Tiles
 			Main.tileLighted[Type] = true;
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
+		public override void KillMultiTile(int x, int y, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
+			Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
 		}
 
-		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings)
+		public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
 		{
 			return true;
 		}
 
-		public override bool RightClick(int i, int j)
+		public override bool RightClick(int x, int y)
 		{
 			Player player = Main.LocalPlayer;
 
-			if (player.IsWithinSnappngRangeToTile(i, j, PlayerSittingHelper.ChairSittingMaxDistance))
+			ReducedGrindingWorld.advanceMoonPhase = true;
+			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 			{
-				ReducedGrindingWorld.advanceMoonPhase = true;
-				if (Main.netMode == NetmodeID.MultiplayerClient) //Client
-				{
-					var netMessage = Mod.GetPacket();
-					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
-					netMessage.Send();
-				}
-				SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball
+				var netMessage = Mod.GetPacket();
+				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
+				netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+				netMessage.Send();
 			}
+			SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball
 
 			return true;
 		}
 
-		public override void MouseOver(int i, int j)
+		public override void MouseOver(int x, int y)
 		{
 			Player player = Main.LocalPlayer;
 			player.noThrow = 2;
@@ -94,12 +91,12 @@ namespace ReducedGrinding.Tiles
 			player.cursorItemIconID = ModContent.ItemType<Items.Moon_Ball>();
 		}
 
-		public override void NumDust(int i, int j, bool fail, ref int num)
+		public override void NumDust(int x, int y, bool fail, ref int num)
 		{
 			num = fail ? 1 : 3;
 		}
 
-		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
+		public override void ModifyLight(int x, int y, ref float r, ref float g, ref float b)
 		{
 			float lightStrength = Main.rand.NextFloat(0.125f, 0.25f);
 			r = lightStrength;

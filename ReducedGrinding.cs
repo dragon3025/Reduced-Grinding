@@ -143,7 +143,7 @@ namespace ReducedGrinding
         {
             public override void OpenVanillaBag(string context, Player player, int arg)
             {
-                var source = player.GetSource_DropAsItem(); //EXAMPLE MOD DOESN'T HAVE THIS UPDATED, I DON'T KNOW IF THIS IS CORRECT
+                var source = player.GetSource_OpenItem(arg);
 
                 //Boss Bags
                 if (arg == ItemID.BrainOfCthulhuBossBag)

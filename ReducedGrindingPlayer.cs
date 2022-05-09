@@ -346,7 +346,8 @@ namespace ReducedGrinding
                     if ((itemDrop >= 2297 && itemDrop <= 2302) || itemDrop == 2290 || itemDrop == 2316 || itemDrop == 2334 || itemDrop == 2335) //Non-Rare Fish or Non-Rare Crate
                     {
                         itemDrop = 0;
-                        int power = attempt.playerFishingConditions.BaitPower + attempt.playerFishingConditions.PolePower;
+                        int power = attempt.playerFishingConditions.FinalFishingLevel;
+
                         calculateCatchRates(power, out common, out uncommon, out rare, out veryRare, out superRare, out isCrate);
 
                         if (attempt.inLava) //Lava
@@ -377,7 +378,7 @@ namespace ReducedGrinding
                         }
                         else if (isCrate)
                         {
-                            itemDrop = ((veryRare | superRare) ? 2336 : ((rare && Player.ZoneCorrupt) ? 3203 : ((rare && Player.ZoneCrimson) ? 3204 : ((rare && Player.ZoneHallow) ? 3207 : ((rare && Player.ZoneDungeon) ? 3205 : ((rare && Player.ZoneJungle) ? 3208 : ((rare && attempt.heightLevel == 0) ? 3206 : ((!uncommon) ? 2334 : 2335))))))));
+                            itemDrop = (veryRare | superRare) ? 2336 : ((rare && Player.ZoneCorrupt) ? 3203 : ((rare && Player.ZoneCrimson) ? 3204 : ((rare && Player.ZoneHallow) ? 3207 : ((rare && Player.ZoneDungeon) ? 3205 : ((rare && Player.ZoneJungle) ? 3208 : ((rare && attempt.heightLevel == 0) ? 3206 : ((!uncommon) ? 2334 : 2335)))))));
                         }
                         else if (superRare && Main.rand.Next(5) == 0)
                         {

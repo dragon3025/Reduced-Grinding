@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
+using Terraria.Chat;
 
 namespace ReducedGrinding.Items
 {
@@ -45,10 +46,10 @@ namespace ReducedGrinding.Items
 			{
 				Main.NewText("It's Halloween today!", 255, 255, 0);
 			}
-			/*else if (Main.netMode == NetmodeID.Server)
+			else if (Main.netMode == NetmodeID.Server)
 			{
-                Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("It's Halloween today!"), new Color(255, 255, 0));
-			}*/
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("It's Halloween today!"), new Color(255, 255, 0));
+			}
 			Main.xMas = false;
 			Main.halloween = true;
 			if (Main.netMode == NetmodeID.Server)

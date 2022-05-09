@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using Terraria.Localization;
 using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria.Chat;
 
 namespace ReducedGrinding.Items
 {
@@ -56,9 +57,9 @@ namespace ReducedGrinding.Items
        
         private static void StopRain()
         {
-			/*if (Main.netMode == NetmodeID.Server)
-                Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
-			else*/
+			if (Main.netMode == NetmodeID.Server)
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade away."), new Color(0, 128, 255));
+			else
 				Main.NewText("The rain started to fade away.", 0, 128, 255);
             Main.rainTime = 0;
             Main.raining = false;
@@ -67,9 +68,9 @@ namespace ReducedGrinding.Items
 
         private static void StartRain()
         {
-			/*if (Main.netMode == NetmodeID.Server)
-                Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade in."), new Color(0, 128, 255));
-			else*/
+			if (Main.netMode == NetmodeID.Server)
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The rain started to fade in."), new Color(0, 128, 255));
+			else
 				Main.NewText("The rain started to fade in.", 0, 128, 255);
             int num = 86400;
             int num2 = num / 24;
