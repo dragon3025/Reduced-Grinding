@@ -8,44 +8,6 @@ namespace ReducedGrinding.Items
 {
 	public class ReducedGrindingItem : GlobalItem
 	{
-
-		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-		{
-
-			if (GetInstance<AEnemyDropConfig>().LootAnkhCharmMaterialIncreasePerAnkhCharmInInventory > 0)
-			{
-				if (item.type >= ItemID.AdhesiveBandage && item.type <= ItemID.TrifoldMap) //All low-tier materials for Ankh Charm.
-				{
-					var AnkhMaterialInfo = new TooltipLine(Mod, "AnkhMaterialInfo", "Increases the drop rate of \"Ankh Charm\" material.");
-					tooltips.Add(AnkhMaterialInfo);
-				}
-				if (item.type == ItemID.ArmorBracing)
-				{
-					var ArmorBracingInfo = new TooltipLine(Mod, "ArmorBracingInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
-						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Vitamins\" and \"Armor Polish\".");
-					tooltips.Add(ArmorBracingInfo);
-				}
-				if (item.type == ItemID.MedicatedBandage)
-				{
-					var MedicatedBandageInfo = new TooltipLine(Mod, "MedicatedBandageInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
-						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Adhesive Bandage\" and \"Bezoar\".");
-					tooltips.Add(MedicatedBandageInfo);
-				}
-				if (item.type == ItemID.CountercurseMantra)
-				{
-					var CountercurseMantraInfo = new TooltipLine(Mod, "CountercurseMantraInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
-						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Nazar\" and \"Megaphone\".");
-					tooltips.Add(CountercurseMantraInfo);
-				}
-				if (item.type == ItemID.ThePlan)
-				{
-					var ThePlanInfo = new TooltipLine(Mod, "ThePlanInfo", "Increases the drop rate of \"Ankh Charm\" material twice.\n" +
-						"Cancels the\"Ankh Charm\" material drop rate increase given by \"Trifold Map\" and \"Fast Clock\".");
-					tooltips.Add(ThePlanInfo);
-				}
-			}
-		}
-
 		public override void SetDefaults(Item item)
 		{
 			int originalValue;

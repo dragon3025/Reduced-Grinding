@@ -37,45 +37,73 @@ namespace ReducedGrinding
 			"items, the rate of that extra chance will multiplied by this amount.")]
 		[Increment(.0001f)] [DefaultValue(0.5f)] public float NormalModeMultiplierForLootWithSeperateDiffRates;
 
-		[Header("Boss Loot")]
+		//public int[] SomeArray = new int[] { 25, 70, 12 };
+
+		[Header("Boss Loot (1:Normal, 2:Expert)")]
+
 		[Label("[i:1313] Book of Skulls")]
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootBookofSkullsIncrease;
+		[Range(0, 10000)]
+		public int[] LootBookofSkullsIncrease = new int[] {0, 0};
+
 		[Label("[i:1294] Picksaw")]
-		[Increment(.0001f)] [DefaultValue(0.375f)] public float LootPicksawIncrease;
+		[Range(0, 10000)]
+		public int[] LootPicksawIncrease = new int[] { 4, 3 };
+
 		[Label("[i:1182] Seedling")]
-		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootSeedlingIncrease;
+		[Range(0, 10000)]
+		public int[] LootSeedlingIncrease = new int[] { 8, 7 };
+
 		[Label("[i:1169] Bone Key")]
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootSkeletronBoneKey;
+		[Range(0, 10000)]
+		public int[] LootSkeletronBoneKey = new int[] { 0, 0 };
+
 		[Label("[i:1299] Binoculars")]
-		[Increment(.0001f)] [DefaultValue(0.467f)] public float LootBinocularsIncrease;
+		[Range(0, 10000)]
+		public int[] LootBinocularsIncrease = new int[] { 4, 3 };
+
 		[Label("[i:3060] Bone Rattle")]
-		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootBoneRattleIncrease;
+		[Range(0, 10000)]
+		public int[] LootBoneRattleIncrease = new int[] { 6, 5 };
+
 		[Label("[i:3373] Boss Mask")]
-		[Increment(.0001f)] [DefaultValue(0.1071f)] public float LootBossMaskIncrease;
+		[Range(0, 10000)] 
+		public int[] LootBossMaskIncrease = new int[] { 11, 10 };
+
 		[Label("[i:3595] Boss Trophy")]
-		[Increment(.0001f)] [DefaultValue(0f)] public float LootBossTrophyIncrease;
+		[Range(0, 10000)]
+		public int[] LootBossTrophyIncrease = new int[] { 0, 0 };
+
 		[Label("[i:994] Eater's Bone")]
-		[Increment(.0001f)] [DefaultValue(0.2f)] public float LootEatersBoneIncrease;
+		[Range(0, 10000)]
+		public int[] LootEatersBoneIncrease = new int[] { 6, 5 };
+
 		[Label("[i:2673] Truffle Worm")]
-		[Increment(.0001f)] [DefaultValue(0.5f)] public float LootFishronTruffleworm;
+		[Range(0, 10000)]
+		public int[] LootFishronTruffleworm = new int[] { 3, 2 };
+
 		[Label("[i:2609] Fishron Wings")]
-		[Increment(.0001f)] [DefaultValue(0.15f)] public float LootFishronWingsIncrease;
+		[Range(0, 10000)]
+		public int[] LootFishronWingsIncrease = new int[] { 8, 7 };
+
 		[Label("[i:2502] Honeyed Goggles")]
-		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootHoneyedGogglesIncrease;
+		[Range(0, 10000)]
+		public int[] LootHoneyedGogglesIncrease = new int[] { 8, 7 };
+
 		[Label("[i:3063] Moon Lord Weapons")]
-		[Increment(.0001f)] [DefaultValue((1f / 3) - (1f / 9))] public float LootMoonLordEachWeaponIncrease;
+		[Range(0, 10000)]
+		public int[] LootMoonLordEachWeaponIncrease = new int[] { 6, 5 };
+
 		[Label("[i:1170] Nectar")]
-		[Increment(.0001f)] [DefaultValue(0.14f)] public float LootNectarIncrease;
+		[Range(0, 10000)]
+		public int[] LootNectarIncrease = new int[] { 8, 7 };
+
 		[Label("[i:1305] The Axe")]
-		[Increment(.0001f)] [DefaultValue(0.20f)] public float LootTheAxeIncrease;
+		[Range(0, 10000)]
+		public int[] LootTheAxeIncrease = new int[] { 6, 5 };
 
 		[Header("Non-Boss Loot")]
-		[Label("[i:1533] Biome Key Increase For 1 Mech Boss Down")]
-		[Increment(.0001f)] [DefaultValue(0.0004f)] public float BiomeKeyIncreaseForOneMechBossDown;
-		[Label("[i:1534] Biome Key Increase For 2 Mech Bosses Down")]
-		[Increment(.0001f)] [DefaultValue(0.0012f)] public float BiomeKeyIncreaseForTwoMechBossDown;
-		[Label("[i:1537] Biome Key Increase For 3 Mech Bosses Down")]
-		[Increment(.0001f)] [DefaultValue(0.0028f)] public float BiomeKeyIncreaseForThreeMechBossDown;
+		[Label("[i:1533] Biome Key Increase")]
+		[Range(0, 10000)] [DefaultValue(2500)] public int LootBiomeKeyIncrease;
 		[Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
 		[Label("[i:831] Chest Drop From a Matching Biome")]
 		[Increment(.0001f)] [DefaultValue(0.01f)] public float AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
@@ -299,7 +327,7 @@ namespace ReducedGrinding
 		[Label("[i:856] Unicorn on a Stick")] [Increment(.0001f)] [DefaultValue(0.04f)] public float LootUnicornonaStickIncrease;
 		[Label("[i:1265] Uzi")] [Increment(.0001f)] [DefaultValue(0f)] public float LootUziIncrease;
 		[Label("[i:879] Viking Helmet")] [Increment(.0001f)] [DefaultValue(0f)] public float LootVikingHelmetIncrease;
-		[Label("[i:892] Vitamins")] [Increment(.0001f)] [DefaultValue(0f)] public float LootVitaminsIncrease;
+		[Label("[i:892] Vitamins (1:Normal, 2:Expert)")] [Range(0, 10000)] public int[] LootVitaminsIncrease = new int[] { 6, 5 };
 		[Label("[i:215] Whoopie Cushion")] [Increment(.0001f)] [DefaultValue(0f)] public float LootWhoopieCushionIncrease;
 		[Label("[i:1183] Wisp in a Bottle")] [Increment(.0001f)] [DefaultValue(0.0063f)] public float LootWispinaBottleIncrease;
 		[Label("[i:3023] Worm Hook")] [Increment(.0001f)] [DefaultValue(0f)] public float LootWormHookIncrease;
