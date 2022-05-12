@@ -24,10 +24,10 @@ namespace ReducedGrinding.Common.GlobalNPCs
         {
             if (npc.lifeMax > 1 && npc.damage > 0 && !npc.friendly && npc.type != NPCID.Slimer && npc.value > 0f)
             {
+                int expertDenominator;
+
                 void non_conditional_loot(int itemType, int[] denominators)
                 {
-                    int expertDenominator;
-
                     expertDenominator = Math.Min(denominators[0], denominators[1]);
                     if (expertDenominator > 0)
                         npcLoot.Add(ItemDropRule.NormalvsExpert(itemType, denominators[0], expertDenominator));
@@ -35,11 +35,25 @@ namespace ReducedGrinding.Common.GlobalNPCs
 
                 void normal_boss_loot(int itemType, int[] denominators)
                 {
-                    int expertDenominator;
-
                     expertDenominator = Math.Min(denominators[0], denominators[1]);
                     if (expertDenominator > 0)
                         npcLoot.Add(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominators[0]), ItemDropRule.DropNothing()));
+                }
+
+                void normal_boss_loot_eater_of_worlds(int itemType, int[] denominators)
+                {
+                    expertDenominator = Math.Min(denominators[0], denominators[1]);
+                    if (expertDenominator > 0)
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.LegacyHack_IsBossAndNotExpert(), itemType, denominators[0]));
+                }
+
+                void normal_boss_loot_twins(int itemType, int[] denominators)
+                {
+                    IItemDropRule ruleMissingTwin = new LeadingConditionRule(new Conditions.MissingTwin());
+                    ruleMissingTwin.OnSuccess(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominators[0]), ItemDropRule.DropNothing()));
+                    expertDenominator = Math.Min(denominators[0], denominators[1]);
+                    if (expertDenominator > 0)
+                        npcLoot.Add(ruleMissingTwin);
                 }
 
                 bool npc_is_any_types(params int[] types)
@@ -82,7 +96,84 @@ namespace ReducedGrinding.Common.GlobalNPCs
                     normal_boss_loot(ItemID.BoneRattle, GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease);
                     normal_boss_loot(ItemID.BrainMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
                 }
+                if (npc.type == NPCID.DD2Betsy)
+                {
+                    normal_boss_loot(ItemID.BossMaskBetsy, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.DukeFishron)
+                {
+                    normal_boss_loot(ItemID.FishronWings, GetInstance<AEnemyDropConfig>().LootFishronWingsIncrease);
+                    normal_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyDropConfig>().LootFishronTruffleworm);
+                    normal_boss_loot(ItemID.DukeFishronMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc_is_any_types(NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail))
+                {
+                    normal_boss_loot_eater_of_worlds(ItemID.EatersBone, GetInstance<AEnemyDropConfig>().LootEatersBoneIncrease);
+                    normal_boss_loot_eater_of_worlds(ItemID.EaterMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.EyeofCthulhu)
+                {
+                    normal_boss_loot(ItemID.Binoculars, GetInstance<AEnemyDropConfig>().LootBinocularsIncrease);
+                    normal_boss_loot(ItemID.EyeMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.Plantera)
+                {
+                    normal_boss_loot(ItemID.TheAxe, GetInstance<AEnemyDropConfig>().LootTheAxeIncrease);
+                    normal_boss_loot(ItemID.Seedling, GetInstance<AEnemyDropConfig>().LootSeedlingIncrease);
+                    normal_boss_loot(ItemID.PlanteraMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.QueenBee)
+                {
+                    normal_boss_loot(ItemID.HoneyedGoggles, GetInstance<AEnemyDropConfig>().LootHoneyedGogglesIncrease);
+                    normal_boss_loot(ItemID.Nectar, GetInstance<AEnemyDropConfig>().LootNectarIncrease);
+                    normal_boss_loot(ItemID.BeeMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.MoonLordCore)
+                {
+                    normal_boss_loot(ItemID.BossMaskMoonlord, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                    normal_boss_loot(ItemID.Meowmere, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.Terrarian, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.StarWrath, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.SDMG, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.FireworksLauncher, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.LastPrism, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.LunarFlareBook, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.RainbowCrystalStaff, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                    normal_boss_loot(ItemID.MoonlordTurretStaff, GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease);
+                }
+                if (npc.type == NPCID.SkeletronHead)
+                {
+                    normal_boss_loot(ItemID.BookofSkulls, GetInstance<AEnemyDropConfig>().LootBookofSkullsIncrease);
+                    normal_boss_loot(ItemID.BoneKey, GetInstance<AEnemyDropConfig>().LootSkeletronBoneKey);
+                    normal_boss_loot(ItemID.SkeletronMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.KingSlime)
+                {
+                    normal_boss_loot(ItemID.KingSlimeMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.WallofFlesh)
+                {
+                    normal_boss_loot(ItemID.FleshMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.TheDestroyer)
+                {
+                    normal_boss_loot(ItemID.DestroyerMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
+                {
+                    normal_boss_loot_twins(ItemID.TwinMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.SkeletronPrime)
+                {
+                    normal_boss_loot(ItemID.SkeletronPrimeMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                }
+                if (npc.type == NPCID.Golem)
+                {
+                    normal_boss_loot(ItemID.GolemMask, GetInstance<AEnemyDropConfig>().LootBossMaskIncrease);
+                    normal_boss_loot(ItemID.Picksaw, GetInstance<AEnemyDropConfig>().LootPicksawIncrease);
+                }
 
+                //Non-Boss Drops
                 if (npc.type == NPCID.ChaosElemental)
                     non_conditional_loot(ItemID.RodofDiscord, GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease);
                 if (npc.type == NPCID.TacticalSkeleton)

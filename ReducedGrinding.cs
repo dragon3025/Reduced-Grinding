@@ -144,210 +144,85 @@ namespace ReducedGrinding
             public override void OpenVanillaBag(string context, Player player, int arg)
             {
                 var source = player.GetSource_OpenItem(arg);
-        
-                bool test_config_drop(int config)
+
+                void grab_bag_drop(int config, int itemType)
                 {
-                    if (config == 0)
-                        return false;
-                    else
-                        return Main.rand.NextBool(config);
-                    //return Main.rand.Next(config) == 0;
+                    if (config > 0)
+                        if (Main.rand.NextBool(config))
+                            player.QuickSpawnItem(source, itemType);
                 }
 
                 //Boss Bags
                 if (arg == ItemID.BrainOfCthulhuBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BoneRattle, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BrainMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease[1], ItemID.BoneRattle);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.BrainMask);
                 }
                 else if (arg == ItemID.FishronBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootFishronWingsIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.FishronWings, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootFishronTruffleworm[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.TruffleWorm, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.DukeFishronMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronWingsIncrease[1], ItemID.FishronWings);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronTruffleworm[1], ItemID.TruffleWorm);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.DukeFishronMask);
                 }
                 else if (arg == ItemID.EaterOfWorldsBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootEatersBoneIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.EatersBone, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.EaterMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootEatersBoneIncrease[1], ItemID.EatersBone);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.EaterMask);
                 }
                 else if (arg == ItemID.EyeOfCthulhuBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBinocularsIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Binoculars, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.EyeMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBinocularsIncrease[1], ItemID.Binoculars);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.EyeMask);
                 }
                 else if (arg == ItemID.PlanteraBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootTheAxeIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.TheAxe, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootSeedlingIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Seedling, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.PlanteraMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootTheAxeIncrease[1], ItemID.TheAxe);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSeedlingIncrease[1], ItemID.Seedling);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.PlanteraMask);
                 }
                 else if (arg == ItemID.QueenBeeBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootHoneyedGogglesIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.HoneyedGoggles, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootNectarIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Nectar, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BeeMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootHoneyedGogglesIncrease[1], ItemID.HoneyedGoggles);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootNectarIncrease[1], ItemID.Nectar);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.BeeMask);
                 }
                 else if (arg == ItemID.MoonLordBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Meowmere, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Terrarian, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.StarWrath, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.SDMG, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.FireworksLauncher, 1); //Celebration
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.LastPrism, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.LunarFlareBook, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.RainbowCrystalStaff, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.MoonlordTurretStaff, 1); //Lunar Portal Staff
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.BossMaskMoonlord);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.Meowmere);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.Terrarian);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.StarWrath);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.SDMG);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.FireworksLauncher); //Celebration
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.LastPrism);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.LunarFlareBook);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.RainbowCrystalStaff);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease[1], ItemID.MoonlordTurretStaff); //Lunar Portal Staff
                 }
                 else if (arg == ItemID.SkeletronBossBag)
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBookofSkullsIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BookofSkulls, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootSkeletronBoneKey[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BoneKey, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.SkeletronMask, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBookofSkullsIncrease[1], ItemID.BookofSkulls);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSkeletronBoneKey[1], ItemID.BoneKey);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.SkeletronMask);
                 }
                 else if (arg == 3318) //King Slime
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.KingSlimeMask, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.KingSlimeMask);
                 else if (arg == 3324) //Wall of Flesh
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.FleshMask, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.FleshMask);
                 else if (arg == 3325) //The Destroyer
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.DestroyerMask, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.DestroyerMask);
                 else if (arg == 3326) //The Twins
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.TwinMask, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.TwinMask);
                 else if (arg == 3327) //Skeletron Prime
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.SkeletronPrimeMask, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.SkeletronPrimeMask);
                 else if (arg == 3329) //Golem
                 {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.GolemMask, 1);
-                    }
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootPicksawIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.Picksaw, 1);
-                    }
-                }
-                else if (arg == 3332) //Moon Lord
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BossMaskMoonlord, 1);
-                    }
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.GolemMask);
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootPicksawIncrease[1], ItemID.Picksaw);
                 }
                 else if (arg == 3860) //Betsy
-                {
-                    if (test_config_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1]))
-                    {
-                        player.QuickSpawnItem(source, ItemID.BossMaskBetsy, 1);
-                    }
-                }
-        
+                    grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease[1], ItemID.BossMaskBetsy);
+
                 //Crates
                 else if (arg == 3205) //Dungeon Crate
                 {
@@ -423,7 +298,7 @@ namespace ReducedGrinding
                     if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWoodenAgletIncrease)
                     {
                         player.QuickSpawnItem(source, ItemID.Aglet, 1);
-        
+
                     }
                 }
                 else if (arg == ItemID.WoodenCrate)
@@ -583,10 +458,10 @@ namespace ReducedGrinding
                     }
                 }
             }
-        
+
             public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
             {
-        
+
                 if (extractType == ItemID.DesertFossil || extractType == ItemID.SiltBlock || extractType == ItemID.SlushBlock)
                 {
                     float amberMosquitoMultiplier = 3f;
