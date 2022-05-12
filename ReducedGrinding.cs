@@ -139,7 +139,7 @@ namespace ReducedGrinding
             }
         }
 
-        public class BossBags : GlobalItem  //Rates show in comments are in addition to vanilla rates.
+        public class VanillaBagsAndExtractinator : GlobalItem  //Rates show in comments are in addition to vanilla rates.
         {
             public override void OpenVanillaBag(string context, Player player, int arg)
             {
