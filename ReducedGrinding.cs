@@ -145,14 +145,14 @@ namespace ReducedGrinding
             {
                 var source = player.GetSource_OpenItem(arg);
 
-                void grab_bag_drop(int config, int itemType)
+                void grab_bag_drop(int config, int itemType, int amount = 1)
                 {
                     if (config > 0)
                         if (Main.rand.NextBool(config))
-                            player.QuickSpawnItem(source, itemType);
+                            player.QuickSpawnItem(source, itemType, amount);
                 }
 
-                //Boss Bags
+                // Boss Bags
                 if (arg == ItemID.BrainOfCthulhuBossBag)
                 {
                     grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease[1], ItemID.BoneRattle);
@@ -225,237 +225,83 @@ namespace ReducedGrinding
 
                 //Crates
                 else if (arg == 3205) //Dungeon Crate
-                {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateDungeonBoneWelder)
-                    {
-                        player.QuickSpawnItem(source, ItemID.BoneWelder, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateDungeonHardmodeGoldenLockBoxIncrease && Main.hardMode)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LockBox, 1);
-                    }
-                }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateDungeonBoneWelder, ItemID.BoneWelder);
                 else if (arg == ItemID.JungleFishingCrate)
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleSeaweed)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Seaweed, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleFlowerBoots)
-                    {
-                        player.QuickSpawnItem(source, ItemID.FlowerBoots, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleLivingMahoganyWand)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LivingMahoganyWand, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleRichMahoganyLeafWand)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LivingMahoganyLeafWand, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleLivingLoom)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LivingLoom, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleLeafWand)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LeafWand, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleLivingWoodWand)
-                    {
-                        player.QuickSpawnItem(source, ItemID.LivingWoodWand, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleAnkeltOfTheWindIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.AnkletoftheWind, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleFeralClawsIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.FeralClaws, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateJungleStaffOfRegrowth)
-                    {
-                        player.QuickSpawnItem(source, ItemID.StaffofRegrowth, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleSeaweed, ItemID.Seaweed);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleFlowerBoots, ItemID.FlowerBoots);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleLivingMahoganyWand, ItemID.LivingMahoganyWand);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleRichMahoganyLeafWand, ItemID.LivingMahoganyLeafWand);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleLivingLoom, ItemID.LivingLoom);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleLeafWand, ItemID.LeafWand);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleLivingWoodWand, ItemID.LivingWoodWand);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleAnkeltOfTheWindIncrease, ItemID.AnkletoftheWind);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleFeralClawsIncrease, ItemID.FeralClaws);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleStaffOfRegrowth, ItemID.StaffofRegrowth);
                 }
                 else if (arg == 3206) //Sky Crate
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateSkySkyMill)
-                    {
-                        player.QuickSpawnItem(source, ItemID.SkyMill, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateSkySkyMill, ItemID.SkyMill);
                 }
                 else if (arg == ItemID.WoodenCrate)
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWoodenClimbingClawsIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.ClimbingClaws, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWoodenRadarIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Radar, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWoodenAgletIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Aglet, 1);
-
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenClimbingClawsIncrease, ItemID.ClimbingClaws);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenRadarIncrease, ItemID.Radar);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenAgletIncrease, ItemID.Aglet);
                 }
                 else if (arg == ItemID.WoodenCrate)
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsWooden)
-                    {
-                        player.QuickSpawnItem(source, ItemID.WaterWalkingBoots, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateFlippersWooden)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Flipper, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateEnchantedSundialWoodenIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Sundial, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsWooden, ItemID.WaterWalkingBoots);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersWooden, ItemID.Flipper);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialWoodenIncrease, ItemID.Sundial);
                 }
                 else if (arg == ItemID.IronCrate)
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsIron)
-                    {
-                        player.QuickSpawnItem(source, ItemID.WaterWalkingBoots, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateFlippersIron)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Flipper, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateEnchantedSundialIronIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Sundial, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsIron, ItemID.WaterWalkingBoots);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersIron, ItemID.Flipper);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialIronIncrease, ItemID.Sundial);
                 }
                 else if (arg == ItemID.GoldenCrate)
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsGolden)
-                    {
-                        player.QuickSpawnItem(source, ItemID.WaterWalkingBoots, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateFlippersGolden)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Flipper, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().CrateEnchantedSundialGoldenIncrease)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Sundial, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsGolden, ItemID.WaterWalkingBoots);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersGolden, ItemID.Flipper);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialGoldenIncrease, ItemID.Sundial);
                 }
                 else if (context == "present")
                 {
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentDogWhistle)
-                    {
-                        player.QuickSpawnItem(source, ItemID.DogWhistle, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentToolbox)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Toolbox, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentHandWarmer)
-                    {
-                        player.QuickSpawnItem(source, ItemID.HandWarmer, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentCandyCanePickaxe)
-                    {
-                        player.QuickSpawnItem(source, ItemID.CnadyCanePickaxe, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentCandyCaneHook)
-                    {
-                        player.QuickSpawnItem(source, ItemID.CandyCaneHook, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentFruitcakeChakram)
-                    {
-                        player.QuickSpawnItem(source, ItemID.FruitcakeChakram, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentRedRyderPlusMusketBall)
-                    {
-                        player.QuickSpawnItem(source, ItemID.RedRyder, 1);
-                        player.QuickSpawnItem(source, ItemID.Musket, Main.rand.Next(30, 60));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentCandyCaneSword)
-                    {
-                        player.QuickSpawnItem(source, ItemID.CandyCaneSword, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentMrsClausCostume)
-                    {
-                        player.QuickSpawnItem(source, ItemID.MrsClauseHat, 1);
-                        player.QuickSpawnItem(source, ItemID.MrsClauseHeels, 1);
-                        player.QuickSpawnItem(source, ItemID.MrsClauseShirt, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentParkaOutfit)
-                    {
-                        player.QuickSpawnItem(source, ItemID.ParkaCoat, 1);
-                        player.QuickSpawnItem(source, ItemID.ParkaHood, 1);
-                        player.QuickSpawnItem(source, ItemID.ParkaPants, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentTreeCostume)
-                    {
-                        player.QuickSpawnItem(source, ItemID.TreeMask, 1);
-                        player.QuickSpawnItem(source, ItemID.TreeShirt, 1);
-                        player.QuickSpawnItem(source, ItemID.TreeTrunks, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentSnowHat)
-                    {
-                        player.QuickSpawnItem(source, ItemID.SnowHat, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentUglySweater)
-                    {
-                        player.QuickSpawnItem(source, ItemID.UglySweater, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentReindeerAntlers)
-                    {
-                        player.QuickSpawnItem(source, ItemID.ReindeerAntlers, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentCoal)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Coal, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentChristmasPudding)
-                    {
-                        player.QuickSpawnItem(source, ItemID.ChristmasPudding, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentSugarCookie)
-                    {
-                        player.QuickSpawnItem(source, ItemID.SugarCookie, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentGingerbreadCookie)
-                    {
-                        player.QuickSpawnItem(source, ItemID.GingerbreadCookie, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentStarAnise)
-                    {
-                        player.QuickSpawnItem(source, ItemID.StarAnise, Main.rand.Next(20, 40));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentEggnog)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Eggnog, Main.rand.Next(1, 3));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentHolly)
-                    {
-                        player.QuickSpawnItem(source, ItemID.Holly, 1);
-                        player.QuickSpawnItem(source, 1908, 1);
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentPineTreeBlock)
-                    {
-                        player.QuickSpawnItem(source, ItemID.PineTreeBlock, Main.rand.Next(20, 49));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentCandyCaneBlock)
-                    {
-                        player.QuickSpawnItem(source, ItemID.CandyCaneBlock, Main.rand.Next(20, 49));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentGreenCandyCaneBlock)
-                    {
-                        player.QuickSpawnItem(source, ItemID.GreenCandyCaneBlock, Main.rand.Next(20, 49));
-                    }
-                    if (Main.rand.NextFloat() < GetInstance<BGrabBagConfig>().PresentHardmodeSnowGlobe)
-                    {
-                        player.QuickSpawnItem(source, ItemID.SnowGlobe, 1);
-                    }
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentDogWhistle, ItemID.DogWhistle);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentToolbox, ItemID.Toolbox);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentHandWarmer, ItemID.HandWarmer);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentCandyCanePickaxe, ItemID.CnadyCanePickaxe);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentCandyCaneHook, ItemID.CandyCaneHook);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentFruitcakeChakram, ItemID.FruitcakeChakram);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentRedRyderPlusMusketBall, ItemID.RedRyder);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentRedRyderPlusMusketBall, ItemID.Musket, Main.rand.Next(30, 60));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentCandyCaneSword, ItemID.CandyCaneSword);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentMrsClausCostume, ItemID.MrsClauseHat);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentMrsClausCostume, ItemID.MrsClauseHeels);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentMrsClausCostume, ItemID.MrsClauseShirt);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentParkaOutfit, ItemID.ParkaCoat);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentParkaOutfit, ItemID.ParkaHood);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentParkaOutfit, ItemID.ParkaPants);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentTreeCostume, ItemID.TreeMask);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentTreeCostume, ItemID.TreeShirt);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentTreeCostume, ItemID.TreeTrunks);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentSnowHat, ItemID.SnowHat);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentUglySweater, ItemID.UglySweater);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentReindeerAntlers, ItemID.ReindeerAntlers);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentCoal, ItemID.Coal);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentChristmasPudding, ItemID.ChristmasPudding);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentSugarCookie, ItemID.SugarCookie);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentGingerbreadCookie, ItemID.GingerbreadCookie);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentStarAnise, ItemID.StarAnise, Main.rand.Next(20, 40));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentEggnog, ItemID.Eggnog, Main.rand.Next(1, 3));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentHolly, ItemID.Holly);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentHolly, 1908);
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentPineTreeBlock, ItemID.PineTreeBlock, Main.rand.Next(20, 49));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentCandyCaneBlock, ItemID.CandyCaneBlock, Main.rand.Next(20, 49));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentGreenCandyCaneBlock, ItemID.GreenCandyCaneBlock, Main.rand.Next(20, 49));
+                    grab_bag_drop(GetInstance<BGrabBagConfig>().PresentHardmodeSnowGlobe, ItemID.SnowGlobe);
                 }
             }
 

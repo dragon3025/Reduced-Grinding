@@ -353,69 +353,268 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        /*
+        [Label("[i:1313] Book of Skulls")]
+        [Range(0, 10000)]
+        public int[] LootBookofSkullsIncrease = new int[] { 0, 0 };
+        */
+
         [Header("[i:3205] Dungeon Crate")]
-        [Label("[i:2192] Bone Welder")][Increment(.0001f)][DefaultValue(0.2f)] public float CrateDungeonBoneWelder;
-        [Label("[i:3085] Golden Lockbox")][Increment(.0001f)][DefaultValue(5.0f / 6)] public float CrateDungeonHardmodeGoldenLockBoxIncrease;
+
+        [Label("[i:2192] Bone Welder")]
+        [Range(0, 10000)]
+        [DefaultValue(5)]
+        public int CrateDungeonBoneWelder;
 
         [Header("[i:2336] Golden Crate")]
-        [Label("[i:3064] Enchanted Sundial")][Increment(.0001f)][DefaultValue((1f / 4) - (1f / 20))] public float CrateEnchantedSundialGoldenIncrease;
-        [Label("[i:187] Flipper")][Increment(.0001f)][DefaultValue(0f)] public float CrateFlippersGolden;
-        [Label("[i:863] Water Walking Boots")][Increment(.0001f)][DefaultValue(0f)] public float CrateWaterWalkingBootsGolden;
+
+        [Label("[i:3064] Enchanted Sundial")]
+        [Range(0, 10000)]
+        [DefaultValue(5)]
+        public int CrateEnchantedSundialGoldenIncrease;
+
+        [Label("[i:187] Flipper")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateFlippersGolden;
+
+        [Label("[i:863] Water Walking Boots")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWaterWalkingBootsGolden;
 
         [Header("[i:2335] Iron Crate")]
-        [Label("[i:3064] Enchanted Sundial")][Increment(.0001f)][DefaultValue((1f / 16) - (1f / 60))] public float CrateEnchantedSundialIronIncrease;
-        [Label("[i:187] Fipper")][Increment(.0001f)][DefaultValue(0f)] public float CrateFlippersIron;
-        [Label("[i:863] Water Walking Boots")][Increment(.0001f)][DefaultValue(0f)] public float CrateWaterWalkingBootsIron;
+
+        [Label("[i:3064] Enchanted Sundial")]
+        [Range(0, 10000)]
+        [DefaultValue(22)] public int CrateEnchantedSundialIronIncrease;
+
+        [Label("[i:187] Fipper")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateFlippersIron;
+
+        [Label("[i:863] Water Walking Boots")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWaterWalkingBootsIron;
 
         [Header("[i:2334] Wooden Crate")]
-        [Label("[i:3064] Enchanted Sundial")][Increment(.0001f)][DefaultValue((1f / 64) - (1f / 200))] public float CrateEnchantedSundialWoodenIncrease;
-        [Label("[i:187] Flipper")][Increment(.0001f)][DefaultValue(0f)] public float CrateFlippersWooden;
-        [Label("[i:863] Water Walking Boots")][Increment(.0001f)][DefaultValue(0f)] public float CrateWaterWalkingBootsWooden;
-        [Label("[i:285] Aglet")][Increment(.0001f)][DefaultValue(0f)] public float CrateWoodenAgletIncrease;
-        [Label("[i:953] Climbing Claws")][Increment(.0001f)][DefaultValue(0f)] public float CrateWoodenClimbingClawsIncrease;
-        [Label("[i:3084] Radar")][Increment(.0001f)][DefaultValue(0f)] public float CrateWoodenRadarIncrease;
+
+        [Label("[i:3064] Enchanted Sundial")]
+        [Range(0, 10000)]
+        [DefaultValue(94)]
+        public int CrateEnchantedSundialWoodenIncrease;
+
+        [Label("[i:187] Flipper")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateFlippersWooden;
+
+        [Label("[i:863] Water Walking Boots")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWaterWalkingBootsWooden;
+
+        [Label("[i:285] Aglet")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWoodenAgletIncrease;
+
+        [Label("[i:953] Climbing Claws")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWoodenClimbingClawsIncrease;
+
+        [Label("[i:3084] Radar")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateWoodenRadarIncrease;
 
         [Header("[i:3208] Jungle Crate")]
-        [Label("[i:212] Anklet of the Wind")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleAnkeltOfTheWindIncrease;
-        [Label("[i:211] Feral Claws")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleFeralClawsIncrease;
-        [Label("[i:3017] Flower Boots")][Increment(.0001f)][DefaultValue(0.25f)] public float CrateJungleFlowerBoots;
-        [Label("[i:933] Leaf Wand")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleLeafWand;
-        [Label("[i:2196] Living Loom")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleLivingLoom;
-        [Label("[i:3360] Mahogany Wand")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleLivingMahoganyWand;
-        [Label("[i:832] Living Wood Wand")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleLivingWoodWand;
-        [Label("[i:3361] Rich Mahogany Leaf Wand")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleRichMahoganyLeafWand;
-        [Label("[i:753] Seaweed")][Increment(.0001f)][DefaultValue(0.25f)] public float CrateJungleSeaweed;
-        [Label("[i:213] Staff of Regrowth")][Increment(.0001f)][DefaultValue(0f)] public float CrateJungleStaffOfRegrowth;
+
+        [Label("[i:212] Anklet of the Wind")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleAnkeltOfTheWindIncrease;
+
+        [Label("[i:211] Feral Claws")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleFeralClawsIncrease;
+
+        [Label("[i:3017] Flower Boots")]
+        [Range(0, 10000)]
+        [DefaultValue(4)]
+        public int CrateJungleFlowerBoots;
+
+        [Label("[i:933] Leaf Wand")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleLeafWand;
+
+        [Label("[i:2196] Living Loom")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleLivingLoom;
+
+        [Label("[i:3360] Mahogany Wand")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleLivingMahoganyWand;
+
+        [Label("[i:832] Living Wood Wand")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleLivingWoodWand;
+
+        [Label("[i:3361] Rich Mahogany Leaf Wand")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleRichMahoganyLeafWand;
+
+        [Label("[i:753] Seaweed")]
+        [Range(0, 10000)]
+        [DefaultValue(4)]
+        public int CrateJungleSeaweed;
+
+        [Label("[i:213] Staff of Regrowth")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateJungleStaffOfRegrowth;
 
         [Header("[i:3206] Sky Crate")]
-        [Label("[i:2197] Sky Mill")][Increment(.0001f)][DefaultValue(0.3333f)] public float CrateSkySkyMill;
+        [Label("[i:2197] Sky Mill")]
+        [Range(0, 10000)]
+        [DefaultValue(3)]
+        public int CrateSkySkyMill;
 
         [Header("[i:1869] Present")]
-        [Label("[i:586] Candy Cane Block")][Increment(.0001f)][DefaultValue(0f)] public float PresentCandyCaneBlock;
-        [Label("[i:1915] Candy Cane Hook")][Increment(.0001f)][DefaultValue(0f)] public float PresentCandyCaneHook;
-        [Label("[i:1917] Candy Cane Pickaxe")][Increment(.0001f)][DefaultValue(0f)] public float PresentCandyCanePickaxe;
-        [Label("[i:1909] Candy Cane Sword")][Increment(.0001f)][DefaultValue(0f)] public float PresentCandyCaneSword;
-        [Label("[i:1911] Christmas Pudding")][Increment(.0001f)][DefaultValue(0f)] public float PresentChristmasPudding;
-        [Label("[i:1922] Coal")][Increment(.0001f)][DefaultValue(0f)] public float PresentCoal;
-        [Label("[i:1927] Dog Whistle")][Increment(.0001f)][DefaultValue(0f)] public float PresentDogWhistle;
-        [Label("[i:1912] Eggnog")][Increment(.0001f)][DefaultValue(0f)] public float PresentEggnog;
-        [Label("[i:1918] Fruitcake Chakram")][Increment(.0001f)][DefaultValue(0f)] public float PresentFruitcakeChakram;
-        [Label("[i:1920] Ginderbread Cookie")][Increment(.0001f)][DefaultValue(0f)] public float PresentGingerbreadCookie;
-        [Label("[i:591] Green Candy Cane Block")][Increment(.0001f)][DefaultValue(0f)] public float PresentGreenCandyCaneBlock;
-        [Label("[i:1921] Hand Warmer")][Increment(.0001f)][DefaultValue(0f)] public float PresentHandWarmer;
-        [Label("[i:602] Snow Glow (Hardmode only)")][Increment(.0001f)][DefaultValue(0f)] public float PresentHardmodeSnowGlobe;
-        [Label("[i:1908] Holly")][Increment(.0001f)][DefaultValue(0f)] public float PresentHolly;
-        [Label("[i:1933] Mrs. Clause Costume")][Increment(.0001f)][DefaultValue(0f)] public float PresentMrsClausCostume;
-        [Label("[i:1936] Parka Outfit")][Increment(.0001f)][DefaultValue(0f)] public float PresentParkaOutfit;
-        [Label("[i:1872] Pine Tree Block")][Increment(.0001f)][DefaultValue(0f)] public float PresentPineTreeBlock;
-        [Label("[i:1870] Red Ryder (with Musket Balls)")][Increment(.0001f)][DefaultValue(0f)] public float PresentRedRyderPlusMusketBall;
-        [Label("[i:1907] Reindeer Antlers")][Increment(.0001f)][DefaultValue(0f)] public float PresentReindeerAntlers;
-        [Label("[i:1938] Snow Hat")][Increment(.0001f)][DefaultValue(0f)] public float PresentSnowHat;
-        [Label("[i:1913] Star Anise")][Increment(.0001f)][DefaultValue(0f)] public float PresentStarAnise;
-        [Label("[i:1919] Sugar Cookie")][Increment(.0001f)][DefaultValue(0f)] public float PresentSugarCookie;
-        [Label("[i:1923] Toolbox")][Increment(.0001f)][DefaultValue(0f)] public float PresentToolbox;
-        [Label("[i:1940] Tree Costume")][Increment(.0001f)][DefaultValue(0f)] public float PresentTreeCostume;
-        [Label("[i:1939] Ugly Sweater")][Increment(.0001f)][DefaultValue(0f)] public float PresentUglySweater;
+
+        [Label("[i:586] Candy Cane Block")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentCandyCaneBlock;
+
+        [Label("[i:1915] Candy Cane Hook")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentCandyCaneHook;
+
+        [Label("[i:1917] Candy Cane Pickaxe")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentCandyCanePickaxe;
+
+        [Label("[i:1909] Candy Cane Sword")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentCandyCaneSword;
+
+        [Label("[i:1911] Christmas Pudding")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentChristmasPudding;
+
+        [Label("[i:1922] Coal")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentCoal;
+
+        [Label("[i:1927] Dog Whistle")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentDogWhistle;
+
+        [Label("[i:1912] Eggnog")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentEggnog;
+
+        [Label("[i:1918] Fruitcake Chakram")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentFruitcakeChakram;
+
+        [Label("[i:1920] Ginderbread Cookie")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentGingerbreadCookie;
+
+        [Label("[i:591] Green Candy Cane Block")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentGreenCandyCaneBlock;
+
+        [Label("[i:1921] Hand Warmer")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentHandWarmer;
+
+        [Label("[i:602] Snow Glow (Hardmode only)")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentHardmodeSnowGlobe;
+
+        [Label("[i:1908] Holly")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentHolly;
+
+        [Label("[i:1933] Mrs. Clause Costume")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentMrsClausCostume;
+
+        [Label("[i:1936] Parka Outfit")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentParkaOutfit;
+
+        [Label("[i:1872] Pine Tree Block")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentPineTreeBlock;
+
+        [Label("[i:1870] Red Ryder (with Musket Balls)")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentRedRyderPlusMusketBall;
+
+        [Label("[i:1907] Reindeer Antlers")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentReindeerAntlers;
+
+        [Label("[i:1938] Snow Hat")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentSnowHat;
+
+        [Label("[i:1913] Star Anise")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentStarAnise;
+
+        [Label("[i:1919] Sugar Cookie")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentSugarCookie;
+
+        [Label("[i:1923] Toolbox")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentToolbox;
+
+        [Label("[i:1940] Tree Costume")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentTreeCostume;
+
+        [Label("[i:1939] Ugly Sweater")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int PresentUglySweater;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
