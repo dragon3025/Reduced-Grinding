@@ -24,35 +24,29 @@ namespace ReducedGrinding.Common.GlobalNPCs
         {
             if (npc.lifeMax > 1 && npc.damage > 0 && !npc.friendly && npc.type != NPCID.Slimer && npc.value > 0f)
             {
-                int expertDenominator;
-
-                void non_conditional_loot(int itemType, int[] denominators)
+                void non_conditional_loot(int itemType, int denominator)
                 {
-                    expertDenominator = Math.Min(denominators[0], denominators[1]);
-                    if (expertDenominator > 0)
-                        npcLoot.Add(ItemDropRule.NormalvsExpert(itemType, denominators[0], expertDenominator));
+                    if (denominator > 0)
+                        npcLoot.Add(ItemDropRule.Common(itemType, denominator));
                 }
 
-                void normal_boss_loot(int itemType, int[] denominators)
+                void normal_boss_loot(int itemType, int denominator)
                 {
-                    expertDenominator = Math.Min(denominators[0], denominators[1]);
-                    if (expertDenominator > 0)
-                        npcLoot.Add(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominators[0]), ItemDropRule.DropNothing()));
+                    if (denominator > 0)
+                        npcLoot.Add(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominator), ItemDropRule.DropNothing()));
                 }
 
-                void normal_boss_loot_eater_of_worlds(int itemType, int[] denominators)
+                void normal_boss_loot_eater_of_worlds(int itemType, int denominator)
                 {
-                    expertDenominator = Math.Min(denominators[0], denominators[1]);
-                    if (expertDenominator > 0)
-                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.LegacyHack_IsBossAndNotExpert(), itemType, denominators[0]));
+                    if (denominator > 0)
+                        npcLoot.Add(ItemDropRule.ByCondition(new Conditions.LegacyHack_IsBossAndNotExpert(), itemType, denominator));
                 }
 
-                void normal_boss_loot_twins(int itemType, int[] denominators)
+                void normal_boss_loot_twins(int itemType, int denominator)
                 {
                     IItemDropRule ruleMissingTwin = new LeadingConditionRule(new Conditions.MissingTwin());
-                    ruleMissingTwin.OnSuccess(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominators[0]), ItemDropRule.DropNothing()));
-                    expertDenominator = Math.Min(denominators[0], denominators[1]);
-                    if (expertDenominator > 0)
+                    ruleMissingTwin.OnSuccess(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominator), ItemDropRule.DropNothing()));
+                    if (denominator > 0)
                         npcLoot.Add(ruleMissingTwin);
                 }
 
@@ -179,18 +173,20 @@ namespace ReducedGrinding.Common.GlobalNPCs
                 if (npc.type == NPCID.TacticalSkeleton)
                     non_conditional_loot(ItemID.SWATHelmet, GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease);
 
-                /*if (npc_is_any_types(94, 182))
-                    add_non_conditional_loot(ItemID.Vitamins, GetInstance<AEnemyDropConfig>().LootVitaminsIncrease);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(3781, 100), 480);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(885, 100), 104, 102, 269, 270, 271, 272);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(886, 100), 77, 273, 274, 275, 276);
+                if (npc_is_any_types(94, 182))
+                    non_conditional_loot(ItemID.Vitamins, GetInstance<AEnemyDropConfig>().LootVitaminsIncrease);
+                if (npc_is_any_types(104, 102, 269, 270, 271, 272))
+                    non_conditional_loot(ItemID.AdhesiveBandage, GetInstance<AEnemyDropConfig>().LootAdhesiveBandageIncrease);
+                if (npc_is_any_types(77, 273, 274, 275, 276))
+                    non_conditional_loot(ItemID.ArmorPolish, GetInstance<AEnemyDropConfig>().LootArmorPolishIncrease);
+                /*
                 RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(887, 100), 141, 176, 42, 231, 232, 233, 234, 235);
                 RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(888, 100), 81, 79, 183, 630);
                 RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(889, 100), 78, 82, 75);
                 RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(890, 100), 103, 75, 79, 630);
                 RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(891, 100), 34, 83, 84, 179, 289);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(892, 100), 94, 182);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(893, 100), 93, 109, 80);*/
+                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(893, 100), 93, 109, 80);
+                */
 
             }
         }
