@@ -173,21 +173,34 @@ namespace ReducedGrinding.Common.GlobalNPCs
                 if (npc.type == NPCID.TacticalSkeleton)
                     non_conditional_loot(ItemID.SWATHelmet, GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease);
 
-                if (npc_is_any_types(94, 182))
-                    non_conditional_loot(ItemID.Vitamins, GetInstance<AEnemyDropConfig>().LootVitaminsIncrease);
+                //Ankh Charm
+
                 if (npc_is_any_types(104, 102, 269, 270, 271, 272))
                     non_conditional_loot(ItemID.AdhesiveBandage, GetInstance<AEnemyDropConfig>().LootAdhesiveBandageIncrease);
+
                 if (npc_is_any_types(77, 273, 274, 275, 276))
                     non_conditional_loot(ItemID.ArmorPolish, GetInstance<AEnemyDropConfig>().LootArmorPolishIncrease);
-                /*
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(887, 100), 141, 176, 42, 231, 232, 233, 234, 235);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(888, 100), 81, 79, 183, 630);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(889, 100), 78, 82, 75);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(890, 100), 103, 75, 79, 630);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(891, 100), 34, 83, 84, 179, 289);
-                RegisterToMultipleNPCs(ItemDropRule.StatusImmunityItem(893, 100), 93, 109, 80);
-                */
 
+                if (npc_is_any_types(141, 176, 42, 231, 232, 233, 234, 235))
+                    non_conditional_loot(ItemID.Bezoar, GetInstance<AEnemyDropConfig>().LootBezoarIncrease);
+
+                if (npc_is_any_types(81, 79, 183, 630))
+                    non_conditional_loot(ItemID.Blindfold, GetInstance<AEnemyDropConfig>().LootBlindfoldIncrease);
+
+                if (npc_is_any_types(78, 82, 75))
+                    non_conditional_loot(ItemID.FastClock, GetInstance<AEnemyDropConfig>().LootFastClockBaseIncrease);
+
+                if (npc_is_any_types(103, 75, 79, 630))
+                    non_conditional_loot(ItemID.Megaphone, GetInstance<AEnemyDropConfig>().LootMegaphoneBaseIncrease);
+
+                if (npc_is_any_types(34, 83, 84, 179, 289))
+                    non_conditional_loot(ItemID.Nazar, GetInstance<AEnemyDropConfig>().LootNazarIncrease);
+
+                if (npc_is_any_types(94, 182))
+                    non_conditional_loot(ItemID.Vitamins, GetInstance<AEnemyDropConfig>().LootVitaminsIncrease);
+
+                if (npc_is_any_types(93, 109, 80))
+                    non_conditional_loot(ItemID.TrifoldMap, GetInstance<AEnemyDropConfig>().LootTrifoldMapIncrease);
             }
         }
 

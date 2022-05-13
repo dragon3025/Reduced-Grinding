@@ -112,19 +112,19 @@ namespace ReducedGrinding
 
         [Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
         [Label("[i:831] Chest Drop From a Matching Biome")]
-        [Increment(.0001f)]
-        [DefaultValue(0.01f)]
-        public float AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
+        [Range(0, 10000)]
+        [DefaultValue(100)]
+        public int AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
 
         [Label("[i:1322] Magma Stone From Hellbat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float HellBatLootMagmaStoneIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int HellBatLootMagmaStoneIncrease;
 
         [Label("[i:1322] Magma Stone From Lavabat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LavaBatLootMagmaStoneIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LavaBatLootMagmaStoneIncrease;
 
         [Label("[i:885] Adhesive Bandage")]
         [Range(0, 10000)]
@@ -132,69 +132,69 @@ namespace ReducedGrinding
         public int LootAdhesiveBandageIncrease;
 
         [Label("[i:3821] Ale Tosser")]
-        [Increment(.0001f)]
-        [DefaultValue(0.833f)]
-        public float LootAleTosserIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootAleTosserIncrease;
 
         [Label("[i:3289] Amarok")]
-        [Increment(.0001f)]
-        [DefaultValue((1f / 100) - (1f / 300))]
-        public float LootAmarokIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        public int LootAmarokIncrease;
 
         [Label("[i:3794] Ancient Cloth")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientClothIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientClothIncrease;
 
         [Label("[i:961] Ancient Cobalt Breastplate")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientCobaltBreastplateIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientCobaltBreastplateIncrease;
 
         [Label("[i:960] Ancient Cobalt Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientCobaltHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientCobaltHelmetIncrease;
 
         [Label("[i:962] Ancient Cobalt Leggings")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientCobaltLeggingsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientCobaltLeggingsIncrease;
 
         [Label("[i:955] Ancient Gold Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0.015f)]
-        public float LootAncientGoldHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(66)]
+        public int LootAncientGoldHelmetIncrease;
 
         [Label("[i:3771] Ancient Horn")]
-        [Increment(.0001f)]
-        [DefaultValue(0.03f)]
-        public float LootAncientHornIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(33)]
+        public int LootAncientHornIncrease;
 
         [Label("[i:954] Ancient Iron Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientIronHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientIronHelmetIncrease;
 
         [Label("[i:959] Ancient Necro Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0028f)]
-        public float LootAncientNecroHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(357)]
+        public int LootAncientNecroHelmetIncrease;
 
         [Label("[i:958] Ancient Shadow Greeves")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientShadowGreavesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientShadowGreavesIncrease;
 
         [Label("[i:956] Ancient Shadow Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientShadowHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientShadowHelmetIncrease;
 
         [Label("[i:957] Ancient Shadow Scalemail")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootAncientShadowScalemailIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootAncientShadowScalemailIncrease;
 
         [Label("[i:886] Armor Polish")]
         [Range(0, 10000)]
@@ -202,545 +202,545 @@ namespace ReducedGrinding
         public int LootArmorPolishIncrease;
 
         [Label("[i:1959] Baby Grinch's Mischief Whistle")]
-        [Increment(.0001f)]
-        [DefaultValue(0.05f)]
-        public float LootBabyGrinchsMischiefWhistleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0.20)]
+        public int LootBabyGrinchsMischiefWhistleIncrease;
 
         [Label("[i:1324] Bananarang")]
-        [Increment(.0001f)]
-        [DefaultValue(0.3f)]
-        public float LootBananarangIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(3)]
+        public int LootBananarangIncrease;
 
         [Label("[i:723] Beam Sword")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBeamSwordIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBeamSwordIncrease;
 
         [Label("[i:887] Bezoar")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBezoarIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBezoarIncrease;
 
         [Label("[i:963] Black Belt")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBlackBeltIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBlackBeltIncrease;
 
         [Label("[i:236] Black Lens")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBlackLensIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBlackLensIncrease;
 
         [Label("[i:3260] Blessed Apple")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0066f)]
-        public float LootBlessedAppleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(151)]
+        public int LootBlessedAppleIncrease;
 
         [Label("[i:888] Blindfold")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBlindfoldIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBlindfoldIncrease;
 
         [Label("[i:1825] Bloody Machete")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0015f)]
-        public float LootBloodyMacheteAndBladedGlovesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(666)]
+        public int LootBloodyMacheteAndBladedGlovesIncrease;
 
         [Label("[i:1517] Bone Feather")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0078f)]
-        public float LootBoneFeatherIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(128)]
+        public int LootBoneFeatherIncrease;
 
         [Label("[i:1320] Bone Pickaxe")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0867f)]
-        public float LootBonePickaxeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(12)]
+        public int LootBonePickaxeIncrease;
 
         [Label("[i:1166] Bone Sword")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0051f)]
-        public float LootBoneSwordIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(196)]
+        public int LootBoneSwordIncrease;
 
         [Label("[i:932] Bone Ward")]
-        [Increment(.0001f)]
-        [DefaultValue(0.006f)]
-        public float LootBoneWandIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(167)]
+        public int LootBoneWandIncrease;
 
         [Label("[i:2771] Brain Scrambler")]
-        [Increment(.0001f)]
-        [DefaultValue(0.01f)]
-        public float LootBrainScramblerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(100)]
+        public int LootBrainScramblerIncrease;
 
         [Label("[i:1520] Broken Bat Wing")]
-        [Increment(.0001f)]
-        [DefaultValue(0.075f)]
-        public float LootBrokenBatWingIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(14)]
+        public int LootBrokenBatWingIncrease;
 
         [Label("[i:243] Bunny Hood")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootBunnyHoodIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootBunnyHoodIncrease;
 
         [Label("[i:3282] Cascade")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float LootCascadeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int LootCascadeIncrease;
 
         [Label("[i:3012] Chain Guillotines")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootChainGuillotinesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootChainGuillotinesIncrease;
 
         [Label("[i:1325] Chain Knife")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0027f)]
-        public float LootChainKnifeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(370)]
+        public int LootChainKnifeIncrease;
 
         [Label("[i:3351] Classy Cane")]
-        [Increment(.0001f)]
-        [DefaultValue(0.875f)]
-        public float LootClassyCane;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootClassyCane;
 
         [Label("[i:3014] Clinger Staff")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootClingerStaffIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootClingerStaffIncrease;
 
         [Label("[i:1307] Clothier Voodoo Doll")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0467f)]
-        public float LootClothierVoodooDollIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(21)]
+        public int LootClothierVoodooDollIncrease;
 
         [Label("[i:751] Cloud (From Harpies)")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float LootCloudFromHarpies;
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int LootCloudFromHarpies;
 
         [Label("[i:393] Compass")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootCompassIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootCompassIncrease;
 
         [Label("[i:554] Cross Necklace")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootCrossNecklaceIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootCrossNecklaceIncrease;
 
         [Label("[i:3051] Crystal Vile Shard")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootCrystalVileShardIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootCrystalVileShardIncrease;
 
         [Label("[i:3029] Daedalus Stormbow")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDaedalusStormbowIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDaedalusStormbowIncrease;
 
         [Label("[i:527] Dark Shard")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDarkShardIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDarkShardIncrease;
 
         [Label("[i:3007] Dart Pistol")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDartPistolIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDartPistolIncrease;
 
         [Label("[i:3008] Dart Rifle")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDartRifleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDartRifleIncrease;
 
         [Label("[i:1327] Death Sickle")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float LootDeathSickleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int LootDeathSickleIncrease;
 
         [Label("[i:272] Demon Sythe")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0214f)]
-        public float LootDemonScytheIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(47)]
+        public int LootDemonScytheIncrease;
 
         [Label("[i:18] Depth Meter")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDepthMeterIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDepthMeterIncrease;
 
         [Label("[i:3347] Desert Fossil (From Dune Splicer)")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float LootDesertFossilFromDuneSplicer;
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int LootDesertFossilFromDuneSplicer;
 
         [Label("[i:3795] Desert Spirit Lamp")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDesertSpiritLampIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDesertSpiritLampIncrease;
 
         [Label("[i:268] Diving Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0.03f)]
-        public float LootDivingHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(33)]
+        public int LootDivingHelmetIncrease;
 
         [Label("[i:437] Dual Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootDualHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootDualHookIncrease;
 
         [Label("[i:1943] Elf Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0.00833f)]
-        public float LootElfHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(120)]
+        public int LootElfHatIncrease;
 
         [Label("[i:1945] Elf Pants")]
-        [Increment(.0001f)]
-        [DefaultValue(0.00833f)]
-        public float LootElfPantsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(120)]
+        public int LootElfPantsIncrease;
 
         [Label("[i:1944] Elf Shirt")]
-        [Increment(.0001f)]
-        [DefaultValue(0.00833f)]
-        public float LootElfShirtIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(120)]
+        public int LootElfShirtIncrease;
 
         [Label("[i:804] Eskimo Coat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootEskimoCoatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootEskimoCoatIncrease;
 
         [Label("[i:803] Eskimo Hood")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootEskimoHoodIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootEskimoHoodIncrease;
 
         [Label("[i:805] Eskimo Pants")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootEskimoPantsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootEskimoPantsIncrease;
 
         [Label("[i:3349] Exotic Scimitar")]
-        [Increment(.0001f)]
-        [DefaultValue(0.875f)]
-        public float LootExoticScimitarIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootExoticScimitarIncrease;
 
         [Label("[i:1278] Eye Patch")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootEyePatchIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootEyePatchIncrease;
 
         [Label("[i:1311] Eye Spring")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootEyeSpringIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootEyeSpringIncrease;
 
         [Label("[i:889] Fast Clock")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootFastClockBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootFastClockBaseIncrease;
 
         [Label("[i:1871] Festive Wings")]
-        [Increment(.0001f)]
-        [DefaultValue(0.05f)]
-        public float LootFestiveWingsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(20)]
+        public int LootFestiveWingsIncrease;
 
         [Label("[i:3013] Fetid Baghnakhs")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootFetidBaghnakhsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootFetidBaghnakhsIncrease;
 
         [Label("[i:1518] Fire Feather")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0367f)]
-        public float LootFireFeatherIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(27)]
+        public int LootFireFeatherIncrease;
 
         [Label("[i:3016] Flesh Knuckles")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootFleshKnucklesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootFleshKnucklesIncrease;
 
         [Label("[i:3030] Flying Knife")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootFlyingKnifeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootFlyingKnifeIncrease;
 
         [Label("[i:726] Frost Staff")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootFrostStaffIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootFrostStaffIncrease;
 
         [Label("[i:1253] Frozen Turtle Shell")]
-        [Increment(.0001f)]
-        [DefaultValue(0.19f)]
-        public float LootFrozenTurtleShellIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(5)]
+        public int LootFrozenTurtleShellIncrease;
 
         [Label("[i:1906] Giant Bow")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootGiantBowIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootGiantBowIncrease;
 
         [Label("[i:1516] Giant Harpy Feather")]
-        [Increment(.0001f)]
-        [DefaultValue(0.005f)]
-        public float LootGiantHarpyFeatherIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(200)]
+        public int LootGiantHarpyFeatherIncrease;
 
         [Label("[i:1704] Gold Furniture")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootGoldenFurnitureIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootGoldenFurnitureIncrease;
 
         [Label("[i:327] Golden Key")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootGoldenKeyIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootGoldenKeyIncrease;
 
         [Label("[i:1774] Goodie Bag")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootGoodieBagIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootGoodieBagIncrease;
 
         [Label("[i:867] Green Cap (For non-Andrew Guide)")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float LootGreenCapForNonAndrewGuide;
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int LootGreenCapForNonAndrewGuide;
 
         [Label("[i:3548] Happy Grenade")]
-        [Increment(.0001f)]
-        [DefaultValue(0.75f)]
-        public float LootHappyGrenadeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootHappyGrenadeIncrease;
 
         [Label("[i:160] Harpoon")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0075f)]
-        public float LootHarpoonIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(133)]
+        public int LootHarpoonIncrease;
 
         [Label("[i:3290] Hel-Fire")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float LootHelFireIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int LootHelFireIncrease;
 
         [Label("[i:1124] Hive Block (From Hornet and Moss Hornets after Defeating Queen Bee)")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
 
         [Label("[i:118] Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootHookIncrease;
 
         [Label("[i:1306] Sickle")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0011f)]
-        public float LootIceSickleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(909)]
+        public int LootIceSickleIncrease;
 
         [Label("[i:3022] Illuminant Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootIlluminantHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootIlluminantHookIncrease;
 
         [Label("[i:1303] Jellyfish Necklace")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float LootJellyfishNecklaceIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int LootJellyfishNecklaceIncrease;
 
         [Label("[i:1314] KO Cannon")]
-        [Increment(.0001f)]
-        [DefaultValue(0.001f)]
-        public float LootKOCannonIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(1000)]
+        public int LootKOCannonIncrease;
 
         [Label("[i:671] Keybrand")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootKeybrandIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootKeybrandIncrease;
 
         [Label("[i:3291] Kraken")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0075f)]
-        public float LootKrakenIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(133)]
+        public int LootKrakenIncrease;
 
         [Label("[i:3784] Lamia Clothes")]
-        [Increment(.0001f)]
-        [DefaultValue(0.01f)]
-        public float LootLamiaClothesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(100)]
+        public int LootLamiaClothesIncrease;
 
         [Label("[i:3006] Life Drain")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootLifeDrainIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootLifeDrainIncrease;
 
         [Label("[i:528] Light Shard")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootLightShardIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootLightShardIncrease;
 
         [Label("[i:1293] Lihzahrd Power Cell")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootLihzahrdPowerCellIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootLihzahrdPowerCellIncrease;
 
         [Label("[i:2701] Living Fire Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootLivingFireBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootLivingFireBlockIncrease;
 
         [Label("[i:1172] Lizard Egg")]
-        [Increment(.0001f)]
-        [DefaultValue(0.009f)]
-        public float LootLizardEggIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(111)]
+        public int LootLizardEggIncrease;
 
         [Label("[i:517] Magic Dagger")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMagicDaggerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMagicDaggerIncrease;
 
         [Label("[i:1321] Magic Quiver")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0375f)]
-        public float LootMagicQuiverIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(27)]
+        public int LootMagicQuiverIncrease;
 
         [Label("[i:1266] Magnet Sphere")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0017f)]
-        public float LootMagnetSphereIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(588)]
+        public int LootMagnetSphereIncrease;
 
         [Label("[i:3772] Mandible Blade")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMandibleBladeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMandibleBladeIncrease;
 
         [Label("[i:682] Marrow")]
-        [Increment(.0001f)]
-        [DefaultValue(0.045f)]
-        public float LootMarrowIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(22)]
+        public int LootMarrowIncrease;
 
         [Label("[i:996] Meat Grinder")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMeatGrinderIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMeatGrinderIncrease;
 
         [Label("[i:890] Megaphone")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMegaphoneBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMegaphoneBaseIncrease;
 
         [Label("[i:116] Meteorite")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMeteoriteIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMeteoriteIncrease;
 
         [Label("[i:88] Mining Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0.2833f)]
-        public float LootMiningHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(4)]
+        public int LootMiningHelmetIncrease;
 
         [Label("[i:411] Mining Pants")]
-        [Increment(.0001f)]
-        [DefaultValue(0.3093f)]
-        public float LootMiningPantsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(3)]
+        public int LootMiningPantsIncrease;
 
         [Label("[i:410] Mining Shirt")]
-        [Increment(.0001f)]
-        [DefaultValue(0.3093f)]
-        public float LootMiningShirtIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(3)]
+        public int LootMiningShirtIncrease;
 
         [Label("[i:3213] Money Trough")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float LootMoneyTroughIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int LootMoneyTroughIncrease;
 
         [Label("[i:485] Moon Charm")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMoonCharmIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMoonCharmIncrease;
 
         [Label("[i:2801] Moon Mask")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMoonMaskIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMoonMaskIncrease;
 
         [Label("[i:900] Moon Stone")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMoonStoneIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMoonStoneIncrease;
 
         [Label("[i:2770] Mothron Wings")]
-        [Increment(.0001f)]
-        [DefaultValue(0.1381f)]
-        public float LootMothronWingsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(7)]
+        public int LootMothronWingsIncrease;
 
         [Label("[i:870] Mummy Costume")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootMummyCostumeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootMummyCostumeIncrease;
 
         [Label("[i:891] Nazar")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootNazarIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootNazarIncrease;
 
         [Label("[i:1244] Nimbus Rod")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootNimbusRodIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootNimbusRodIncrease;
 
         [Label("[i:1323] Obsidian Rose")]
-        [Increment(.0001f)]
-        [DefaultValue(0.03f)]
-        public float LootObsidianRoseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(33)]
+        public int LootObsidianRoseIncrease;
 
         [Label("[i:3350] Paintball Gun")]
-        [Increment(.0001f)]
-        [DefaultValue(0.9f)]
-        public float LootPaintballGunIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootPaintballGunIncrease;
 
         [Label("[i:938] Paladin’s Shield")]
-        [Increment(.0001f)]
-        [DefaultValue(0.35f)]
-        public float LootPaladinsShieldIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(3)]
+        public int LootPaladinsShieldIncrease;
 
         [Label("[i:3757] Pedguin’s Suit")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootPedguinssuitIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPedguinssuitIncrease;
         
 
         [Label("[i:535] Philosopher’s Stone")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootPhilosophersStoneIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPhilosophersStoneIncrease;
 
         [Label("[i:1315] Pirate Map")]
-        [Increment(.0001f)]
-        [DefaultValue(0.015f)]
-        public float LootPirateMapIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(67)]
+        public int LootPirateMapIncrease;
 
         [Label("[i:244] Plumber’s Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0.048f)]
-        public float LootPlumbersHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(21)]
+        public int LootPlumbersHatIncrease;
 
         [Label("[i:3781] Pocket Mirror")]
-        [Increment(.0001f)]
-        [DefaultValue(0.105f)]
-        public float LootPocketMirrorIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(10)]
+        public int LootPocketMirrorIncrease;
 
         [Label("[i:1869] Present")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootPresentIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPresentIncrease;
 
         [Label("[i:3106] Psycho Knife")]
-        [Increment(.0001f)]
-        [DefaultValue(0.1125f)]
-        public float LootPsychoKnifeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(9)]
+        public int LootPsychoKnifeIncrease;
 
         [Label("[i:3015] Putrid Scent")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootPutridScentIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPutridScentIncrease;
 
         [Label("[i:1135] Rain Armor")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootRainArmorIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootRainArmorIncrease;
 
         [Label("[i:662] Rainbow Brick Max Increase")]
         [Range(0, 1000)]
@@ -755,29 +755,29 @@ namespace ReducedGrinding
         public int LootRainbowBlockDropMinIncrease;
 
         [Label("[i:3285] Rally")]
-        [Increment(.0001f)]
-        [DefaultValue(0.061f)]
-        public float LootRallyIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(16)]
+        public int LootRallyIncrease;
 
         [Label("[i:1914] Reindeer Bells")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0917f)]
-        public float LootReindeerBellsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(11)]
+        public int LootReindeerBellsIncrease;
 
         [Label("[i:1300] Rifle Scope")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootRifleScopeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootRifleScopeIncrease;
 
         [Label("[i:263] Robot Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootRobotHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootRobotHatIncrease;
 
         [Label("[i:759] Rocket Launcher")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootRocketLauncherIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootRocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
@@ -790,24 +790,24 @@ namespace ReducedGrinding
         public int LootSWATHelmetIncrease;
 
         [Label("[i:1277] Sailor Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSailorHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSailorHatIncrease;
 
         [Label("[i:1280] Sailor Pants")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSailorPantsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSailorPantsIncrease;
 
         [Label("[i:1279] Sailor Shirt")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSailorShirtIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSailorShirtIncrease;
 
         [Label("[i:216] Shackle")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootShackleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootShackleIncrease;
 
         [Label("[i:169] Min Sand (From Dune Splicer)")]
         [Range(1, 1000)]
@@ -834,14 +834,14 @@ namespace ReducedGrinding
         public int LootMaxSandFromTombCrawler;
 
         [Label("[i:1274] Skull")]
-        [Increment(.0001f)]
-        [DefaultValue(0.048f)]
-        public float LootSkullIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(21)]
+        public int LootSkullIncrease;
 
         [Label("[i:1309] Slime Staff")]
-        [Increment(.0001f)]
-        [DefaultValue(0.075f)]
-        public float LootSlimeStaffIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(13)]
+        public int LootSlimeStaffIncrease;
 
         [Label("[i:1309] Slime Staff configuration affects Surface Slimes")]
         [DefaultValue(false)]
@@ -863,104 +863,104 @@ namespace ReducedGrinding
         public bool SlimeStaffIncreaseToSpikedJungleSlimes;
 
         [Label("[i:1254] Sniper Rifle")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSniperRifleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSniperRifleIncrease;
 
         [Label("[i:951] Snowball Launcher")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0133f)]
-        public float LootSnowballLauncherIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(75)]
+        public int LootSnowballLauncherIncrease;
 
         [Label("[i:520] Soul of Light")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSoulofLightIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSoulofLightIncrease;
 
         [Label("[i:521] Soul of Night")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSoulofNightIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSoulofNightIncrease;
 
         [Label("[i:532] Star Cloak")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootStarCloakIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootStarCloakIncrease;
 
         [Label("[i:3352] Stylish Scissors")]
-        [Increment(.0001f)]
-        [DefaultValue(0.875f)]
-        public float LootStylishScissorsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(2)]
+        public int LootStylishScissorsIncrease;
 
         [Label("[i:2802] Sun Mask")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootSunMaskIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSunMaskIncrease;
 
         [Label("[i:977] Tabi")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTabiIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTabiIncrease;
 
         [Label("[i:679] Tactical Shotgun")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTacticalShotgunIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTacticalShotgunIncrease;
 
         [Label("[i:3095] Tally Counter")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTallyCounterIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTallyCounterIncrease;
 
         [Label("[i:1521] Tattered Bee Wing")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTatteredBeeWingIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTatteredBeeWingIncrease;
 
         [Label("[i:3020] Tendon Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTendonHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTendonHookIncrease;
 
         [Label("[i:536] Titan Glove")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTitanGloveIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTitanGloveIncrease;
 
         [Label("[i:1312] Toy Sled")]
-        [Increment(.0001f)]
-        [DefaultValue(0.15f)]
-        public float LootToySledIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(7)]
+        public int LootToySledIncrease;
 
         [Label("[i:893] Trifold Map")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootTrifoldMapIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTrifoldMapIncrease;
 
         [Label("[i:1328] Turtle Shell")]
-        [Increment(.0001f)]
-        [DefaultValue(0.1412f)]
-        public float LootTurtleShellIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(7)]
+        public int LootTurtleShellIncrease;
 
         [Label("[i:1243] Umbrella Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootUmbrellaHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootUmbrellaHatIncrease;
 
         [Label("[i:856] Unicorn on a Stick")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float LootUnicornonaStickIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int LootUnicornonaStickIncrease;
 
         [Label("[i:1265] Uzi")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootUziIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootUziIncrease;
 
         [Label("[i:879] Viking Helmet")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootVikingHelmetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootVikingHelmetIncrease;
 
         [Label("[i:892] Vitamins")]
         [Range(0, 10000)]
@@ -968,65 +968,65 @@ namespace ReducedGrinding
         public int LootVitaminsIncrease;
 
         [Label("[i:215] Whoopie Cushion")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootWhoopieCushionIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootWhoopieCushionIncrease;
 
         [Label("[i:1183] Wisp in a Bottle")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0063f)]
-        public float LootWispinaBottleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(159)]
+        public int LootWispinaBottleIncrease;
 
         [Label("[i:3023] Worm Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootWormHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootWormHookIncrease;
 
         [Label("[i:3286] Yelets")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float LootYeletsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootYeletsIncrease;
 
         [Label("[i:1304] Zombie Arm")]
-        [Increment(.0001f)]
-        [DefaultValue(0.016f)]
-        public float LootZombieArmIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(63)]
+        public int LootZombieArmIncrease;
 
         [Label("[i:905] Coin Gun")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0027f)]
-        public float PirateLootCoinGunBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(370)]
+        public int PirateLootCoinGunBaseIncrease;
 
         [Label("[i:672] Cutlass")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0117f)]
-        public float PirateLootCutlassBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(85)]
+        public int PirateLootCutlassBaseIncrease;
 
         [Label("[i:854] Discount Card")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0045f)]
-        public float PirateLootDiscountCardBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(222)]
+        public int PirateLootDiscountCardBaseIncrease;
 
         [Label("[i:3033] Gold Ring")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0043f)]
-        public float PirateLootGoldRingBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(233)]
+        public int PirateLootGoldRingBaseIncrease;
 
         [Label("[i:855] Lucky Coin")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0039f)]
-        public float PirateLootLuckyCoinBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(257)]
+        public int PirateLootLuckyCoinBaseIncrease;
 
         [Label("[i:2584] Pirate Staff")]
         [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0045f)]
-        public float PirateLootPirateStaffBaseIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(222)]
+        public int PirateLootPirateStaffBaseIncrease;
 
         [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove drop from non-weak enemies.")]
         [Tooltip("Makes it so their drop chance isn't limited to enemies with low defense, damage, and coin drop.")]
@@ -1316,109 +1316,109 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Label("[i:2374] Earring")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestAnglerEarringIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestAnglerEarringIncrease;
 
         [Label("[i:2367] Angler Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0.05f)]
-        public float QuestAnglerHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(20)]
+        public int QuestAnglerHatIncrease;
 
         [Label("[i:2369] Angler Pants")]
-        [Increment(.0001f)]
-        [DefaultValue(0.05f)]
-        public float QuestAnglerPantsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(20)]
+        public int QuestAnglerPantsIncrease;
 
         [Label("[i:2368] Angler Vest")]
-        [Increment(.0001f)]
-        [DefaultValue(0.05f)]
-        public float QuestAnglerVestIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(20)]
+        public int QuestAnglerVestIncrease;
 
         [Label("[i:2435] Coralstone Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float QuestCoralstoneBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int QuestCoralstoneBlockIncrease;
 
         [Label("[i:2490] Furniture")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float QuestDecorativeFurnitureIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int QuestDecorativeFurnitureIncrease;
 
         [Label("[i:2498] Fish Costume")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float QuestFishCostumeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int QuestFishCostumeIncrease;
 
         [Label("[i:2360] Fish Hook")]
-        [Increment(.0001f)]
-        [DefaultValue(0.033f)]
-        public float QuestFishHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(30)]
+        public int QuestFishHookIncrease;
 
         [Label("[i:3120] Fisherman's Pocket Guide")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestFishermansGuideIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestFishermansGuideIncrease;
 
         [Label("[i:3183] Golden Bug Net")]
-        [Increment(.0001f)]
-        [DefaultValue(0.012f)]
-        public float QuestGoldenBugNetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(83)]
+        public int QuestGoldenBugNetIncrease;
 
         [Label("[i:2294] Golden Fishing Rod")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float QuestGoldenFishingRodIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int QuestGoldenFishingRodIncrease;
 
         [Label("[i:3031] Bottomless Bucket (Hardcore only)")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float QuestHardcoreBottomlessBucketIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int QuestHardcoreBottomlessBucketIncrease;
 
         [Label("[i:2494] Fin Wings (Hardcore only)")]
-        [Increment(.0001f)]
-        [DefaultValue(0.04f)]
-        public float QuestHardcoreFinWingsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(25)]
+        public int QuestHardcoreFinWingsIncrease;
 
         [Label("[i:2422] Hotline Fishing Hook (Hardcore only)")]
-        [Increment(.0001f)]
-        [DefaultValue(0.086f)]
-        public float QuestHardcoreHotlineFishingHookIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(12)]
+        public int QuestHardcoreHotlineFishingHookIncrease;
 
         [Label("[i:3032] Super Absorbant Sponge (Hardcore only)")]
-        [Increment(.0001f)]
-        [DefaultValue(0.086f)]
-        public float QuestHardcoreSuperAbsorbantSpongeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(12)]
+        public int QuestHardcoreSuperAbsorbantSpongeIncrease;
 
         [Label("[i:2373] High Test Fishing Line")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestHighTestFishingLineIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestHighTestFishingLineIncrease;
 
         [Label("[i:2419] Mermaid Costume")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float QuestMermaidCostumeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int QuestMermaidCostumeIncrease;
 
         [Label("[i:3096] Sextant")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestSextantIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestSextantIncrease;
 
         [Label("[i:2375] Tackle Box")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestTackleBoxIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestTackleBoxIncrease;
 
         [Label("[i:2448] Trophy")]
-        [Increment(.0001f)]
-        [DefaultValue(0.09f)]
-        public float QuestTrophyIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(11)]
+        public int QuestTrophyIncrease;
 
         [Label("[i:3037] Weather Radio")]
-        [Increment(.0001f)]
-        [DefaultValue(0.025f)]
-        public float QuestWeatherRadioIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(40)]
+        public int QuestWeatherRadioIncrease;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1432,116 +1432,122 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        //[Header("This mod will go through all the vanilla extractinator loot from rarest to least rarest then highest to lowest value and will roll for a chance to override the extractinator result with that item using the chances listed below. If it sucessfully overrides the drop, it will stop going through the rest of the loot and give that item.")]
-        [Header("This mod will try to override the [i:997] Extractinator result with the chances below. It will go through each item below from vanilla rarest to least rarest (for ties: highest to lowest value). If it sucessfully overrides, it will stop going through the chances and give the overriding item.\n\n\nThis only drops if the block used is [i:3347]Desert Fossil.")]
-        [Label("[i:3380] Sturdy Fossil")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesFossilOre;
+        [Header("This mod will try to change the [i:997] Extractinator result with the chances below. It will go through each item below from vanilla's rarest to least    rarest drops (for ties: highest to lowest value). If it sucessfully changes, it will stop going through the chances and give the changed item. If it fails all chances, then the item wont change. Chances below are (1 / config_setting), 0 disables it.")]
+
+        [Tooltip("If this chance fails, then this mod wont try to change the item using all of the chances below.")]
+        [Label("Chance to roll for item change")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorChangesItem;
+
+        [Label("[i:3380] Sturdy Fossil (only for Desert Fossil)")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesFossilOre;
 
         [Header("This chance is divided by 3 if the block used is [i:424]Silt or [i:1103]Slush.")]
         [Label("[i:1242] Amber Mosquito")]
-        [Increment(.0001f)]
-        [DefaultValue((1f / 100) - 0.00027f)]
-        public float ExtractinatorGivesAmberMosquito;
+        [Range(0, 10000)]
+        [DefaultValue(103)]
+        public int ExtractinatorGivesAmberMosquito;
 
         [Header("This chance is divided by 2 if the block used is [i:424]Silt or [i:1103]Slush.")]
         [Label("[i:999] Amber")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesAmber;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesAmber;
 
         [Header("These chances are divided by 2 if the block used is [i:3347]Desert Fossil.")]
         [Label("[i:181] Amethyst")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesAmethyst;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesAmethyst;
 
         [Label("[i:180] Topaz")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesTopaz;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesTopaz;
 
         [Label("[i:177] Sapphire")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesSapphire;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesSapphire;
 
         [Label("[i:179] Emerald")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesEmerald;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesEmerald;
 
         [Label("[i:178] Ruby")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesRuby;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesRuby;
 
         [Label("[i:182] Diamond")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesDiamond;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesDiamond;
 
         [Header("The block used doesn't affect these chances.")]
         [Label("[i:71] Copper Coin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesCopperCoin;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesCopperCoin;
 
         [Label("[i:72] Silver Coin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesSilverCoin;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesSilverCoin;
 
         [Label("[i:73] Gold Coin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesGoldCoin;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesGoldCoin;
 
         [Label("[i:74] Platinum Coin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesPlatinumCoin;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesPlatinumCoin;
 
         [Label("[i:12] Copper Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesCopperOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesCopperOre;
 
         [Label("[i:699] Tin Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesTinOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesTinOre;
 
         [Label("[i:11] Iron Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesIronOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesIronOre;
 
         [Label("[i:700] Lead Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesLeadOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesLeadOre;
 
         [Label("[i:14] Silver Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesSilverOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesSilverOre;
 
         [Label("[i:701] Tungsten Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesTungstenOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesTungstenOre;
 
         [Label("[i:13] Gold Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesGoldOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesGoldOre;
 
         [Label("[i:702] Platinum Ore")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float ExtractinatorGivesPlatinumOre;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int ExtractinatorGivesPlatinumOre;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1584,346 +1590,346 @@ namespace ReducedGrinding
         [Tooltip("This is an additional chance of the Traveling Merchant spawning each morning. This chance is" +
             "\ngreatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have.")]
         [Label("Base Extra Spawn Spawn Chance")]
-        [Increment(.0001f)]
+        [Range(0, 10000)]
         [DefaultValue(1.0f)]
         public float BaseMorningTMerchantSpawnChance;
 
         [Header("Traveling Merchant Shop Item Chance Increases")]
         [Label("[i:3055] Acorns")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantAcornsIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantAcornsIncrease;
 
         [Label("[i:2177] Ammo Box")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantAmmoBoxIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantAmmoBoxIncrease;
 
         [Label("[i:1987] Angel Halo")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantAngelHaloIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantAngelHaloIncrease;
 
         [Label("[i:2271] Arcane Rune Wall")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantArcaneRuneWallIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantArcaneRuneWallIncrease;
 
         [Label("[i:3309] Black Counter Weight")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantBlackCounterweightIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantBlackCounterweightIncrease;
 
         [Label("[i:2262] Blue Dynasty Shingles")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantBlueDynastyShinglesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantBlueDynastyShinglesIncrease;
 
         [Label("[i:3634] Blue Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantBlueTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantBlueTeamBlockIncrease;
 
         [Label("[i:3639] Blue Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantBlueTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantBlueTeamPlatformIncrease;
 
         [Label("[i:2214] Brick Layer")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantBrickLayerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantBrickLayerIncrease;
 
         [Label("[i:2865] Castle Marsberg")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCastleMarsbergIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCastleMarsbergIncrease;
 
         [Label("[i:2219] Celestial Magnet")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCelestialMagnetIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCelestialMagnetIncrease;
 
         [Label("[i:2258] Chalice")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantChaliceIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantChaliceIncrease;
 
         [Label("[i:3262] Code 1")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCode1Increase;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCode1Increase;
 
         [Label("[i:3284] Code 2")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCode2Increase;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCode2Increase;
 
         [Label("[i:3056] Cold Snap")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantColdSnapIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantColdSnapIncrease;
 
         [Label("[i:3628] Companion Cube")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCompanionCubeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCompanionCubeIncrease;
 
         [Label("[i:2284] Crimson Cloak")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCrimsonCapeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCrimsonCapeIncrease;
 
         [Label("[i:3057] Cursed Saint")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantCursedSaintIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantCursedSaintIncrease;
 
         [Label("[i:3119] DPS Meter")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantDPSMeterIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantDPSMeterIncrease;
 
         [Label("[i:2276] Diamond Ring")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantDiamondRingIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantDiamondRingIncrease;
 
         [Label("[i:2260] Dynasty Wood")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantDynastyWoodIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantDynastyWoodIncrease;
 
         [Label("[i:2215] Extendo Grip")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantExtendoGripIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantExtendoGripIncrease;
 
         [Label("[i:2242] Fancy Dishes")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantFancyDishesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantFancyDishesIncrease;
 
         [Label("[i:1988] Fez")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantFezIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantFezIncrease;
 
         [Label("[i:2270] Gatligator")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantGatligatorIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantGatligatorIncrease;
 
         [Label("[i:2277] Gi")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantGiIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantGiIncrease;
 
         [Label("[i:3633] Green Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantGreenTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantGreenTeamBlockIncrease;
 
         [Label("[i:3638] Green Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantGreenTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantGreenTeamPlatformIncrease;
 
         [Label("[i:2279] Gypsy Robe")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantGypsyRobeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantGypsyRobeIncrease;
 
         [Label("[i:2273] Katana")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantKatanaIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantKatanaIncrease;
 
         [Label("[i:2278] Kimono")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantKimonoIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantKimonoIncrease;
 
         [Label("[i:2282] Leopard Skin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantLeopardSkinIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantLeopardSkinIncrease;
 
         [Label("[i:3118] Lifeform Analyzer")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantLifeformAnalyzerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantLifeformAnalyzerIncrease;
 
         [Label("[i:2275] Magic Hat")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantMagicHatIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantMagicHatIncrease;
 
         [Label("[i:2866] Martia Lisa")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantMartiaLisaIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantMartiaLisaIncrease;
 
         [Tooltip("Normaly, not sold by the Traveling Merchant")]
         [Label("[i:3102] Metal Detector")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantMetalDetector;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantMetalDetector;
 
         [Label("[i:2285] Mysterious Cape")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantMysteriousCapeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantMysteriousCapeIncrease;
 
         [Label("[i:3596] Not a Kid Nor a Squid")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantNotAKidNorASquidIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantNotAKidNorASquidIncrease;
 
         [Label("[i:2267] Pad Thai")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPadThaiIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPadThaiIncrease;
 
         [Label("[i:2216] Paint Sprayer")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPaintSprayerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPaintSprayerIncrease;
 
         [Label("[i:2268] Pho")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPhoIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPhoIncrease;
 
         [Label("[i:3636] Pink Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPinkTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPinkTeamBlockIncrease;
 
         [Label("[i:3641] Pink Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPinkTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPinkTeamPlatformIncrease;
 
         [Label("[i:2217] Portable Cement Mixer")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPortableCementMixerIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPortableCementMixerIncrease;
 
         [Label("[i:3624] Presserator")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPresseratorIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPresseratorIncrease;
 
         [Label("[i:2223] Pulse Bow")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantPulseBowIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantPulseBowIncrease;
 
         [Label("[i:2286] Red Cape")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantRedCapeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantRedCapeIncrease;
 
         [Label("[i:2261] Red Dynasty Shingles")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantRedDynastyShinglesIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantRedDynastyShinglesIncrease;
 
         [Label("[i:3621] Red Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantRedTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantRedTeamBlockIncrease;
 
         [Label("[i:3622] Red Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantRedTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantRedTeamPlatformIncrease;
 
         [Label("[i:2269] Revelover")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantRevolverIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantRevolverIncrease;
 
         [Label("[i:2266] Sake")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantSakeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantSakeIncrease;
 
         [Label("[i:2296] Sitting Duck’s Fishing Pole")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantSittingDucksFishingPoleIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantSittingDucksFishingPoleIncrease;
 
         [Label("[i:3058] Snowfellas")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantSnowfellasIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantSnowfellasIncrease;
 
         [Label("[i:3099] Stopwatch")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantStopwatchIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantStopwatchIncrease;
 
         [Label("[i:3059] The Season")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantTheSeasonIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantTheSeasonIncrease;
 
         [Label("[i:2867] The Truth is Up There")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantTheTruthIsUpThereIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantTheTruthIsUpThereIncrease;
 
         [Label("[i:2281] Tiger Skin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantTigerSkinIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantTigerSkinIncrease;
 
         [Label("[i:2274] Ultrabright Torch")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantUltraBrightTorchIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantUltraBrightTorchIncrease;
 
         [Label("[i:2272] Water Gun")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantWaterGunIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantWaterGunIncrease;
 
         [Label("[i:3637] White Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantWhiteTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantWhiteTeamBlockIncrease;
 
         [Label("[i:3642] White Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantWhiteTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantWhiteTeamPlatformIncrease;
 
         [Label("[i:2287] Winter Cape")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantWinterCapeIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantWinterCapeIncrease;
 
         [Label("[i:3314] Yellow Counterweight")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantYellowCounterweightIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantYellowCounterweightIncrease;
 
         [Label("[i:3635] Yellow Team Block")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantYellowTeamBlockIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantYellowTeamBlockIncrease;
 
         [Label("[i:3640] Yellow Team Platform")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantYellowTeamPlatformIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantYellowTeamPlatformIncrease;
 
         [Label("[i:2283] Zebra Skin")]
-        [Increment(.0001f)]
-        [DefaultValue(0f)]
-        public float TravelingMerchantZebraSkinIncrease;
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TravelingMerchantZebraSkinIncrease;
 
         [Label("Increased Christmas Item chances requires Christmas")]
         [DefaultValue(true)]
@@ -2036,25 +2042,15 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool LockBoxesGiveNonFurniture;
 
-        [Label("Hardmode Modded Lock Box Drop Rate Modifier")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float HardmodeModdedLockBoxDropRateModifier;
-
-        [Label("Normalmode Modded Lock Box Drop Rate Modifier")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float NormalmodeModdedLockBoxDropRateModifier;
-
         [Label("$Mods.ReducedGrinding.Common.CavernLockboxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float CavernModdedCavernLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int CavernModdedCavernLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.DungeonBiomeLockboxLabel")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float DungeonModdedBiomeLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int DungeonModdedBiomeLockBoxLoot;
 
 
         [Tooltip("Required stack size of a single biome key type needed to open Biome Lockboxes. The type is randomly choosen from\n" +
@@ -2067,56 +2063,56 @@ namespace ReducedGrinding
 
         [Tooltip("Comes in 3 forms (no matter what dungeon your world has): Blue Dungeon, Green Dungeon, and Pink Dungeon.")]
         [Label("$Mods.ReducedGrinding.Common.DungeonFurnitureLockboxLabel")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float DungeonFurnitureLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int DungeonFurnitureLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.ShadowLockboxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float HellBiomeModdedShadowLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int HellBiomeModdedShadowLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.LihzahrdLockboxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float JungleTempleLihzahrd_Lock_Box;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int JungleTempleLihzahrd_Lock_Box;
 
         [Tooltip("Drops in Underground Desert and Sandstorms")]
         [Label("$Mods.ReducedGrinding.Common.PyramidLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float SandstormAndUndergroundDesertPyramidLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int SandstormAndUndergroundDesertPyramidLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.SkywareLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float SkyModdedSkywareLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int SkyModdedSkywareLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.WebCoveredLockboxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float SpiderNestWebCoveredLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int SpiderNestWebCoveredLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.LivingWoodLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float SurfaceModdedLivingWoodLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int SurfaceModdedLivingWoodLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.IvyLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float UndergroundJungleBiomeModdedIvyLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int UndergroundJungleBiomeModdedIvyLockBoxLoot;
 
         [Label("$Mods.ReducedGrinding.Common.IceLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float UndergroundSnowBiomeModdedIceLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int UndergroundSnowBiomeModdedIceLockBoxLoot;
 
         [Tooltip("Drops from water enemies.")]
         [Label("$Mods.ReducedGrinding.Common.WaterLockBoxLable")]
-        [Increment(.0001f)]
-        [DefaultValue(0.0025f)]
-        public float WaterEnemyModdedWaterLockBoxLoot;
+        [Range(0, 10000)]
+        [DefaultValue(400)]
+        public int WaterEnemyModdedWaterLockBoxLoot;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -2157,14 +2153,14 @@ namespace ReducedGrinding
 
         [Tooltip("Starts a Martian Invasion")]
         [Label("$Mods.ReducedGrinding.Common.MartianCall")]
-        [Increment(.0001f)]
-        [DefaultValue(1f)]
-        public float MartianSaucerMartianCallDrop;
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int MartianSaucerMartianCallDrop;
 
         [Header("[i:300] Battle Potion")]
         [Tooltip("The vanilla multiplier will be multiplied further by this amount")]
         [Label("Max Spawns Extra Multiplier")]
-        [Increment(.0001f)]
+        [Increment(0.0001f)]
         [Range(1f, 100f)]
         [DefaultValue(1f)]
         public float BattlePotionMaxSpawnsMultiplier;
@@ -2177,26 +2173,26 @@ namespace ReducedGrinding
         public float BattlePotionSpawnrateMultiplier;
 
         [Header("$Mods.ReducedGrinding.Common.WarPotion")]
-        [Label("Max Spawns Multiplier")]
+        [Label("War Buff Max Spawns Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 100f)]
         [DefaultValue(10f)]
         public float WarPotionMaxSpawnsMultiplier;
 
-        [Label("Spawn Rate Multiplier")]
+        [Label("War Buff Spawn Rate Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 100f)]
         [DefaultValue(10f)]
         public float WarPotionSpawnrateMultiplier;
 
         [Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
-        [Label("Max Spawns Multiplier")]
+        [Label("Chaos Buff Max Spawns Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 100f)]
         [DefaultValue(20f)]
         public float ChaosPotionMaxSpawnsMultiplier;
 
-        [Label("Spawn Rate Multiplier")]
+        [Label("Chaos Buff Spawn Rate Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 100f)]
         [DefaultValue(20f)]
