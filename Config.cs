@@ -26,7 +26,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("Boss Loot (1:Normal, 2:Expert)")]
+        [Header("Boss Loot")]
 
         [Label("[i:1313] Book of Skulls")]
         [Range(0, 10000)]
