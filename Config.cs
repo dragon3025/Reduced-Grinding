@@ -1432,7 +1432,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("This mod will try to change the [i:997] Extractinator result with the chances below. It will go through each item below from vanilla's rarest to least    rarest drops (for ties: highest to lowest value). If it sucessfully changes, it will stop going through the chances and give the changed item. If it fails all chances, then the item wont change. Chances below are (1 / config_setting), 0 disables it.")]
+        [Header("This mod will try to change the [i:997] Extractinator result with the chances below. It will go through each item below from vanilla's rarest to least    rarest drops (for ties: highest to lowest value). If it sucessfully changes, it will stop going through the chances and give the changed item. If it fails all chances, then the item wont change. Chances below are (1 / setting), 0 disables it.\n")]
 
         [Tooltip("If this chance fails, then this mod wont try to change the item using all of the chances below.")]
         [Label("Chance to roll for item change")]
@@ -1440,7 +1440,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int ExtractinatorChangesItem;
 
-        [Label("[i:3380] Sturdy Fossil (only for Desert Fossil)")]
+        [Label("[i:3380] Sturdy Fossil (only for [i:3347] Desert Fossil)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int ExtractinatorGivesFossilOre;
@@ -2175,27 +2175,27 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Common.WarPotion")]
         [Label("War Buff Max Spawns Multiplier")]
         [Increment(.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(10f)]
+        [Range(1f, 10f)]
+        [DefaultValue(3f)]
         public float WarPotionMaxSpawnsMultiplier;
 
         [Label("War Buff Spawn Rate Multiplier")]
         [Increment(.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(10f)]
+        [Range(1f, 10f)]
+        [DefaultValue(3f)]
         public float WarPotionSpawnrateMultiplier;
 
         [Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
         [Label("Chaos Buff Max Spawns Multiplier")]
         [Increment(.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(20f)]
+        [Range(1f, 10f)]
+        [DefaultValue(4f)]
         public float ChaosPotionMaxSpawnsMultiplier;
 
         [Label("Chaos Buff Spawn Rate Multiplier")]
         [Increment(.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(20f)]
+        [Range(1f, 10f)]
+        [DefaultValue(4f)]
         public float ChaosPotionSpawnrateMultiplier;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

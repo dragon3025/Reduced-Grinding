@@ -1366,7 +1366,7 @@ namespace ReducedGrinding
         public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
         {
 
-            if (player.FindBuffIndex(ModContent.BuffType<Buffs.Chaos>()) != -1)
+            if (player.FindBuffIndex(ModContent.BuffType<Buffs.War>()) != -1)
             {
                 spawnRate = (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().WarPotionSpawnrateMultiplier);
                 maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().WarPotionMaxSpawnsMultiplier);
