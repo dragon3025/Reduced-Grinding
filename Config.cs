@@ -700,7 +700,7 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootPedguinssuitIncrease;
-        
+
 
         [Label("[i:535] Philosopher’s Stone")]
         [Range(0, 10000)]

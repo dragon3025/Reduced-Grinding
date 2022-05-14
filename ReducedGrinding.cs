@@ -330,8 +330,8 @@ namespace ReducedGrinding
                         if (config <= 0 || itemChange > -1)
                             return;
                         if (!Main.rand.NextBool(config))
-                            return
-                            itemChange = itemType;
+                            return;
+                        itemChange = itemType;
                         if (itemChange == ItemID.FossilOre)
                         {
                             itemCount = 1;
