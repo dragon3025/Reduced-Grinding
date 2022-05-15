@@ -73,11 +73,6 @@ namespace ReducedGrinding
         [DefaultValue(5)]
         public int LootEatersBoneIncrease;
 
-        [Label("[i:2673] Truffle Worm")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootFishronTruffleworm;
-
         [Label("[i:2609] Fishron Wings")]
         [Range(0, 10000)]
         [DefaultValue(7)]
@@ -365,11 +360,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootDepthMeterIncrease;
-
-        [Label("[i:3347] Desert Fossil (From Dune Splicer)")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int LootDesertFossilFromDuneSplicer;
 
         [Label("[i:3795] Desert Spirit Lamp")]
         [Range(0, 10000)]
@@ -809,30 +799,6 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootShackleIncrease;
 
-        [Label("[i:169] Min Sand (From Dune Splicer)")]
-        [Range(1, 1000)]
-        [Slider]
-        [DefaultValue(20)]
-        public int LootMinSandFromDuneSplicer;
-
-        [Label("[i:169] Max Sand (From Dune Splicer)")]
-        [Range(1, 1000)]
-        [Slider]
-        [DefaultValue(50)]
-        public int LootMaxSandFromDuneSplicer;
-
-        [Label("[i:169] Min Sand (From Tomb Crawler)")]
-        [Range(1, 1000)]
-        [Slider]
-        [DefaultValue(0)]
-        public int LootMinSandFromTombCrawler;
-
-        [Label("[i:169] Max Sand (From Tomb Crawler)")]
-        [Range(1, 1000)]
-        [Slider]
-        [DefaultValue(0)]
-        public int LootMaxSandFromTombCrawler;
-
         [Label("[i:1274] Skull")]
         [Range(0, 10000)]
         [DefaultValue(21)]
@@ -1032,6 +998,29 @@ namespace ReducedGrinding
         [Tooltip("Makes it so their drop chance isn't limited to enemies with low defense, damage, and coin drop.")]
         [DefaultValue(true)]
         public bool LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense;
+
+        [Header("Drops that don't happen in vanilla.")]
+
+        [Label("[i:2673] Truffle Worm from Duke Fishron")]
+        [Range(0, 1000)]
+        [DefaultValue(0)]
+        public int LootFishronTruffleworm;
+
+        [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
+        [Range(0, 1000)]
+        public int[] LootDesertFossilFromDuneSplicer = new int[] { 0 , 0 };
+
+        [Label("[i:3347] Desert Fossil from Tomb Crawler (Min and Max in any order)")]
+        [Range(0, 1000)]
+        public int[] LootDesertFossilFromTombCrawler = new int[] { 0, 0 };
+
+        [Label("[i:169] Sand from Dune Splicer (Min and Max in any order)")]
+        [Range(1, 1000)]
+        public int[] LootSandFromDuneSplicer = new int[] { 0, 0 };
+
+        [Label("[i:169] Sand from Tomb Crawler (Min and Max in any order)")]
+        [Range(1, 1000)]
+        public int[] LootSandFromTombCrawler = new int[] { 0, 0 };
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1419,135 +1408,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(40)]
         public int QuestWeatherRadioIncrease;
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
-    [Label("Extractinator Override Chances")]
-    public class DExtractinatorConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Header("This mod will try to change the [i:997] Extractinator result with the chances below. It will go through each item below from vanilla's rarest to least    rarest drops (for ties: highest to lowest value). If it sucessfully changes, it will stop going through the chances and give the changed item. If it fails all chances, then the item wont change. Chances below are (1 / setting), 0 disables it.\n")]
-
-        [Tooltip("If this chance fails, then this mod wont try to change the item using all of the chances below.")]
-        [Label("Chance to roll for item change")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorChangesItem;
-
-        [Label("[i:3380] Sturdy Fossil (only for [i:3347] Desert Fossil)")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesFossilOre;
-
-        [Header("This chance is divided by 3 if the block used is [i:424]Silt or [i:1103]Slush.")]
-        [Label("[i:1242] Amber Mosquito")]
-        [Range(0, 10000)]
-        [DefaultValue(103)]
-        public int ExtractinatorGivesAmberMosquito;
-
-        [Header("This chance is divided by 2 if the block used is [i:424]Silt or [i:1103]Slush.")]
-        [Label("[i:999] Amber")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesAmber;
-
-        [Header("These chances are divided by 2 if the block used is [i:3347]Desert Fossil.")]
-        [Label("[i:181] Amethyst")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesAmethyst;
-
-        [Label("[i:180] Topaz")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesTopaz;
-
-        [Label("[i:177] Sapphire")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesSapphire;
-
-        [Label("[i:179] Emerald")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesEmerald;
-
-        [Label("[i:178] Ruby")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesRuby;
-
-        [Label("[i:182] Diamond")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesDiamond;
-
-        [Header("The block used doesn't affect these chances.")]
-        [Label("[i:71] Copper Coin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesCopperCoin;
-
-        [Label("[i:72] Silver Coin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesSilverCoin;
-
-        [Label("[i:73] Gold Coin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesGoldCoin;
-
-        [Label("[i:74] Platinum Coin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesPlatinumCoin;
-
-        [Label("[i:12] Copper Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesCopperOre;
-
-        [Label("[i:699] Tin Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesTinOre;
-
-        [Label("[i:11] Iron Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesIronOre;
-
-        [Label("[i:700] Lead Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesLeadOre;
-
-        [Label("[i:14] Silver Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesSilverOre;
-
-        [Label("[i:701] Tungsten Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesTungstenOre;
-
-        [Label("[i:13] Gold Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesGoldOre;
-
-        [Label("[i:702] Platinum Ore")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int ExtractinatorGivesPlatinumOre;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -2157,42 +2017,27 @@ namespace ReducedGrinding
         [DefaultValue(1)]
         public int MartianSaucerMartianCallDrop;
 
-        [Header("[i:300] Battle Potion")]
-        [Tooltip("The vanilla multiplier will be multiplied further by this amount")]
-        [Label("Max Spawns Extra Multiplier")]
-        [Increment(0.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(1f)]
-        public float BattlePotionMaxSpawnsMultiplier;
-
-        [Tooltip("The vanilla multiplier will be multiplied further by this amount")]
-        [Label("Spawn Rate Extra Multiplier")]
-        [Increment(.0001f)]
-        [Range(1f, 100f)]
-        [DefaultValue(1f)]
-        public float BattlePotionSpawnrateMultiplier;
-
         [Header("$Mods.ReducedGrinding.Common.WarPotion")]
-        [Label("War Buff Max Spawns Multiplier")]
+        [Label("Max Spawns Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float WarPotionMaxSpawnsMultiplier;
 
-        [Label("War Buff Spawn Rate Multiplier")]
+        [Label("Spawn Rate Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float WarPotionSpawnrateMultiplier;
 
         [Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
-        [Label("Chaos Buff Max Spawns Multiplier")]
+        [Label("Max Spawns Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float ChaosPotionMaxSpawnsMultiplier;
 
-        [Label("Chaos Buff Spawn Rate Multiplier")]
+        [Label("Spawn Rate Multiplier")]
         [Increment(.0001f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]

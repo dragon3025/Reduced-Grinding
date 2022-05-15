@@ -158,35 +158,34 @@ namespace ReducedGrinding
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease, ItemID.BoneRattle);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BrainMask);
                 }
-                else if (arg == ItemID.FishronBossBag)
+                if (arg == ItemID.FishronBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronWingsIncrease, ItemID.FishronWings);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.DukeFishronMask);
                 }
-                else if (arg == ItemID.EaterOfWorldsBossBag)
+                if (arg == ItemID.EaterOfWorldsBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootEatersBoneIncrease, ItemID.EatersBone);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.EaterMask);
                 }
-                else if (arg == ItemID.EyeOfCthulhuBossBag)
+                if (arg == ItemID.EyeOfCthulhuBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBinocularsIncrease, ItemID.Binoculars);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.EyeMask);
                 }
-                else if (arg == ItemID.PlanteraBossBag)
+                if (arg == ItemID.PlanteraBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootTheAxeIncrease, ItemID.TheAxe);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSeedlingIncrease, ItemID.Seedling);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.PlanteraMask);
                 }
-                else if (arg == ItemID.QueenBeeBossBag)
+                if (arg == ItemID.QueenBeeBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootHoneyedGogglesIncrease, ItemID.HoneyedGoggles);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootNectarIncrease, ItemID.Nectar);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BeeMask);
                 }
-                else if (arg == ItemID.MoonLordBossBag)
+                if (arg == ItemID.MoonLordBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BossMaskMoonlord);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.Meowmere);
@@ -199,34 +198,34 @@ namespace ReducedGrinding
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.RainbowCrystalStaff);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.MoonlordTurretStaff); //Lunar Portal Staff
                 }
-                else if (arg == ItemID.SkeletronBossBag)
+                if (arg == ItemID.SkeletronBossBag)
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBookofSkullsIncrease, ItemID.BookofSkulls);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSkeletronBoneKey, ItemID.BoneKey);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.SkeletronMask);
                 }
-                else if (arg == 3318) //King Slime
+                if (arg == 3318) //King Slime
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.KingSlimeMask);
-                else if (arg == 3324) //Wall of Flesh
+                if (arg == 3324) //Wall of Flesh
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.FleshMask);
-                else if (arg == 3325) //The Destroyer
+                if (arg == 3325) //The Destroyer
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.DestroyerMask);
-                else if (arg == 3326) //The Twins
+                if (arg == 3326) //The Twins
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.TwinMask);
-                else if (arg == 3327) //Skeletron Prime
+                if (arg == 3327) //Skeletron Prime
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.SkeletronPrimeMask);
-                else if (arg == 3329) //Golem
+                if (arg == 3329) //Golem
                 {
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.GolemMask);
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootPicksawIncrease, ItemID.Picksaw);
                 }
-                else if (arg == 3860) //Betsy
+                if (arg == 3860) //Betsy
                     try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BossMaskBetsy);
 
                 //Crates
-                else if (arg == 3205) //Dungeon Crate
+                if (arg == 3205) //Dungeon Crate
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateDungeonBoneWelder, ItemID.BoneWelder);
-                else if (arg == ItemID.JungleFishingCrate)
+                if (arg == ItemID.JungleFishingCrate)
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleSeaweed, ItemID.Seaweed);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleFlowerBoots, ItemID.FlowerBoots);
@@ -239,33 +238,33 @@ namespace ReducedGrinding
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleFeralClawsIncrease, ItemID.FeralClaws);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateJungleStaffOfRegrowth, ItemID.StaffofRegrowth);
                 }
-                else if (arg == 3206) //Sky Crate
+                if (arg == 3206) //Sky Crate
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateSkySkyMill, ItemID.SkyMill);
-                else if (arg == ItemID.WoodenCrate)
+                if (arg == ItemID.WoodenCrate)
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenClimbingClawsIncrease, ItemID.ClimbingClaws);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenRadarIncrease, ItemID.Radar);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWoodenAgletIncrease, ItemID.Aglet);
                 }
-                else if (arg == ItemID.WoodenCrate)
+                if (arg == ItemID.WoodenCrate)
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsWooden, ItemID.WaterWalkingBoots);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersWooden, ItemID.Flipper);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialWoodenIncrease, ItemID.Sundial);
                 }
-                else if (arg == ItemID.IronCrate)
+                if (arg == ItemID.IronCrate)
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsIron, ItemID.WaterWalkingBoots);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersIron, ItemID.Flipper);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialIronIncrease, ItemID.Sundial);
                 }
-                else if (arg == ItemID.GoldenCrate)
+                if (arg == ItemID.GoldenCrate)
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateWaterWalkingBootsGolden, ItemID.WaterWalkingBoots);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateFlippersGolden, ItemID.Flipper);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().CrateEnchantedSundialGoldenIncrease, ItemID.Sundial);
                 }
-                else if (context == "present")
+                if (context == "present")
                 {
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().PresentDogWhistle, ItemID.DogWhistle);
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().PresentToolbox, ItemID.Toolbox);
@@ -301,114 +300,10 @@ namespace ReducedGrinding
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().PresentGreenCandyCaneBlock, ItemID.GreenCandyCaneBlock, Main.rand.Next(20, 49));
                     try_grab_bag_drop(GetInstance<BGrabBagConfig>().PresentHardmodeSnowGlobe, ItemID.SnowGlobe);
                 }
-            }
 
-            public override void ExtractinatorUse(int extractType, ref int resultType, ref int resultStack)
-            {
-                if (GetInstance<DExtractinatorConfig>().ExtractinatorChangesItem == 0)
-                    return;
-                if (!Main.rand.NextBool(GetInstance<DExtractinatorConfig>().ExtractinatorChangesItem))
-                    return;
-
-                if (extractType == ItemID.DesertFossil || extractType == ItemID.SiltBlock || extractType == ItemID.SlushBlock)
-                {
-                    int itemCount = 1;
-
-                    int itemChange = -1;
-                    int amberMosquitoMultiplier = 3;
-                    int gemMultiplier = 1;
-                    int amberMultiplier = 2;
-                    if (extractType == ItemID.DesertFossil)
-                    {
-                        amberMosquitoMultiplier = 1;
-                        gemMultiplier = 2;
-                        amberMultiplier = 1;
-                    }
-
-                    void try_extractinator_drop(int config, int itemType)
-                    {
-                        if (config <= 0 || itemChange > -1)
-                            return;
-                        if (!Main.rand.NextBool(config))
-                            return;
-                        itemChange = itemType;
-                        if (itemChange == ItemID.FossilOre)
-                        {
-                            itemCount = 1;
-                            if (Main.rand.Next() <= 0.3)
-                                itemCount += 1;
-                        }
-                        else if (itemChange == ItemID.PlatinumCoin)
-                        {
-                            itemCount = 1;
-                            if (Main.rand.Next() <= 0.2758)
-                                itemCount += 1;
-                        }
-                        else if (itemChange == ItemID.GoldCoin)
-                        {
-                            itemCount = 10;
-                            if (Main.rand.Next() <= 0.3346)
-                                itemCount += 1;
-                        }
-                        else if (itemChange == ItemID.SilverCoin)
-                        {
-                            itemCount = 17;
-                            if (Main.rand.Next() <= 0.7843)
-                                itemCount += 1;
-                        }
-                        else if (itemChange == ItemID.CopperCoin)
-                        {
-                            if (extractType == ItemID.DesertFossil)
-                            {
-                                itemCount = 26;
-                                if (Main.rand.Next() <= 0.892)
-                                    itemCount += 1;
-                            }
-                            else
-                            {
-                                itemCount = 35;
-                                if (Main.rand.Next() <= 0.5588)
-                                    itemCount += 1;
-                            }
-                        }
-                        else if (itemChange == ItemID.AmberMosquito)
-                            itemCount = 1;
-                        else //Gems or Ores
-                        {
-                            itemCount = 1;
-                            if (Main.rand.Next() <= 0.1775)
-                                itemCount += 1;
-                        }
-                    }
-
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesCopperCoin, ItemID.CopperCoin);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesFossilOre, ItemID.FossilOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesCopperOre, ItemID.CopperOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesTinOre, ItemID.TinOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesIronOre, ItemID.IronOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesLeadOre, ItemID.LeadOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesSilverOre, ItemID.SilverOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesTungstenOre, ItemID.TungstenOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesGoldOre, ItemID.GoldOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumOre, ItemID.PlatinumOre);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmber * amberMultiplier, ItemID.Amber);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesSilverCoin, ItemID.SilverCoin);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmethyst * gemMultiplier, ItemID.Amethyst);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesTopaz * gemMultiplier, ItemID.Topaz);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesSapphire * gemMultiplier, ItemID.Sapphire);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesEmerald * gemMultiplier, ItemID.Emerald);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesRuby * gemMultiplier, ItemID.Ruby);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesDiamond * gemMultiplier, ItemID.Diamond);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesGoldCoin, ItemID.GoldCoin);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesAmberMosquito * amberMosquitoMultiplier, ItemID.AmberMosquito);
-                    try_extractinator_drop(GetInstance<DExtractinatorConfig>().ExtractinatorGivesPlatinumCoin, ItemID.PlatinumCoin);
-
-                    if (itemChange > -1)
-                    {
-                        resultType = itemChange;
-                        resultStack = itemCount;
-                    }
-                }
+                //Boss Bag drops that don't happen in vanilla.
+                if (arg == ItemID.FishronBossBag)
+                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
             }
         }
 
@@ -1375,11 +1270,6 @@ namespace ReducedGrinding
             {
                 spawnRate = (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().ChaosPotionSpawnrateMultiplier);
                 maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().ChaosPotionMaxSpawnsMultiplier);
-            }
-            if (player.FindBuffIndex(BuffID.Battle) != -1)
-            {
-                spawnRate = (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotionSpawnrateMultiplier);
-                maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotionMaxSpawnsMultiplier);
             }
         }
     }
