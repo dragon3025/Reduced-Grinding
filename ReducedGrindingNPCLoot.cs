@@ -56,6 +56,20 @@ namespace ReducedGrinding.Common.GlobalNPCs
                         npcLoot.Add(ruleMissingTwin);
                 }
 
+                void try_conditional_loot_max_min(int itemType, IItemDropRuleCondition condition, int[] config)
+                {
+                    if (config.Max() > 0 && config.Min() >= 0)
+                    {
+                        IItemDropRule conditionalRule = new LeadingConditionRule(condition);
+
+                        IItemDropRule rule = ItemDropRule.Common(itemType, 1, config.Min(), config.Max());
+
+                        conditionalRule.OnSuccess(rule);
+
+                        npcLoot.Add(conditionalRule);
+                    }
+                }
+
                 bool npc_is_any_types(params int[] types)
                 {
                     bool matches = false;
@@ -69,26 +83,6 @@ namespace ReducedGrinding.Common.GlobalNPCs
                     }
                     return matches;
                 }
-
-                //CONDITIONAL RULE EXAMPLE
-                /*if (npc.type == NPCID.BlueSlime)
-                {
-                    itemType = ItemID.RodofDiscord;
-                    normalDenominator = GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease[0];
-                    expertDenominator = Math.Min(normalDenominator, GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease[1]);
-                
-                    if (expertDenominator > 0)
-                    {
-                        TestDropRule testDropRule = new TestDropRule();
-                        IItemDropRule conditionalRule = new LeadingConditionRule(testDropRule);
-                
-                        IItemDropRule rule = ItemDropRule.NormalvsExpert(itemType, normalDenominator, expertDenominator);
-                
-                        conditionalRule.OnSuccess(rule);
-                
-                        npcLoot.Add(conditionalRule);
-                    }
-                }*/
 
                 //Boss Drops
                 if (npc.type == NPCID.BrainofCthulhu)
@@ -185,12 +179,18 @@ namespace ReducedGrinding.Common.GlobalNPCs
                 if (npc.type == NPCID.DuneSplicerHead)
                 {
                     try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromDuneSplicer);
-                    try_loot_max_min(ItemID.SandBlock, GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
                 }
                 if (npc.type == NPCID.TombCrawlerHead)
                 {
                     try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromTombCrawler);
-                    try_loot_max_min(ItemID.SandBlock, GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
                 }
 
                 //Ankh Charm

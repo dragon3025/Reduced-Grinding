@@ -1,15 +1,18 @@
-using Terraria;
 using Terraria.GameContent.ItemDropRules;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
-	public class TestDropRule : IItemDropRuleCondition
+	public class ZoneCrimsonNoOtherInfection : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
 			if (!info.IsInSimulation)
 			{
-				return Main.moonPhase > -1; //TODO This, is just a place holder.
+				if (info.player.ZoneCorrupt)
+					return false;
+				if (info.player.ZoneHallow)
+					return false;
+				return info.player.ZoneCrimson;
 			}
 			return false;
 		}
@@ -21,7 +24,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return "Custom condition text here.";
+			return "Only in the Hallow.";
 		}
 	}
 }
