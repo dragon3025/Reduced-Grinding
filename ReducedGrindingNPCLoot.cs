@@ -173,28 +173,7 @@ namespace ReducedGrinding.Common.GlobalNPCs
                 if (npc.type == NPCID.TacticalSkeleton)
                     try_loot(ItemID.SWATHelmet, GetInstance<AEnemyDropConfig>().LootSWATHelmetIncrease);
 
-                //Drops that don't happen in vanilla
-                if (npc.type == NPCID.DukeFishron)
-                    try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyDropConfig>().LootFishronTruffleworm);
-                if (npc.type == NPCID.DuneSplicerHead)
-                {
-                    try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromDuneSplicer);
-                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
-                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
-                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
-                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
-                }
-                if (npc.type == NPCID.TombCrawlerHead)
-                {
-                    try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromTombCrawler);
-                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
-                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
-                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
-                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
-                }
-
-                //Ankh Charm
-
+                //Non-Boss Drops - Ankh Charm Material
                 if (npc_is_any_types(104, 102, 269, 270, 271, 272))
                     try_loot(ItemID.AdhesiveBandage, GetInstance<AEnemyDropConfig>().LootAdhesiveBandageIncrease);
 
@@ -221,6 +200,26 @@ namespace ReducedGrinding.Common.GlobalNPCs
 
                 if (npc_is_any_types(93, 109, 80))
                     try_loot(ItemID.TrifoldMap, GetInstance<AEnemyDropConfig>().LootTrifoldMapIncrease);
+
+                //Drops that don't happen in vanilla
+                if (npc.type == NPCID.DukeFishron)
+                    try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyDropConfig>().LootFishronTruffleworm);
+                if (npc.type == NPCID.DuneSplicerHead)
+                {
+                    try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromDuneSplicer);
+                }
+                if (npc.type == NPCID.TombCrawlerHead)
+                {
+                    try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyDropConfig>().LootDesertFossilFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                    try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyDropConfig>().LootSandFromTombCrawler);
+                }
             }
         }
 

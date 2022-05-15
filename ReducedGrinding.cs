@@ -36,36 +36,47 @@ namespace ReducedGrinding
             ModTranslation text = LocalizationLoader.CreateTranslation("Common.CavernLockboxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Cavern_Lock_Box>()}] Cavern Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.DungeonBiomeLockboxLabel");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Biome_Lock_Box>()}] Biome Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.DungeonFurnitureLockboxLabel");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Blue_Dungeon_Lock_Box>()}] Dungeon Furniture Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.ShadowLockboxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Shadow_Lock_Box>()}] Shadow Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.LihzahrdLockboxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Lihzahrd_Lock_Box>()}] Lihzahrd Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.PyramidLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Pyramid_Lock_Box>()}] Pyramid Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.SkywareLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Skyware_Lock_Box>()}] Skyware Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.WebCoveredLockboxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Web_Covered_Lock_Box>()}] Web Covered Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.LivingWoodLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Living_Wood_Lock_Box>()}] Living Wood Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.IvyLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ivy_Lock_Box>()}] Ivy Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.IceLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ice_Lock_Box>()}] Ice Lockbox");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.WaterLockBoxLable");
             text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Water_Lock_Box>()}] Water Lockbox");
             LocalizationLoader.AddTranslation(text);
@@ -73,24 +84,27 @@ namespace ReducedGrinding
             text = LocalizationLoader.CreateTranslation("Common.PlanteraBulbLable");
             text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.GoblinRetreatOrderLable");
             text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.Goblin_Retreat_Order>()}] Goblin Retreat Order");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.GoldReflectionMirror");
             text.SetDefault($"Merchant Sells [i:{ModContent.ItemType<Items.Gold_Reflection_Mirror>()}] Gold Reflection Mirror For Crafting Gold Critters Item");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.PirateRetreatOrder");
             text.SetDefault($"Pirate Sells [i:{ModContent.ItemType<Items.Pirate_Retreat_Order>()}] Pirate Retreat Order");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.MoonBall");
             text.SetDefault($"Wizard Sells [i:{ModContent.ItemType<Items.Moon_Ball>()}] Moon Ball");
             LocalizationLoader.AddTranslation(text);
-            text = LocalizationLoader.CreateTranslation("Common.MartianCall");
-            text.SetDefault($"Martian Saucer's Drops [i:{ModContent.ItemType<Items.Martian_Call>()}] Martian Call");
-            LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.WarPotion");
             text.SetDefault($"[i:{ModContent.ItemType<Items.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
             LocalizationLoader.AddTranslation(text);
+
             text = LocalizationLoader.CreateTranslation("Common.ChaosPotion");
             text.SetDefault($"[i:{ModContent.ItemType<Items.Chaos_Potion>()}] Chaos Potion (Crafted with [i:{ModContent.ItemType<Items.War_Potion>()}] War Potion; gives Battle, War, and Chaos Buffs).");
             LocalizationLoader.AddTranslation(text);

@@ -2011,12 +2011,6 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool WizardSellsMoonBall;
 
-        [Tooltip("Starts a Martian Invasion")]
-        [Label("$Mods.ReducedGrinding.Common.MartianCall")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int MartianSaucerMartianCallDrop;
-
         [Header("$Mods.ReducedGrinding.Common.WarPotion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.0001f)]
