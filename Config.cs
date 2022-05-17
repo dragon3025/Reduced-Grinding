@@ -236,7 +236,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootBlindfoldIncrease;
 
-        [Label("[i:1825] Bloody Machete")]
+        [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove")]
         [Range(0, 10000)]
         [DefaultValue(666)]
         public int LootBloodyMacheteAndBladedGlovesIncrease;
@@ -506,11 +506,6 @@ namespace ReducedGrinding
         [DefaultValue(400)]
         public int LootHelFireIncrease;
 
-        [Label("[i:1124] Hive Block (From Hornet and Moss Hornets after Defeating Queen Bee)")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int LootHiveBlockFromHornetsAndMossHornetsAfterQueenBeDowned;
-
         [Label("[i:118] Hook")]
         [Range(0, 10000)]
         [DefaultValue(0)]
@@ -779,20 +774,10 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootSWATHelmetIncrease;
 
-        [Label("[i:1277] Sailor Hat")]
+        [Label("[i:1277] Sailor Outfit")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootSailorHatIncrease;
-
-        [Label("[i:1280] Sailor Pants")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSailorPantsIncrease;
-
-        [Label("[i:1279] Sailor Shirt")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSailorShirtIncrease;
+        public int LootSailorOutfitIncrease;
 
         [Label("[i:216] Shackle")]
         [Range(0, 10000)]
@@ -804,29 +789,11 @@ namespace ReducedGrinding
         [DefaultValue(21)]
         public int LootSkullIncrease;
 
-        [Label("[i:1309] Slime Staff")]
+        [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
+        [Label("[i:1309] Slime Staff (Hover for more info)")]
         [Range(0, 10000)]
         [DefaultValue(13)]
         public int LootSlimeStaffIncrease;
-
-        [Label("[i:1309] Slime Staff configuration affects Surface Slimes")]
-        [DefaultValue(false)]
-        public bool SlimeStaffIncreaseToSurfaceSlimes;
-
-        [Label("[i:1309] Slime Staff configuration affects Underground Slimes")]
-        [DefaultValue(false)]
-        public bool SlimeStaffIncreaseToUndergroundSlimes;
-
-        [Label("[i:1309] Slime Staff configuration affects Cavern Slimes")]
-        [DefaultValue(false)]
-        public bool SlimeStaffIncreaseToCavernSlimess;
-
-        [Label("[i:1309] Slime Staff configuration affects Ice Spiked Slimes")]
-        [DefaultValue(true)]
-        public bool SlimeStaffIncreaseToIceSpikedSlimes;
-        [Label("[i:1309] Slime Staff configuration affects Spiked Jungle Slimes")]
-        [DefaultValue(true)]
-        public bool SlimeStaffIncreaseToSpikedJungleSlimes;
 
         [Label("[i:1254] Sniper Rifle")]
         [Range(0, 10000)]
@@ -958,46 +925,41 @@ namespace ReducedGrinding
         [DefaultValue(63)]
         public int LootZombieArmIncrease;
 
-        [Label("[i:905] Coin Gun")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:905] Coin Gun (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")] //TO-DO (This might change in 1.4.4)
         [Range(0, 10000)]
         [DefaultValue(370)]
         public int PirateLootCoinGunBaseIncrease;
 
-        [Label("[i:672] Cutlass")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:672] Cutlass (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(85)]
         public int PirateLootCutlassBaseIncrease;
 
-        [Label("[i:854] Discount Card")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:854] Discount Card (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(222)]
         public int PirateLootDiscountCardBaseIncrease;
 
-        [Label("[i:3033] Gold Ring")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:3033] Gold Ring (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(233)]
         public int PirateLootGoldRingBaseIncrease;
 
-        [Label("[i:855] Lucky Coin")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:855] Lucky Coin (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(257)]
         public int PirateLootLuckyCoinBaseIncrease;
 
-        [Label("[i:2584] Pirate Staff")]
-        [Tooltip("This is multiplied by 4 for Pirate Captain and 16 for Pirate Ship")]
+        [Label("[i:2584] Pirate Staff (Hover for more info)")]
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(222)]
         public int PirateLootPirateStaffBaseIncrease;
-
-        [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove drop from non-weak enemies.")]
-        [Tooltip("Makes it so their drop chance isn't limited to enemies with low defense, damage, and coin drop.")]
-        [DefaultValue(true)]
-        public bool LootBloodyMacheteAndBladedGlovesAreNotLimitedByDamageAndDefense;
 
         [Header("Drops that don't happen in vanilla.")]
 

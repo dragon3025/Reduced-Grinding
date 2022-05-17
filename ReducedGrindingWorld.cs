@@ -9,6 +9,12 @@ using System;
 using System.Collections.Generic;
 using Terraria.ID;
 using Terraria.WorldBuilding;
+using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.Chat;
 
 namespace ReducedGrinding
 {
