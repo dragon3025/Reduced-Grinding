@@ -99,17 +99,17 @@ namespace ReducedGrinding
 			float TownHardmodeNPCsMax = 6f;
 			bool tryToSpawnTravelingMerchant = true;
 
-			//Mod luiafk = ModLoader.GetMod("Luiafk");
+			//Mod luiafk = ModLoader.GetMod("Luiafk"); TODO
 			//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
-			if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
+			if (GetInstance<IOtherConfig>().BoneMerchant)
 				TownNPCsMax++;
-			if (GetInstance<IOtherCustomNPCsConfig>().ChestSalesman)
+			if (GetInstance<IOtherConfig>().ChestSalesman)
 				TownNPCsMax++;
 			if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
 				TownNPCsMax++;
-			if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
+			if (GetInstance<IOtherConfig>().LootMerchant)
 				TownNPCsMax++;
-			if (GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
+			if (GetInstance<IOtherConfig>().ChristmasElf)
 				TownHardmodeNPCsMax++;
 
 			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
@@ -136,10 +136,10 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Clothier ||
 						Terraria.Main.npc[i].type == NPCID.Mechanic ||
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherCustomNPCsConfig>().BoneMerchant) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.ChestSalesman>() && GetInstance<IOtherCustomNPCsConfig>().ChestSalesman) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherConfig>().BoneMerchant) ||
+						(Terraria.Main.npc[i].type == NPCType<NPCs.ChestSalesman>() && GetInstance<IOtherConfig>().ChestSalesman) ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
+						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherConfig>().LootMerchant)
 					)
 						TownNPCs++;
 					else if (
@@ -149,7 +149,7 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Pirate ||
 						Terraria.Main.npc[i].type == NPCID.Steampunker ||
 						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.Christmas_Elf>() && GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
+						(Terraria.Main.npc[i].type == NPCType<NPCs.Christmas_Elf>() && GetInstance<IOtherConfig>().ChristmasElf)
 					)
 					{
 						TownHardmodeNPCs++;

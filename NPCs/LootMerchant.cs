@@ -49,7 +49,7 @@ namespace ReducedGrinding.NPCs
         }
         public override bool CanTownNPCSpawn(int numTownNPCs, int money)
         {
-            if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
+            if (GetInstance<IOtherConfig>().LootMerchant)
                 return true;
             else
                 return false;

@@ -110,7 +110,7 @@ namespace ReducedGrinding
             LocalizationLoader.AddTranslation(text);
         }
 
-        /*public override void PostSetupContent()
+        /*public override void PostSetupContent() TODO
 		{
 			Mod censusMod = ModLoader.GetMod("Census");
 			if (censusMod != null)
@@ -169,72 +169,72 @@ namespace ReducedGrinding
                 // Boss Bags
                 if (arg == ItemID.BrainOfCthulhuBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBoneRattleIncrease, ItemID.BoneRattle);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BrainMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBoneRattleIncrease, ItemID.BoneRattle);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BrainMask);
                 }
                 if (arg == ItemID.FishronBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronWingsIncrease, ItemID.FishronWings);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.DukeFishronMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootFishronWingsIncrease, ItemID.FishronWings);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.DukeFishronMask);
                 }
                 if (arg == ItemID.EaterOfWorldsBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootEatersBoneIncrease, ItemID.EatersBone);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.EaterMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEatersBoneIncrease, ItemID.EatersBone);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.EaterMask);
                 }
                 if (arg == ItemID.EyeOfCthulhuBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBinocularsIncrease, ItemID.Binoculars);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.EyeMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBinocularsIncrease, ItemID.Binoculars);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.EyeMask);
                 }
                 if (arg == ItemID.PlanteraBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootTheAxeIncrease, ItemID.TheAxe);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSeedlingIncrease, ItemID.Seedling);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.PlanteraMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootTheAxeIncrease, ItemID.TheAxe);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootSeedlingIncrease, ItemID.Seedling);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.PlanteraMask);
                 }
                 if (arg == ItemID.QueenBeeBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootHoneyedGogglesIncrease, ItemID.HoneyedGoggles);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootNectarIncrease, ItemID.Nectar);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BeeMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootHoneyedGogglesIncrease, ItemID.HoneyedGoggles);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootNectarIncrease, ItemID.Nectar);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BeeMask);
                 }
                 if (arg == ItemID.MoonLordBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BossMaskMoonlord);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.Meowmere);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.Terrarian);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.StarWrath);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.SDMG);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.FireworksLauncher); //Celebration
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.LastPrism);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.LunarFlareBook);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.RainbowCrystalStaff);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootMoonLordEachWeaponIncrease, ItemID.MoonlordTurretStaff); //Lunar Portal Staff
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BossMaskMoonlord);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.Meowmere);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.Terrarian);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.StarWrath);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.SDMG);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.FireworksLauncher); //Celebration
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.LastPrism);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.LunarFlareBook);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.RainbowCrystalStaff);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.MoonlordTurretStaff); //Lunar Portal Staff
                 }
                 if (arg == ItemID.SkeletronBossBag)
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBookofSkullsIncrease, ItemID.BookofSkulls);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootSkeletronBoneKey, ItemID.BoneKey);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.SkeletronMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBookofSkullsIncrease, ItemID.BookofSkulls);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootSkeletronBoneKey, ItemID.BoneKey);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.SkeletronMask);
                 }
                 if (arg == 3318) //King Slime
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.KingSlimeMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.KingSlimeMask);
                 if (arg == 3324) //Wall of Flesh
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.FleshMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.FleshMask);
                 if (arg == 3325) //The Destroyer
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.DestroyerMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.DestroyerMask);
                 if (arg == 3326) //The Twins
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.TwinMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.TwinMask);
                 if (arg == 3327) //Skeletron Prime
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.SkeletronPrimeMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.SkeletronPrimeMask);
                 if (arg == 3329) //Golem
                 {
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.GolemMask);
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootPicksawIncrease, ItemID.Picksaw);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.GolemMask);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootPicksawIncrease, ItemID.Picksaw);
                 }
                 if (arg == 3860) //Betsy
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootBossMaskIncrease, ItemID.BossMaskBetsy);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BossMaskBetsy);
 
                 //Crates
                 if (arg == 3205) //Dungeon Crate
@@ -317,7 +317,7 @@ namespace ReducedGrinding
 
                 //Boss Bag drops that don't happen in vanilla.
                 if (arg == ItemID.FishronBossBag)
-                    try_grab_bag_drop(GetInstance<AEnemyDropConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
+                    try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
             }
         }
 
@@ -336,50 +336,6 @@ namespace ReducedGrinding
 
                     if (npc.type == NPCID.ChaosElemental)
                         try_loot(ItemID.RodofDiscord, GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease);
-
-
-                    
-
-                    if (npc.type == NPCID.RainbowSlime && (GetInstance<AEnemyDropConfig>().LootRainbowBlockDropMinIncrease < GetInstance<AEnemyDropConfig>().LootRainbowBlockDropMaxIncrease)) //RainbowSlime
-                    {
-                        Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ItemID.RainbowBrick, Main.rand.Next(GetInstance<AEnemyDropConfig>().LootRainbowBlockDropMinIncrease - 30, GetInstance<AEnemyDropConfig>().LootRainbowBlockDropMaxIncrease - 60), false, -1, false, false); //Rainbow Block
-                    }
-
-                    //Chest Drop
-                    if (GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop > 0)
-                    {
-                        if (player.ZoneSnow && player.ZoneRockLayerHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 681, 1, false, -1, false, false); //Ice Chest
-                        else if (player.ZoneJungle && player.ZoneRockLayerHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 680, 1, false, -1, false, false); //Ivy Chest
-                        else if ((Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe && NPC.downedPlantBoss) && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Lihzahrd Temple Enemies
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1142, 1, false, -1, false, false); //Lihzahrd Chest
-                        else if (player.ZoneUnderworldHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 328, 1, false, -1, false, false); //Shadow Chest
-                        else if (player.ZoneDungeon && NPC.downedPlantBoss)
-                        {
-                            if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1528, 1, false, -1, false, false); //Jungle Chest
-                            if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1529, 1, false, -1, false, false); //Corruption Chest
-                            if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1530, 1, false, -1, false, false); //Crimson Chest
-                            if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1531, 1, false, -1, false, false); //Hallowed Chest
-                            if (Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1532, 1, false, -1, false, false); //Frozen Chest
-                        }
-                        else if (player.ZoneOverworldHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 831, 1, false, -1, false, false); //Living Wood Chest
-                        else if ((player.ZoneDirtLayerHeight || player.ZoneRockLayerHeight) && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 306, 1, false, -1, false, false); //Gold Chest
-                        else if (player.ZoneSkyHeight && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 838, 1, false, -1, false, false); //Skyware Chest
-                        if ((npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465) && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 1298, 1, false, -1, false, false); //Water Chest
-                        if (((npc.type >= 163 && npc.type <= 165) || npc.type == 238) && Main.rand.NextFloat() < GetInstance<AEnemyDropConfig>().AllEnemiesLootBiomeMatchingFoundOnlyChestDrop) //Spider Nest Enemies
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, 952, 1, false, -1, false, false); //Web Covered Chest
-                    }
 
                     //Modded Loot
                     float lockboxDropModdifier = 0.0f;

@@ -340,7 +340,7 @@ namespace ReducedGrinding.NPCs
 
 					}
 					//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
-					if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
+					if (GetInstance<IOtherConfig>().BoneMerchant)
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Skull_Call>());
 						nextSlot++;

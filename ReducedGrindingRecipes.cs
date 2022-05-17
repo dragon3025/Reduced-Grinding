@@ -2,6 +2,23 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
+using ReducedGrinding.Common.ItemDropRules.Conditions;
+using ReducedGrinding;
+using static Terraria.ModLoader.ModContent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria;
 
 namespace ReducedGrinding
 {
@@ -165,6 +182,57 @@ namespace ReducedGrinding
 			recipe.AddIngredient(ItemID.Vertebrae, 2);
 			recipe.AddTile(TileID.WorkBenches);
 			recipe.Register();
+
+			if (GetInstance<IOtherConfig>().CraftableRareChests)
+			{
+				recipe = Mod.CreateRecipe(ItemID.IvyChest);
+				recipe.AddIngredient(ItemID.RichMahogany, 8);
+				recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+				recipe.AddTile(TileID.WorkBenches);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.WaterChest);
+				recipe.AddIngredient(ItemID.Coral, 2);
+				recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+				recipe.AddTile(TileID.WorkBenches);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.WaterChest);
+				recipe.AddIngredient(ItemID.Cobweb, 5);
+				recipe.AddIngredient(ItemID.Chest, 1);
+				recipe.AddTile(TileID.WorkBenches);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.CrimsonChest);
+				recipe.AddIngredient(ItemID.CrimsonKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.CorruptionChest);
+				recipe.AddIngredient(ItemID.CorruptionKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.HallowedChest);
+				recipe.AddIngredient(ItemID.HallowedKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.IceChest);
+				recipe.AddIngredient(ItemID.FrozenKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.JungleChest);
+				recipe.AddIngredient(ItemID.JungleKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+
+				recipe = Mod.CreateRecipe(ItemID.DesertChest);
+				recipe.AddIngredient(ItemID.DungeonDesertKey, 1);
+				recipe.AddTile(TileID.CrystalBall);
+				recipe.Register();
+			}
 		}
 	}
 }

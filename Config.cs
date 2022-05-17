@@ -21,8 +21,8 @@ using Terraria.UI;
 namespace ReducedGrinding
 {
 
-    [Label("Enemy Drop")]
-    public class AEnemyDropConfig : ModConfig
+    [Label("Enemy Loot")]
+    public class AEnemyLootConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
@@ -104,12 +104,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(2500)]
         public int LootBiomeKeyIncrease;
-
-        [Tooltip("Chance that an enemy will drop a chest that can be obtained from the biome you are currently in (water enemies will also have this chance to drop Water Chest and Spider Nest enemies will also have this chance to drop Web Covered Chest.")]
-        [Label("[i:831] Chest Drop From a Matching Biome")]
-        [Range(0, 10000)]
-        [DefaultValue(100)]
-        public int AllEnemiesLootBiomeMatchingFoundOnlyChestDrop;
 
         [Label("[i:1322] Magma Stone From Hellbat")]
         [Range(0, 10000)]
@@ -727,17 +721,11 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootRainArmorIncrease;
 
-        [Label("[i:662] Rainbow Brick Max Increase")]
-        [Range(0, 1000)]
-        [Slider]
-        [DefaultValue(0)]
-        public int LootRainbowBlockDropMaxIncrease;
+        //public int[] LootDesertFossilFromDuneSplicer = new int[] { 0 , 0 };
 
-        [Label("[i:662] Rainbow Brick Min Increase")]
+        [Label("[i:662] Rainbow Brick Max Increase (Min and Max in any order)")]
         [Range(0, 1000)]
-        [Slider]
-        [DefaultValue(0)]
-        public int LootRainbowBlockDropMinIncrease;
+        public int[] LootRainbowBrickDrop = new int[] {0, 0};
 
         [Label("[i:3285] Rally")]
         [Range(0, 10000)]
@@ -2006,8 +1994,8 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Other Custom NPCs")]
-    public class IOtherCustomNPCsConfig : ModConfig
+    [Label("Other")]
+    public class IOtherConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
@@ -2030,55 +2018,9 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool LootMerchant;
 
-        [Tooltip("Sells vanilla chests that are normally limited. Note: This mod allows you to aquire these chests through monster drops.")]
-        [Label("Chest Salesman")]
+        [Label("Craftable Rare Chests")]
         [DefaultValue(false)]
-        public bool ChestSalesman;
-
-        [Label("Chest Salesman Pre-Hardmode Chests Require Hardmode Activated")]
-        [DefaultValue(false)]
-        public bool ChestSalesmanPreHardmodeChestsRequireHardmodeActivated;
-
-        [Header("Chest Salesman Sells")]
-        [Label("[i:1529] Biome Chests")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsBiomeChests;
-
-        [Label("[i:306] Gold Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsGoldChest;
-
-        [Label("[i:681] Ice Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsIceChest;
-
-        [Label("[i:680] Ivy Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsIvyChest;
-
-        [Label("[i:680] Lihzahrd Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsLihzahrdChest;
-
-        [Label("[i:831] Living Wood Chest")]
-        [DefaultValue(false)]
-        public bool ChestSalesmanSellsLivingWoodChest;
-
-        [Label("[i:1298] Water Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsOceanChest;
-
-        [Label("[i:328] Shadow Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsShadowChest;
-
-        [Label("[i:838] SkywareChest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsSkywareChest;
-
-        [Label("[i:952] Web Covered Chest")]
-        [DefaultValue(true)]
-        public bool ChestSalesmanSellsWebCoveredChest;
+        public bool CraftableRareChests;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
