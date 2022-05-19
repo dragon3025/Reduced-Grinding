@@ -721,10 +721,8 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootRainArmorIncrease;
 
-        //public int[] LootDesertFossilFromDuneSplicer = new int[] { 0 , 0 };
-
         [Label("[i:662] Rainbow Brick Max Increase (Min and Max in any order)")]
-        [Range(0, 1000)]
+        [Range(0, 999)]
         public int[] LootRainbowBrickDrop = new int[] {0, 0};
 
         [Label("[i:3285] Rally")]
@@ -952,25 +950,30 @@ namespace ReducedGrinding
         [Header("Drops that don't happen in vanilla.")]
 
         [Label("[i:2673] Truffle Worm from Duke Fishron")]
-        [Range(0, 1000)]
+        [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootFishronTruffleworm;
 
         [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
-        [Range(0, 1000)]
+        [Range(0, 999)]
         public int[] LootDesertFossilFromDuneSplicer = new int[] { 0 , 0 };
 
         [Label("[i:3347] Desert Fossil from Tomb Crawler (Min and Max in any order)")]
-        [Range(0, 1000)]
+        [Range(0, 999)]
         public int[] LootDesertFossilFromTombCrawler = new int[] { 0, 0 };
 
         [Label("[i:169] Sand from Dune Splicer (Min and Max in any order)")]
-        [Range(1, 1000)]
+        [Range(1, 999)]
         public int[] LootSandFromDuneSplicer = new int[] { 0, 0 };
 
         [Label("[i:169] Sand from Tomb Crawler (Min and Max in any order)")]
-        [Range(1, 1000)]
+        [Range(1, 999)]
         public int[] LootSandFromTombCrawler = new int[] { 0, 0 };
+
+        [Label("[i:857] Sandstorm in a Bottle from Sand Elemental")]
+        [Range(0, 10000)]
+        [DefaultValue(4)]
+        public int LootSandstormInABottleFromSandElemental;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1831,98 +1834,6 @@ namespace ReducedGrinding
         [Slider]
         [DefaultValue(50000)]
         public int TaxCollectorTaxRequiredToChatTaxatMorningAndNight;
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
-    [Label("Lock Boxes")]
-    public class GLockbBoxConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-        [Header("These are custom lockboxes that have a chance to drop from all enemies. The type of lockbox depends on either the enemy killed or the biome you're in. The lockbox gives loot that you would normally get from a chest of the matching biome and possibly furniture from the structures that the chest would be found in.")]
-        [Label("Lockboxes Give Furniture")]
-        [DefaultValue(true)]
-        public bool LockBoxesGiveFurniture;
-
-        [Label("Lock Boxes Give Non-Furniture")]
-        [DefaultValue(true)]
-        public bool LockBoxesGiveNonFurniture;
-
-        [Label("$Mods.ReducedGrinding.Common.CavernLockboxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int CavernModdedCavernLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.DungeonBiomeLockboxLabel")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int DungeonModdedBiomeLockBoxLoot;
-
-
-        [Tooltip("Required stack size of a single biome key type needed to open Biome Lockboxes. The type is randomly choosen from\n" +
-            "available keys in inventory that meet this required size. The rare item obtained will match the key used to open it.")]
-        [Label("Required [i:1533]Biome Key stack size to open Biome Lockboxes")]
-        [Range(1, 99)]
-        [DefaultValue(3)]
-        public int BiomeLockboxKeysRequired;
-
-
-        [Tooltip("Comes in 3 forms (no matter what dungeon your world has): Blue Dungeon, Green Dungeon, and Pink Dungeon.")]
-        [Label("$Mods.ReducedGrinding.Common.DungeonFurnitureLockboxLabel")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int DungeonFurnitureLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.ShadowLockboxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int HellBiomeModdedShadowLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.LihzahrdLockboxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int JungleTempleLihzahrd_Lock_Box;
-
-        [Tooltip("Drops in Underground Desert and Sandstorms")]
-        [Label("$Mods.ReducedGrinding.Common.PyramidLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int SandstormAndUndergroundDesertPyramidLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.SkywareLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int SkyModdedSkywareLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.WebCoveredLockboxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int SpiderNestWebCoveredLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.LivingWoodLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int SurfaceModdedLivingWoodLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.IvyLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int UndergroundJungleBiomeModdedIvyLockBoxLoot;
-
-        [Label("$Mods.ReducedGrinding.Common.IceLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int UndergroundSnowBiomeModdedIceLockBoxLoot;
-
-        [Tooltip("Drops from water enemies.")]
-        [Label("$Mods.ReducedGrinding.Common.WaterLockBoxLable")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int WaterEnemyModdedWaterLockBoxLoot;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

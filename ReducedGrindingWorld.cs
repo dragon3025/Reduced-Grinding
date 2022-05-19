@@ -23,7 +23,97 @@ namespace ReducedGrinding
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
 
-        public override void PostUpdateWorld()
+		public override void PostWorldGen()
+		{
+			int SandstormInABottleCount = 0;
+			int FlyingCarpetCount = 0;
+			int PharaohOutfitCount = 0;
+			int foundItem = 0;
+			List<int> desertChests = new List<int>();
+
+			for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
+			{
+				Chest chest = Main.chest[chestIndex];
+				int TileSubID = 1; //Gold Chest
+				if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+				{
+					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+					{
+						if (chest.item[inventoryIndex].type == ItemID.PharaohsMask) foundItem = ItemID.PharaohsMask;
+						if (chest.item[inventoryIndex].type == ItemID.PharaohsRobe) foundItem = ItemID.PharaohsMask;
+						if (chest.item[inventoryIndex].type == ItemID.FlyingCarpet) foundItem = ItemID.FlyingCarpet;
+						if (chest.item[inventoryIndex].type == ItemID.SandstorminaBottle) foundItem = ItemID.SandstorminaBottle;
+					}
+					if (foundItem > 0)
+					{
+						if (foundItem == ItemID.PharaohsMask) PharaohOutfitCount += 1;
+						if (foundItem == ItemID.FlyingCarpet) FlyingCarpetCount += 1;
+						if (foundItem == ItemID.SandstorminaBottle) SandstormInABottleCount += 1;
+						foundItem = 0;
+					}
+				}
+
+				TileSubID = 10; //Sandstone Chest
+				if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+					desertChests.Add(chestIndex);
+			}
+
+			if (desertChests.Count > 0)
+            {
+				while (PharaohOutfitCount == 0 || FlyingCarpetCount == 0 || SandstormInABottleCount == 0)
+				{
+					int chestIndex = desertChests[Main.rand.Next(desertChests.Count)];
+					Chest chest = Main.chest[chestIndex];
+					if (PharaohOutfitCount == 0)
+					{
+						int PharaohOutfitPieces = 0;
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								if (PharaohOutfitPieces == 0)
+								{
+									chest.item[inventoryIndex].SetDefaults(ItemID.PharaohsMask);
+									PharaohOutfitPieces += 1;
+								}
+								else
+								{
+									chest.item[inventoryIndex].SetDefaults(ItemID.PharaohsRobe);
+									PharaohOutfitCount += 1;
+									break;
+								}
+							}
+						}
+					}
+					else if (FlyingCarpetCount == 0)
+					{
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								chest.item[inventoryIndex].SetDefaults(ItemID.FlyingCarpet);
+								FlyingCarpetCount += 1;
+								break;
+							}
+						}
+					}
+					else if (SandstormInABottleCount == 0)
+					{
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								chest.item[inventoryIndex].SetDefaults(ItemID.SandstorminaBottle);
+								SandstormInABottleCount += 1;
+								break;
+							}
+						}
+					}
+				}
+            }
+		}
+
+		public override void PostUpdateWorld()
         {
 			Player player = Main.player[Main.myPlayer];
 
@@ -103,8 +193,6 @@ namespace ReducedGrinding
 			//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
 			if (GetInstance<IOtherConfig>().BoneMerchant)
 				TownNPCsMax++;
-			if (GetInstance<IOtherConfig>().ChestSalesman)
-				TownNPCsMax++;
 			if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
 				TownNPCsMax++;
 			if (GetInstance<IOtherConfig>().LootMerchant)
@@ -137,7 +225,6 @@ namespace ReducedGrinding
 						Terraria.Main.npc[i].type == NPCID.Mechanic ||
 						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherConfig>().BoneMerchant) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.ChestSalesman>() && GetInstance<IOtherConfig>().ChestSalesman) ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant) ||
 						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherConfig>().LootMerchant)
 					)

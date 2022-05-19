@@ -697,6 +697,10 @@ namespace ReducedGrinding.Common.GlobalNPCs
                 try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyLootConfig>().LootSandFromTombCrawler);
                 try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().LootSandFromTombCrawler);
             }
+            if (npc.type == NPCID.SandElemental)
+            {
+                try_loot(ItemID.SandstorminaBottle, GetInstance<AEnemyLootConfig>().LootSandstormInABottleFromSandElemental);
+            }
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

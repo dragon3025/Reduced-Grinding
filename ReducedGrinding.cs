@@ -33,55 +33,7 @@ namespace ReducedGrinding
 
         public override void Load()
         {
-            ModTranslation text = LocalizationLoader.CreateTranslation("Common.CavernLockboxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Cavern_Lock_Box>()}] Cavern Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.DungeonBiomeLockboxLabel");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Biome_Lock_Box>()}] Biome Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.DungeonFurnitureLockboxLabel");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Blue_Dungeon_Lock_Box>()}] Dungeon Furniture Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.ShadowLockboxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Shadow_Lock_Box>()}] Shadow Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.LihzahrdLockboxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Lihzahrd_Lock_Box>()}] Lihzahrd Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.PyramidLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Pyramid_Lock_Box>()}] Pyramid Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.SkywareLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Skyware_Lock_Box>()}] Skyware Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.WebCoveredLockboxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Web_Covered_Lock_Box>()}] Web Covered Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.LivingWoodLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Living_Wood_Lock_Box>()}] Living Wood Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.IvyLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ivy_Lock_Box>()}] Ivy Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.IceLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Ice_Lock_Box>()}] Ice Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.WaterLockBoxLable");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.LockBoxes.Water_Lock_Box>()}] Water Lockbox");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.PlanteraBulbLable");
+            ModTranslation text = LocalizationLoader.CreateTranslation("Common.PlanteraBulbLable");
             text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
             LocalizationLoader.AddTranslation(text);
 
@@ -119,11 +71,6 @@ namespace ReducedGrinding
 					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "Summon with a \"Skull Call\".");
 				else
 					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
-
-				if (GetInstance<IOtherCustomNPCsConfig>().ChestSalesman)
-					censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "No conditions.");
-				else
-					censusMod.Call("TownNPCCondition", NPCType("ChestSalesman"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
 
 				if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
 					censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), "No conditions.");
@@ -320,105 +267,6 @@ namespace ReducedGrinding
                     try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
             }
         }
-
-        /*public class ModGlobalNPC : GlobalNPC
-        {
-            public override void OnKill(NPC npc)
-            {
-                if (npc.lifeMax > 5 && npc.type != NPCID.Bee && npc.type != NPCID.BeeSmall)
-                {
-                    Player player = Main.player[(int)Player.FindClosest(npc.position, npc.width, npc.height)];
-
-                    int npcTileX;
-                    int npcTileY;
-                    npcTileX = (int)(npc.position.X + (float)(npc.width / 2)) / 16;
-                    npcTileY = (int)(npc.position.Y + (float)(npc.height / 2)) / 16;
-
-                    if (npc.type == NPCID.ChaosElemental)
-                        try_loot(ItemID.RodofDiscord, GetInstance<AEnemyDropConfig>().LootRodofDiscordIncrease);
-
-                    //Modded Loot
-                    float lockboxDropModdifier = 0.0f;
-                    if (Main.hardMode)
-                        lockboxDropModdifier = GetInstance<GLockbBoxConfig>().HardmodeModdedLockBoxDropRateModifier;
-                    else
-                        lockboxDropModdifier = GetInstance<GLockbBoxConfig>().NormalmodeModdedLockBoxDropRateModifier;
-
-                    if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture && (npc.type == 57 || npc.type == 58 || (npc.type >= 63 && npc.type <= 65) || npc.type == 67 || npc.type == 102 || npc.type == 103 || npc.type == 157 || npc.type == 220 || npc.type == 221 || npc.type == 241 || npc.type == 242 || npc.type == 256 || npc.type == 465)) //Water Enemies (https://terraria.gamepedia.com/Water#Contents)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().WaterEnemyModdedWaterLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Water_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (npc.type == 48) //Harpy
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().SkyModdedSkywareLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Skyware_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture && ((npc.type >= 163 && npc.type <= 165) || npc.type == 238)) //Spider Nest Enemies
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().SpiderNestWebCoveredLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Web_Covered_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneDungeon)
-                    {
-                        if (GetInstance<GLockbBoxConfig>().LockBoxesGiveFurniture)
-                        {
-                            if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Blue_Dungeon_Lock_Box>(), 1, false, -1, false, false);
-                            if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Green_Dungeon_Lock_Box>(), 1, false, -1, false, false);
-                            if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().DungeonFurnitureLockBoxLoot * lockboxDropModdifier)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Pink_Dungeon_Lock_Box>(), 1, false, -1, false, false);
-                        }
-                        if (GetInstance<GLockbBoxConfig>().LockBoxesGiveNonFurniture && NPC.downedPlantBoss)
-                        {
-                            if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().DungeonModdedBiomeLockBoxLoot * lockboxDropModdifier)
-                                Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Biome_Lock_Box>(), 1, false, -1, false, false);
-                        }
-                    }
-                    else if (player.ZoneUnderworldHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().HellBiomeModdedShadowLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Shadow_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneSnow && player.ZoneRockLayerHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().UndergroundSnowBiomeModdedIceLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Ice_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneJungle && player.ZoneRockLayerHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().UndergroundJungleBiomeModdedIvyLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Ivy_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneSandstorm || player.ZoneUndergroundDesert)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().SandstormAndUndergroundDesertPyramidLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Pyramid_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (Main.tile[npcTileX, npcTileY].wall == WallID.LihzahrdBrickUnsafe && NPC.downedPlantBoss) //Lihzahrd Temple Enemies
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().JungleTempleLihzahrd_Lock_Box * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Lihzahrd_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneOverworldHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().SurfaceModdedLivingWoodLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Living_Wood_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneDirtLayerHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().CavernModdedCavernLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Underground_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                    else if (player.ZoneRockLayerHeight)
-                    {
-                        if (Main.rand.NextFloat() < GetInstance<GLockbBoxConfig>().CavernModdedCavernLockBoxLoot * lockboxDropModdifier)
-                            Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, ModContent.ItemType<Items.LockBoxes.Cavern_Lock_Box>(), 1, false, -1, false, false);
-                    }
-                }
-            }
-        }*/
     }
 
     class SpawnRateMultiplierGlobalNPC : GlobalNPC
