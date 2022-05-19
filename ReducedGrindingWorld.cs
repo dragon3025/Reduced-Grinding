@@ -25,88 +25,51 @@ namespace ReducedGrinding
 
 		public override void PostWorldGen()
 		{
-			int SandstormInABottleCount = 0;
-			int FlyingCarpetCount = 0;
-			int PharaohOutfitCount = 0;
-			int foundItem = 0;
+			List<int> missingPyramidItems = new List<int> { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
 			List<int> desertChests = new List<int>();
 
 			for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
 			{
 				Chest chest = Main.chest[chestIndex];
+
+				if (chest == null)
+					continue;
+
 				int TileSubID = 1; //Gold Chest
-				if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
 				{
 					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 					{
-						if (chest.item[inventoryIndex].type == ItemID.PharaohsMask) foundItem = ItemID.PharaohsMask;
-						if (chest.item[inventoryIndex].type == ItemID.PharaohsRobe) foundItem = ItemID.PharaohsMask;
-						if (chest.item[inventoryIndex].type == ItemID.FlyingCarpet) foundItem = ItemID.FlyingCarpet;
-						if (chest.item[inventoryIndex].type == ItemID.SandstorminaBottle) foundItem = ItemID.SandstorminaBottle;
-					}
-					if (foundItem > 0)
-					{
-						if (foundItem == ItemID.PharaohsMask) PharaohOutfitCount += 1;
-						if (foundItem == ItemID.FlyingCarpet) FlyingCarpetCount += 1;
-						if (foundItem == ItemID.SandstorminaBottle) SandstormInABottleCount += 1;
-						foundItem = 0;
+						List<int> missingPyramidItemsOld = new List<int>();
+						missingPyramidItemsOld.AddRange(missingPyramidItems);
+
+						foreach (int i in missingPyramidItemsOld)
+							if (chest.item[inventoryIndex].type == i) missingPyramidItems.Remove(i);
 					}
 				}
 
 				TileSubID = 10; //Sandstone Chest
-				if (chest != null && Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
 					desertChests.Add(chestIndex);
 			}
 
 			if (desertChests.Count > 0)
             {
-				while (PharaohOutfitCount == 0 || FlyingCarpetCount == 0 || SandstormInABottleCount == 0)
+				while (missingPyramidItems.Count > 0)
 				{
-					int chestIndex = desertChests[Main.rand.Next(desertChests.Count)];
+					int desertChestsIndex = Main.rand.Next(desertChests.Count);
+					int chestIndex = desertChests[desertChestsIndex];
+
 					Chest chest = Main.chest[chestIndex];
-					if (PharaohOutfitCount == 0)
+					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 					{
-						int PharaohOutfitPieces = 0;
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						if (chest.item[inventoryIndex].type == ItemID.None)
 						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								if (PharaohOutfitPieces == 0)
-								{
-									chest.item[inventoryIndex].SetDefaults(ItemID.PharaohsMask);
-									PharaohOutfitPieces += 1;
-								}
-								else
-								{
-									chest.item[inventoryIndex].SetDefaults(ItemID.PharaohsRobe);
-									PharaohOutfitCount += 1;
-									break;
-								}
-							}
-						}
-					}
-					else if (FlyingCarpetCount == 0)
-					{
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								chest.item[inventoryIndex].SetDefaults(ItemID.FlyingCarpet);
-								FlyingCarpetCount += 1;
-								break;
-							}
-						}
-					}
-					else if (SandstormInABottleCount == 0)
-					{
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								chest.item[inventoryIndex].SetDefaults(ItemID.SandstorminaBottle);
-								SandstormInABottleCount += 1;
-								break;
-							}
+							chest.item[inventoryIndex].SetDefaults(missingPyramidItems[0]);
+							missingPyramidItems.RemoveAt(0);
+							if (desertChests.Count > 1)
+								desertChests.RemoveAt(desertChestsIndex);
+							break;
 						}
 					}
 				}
