@@ -25,8 +25,13 @@ namespace ReducedGrinding
 
 		public override void PostWorldGen()
 		{
+			//int worldSize = Main.maxTilesX / 4200 == 1 ? 1 : Main.maxTilesX / 4200 == 1.5 ? 2 : 3; in case I need it.
+
 			List<int> missingPyramidItems = new List<int> { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
+			bool beeMinecartMissing = true;
+
 			List<int> desertChests = new List<int>();
+			List<int> ivyChests = new List<int>();
 
 			for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
 			{
@@ -36,15 +41,28 @@ namespace ReducedGrinding
 					continue;
 
 				int TileSubID = 1; //Gold Chest
-				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
 				{
-					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
 					{
-						List<int> missingPyramidItemsOld = new List<int>();
-						missingPyramidItemsOld.AddRange(missingPyramidItems);
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							List<int> missingPyramidItemsOld = new List<int>();
+							missingPyramidItemsOld.AddRange(missingPyramidItems);
 
-						foreach (int i in missingPyramidItemsOld)
-							if (chest.item[inventoryIndex].type == i) missingPyramidItems.Remove(i);
+							foreach (int itemType in missingPyramidItemsOld)
+								if (chest.item[inventoryIndex].type == itemType) missingPyramidItems.Remove(itemType);
+						}
+					}
+
+					TileSubID = 10; //Ivy Chest
+					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+					{
+						ivyChests.Add(chestIndex);
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.BeeMinecart) beeMinecartMissing = false;
+						}
 					}
 				}
 
@@ -74,6 +92,21 @@ namespace ReducedGrinding
 					}
 				}
             }
+
+			if (beeMinecartMissing && ivyChests.Count > 0)
+			{
+				int chestIndex = ivyChests[Main.rand.Next(ivyChests.Count)];
+
+				Chest chest = Main.chest[chestIndex];
+				for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+				{
+					if (chest.item[inventoryIndex].type == ItemID.None)
+					{
+						chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
+						break;
+					}
+				}
+			}
 		}
 
 		public override void PostUpdateWorld()
@@ -81,21 +114,21 @@ namespace ReducedGrinding
 			Player player = Main.player[Main.myPlayer];
 
 			int playerCoinAmount = 0;
-			foreach (Item i in player.inventory)
+			foreach (Item inventoryIndex in player.inventory)
 			{
-				switch (i.type)
+				switch (inventoryIndex.type)
 				{
 					case ItemID.CopperCoin:
-						playerCoinAmount += 1 * i.stack;
+						playerCoinAmount += 1 * inventoryIndex.stack;
 						break;
 					case ItemID.SilverCoin:
-						playerCoinAmount += 100 * i.stack;
+						playerCoinAmount += 100 * inventoryIndex.stack;
 						break;
 					case ItemID.GoldCoin:
-						playerCoinAmount += 10000 * i.stack;
+						playerCoinAmount += 10000 * inventoryIndex.stack;
 						break;
 					case ItemID.PlatinumCoin:
-						playerCoinAmount += 1000000 * i.stack;
+						playerCoinAmount += 1000000 * inventoryIndex.stack;
 						break;
 				}
 			}
