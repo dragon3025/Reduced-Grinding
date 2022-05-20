@@ -45,6 +45,9 @@ namespace ReducedGrinding
 
 		public override void PostWorldGen()
 		{
+			if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
+				return;
+
 			//int worldSize = Main.maxTilesX / 4200 == 1 ? 1 : Main.maxTilesX / 4200 == 1.5 ? 2 : 3; in case I need it.
 
 			List<int> missingPyramidItems = new List<int> { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };

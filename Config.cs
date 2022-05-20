@@ -1933,6 +1933,11 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
+        [Label("Add Missing Rare Chest Items During World Generation")]
+        [DefaultValue(true)]
+        [Tooltip("After Vanilla World Generation, this mod will locate certain missing rare chest items and add them to the world.")]
+        public bool GenerateMissingRareChestItems;
+
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
             message = "Can't change settings in a server.";
