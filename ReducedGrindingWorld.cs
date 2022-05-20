@@ -28,10 +28,13 @@ namespace ReducedGrinding
 			//int worldSize = Main.maxTilesX / 4200 == 1 ? 1 : Main.maxTilesX / 4200 == 1.5 ? 2 : 3; in case I need it.
 
 			List<int> missingPyramidItems = new List<int> { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
+			List<int> missingLivingWoodItems = new List<int> { ItemID.BabyBirdStaff, ItemID.SunflowerMinecart, ItemID.LadybugMinecart};
 			bool beeMinecartMissing = true;
 
 			List<int> desertChests = new List<int>();
 			List<int> ivyChests = new List<int>();
+			List<int> livingWoodChests = new List<int>();
+			List<int> surfaceChests = new List<int>();
 
 			for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
 			{
@@ -62,6 +65,24 @@ namespace ReducedGrinding
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
 							if (chest.item[inventoryIndex].type == ItemID.BeeMinecart) beeMinecartMissing = false;
+						}
+					}
+
+					TileSubID = 0; //Surface Chest
+					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+						surfaceChests.Add(chestIndex);
+
+					TileSubID = 12; //Living Wood Chest
+					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+					{
+						livingWoodChests.Add(chestIndex);
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							List<int> missingLivingWoodItemsOld = new List<int>();
+							missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
+
+							foreach (int itemType in missingLivingWoodItemsOld)
+								if (chest.item[inventoryIndex].type == itemType) missingLivingWoodItems.Remove(itemType);
 						}
 					}
 				}
@@ -104,6 +125,48 @@ namespace ReducedGrinding
 					{
 						chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
 						break;
+					}
+				}
+			}
+
+			if ((surfaceChests.Count + livingWoodChests.Count) > 0)
+			{
+				while (missingLivingWoodItems.Count > 0)
+				{
+					if (livingWoodChests.Count > 0)
+					{
+						int livingWoodChestsIndex = Main.rand.Next(livingWoodChests.Count);
+						int chestIndex = livingWoodChests[livingWoodChestsIndex];
+
+						Chest chest = Main.chest[chestIndex];
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+								missingLivingWoodItems.RemoveAt(0);
+								livingWoodChests.RemoveAt(livingWoodChestsIndex);
+								break;
+							}
+						}
+					}
+					else
+					{
+						int surfaceChestIndex = Main.rand.Next(surfaceChests.Count);
+						int chestIndex = surfaceChests[surfaceChestIndex];
+
+						Chest chest = Main.chest[chestIndex];
+						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						{
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+								missingLivingWoodItems.RemoveAt(0);
+								if (surfaceChests.Count > 1)
+									surfaceChests.RemoveAt(surfaceChestIndex);
+								break;
+							}
+						}
 					}
 				}
 			}
