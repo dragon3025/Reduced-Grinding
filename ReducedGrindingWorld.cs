@@ -42,6 +42,8 @@ namespace ReducedGrinding
     {
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
+		public static bool sleepBoost = false;
+		public static int sleepBoostCheck = 60;
 
 		public override void PostWorldGen()
 		{
@@ -291,8 +293,42 @@ namespace ReducedGrinding
 			}
 		}
 
+		public override void PostUpdateTime()
+		{
+			if (Main.fastForwardTime)
+				return;
+
+			if (Main.CurrentFrameFlags.SleepingPlayersCount != Main.CurrentFrameFlags.ActivePlayersCount)
+				return;
+
+			if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
+				return;
+
+			int timeBoost = 0;
+			for (int i = 0; i < 255; i++)
+			{
+				if (!Main.player[i].active)
+					continue;
+				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
+				{
+					timeBoost = 55;
+					Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)timeBoost;
+					break;
+				}
+			}
+
+			Main.time += timeBoost;
+
+			for (int i = 0; i < 255; i++)
+			{
+				if (!Main.player[i].active)
+					continue;
+			}
+		}
+
 		public override void PostUpdateWorld()
         {
+
 			Player player = Main.player[Main.myPlayer];
 
 			int playerCoinAmount = 0;
@@ -318,15 +354,16 @@ namespace ReducedGrinding
 			bool anyPlayerHasCelestialBeacon = false;
 			for (int i = 0; i < 255; i++)
 			{
-				if (Main.player[i].active)
-				{
-					if (Main.player[i].HasItem(ModContent.ItemType<Items.Celestial_Beacon>()))
-						anyPlayerHasCelestialBeacon = true;
-				}
+				if (!Main.player[i].active)
+					continue;
+				if (Main.player[i].HasItem(ModContent.ItemType<Items.Celestial_Beacon>()))
+					anyPlayerHasCelestialBeacon = true;
 			}
 
 			if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
 				NPC.MoonLordCountdown = 1;
+
+
 
 			if (Main.time % 600 == 0 && !NPC.downedMoonlord)
 			{
@@ -350,6 +387,8 @@ namespace ReducedGrinding
 				{
 					Main.moonPhase = 0;
 				}
+				if (Main.bloodMoon && Main.moonPhase == 4)
+					Main.bloodMoon = false;
 				if (Main.netMode == NetmodeID.Server)
 				{
 					var netMessage = Mod.GetPacket();

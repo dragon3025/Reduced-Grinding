@@ -1935,7 +1935,7 @@ namespace ReducedGrinding
 
         [Label("Add Missing Rare Chest Items During World Generation")]
         [DefaultValue(true)]
-        [Tooltip("After Vanilla World Generation, this mod will locate certain missing rare chest items and add them to the world.")]
+        [Tooltip("After Vanilla World Generation, this mod will detect if certain rare chest items are missing from the world and add them to the world. For example: Pyramid items that are missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
