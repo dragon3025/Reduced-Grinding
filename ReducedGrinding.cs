@@ -1,5 +1,5 @@
 /*To debug, use:
-ErrorLogger.Log(<string>);
+ErrorLogger.Log(<string>); /NO LONGER WORKS
 
 To turn into a string use:
 Value.ToString()
@@ -96,6 +96,15 @@ namespace ReducedGrinding
             {
                 case ReducedGrindingMessageType.advanceMoonPhase:
                     ReducedGrindingWorld.advanceMoonPhase = reader.ReadBoolean();
+                    break;
+                case ReducedGrindingMessageType.sundialSearchCount:
+                    ReducedGrindingWorld.sundialSearchCount = reader.ReadInt32();
+                    break;
+                case ReducedGrindingMessageType.sundialX:
+                    ReducedGrindingWorld.sundialX = reader.ReadInt32();
+                    break;
+                case ReducedGrindingMessageType.sundialY:
+                    ReducedGrindingWorld.sundialY = reader.ReadInt32();
                     break;
             }
         }
@@ -289,7 +298,10 @@ namespace ReducedGrinding
 
     enum ReducedGrindingMessageType : byte
     {
-        advanceMoonPhase
+        advanceMoonPhase,
+        sundialSearchCount,
+        sundialX,
+        sundialY
     }
 
 }

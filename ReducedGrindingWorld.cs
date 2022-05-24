@@ -44,6 +44,9 @@ namespace ReducedGrinding
 		public static bool advanceMoonPhase = false;
 		public static bool sleepBoost = false;
 		public static int sleepBoostCheck = 60;
+		public static int sundialSearchCount = 0;
+		public static int sundialX = -1;
+		public static int sundialY = -1;
 
 		public override void PostWorldGen()
 		{
@@ -295,6 +298,27 @@ namespace ReducedGrinding
 
 		public override void PostUpdateTime()
 		{
+			sundialSearchCount++;
+			if (sundialSearchCount == 60)
+			{
+				sundialSearchCount = 0;
+				sundialX = sundialY = -1;
+				for (int i = 0; i < Main.maxTilesY; i++)
+                {
+					for (int j = 0; j < Main.maxTilesX; j++)
+                    {
+						if (Main.tile[j, i].TileType == TileID.Sundial)
+                        {
+							sundialX = j + 1;
+							sundialY = i + 1;
+							break;
+                        }
+                    }
+					if (sundialX > -1)
+						break;
+                }
+            }
+
 			if (Main.fastForwardTime)
 				return;
 
@@ -304,25 +328,58 @@ namespace ReducedGrinding
 			if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
 				return;
 
-			int timeBoost = 0;
+			float timeBoost = 55f;
+
+			if (sundialX == -1)
+				timeBoost /= 2;
+
+			for (int i = 0; i < 255; i++)
+			{
+				if (!Main.player[i].active)
+					continue;
+				if (Main.player[i].townNPCs < 3)
+				{
+					timeBoost /= 2;
+					break;
+				}
+			}
+
+			int nearbyEnemies = 0;
+            int enemyRange = 2000;
+			for (int i = 0; i < 255; i++)
+			{
+				if (!Main.player[i].active)
+					continue;
+                int enemyCount = 0;
+                for (int l = 0; l < 200; l++)
+				{
+					if (Main.npc[l].active && !Main.npc[l].friendly && Main.npc[l].damage > 0 && Main.npc[l].lifeMax > 5 && !Main.npc[l].dontCountMe && (Main.npc[l].Center - Main.player[i].Center).Length() < enemyRange)
+						enemyCount++;
+				}
+				nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
+			}
+			Main.NewText(nearbyEnemies.ToString());
+			timeBoost /= nearbyEnemies + 1;
+
+			for (int i = 0; i < 255; i++)
+			{
+				if (!Main.player[i].active)
+					continue;
+				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) == -1)
+				{
+					timeBoost /= 2;
+					break;
+				}
+			}
+
+			Main.time += (int)timeBoost;
+
 			for (int i = 0; i < 255; i++)
 			{
 				if (!Main.player[i].active)
 					continue;
 				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
-				{
-					timeBoost = 55;
 					Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)timeBoost;
-					break;
-				}
-			}
-
-			Main.time += timeBoost;
-
-			for (int i = 0; i < 255; i++)
-			{
-				if (!Main.player[i].active)
-					continue;
 			}
 		}
 
