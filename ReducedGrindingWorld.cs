@@ -358,7 +358,6 @@ namespace ReducedGrinding
 				}
 				nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
 			}
-			Main.NewText(nearbyEnemies.ToString());
 			timeBoost /= nearbyEnemies + 1;
 
 			for (int i = 0; i < 255; i++)
