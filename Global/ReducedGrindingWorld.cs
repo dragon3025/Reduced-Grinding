@@ -426,7 +426,7 @@ namespace ReducedGrinding
 			{
 				if (!Main.player[i].active)
 					continue;
-				if (Main.player[i].HasItem(ModContent.ItemType<Items.Celestial_Beacon>()))
+				if (Main.player[i].HasItem(ModContent.ItemType<Items.BossAndEventControl.Celestial_Beacon>()))
 					anyPlayerHasCelestialBeacon = true;
 			}
 
@@ -442,7 +442,7 @@ namespace ReducedGrinding
 					if (Main.npc[i].type == NPCID.MoonLordCore && !anyPlayerHasCelestialBeacon)
 					{
 						var source = new EntitySource_Gift(Main.player[(int)Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)]);
-						player.QuickSpawnItem(source, ModContent.ItemType<Items.Celestial_Beacon>());
+						player.QuickSpawnItem(source, ModContent.ItemType<Items.BossAndEventControl.Celestial_Beacon>());
 						break;
 					}
 				}

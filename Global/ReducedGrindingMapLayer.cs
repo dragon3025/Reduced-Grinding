@@ -20,7 +20,7 @@ namespace ReducedGrinding
 			const float scaleIfNotSelected = 1f;
 			const float scaleIfSelected = scaleIfNotSelected * 2f;
 
-			var enchantedSundialTexture = ModContent.Request<Texture2D>("ReducedGrinding/Assets/EnchantedSundialMapMarker").Value;
+			var enchantedSundialTexture = ModContent.Request<Texture2D>("ReducedGrinding/Global/EnchantedSundialMapMarker").Value;
 
 			if (ReducedGrindingWorld.sundialX == -1)
 				return;

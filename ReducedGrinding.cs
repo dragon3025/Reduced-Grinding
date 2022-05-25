@@ -34,11 +34,11 @@ namespace ReducedGrinding
         public override void Load()
         {
             ModTranslation text = LocalizationLoader.CreateTranslation("Common.PlanteraBulbLable");
-            text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
+            text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.GoblinRetreatOrderLable");
-            text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.Goblin_Retreat_Order>()}] Goblin Retreat Order");
+            text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>()}] Goblin Retreat Order");
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.GoldReflectionMirror");
@@ -46,7 +46,7 @@ namespace ReducedGrinding
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.PirateRetreatOrder");
-            text.SetDefault($"Pirate Sells [i:{ModContent.ItemType<Items.Pirate_Retreat_Order>()}] Pirate Retreat Order");
+            text.SetDefault($"Pirate Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>()}] Pirate Retreat Order");
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.MoonBall");
@@ -54,11 +54,11 @@ namespace ReducedGrinding
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.WarPotion");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
+            text.SetDefault($"[i:{ModContent.ItemType<Items.BuffPotions.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.ChaosPotion");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.Chaos_Potion>()}] Chaos Potion (Crafted with [i:{ModContent.ItemType<Items.War_Potion>()}] War Potion; gives Battle, War, and Chaos Buffs).");
+            text.SetDefault($"[i:{ModContent.ItemType<Items.BuffPotions.Chaos_Potion>()}] Chaos Potion (Crafted with [i:{ModContent.ItemType<Items.BuffPotions.War_Potion>()}] War Potion; gives Battle, War, and Chaos Buffs).");
             LocalizationLoader.AddTranslation(text);
         }
 

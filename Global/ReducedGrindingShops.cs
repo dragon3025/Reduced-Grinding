@@ -219,7 +219,7 @@ namespace ReducedGrinding
 					}*/
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Plantera_Bulb>());
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>());
 						nextSlot++;
 					}
 					break;
@@ -247,14 +247,14 @@ namespace ReducedGrinding
 				case NPCID.Pirate:
 					if (GetInstance<HOtherModdedItemsConfig>().PirateSellsPirateRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Pirate_Retreat_Order>());
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.GoblinTinkerer:
 					if (GetInstance<HOtherModdedItemsConfig>().GoblinTinkererSellsGoblinRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Goblin_Retreat_Order>());
+						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>());
 						nextSlot++;
 					}
 					break;

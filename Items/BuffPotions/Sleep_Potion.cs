@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace ReducedGrinding.Items
+namespace ReducedGrinding.Items.BuffPotions
 {
     public class Sleep_Potion : ModItem
     {
