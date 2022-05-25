@@ -16,7 +16,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 
-namespace ReducedGrinding.Common.GlobalNPCs
+namespace ReducedGrinding
 {
     public class ReducedGrindingNPCLoot : GlobalNPC
     {
