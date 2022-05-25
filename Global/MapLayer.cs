@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 
-namespace ReducedGrinding
+namespace ReducedGrinding.Global
 {
 	public class MapLayer : ModMapLayer
 	{
@@ -22,13 +22,13 @@ namespace ReducedGrinding
 
 			var enchantedSundialTexture = ModContent.Request<Texture2D>("ReducedGrinding/Global/EnchantedSundialMapMarker").Value;
 
-			if (World.sundialX == -1)
+			if (Global.Update.sundialX == -1)
 				return;
 
 			if (Math.Round(Main.time / 60) % 2 == 0) //TO-DO is it possible to make the sundial appear below Pylons instead?
 				return;
 
-			if (context.Draw(enchantedSundialTexture, new Vector2(World.sundialX, World.sundialY), Color.White, new SpriteFrame(1, 1, 0, 0), scaleIfNotSelected, scaleIfSelected, Alignment.Center).IsMouseOver) {
+			if (context.Draw(enchantedSundialTexture, new Vector2(Global.Update.sundialX, Global.Update.sundialY), Color.White, new SpriteFrame(1, 1, 0, 0), scaleIfNotSelected, scaleIfSelected, Alignment.Center).IsMouseOver) {
 				text = "Enchanted Sundial\n(Boosting Sleep Rate)";
 			}
 		}

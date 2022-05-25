@@ -95,16 +95,16 @@ namespace ReducedGrinding
             switch (msgType)
             {
                 case ReducedGrindingMessageType.advanceMoonPhase:
-                    World.advanceMoonPhase = reader.ReadBoolean();
+                    Global.Update.advanceMoonPhase = reader.ReadBoolean();
                     break;
                 case ReducedGrindingMessageType.sundialSearchCount:
-                    World.sundialSearchCount = reader.ReadInt32();
+                    Global.Update.sundialSearchCount = reader.ReadInt32();
                     break;
                 case ReducedGrindingMessageType.sundialX:
-                    World.sundialX = reader.ReadInt32();
+                    Global.Update.sundialX = reader.ReadInt32();
                     break;
                 case ReducedGrindingMessageType.sundialY:
-                    World.sundialY = reader.ReadInt32();
+                    Global.Update.sundialY = reader.ReadInt32();
                     break;
             }
         }

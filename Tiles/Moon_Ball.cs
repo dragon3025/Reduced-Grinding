@@ -70,12 +70,12 @@ namespace ReducedGrinding.Tiles
 		{
             Terraria.Player player = Main.LocalPlayer;
 
-			World.advanceMoonPhase = true;
+			Global.Update.advanceMoonPhase = true;
 			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 			{
 				var netMessage = Mod.GetPacket();
 				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-				netMessage.Write(World.advanceMoonPhase);
+				netMessage.Write(Global.Update.advanceMoonPhase);
 				netMessage.Send();
 			}
 			SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball

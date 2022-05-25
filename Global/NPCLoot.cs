@@ -16,7 +16,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 
-namespace ReducedGrinding
+namespace ReducedGrinding.Global
 {
     public class NPCLoot : GlobalNPC
     {

@@ -22,10 +22,10 @@ using static Terraria.ModLoader.ModContent;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 
-namespace ReducedGrinding
+namespace ReducedGrinding.Global
 {
 
-    class Player : ModPlayer
+    class Fishing : ModPlayer
     {
         /*public override void ModifyCaughtFish(Item fish)
         {

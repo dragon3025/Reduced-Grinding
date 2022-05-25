@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
 
-namespace ReducedGrinding
+namespace ReducedGrinding.Global
 {
 	public class Shops : GlobalNPC
     {
@@ -715,7 +715,7 @@ namespace ReducedGrinding
 							nextSlot++;
 						}
 					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease > 0 && nextSlot < 39 && WorldGen.shadowOrbSmashed)
+					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease > 0 && nextSlot < 39 && Terraria.WorldGen.shadowOrbSmashed)
 					{
 						addItem = true;
 						for (int i = 0; i < shop.Length; i++)
