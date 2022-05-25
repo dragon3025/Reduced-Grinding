@@ -29,7 +29,7 @@ namespace ReducedGrinding.Items
             Item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
 			if (Main.xMas)
 			{
@@ -40,7 +40,7 @@ namespace ReducedGrinding.Items
 				return true;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			if (Main.netMode == NetmodeID.SinglePlayer)
 			{

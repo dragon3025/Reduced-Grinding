@@ -26,7 +26,7 @@ namespace ReducedGrinding.Items
             Item.consumable = false;
 		}
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
 			bool boneMerchantExists = true;
 			for (int i = 0; i < Main.npc.Length; i++) //Do once for each NPC in the world
@@ -40,7 +40,7 @@ namespace ReducedGrinding.Items
 			return boneMerchantExists;
 		}
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			NPC.SpawnOnPlayer(player.whoAmI, ModContent.NPCType<NPCs.BoneMerchant>());
 			return true;

@@ -38,7 +38,7 @@ using Terraria.ModLoader.UI;
 
 namespace ReducedGrinding
 {
-	public class ReducedGrindingWorld : ModSystem
+	public class World : ModSystem
     {
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
@@ -399,10 +399,10 @@ namespace ReducedGrinding
 		public override void PostUpdateWorld()
         {
 
-			Player player = Main.player[Main.myPlayer];
+            Terraria.Player player = Main.player[Main.myPlayer];
 
 			int playerCoinAmount = 0;
-			foreach (Item inventoryIndex in player.inventory)
+			foreach (Terraria.Item inventoryIndex in player.inventory)
 			{
 				switch (inventoryIndex.type)
 				{
@@ -441,7 +441,7 @@ namespace ReducedGrinding
 				{
 					if (Main.npc[i].type == NPCID.MoonLordCore && !anyPlayerHasCelestialBeacon)
 					{
-						var source = new EntitySource_Gift(Main.player[(int)Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)]);
+						var source = new EntitySource_Gift(Main.player[(int)Terraria.Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)]);
 						player.QuickSpawnItem(source, ModContent.ItemType<Items.BossAndEventControl.Celestial_Beacon>());
 						break;
 					}
@@ -463,7 +463,7 @@ namespace ReducedGrinding
 				{
 					var netMessage = Mod.GetPacket();
 					netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-					netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+					netMessage.Write(World.advanceMoonPhase);
 					netMessage.Send();
 					NetMessage.SendData(MessageID.WorldData);
 				}

@@ -22,12 +22,12 @@ namespace ReducedGrinding.Items.BossAndEventControl
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.value = Item.buyPrice(0, 0, 20);
+            Item.value = Terraria.Item.buyPrice(0, 0, 20);
 			Item.UseSound = SoundID.Item4;
             Item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
 			if (Main.invasionType == 1)
 				return true;
@@ -35,7 +35,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 				return false;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			Main.invasionSize = 0;
 			if (Main.netMode != NetmodeID.MultiplayerClient)

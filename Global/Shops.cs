@@ -5,19 +5,19 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
-	public class ReducedGrindingShops : GlobalNPC
+	public class Shops : GlobalNPC
     {
 
 		public override void GetChat(NPC npc, ref string chat)
 		{
-			Player player = Main.player[Main.myPlayer];
+            Terraria.Player player = Main.player[Main.myPlayer];
 			if (npc.type == NPCID.Angler)
 				Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
 		}
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-			Player player = Main.player[Main.myPlayer];
+            Terraria.Player player = Main.player[Main.myPlayer];
 			//Mod luiafk = ModLoader.GetMod("Luiafk");
 
 			switch (type)

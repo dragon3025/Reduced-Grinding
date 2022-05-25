@@ -24,17 +24,17 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Item.buyPrice(0, 0, 2, 0);
+            Item.value = Terraria.Item.buyPrice(0, 0, 2, 0);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
             return true;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			if (Main.raining)
 			{

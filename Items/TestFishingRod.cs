@@ -47,13 +47,13 @@ namespace ReducedGrinding.Items
 
 		// Grants the High Test Fishing Line bool if holding the item.
 		// NOTE: Only triggers through the hotbar, not if you hold the item by hand outside of the inventory.
-		public override void HoldItem(Player player) {
+		public override void HoldItem(Terraria.Player player) {
 			player.accFishingLine = true;
 		}
 
 		// Overrides the default shooting method to fire multiple bobbers.
 		// NOTE: This will allow the fishing rod to summon multiple Duke Fishrons with multiple Truffle Worms in the inventory.
-		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
+		public override bool Shoot(Terraria.Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
 			int bobberAmount = 10000;// Main.rand.Next(3, 6); // 3 to 5 bobbers
 			float spreadAmount = 75f; // how much the different bobbers are spread out.
 

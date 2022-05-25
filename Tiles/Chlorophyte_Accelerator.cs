@@ -34,7 +34,7 @@ namespace ReducedGrinding.Tiles
 		public override void MouseOverFar(int i, int j)
 		{
 			MouseOver(i, j);
-			Player player = Main.LocalPlayer;
+            Terraria.Player player = Main.LocalPlayer;
 			if (player.cursorItemIconText == "")
 			{
 				player.cursorItemIconEnabled = false;
@@ -49,7 +49,7 @@ namespace ReducedGrinding.Tiles
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Chlorophyte_Accelerator>());
+            Terraria.Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 32, 16, ModContent.ItemType<Items.Chlorophyte_Accelerator>());
 		}
 
 		public override void AnimateTile(ref int frame, ref int frameCounter)

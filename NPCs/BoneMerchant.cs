@@ -98,7 +98,7 @@ namespace ReducedGrinding.NPCs
 
 		public override void SetupShop(Chest shop, ref int nextSlot)
 		{
-			Player player = Main.player[Main.myPlayer];
+            Terraria.Player player = Main.player[Main.myPlayer];
 			if (player.HasItem(ModContent.ItemType<Items.Moon_Ball>()))
 			{
 				shop.item[nextSlot].SetDefaults(3001);

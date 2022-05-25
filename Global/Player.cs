@@ -25,7 +25,7 @@ using Terraria.DataStructures;
 namespace ReducedGrinding
 {
 
-    class ReducedGrindingPlayer : ModPlayer
+    class Player : ModPlayer
     {
         /*public override void ModifyCaughtFish(Item fish)
         {

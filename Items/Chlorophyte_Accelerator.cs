@@ -25,7 +25,7 @@ namespace ReducedGrinding.Items
 			Item.useStyle = ItemUseStyleID.Swing;
 			Item.consumable = true;
 			Item.rare = ItemRarityID.Lime;
-			Item.value = Item.buyPrice(0, 0, 58, 80);
+            Item.value = Terraria.Item.buyPrice(0, 0, 58, 80);
 			Item.createTile = ModContent.TileType<Tiles.Chlorophyte_Accelerator>();
 		}
 	

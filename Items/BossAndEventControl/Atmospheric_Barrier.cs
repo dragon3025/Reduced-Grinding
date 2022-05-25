@@ -20,7 +20,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 			Item.width = 36;
 			Item.height = 40;
 			Item.maxStack = 1;
-			Item.value = Item.buyPrice(0, 3, 46);
+            Item.value = Terraria.Item.buyPrice(0, 3, 46);
 			Item.rare = ItemRarityID.Red;
             Item.useAnimation = 20;
             Item.useTime = 45;
@@ -29,12 +29,12 @@ namespace ReducedGrinding.Items.BossAndEventControl
             Item.consumable = false;
 		}
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
 			return true;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			if (Main.netMode == NetmodeID.Server)
 				ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Celestial Invasion was stopped."), new Color(255, 0, 255));

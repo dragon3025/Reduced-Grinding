@@ -23,7 +23,7 @@ using Terraria;
 namespace ReducedGrinding
 {
 
-	class ReducedGrindingRecipes : ModSystem
+	class Recipes : ModSystem
 	{
 		// A place to store the recipe group so we can easily use it later
 		public static RecipeGroup goldAndBiomeCrates;

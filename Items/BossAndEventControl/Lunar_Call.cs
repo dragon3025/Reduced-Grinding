@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 			Item.width = 34;
 			Item.height = 34;
 			Item.maxStack = 99;
-			Item.value = Item.buyPrice(0, 0, 50, 0);
+            Item.value = Terraria.Item.buyPrice(0, 0, 50, 0);
 			Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 20;
             Item.useTime = 45;
@@ -30,7 +30,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
             Item.consumable = true;
 		}
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
 		{
 			bool LunaticCultistExists = false;
 			for (int i = 0; i < Main.npc.Length; i++)
@@ -46,7 +46,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 				return false;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			Main.invasionDelay = 0;
 			//Main.StartInvasion(4);

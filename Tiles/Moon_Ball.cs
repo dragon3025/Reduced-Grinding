@@ -58,7 +58,7 @@ namespace ReducedGrinding.Tiles
 
 		public override void KillMultiTile(int x, int y, int frameX, int frameY)
 		{
-			Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
+            Terraria.Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
 		}
 
 		public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
@@ -68,14 +68,14 @@ namespace ReducedGrinding.Tiles
 
 		public override bool RightClick(int x, int y)
 		{
-			Player player = Main.LocalPlayer;
+            Terraria.Player player = Main.LocalPlayer;
 
-			ReducedGrindingWorld.advanceMoonPhase = true;
+			World.advanceMoonPhase = true;
 			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 			{
 				var netMessage = Mod.GetPacket();
 				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-				netMessage.Write(ReducedGrindingWorld.advanceMoonPhase);
+				netMessage.Write(World.advanceMoonPhase);
 				netMessage.Send();
 			}
 			SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball
@@ -85,7 +85,7 @@ namespace ReducedGrinding.Tiles
 
 		public override void MouseOver(int x, int y)
 		{
-			Player player = Main.LocalPlayer;
+            Terraria.Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 			player.cursorItemIconID = ModContent.ItemType<Items.Moon_Ball>();

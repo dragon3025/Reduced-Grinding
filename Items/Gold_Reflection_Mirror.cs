@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items
 			Item.width = 32;
 			Item.height = 32;
 			Item.maxStack = 1;
-			Item.value = Item.buyPrice(0, 12);
+            Item.value = Terraria.Item.buyPrice(0, 12);
 			Item.rare = ItemRarityID.White;
 		}
 	}

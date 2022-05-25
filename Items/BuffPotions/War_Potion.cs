@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Item.buyPrice(0, 0, 1, 13);
+            Item.value = Terraria.Item.buyPrice(0, 0, 1, 13);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.War>();

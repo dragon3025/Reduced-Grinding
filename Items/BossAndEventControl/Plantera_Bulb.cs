@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 			Item.width = 32;
 			Item.height = 32;
 			Item.maxStack = 1;
-			Item.value = Item.buyPrice(0, 10, 0, 0);
+            Item.value = Terraria.Item.buyPrice(0, 10, 0, 0);
 			Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 20;
             Item.useTime = 45;
@@ -26,7 +26,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 			Item.consumable = true;
 		}
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
 			if (player.ZoneJungle)
 				return true;
@@ -34,7 +34,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 				return false;
 		}
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
 			NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
 			return true;

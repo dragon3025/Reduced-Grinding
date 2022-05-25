@@ -27,12 +27,12 @@ namespace ReducedGrinding.Items
             Item.consumable = true;
         }
 
-        public override bool CanUseItem(Player player)
+        public override bool CanUseItem(Terraria.Player player)
         {
             return true;
         }
 
-        public override bool? UseItem(Player player)
+        public override bool? UseItem(Terraria.Player player)
         {
             Main.NewText("The angler has a new quest for you.", 0, 128, 255);
             Main.AnglerQuestSwap();
