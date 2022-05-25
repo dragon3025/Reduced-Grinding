@@ -298,26 +298,36 @@ namespace ReducedGrinding
 
 		public override void PostUpdateTime()
 		{
-			sundialSearchCount++;
-			if (sundialSearchCount == 60)
+			float timeBoost = GetInstance<IOtherConfig>().SleepBoostBase;
+
+			if (GetInstance<IOtherConfig>().SleepBoostSundialMultiplier < 1)
 			{
-				sundialSearchCount = 0;
-				sundialX = sundialY = -1;
-				for (int i = 0; i < Main.maxTilesY; i++)
-                {
-					for (int j = 0; j < Main.maxTilesX; j++)
-                    {
-						if (Main.tile[j, i].TileType == TileID.Sundial)
-                        {
-							sundialX = j + 1;
-							sundialY = i + 1;
+				sundialSearchCount++;
+				if (sundialSearchCount == 60)
+				{
+					sundialSearchCount = 0;
+					sundialX = sundialY = -1;
+					for (int i = 0; i < Main.maxTilesY; i++)
+					{
+						for (int j = 0; j < Main.maxTilesX; j++)
+						{
+							if (Main.tile[j, i].TileType == TileID.Sundial)
+							{
+								sundialX = j + 1;
+								sundialY = i + 1;
+								break;
+							}
+						}
+						if (sundialX > -1)
 							break;
-                        }
-                    }
-					if (sundialX > -1)
-						break;
-                }
-            }
+					}
+				}
+
+				if (sundialX == -1)
+					timeBoost *= GetInstance<IOtherConfig>().SleepBoostSundialMultiplier;
+			}
+			else
+				sundialX = sundialY = -1;
 
 			if (Main.fastForwardTime)
 				return;
@@ -328,46 +338,50 @@ namespace ReducedGrinding
 			if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
 				return;
 
-			float timeBoost = 55f;
-
-			if (sundialX == -1)
-				timeBoost /= 2;
-
-			for (int i = 0; i < 255; i++)
+			if (GetInstance<IOtherConfig>().SleepBoostTownMultiplier < 1)
 			{
-				if (!Main.player[i].active)
-					continue;
-				if (Main.player[i].townNPCs < 3)
+				for (int i = 0; i < 255; i++)
 				{
-					timeBoost /= 2;
-					break;
+					if (!Main.player[i].active)
+						continue;
+					if (Main.player[i].townNPCs < 3)
+					{
+						timeBoost *= GetInstance<IOtherConfig>().SleepBoostTownMultiplier;
+						break;
+					}
 				}
 			}
 
-			int nearbyEnemies = 0;
-            int enemyRange = 2000;
-			for (int i = 0; i < 255; i++)
+			if (GetInstance<IOtherConfig>().SleepBoostDivideByNearbyEnemies)
 			{
-				if (!Main.player[i].active)
-					continue;
-                int enemyCount = 0;
-                for (int l = 0; l < 200; l++)
+				int nearbyEnemies = 0;
+				int enemyRange = 2000;
+				for (int i = 0; i < 255; i++)
 				{
-					if (Main.npc[l].active && !Main.npc[l].friendly && Main.npc[l].damage > 0 && Main.npc[l].lifeMax > 5 && !Main.npc[l].dontCountMe && (Main.npc[l].Center - Main.player[i].Center).Length() < enemyRange)
-						enemyCount++;
+					if (!Main.player[i].active)
+						continue;
+					int enemyCount = 0;
+					for (int l = 0; l < 200; l++)
+					{
+						if (Main.npc[l].active && !Main.npc[l].friendly && Main.npc[l].damage > 0 && Main.npc[l].lifeMax > 5 && !Main.npc[l].dontCountMe && (Main.npc[l].Center - Main.player[i].Center).Length() < enemyRange)
+							enemyCount++;
+					}
+					nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
 				}
-				nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
+				timeBoost /= nearbyEnemies + 1;
 			}
-			timeBoost /= nearbyEnemies + 1;
 
-			for (int i = 0; i < 255; i++)
+			if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
 			{
-				if (!Main.player[i].active)
-					continue;
-				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) == -1)
+				for (int i = 0; i < 255; i++)
 				{
-					timeBoost /= 2;
-					break;
+					if (!Main.player[i].active)
+						continue;
+					if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) == -1)
+					{
+						timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
+						break;
+					}
 				}
 			}
 

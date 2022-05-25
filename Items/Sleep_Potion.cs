@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
@@ -21,7 +22,7 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Item.buyPrice(0, 0, 2, 0);
+            Item.value = Item.sellPrice(0, 0, 2, 0);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.Sleep>();
@@ -30,12 +31,15 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-                .AddIngredient(ItemID.SpecularFish)
-                .AddIngredient(ItemID.FallenStar)
-                .AddIngredient(ItemID.BottledWater)
-                .AddTile(TileID.Bottles)
-                .Register();
+            if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 || GetInstance<IOtherConfig>().SleepBoostBase == 0)
+            {
+                CreateRecipe()
+                  .AddIngredient(ItemID.BottledWater)
+                  .AddIngredient(ItemID.SpecularFish)
+                  .AddIngredient(ItemID.FallenStar)
+                  .AddTile(TileID.Bottles)
+                  .Register();
+            }
         }
     }
 }

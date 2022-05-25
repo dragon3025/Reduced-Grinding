@@ -1381,20 +1381,20 @@ namespace ReducedGrinding
         public bool StationaryMerchant;
 
         [Label("Base Multiplier When Merchant Present")]
-        [Increment(.01f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float S_MerchantPriceMultiplierDuringSale;
 
         [Label("Base Multiplier When Merchant Away")]
-        [Increment(.01f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(8f)]
         public float S_MerchantPriceMultiplier;
 
         [Tooltip("The Traveling Merchant Shop has 6 Rarity Tiers. The price each item in the Stationary Merchant's shop will be multiplied by 1 + ((Rarity_Tier - 1) * This_Configuration)")]
         [Label("Rarity Fee Rate")]
-        [Increment(.1f)]
+        [Increment(.09f)]
         [Range(0f, 10f)]
         [DefaultValue(1f)]
         public float S_MerchantRarityFee;
@@ -1404,6 +1404,7 @@ namespace ReducedGrinding
             "\ngreatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have.")]
         [Label("Base Extra Spawn Spawn Chance")]
         [Range(0, 10000)]
+        [Increment(0.1f)]
         [DefaultValue(1.0f)]
         public float BaseMorningTMerchantSpawnChance;
 
@@ -1874,26 +1875,26 @@ namespace ReducedGrinding
 
         [Header("$Mods.ReducedGrinding.Common.WarPotion")]
         [Label("Max Spawns Multiplier")]
-        [Increment(.0001f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float WarPotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
-        [Increment(.0001f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float WarPotionSpawnrateMultiplier;
 
         [Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
         [Label("Max Spawns Multiplier")]
-        [Increment(.0001f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float ChaosPotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
-        [Increment(.0001f)]
+        [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float ChaosPotionSpawnrateMultiplier;
@@ -1937,6 +1938,37 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         [Tooltip("After Vanilla World Generation, this mod will detect if certain rare chest items are missing from the world and add them to the world. For example: Pyramid items that are missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
+
+        [Header("Sleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
+
+        [Label("Starting Boost Amount (In-Game Minutes Added)")]
+        [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
+        [DefaultValue(55)]
+        [Range(0, 55)]
+        public int SleepBoostBase;
+
+        [Label("Multiplier for world without an Enchanted Sundial")]
+        [Tooltip("If less than 1, the Map will have an icon for the highest Enchanted Sundial.")]
+        [DefaultValue(0.5f)]
+        [Increment(0.01f)]
+        public float SleepBoostSundialMultiplier;
+
+        [Label("Multiplier for lack of a Town")]
+        [Tooltip("Sleep Boost is multiplied by this amount if any player has less than 3 NPCs near them.")]
+        [DefaultValue(0.5f)]
+        [Increment(0.01f)]
+        public float SleepBoostTownMultiplier;
+
+        [Label("Divide by Nearby Enemy Count (Hover for More Info)")]
+        [Tooltip("Divides sleep boost by an n+1 where n is highest amount of nearby enemies out of all players.")]
+        [DefaultValue(true)]
+        public bool SleepBoostDivideByNearbyEnemies;
+
+        [Label("Multiplier for No Player with Sleep Buff")]
+        [Tooltip("If less than 1, you'll be able to craft Sleep Potion, which gives Sleep Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
+        [DefaultValue(0.5f)]
+        [Increment(0.01f)]
+        public float SleepBoostNoPotionBuffMultiplier;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

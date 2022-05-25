@@ -8,6 +8,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 
 namespace ReducedGrinding
 {
@@ -24,8 +25,11 @@ namespace ReducedGrinding
 			if (ReducedGrindingWorld.sundialX == -1)
 				return;
 
+			if (Math.Round(Main.time / 60) % 2 == 0) //TO-DO is it possible to make the sundial appear below Pylons instead?
+				return;
+
 			if (context.Draw(enchantedSundialTexture, new Vector2(ReducedGrindingWorld.sundialX, ReducedGrindingWorld.sundialY), Color.White, new SpriteFrame(1, 1, 0, 0), scaleIfNotSelected, scaleIfSelected, Alignment.Center).IsMouseOver) {
-				text = "Enchanted Sundial";
+				text = "Enchanted Sundial\n(Boosting Sleep Rate)";
 			}
 		}
 	}
