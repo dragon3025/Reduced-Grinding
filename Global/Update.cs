@@ -31,11 +31,10 @@ namespace ReducedGrinding.Global
 	{
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
-		public static bool sleepBoost = false;
-		public static int sleepBoostCheck = 60;
 		public static int sundialSearchCount = 0;
 		public static int sundialX = -1;
 		public static int sundialY = -1;
+		public static bool nearPylon = false;
 
 		public override void PostUpdateTime()
 		{
@@ -69,6 +68,34 @@ namespace ReducedGrinding.Global
 			}
 			else
 				sundialX = sundialY = -1;
+
+			if (sundialX > -1)
+            {
+				nearPylon = false;
+				for (int i = 0; i < 255; i++)
+				{
+					if (!Main.player[i].active)
+						continue;
+					for (int x = -20; x <= 20; x++)
+                    {
+						for (int y = -20; y <= 20; y++)
+                        {
+							Point tileLocation = Main.player[i].Center.ToTileCoordinates();
+							int tilex = tileLocation.X + x;
+							int tiley = tileLocation.Y + y;
+							if (Main.tile[tilex, tiley].TileType == TileID.TeleportationPylon)
+                            {
+								nearPylon = true;
+								break;
+							}
+						}
+						if (nearPylon)
+							break;
+					}
+					if (nearPylon)
+						break;
+				}
+			}
 
 			if (Main.fastForwardTime)
 				return;
@@ -134,6 +161,31 @@ namespace ReducedGrinding.Global
 					continue;
 				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
 					Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)timeBoost;
+			}
+
+			if (Main.netMode == NetmodeID.Server)
+			{
+				var netMessage = Mod.GetPacket();
+
+				netMessage.Write((byte)ReducedGrindingMessageType.sundialSearchCount);
+				netMessage.Write(sundialSearchCount);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
+
+				netMessage.Write((byte)ReducedGrindingMessageType.sundialX);
+				netMessage.Write(sundialX);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
+
+				netMessage.Write((byte)ReducedGrindingMessageType.sundialY);
+				netMessage.Write(sundialY);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
+
+				netMessage.Write((byte)ReducedGrindingMessageType.nearPylon);
+				netMessage.Write(nearPylon);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
 			}
 		}
 

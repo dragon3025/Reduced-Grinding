@@ -22,10 +22,10 @@ namespace ReducedGrinding.Global
 
 			var enchantedSundialTexture = ModContent.Request<Texture2D>("ReducedGrinding/Global/EnchantedSundialMapMarker").Value;
 
-			if (Global.Update.sundialX == -1)
+			if (Update.sundialX == -1)
 				return;
 
-			if (Math.Round(Main.time / 60) % 2 == 0) //TO-DO is it possible to make the sundial appear below Pylons instead?
+			if (Update.nearPylon)
 				return;
 
 			if (context.Draw(enchantedSundialTexture, new Vector2(Global.Update.sundialX, Global.Update.sundialY), Color.White, new SpriteFrame(1, 1, 0, 0), scaleIfNotSelected, scaleIfSelected, Alignment.Center).IsMouseOver) {

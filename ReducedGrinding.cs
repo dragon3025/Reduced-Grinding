@@ -106,6 +106,9 @@ namespace ReducedGrinding
                 case ReducedGrindingMessageType.sundialY:
                     Global.Update.sundialY = reader.ReadInt32();
                     break;
+                case ReducedGrindingMessageType.nearPylon:
+                    Global.Update.nearPylon = reader.ReadBoolean();
+                    break;
             }
         }
     }
@@ -133,7 +136,8 @@ namespace ReducedGrinding
         advanceMoonPhase,
         sundialSearchCount,
         sundialX,
-        sundialY
+        sundialY,
+        nearPylon
     }
 
 }
