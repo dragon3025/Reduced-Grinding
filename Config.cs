@@ -1374,9 +1374,8 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        //[Tooltip("The chance of the Traveling Merchant spawning each morning is this amount when you have all permanent vanilla and Reduced Grinding NPCs.")]
         [Header("Stationary Merchant:\n\nThis NPC sells everything the Traveling Merchant has a chance to sell, but there's a catch. By default, his prices are higher, especially when the Traveling Merchant is away. Also by default, the rarer the item, the more expensive the item is. The price for each item will get modified by the configurations below.")]
-        [Label("Spawns")]
+        [Label("Allow Spawning")]
         [DefaultValue(true)]
         public bool StationaryMerchant;
 
@@ -1398,15 +1397,6 @@ namespace ReducedGrinding
         [Range(0f, 10f)]
         [DefaultValue(1f)]
         public float S_MerchantRarityFee;
-
-        [Header("Traveling Merchant")]
-        [Tooltip("This is an additional chance of the Traveling Merchant spawning each morning. This chance is" +
-            "\ngreatly decreased by permanent vanilla and Reduced Grinding NPC's that you don't have.")]
-        [Label("Base Extra Spawn Spawn Chance")]
-        [Range(0, 10000)]
-        [Increment(0.1f)]
-        [DefaultValue(1.0f)]
-        public float BaseMorningTMerchantSpawnChance;
 
         [Header("Traveling Merchant Shop Item Chance Increases")]
         [Label("[i:3055] Acorns")]
@@ -1912,7 +1902,7 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Tooltip("Permanent version of the Skeleton Merchant")]
-        [Label("Bone Merchant")]
+        [Label("Allow Bone Merchant Spawning")]
         [DefaultValue(false)]
         public bool BoneMerchant;
 
@@ -1921,12 +1911,12 @@ namespace ReducedGrinding
         public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
 
         [Tooltip("Permanent version of Santa Claus")]
-        [Label("Christmas Elf")]
+        [Label("Allow Christmas Elf Spawning")]
         [DefaultValue(true)]
         public bool ChristmasElf;
 
         [Tooltip("Sells what's needed to fight the next Vanilla boss (you can still aquire these items normally)")]
-        [Label("Loot Merchant")]
+        [Label("Allow Loot Merchant Spawning")]
         [DefaultValue(false)]
         public bool LootMerchant;
 

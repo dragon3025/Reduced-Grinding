@@ -192,27 +192,7 @@ namespace ReducedGrinding.Global
 		public override void PostUpdateWorld()
 		{
 
-			Terraria.Player player = Main.player[Main.myPlayer];
-
-			int playerCoinAmount = 0;
-			foreach (Terraria.Item inventoryIndex in player.inventory)
-			{
-				switch (inventoryIndex.type)
-				{
-					case ItemID.CopperCoin:
-						playerCoinAmount += 1 * inventoryIndex.stack;
-						break;
-					case ItemID.SilverCoin:
-						playerCoinAmount += 100 * inventoryIndex.stack;
-						break;
-					case ItemID.GoldCoin:
-						playerCoinAmount += 10000 * inventoryIndex.stack;
-						break;
-					case ItemID.PlatinumCoin:
-						playerCoinAmount += 1000000 * inventoryIndex.stack;
-						break;
-				}
-			}
+			Player player = Main.player[Main.myPlayer];
 
 			bool anyPlayerHasCelestialBeacon = false;
 			for (int i = 0; i < 255; i++)
@@ -241,7 +221,6 @@ namespace ReducedGrinding.Global
 				}
 			}
 
-			//I plan on having the dials enhance the speed of sleeping instead.
 			if (advanceMoonPhase)
 			{
 				advanceMoonPhase = false;
@@ -250,8 +229,10 @@ namespace ReducedGrinding.Global
 				{
 					Main.moonPhase = 0;
 				}
+
 				if (Main.bloodMoon && Main.moonPhase == 4)
 					Main.bloodMoon = false;
+
 				if (Main.netMode == NetmodeID.Server)
 				{
 					var netMessage = Mod.GetPacket();
@@ -262,103 +243,8 @@ namespace ReducedGrinding.Global
 				}
 			}
 
-			//There are 21 stationary vanilla NPCs (excluding Guide and Santa) as of 5/26/2017; 15 Pre-Hardmode and 6 Hardmode.
-			float TownNPCs = 0f;
-			float TownNPCsMax = 15f;
-			float TownHardmodeNPCs = 0f;
-			float TownHardmodeNPCsMax = 6f;
-			bool tryToSpawnTravelingMerchant = true;
-
 			//Mod luiafk = ModLoader.GetMod("Luiafk"); TODO
 			//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
-			if (GetInstance<IOtherConfig>().BoneMerchant)
-				TownNPCsMax++;
-			if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
-				TownNPCsMax++;
-			if (GetInstance<IOtherConfig>().LootMerchant)
-				TownNPCsMax++;
-			if (GetInstance<IOtherConfig>().ChristmasElf)
-				TownHardmodeNPCsMax++;
-
-			for (int i = 0; i < Terraria.Main.npc.Length; i++) //Do once for each NPC in the world
-			{
-				if (Terraria.Main.npc[i].townNPC == true)
-				{
-					if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
-					{
-						tryToSpawnTravelingMerchant = false;
-					}
-					if (
-						Terraria.Main.npc[i].type == NPCID.Merchant ||
-						Terraria.Main.npc[i].type == NPCID.Nurse ||
-						Terraria.Main.npc[i].type == NPCID.Demolitionist ||
-						Terraria.Main.npc[i].type == NPCID.DyeTrader ||
-						Terraria.Main.npc[i].type == NPCID.Dryad ||
-						Terraria.Main.npc[i].type == NPCID.DD2Bartender ||
-						Terraria.Main.npc[i].type == NPCID.ArmsDealer ||
-						Terraria.Main.npc[i].type == NPCID.Stylist ||
-						Terraria.Main.npc[i].type == NPCID.Painter ||
-						Terraria.Main.npc[i].type == NPCID.Angler ||
-						Terraria.Main.npc[i].type == NPCID.GoblinTinkerer ||
-						Terraria.Main.npc[i].type == NPCID.WitchDoctor ||
-						Terraria.Main.npc[i].type == NPCID.Clothier ||
-						Terraria.Main.npc[i].type == NPCID.Mechanic ||
-						Terraria.Main.npc[i].type == NPCID.PartyGirl ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.BoneMerchant>() && GetInstance<IOtherConfig>().BoneMerchant) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.StationaryMerchant>() && GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant) ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.LootMerchant>() && GetInstance<IOtherConfig>().LootMerchant)
-					)
-						TownNPCs++;
-					else if (
-						Terraria.Main.npc[i].type == NPCID.Wizard ||
-						Terraria.Main.npc[i].type == NPCID.TaxCollector ||
-						Terraria.Main.npc[i].type == NPCID.Truffle ||
-						Terraria.Main.npc[i].type == NPCID.Pirate ||
-						Terraria.Main.npc[i].type == NPCID.Steampunker ||
-						Terraria.Main.npc[i].type == NPCID.Cyborg ||
-						(Terraria.Main.npc[i].type == NPCType<NPCs.Christmas_Elf>() && GetInstance<IOtherConfig>().ChristmasElf)
-					)
-					{
-						TownHardmodeNPCs++;
-					}
-				}
-			}
-
-			float TownNPCPercent = (TownNPCs / TownNPCsMax + TownHardmodeNPCs / TownHardmodeNPCsMax) / 2;
-
-			if (!Main.fastForwardTime && Main.dayTime && Main.time < 27000.0)
-			{
-				int alltownNPCs = 0;
-				for (int j = 0; j < 200; j++)
-				{
-					if (Main.npc[j].active && Main.npc[j].townNPC && Main.npc[j].type != NPCID.OldMan && Main.npc[j].type != NPCID.SkeletonMerchant)
-					{
-						alltownNPCs++;
-					}
-				}
-				if (alltownNPCs >= 2)
-				{
-					if (tryToSpawnTravelingMerchant)
-					{
-						tryToSpawnTravelingMerchant = false;
-						if (!Main.fastForwardTime && Main.dayTime && Main.time < 27000.0)
-						{
-							int chanceRoll = (int)(27000.0 / (double)Main.dayRate);
-							chanceRoll *= 4;
-							for (int i = 0; i < 3; i++)
-							{
-								if (Main.rand.Next(chanceRoll) == 0)
-								{
-									tryToSpawnTravelingMerchant = true;
-									break;
-								}
-							}
-						}
-					}
-					if (tryToSpawnTravelingMerchant && Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().BaseMorningTMerchantSpawnChance * Math.Pow(TownNPCPercent, 2))
-                        Terraria.WorldGen.SpawnTravelNPC();
-				}
-			}
 		}
 	}
 }
