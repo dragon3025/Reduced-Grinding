@@ -31,7 +31,7 @@ namespace ReducedGrinding.Global
 	{
 		//Gets recording into world save
 		public static bool advanceMoonPhase = false;
-		public static int sundialSearchCount = 0;
+		public static int sundialSearchTimer = 0;
 		public static int sundialX = -1;
 		public static int sundialY = -1;
 		public static bool nearPylon = false;
@@ -40,12 +40,12 @@ namespace ReducedGrinding.Global
 		{
 			float timeBoost = GetInstance<IOtherConfig>().SleepBoostBase;
 
-			if (GetInstance<IOtherConfig>().SleepBoostSundialMultiplier < 1)
+			if (GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
 			{
-				sundialSearchCount++;
-				if (sundialSearchCount == 60)
+				sundialSearchTimer++;
+				if (sundialSearchTimer == 60)
 				{
-					sundialSearchCount = 0;
+					sundialSearchTimer = 0;
 					sundialX = sundialY = -1;
 					for (int i = 0; i < Main.maxTilesY; i++)
 					{
@@ -64,7 +64,7 @@ namespace ReducedGrinding.Global
 				}
 
 				if (sundialX == -1)
-					timeBoost *= GetInstance<IOtherConfig>().SleepBoostSundialMultiplier;
+					timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier;
 			}
 			else
 				sundialX = sundialY = -1;
@@ -106,7 +106,7 @@ namespace ReducedGrinding.Global
 			if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
 				return;
 
-			if (GetInstance<IOtherConfig>().SleepBoostTownMultiplier < 1)
+			if (GetInstance<IOtherConfig>().SleepBoostNoTownMultiplier < 1)
 			{
 				for (int i = 0; i < 255; i++)
 				{
@@ -114,7 +114,7 @@ namespace ReducedGrinding.Global
 						continue;
 					if (Main.player[i].townNPCs < 3)
 					{
-						timeBoost *= GetInstance<IOtherConfig>().SleepBoostTownMultiplier;
+						timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoTownMultiplier;
 						break;
 					}
 				}
@@ -167,8 +167,8 @@ namespace ReducedGrinding.Global
 			{
 				var netMessage = Mod.GetPacket();
 
-				netMessage.Write((byte)ReducedGrindingMessageType.sundialSearchCount);
-				netMessage.Write(sundialSearchCount);
+				netMessage.Write((byte)ReducedGrindingMessageType.sundialSearchTimer);
+				netMessage.Write(sundialSearchTimer);
 				netMessage.Send();
 				NetMessage.SendData(MessageID.WorldData);
 

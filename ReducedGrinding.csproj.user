@@ -3,11 +3,13 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
     <ShowAllFiles>true</ShowAllFiles>
+    <ActiveDebugProfile>Terraria</ActiveDebugProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>
     <StartProgram>C:\Program Files %28x86%29\Steam\steamapps\common\Terraria\Terraria.exe</StartProgram>
     <StartWorkingDirectory>C:\Program Files %28x86%29\Steam\steamapps\common\Terraria</StartWorkingDirectory>
+    <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <StartProgram>C:\Program Files %28x86%29\Steam\steamapps\common\Terraria\Terraria.exe</StartProgram>

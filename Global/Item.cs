@@ -41,6 +41,15 @@ namespace ReducedGrinding.Global
 			}
 		}
 
+        public override void ModifyTooltips(Terraria.Item item, List<TooltipLine> tooltips)
+        {
+            if (item.type == ItemID.Sundial && GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
+            {
+                TooltipLine tooltip = new TooltipLine(Mod, "Test","Place in the world to make time travel faster while sleeping.");
+                tooltips.Add(tooltip);
+            }
+        }
+
         public override void OpenVanillaBag(string context, Terraria.Player player, int arg)
         {
             var source = player.GetSource_OpenItem(arg);

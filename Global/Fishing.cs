@@ -649,32 +649,5 @@ namespace ReducedGrinding.Global
         //        isCrate = true;
         //}
         //
-        //public override void PostUpdate()
-        //{
-        //    Player player = Main.LocalPlayer;
-        //    int taxAlertRequirement = GetInstance<FOtherVanillaNPCConfig>().TaxCollectorTaxRequiredToChatTaxatMorningAndNight;
-        //
-        //    if (NPC.taxCollector && Main.time == 1.0)
-        //    {
-        //
-        //        if (player.taxMoney >= taxAlertRequirement && taxAlertRequirement > 0)
-        //        {
-        //            int taxGold = player.taxMoney;
-        //            int taxSilver = 0;
-        //            int taxCopper = 0;
-        //            taxCopper = taxGold % 100;
-        //            taxGold = (taxGold - taxCopper) / 100;
-        //            taxSilver = taxGold % 100;
-        //            taxGold = (taxGold - taxSilver) / 100;
-        //            Main.NewText("Tax Money:");
-        //            if (taxGold > 0)
-        //                Main.NewText(taxGold.ToString() + " Gold", 255, 255, 0);
-        //            if (taxSilver > 0)
-        //                Main.NewText(taxSilver.ToString() + " Silver", 191, 191, 191);
-        //            if (taxCopper > 0)
-        //                Main.NewText(taxCopper.ToString() + " Copper", 255, 127, 0);
-        //        }
-        //    }
-        //}
     }
 }

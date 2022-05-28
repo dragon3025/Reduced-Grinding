@@ -97,8 +97,8 @@ namespace ReducedGrinding
                 case ReducedGrindingMessageType.advanceMoonPhase:
                     Global.Update.advanceMoonPhase = reader.ReadBoolean();
                     break;
-                case ReducedGrindingMessageType.sundialSearchCount:
-                    Global.Update.sundialSearchCount = reader.ReadInt32();
+                case ReducedGrindingMessageType.sundialSearchTimer:
+                    Global.Update.sundialSearchTimer = reader.ReadInt32();
                     break;
                 case ReducedGrindingMessageType.sundialX:
                     Global.Update.sundialX = reader.ReadInt32();
@@ -134,7 +134,7 @@ namespace ReducedGrinding
     enum ReducedGrindingMessageType : byte
     {
         advanceMoonPhase,
-        sundialSearchCount,
+        sundialSearchTimer,
         sundialX,
         sundialY,
         nearPylon

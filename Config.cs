@@ -1941,13 +1941,13 @@ namespace ReducedGrinding
         [Tooltip("If less than 1, the Map will have an icon for the highest Enchanted Sundial.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
-        public float SleepBoostSundialMultiplier;
+        public float SleepBoostNoSundialMultiplier;
 
         [Label("Multiplier for lack of a Town")]
         [Tooltip("Sleep Boost is multiplied by this amount if any player has less than 3 NPCs near them.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
-        public float SleepBoostTownMultiplier;
+        public float SleepBoostNoTownMultiplier;
 
         [Label("Divide by Nearby Enemy Count (Hover for More Info)")]
         [Tooltip("Divides sleep boost by an n+1 where n is highest amount of nearby enemies out of all players.")]
