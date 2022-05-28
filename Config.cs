@@ -1818,14 +1818,6 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool MerchantSellsSwiftnessPotion;
 
-        [Header("Tax Collector")]
-        [Label("[i:73] Tax Requirement for Tax Alert")]
-        [Tooltip("Once the Tax Collector has this much money collected, he will let the player know each morning. Set to 0 to disable.")]
-        [Range(0, 100000)]
-        [Slider]
-        [DefaultValue(50000)]
-        public int TaxCollectorTaxRequiredToChatTaxatMorningAndNight;
-
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
             message = "Can't change settings in a server.";
