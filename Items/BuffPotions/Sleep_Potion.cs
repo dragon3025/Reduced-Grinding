@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;
-            Item.useStyle = ItemUseStyleID.HoldUp;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.value = Terraria.Item.sellPrice(0, 0, 2, 0);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;

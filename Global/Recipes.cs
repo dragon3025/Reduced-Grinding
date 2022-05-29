@@ -27,10 +27,16 @@ namespace ReducedGrinding.Global
 	{
 		// A place to store the recipe group so we can easily use it later
 		public static RecipeGroup goldAndBiomeCrates;
+		public static RecipeGroup baitCritterLow;
+		public static RecipeGroup baitCritterMed;
+		public static RecipeGroup baitCritterHigh;
 
 		public override void Unload()
 		{
 			goldAndBiomeCrates = null;
+			baitCritterLow = null;
+			baitCritterMed = null;
+			baitCritterHigh = null;
 		}
 
 		public override void AddRecipeGroups()
@@ -46,6 +52,62 @@ namespace ReducedGrinding.Global
 				ItemID.GoldenCrate
 			});
 			RecipeGroup.RegisterGroup("ReducedGrinding:goldAndBiomeCrates", goldAndBiomeCrates);
+
+			baitCritterLow = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with less than 20 Power.", new int[]
+			{
+				ItemID.MonarchButterfly,
+				ItemID.SulphurButterfly,
+				ItemID.Grasshopper,
+				ItemID.Scorpion,
+				ItemID.Snail,
+				ItemID.BlackScorpion,
+				ItemID.HellButterfly,
+				ItemID.ZebraSwallowtailButterfly,
+				ItemID.GlowingSnail,
+				ItemID.Grubby,
+				ItemID.LadyBug,
+				ItemID.WaterStrider
+			});
+			RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterLow", baitCritterLow);
+
+			baitCritterMed = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with at least 20 Power and less than 25 Power.", new int[]
+			{
+				ItemID.UlyssesButterfly,
+				ItemID.BlackDragonfly,
+				ItemID.BlueDragonfly,
+				ItemID.GreenDragonfly,
+				ItemID.OrangeDragonfly,
+				ItemID.RedDragonfly,
+				ItemID.YellowDragonfly,
+				ItemID.Firefly,
+				ItemID.BlueJellyfish,
+				ItemID.GreenJellyfish,
+				ItemID.PinkJellyfish,
+				ItemID.Maggot
+			});
+			RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterMed", baitCritterMed);
+
+			baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with at least 25 Power.", new int[]
+			{
+				ItemID.JuliaButterfly,
+				ItemID.Lavafly,
+				ItemID.Sluggy,
+				ItemID.Worm,
+				ItemID.RedAdmiralButterfly,
+				ItemID.PurpleEmperorButterfly,
+				ItemID.EnchantedNightcrawler,
+				ItemID.LightningBug,
+				ItemID.MagmaSnail,
+				ItemID.Buggy,
+				ItemID.TreeNymphButterfly,
+				ItemID.GoldButterfly,
+				ItemID.GoldDragonfly,
+				ItemID.GoldGrasshopper,
+				ItemID.GoldLadyBug,
+				ItemID.GoldWaterStrider,
+				ItemID.GoldWorm
+			});
+			RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
 		}
 
 		public override void AddRecipes()
@@ -239,6 +301,15 @@ namespace ReducedGrinding.Global
 				recipe.AddTile(TileID.CrystalBall);
 				recipe.Register();
 			}
+
+			recipe = Mod.CreateRecipe(ModContent.ItemType<Items.BuffPotions.Multi_Bobber_Potion>());
+			recipe.AddIngredient(ItemID.BottledWater);
+			recipe.AddIngredient(ItemID.Waterleaf);
+			recipe.AddRecipeGroup("ReducedGrinding:baitCritterLow");
+			recipe.AddRecipeGroup("ReducedGrinding:baitCritterMed");
+			recipe.AddRecipeGroup("ReducedGrinding:baitCritterHigh");
+			recipe.AddTile(TileID.Bottles);
+			recipe.Register();
 		}
 	}
 }
