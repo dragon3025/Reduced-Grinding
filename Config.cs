@@ -1262,7 +1262,7 @@ namespace ReducedGrinding
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
 
-        [Header("The configurations below will give a chance at reseting the Angler Quest when all players have finished the Quest. The chance is (1 / setting) per in-game hour. Set to 0 to disable.")]
+        [Header("The configurations below will give a chance at resetting the Angler Quest when finishing it. The chance will wait until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest before rolling. The chance is (1 / setting), set to 0 to disable.")]
 
         [Label("Before Hardmode")]
         [Range(0, 10000)]

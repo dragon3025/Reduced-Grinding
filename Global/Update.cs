@@ -173,9 +173,20 @@ namespace ReducedGrinding.Global
 				for (int i = 0; i < 255; i++)
 				{
 					if (Main.player[i].active)
-						player_count++;
+                    {
+						for (int j = 0; j < Main.player[i].armor.Length; j++)
+                        {
+							int armorType = Main.player[i].armor[j].type;
+							if (armorType == ItemID.AnglerHat || armorType == ItemID.AnglerVest || armorType == ItemID.AnglerPants)
+							{
+								player_count++;
+								break;
+							}
+                        }
+					}
 				}
-				if (player_count == Main.anglerWhoFinishedToday.Count)
+				Main.NewText("player_count: " + player_count.ToString());
+				if (player_count <= Main.anglerWhoFinishedToday.Count)
 				{
 					if (Main.rand.NextBool(anglerResetChance))
 					{

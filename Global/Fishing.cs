@@ -19,11 +19,10 @@ namespace ReducedGrinding.Global
             itemDrop = ItemID.StoneBlock;
         }*/
 
-        //public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
-        //{
-        //    Player player = Main.player[Main.myPlayer];
-        //    Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
-        //
-        //}
+        public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
+        {
+            Player player = Main.player[Main.myPlayer];
+            Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
+        }
     }
 }
