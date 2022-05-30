@@ -25,6 +25,8 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using Terraria;
 
+
+
 namespace ReducedGrinding.Global
 {
     public class Update : ModSystem
@@ -35,6 +37,8 @@ namespace ReducedGrinding.Global
 		public static int sundialX = -1;
 		public static int sundialY = -1;
 		public static bool nearPylon = false;
+		public static bool noMoreAnglerResetsToday = false;
+		public static bool dayTime = true;
 
 		public override void PostUpdateTime()
 		{
@@ -76,6 +80,7 @@ namespace ReducedGrinding.Global
 				{
 					if (!Main.player[i].active)
 						continue;
+
 					for (int x = -20; x <= 20; x++)
                     {
 						for (int y = -20; y <= 20; y++)
@@ -97,70 +102,103 @@ namespace ReducedGrinding.Global
 				}
 			}
 
+			bool boostTime = true;
+
 			if (Main.fastForwardTime)
-				return;
+				boostTime = false;
 
 			if (Main.CurrentFrameFlags.SleepingPlayersCount != Main.CurrentFrameFlags.ActivePlayersCount)
-				return;
+				boostTime = false;
 
 			if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
-				return;
+				boostTime = false;
 
-			if (GetInstance<IOtherConfig>().SleepBoostNoTownMultiplier < 1)
+			if (boostTime)
 			{
+				if (GetInstance<IOtherConfig>().SleepBoostDivideByNearbyEnemies)
+				{
+					float nearbyEnemies = 0;
+					int enemyRange = 512;
+					for (int i = 0; i < 255; i++)
+					{
+						if (!Main.player[i].active)
+							continue;
+						float enemyCount = 0;
+						for (int l = 0; l < 200; l++)
+						{
+							if (Main.npc[l].active && !Main.npc[l].friendly && Main.npc[l].damage > 0 && Main.npc[l].lifeMax > 5 && !Main.npc[l].dontCountMe && (Main.npc[l].Center - Main.player[i].Center).Length() < enemyRange)
+								enemyCount += Math.Max((enemyRange - (Main.npc[l].Center - Main.player[i].Center).Length()) / enemyRange, 0);
+						}
+						nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
+					}
+					timeBoost /= nearbyEnemies + 1;
+				}
+
+				if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
+				{
+					for (int i = 0; i < 255; i++)
+					{
+						if (!Main.player[i].active)
+							continue;
+						if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) == -1)
+						{
+							timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
+							break;
+						}
+					}
+				}
+
+				Main.time += (int)timeBoost;
+
 				for (int i = 0; i < 255; i++)
 				{
 					if (!Main.player[i].active)
 						continue;
-					if (Main.player[i].townNPCs < 3)
-					{
-						timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoTownMultiplier;
-						break;
-					}
+					if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
+						Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)timeBoost;
 				}
 			}
 
-			if (GetInstance<IOtherConfig>().SleepBoostDivideByNearbyEnemies)
+			int anglerResetChance;
+			if (NPC.downedPlantBoss)
+				anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceAfterPlantera;
+			else if (Main.hardMode)
+				anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceHardmode;
+			else
+				anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceBeforeHardmode;
+
+			if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
 			{
-				int nearbyEnemies = 0;
-				int enemyRange = 2000;
+				int player_count = 0;
 				for (int i = 0; i < 255; i++)
 				{
-					if (!Main.player[i].active)
-						continue;
-					int enemyCount = 0;
-					for (int l = 0; l < 200; l++)
-					{
-						if (Main.npc[l].active && !Main.npc[l].friendly && Main.npc[l].damage > 0 && Main.npc[l].lifeMax > 5 && !Main.npc[l].dontCountMe && (Main.npc[l].Center - Main.player[i].Center).Length() < enemyRange)
-							enemyCount++;
-					}
-					nearbyEnemies = Math.Max(nearbyEnemies, enemyCount);
+					if (Main.player[i].active)
+						player_count++;
 				}
-				timeBoost /= nearbyEnemies + 1;
-			}
-
-			if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
-			{
-				for (int i = 0; i < 255; i++)
+				if (player_count == Main.anglerWhoFinishedToday.Count)
 				{
-					if (!Main.player[i].active)
-						continue;
-					if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) == -1)
+					if (Main.rand.NextBool(anglerResetChance))
 					{
-						timeBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
-						break;
+						Main.AnglerQuestSwap();
+						if (Main.netMode == NetmodeID.Server)
+							NetMessage.SendData(MessageID.WorldData);
+						if (Main.netMode == NetmodeID.SinglePlayer)
+							Main.NewText("The Angler has another job for you!", 0, 255, 255);
+						else if (Main.netMode == NetmodeID.Server)
+							ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler has another job for you!"), new Color(0, 255, 255));
 					}
+					else
+						noMoreAnglerResetsToday = true;
 				}
 			}
 
-			Main.time += (int)timeBoost;
-
-			for (int i = 0; i < 255; i++)
+			if (Main.dayTime && dayTime != Main.dayTime)
 			{
-				if (!Main.player[i].active)
-					continue;
-				if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
-					Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)timeBoost;
+				noMoreAnglerResetsToday = false;
+			}
+			if (dayTime != Main.dayTime)
+			{
+				dayTime = Main.dayTime;
 			}
 
 			if (Main.netMode == NetmodeID.Server)
@@ -184,6 +222,16 @@ namespace ReducedGrinding.Global
 
 				netMessage.Write((byte)ReducedGrindingMessageType.nearPylon);
 				netMessage.Write(nearPylon);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
+
+				netMessage.Write((byte)ReducedGrindingMessageType.noMoreAnglerResetsToday);
+				netMessage.Write(noMoreAnglerResetsToday);
+				netMessage.Send();
+				NetMessage.SendData(MessageID.WorldData);
+
+				netMessage.Write((byte)ReducedGrindingMessageType.dayTime);
+				netMessage.Write(dayTime);
 				netMessage.Send();
 				NetMessage.SendData(MessageID.WorldData);
 			}

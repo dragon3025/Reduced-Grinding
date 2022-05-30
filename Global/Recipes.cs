@@ -302,14 +302,17 @@ namespace ReducedGrinding.Global
 				recipe.Register();
 			}
 
-			recipe = Mod.CreateRecipe(ModContent.ItemType<Items.BuffPotions.Multi_Bobber_Potion>());
-			recipe.AddIngredient(ItemID.BottledWater);
-			recipe.AddIngredient(ItemID.Waterleaf);
-			recipe.AddRecipeGroup("ReducedGrinding:baitCritterLow");
-			recipe.AddRecipeGroup("ReducedGrinding:baitCritterMed");
-			recipe.AddRecipeGroup("ReducedGrinding:baitCritterHigh");
-			recipe.AddTile(TileID.Bottles);
-			recipe.Register();
+			if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
+			{
+				recipe = Mod.CreateRecipe(ModContent.ItemType<Items.BuffPotions.Multi_Bobber_Potion>());
+				recipe.AddIngredient(ItemID.BottledWater);
+				recipe.AddIngredient(ItemID.Waterleaf);
+				recipe.AddRecipeGroup("ReducedGrinding:baitCritterLow");
+				recipe.AddRecipeGroup("ReducedGrinding:baitCritterMed");
+				recipe.AddRecipeGroup("ReducedGrinding:baitCritterHigh");
+				recipe.AddTile(TileID.Bottles);
+				recipe.Register();
+			}
 		}
 	}
 }

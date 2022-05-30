@@ -109,6 +109,12 @@ namespace ReducedGrinding
                 case ReducedGrindingMessageType.nearPylon:
                     Global.Update.nearPylon = reader.ReadBoolean();
                     break;
+                case ReducedGrindingMessageType.noMoreAnglerResetsToday:
+                    Global.Update.noMoreAnglerResetsToday = reader.ReadBoolean();
+                    break;
+                case ReducedGrindingMessageType.dayTime:
+                    Global.Update.dayTime = reader.ReadBoolean();
+                    break;
             }
         }
     }
@@ -137,7 +143,9 @@ namespace ReducedGrinding
         sundialSearchTimer,
         sundialX,
         sundialY,
-        nearPylon
+        nearPylon,
+        noMoreAnglerResetsToday,
+        dayTime
     }
 
 }

@@ -16,6 +16,22 @@ using Terraria.GameContent;
 using Terraria.ModLoader.Config;
 using Terraria.ModLoader.Config.UI;
 using Terraria.UI;
+using log4net;
+using ReLogic.Content.Sources;
+using ReLogic.Content;
+using ReLogic.Utilities;
+using static Terraria.ModLoader.ModContent;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria.Chat;
+using Terraria.GameContent.Bestiary;
+using Terraria.Localization;
+using Terraria.ModLoader.Assets;
+using Terraria.ModLoader.Core;
+using Terraria.ModLoader.UI;
+using Terraria.WorldBuilding;
 
 namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 {
@@ -28,7 +44,7 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 
 		public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
 		{
-			if (player.FindBuffIndex(ModContent.BuffType<Buffs.Multi_Bobber>()) != -1)
+			if (player.FindBuffIndex(ModContent.BuffType<Buffs.Multi_Bobber>()) != -1 && GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
 			{
 				int bobberAmount = 10;
 				float spreadAmount = 75f;

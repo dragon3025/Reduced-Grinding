@@ -1252,115 +1252,32 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Extra Chances for Angler Quest Rewards")]
-    public class CAnglerQuestRewardsConfig : ModConfig
+    [Label("Fishing")]
+    public class CFishingConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("[i:2374] Earring")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestAnglerEarringIncrease;
+        [Label("Multi-Bobber Potion's Bobber Amount (Set to 1, to disable recipe)")]
+        [Range(1, 100)]
+        [DefaultValue(10)]
+        public int MultiBobberPotionBobberAmount;
 
-        [Label("[i:2367] Angler Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(20)]
-        public int QuestAnglerHatIncrease;
+        [Header("The configurations below will give a chance at reseting the Angler Quest when all players have finished the Quest. The chance is (1 / setting) per in-game hour. Set to 0 to disable.")]
 
-        [Label("[i:2369] Angler Pants")]
-        [Range(0, 10000)]
-        [DefaultValue(20)]
-        public int QuestAnglerPantsIncrease;
-
-        [Label("[i:2368] Angler Vest")]
-        [Range(0, 10000)]
-        [DefaultValue(20)]
-        public int QuestAnglerVestIncrease;
-
-        [Label("[i:2435] Coralstone Block")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int QuestCoralstoneBlockIncrease;
-
-        [Label("[i:2490] Furniture")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int QuestDecorativeFurnitureIncrease;
-
-        [Label("[i:2498] Fish Costume")]
+        [Label("Before Hardmode")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int QuestFishCostumeIncrease;
+        public int AnglerRecentChanceBeforeHardmode;
 
-        [Label("[i:2360] Fish Hook")]
+        [Label("Hardmode")]
         [Range(0, 10000)]
-        [DefaultValue(30)]
-        public int QuestFishHookIncrease;
+        [DefaultValue(2)]
+        public int AnglerRecentChanceHardmode;
 
-        [Label("[i:3120] Fisherman's Pocket Guide")]
+        [Label("After Plantera")]
         [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestFishermansGuideIncrease;
-
-        [Label("[i:3183] Golden Bug Net")]
-        [Range(0, 10000)]
-        [DefaultValue(83)]
-        public int QuestGoldenBugNetIncrease;
-
-        [Label("[i:2294] Golden Fishing Rod")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int QuestGoldenFishingRodIncrease;
-
-        [Label("[i:3031] Bottomless Bucket (Hardcore only)")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int QuestHardcoreBottomlessBucketIncrease;
-
-        [Label("[i:2494] Fin Wings (Hardcore only)")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int QuestHardcoreFinWingsIncrease;
-
-        [Label("[i:2422] Hotline Fishing Hook (Hardcore only)")]
-        [Range(0, 10000)]
-        [DefaultValue(12)]
-        public int QuestHardcoreHotlineFishingHookIncrease;
-
-        [Label("[i:3032] Super Absorbant Sponge (Hardcore only)")]
-        [Range(0, 10000)]
-        [DefaultValue(12)]
-        public int QuestHardcoreSuperAbsorbantSpongeIncrease;
-
-        [Label("[i:2373] High Test Fishing Line")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestHighTestFishingLineIncrease;
-
-        [Label("[i:2419] Mermaid Costume")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int QuestMermaidCostumeIncrease;
-
-        [Label("[i:3096] Sextant")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestSextantIncrease;
-
-        [Label("[i:2375] Tackle Box")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestTackleBoxIncrease;
-
-        [Label("[i:2448] Trophy")]
-        [Range(0, 10000)]
-        [DefaultValue(11)]
-        public int QuestTrophyIncrease;
-
-        [Label("[i:3037] Weather Radio")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int QuestWeatherRadioIncrease;
+        [DefaultValue(2)]
+        public int AnglerRecentChanceAfterPlantera;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1935,14 +1852,8 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoSundialMultiplier;
 
-        [Label("Multiplier for lack of a Town")]
-        [Tooltip("Sleep Boost is multiplied by this amount if any player has less than 3 NPCs near them.")]
-        [DefaultValue(0.5f)]
-        [Increment(0.01f)]
-        public float SleepBoostNoTownMultiplier;
-
         [Label("Divide by Nearby Enemy Count (Hover for More Info)")]
-        [Tooltip("Divides sleep boost by an n+1 where n is highest amount of nearby enemies out of all players.")]
+        [Tooltip("Sleep boost is reduced by nearby enemies within 32 tiles. Further enemies = less reduction. Only the player with the highest amount is counted.")]
         [DefaultValue(true)]
         public bool SleepBoostDivideByNearbyEnemies;
 
