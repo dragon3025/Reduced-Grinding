@@ -26,14 +26,12 @@ namespace ReducedGrinding.Global
 	class Recipes : ModSystem
 	{
 		// A place to store the recipe group so we can easily use it later
-		public static RecipeGroup goldAndBiomeCrates;
 		public static RecipeGroup baitCritterLow;
 		public static RecipeGroup baitCritterMed;
 		public static RecipeGroup baitCritterHigh;
 
 		public override void Unload()
 		{
-			goldAndBiomeCrates = null;
 			baitCritterLow = null;
 			baitCritterMed = null;
 			baitCritterHigh = null;
@@ -41,18 +39,6 @@ namespace ReducedGrinding.Global
 
 		public override void AddRecipeGroups()
 		{
-			goldAndBiomeCrates = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Golden or Biome Crate", new int[]
-			{
-				ItemID.JungleFishingCrate,
-				ItemID.FloatingIslandFishingCrate,
-				ItemID.CorruptFishingCrate,
-				ItemID.CrimsonFishingCrate,
-				ItemID.HallowedFishingCrate,
-				ItemID.DungeonFishingCrate,
-				ItemID.GoldenCrate
-			});
-			RecipeGroup.RegisterGroup("ReducedGrinding:goldAndBiomeCrates", goldAndBiomeCrates);
-
 			baitCritterLow = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with less than 20 Power.", new int[]
 			{
 				ItemID.MonarchButterfly,
@@ -225,16 +211,6 @@ namespace ReducedGrinding.Global
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.Register();
 
-			recipe = Mod.CreateRecipe(ItemID.IronCrate);
-			recipe.AddRecipeGroup("ReducedGrinding:goldAndBiomeCrates");
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.Register();
-
-			recipe = Mod.CreateRecipe(ItemID.WoodenCrate);
-			recipe.AddIngredient(ItemID.IronCrate);
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.Register();
-
 			recipe = Mod.CreateRecipe(ItemID.Leather);
 			recipe.AddIngredient(ItemID.RottenChunk, 2);
 			recipe.AddTile(TileID.WorkBenches);
@@ -313,6 +289,71 @@ namespace ReducedGrinding.Global
 				recipe.AddTile(TileID.Bottles);
 				recipe.Register();
 			}
+
+			recipe = Mod.CreateRecipe(ItemID.WoodenCrate);
+			recipe.AddIngredient(ItemID.WoodenCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.LavaCrate);
+			recipe.AddIngredient(ItemID.LavaCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.JungleFishingCrate);
+			recipe.AddIngredient(ItemID.JungleFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.FloatingIslandFishingCrate);
+			recipe.AddIngredient(ItemID.FloatingIslandFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.CorruptFishingCrate);
+			recipe.AddIngredient(ItemID.CorruptFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.CrimsonFishingCrate);
+			recipe.AddIngredient(ItemID.CrimsonFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.HallowedFishingCrate);
+			recipe.AddIngredient(ItemID.HallowedFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.DungeonFishingCrate);
+			recipe.AddIngredient(ItemID.DungeonFishingCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.FrozenCrate);
+			recipe.AddIngredient(ItemID.FrozenCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.OasisCrate);
+			recipe.AddIngredient(ItemID.OasisCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.OceanCrate);
+			recipe.AddIngredient(ItemID.OceanCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.IronCrate);
+			recipe.AddIngredient(ItemID.IronCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
+
+			recipe = Mod.CreateRecipe(ItemID.GoldenCrate);
+			recipe.AddIngredient(ItemID.GoldenCrateHard);
+			recipe.AddTile(TileID.CrystalBall);
+			recipe.Register();
 		}
 	}
 }
