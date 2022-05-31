@@ -1852,11 +1852,6 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoSundialMultiplier;
 
-        [Label("Divide by Nearby Enemy Count (Hover for More Info)")]
-        [Tooltip("Sleep boost is reduced by nearby enemies within 32 tiles. Further enemies = less reduction. Only the player with the highest amount is counted.")]
-        [DefaultValue(true)]
-        public bool SleepBoostDivideByNearbyEnemies;
-
         [Label("Multiplier for No Player with Sleep Buff")]
         [Tooltip("If less than 1, you'll be able to craft Sleep Potion, which gives Sleep Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
         [DefaultValue(0.5f)]
