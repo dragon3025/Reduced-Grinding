@@ -1,6 +1,4 @@
 using Terraria.DataStructures;
-using Terraria.Enums;
-using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -9,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace ReducedGrinding.Tiles
 {
-	public class Chlorophyte_Accelerator : ModTile
+    public class Chlorophyte_Accelerator : ModTile
 	{
 		public override void SetStaticDefaults()
 		{

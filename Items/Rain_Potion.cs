@@ -75,44 +75,44 @@ namespace ReducedGrinding.Items
             int num = 86400;
             int num2 = num / 24;
             Main.rainTime = Main.rand.Next(num2 * 8, num);
-            if (Main.rand.Next(3) == 0)
+            if (Main.rand.NextBool(3))
             {
                 Main.rainTime += Main.rand.Next(0, num2);
             }
-            if (Main.rand.Next(4) == 0)
+            if (Main.rand.NextBool(4))
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 2);
             }
-            if (Main.rand.Next(5) == 0)
+            if (Main.rand.NextBool(5))
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 2);
             }
-            if (Main.rand.Next(6) == 0)
+            if (Main.rand.NextBool(6))
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 3);
             }
-            if (Main.rand.Next(7) == 0)
+            if (Main.rand.NextBool(7))
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 4);
             }
-            if (Main.rand.Next(8) == 0)
+            if (Main.rand.NextBool(8))
             {
                 Main.rainTime += Main.rand.Next(0, num2 * 5);
             }
             float num3 = 1f;
-            if (Main.rand.Next(2) == 0)
+            if (Main.rand.NextBool(2))
             {
                 num3 += 0.05f;
             }
-            if (Main.rand.Next(3) == 0)
+            if (Main.rand.NextBool(3))
             {
                 num3 += 0.1f;
             }
-            if (Main.rand.Next(4) == 0)
+            if (Main.rand.NextBool(4))
             {
                 num3 += 0.15f;
             }
-            if (Main.rand.Next(5) == 0)
+            if (Main.rand.NextBool(5))
             {
                 num3 += 0.2f;
             }
@@ -125,7 +125,7 @@ namespace ReducedGrinding.Items
         {
             if (Main.cloudBGActive >= 1f || (double)Main.numClouds > 150.0)
             {
-                if (Main.rand.Next(3) == 0)
+                if (Main.rand.NextBool(3))
                 {
                     Main.maxRaining = (float)Main.rand.Next(20, 90) * 0.01f;
                     return;
@@ -135,7 +135,7 @@ namespace ReducedGrinding.Items
             }
             else if ((double)Main.numClouds > 100.0)
             {
-                if (Main.rand.Next(3) == 0)
+                if (Main.rand.NextBool(3))
                 {
                     Main.maxRaining = (float)Main.rand.Next(10, 70) * 0.01f;
                     return;
@@ -145,7 +145,7 @@ namespace ReducedGrinding.Items
             }
             else
             {
-                if (Main.rand.Next(3) == 0)
+                if (Main.rand.NextBool(3))
                 {
                     Main.maxRaining = (float)Main.rand.Next(5, 40) * 0.01f;
                     return;

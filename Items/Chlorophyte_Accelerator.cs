@@ -1,11 +1,10 @@
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
 {
-	public class Chlorophyte_Accelerator : ModItem
+    public class Chlorophyte_Accelerator : ModItem
 	{
 		public override void SetStaticDefaults()
 		{

@@ -53,7 +53,7 @@ namespace ReducedGrinding.Items
 			}
 			else
 			{
-				if (Main.rand.Next(3) == 0)
+				if (Main.rand.NextBool(3))
 				{
 					Sandstorm.IntendedSeverity = 0f;
 				}

@@ -1,13 +1,10 @@
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.Localization;
 using Terraria.ID;
-using Terraria.GameContent.Achievements;
-using Microsoft.Xna.Framework;
 
 namespace ReducedGrinding.Items.BossAndEventControl
 {
-	public class Lunar_Call : ModItem
+    public class Lunar_Call : ModItem
     {
 		
         public override void SetStaticDefaults()

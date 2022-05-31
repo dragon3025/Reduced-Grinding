@@ -3,27 +3,14 @@ using Terraria.ModLoader;
 using Terraria;
 using static Terraria.ModLoader.ModContent;
 using System;
-using Microsoft.Xna.Framework;
-using System;
-using System.Linq;
-using Terraria;
-using Terraria.Audio;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.Utilities;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.GameContent;
-using Terraria.GameContent.Personalities;
-using Terraria.DataStructures;
 using System.Collections.Generic;
 using ReLogic.Content;
 
 namespace ReducedGrinding.NPCs
 {
-	[AutoloadHead]
+    [AutoloadHead]
     public class StationaryMerchant : ModNPC
 	{
 		/*public override string Texture => "ReducedGrinding/NPCs/StationaryMerchant";
@@ -116,7 +103,7 @@ namespace ReducedGrinding.NPCs
 				return "Everything is on sale!";
 			else
 			{
-				if (Terraria.GameContent.Events.BirthdayParty.PartyIsUp && Main.rand.Next(3) == 0)
+				if (Terraria.GameContent.Events.BirthdayParty.PartyIsUp && Main.rand.NextBool(3))
 				{
 					return "I bet travelers miss parties a lot.";
 				}

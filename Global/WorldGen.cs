@@ -1,44 +1,13 @@
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria;
-using System;
 using static Terraria.ModLoader.ModContent;
-using Terraria.DataStructures;
-using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
-using Terraria.ID;
-using Terraria.WorldBuilding;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.Chat;
-using System.IO;
-using Terraria;
-using log4net;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
-using ReLogic.Content.Sources;
-using ReLogic.Utilities;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Terraria.GameContent.Bestiary;
-using Terraria.Localization;
-using Terraria.ModLoader.Assets;
-using Terraria.ModLoader.Config;
-using Terraria.ModLoader.Core;
-using Terraria.ModLoader.UI;
 
 
 namespace ReducedGrinding.Global
 {
-	public class WorldGen : ModSystem
+    public class WorldGen : ModSystem
     {
 		public override void PostWorldGen()
 		{

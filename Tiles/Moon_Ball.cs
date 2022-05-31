@@ -4,34 +4,14 @@ using Terraria.ModLoader;
 using Terraria.ID;
 using Terraria.Enums;
 using Terraria.DataStructures;
-using System;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.GameContent;
-using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
 using Terraria.Audio;
 
 
 namespace ReducedGrinding.Tiles
 {
-	public class Moon_Ball : ModTile
+    public class Moon_Ball : ModTile
 	{
 		public override void SetStaticDefaults()
 		{

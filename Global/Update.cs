@@ -1,28 +1,11 @@
-﻿using log4net;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
-using ReLogic.Content.Sources;
-using ReLogic.Content;
-using ReLogic.Utilities;
+﻿using Microsoft.Xna.Framework;
 using static Terraria.ModLoader.ModContent;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System;
 using Terraria.Chat;
 using Terraria.DataStructures;
-using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader.Assets;
-using Terraria.ModLoader.Config;
-using Terraria.ModLoader.Core;
-using Terraria.ModLoader.UI;
 using Terraria.ModLoader;
-using Terraria.WorldBuilding;
 using Terraria;
 
 
@@ -59,12 +42,11 @@ namespace ReducedGrinding.Global
                             {
                                 sundialX = j + 1;
                                 sundialY = i + 1;
-                                break;
+                                goto finishedSundialCheck;
                             }
                         }
-                        if (sundialX > -1)
-                            break;
                     }
+                    finishedSundialCheck: { }
                 }
 
                 if (sundialX == -1)

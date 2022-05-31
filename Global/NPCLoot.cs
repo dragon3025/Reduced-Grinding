@@ -1,18 +1,8 @@
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
 using ReducedGrinding.Common.ItemDropRules.Conditions;
-using ReducedGrinding;
 using static Terraria.ModLoader.ModContent;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System;
-using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using Terraria.GameContent.ItemDropRules;
-using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria;
 
@@ -181,7 +171,7 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.TrifoldMap, GetInstance<AEnemyLootConfig>().LootTrifoldMapIncrease);
             if (npc.type == NPCID.Clown)
                 try_loot(ItemID.Bananarang, GetInstance<AEnemyLootConfig>().LootBananarangIncrease);
-            if (npc.type == NPCID.Hornet || (npc.type >= 231 && npc.type <= 235)) //Hornet Variants
+            if (npc.type == NPCID.Hornet || (npc.type >= NPCID.HornetFatty && npc.type <= NPCID.HornetStingy)) //Hornet Variants
             {
                 try_loot(ItemID.AncientCobaltHelmet, GetInstance<AEnemyLootConfig>().LootAncientCobaltHelmetIncrease);
                 try_loot(ItemID.AncientCobaltBreastplate, GetInstance<AEnemyLootConfig>().LootAncientCobaltBreastplateIncrease);
@@ -273,7 +263,7 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.ElfShirt, GetInstance<AEnemyLootConfig>().LootElfShirtIncrease);
                 try_loot(ItemID.ElfPants, GetInstance<AEnemyLootConfig>().LootElfPantsIncrease);
             }
-            if (npc.type >= 269 && npc.type <= 280)//All Armored Bones variants
+            if (npc.type >= NPCID.RustyArmoredBonesAxe && npc.type <= NPCID.HellArmoredBonesSword)//All Armored Bones variants
             {
                 try_loot(ItemID.WispinaBottle, GetInstance<AEnemyLootConfig>().LootWispinaBottleIncrease);
                 try_loot(ItemID.BoneFeather, GetInstance<AEnemyLootConfig>().LootBoneFeatherIncrease);
@@ -366,7 +356,7 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.GiantHarpyFeather, GetInstance<AEnemyLootConfig>().LootGiantHarpyFeatherIncrease);
                 try_loot(ItemID.Cloud, GetInstance<AEnemyLootConfig>().LootCloudFromHarpies);
             }
-            if ((npc.type >= 26 && npc.type <= 29) || npc.type == 111) //Goblin Army (Excluding Summoner)
+            if ((npc.type >= NPCID.GoblinPeon && npc.type <= NPCID.GoblinSorcerer) || npc.type == NPCID.GoblinArcher) //Goblin Army (Excluding Summoner)
             {
                 try_loot(ItemID.Harpoon, GetInstance<AEnemyLootConfig>().LootHarpoonIncrease);
             }
@@ -467,13 +457,13 @@ namespace ReducedGrinding.Global
             {
                 try_loot(ItemID.BunnyHood, GetInstance<AEnemyLootConfig>().LootBunnyHoodIncrease);
             }
-            if (npc.type >= 78 && npc.type <= 80) //Mummies
+            if (npc.type >= NPCID.Mummy && npc.type <= NPCID.LightMummy) //Mummies
             {
                 try_loot(ItemID.MummyMask, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
                 try_loot(ItemID.MummyShirt, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
                 try_loot(ItemID.MummyPants, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
             }
-            if (npc.type == 31 || (npc.type >= 294 && npc.type <= 296) || npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster) //Angry Bones, Cursed Skull, and Dark Caster
+            if (npc.type == NPCID.AngryBones || (npc.type >= NPCID.AngryBonesBig && npc.type <= NPCID.AngryBonesBigHelmet) || npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster) //Angry Bones, Cursed Skull, and Dark Caster
             {
                 try_loot(ItemID.GoldenKey, GetInstance<AEnemyLootConfig>().LootGoldenKeyIncrease);
                 try_loot(ItemID.TallyCounter, GetInstance<AEnemyLootConfig>().LootTallyCounterIncrease);
@@ -552,7 +542,7 @@ namespace ReducedGrinding.Global
             {
                 try_loot(ItemID.SunMask, GetInstance<AEnemyLootConfig>().LootSunMaskIncrease);
             }
-            if (npc.type >= 333 && npc.type <= 336) //Present Slimes
+            if (npc.type >= NPCID.SlimeRibbonWhite && npc.type <= NPCID.SlimeRibbonRed) //Present Slimes
             {
                 try_loot(ItemID.GiantBow, GetInstance<AEnemyLootConfig>().LootGiantBowIncrease);
             }
@@ -571,7 +561,7 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.TacticalShotgun, GetInstance<AEnemyLootConfig>().LootTacticalShotgunIncrease);
                 try_loot(ItemID.SWATHelmet, GetInstance<AEnemyLootConfig>().LootSWATHelmetIncrease);
             }
-            if (npc.type >= 524 && npc.type <= 527) //Ghouls
+            if (npc.type >= NPCID.DesertGhoul && npc.type <= NPCID.DesertGhoulHallow) //Ghouls
             {
                 try_loot(ItemID.AncientCloth, GetInstance<AEnemyLootConfig>().LootAncientClothIncrease);
             }
@@ -600,7 +590,7 @@ namespace ReducedGrinding.Global
             {
                 try_loot(ItemID.MoneyTrough, GetInstance<AEnemyLootConfig>().LootMoneyTroughIncrease);
             }
-            if (npc.type >= 494 && npc.type <= 506) //Giant Shellies, Crawdads, and Salamanders
+            if (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9) //Giant Shellies, Crawdads, and Salamanders
             {
                 try_loot(ItemID.Rally, GetInstance<AEnemyLootConfig>().LootRallyIncrease);
             }
@@ -616,11 +606,11 @@ namespace ReducedGrinding.Global
             {
                 try_loot(ItemID.KOCannon, GetInstance<AEnemyLootConfig>().LootKOCannonIncrease);
             }
-            if (npc.type == 16 || npc.type == 58 || npc.type == 167 || npc.type == 197 || npc.type == 185 || (npc.type >= 494 && npc.type <= 506)) //Salamanders, Giant Shellys, Crawdads, Mother Slimes, Piranhas, Snow Flinxes, Undead Vikings, and Armored Vikings.
+            if (npc.type == NPCID.MotherSlime || npc.type == NPCID.Piranha || npc.type == NPCID.UndeadViking || npc.type == NPCID.ArmoredViking || npc.type == NPCID.SnowFlinx || (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9)) //Salamanders, Giant Shellys, Crawdads, Mother Slimes, Piranhas, Snow Flinxes, Undead Vikings, and Armored Vikings.
             {
                 try_loot(ItemID.Compass, GetInstance<AEnemyLootConfig>().LootCompassIncrease);
             }
-            if (npc.type == 49 || npc.type == 93 || npc.type == 51 || npc.type == 150 || (npc.type >= 494 && npc.type <= 506)) //Cave Bats, Giant Bats, Jungle Bats, Ice Bats, Salamanders, Giant Shellys, and Crawdads.
+            if (npc.type == NPCID.CaveBat || npc.type == NPCID.GiantBat || npc.type == NPCID.JungleBat || npc.type == NPCID.IceBat || (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9)) //Cave Bats, Giant Bats, Jungle Bats, Ice Bats, Salamanders, Giant Shellys, and Crawdads.
             {
                 try_loot(ItemID.DepthMeter, GetInstance<AEnemyLootConfig>().LootDepthMeterIncrease);
             }
