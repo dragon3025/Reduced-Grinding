@@ -1572,12 +1572,12 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
 
-        [Header("\n\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3085] Golden Lockbox")]
+        [Header("\n\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
         [Range(0, 10000)]
         [DefaultValue(1)]
-        public int GoldenLockboxDungeonFurniture;
+        public int DungeonCrateDungeonFurniture;
 
         [Header("[i:2336] Golden Crate")]
 

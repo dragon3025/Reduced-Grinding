@@ -132,7 +132,7 @@ namespace ReducedGrinding.Global
                 try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BossMaskBetsy);
 
             //Other Grab Bags
-            if (arg == ItemID.LockBox)
+            if (arg == ItemID.DungeonFishingCrate || arg == ItemID.DungeonFishingCrateHard)
             {
                 List<int> dungeonFurniture = new List<int>() {
                     1396,
@@ -184,7 +184,7 @@ namespace ReducedGrinding.Global
                     3901,
                     3902
                 };
-                try_grab_bag_drop(GetInstance<IOtherConfig>().GoldenLockboxDungeonFurniture, dungeonFurniture[Main.rand.Next(dungeonFurniture.Count)]);
+                try_grab_bag_drop(GetInstance<IOtherConfig>().DungeonCrateDungeonFurniture, dungeonFurniture[Main.rand.Next(dungeonFurniture.Count)]);
             }
             if (arg == ItemID.GoldenCrate)
                 try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial, ItemID.Sundial);
