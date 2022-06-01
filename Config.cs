@@ -10,7 +10,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("Boss Loot")]
+        [Header("All configurations in this section will add an n/1 chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1313] Book of Skulls")]
         [Range(0, 10000)]
@@ -966,276 +966,6 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Crate and Other Grab Bag Drops")]
-    public class BGrabBagConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Header("[i:3205] Dungeon Crate")]
-
-        [Label("[i:2192] Bone Welder")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int CrateDungeonBoneWelder;
-
-        [Header("[i:2336] Golden Crate")]
-
-        [Label("[i:3064] Enchanted Sundial")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int CrateEnchantedSundialGoldenIncrease;
-
-        [Label("[i:187] Flipper")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateFlippersGolden;
-
-        [Label("[i:863] Water Walking Boots")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWaterWalkingBootsGolden;
-
-        [Header("[i:2335] Iron Crate")]
-
-        [Label("[i:3064] Enchanted Sundial")]
-        [Range(0, 10000)]
-        [DefaultValue(22)]
-        public int CrateEnchantedSundialIronIncrease;
-
-        [Label("[i:187] Fipper")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateFlippersIron;
-
-        [Label("[i:863] Water Walking Boots")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWaterWalkingBootsIron;
-
-        [Header("[i:2334] Wooden Crate")]
-
-        [Label("[i:3064] Enchanted Sundial")]
-        [Range(0, 10000)]
-        [DefaultValue(94)]
-        public int CrateEnchantedSundialWoodenIncrease;
-
-        [Label("[i:187] Flipper")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateFlippersWooden;
-
-        [Label("[i:863] Water Walking Boots")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWaterWalkingBootsWooden;
-
-        [Label("[i:285] Aglet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWoodenAgletIncrease;
-
-        [Label("[i:953] Climbing Claws")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWoodenClimbingClawsIncrease;
-
-        [Label("[i:3084] Radar")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateWoodenRadarIncrease;
-
-        [Header("[i:3208] Jungle Crate")]
-
-        [Label("[i:212] Anklet of the Wind")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleAnkeltOfTheWindIncrease;
-
-        [Label("[i:211] Feral Claws")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleFeralClawsIncrease;
-
-        [Label("[i:3017] Flower Boots")]
-        [Range(0, 10000)]
-        [DefaultValue(4)]
-        public int CrateJungleFlowerBoots;
-
-        [Label("[i:933] Leaf Wand")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleLeafWand;
-
-        [Label("[i:2196] Living Loom")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleLivingLoom;
-
-        [Label("[i:3360] Mahogany Wand")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleLivingMahoganyWand;
-
-        [Label("[i:832] Living Wood Wand")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleLivingWoodWand;
-
-        [Label("[i:3361] Rich Mahogany Leaf Wand")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleRichMahoganyLeafWand;
-
-        [Label("[i:753] Seaweed")]
-        [Range(0, 10000)]
-        [DefaultValue(4)]
-        public int CrateJungleSeaweed;
-
-        [Label("[i:213] Staff of Regrowth")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateJungleStaffOfRegrowth;
-
-        [Header("[i:3206] Sky Crate")]
-        [Label("[i:2197] Sky Mill")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int CrateSkySkyMill;
-
-        [Header("[i:1869] Present")]
-
-        [Label("[i:586] Candy Cane Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentCandyCaneBlock;
-
-        [Label("[i:1915] Candy Cane Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentCandyCaneHook;
-
-        [Label("[i:1917] Candy Cane Pickaxe")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentCandyCanePickaxe;
-
-        [Label("[i:1909] Candy Cane Sword")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentCandyCaneSword;
-
-        [Label("[i:1911] Christmas Pudding")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentChristmasPudding;
-
-        [Label("[i:1922] Coal")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentCoal;
-
-        [Label("[i:1927] Dog Whistle")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentDogWhistle;
-
-        [Label("[i:1912] Eggnog")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentEggnog;
-
-        [Label("[i:1918] Fruitcake Chakram")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentFruitcakeChakram;
-
-        [Label("[i:1920] Ginderbread Cookie")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentGingerbreadCookie;
-
-        [Label("[i:591] Green Candy Cane Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentGreenCandyCaneBlock;
-
-        [Label("[i:1921] Hand Warmer")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentHandWarmer;
-
-        [Label("[i:602] Snow Glow (Hardmode only)")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentHardmodeSnowGlobe;
-
-        [Label("[i:1908] Holly")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentHolly;
-
-        [Label("[i:1933] Mrs. Clause Costume")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentMrsClausCostume;
-
-        [Label("[i:1936] Parka Outfit")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentParkaOutfit;
-
-        [Label("[i:1872] Pine Tree Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentPineTreeBlock;
-
-        [Label("[i:1870] Red Ryder (with Musket Balls)")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentRedRyderPlusMusketBall;
-
-        [Label("[i:1907] Reindeer Antlers")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentReindeerAntlers;
-
-        [Label("[i:1938] Snow Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentSnowHat;
-
-        [Label("[i:1913] Star Anise")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentStarAnise;
-
-        [Label("[i:1919] Sugar Cookie")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentSugarCookie;
-
-        [Label("[i:1923] Toolbox")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentToolbox;
-
-        [Label("[i:1940] Tree Costume")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentTreeCostume;
-
-        [Label("[i:1939] Ugly Sweater")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PresentUglySweater;
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
     [Label("Fishing")]
     public class CFishingConfig : ModConfig
     {
@@ -1246,7 +976,7 @@ namespace ReducedGrinding
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
 
-        [Header("The configurations below will give a chance at resetting the Angler Quest when finishing it. The chance will wait until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest before rolling. The chance is (1 / setting), set to 0 to disable.")]
+        [Header("The configurations below will give a chance at resetting the Angler Quest when finishing it. The chance will wait until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest before rolling. The chance is (1 / configuration setting), set to 0 to disable.")]
 
         [Label("Before Hardmode")]
         [Range(0, 10000)]
@@ -1822,7 +1552,7 @@ namespace ReducedGrinding
         [Tooltip("After Vanilla World Generation, this mod will detect if certain rare chest items are missing from the world and add them to the world. For example: Pyramid items that are missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
-        [Header("Sleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
+        [Header("\n\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
 
         [Label("Starting Boost Amount (In-Game Minutes Added)")]
         [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
@@ -1841,6 +1571,21 @@ namespace ReducedGrinding
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
+
+        [Header("\n\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3085] Golden Lockbox")]
+
+        [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
+        [Range(0, 10000)]
+        [DefaultValue(1)]
+        public int GoldenLockboxDungeonFurniture;
+
+        [Header("[i:2336] Golden Crate")]
+
+        [Label("[i:3064] Enchanted Sundial")]
+        [Tooltip("Chance is divided by 3 for Mythril and divided by 10 for Pearlwood")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int CrateEnchantedSundial;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

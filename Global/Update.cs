@@ -209,8 +209,6 @@ namespace ReducedGrinding.Global
             if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
                 NPC.MoonLordCountdown = 1;
 
-
-
             if (Main.time % 600 == 0 && !NPC.downedMoonlord)
             {
                 for (int i = 0; i < Main.npc.Length; i++)

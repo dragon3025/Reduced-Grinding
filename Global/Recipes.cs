@@ -9,7 +9,6 @@ namespace ReducedGrinding.Global
 
     class Recipes : ModSystem
     {
-        // A place to store the recipe group so we can easily use it later
         public static RecipeGroup baitCritterLow;
         public static RecipeGroup baitCritterMed;
         public static RecipeGroup baitCritterHigh;
