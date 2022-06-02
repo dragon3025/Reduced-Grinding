@@ -22,8 +22,8 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 20;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ZombieMoan, 0);
-            Item.consumable = false;
+			Item.UseSound = SoundID.ZombieMoan;
+			Item.consumable = false;
 		}
 
         public override bool CanUseItem(Terraria.Player player)

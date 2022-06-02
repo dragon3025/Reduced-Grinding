@@ -22,7 +22,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
             Item.useAnimation = 20;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-			Item.UseSound = new Terraria.Audio.LegacySoundStyle(SoundID.ForceRoar, 0);
+			Item.UseSound = SoundID.ForceRoar;
 			Item.consumable = true;
 		}
 

@@ -10,7 +10,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("All configurations in this section will add an n/1 chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("All configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1313] Book of Skulls")]
         [Range(0, 10000)]
@@ -85,815 +85,59 @@ namespace ReducedGrinding
         [Header("Non-Boss Loot")]
 
         [Label("[i:1533] Biome Key Increase")]
+        [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
-        [DefaultValue(2500)]
+        [DefaultValue(0)]
         public int LootBiomeKeyIncrease;
-
-        [Label("[i:1322] Magma Stone From Hellbat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int HellBatLootMagmaStoneIncrease;
-
-        [Label("[i:1322] Magma Stone From Lavabat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LavaBatLootMagmaStoneIncrease;
-
-        [Label("[i:885] Adhesive Bandage")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAdhesiveBandageIncrease;
-
-        [Label("[i:3821] Ale Tosser")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootAleTosserIncrease;
-
-        [Label("[i:3289] Amarok")]
-        [Range(0, 10000)]
-        [DefaultValue(150)]
-        public int LootAmarokIncrease;
-
-        [Label("[i:3794] Ancient Cloth")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientClothIncrease;
-
-        [Label("[i:961] Ancient Cobalt Breastplate")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientCobaltBreastplateIncrease;
-
-        [Label("[i:960] Ancient Cobalt Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientCobaltHelmetIncrease;
-
-        [Label("[i:962] Ancient Cobalt Leggings")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientCobaltLeggingsIncrease;
-
-        [Label("[i:955] Ancient Gold Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(66)]
-        public int LootAncientGoldHelmetIncrease;
-
-        [Label("[i:3771] Ancient Horn")]
-        [Range(0, 10000)]
-        [DefaultValue(33)]
-        public int LootAncientHornIncrease;
-
-        [Label("[i:954] Ancient Iron Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientIronHelmetIncrease;
-
-        [Label("[i:959] Ancient Necro Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(357)]
-        public int LootAncientNecroHelmetIncrease;
-
-        [Label("[i:958] Ancient Shadow Greeves")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientShadowGreavesIncrease;
-
-        [Label("[i:956] Ancient Shadow Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientShadowHelmetIncrease;
-
-        [Label("[i:957] Ancient Shadow Scalemail")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootAncientShadowScalemailIncrease;
-
-        [Label("[i:886] Armor Polish")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootArmorPolishIncrease;
-
-        [Label("[i:1959] Baby Grinch's Mischief Whistle")]
-        [Range(0, 10000)]
-        [DefaultValue(0.20)]
-        public int LootBabyGrinchsMischiefWhistleIncrease;
-
-        [Label("[i:1324] Bananarang")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int LootBananarangIncrease;
 
         [Label("[i:723] Beam Sword")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootBeamSwordIncrease;
 
-        [Label("[i:887] Bezoar")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBezoarIncrease;
-
-        [Label("[i:963] Black Belt")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBlackBeltIncrease;
-
-        [Label("[i:236] Black Lens")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBlackLensIncrease;
-
-        [Label("[i:3260] Blessed Apple")]
-        [Range(0, 10000)]
-        [DefaultValue(151)]
-        public int LootBlessedAppleIncrease;
-
-        [Label("[i:888] Blindfold")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBlindfoldIncrease;
-
         [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove")]
+        [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
-        [DefaultValue(666)]
+        [DefaultValue(0)]
         public int LootBloodyMacheteAndBladedGlovesIncrease;
-
-        [Label("[i:1517] Bone Feather")]
-        [Range(0, 10000)]
-        [DefaultValue(128)]
-        public int LootBoneFeatherIncrease;
-
-        [Label("[i:1320] Bone Pickaxe")]
-        [Range(0, 10000)]
-        [DefaultValue(12)]
-        public int LootBonePickaxeIncrease;
-
-        [Label("[i:1166] Bone Sword")]
-        [Range(0, 10000)]
-        [DefaultValue(196)]
-        public int LootBoneSwordIncrease;
-
-        [Label("[i:932] Bone Ward")]
-        [Range(0, 10000)]
-        [DefaultValue(167)]
-        public int LootBoneWandIncrease;
-
-        [Label("[i:2771] Brain Scrambler")]
-        [Range(0, 10000)]
-        [DefaultValue(100)]
-        public int LootBrainScramblerIncrease;
-
-        [Label("[i:1520] Broken Bat Wing")]
-        [Range(0, 10000)]
-        [DefaultValue(14)]
-        public int LootBrokenBatWingIncrease;
-
-        [Label("[i:243] Bunny Hood")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBunnyHoodIncrease;
-
-        [Label("[i:3282] Cascade")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int LootCascadeIncrease;
-
-        [Label("[i:3012] Chain Guillotines")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootChainGuillotinesIncrease;
-
-        [Label("[i:1325] Chain Knife")]
-        [Range(0, 10000)]
-        [DefaultValue(370)]
-        public int LootChainKnifeIncrease;
-
-        [Label("[i:3351] Classy Cane")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootClassyCane;
-
-        [Label("[i:3014] Clinger Staff")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootClingerStaffIncrease;
-
-        [Label("[i:1307] Clothier Voodoo Doll")]
-        [Range(0, 10000)]
-        [DefaultValue(21)]
-        public int LootClothierVoodooDollIncrease;
-
-        [Label("[i:751] Cloud (From Harpies)")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int LootCloudFromHarpies;
-
-        [Label("[i:393] Compass")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootCompassIncrease;
-
-        [Label("[i:554] Cross Necklace")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootCrossNecklaceIncrease;
-
-        [Label("[i:3051] Crystal Vile Shard")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootCrystalVileShardIncrease;
-
-        [Label("[i:3029] Daedalus Stormbow")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDaedalusStormbowIncrease;
-
-        [Label("[i:527] Dark Shard")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDarkShardIncrease;
-
-        [Label("[i:3007] Dart Pistol")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDartPistolIncrease;
-
-        [Label("[i:3008] Dart Rifle")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDartRifleIncrease;
-
-        [Label("[i:1327] Death Sickle")]
-        [Range(0, 10000)]
-        [DefaultValue(40)]
-        public int LootDeathSickleIncrease;
-
-        [Label("[i:272] Demon Sythe")]
-        [Range(0, 10000)]
-        [DefaultValue(47)]
-        public int LootDemonScytheIncrease;
-
-        [Label("[i:18] Depth Meter")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDepthMeterIncrease;
-
-        [Label("[i:3795] Desert Spirit Lamp")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDesertSpiritLampIncrease;
-
-        [Label("[i:268] Diving Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(33)]
-        public int LootDivingHelmetIncrease;
-
-        [Label("[i:437] Dual Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootDualHookIncrease;
-
-        [Label("[i:1943] Elf Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(120)]
-        public int LootElfHatIncrease;
-
-        [Label("[i:1945] Elf Pants")]
-        [Range(0, 10000)]
-        [DefaultValue(120)]
-        public int LootElfPantsIncrease;
-
-        [Label("[i:1944] Elf Shirt")]
-        [Range(0, 10000)]
-        [DefaultValue(120)]
-        public int LootElfShirtIncrease;
-
-        [Label("[i:804] Eskimo Coat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootEskimoCoatIncrease;
-
-        [Label("[i:803] Eskimo Hood")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootEskimoHoodIncrease;
-
-        [Label("[i:805] Eskimo Pants")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootEskimoPantsIncrease;
-
-        [Label("[i:3349] Exotic Scimitar")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootExoticScimitarIncrease;
-
-        [Label("[i:1278] Eye Patch")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootEyePatchIncrease;
-
-        [Label("[i:1311] Eye Spring")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootEyeSpringIncrease;
-
-        [Label("[i:889] Fast Clock")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootFastClockBaseIncrease;
-
-        [Label("[i:1871] Festive Wings")]
-        [Range(0, 10000)]
-        [DefaultValue(20)]
-        public int LootFestiveWingsIncrease;
-
-        [Label("[i:3013] Fetid Baghnakhs")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootFetidBaghnakhsIncrease;
-
-        [Label("[i:1518] Fire Feather")]
-        [Range(0, 10000)]
-        [DefaultValue(27)]
-        public int LootFireFeatherIncrease;
-
-        [Label("[i:3016] Flesh Knuckles")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootFleshKnucklesIncrease;
-
-        [Label("[i:3030] Flying Knife")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootFlyingKnifeIncrease;
-
-        [Label("[i:726] Frost Staff")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootFrostStaffIncrease;
-
-        [Label("[i:1253] Frozen Turtle Shell")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootFrozenTurtleShellIncrease;
-
-        [Label("[i:1906] Giant Bow")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootGiantBowIncrease;
-
-        [Label("[i:1516] Giant Harpy Feather")]
-        [Range(0, 10000)]
-        [DefaultValue(200)]
-        public int LootGiantHarpyFeatherIncrease;
-
-        [Label("[i:1704] Gold Furniture")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootGoldenFurnitureIncrease;
-
-        [Label("[i:327] Golden Key")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootGoldenKeyIncrease;
 
         [Label("[i:1774] Goodie Bag")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootGoodieBagIncrease;
 
-        [Label("[i:867] Green Cap (For non-Andrew Guide)")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int LootGreenCapForNonAndrewGuide;
-
-        [Label("[i:3548] Happy Grenade")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootHappyGrenadeIncrease;
-
-        [Label("[i:160] Harpoon")]
-        [Range(0, 10000)]
-        [DefaultValue(133)]
-        public int LootHarpoonIncrease;
-
-        [Label("[i:3290] Hel-Fire")]
-        [Range(0, 10000)]
-        [DefaultValue(400)]
-        public int LootHelFireIncrease;
-
-        [Label("[i:118] Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootHookIncrease;
-
-        [Label("[i:1306] Sickle")]
-        [Range(0, 10000)]
-        [DefaultValue(909)]
-        public int LootIceSickleIncrease;
-
-        [Label("[i:3022] Illuminant Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootIlluminantHookIncrease;
-
-        [Label("[i:1303] Jellyfish Necklace")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int LootJellyfishNecklaceIncrease;
-
         [Label("[i:1314] KO Cannon")]
         [Range(0, 10000)]
-        [DefaultValue(1000)]
+        [DefaultValue(0)]
         public int LootKOCannonIncrease;
-
-        [Label("[i:671] Keybrand")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootKeybrandIncrease;
-
-        [Label("[i:3291] Kraken")]
-        [Range(0, 10000)]
-        [DefaultValue(133)]
-        public int LootKrakenIncrease;
-
-        [Label("[i:3784] Lamia Clothes")]
-        [Range(0, 10000)]
-        [DefaultValue(100)]
-        public int LootLamiaClothesIncrease;
-
-        [Label("[i:3006] Life Drain")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootLifeDrainIncrease;
-
-        [Label("[i:528] Light Shard")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootLightShardIncrease;
-
-        [Label("[i:1293] Lihzahrd Power Cell")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootLihzahrdPowerCellIncrease;
-
-        [Label("[i:2701] Living Fire Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootLivingFireBlockIncrease;
 
         [Label("[i:1172] Lizard Egg")]
         [Range(0, 10000)]
-        [DefaultValue(111)]
+        [DefaultValue(0)]
         public int LootLizardEggIncrease;
-
-        [Label("[i:517] Magic Dagger")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMagicDaggerIncrease;
-
-        [Label("[i:1321] Magic Quiver")]
-        [Range(0, 10000)]
-        [DefaultValue(27)]
-        public int LootMagicQuiverIncrease;
-
-        [Label("[i:1266] Magnet Sphere")]
-        [Range(0, 10000)]
-        [DefaultValue(588)]
-        public int LootMagnetSphereIncrease;
-
-        [Label("[i:3772] Mandible Blade")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMandibleBladeIncrease;
 
         [Label("[i:682] Marrow")]
         [Range(0, 10000)]
-        [DefaultValue(22)]
+        [DefaultValue(0)]
         public int LootMarrowIncrease;
-
-        [Label("[i:996] Meat Grinder")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMeatGrinderIncrease;
-
-        [Label("[i:890] Megaphone")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMegaphoneBaseIncrease;
-
-        [Label("[i:116] Meteorite")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMeteoriteIncrease;
-
-        [Label("[i:88] Mining Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(4)]
-        public int LootMiningHelmetIncrease;
-
-        [Label("[i:411] Mining Pants")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int LootMiningPantsIncrease;
-
-        [Label("[i:410] Mining Shirt")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int LootMiningShirtIncrease;
-
-        [Label("[i:3213] Money Trough")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int LootMoneyTroughIncrease;
-
-        [Label("[i:485] Moon Charm")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMoonCharmIncrease;
-
-        [Label("[i:2801] Moon Mask")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMoonMaskIncrease;
-
-        [Label("[i:900] Moon Stone")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMoonStoneIncrease;
-
-        [Label("[i:2770] Mothron Wings")]
-        [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootMothronWingsIncrease;
-
-        [Label("[i:870] Mummy Costume")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootMummyCostumeIncrease;
-
-        [Label("[i:891] Nazar")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootNazarIncrease;
-
-        [Label("[i:1244] Nimbus Rod")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootNimbusRodIncrease;
-
-        [Label("[i:1323] Obsidian Rose")]
-        [Range(0, 10000)]
-        [DefaultValue(33)]
-        public int LootObsidianRoseIncrease;
-
-        [Label("[i:3350] Paintball Gun")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootPaintballGunIncrease;
-
-        [Label("[i:938] Paladin’s Shield")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int LootPaladinsShieldIncrease;
-
-        [Label("[i:3757] Pedguin’s Suit")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootPedguinssuitIncrease;
-
-
-        [Label("[i:535] Philosopher’s Stone")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootPhilosophersStoneIncrease;
-
-        [Label("[i:1315] Pirate Map")]
-        [Range(0, 10000)]
-        [DefaultValue(67)]
-        public int LootPirateMapIncrease;
 
         [Label("[i:244] Plumber’s Hat")]
         [Range(0, 10000)]
-        [DefaultValue(21)]
+        [DefaultValue(0)]
         public int LootPlumbersHatIncrease;
-
-        [Label("[i:3781] Pocket Mirror")]
-        [Range(0, 10000)]
-        [DefaultValue(10)]
-        public int LootPocketMirrorIncrease;
-
-        [Label("[i:1869] Present")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootPresentIncrease;
-
-        [Label("[i:3106] Psycho Knife")]
-        [Range(0, 10000)]
-        [DefaultValue(9)]
-        public int LootPsychoKnifeIncrease;
-
-        [Label("[i:3015] Putrid Scent")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootPutridScentIncrease;
-
-        [Label("[i:1135] Rain Armor")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootRainArmorIncrease;
-
-        [Label("[i:662] Rainbow Brick Max Increase (Min and Max in any order)")]
-        [Range(0, 999)]
-        public int[] LootRainbowBrickDrop = new int[] {0, 0};
-
-        [Label("[i:3285] Rally")]
-        [Range(0, 10000)]
-        [DefaultValue(16)]
-        public int LootRallyIncrease;
-
-        [Label("[i:1914] Reindeer Bells")]
-        [Range(0, 10000)]
-        [DefaultValue(11)]
-        public int LootReindeerBellsIncrease;
-
-        [Label("[i:1300] Rifle Scope")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootRifleScopeIncrease;
-
-        [Label("[i:263] Robot Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootRobotHatIncrease;
-
-        [Label("[i:759] Rocket Launcher")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootRocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
-        [DefaultValue(7)]
+        [DefaultValue(0)]
         public int LootRodofDiscordIncrease;
-
-        [Range(0, 10000)]
-        [Label("[i:1514] SWAT Helmet")]
-        [DefaultValue(0)]
-        public int LootSWATHelmetIncrease;
-
-        [Label("[i:1277] Sailor Outfit")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSailorOutfitIncrease;
-
-        [Label("[i:216] Shackle")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootShackleIncrease;
-
-        [Label("[i:1274] Skull")]
-        [Range(0, 10000)]
-        [DefaultValue(21)]
-        public int LootSkullIncrease;
 
         [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
         [Label("[i:1309] Slime Staff (Hover for more info)")]
         [Range(0, 10000)]
-        [DefaultValue(13)]
+        [DefaultValue(0)]
         public int LootSlimeStaffIncrease;
 
-        [Label("[i:1254] Sniper Rifle")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSniperRifleIncrease;
-
-        [Label("[i:951] Snowball Launcher")]
-        [Range(0, 10000)]
-        [DefaultValue(75)]
-        public int LootSnowballLauncherIncrease;
-
-        [Label("[i:520] Soul of Light")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSoulofLightIncrease;
-
-        [Label("[i:521] Soul of Night")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSoulofNightIncrease;
-
-        [Label("[i:532] Star Cloak")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootStarCloakIncrease;
-
-        [Label("[i:3352] Stylish Scissors")]
-        [Range(0, 10000)]
-        [DefaultValue(2)]
-        public int LootStylishScissorsIncrease;
-
-        [Label("[i:2802] Sun Mask")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSunMaskIncrease;
-
-        [Label("[i:977] Tabi")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTabiIncrease;
-
-        [Label("[i:679] Tactical Shotgun")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTacticalShotgunIncrease;
-
-        [Label("[i:3095] Tally Counter")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTallyCounterIncrease;
-
-        [Label("[i:1521] Tattered Bee Wing")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTatteredBeeWingIncrease;
-
-        [Label("[i:3020] Tendon Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTendonHookIncrease;
-
-        [Label("[i:536] Titan Glove")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTitanGloveIncrease;
-
-        [Label("[i:1312] Toy Sled")]
-        [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootToySledIncrease;
-
-        [Label("[i:893] Trifold Map")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootTrifoldMapIncrease;
-
-        [Label("[i:1328] Turtle Shell")]
-        [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootTurtleShellIncrease;
-
-        [Label("[i:1243] Umbrella Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootUmbrellaHatIncrease;
-
-        [Label("[i:856] Unicorn on a Stick")]
-        [Range(0, 10000)]
-        [DefaultValue(25)]
-        public int LootUnicornonaStickIncrease;
-
-        [Label("[i:1265] Uzi")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootUziIncrease;
-
-        [Label("[i:879] Viking Helmet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootVikingHelmetIncrease;
-
-        [Label("[i:892] Vitamins")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootVitaminsIncrease;
-
-        [Label("[i:215] Whoopie Cushion")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootWhoopieCushionIncrease;
-
-        [Label("[i:1183] Wisp in a Bottle")]
-        [Range(0, 10000)]
-        [DefaultValue(159)]
-        public int LootWispinaBottleIncrease;
-
-        [Label("[i:3023] Worm Hook")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootWormHookIncrease;
-
-        [Label("[i:3286] Yelets")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootYeletsIncrease;
-
-        [Label("[i:1304] Zombie Arm")]
-        [Range(0, 10000)]
-        [DefaultValue(63)]
-        public int LootZombieArmIncrease;
+        [Header("Pirate Loot")]
 
         [Label("[i:905] Coin Gun (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")] //TO-DO (This might change in 1.4.4)
@@ -931,16 +175,21 @@ namespace ReducedGrinding
         [DefaultValue(222)]
         public int PirateLootPirateStaffBaseIncrease;
 
-        [Header("Drops that don't happen in vanilla.")]
-
-        [Label("[i:2673] Truffle Worm from Duke Fishron")]
+        [Label("[i:1704] Gold Furniture")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootFishronTruffleworm;
+        public int LootGoldenFurnitureIncrease;
+
+        [Label("[i:1277] Sailor Outfit")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSailorOutfitIncrease;
+
+        [Header("Drops that don't happen in vanilla.")]
 
         [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
         [Range(0, 999)]
-        public int[] LootDesertFossilFromDuneSplicer = new int[] { 0 , 0 };
+        public int[] LootDesertFossilFromDuneSplicer = new int[] { 0, 0 };
 
         [Label("[i:3347] Desert Fossil from Tomb Crawler (Min and Max in any order)")]
         [Range(0, 999)]
@@ -958,6 +207,16 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int LootSandstormInABottleFromSandElemental;
+
+        [Label("[i:2673] Truffle Worm from Duke Fishron")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootTrufflewormFromDukeFishron;
+
+        [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
+        [Range(0, 10000)]
+        [DefaultValue(150)]
+        public int LootSnowballLauncherFromSpikedIceSlime;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -1486,7 +745,11 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool WizardSellsMoonBall;
 
-        [Header("$Mods.ReducedGrinding.Common.WarPotion")]
+        /* TO-DO
+         * The headers for both potion was using "$Mods.ReducedGrinding.Common.WarPotion", but that's no longer working
+         */
+
+        [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nWarPotion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
@@ -1499,7 +762,7 @@ namespace ReducedGrinding
         [DefaultValue(3f)]
         public float WarPotionSpawnrateMultiplier;
 
-        [Header("$Mods.ReducedGrinding.Common.ChaosPotion")]
+        [Header("ChaosPotion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]

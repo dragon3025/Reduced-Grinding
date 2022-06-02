@@ -88,7 +88,7 @@ namespace ReducedGrinding.Global
             if (npc.type == NPCID.DukeFishron)
             {
                 try_boss_loot(ItemID.FishronWings, GetInstance<AEnemyLootConfig>().LootFishronWingsIncrease);
-                try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().LootFishronTruffleworm);
+                try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().LootTrufflewormFromDukeFishron);
                 try_boss_loot(ItemID.DukeFishronMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
             }
             if (npc_is_any_types(NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail))
@@ -159,51 +159,33 @@ namespace ReducedGrinding.Global
             }
 
             //Non-Boss Drops
+            if (npc.type == NPCID.SkeletonArcher)
+                try_loot(ItemID.Marrow, GetInstance<AEnemyLootConfig>().LootMarrowIncrease);
+            if (npc.type == NPCID.ArmoredSkeleton)
+                try_loot(ItemID.BeamSword, GetInstance<AEnemyLootConfig>().LootBeamSwordIncrease);
+            if (npc.type == NPCID.FireImp)
+                try_loot(ItemID.PlumbersHat, GetInstance<AEnemyLootConfig>().LootPlumbersHatIncrease);
             if (npc.type == NPCID.ChaosElemental)
                 try_loot(ItemID.RodofDiscord, GetInstance<AEnemyLootConfig>().LootRodofDiscordIncrease);
-            if (npc.type == NPCID.TacticalSkeleton)
-                try_loot(ItemID.SWATHelmet, GetInstance<AEnemyLootConfig>().LootSWATHelmetIncrease);
-            if (npc.type == NPCID.AnglerFish || npc.type == NPCID.Piranha)
-                try_loot(ItemID.RobotHat, GetInstance<AEnemyLootConfig>().LootRobotHatIncrease);
-            if (npc.type == NPCID.ChaosElemental)
-                try_loot(ItemID.RodofDiscord, GetInstance<AEnemyLootConfig>().LootRodofDiscordIncrease);
-            if (npc.type == NPCID.Clown || npc.type == NPCID.LightMummy || npc.type == NPCID.GiantBat)
-                try_loot(ItemID.TrifoldMap, GetInstance<AEnemyLootConfig>().LootTrifoldMapIncrease);
-            if (npc.type == NPCID.Clown)
-                try_loot(ItemID.Bananarang, GetInstance<AEnemyLootConfig>().LootBananarangIncrease);
-            if (npc.type == NPCID.Hornet || (npc.type >= NPCID.HornetFatty && npc.type <= NPCID.HornetStingy)) //Hornet Variants
-            {
-                try_loot(ItemID.AncientCobaltHelmet, GetInstance<AEnemyLootConfig>().LootAncientCobaltHelmetIncrease);
-                try_loot(ItemID.AncientCobaltBreastplate, GetInstance<AEnemyLootConfig>().LootAncientCobaltBreastplateIncrease);
-                try_loot(ItemID.AncientCobaltLeggings, GetInstance<AEnemyLootConfig>().LootAncientCobaltLeggingsIncrease);
-            }
-            if (npc.type == NPCID.MossHornet)
-            {
-                try_loot(ItemID.TatteredBeeWing, GetInstance<AEnemyLootConfig>().LootTatteredBeeWingIncrease);
-            }
-            if (npc_is_any_types(NPCID.Lihzahrd, NPCID.LihzahrdCrawler, NPCID.FlyingSnake))
-            {
+            if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
                 try_loot(ItemID.LizardEgg, GetInstance<AEnemyLootConfig>().LootLizardEggIncrease);
-                try_loot(ItemID.LihzahrdPowerCell, GetInstance<AEnemyLootConfig>().LootLihzahrdPowerCellIncrease);
-            }
-            if (npc.type == NPCID.GiantTortoise)
+            if (npc_is_any_types(-4, 1, 16, 138, 141, 147, 184, 187, 433, 204, 302, 333, 334, 335, 336, 535, 658, 659, 660, -6, -7, -8, -9, 537)) //Slimestaff Slimes
             {
-                try_loot(ItemID.TurtleShell, GetInstance<AEnemyLootConfig>().LootTurtleShellIncrease);
+                int slimestaffmultiplier = 100;
+                if (npc.type == NPCID.Pinky)
+                    slimestaffmultiplier = 1;
+                if (npc.type == NPCID.SandSlime)
+                    slimestaffmultiplier = 80;
+                try_loot(ItemID.SlimeStaff, GetInstance<AEnemyLootConfig>().LootSlimeStaffIncrease * slimestaffmultiplier);
             }
-            if (npc.type == NPCID.IceTortoise)
-            {
-                try_loot(ItemID.FrozenTurtleShell, GetInstance<AEnemyLootConfig>().LootFrozenTurtleShellIncrease);
-            }
-            if (npc.type == NPCID.Paladin)
-            {
-                try_loot(ItemID.PaladinsShield, GetInstance<AEnemyLootConfig>().LootPaladinsShieldIncrease);
-            }
+
+            //Pirate Drops
             if (npc_is_any_types(212, 213, 214, 215, 216, 491)) //All Human Pirates and Flying Dutchman
             {
-                /*
-                 * TO-DO 1.4.4 is going to boost drop rates. I've adjusted multipliers to the new rates, but when the udpate comes out. Look into the new coding.
-                 * So far, it's unknown exactly how the Flying Dutchman rates will be. I've added coding to double the vanilla denominator below. In 1.4.4 the Flying Dutchman always drops 1 furniture; I tried to mimic this with a "drop 1 of the following" condition, but it didn't work.
-                 */
+                //
+                //TO-DO 1.4.4 is going to boost drop rates. I've adjusted multipliers to the new rates, but when the udpate comes out. Look into the new coding.
+                //So far, it's unknown exactly how the Flying Dutchman rates will be. I've added coding to halve the vanilla denominators below. In 1.4.4 the Flying Dutchman //always drops 1 furniture; I tried to mimic this with a "drop 1 of the following" condition, but it didn't work.
+                //
                 float denominator_multiplier = 10;
                 if (npc.type == NPCID.PirateCaptain)
                     denominator_multiplier = 2.5f;
@@ -257,420 +239,10 @@ namespace ReducedGrinding.Global
                     try_loot(ItemID.EyePatch, sailor_outfit_config);
                 }
             }
-            if ((npc.type == NPCID.ZombieElf || npc.type == NPCID.ZombieElfBeard || npc.type == NPCID.ZombieElfGirl))
-            {
-                try_loot(ItemID.ElfHat, GetInstance<AEnemyLootConfig>().LootElfHatIncrease);
-                try_loot(ItemID.ElfShirt, GetInstance<AEnemyLootConfig>().LootElfShirtIncrease);
-                try_loot(ItemID.ElfPants, GetInstance<AEnemyLootConfig>().LootElfPantsIncrease);
-            }
-            if (npc.type >= NPCID.RustyArmoredBonesAxe && npc.type <= NPCID.HellArmoredBonesSword)//All Armored Bones variants
-            {
-                try_loot(ItemID.WispinaBottle, GetInstance<AEnemyLootConfig>().LootWispinaBottleIncrease);
-                try_loot(ItemID.BoneFeather, GetInstance<AEnemyLootConfig>().LootBoneFeatherIncrease);
-                try_loot(ItemID.MagnetSphere, GetInstance<AEnemyLootConfig>().LootMagnetSphereIncrease);
-                try_loot(ItemID.Keybrand, GetInstance<AEnemyLootConfig>().LootKeybrandIncrease);
-            }
-            if (npc.type == NPCID.EaterofSouls)
-            {
-                try_loot(ItemID.AncientShadowHelmet, GetInstance<AEnemyLootConfig>().LootAncientShadowHelmetIncrease);
-                try_loot(ItemID.AncientShadowScalemail, GetInstance<AEnemyLootConfig>().LootAncientShadowScalemailIncrease);
-                try_loot(ItemID.AncientShadowGreaves, GetInstance<AEnemyLootConfig>().LootAncientShadowGreavesIncrease);
-            }
-            if (npc_is_any_types(21, 201, 202, 203, 322, 323, 324, 635, 449, 450, 451, 452)) //Skeletons
-            {
-                try_loot(ItemID.Skull, GetInstance<AEnemyLootConfig>().LootSkullIncrease);
-                try_loot(ItemID.BoneSword, GetInstance<AEnemyLootConfig>().LootBoneSwordIncrease);
-                try_loot(ItemID.AncientGoldHelmet, GetInstance<AEnemyLootConfig>().LootAncientGoldHelmetIncrease);
-                try_loot(ItemID.AncientIronHelmet, GetInstance<AEnemyLootConfig>().LootAncientIronHelmetIncrease);
-            }
-            if (npc_is_any_types(31, 32, 294, 295, 296))
-            {
-                try_loot(ItemID.AncientNecroHelmet, GetInstance<AEnemyLootConfig>().LootAncientNecroHelmetIncrease);
-                try_loot(ItemID.ClothierVoodooDoll, GetInstance<AEnemyLootConfig>().LootClothierVoodooDollIncrease);
-                try_loot(ItemID.BoneWand, GetInstance<AEnemyLootConfig>().LootBoneWandIncrease);
-            }
-            if (npc.type == NPCID.ManEater)
-            {
-                try_loot(ItemID.AncientCobaltHelmet, GetInstance<AEnemyLootConfig>().LootAncientCobaltHelmetIncrease);
-                try_loot(ItemID.AncientCobaltBreastplate, GetInstance<AEnemyLootConfig>().LootAncientCobaltBreastplateIncrease);
-                try_loot(ItemID.AncientCobaltLeggings, GetInstance<AEnemyLootConfig>().LootAncientCobaltLeggingsIncrease);
-            }
-            if (npc.type == NPCID.FireImp)
-            {
-                try_loot(ItemID.PlumbersHat, GetInstance<AEnemyLootConfig>().LootPlumbersHatIncrease);
-                try_loot(ItemID.ObsidianRose, GetInstance<AEnemyLootConfig>().LootObsidianRoseIncrease);
-            }
-            if (npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster)
-            {
-                try_loot(ItemID.BoneWand, GetInstance<AEnemyLootConfig>().LootBoneWandIncrease);
-            }
-            if (npc.type == NPCID.CaveBat)
-            {
-                try_loot(ItemID.ChainKnife, GetInstance<AEnemyLootConfig>().LootChainKnifeIncrease);
-            }
-            if (npc.type == NPCID.Reaper)
-            {
-                try_loot(ItemID.DeathSickle, GetInstance<AEnemyLootConfig>().LootDeathSickleIncrease);
-            }
-            if (npc_is_any_types(3, 591, 590, 331, 332, 132, 161, 186, 187, 188, 189, 200, 223, 319, 320, 321, 430, 431, 432, 433, 434, 435, 436)) //Basic Zombies
-            {
-                try_loot(ItemID.ZombieArm, GetInstance<AEnemyLootConfig>().LootZombieArmIncrease);
-                try_loot(ItemID.Shackle, GetInstance<AEnemyLootConfig>().LootShackleIncrease);
-            }
-            if (npc.type == NPCID.Unicorn)
-                try_loot(ItemID.BlessedApple, GetInstance<AEnemyLootConfig>().LootBlessedAppleIncrease);
-            if (npc.type == NPCID.Mimic)
-            {
-                try_loot(ItemID.DualHook, GetInstance<AEnemyLootConfig>().LootDualHookIncrease);
-                try_loot(ItemID.MagicDagger, GetInstance<AEnemyLootConfig>().LootMagicDaggerIncrease);
-                try_loot(ItemID.TitanGlove, GetInstance<AEnemyLootConfig>().LootTitanGloveIncrease);
-                try_loot(ItemID.PhilosophersStone, GetInstance<AEnemyLootConfig>().LootPhilosophersStoneIncrease);
-                try_loot(ItemID.CrossNecklace, GetInstance<AEnemyLootConfig>().LootCrossNecklaceIncrease);
-                try_loot(ItemID.StarCloak, GetInstance<AEnemyLootConfig>().LootStarCloakIncrease);
-            }
-            if (npc.type == NPCID.BigMimicCorruption)
-            {
-                try_loot(ItemID.DartRifle, GetInstance<AEnemyLootConfig>().LootDartRifleIncrease);
-                try_loot(ItemID.WormHook, GetInstance<AEnemyLootConfig>().LootWormHookIncrease);
-                try_loot(ItemID.ChainGuillotines, GetInstance<AEnemyLootConfig>().LootChainGuillotinesIncrease);
-                try_loot(ItemID.ClingerStaff, GetInstance<AEnemyLootConfig>().LootClingerStaffIncrease);
-                try_loot(ItemID.PutridScent, GetInstance<AEnemyLootConfig>().LootPutridScentIncrease);
-            }
-            if (npc.type == NPCID.BigMimicCrimson)
-            {
-                try_loot(ItemID.SoulDrain, GetInstance<AEnemyLootConfig>().LootLifeDrainIncrease);
-                try_loot(ItemID.DartPistol, GetInstance<AEnemyLootConfig>().LootDartPistolIncrease);
-                try_loot(ItemID.FetidBaghnakhs, GetInstance<AEnemyLootConfig>().LootFetidBaghnakhsIncrease);
-                try_loot(ItemID.FleshKnuckles, GetInstance<AEnemyLootConfig>().LootFleshKnucklesIncrease);
-                try_loot(ItemID.TendonHook, GetInstance<AEnemyLootConfig>().LootTendonHookIncrease);
-            }
-            if (npc.type == NPCID.BigMimicHallow)
-            {
-                try_loot(ItemID.DaedalusStormbow, GetInstance<AEnemyLootConfig>().LootDaedalusStormbowIncrease);
-                try_loot(ItemID.FlyingKnife, GetInstance<AEnemyLootConfig>().LootFlyingKnifeIncrease);
-                try_loot(ItemID.CrystalVileShard, GetInstance<AEnemyLootConfig>().LootCrystalVileShardIncrease);
-                try_loot(ItemID.IlluminantHook, GetInstance<AEnemyLootConfig>().LootIlluminantHookIncrease);
-            }
-            if (npc.type == NPCID.Harpy)
-            {
-                try_loot(ItemID.GiantHarpyFeather, GetInstance<AEnemyLootConfig>().LootGiantHarpyFeatherIncrease);
-                try_loot(ItemID.Cloud, GetInstance<AEnemyLootConfig>().LootCloudFromHarpies);
-            }
-            if ((npc.type >= NPCID.GoblinPeon && npc.type <= NPCID.GoblinSorcerer) || npc.type == NPCID.GoblinArcher) //Goblin Army (Excluding Summoner)
-            {
-                try_loot(ItemID.Harpoon, GetInstance<AEnemyLootConfig>().LootHarpoonIncrease);
-            }
-            if (npc.type == NPCID.ArmoredViking || npc.type == NPCID.IceElemental || npc.type == NPCID.IcyMerman || npc.type == NPCID.IceTortoise)
-            {
-                try_loot(ItemID.IceSickle, GetInstance<AEnemyLootConfig>().LootIceSickleIncrease);
-            }
-            if (npc.type == NPCID.SkeletonArcher)
-            {
-                try_loot(ItemID.Marrow, GetInstance<AEnemyLootConfig>().LootMarrowIncrease);
-                try_loot(ItemID.MagicQuiver, GetInstance<AEnemyLootConfig>().LootMagicQuiverIncrease);
-            }
-            if (npc.type == NPCID.Crimslime || npc.type == NPCID.CrimsonAxe || npc.type == NPCID.FloatyGross || npc.type == NPCID.Herpling)
-            {
-                try_loot(ItemID.MeatGrinder, GetInstance<AEnemyLootConfig>().LootMeatGrinderIncrease);
-            }
-            if (npc.type == NPCID.AngryTrapper)
-            {
-                try_loot(ItemID.Uzi, GetInstance<AEnemyLootConfig>().LootUziIncrease);
-            }
-            if (npc.type == NPCID.ArmoredSkeleton)
-            {
-                try_loot(ItemID.BeamSword, GetInstance<AEnemyLootConfig>().LootBeamSwordIncrease);
-            }
-            if (npc_is_any_types(2, 317, 318, 190, 191, 192, 193, 194, 133)) //Demon Eye Variants and Wandering Eye
-            {
-                try_loot(ItemID.BlackLens, GetInstance<AEnemyLootConfig>().LootBlackLensIncrease);
-            }
-            if (npc.type == NPCID.ZombieEskimo || npc.type == NPCID.ArmedZombieEskimo)
-            {
-                try_loot(ItemID.EskimoHood, GetInstance<AEnemyLootConfig>().LootEskimoHoodIncrease);
-                try_loot(ItemID.EskimoCoat, GetInstance<AEnemyLootConfig>().LootEskimoCoatIncrease);
-                try_loot(ItemID.EskimoPants, GetInstance<AEnemyLootConfig>().LootEskimoPantsIncrease);
-            }
-            if (npc.type == NPCID.Hellbat)
-            {
-                try_loot(ItemID.MagmaStone, GetInstance<AEnemyLootConfig>().HellBatLootMagmaStoneIncrease);
-            }
-            if (npc.type == NPCID.Lavabat)
-            {
-                try_loot(ItemID.MagmaStone, GetInstance<AEnemyLootConfig>().LavaBatLootMagmaStoneIncrease);
-            }
-            if (npc.type == NPCID.SnowFlinx)
-            {
-                try_loot(ItemID.SnowballLauncher, GetInstance<AEnemyLootConfig>().LootSnowballLauncherIncrease);
-            }
-            if (npc.type == NPCID.ScutlixRider)
-            {
-                try_loot(ItemID.BrainScrambler, GetInstance<AEnemyLootConfig>().LootBrainScramblerIncrease);
-            }
-            if (npc_is_any_types(63, 64, 103)) //Basic Jellyfish
-            {
-                try_loot(ItemID.JellyfishNecklace, GetInstance<AEnemyLootConfig>().LootJellyfishNecklaceIncrease);
-            }
-            if (npc.type == NPCID.DesertLamiaLight || npc.type == NPCID.DesertLamiaDark)
-            {
-                try_loot(ItemID.LamiaHat, GetInstance<AEnemyLootConfig>().LootLamiaClothesIncrease);
-                try_loot(ItemID.LamiaPants, GetInstance<AEnemyLootConfig>().LootLamiaClothesIncrease);
-                try_loot(ItemID.LamiaShirt, GetInstance<AEnemyLootConfig>().LootLamiaClothesIncrease);
-            }
-            if (npc.type == NPCID.Vampire)
-            {
-                try_loot(ItemID.MoonStone, GetInstance<AEnemyLootConfig>().LootMoonStoneIncrease);
-            }
-            if (npc.type == NPCID.RedDevil)
-            {
-                try_loot(ItemID.FireFeather, GetInstance<AEnemyLootConfig>().LootFireFeatherIncrease);
-            }
-            if (npc_is_any_types(-4, 1, 16, 138, 141, 147, 184, 187, 433, 204, 302, 333, 334, 335, 336, 535, 658, 659, 660, -6, -7, -8, -9, 537)) //Slimestaff Slimes
-            {
-                int slimestaffmultiplier = 100;
-                if (npc.type == NPCID.Pinky)
-                    slimestaffmultiplier = 1;
-                if (npc.type == NPCID.SandSlime)
-                    slimestaffmultiplier = 80;
-                try_loot(ItemID.SlimeStaff, GetInstance<AEnemyLootConfig>().LootSlimeStaffIncrease * slimestaffmultiplier);
-            }
-            if (npc.type == NPCID.Unicorn)
-            {
-                try_loot(ItemID.UnicornonaStick, GetInstance<AEnemyLootConfig>().LootUnicornonaStickIncrease);
-            }
-            if (npc.type == NPCID.DiggerHead || npc.type == NPCID.GiantWormHead)
-            {
-                try_loot(ItemID.WhoopieCushion, GetInstance<AEnemyLootConfig>().LootWhoopieCushionIncrease);
-            }
-            if (npc.type == NPCID.UndeadMiner)
-            {
-                try_loot(ItemID.BonePickaxe, GetInstance<AEnemyLootConfig>().LootBonePickaxeIncrease);
-                try_loot(ItemID.MiningHelmet, GetInstance<AEnemyLootConfig>().LootMiningHelmetIncrease);
-                try_loot(ItemID.MiningShirt, GetInstance<AEnemyLootConfig>().LootMiningShirtIncrease);
-                try_loot(ItemID.MiningPants, GetInstance<AEnemyLootConfig>().LootMiningPantsIncrease);
-            }
-            if (npc.type == NPCID.Psycho)
-            {
-                try_loot(ItemID.PsychoKnife, GetInstance<AEnemyLootConfig>().LootPsychoKnifeIncrease);
-            }
-            if (npc.type == NPCID.CorruptBunny)
-            {
-                try_loot(ItemID.BunnyHood, GetInstance<AEnemyLootConfig>().LootBunnyHoodIncrease);
-            }
-            if (npc.type >= NPCID.Mummy && npc.type <= NPCID.LightMummy) //Mummies
-            {
-                try_loot(ItemID.MummyMask, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
-                try_loot(ItemID.MummyShirt, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
-                try_loot(ItemID.MummyPants, GetInstance<AEnemyLootConfig>().LootMummyCostumeIncrease);
-            }
-            if (npc.type == NPCID.AngryBones || (npc.type >= NPCID.AngryBonesBig && npc.type <= NPCID.AngryBonesBigHelmet) || npc.type == NPCID.CursedSkull || npc.type == NPCID.DarkCaster) //Angry Bones, Cursed Skull, and Dark Caster
-            {
-                try_loot(ItemID.GoldenKey, GetInstance<AEnemyLootConfig>().LootGoldenKeyIncrease);
-                try_loot(ItemID.TallyCounter, GetInstance<AEnemyLootConfig>().LootTallyCounterIncrease);
-            }
-            if (npc.type == NPCID.IceMimic)
-            {
-                try_loot(ItemID.ToySled, GetInstance<AEnemyLootConfig>().LootToySledIncrease);
-            }
-            if (npc.type == NPCID.Werewolf)
-            {
-                try_loot(ItemID.MoonCharm, GetInstance<AEnemyLootConfig>().LootMoonCharmIncrease);
-            }
-            if (npc.type == NPCID.DesertBeast)
-            {
-                try_loot(ItemID.AncientHorn, GetInstance<AEnemyLootConfig>().LootAncientHornIncrease);
-            }
-            if (npc.type == NPCID.Demon)
-            {
-                try_loot(ItemID.DemonScythe, GetInstance<AEnemyLootConfig>().LootDemonScytheIncrease);
-            }
-            if (npc.type == NPCID.Shark)
-            {
-                try_loot(ItemID.DivingHelmet, GetInstance<AEnemyLootConfig>().LootDivingHelmetIncrease);
-            }
-            if (npc.type == NPCID.Eyezor)
-            {
-                try_loot(ItemID.EyeSpring, GetInstance<AEnemyLootConfig>().LootEyeSpringIncrease);
-            }
-            if (npc.type == NPCID.IceElemental || npc.type == NPCID.IcyMerman)
-            {
-                try_loot(ItemID.FrostStaff, GetInstance<AEnemyLootConfig>().LootFrostStaffIncrease);
-            }
-            if (npc.type == NPCID.WalkingAntlion)
-            {
-                try_loot(ItemID.AntlionClaw, GetInstance<AEnemyLootConfig>().LootMandibleBladeIncrease);
-            }
-            if (npc.type == NPCID.MeteorHead)
-            {
-                try_loot(ItemID.Meteorite, GetInstance<AEnemyLootConfig>().LootMeteoriteIncrease);
-            }
-            if (npc.type == NPCID.CorruptPenguin || npc.type == NPCID.CrimsonPenguin)
-            {
-                try_loot(ItemID.PedguinHat, GetInstance<AEnemyLootConfig>().LootPedguinssuitIncrease);
-                try_loot(ItemID.PedguinShirt, GetInstance<AEnemyLootConfig>().LootPedguinssuitIncrease);
-                try_loot(ItemID.PedguinPants, GetInstance<AEnemyLootConfig>().LootPedguinssuitIncrease);
-            }
-            if (npc.type == NPCID.UndeadViking)
-            {
-                try_loot(ItemID.VikingHelmet, GetInstance<AEnemyLootConfig>().LootVikingHelmetIncrease);
-            }
-            if (npc.type == NPCID.UmbrellaSlime)
-            {
-                try_loot(ItemID.UmbrellaHat, GetInstance<AEnemyLootConfig>().LootUmbrellaHatIncrease);
-            }
-            if (npc.type == NPCID.Vampire || npc.type == NPCID.VampireBat)
-            {
-                try_loot(ItemID.BrokenBatWing, GetInstance<AEnemyLootConfig>().LootBrokenBatWingIncrease);
-            }
-            if (npc.type == NPCID.DesertDjinn)
-            {
-                try_loot(ItemID.DjinnLamp, GetInstance<AEnemyLootConfig>().LootDesertSpiritLampIncrease);
-            }
-            if (npc.type == NPCID.Piranha)
-            {
-                try_loot(ItemID.Hook, GetInstance<AEnemyLootConfig>().LootHookIncrease);
-            }
-            if (npc.type == NPCID.LightMummy || npc.type == NPCID.DesertGhoulHallow || npc.type == NPCID.SandsharkHallow)
-            {
-                try_loot(ItemID.LightShard, GetInstance<AEnemyLootConfig>().LootLightShardIncrease);
-            }
-            if (npc.type == NPCID.DesertLamiaLight)
-            {
-                try_loot(ItemID.MoonMask, GetInstance<AEnemyLootConfig>().LootMoonMaskIncrease);
-            }
-            if (npc.type == NPCID.DesertLamiaDark)
-            {
-                try_loot(ItemID.SunMask, GetInstance<AEnemyLootConfig>().LootSunMaskIncrease);
-            }
-            if (npc.type >= NPCID.SlimeRibbonWhite && npc.type <= NPCID.SlimeRibbonRed) //Present Slimes
-            {
-                try_loot(ItemID.GiantBow, GetInstance<AEnemyLootConfig>().LootGiantBowIncrease);
-            }
-            if (npc.type == NPCID.ZombieRaincoat)
-            {
-                try_loot(ItemID.RainCoat, GetInstance<AEnemyLootConfig>().LootRainArmorIncrease);
-                try_loot(ItemID.RainCoat, GetInstance<AEnemyLootConfig>().LootRainArmorIncrease);
-            }
-            if (npc.type == NPCID.SkeletonSniper)
-            {
-                try_loot(ItemID.SniperRifle, GetInstance<AEnemyLootConfig>().LootSniperRifleIncrease);
-                try_loot(ItemID.RifleScope, GetInstance<AEnemyLootConfig>().LootRifleScopeIncrease);
-            }
-            if (npc.type == NPCID.TacticalSkeleton)
-            {
-                try_loot(ItemID.TacticalShotgun, GetInstance<AEnemyLootConfig>().LootTacticalShotgunIncrease);
-                try_loot(ItemID.SWATHelmet, GetInstance<AEnemyLootConfig>().LootSWATHelmetIncrease);
-            }
-            if (npc.type >= NPCID.DesertGhoul && npc.type <= NPCID.DesertGhoulHallow) //Ghouls
-            {
-                try_loot(ItemID.AncientCloth, GetInstance<AEnemyLootConfig>().LootAncientClothIncrease);
-            }
-            if (npc.type == NPCID.DesertGhoulCorruption || npc.type == NPCID.DesertGhoulCrimson)
-            {
-                try_loot(ItemID.DarkShard, GetInstance<AEnemyLootConfig>().LootDarkShardIncrease);
-            }
-            if (npc.type == NPCID.AngryNimbus)
-            {
-                try_loot(ItemID.NimbusRod, GetInstance<AEnemyLootConfig>().LootNimbusRodIncrease);
-            }
-            if (npc.type == NPCID.BoneLee)
-            {
-                try_loot(ItemID.BlackBelt, GetInstance<AEnemyLootConfig>().LootBlackBeltIncrease);
-                try_loot(ItemID.Tabi, GetInstance<AEnemyLootConfig>().LootTabiIncrease);
-            }
-            if (Main.halloween && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead)
-            {
-                try_loot(ItemID.GoodieBag, GetInstance<AEnemyLootConfig>().LootGoodieBagIncrease);
-            }
-            if (Main.xMas && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead)
-            {
-                try_loot(ItemID.Present, GetInstance<AEnemyLootConfig>().LootPresentIncrease);
-            }
-            if (npc.type == NPCID.Drippler || npc.type == NPCID.BloodZombie)
-            {
-                try_loot(ItemID.MoneyTrough, GetInstance<AEnemyLootConfig>().LootMoneyTroughIncrease);
-            }
-            if (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9) //Giant Shellies, Crawdads, and Salamanders
-            {
-                try_loot(ItemID.Rally, GetInstance<AEnemyLootConfig>().LootRallyIncrease);
-            }
-            if (npc.type == NPCID.Medusa)
-            {
-                try_loot(ItemID.PocketMirror, GetInstance<AEnemyLootConfig>().LootPocketMirrorIncrease);
-            }
-            if (npc.type == NPCID.Mothron)
-            {
-                try_loot(ItemID.MothronWings, GetInstance<AEnemyLootConfig>().LootMothronWingsIncrease);
-            }
-            if (Main.bloodMoon && npc.type != NPCID.Slimer && npc.type != NPCID.MeteorHead && Main.hardMode)
-            {
-                try_loot(ItemID.KOCannon, GetInstance<AEnemyLootConfig>().LootKOCannonIncrease);
-            }
-            if (npc.type == NPCID.MotherSlime || npc.type == NPCID.Piranha || npc.type == NPCID.UndeadViking || npc.type == NPCID.ArmoredViking || npc.type == NPCID.SnowFlinx || (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9)) //Salamanders, Giant Shellys, Crawdads, Mother Slimes, Piranhas, Snow Flinxes, Undead Vikings, and Armored Vikings.
-            {
-                try_loot(ItemID.Compass, GetInstance<AEnemyLootConfig>().LootCompassIncrease);
-            }
-            if (npc.type == NPCID.CaveBat || npc.type == NPCID.GiantBat || npc.type == NPCID.JungleBat || npc.type == NPCID.IceBat || (npc.type >= NPCID.Crawdad && npc.type <= NPCID.Salamander9)) //Cave Bats, Giant Bats, Jungle Bats, Ice Bats, Salamanders, Giant Shellys, and Crawdads.
-            {
-                try_loot(ItemID.DepthMeter, GetInstance<AEnemyLootConfig>().LootDepthMeterIncrease);
-            }
-            if (npc.type == NPCID.Guide) //Guide NPC
-            {
-                try_loot(ItemID.GreenCap, GetInstance<AEnemyLootConfig>().LootGreenCapForNonAndrewGuide);
-            }
-            if (npc.type == NPCID.DyeTrader) //Dye Trader NPC
-            {
-                try_loot(ItemID.DyeTradersScimitar, GetInstance<AEnemyLootConfig>().LootExoticScimitarIncrease);
-            }
-            if (npc.type == NPCID.DD2Bartender) //Tavernkeep NPC
-            {
-                try_loot(ItemID.AleThrowingGlove, GetInstance<AEnemyLootConfig>().LootAleTosserIncrease);
-            }
-            if (npc.type == NPCID.Stylist) //Stylist NPC
-            {
-                try_loot(ItemID.StylistKilLaKillScissorsIWish, GetInstance<AEnemyLootConfig>().LootStylishScissorsIncrease);
-            }
-            if (npc.type == NPCID.Painter) //Painter NPC
-            {
-                try_loot(ItemID.PainterPaintballGun, GetInstance<AEnemyLootConfig>().LootPaintballGunIncrease);
-            }
-            if (npc.type == NPCID.PartyGirl) //Party Girl NPC
-            {
-                try_loot(ItemID.PartyGirlGrenade, GetInstance<AEnemyLootConfig>().LootHappyGrenadeIncrease);
-            }
-            if (npc.type == NPCID.TaxCollector) //Tax Collector Guide NPC
-            {
-                try_loot(ItemID.TaxCollectorsStickOfDoom, GetInstance<AEnemyLootConfig>().LootClassyCane);
-            }
-            if (npc.type == NPCID.RainbowSlime)
-            {
-                try_loot_max_min(ItemID.RainbowBrick, GetInstance<AEnemyLootConfig>().LootRainbowBrickDrop);
-            }
-
-            //Non-Boss Drops - Ankh Charm Material
-            if (npc_is_any_types(104, 102, 269, 270, 271, 272))
-                try_loot(ItemID.AdhesiveBandage, GetInstance<AEnemyLootConfig>().LootAdhesiveBandageIncrease);
-            if (npc_is_any_types(77, 273, 274, 275, 276))
-                try_loot(ItemID.ArmorPolish, GetInstance<AEnemyLootConfig>().LootArmorPolishIncrease);
-            if (npc_is_any_types(141, 176, 42, 231, 232, 233, 234, 235))
-                try_loot(ItemID.Bezoar, GetInstance<AEnemyLootConfig>().LootBezoarIncrease);
-            if (npc_is_any_types(81, 79, 183, 630))
-                try_loot(ItemID.Blindfold, GetInstance<AEnemyLootConfig>().LootBlindfoldIncrease);
-            if (npc_is_any_types(78, 82, 75))
-                try_loot(ItemID.FastClock, GetInstance<AEnemyLootConfig>().LootFastClockBaseIncrease);
-            if (npc_is_any_types(103, 75, 79, 630))
-                try_loot(ItemID.Megaphone, GetInstance<AEnemyLootConfig>().LootMegaphoneBaseIncrease);
-            if (npc_is_any_types(34, 83, 84, 179, 289))
-                try_loot(ItemID.Nazar, GetInstance<AEnemyLootConfig>().LootNazarIncrease);
-            if (npc_is_any_types(94, 182))
-                try_loot(ItemID.Vitamins, GetInstance<AEnemyLootConfig>().LootVitaminsIncrease);
-
-            if (npc_is_any_types(93, 109, 80))
-                try_loot(ItemID.TrifoldMap, GetInstance<AEnemyLootConfig>().LootTrifoldMapIncrease);
 
             //Drops that don't happen in vanilla
             if (npc.type == NPCID.DukeFishron)
-                try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().LootFishronTruffleworm);
+                try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().LootTrufflewormFromDukeFishron);
             if (npc.type == NPCID.DuneSplicerHead)
             {
                 try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyLootConfig>().LootDesertFossilFromDuneSplicer);
@@ -688,14 +260,20 @@ namespace ReducedGrinding.Global
                 try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().LootSandFromTombCrawler);
             }
             if (npc.type == NPCID.SandElemental)
-            {
                 try_loot(ItemID.SandstorminaBottle, GetInstance<AEnemyLootConfig>().LootSandstormInABottleFromSandElemental);
-            }
+            if (npc.type == NPCID.SpikedIceSlime)
+                try_loot(ItemID.SnowballLauncher, GetInstance<AEnemyLootConfig>().LootSnowballLauncherFromSpikedIceSlime);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
-            int config = GetInstance<AEnemyLootConfig>().LootBiomeKeyIncrease;
+            int config = GetInstance<AEnemyLootConfig>().LootGoodieBagIncrease;
+            if (config > 0)
+                globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            config = GetInstance<AEnemyLootConfig>().LootKOCannonIncrease;
+            if (config > 0)
+                globalLoot.Add(new ItemDropWithConditionRule(1314, config, 1, 1, new Conditions.KOCannon()));
+            config = GetInstance<AEnemyLootConfig>().LootBiomeKeyIncrease;
             if (config > 0)
             {
                 globalLoot.Add(new ItemDropWithConditionRule(1533, config, 1, 1, new Conditions.JungleKeyCondition()));
@@ -705,33 +283,6 @@ namespace ReducedGrinding.Global
                 globalLoot.Add(new ItemDropWithConditionRule(1537, config, 1, 1, new Conditions.FrozenKeyCondition()));
                 globalLoot.Add(new ItemDropWithConditionRule(4714, config, 1, 1, new Conditions.DesertKeyCondition()));
             }
-            config = GetInstance<AEnemyLootConfig>().LootHelFireIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(3290, config, 1, 1, new Conditions.YoyosHelFire()));
-            config = GetInstance<AEnemyLootConfig>().LootCascadeIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(3290, config, 1, 1, new Conditions.YoyoCascade()));
-            config = GetInstance<AEnemyLootConfig>().LootLivingFireBlockIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(2701, config, 20, 50, new Conditions.LivingFlames()));
-            config = GetInstance<AEnemyLootConfig>().LootKrakenIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(3291, config, 1, 1, new Conditions.YoyosKraken()));
-            config = GetInstance<AEnemyLootConfig>().LootYeletsIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(3289, config, 1, 1, new Conditions.YoyosAmarok()));
-            config = GetInstance<AEnemyLootConfig>().LootPirateMapIncrease;
-            if (config > 0)
-                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.PirateMap(), 1315, config));
-            config = GetInstance<AEnemyLootConfig>().LootSoulofLightIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(520, config, 1, 1, new Conditions.SoulOfLight()));
-            config = GetInstance<AEnemyLootConfig>().LootSoulofNightIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(521, config, 1, 1, new Conditions.SoulOfNight()));
-            config = GetInstance<AEnemyLootConfig>().LootAmarokIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(3289, config, 1, 1, new Conditions.YoyosAmarok()));
             config = GetInstance<AEnemyLootConfig>().LootBloodyMacheteAndBladedGlovesIncrease;
             if (config > 0)
             {

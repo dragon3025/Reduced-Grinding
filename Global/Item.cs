@@ -195,7 +195,7 @@ namespace ReducedGrinding.Global
 
             //Boss Bag drops that don't happen in vanilla.
             if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootFishronTruffleworm, ItemID.TruffleWorm);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootTrufflewormFromDukeFishron, ItemID.TruffleWorm);
         }
     }
 }
