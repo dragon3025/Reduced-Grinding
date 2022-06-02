@@ -102,6 +102,7 @@ namespace ReducedGrinding
         public int LootBloodyMacheteAndBladedGlovesIncrease;
 
         [Label("[i:1774] Goodie Bag")]
+        [Tooltip("Only drops during Halloween")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootGoodieBagIncrease;
@@ -125,6 +126,12 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootPlumbersHatIncrease;
+
+        [Label("[i:244] Present")]
+        [Tooltip("Only drops during Christmas")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPresentIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]

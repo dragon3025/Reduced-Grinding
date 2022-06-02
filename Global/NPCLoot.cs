@@ -270,6 +270,9 @@ namespace ReducedGrinding.Global
             int config = GetInstance<AEnemyLootConfig>().LootGoodieBagIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            config = GetInstance<AEnemyLootConfig>().LootPresentIncrease;
+            if (config > 0)
+                globalLoot.Add(new ItemDropWithConditionRule(ItemID.Present, config, 1, 1, new Conditions.XmasPresentDrop()));
             config = GetInstance<AEnemyLootConfig>().LootKOCannonIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1314, config, 1, 1, new Conditions.KOCannon()));
