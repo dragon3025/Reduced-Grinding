@@ -178,6 +178,23 @@ namespace ReducedGrinding.Global
                     slimestaffmultiplier = 80;
                 try_loot(ItemID.SlimeStaff, GetInstance<AEnemyLootConfig>().LootSlimeStaffIncrease * slimestaffmultiplier);
             }
+            if (npc.type == NPCID.SkeletonSniper)
+            {
+                try_loot(ItemID.RifleScope, GetInstance<AEnemyLootConfig>().LootRifleScopeAndSniperRifleIncrease);
+                try_loot(ItemID.SniperRifle, GetInstance<AEnemyLootConfig>().LootRifleScopeAndSniperRifleIncrease);
+            }
+            if (npc.type == NPCID.TacticalSkeleton)
+            {
+                try_loot(ItemID.SWATHelmet, GetInstance<AEnemyLootConfig>().LootSWATHelmetAndTacticalShotgunIncrease);
+                try_loot(ItemID.TacticalShotgun, GetInstance<AEnemyLootConfig>().LootSWATHelmetAndTacticalShotgunIncrease);
+            }
+            if (npc.type == NPCID.SkeletonCommando)
+                try_loot(ItemID.RocketLauncher, GetInstance<AEnemyLootConfig>().LootRocketLauncherIncrease);
+            if (npc.type == NPCID.Paladin)
+            {
+                try_loot(ItemID.PaladinsHammer, GetInstance<AEnemyLootConfig>().LootPaladinsHammerIncrease);
+                try_loot(ItemID.PaladinsShield, GetInstance<AEnemyLootConfig>().LootPaladinsShieldIncrease);
+            }
 
             //Pirate Drops
             if (npc_is_any_types(212, 213, 214, 215, 216, 491)) //All Human Pirates and Flying Dutchman
@@ -270,12 +287,15 @@ namespace ReducedGrinding.Global
             int config = GetInstance<AEnemyLootConfig>().LootGoodieBagIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+
             config = GetInstance<AEnemyLootConfig>().LootPresentIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(ItemID.Present, config, 1, 1, new Conditions.XmasPresentDrop()));
+
             config = GetInstance<AEnemyLootConfig>().LootKOCannonIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1314, config, 1, 1, new Conditions.KOCannon()));
+
             config = GetInstance<AEnemyLootConfig>().LootBiomeKeyIncrease;
             if (config > 0)
             {
@@ -286,6 +306,7 @@ namespace ReducedGrinding.Global
                 globalLoot.Add(new ItemDropWithConditionRule(1537, config, 1, 1, new Conditions.FrozenKeyCondition()));
                 globalLoot.Add(new ItemDropWithConditionRule(4714, config, 1, 1, new Conditions.DesertKeyCondition()));
             }
+
             config = GetInstance<AEnemyLootConfig>().LootBloodyMacheteAndBladedGlovesIncrease;
             if (config > 0)
             {

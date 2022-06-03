@@ -122,16 +122,37 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootMarrowIncrease;
 
+        [Label("[i:1513] Paladin's Hammer")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPaladinsHammerIncrease;
+
+        [Label("[i:938] Paladin's Shield")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootPaladinsShieldIncrease;
+
         [Label("[i:244] Plumber’s Hat")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootPlumbersHatIncrease;
 
-        [Label("[i:244] Present")]
+        [Label("[i:1869] Present")]
         [Tooltip("Only drops during Christmas")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootPresentIncrease;
+
+        [Label("[i:1300] Rifle Scope and [i:1254]Sniper Rifle")]
+        [Tooltip("This sets the same drop rate for each")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootRifleScopeAndSniperRifleIncrease;
+
+        [Range(0, 10000)]
+        [Label("[i:759] Rocket Launcher")]
+        [DefaultValue(0)]
+        public int LootRocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
@@ -143,6 +164,12 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootSlimeStaffIncrease;
+
+        [Label("[i:1514] SWAT Helmet and [i:679]Tactical Shotgun")]
+        [Tooltip("This sets the same drop rate for each")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LootSWATHelmetAndTacticalShotgunIncrease;
 
         [Header("Pirate Loot")]
 
