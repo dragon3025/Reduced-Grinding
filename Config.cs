@@ -11,76 +11,27 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Header("All configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
-
-        [Label("[i:1313] Book of Skulls")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBookofSkullsIncrease;
-
-        [Label("[i:1294] Picksaw")]
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int LootPicksawIncrease;
-
-        [Label("[i:1182] Seedling")]
-        [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootSeedlingIncrease;
-
-        [Label("[i:1169] Bone Key")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSkeletronBoneKey;
-
+        
         [Label("[i:1299] Binoculars")]
         [Range(0, 10000)]
-        [DefaultValue(3)]
+        [DefaultValue(0)]
         public int LootBinocularsIncrease;
 
-        [Label("[i:3060] Bone Rattle")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootBoneRattleIncrease;
-
-        [Label("[i:3373] Boss Mask")]
-        [Range(0, 10000)]
-        [DefaultValue(10)]
-        public int LootBossMaskIncrease;
-
-        [Label("[i:3595] Boss Trophy")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootBossTrophyIncrease;
-
-        [Label("[i:994] Eater's Bone")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootEatersBoneIncrease;
-
-        [Label("[i:2609] Fishron Wings")]
+        [Label("[i:4823] Empress and [i:2609] Fishron Wings")]
+        [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(7)]
-        public int LootFishronWingsIncrease;
+        public int LootEmpressAndFishronWingsIncrease;
 
-        [Label("[i:2502] Honeyed Goggles")]
+        [Label("[i:4715] Stellar Tune")]
         [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootHoneyedGogglesIncrease;
+        [DefaultValue(4)]
+        public int LootStellarTuneIncrease;
 
-        [Label("[i:3063] Moon Lord Weapons")]
+        [Label("[i:5075] Rainbow Cursor")]
         [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootMoonLordEachWeaponIncrease;
-
-        [Label("[i:1170] Nectar")]
-        [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int LootNectarIncrease;
-
-        [Label("[i:1305] The Axe")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int LootTheAxeIncrease;
+        [DefaultValue(4)]
+        public int LootRainbowCursor;
 
         [Header("Non-Boss Loot")]
 
@@ -159,8 +110,14 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootRodofDiscordIncrease;
 
-        [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
+        [Range(0, 10000)]
+        [Label("[i:68] Rotten Chunk and [i:1330] Vertebra")]
+        [Tooltip("This sets the same drop rate for each")]
+        [DefaultValue(0)]
+        public int LootRottenChunkAndVertebra;
+
         [Label("[i:1309] Slime Staff (Hover for more info)")]
+        [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LootSlimeStaffIncrease;
@@ -171,53 +128,43 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int LootSWATHelmetAndTacticalShotgunIncrease;
 
-        [Header("Pirate Loot")]
+        [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. This is done in attempt to imitate the upcoming 1.4.4 update)")]
 
         [Label("[i:905] Coin Gun (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")] //TO-DO (This might change in 1.4.4)
+        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(370)]
+        [DefaultValue(0)]
         public int PirateLootCoinGunBaseIncrease;
 
         [Label("[i:672] Cutlass (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(85)]
+        [DefaultValue(0)]
         public int PirateLootCutlassBaseIncrease;
 
         [Label("[i:854] Discount Card (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(222)]
+        [DefaultValue(0)]
         public int PirateLootDiscountCardBaseIncrease;
 
         [Label("[i:3033] Gold Ring (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(233)]
+        [DefaultValue(0)]
         public int PirateLootGoldRingBaseIncrease;
 
         [Label("[i:855] Lucky Coin (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(257)]
+        [DefaultValue(0)]
         public int PirateLootLuckyCoinBaseIncrease;
 
         [Label("[i:2584] Pirate Staff (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
-        [DefaultValue(222)]
+        [DefaultValue(0)]
         public int PirateLootPirateStaffBaseIncrease;
-
-        [Label("[i:1704] Gold Furniture")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootGoldenFurnitureIncrease;
-
-        [Label("[i:1277] Sailor Outfit")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LootSailorOutfitIncrease;
 
         [Header("Drops that don't happen in vanilla.")]
 

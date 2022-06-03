@@ -62,74 +62,16 @@ namespace ReducedGrinding.Global
             }
 
             // Boss Bags
-            if (arg == ItemID.BrainOfCthulhuBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBoneRattleIncrease, ItemID.BoneRattle);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BrainMask);
-            }
             if (arg == ItemID.FishronBossBag)
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease, ItemID.FishronWings);
+            if (arg == ItemID.FairyQueenBossBag)
             {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootFishronWingsIncrease, ItemID.FishronWings);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.DukeFishronMask);
-            }
-            if (arg == ItemID.EaterOfWorldsBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEatersBoneIncrease, ItemID.EatersBone);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.EaterMask);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease, ItemID.RainbowWings);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootStellarTuneIncrease, ItemID.SparkleGuitar);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootRainbowCursor, ItemID.RainbowCursor);
             }
             if (arg == ItemID.EyeOfCthulhuBossBag)
-            {
                 try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBinocularsIncrease, ItemID.Binoculars);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.EyeMask);
-            }
-            if (arg == ItemID.PlanteraBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootTheAxeIncrease, ItemID.TheAxe);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootSeedlingIncrease, ItemID.Seedling);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.PlanteraMask);
-            }
-            if (arg == ItemID.QueenBeeBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootHoneyedGogglesIncrease, ItemID.HoneyedGoggles);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootNectarIncrease, ItemID.Nectar);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BeeMask);
-            }
-            if (arg == ItemID.MoonLordBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BossMaskMoonlord);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.Meowmere);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.Terrarian);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.StarWrath);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.SDMG);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.FireworksLauncher); //Celebration
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.LastPrism);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.LunarFlareBook);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.RainbowCrystalStaff);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease, ItemID.MoonlordTurretStaff); //Lunar Portal Staff
-            }
-            if (arg == ItemID.SkeletronBossBag)
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBookofSkullsIncrease, ItemID.BookofSkulls);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootSkeletronBoneKey, ItemID.BoneKey);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.SkeletronMask);
-            }
-            if (arg == 3318) //King Slime
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.KingSlimeMask);
-            if (arg == 3324) //Wall of Flesh
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.FleshMask);
-            if (arg == 3325) //The Destroyer
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.DestroyerMask);
-            if (arg == 3326) //The Twins
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.TwinMask);
-            if (arg == 3327) //Skeletron Prime
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.SkeletronPrimeMask);
-            if (arg == 3329) //Golem
-            {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.GolemMask);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootPicksawIncrease, ItemID.Picksaw);
-            }
-            if (arg == 3860) //Betsy
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBossMaskIncrease, ItemID.BossMaskBetsy);
 
             //Other Grab Bags
             if (arg == ItemID.DungeonFishingCrate || arg == ItemID.DungeonFishingCrateHard)

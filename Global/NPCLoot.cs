@@ -33,20 +33,6 @@ namespace ReducedGrinding.Global
                     npcLoot.Add(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominator), ItemDropRule.DropNothing()));
             }
 
-            void try_boss_loot_eater_of_worlds(int itemType, int denominator)
-            {
-                if (denominator > 0)
-                    npcLoot.Add(ItemDropRule.ByCondition(new Conditions.LegacyHack_IsBossAndNotExpert(), itemType, denominator));
-            }
-
-            void try_boss_loot_twins(int itemType, int denominator)
-            {
-                IItemDropRule ruleMissingTwin = new LeadingConditionRule(new Conditions.MissingTwin());
-                ruleMissingTwin.OnSuccess(new DropBasedOnExpertMode(ItemDropRule.Common(itemType, denominator), ItemDropRule.DropNothing()));
-                if (denominator > 0)
-                    npcLoot.Add(ruleMissingTwin);
-            }
-
             void try_conditional_loot_max_min(int itemType, IItemDropRuleCondition condition, int[] config)
             {
                 if (config.Max() > 0 && config.Min() >= 0)
@@ -76,87 +62,19 @@ namespace ReducedGrinding.Global
             }
 
             //Boss Drops
-            if (npc.type == NPCID.BrainofCthulhu)
-            {
-                try_boss_loot(ItemID.BoneRattle, GetInstance<AEnemyLootConfig>().LootBoneRattleIncrease);
-                try_boss_loot(ItemID.BrainMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.DD2Betsy)
-            {
-                try_boss_loot(ItemID.BossMaskBetsy, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
             if (npc.type == NPCID.DukeFishron)
             {
-                try_boss_loot(ItemID.FishronWings, GetInstance<AEnemyLootConfig>().LootFishronWingsIncrease);
+                try_boss_loot(ItemID.FishronWings, GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease);
                 try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().LootTrufflewormFromDukeFishron);
-                try_boss_loot(ItemID.DukeFishronMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
             }
-            if (npc_is_any_types(NPCID.EaterofWorldsBody, NPCID.EaterofWorldsHead, NPCID.EaterofWorldsTail))
+            if (npc.type == NPCID.HallowBoss)
             {
-                try_boss_loot_eater_of_worlds(ItemID.EatersBone, GetInstance<AEnemyLootConfig>().LootEatersBoneIncrease);
-                try_boss_loot_eater_of_worlds(ItemID.EaterMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
+                try_boss_loot(ItemID.RainbowWings, GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease);
+                try_boss_loot(ItemID.SparkleGuitar, GetInstance<AEnemyLootConfig>().LootStellarTuneIncrease);
+                try_boss_loot(ItemID.RainbowCursor, GetInstance<AEnemyLootConfig>().LootRainbowCursor);
             }
             if (npc.type == NPCID.EyeofCthulhu)
-            {
                 try_boss_loot(ItemID.Binoculars, GetInstance<AEnemyLootConfig>().LootBinocularsIncrease);
-                try_boss_loot(ItemID.EyeMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.Plantera)
-            {
-                try_boss_loot(ItemID.TheAxe, GetInstance<AEnemyLootConfig>().LootTheAxeIncrease);
-                try_boss_loot(ItemID.Seedling, GetInstance<AEnemyLootConfig>().LootSeedlingIncrease);
-                try_boss_loot(ItemID.PlanteraMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.QueenBee)
-            {
-                try_boss_loot(ItemID.HoneyedGoggles, GetInstance<AEnemyLootConfig>().LootHoneyedGogglesIncrease);
-                try_boss_loot(ItemID.Nectar, GetInstance<AEnemyLootConfig>().LootNectarIncrease);
-                try_boss_loot(ItemID.BeeMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.MoonLordCore)
-            {
-                try_boss_loot(ItemID.BossMaskMoonlord, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-                try_boss_loot(ItemID.Meowmere, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.Terrarian, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.StarWrath, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.SDMG, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.FireworksLauncher, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.LastPrism, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.LunarFlareBook, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.RainbowCrystalStaff, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-                try_boss_loot(ItemID.MoonlordTurretStaff, GetInstance<AEnemyLootConfig>().LootMoonLordEachWeaponIncrease);
-            }
-            if (npc.type == NPCID.SkeletronHead)
-            {
-                try_boss_loot(ItemID.BookofSkulls, GetInstance<AEnemyLootConfig>().LootBookofSkullsIncrease);
-                try_boss_loot(ItemID.BoneKey, GetInstance<AEnemyLootConfig>().LootSkeletronBoneKey);
-                try_boss_loot(ItemID.SkeletronMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.KingSlime)
-            {
-                try_boss_loot(ItemID.KingSlimeMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.WallofFlesh)
-            {
-                try_boss_loot(ItemID.FleshMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.TheDestroyer)
-            {
-                try_boss_loot(ItemID.DestroyerMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
-            {
-                try_boss_loot_twins(ItemID.TwinMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.SkeletronPrime)
-            {
-                try_boss_loot(ItemID.SkeletronPrimeMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-            }
-            if (npc.type == NPCID.Golem)
-            {
-                try_boss_loot(ItemID.GolemMask, GetInstance<AEnemyLootConfig>().LootBossMaskIncrease);
-                try_boss_loot(ItemID.Picksaw, GetInstance<AEnemyLootConfig>().LootPicksawIncrease);
-            }
 
             //Non-Boss Drops
             if (npc.type == NPCID.SkeletonArcher)
@@ -195,31 +113,31 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.PaladinsHammer, GetInstance<AEnemyLootConfig>().LootPaladinsHammerIncrease);
                 try_loot(ItemID.PaladinsShield, GetInstance<AEnemyLootConfig>().LootPaladinsShieldIncrease);
             }
+            if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.DevourerHead || npc.type == NPCID.Corruptor)
+                try_loot(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().LootRottenChunkAndVertebra);
+            if (npc.type == NPCID.BloodCrawler || npc.type == NPCID.BloodCrawlerWall || npc.type == NPCID.Crimera || npc.type == NPCID.LittleCrimera || npc.type == NPCID.BigCrimera || npc.type == NPCID.FaceMonster || npc.type == NPCID.FloatyGross)
+                try_loot(ItemID.Vertebrae, GetInstance<AEnemyLootConfig>().LootRottenChunkAndVertebra);
 
             //Pirate Drops
             if (npc_is_any_types(212, 213, 214, 215, 216, 491)) //All Human Pirates and Flying Dutchman
             {
                 //
-                //TO-DO 1.4.4 is going to boost drop rates. I've adjusted multipliers to the new rates, but when the udpate comes out. Look into the new coding.
-                //So far, it's unknown exactly how the Flying Dutchman rates will be. I've added coding to halve the vanilla denominators below. In 1.4.4 the Flying Dutchman //always drops 1 furniture; I tried to mimic this with a "drop 1 of the following" condition, but it didn't work.
-                //
+                //TO-DO 1.4.4 is going to boost pirate drop rates. I added coding to immitate the new rates, but when the udpate comes out: look into the changes and the source code, and modify the coding below. So far, it's unknown exactly how the Flying Dutchman rates will be, but I assume it has to at least be twice as likely (some will go as far as 10 times more likely, but it's unknown what that is).
+
                 float denominator_multiplier = 10;
                 if (npc.type == NPCID.PirateCaptain)
                     denominator_multiplier = 2.5f;
                 else if (npc.type == NPCID.PirateShip)
                     denominator_multiplier = 1;
 
-                if (npc_is_any_types(212, 213, 214, 215, 216))
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
-                    {
-                        if (rule is CommonDrop commonDrop && (commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.LuckyCoin || commonDrop.itemId == ItemID.DiscountCard || commonDrop.itemId == ItemID.PirateStaff || commonDrop.itemId == ItemID.GoldRing || commonDrop.itemId == ItemID.Cutlass))
-                            commonDrop.chanceDenominator /= 2;
-                    }
+                    if (rule is CommonDrop commonDrop && (commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.LuckyCoin || commonDrop.itemId == ItemID.DiscountCard || commonDrop.itemId == ItemID.PirateStaff || commonDrop.itemId == ItemID.GoldRing || commonDrop.itemId == ItemID.Cutlass))
+                        commonDrop.chanceDenominator /= 2;
                 }
 
                 if (npc.type == NPCID.PirateShip)
-                    npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, 1704, 1705, 1710, 1716, 1720, 2133, 2137, 2143, 2147, 2151, 2155, 2238, 2379, 2389, 2405, 2663, 2843, 3885, 3904, 3910)); //Golden Furniture
+                    npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, 1704, 1705, 1710, 1716, 1720, 2133, 2137, 2143, 2147, 2151, 2155, 2238, 2379, 2389, 2405, 2663, 2843, 3885, 3904, 3910)); //Always drop 1 Golden Furniture
 
                 try_loot(ItemID.CoinGun, (int)(GetInstance<AEnemyLootConfig>().PirateLootCoinGunBaseIncrease * denominator_multiplier));
                 try_loot(ItemID.LuckyCoin, (int)(GetInstance<AEnemyLootConfig>().PirateLootLuckyCoinBaseIncrease * denominator_multiplier));
@@ -227,34 +145,6 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.PirateStaff, (int)(GetInstance<AEnemyLootConfig>().PirateLootPirateStaffBaseIncrease * denominator_multiplier));
                 try_loot(ItemID.GoldRing, (int)(GetInstance<AEnemyLootConfig>().PirateLootGoldRingBaseIncrease * denominator_multiplier));
                 try_loot(ItemID.Cutlass, (int)(GetInstance<AEnemyLootConfig>().PirateLootCutlassBaseIncrease * denominator_multiplier));
-                if (npc_is_any_types(212, 213, 214, 215))
-                {
-                    int gold_furniture_config = GetInstance<AEnemyLootConfig>().LootGoldenFurnitureIncrease;
-                    int sailor_outfit_config = GetInstance<AEnemyLootConfig>().LootSailorOutfitIncrease;
-
-                    try_loot(ItemID.GoldenChair, gold_furniture_config);
-                    try_loot(ItemID.GoldenToilet, gold_furniture_config);
-                    try_loot(ItemID.GoldenDoor, gold_furniture_config);
-                    try_loot(ItemID.GoldenTable, gold_furniture_config);
-                    try_loot(ItemID.GoldenBed, gold_furniture_config);
-                    try_loot(ItemID.GoldenPiano, gold_furniture_config);
-                    try_loot(ItemID.GoldenDresser, gold_furniture_config);
-                    try_loot(ItemID.GoldenSofa, gold_furniture_config);
-                    try_loot(ItemID.GoldenBathtub, gold_furniture_config);
-                    try_loot(ItemID.GoldenClock, gold_furniture_config);
-                    try_loot(ItemID.GoldenLamp, gold_furniture_config);
-                    try_loot(ItemID.GoldenBookcase, gold_furniture_config);
-                    try_loot(ItemID.GoldenChandelier, gold_furniture_config);
-                    try_loot(ItemID.GoldenLantern, gold_furniture_config);
-                    try_loot(ItemID.GoldenCandelabra, gold_furniture_config);
-                    try_loot(ItemID.GoldenCandle, gold_furniture_config);
-                    try_loot(ItemID.GoldenSink, gold_furniture_config);
-
-                    try_loot(ItemID.SailorHat, sailor_outfit_config);
-                    try_loot(ItemID.SailorShirt, sailor_outfit_config);
-                    try_loot(ItemID.SailorPants, sailor_outfit_config);
-                    try_loot(ItemID.EyePatch, sailor_outfit_config);
-                }
             }
 
             //Drops that don't happen in vanilla
