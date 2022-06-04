@@ -10,6 +10,10 @@ assignees: ''
 Terraria Version:
 TModLoader Version:
 
+**Mods Installed**
+- Reduced Grinding
+- Any other mods (try testing with only my mod installed, to be sure my mod is causing the problem).
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
