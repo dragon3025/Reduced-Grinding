@@ -80,32 +80,45 @@ namespace ReducedGrinding
 					censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
 			}
 		}*/
+        internal enum MessageType : byte
+        {
+            advanceMoonPhase,
+            sundialSearchTimer,
+            sundialX,
+            sundialY,
+            nearPylon,
+            noMoreAnglerResetsToday,
+            dayTime
+        }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            ReducedGrindingMessageType msgType = (ReducedGrindingMessageType)reader.ReadByte();
+            MessageType msgType = (MessageType)reader.ReadByte();
             switch (msgType)
             {
-                case ReducedGrindingMessageType.advanceMoonPhase:
+                case MessageType.advanceMoonPhase:
                     Global.Update.advanceMoonPhase = reader.ReadBoolean();
                     break;
-                case ReducedGrindingMessageType.sundialSearchTimer:
+                case MessageType.sundialSearchTimer:
                     Global.Update.sundialSearchTimer = reader.ReadInt32();
                     break;
-                case ReducedGrindingMessageType.sundialX:
+                case MessageType.sundialX:
                     Global.Update.sundialX = reader.ReadInt32();
                     break;
-                case ReducedGrindingMessageType.sundialY:
+                case MessageType.sundialY:
                     Global.Update.sundialY = reader.ReadInt32();
                     break;
-                case ReducedGrindingMessageType.nearPylon:
+                case MessageType.nearPylon:
                     Global.Update.nearPylon = reader.ReadBoolean();
                     break;
-                case ReducedGrindingMessageType.noMoreAnglerResetsToday:
+                case MessageType.noMoreAnglerResetsToday:
                     Global.Update.noMoreAnglerResetsToday = reader.ReadBoolean();
                     break;
-                case ReducedGrindingMessageType.dayTime:
+                case MessageType.dayTime:
                     Global.Update.dayTime = reader.ReadBoolean();
+                    break;
+                default:
+                    Logger.WarnFormat("ExampleMod: Unknown Message type: {0}", msgType);
                     break;
             }
         }
@@ -128,15 +141,5 @@ namespace ReducedGrinding
         }
     }
 
-    enum ReducedGrindingMessageType : byte
-    {
-        advanceMoonPhase,
-        sundialSearchTimer,
-        sundialX,
-        sundialY,
-        nearPylon,
-        noMoreAnglerResetsToday,
-        dayTime
-    }
 
 }

@@ -30,9 +30,9 @@ namespace ReducedGrinding.Global
             if (GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
             {
                 sundialSearchTimer++;
-                if (sundialSearchTimer == 60)
+                if (sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
                 {
-                    sundialSearchTimer = 0;
+                    nearPylon = false;
                     sundialX = sundialY = -1;
                     for (int i = 0; i < Main.maxTilesY; i++)
                     {
@@ -54,8 +54,6 @@ namespace ReducedGrinding.Global
             }
             else
                 sundialX = sundialY = -1;
-
-            nearPylon = false;
 
             bool boostTime = true;
             if (Main.fastForwardTime)
@@ -83,7 +81,7 @@ namespace ReducedGrinding.Global
                 if (!Main.player[i].active)
                     continue;
                 activePlayers.Add(i);
-                if (sundialX > -1 && !nearPylon)
+                if (sundialX > -1 && !nearPylon && sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
                 {
                     for (int x = -20; x <= 20; x++)
                     {
@@ -116,6 +114,10 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+
+            if (sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
+                sundialSearchTimer = 0;
+
             if (boostTime)
             {
                 if (playerWithSleepBuff)
@@ -158,69 +160,33 @@ namespace ReducedGrinding.Global
 
             if (Main.netMode == NetmodeID.Server)
             {
-                var netMessage = Mod.GetPacket();
+                ModPacket packet = Mod.GetPacket();
 
-                netMessage.Write((byte)ReducedGrindingMessageType.sundialSearchTimer);
-                netMessage.Write(sundialSearchTimer);
-                netMessage.Send();
-                NetMessage.SendData(MessageID.WorldData);
+                packet.Write((byte)ReducedGrinding.MessageType.sundialSearchTimer);
+                packet.Write(sundialSearchTimer);
 
-                netMessage.Write((byte)ReducedGrindingMessageType.sundialX);
-                netMessage.Write(sundialX);
-                netMessage.Send();
-                NetMessage.SendData(MessageID.WorldData);
+                packet.Write((byte)ReducedGrinding.MessageType.sundialX);
+                packet.Write(sundialX);
 
-                netMessage.Write((byte)ReducedGrindingMessageType.sundialY);
-                netMessage.Write(sundialY);
-                netMessage.Send();
-                NetMessage.SendData(MessageID.WorldData);
+                packet.Write((byte)ReducedGrinding.MessageType.sundialY);
+                packet.Write(sundialY);
 
-                netMessage.Write((byte)ReducedGrindingMessageType.nearPylon);
-                netMessage.Write(nearPylon);
-                netMessage.Send();
-                NetMessage.SendData(MessageID.WorldData);
+                packet.Write((byte)ReducedGrinding.MessageType.nearPylon);
+                packet.Write(nearPylon);
 
-                netMessage.Write((byte)ReducedGrindingMessageType.noMoreAnglerResetsToday);
-                netMessage.Write(noMoreAnglerResetsToday);
-                netMessage.Send();
-                NetMessage.SendData(MessageID.WorldData);
+                packet.Write((byte)ReducedGrinding.MessageType.noMoreAnglerResetsToday);
+                packet.Write(noMoreAnglerResetsToday);
 
-                netMessage.Write((byte)ReducedGrindingMessageType.dayTime);
-                netMessage.Write(dayTime);
-                netMessage.Send();
+                packet.Write((byte)ReducedGrinding.MessageType.dayTime);
+                packet.Write(dayTime);
+                packet.Send();
+
                 NetMessage.SendData(MessageID.WorldData);
             }
         }
 
         public override void PostUpdateWorld()
         {
-
-            Player player = Main.player[Main.myPlayer];
-
-            bool anyPlayerHasCelestialBeacon = false;
-            for (int i = 0; i < 255; i++)
-            {
-                if (!Main.player[i].active)
-                    continue;
-                if (Main.player[i].HasItem(ModContent.ItemType<Items.BossAndEventControl.Celestial_Beacon>()))
-                    anyPlayerHasCelestialBeacon = true;
-            }
-
-            if (NPC.MoonLordCountdown > 1 && anyPlayerHasCelestialBeacon)
-                NPC.MoonLordCountdown = 1;
-
-            if (Main.time % 600 == 0 && !NPC.downedMoonlord)
-            {
-                for (int i = 0; i < Main.npc.Length; i++)
-                {
-                    if (Main.npc[i].type == NPCID.MoonLordCore && !anyPlayerHasCelestialBeacon)
-                    {
-                        var source = new EntitySource_Gift(Main.player[(int)Terraria.Player.FindClosest(Main.npc[i].position, Main.npc[i].width, Main.npc[i].height)]);
-                        player.QuickSpawnItem(source, ModContent.ItemType<Items.BossAndEventControl.Celestial_Beacon>());
-                        break;
-                    }
-                }
-            }
 
             if (advanceMoonPhase)
             {
@@ -236,10 +202,10 @@ namespace ReducedGrinding.Global
 
                 if (Main.netMode == NetmodeID.Server)
                 {
-                    var netMessage = Mod.GetPacket();
-                    netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-                    netMessage.Write(Global.Update.advanceMoonPhase);
-                    netMessage.Send();
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);
+                    packet.Write(Global.Update.advanceMoonPhase);
+                    packet.Send();
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }

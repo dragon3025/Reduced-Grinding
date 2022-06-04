@@ -53,10 +53,10 @@ namespace ReducedGrinding.Tiles
 			Global.Update.advanceMoonPhase = true;
 			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
 			{
-				var netMessage = Mod.GetPacket();
-				netMessage.Write((byte)ReducedGrindingMessageType.advanceMoonPhase);
-				netMessage.Write(Global.Update.advanceMoonPhase);
-				netMessage.Send();
+				ModPacket packet = Mod.GetPacket();
+				packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);
+				packet.Write(Global.Update.advanceMoonPhase);
+				packet.Send();
 			}
 			SoundEngine.PlaySound(SoundID.Item4); //Crystal Ball
 

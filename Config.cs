@@ -4,14 +4,13 @@ using System;
 
 namespace ReducedGrinding
 {
-
     [Label("Enemy Loot")]
     public class AEnemyLootConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Header("All configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
-        
+
         [Label("[i:1299] Binoculars")]
         [Range(0, 10000)]
         [DefaultValue(0)]
@@ -809,6 +808,12 @@ namespace ReducedGrinding
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostNoSundialMultiplier;
+
+        [Label("Sundial Search Speed (Hover for more info)")]
+        [Tooltip("Searchs once every n in-game Minutes, where n is the configuration setting. Increase this if you experience lag.")]
+        [DefaultValue(1)]
+        [Range(1,1440)]
+        public int SundialSearchSpeed;
 
         [Label("Multiplier for No Player with Sleep Buff")]
         [Tooltip("If less than 1, you'll be able to craft Sleep Potion, which gives Sleep Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
