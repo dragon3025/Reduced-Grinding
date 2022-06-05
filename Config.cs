@@ -625,64 +625,11 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool AllNPCsSellTheirDeathLoot;
 
-        [Header("Mechanic Sells")]
-        [Label("[i:539] Dart Trap and [i:147]Spikes After Skeleton Defeated")]
-        [DefaultValue(true)]
-        public bool MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated;
-
-        [Label("[i:3722] Geyzer After Wall of Flesh Defeated")]
-        [DefaultValue(true)]
-        public bool MechanicSellsGeyserAfterWallofFleshDefeated;
-
-        [Header("Witch Doctor Sells")]
-        [Label("[i:1146] Lihzahrd Traps After Golem Defeated")]
-        [DefaultValue(true)]
-        public bool WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated;
-
-        [Label("[i:1150] Wooden Spikes After Golem Defeated")]
-        [DefaultValue(true)]
-        public bool WitchDoctorSellsWoodenSpikesAfterGolemDefeated;
-
-        [Label("[i:3017] Flower Boots")]
-        [DefaultValue(false)]
-        public bool WitchDoctorSellsFlowerBoots;
-
-        [Label("[i:2204] Honey Dispenser")]
-        [DefaultValue(false)]
-        public bool WitchDoctorSellsHoneyDispenser;
-
-        [Label("[i:2338] Seaweed")]
-        [DefaultValue(false)]
-        public bool WitchDoctorSellsSeaweed;
-
-        [Label("[i:213] Staff of Regrowth")]
-        [DefaultValue(false)]
-        public bool WitchDoctorSellsStaffofRegrowth;
-
         [Header("Merchant Sells")]
+
         [Label("[i:410] All Mining Gear;")]
         [DefaultValue(true)]
         public bool MerchantSellsAllMiningGear;
-
-        [Label("[i:987] Blizzard In A Bottle When In Snow")]
-        [DefaultValue(false)]
-        public bool MerchantSellsBlizzardInABottleWhenInSnow;
-
-        [Label("[i:53] Cloud In A Bottle When In Sky")]
-        [DefaultValue(false)]
-        public bool MerchantSellsCloudInABottleWhenInSky;
-
-        [Label("[i:669] Fish Item")]
-        [DefaultValue(false)]
-        public bool MerchantSellsFishItem;
-
-        [Label("[i:934] Pyramid Items")]
-        [DefaultValue(false)]
-        public bool MerchantSellsPyramidItems;
-
-        [Label("[i:857] Sandstorm In A Bottle When In Desert")]
-        [DefaultValue(false)]
-        public bool MerchantSellsSandstormInABottleWhenInDesert;
 
         [Label("[i:290] Swiftness Potion")]
         [DefaultValue(true)]

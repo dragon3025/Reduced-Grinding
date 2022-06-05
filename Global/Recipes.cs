@@ -273,6 +273,7 @@ namespace ReducedGrinding.Global
                 recipe.Register();
             }
 
+            //Crates
             recipe = Mod.CreateRecipe(ItemID.WoodenCrate);
             recipe.AddIngredient(ItemID.WoodenCrateHard);
             recipe.AddTile(TileID.CrystalBall);
@@ -336,6 +337,57 @@ namespace ReducedGrinding.Global
             recipe = Mod.CreateRecipe(ItemID.GoldenCrate);
             recipe.AddIngredient(ItemID.GoldenCrateHard);
             recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            //Traps
+            recipe = Mod.CreateRecipe(ItemID.DartTrap);
+            recipe.AddIngredient(ItemID.StoneBlock);
+            recipe.AddIngredient(ItemID.PoisonDart);
+            recipe.AddTile(TileID.HeavyWorkBench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.Spike);
+            recipe.AddRecipeGroup(RecipeGroupID.IronBar);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.GeyserTrap);
+            recipe.AddIngredient(ItemID.StoneBlock, 50);
+            recipe.AddIngredient(ItemID.WaterBucket);
+            recipe.AddIngredient(ItemID.LivingFireBlock);
+            recipe.AddTile(TileID.HeavyWorkBench);
+            recipe.AddCondition(Recipe.Condition.InUnderworldHeight);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.WoodenSpike);
+            recipe.AddIngredient(ItemID.RichMahogany);
+            recipe.AddTile(TileID.LihzahrdFurnace);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.FlameTrap);
+            recipe.AddIngredient(ItemID.LihzahrdBrick);
+            recipe.AddIngredient(ItemID.LivingFireBlock);
+            recipe.AddTile(TileID.LihzahrdFurnace);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.SpearTrap);
+            recipe.AddIngredient(ItemID.LihzahrdBrick);
+            recipe.AddIngredient(ItemID.WoodenSpike);
+            recipe.AddIngredient(ItemID.RichMahogany, 10);
+            recipe.AddTile(TileID.LihzahrdFurnace);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.SpikyBallTrap);
+            recipe.AddIngredient(ItemID.LihzahrdBrick);
+            recipe.AddIngredient(ItemID.WoodenSpike);
+            recipe.AddIngredient(ItemID.PinkGel);
+            recipe.AddTile(TileID.LihzahrdFurnace);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.SuperDartTrap);
+            recipe.AddIngredient(ItemID.LihzahrdBrick);
+            recipe.AddIngredient(ItemID.PoisonDart);
+            recipe.AddTile(TileID.LihzahrdAltar);
             recipe.Register();
         }
     }

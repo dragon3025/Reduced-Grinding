@@ -45,40 +45,6 @@ namespace ReducedGrinding.Global
 						shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
 						nextSlot++;
 					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsFishItem)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.Fish);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsPyramidItems && player.ZoneDesert)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.FlyingCarpet);
-						nextSlot++;
-						if (!GetInstance<FOtherVanillaNPCConfig>().MerchantSellsSandstormInABottleWhenInDesert)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.SandstorminaBottle);
-							nextSlot++;
-						}
-						shop.item[nextSlot].SetDefaults(ItemID.PharaohsMask);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(ItemID.PharaohsRobe);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsCloudInABottleWhenInSky && player.ZoneSkyHeight)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.CloudinaBottle);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsBlizzardInABottleWhenInSnow && player.ZoneSnow)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.BlizzardinaBottle);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsSandstormInABottleWhenInDesert && player.ZoneDesert)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.SandstorminaBottle);
-						nextSlot++;
-					}
 					break;
 				case NPCID.DyeTrader:
 					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
@@ -148,47 +114,6 @@ namespace ReducedGrinding.Global
 						}
 					}*/
 					break;
-				case NPCID.WitchDoctor:
-					if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsSeaweed)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.Seaweed);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsFlowerBoots)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.FlowerBoots);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsHoneyDispenser)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.HoneyDispenser);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsStaffofRegrowth)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.StaffofRegrowth);
-						nextSlot++;
-					}
-					if (NPC.downedGolemBoss)
-					{
-						if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsLihzahrdTrapsAfterGolemDefeated)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.FlameTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SpearTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SpikyBallTrap);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(ItemID.SuperDartTrap);
-							nextSlot++;
-						}
-						if (GetInstance<FOtherVanillaNPCConfig>().WitchDoctorSellsWoodenSpikesAfterGolemDefeated)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.WoodenSpike);
-							nextSlot++;
-						}
-					}
-					break;
 				case NPCID.Dryad:
 					/*if (luiafk == null)
 					{
@@ -220,20 +145,6 @@ namespace ReducedGrinding.Global
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>());
-						nextSlot++;
-					}
-					break;
-				case NPCID.Mechanic:
-					if (GetInstance<FOtherVanillaNPCConfig>().MechanicSellsDartTrapAndSpikesAfterSkeletronDefeated && NPC.downedBoss3)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.DartTrap);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(ItemID.Spike);
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MechanicSellsGeyserAfterWallofFleshDefeated && Main.hardMode)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.GeyserTrap);
 						nextSlot++;
 					}
 					break;

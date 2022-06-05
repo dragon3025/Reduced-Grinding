@@ -174,6 +174,7 @@ namespace ReducedGrinding.Global
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
+            //Non-Boss Loot
             int config = GetInstance<AEnemyLootConfig>().LootGoodieBagIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
