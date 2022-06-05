@@ -198,6 +198,8 @@ namespace ReducedGrinding.Global
                 try_loot(ItemID.SandstorminaBottle, GetInstance<AEnemyLootConfig>().SandstormInABottleFromSandElemental);
             if (npc.type == NPCID.SpikedIceSlime)
                 try_loot(ItemID.SnowballLauncher, GetInstance<AEnemyLootConfig>().SnowballLauncherFromSpikedIceSlime);
+            if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
+                try_loot_max_min(ItemID.Marble, GetInstance<AEnemyLootConfig>().MarbleFromMarbleCaveEnemies);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

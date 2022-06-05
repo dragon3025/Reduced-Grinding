@@ -180,6 +180,10 @@ namespace ReducedGrinding
         [Range(0, 999)]
         public int[] DesertFossilFromTombCrawler = new int[] { 0, 0 };
 
+        [Label("[i:3081] Marble from Marble Cave Enemies (Min and Max in any order)")]
+        [Range(0, 999)]
+        public int[] MarbleFromMarbleCaveEnemies = new int[] { 5, 10 };
+
         [Label("[i:169] Sand from Dune Splicer (Min and Max in any order)")]
         [Range(1, 999)]
         public int[] SandFromDuneSplicer = new int[] { 0, 0 };
