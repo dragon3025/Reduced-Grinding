@@ -53,34 +53,25 @@ namespace ReducedGrinding.NPCs
 		{
 			if (!Main.dayTime)
 			{
-				switch (Main.rand.Next(2))
-				{
-					case 0:
-						return "What a beautiful night, the stars are bright and shinning!";
-					default:
-						return "What brings you here, on this calm, silent night?";
-				}
-			}
+                return Main.rand.Next(2) switch
+                {
+                    0 => "What a beautiful night, the stars are bright and shinning!",
+                    _ => "What brings you here, on this calm, silent night?",
+                };
+            }
 			else
 			{
-				switch (Main.rand.Next(7))
-				{
-					case 0:
-						return "You would not believe some of the things people throw at me... Wanna buy some of it?";
-					case 1:
-						return "I'd lend you a hand, but last time I did that, I didn't get it back for a month.";
-					case 2:
-						return "Stay away from the spiders. They'll suck out your insides and leave you a hollow shell of a man. Trust me on this one.";
-					case 3:
-						return "Excellent! Someone's finally come by to take some of these maggots off my hands.";
-					case 4:
-						return "There's no illness or condition that can't be cured by some of my Slime Oil! Trust me, it works, just look at my lively figure!";
-					case 5:
-						return "The only things constant in this world are death and taxes, I've got both!";
-					default:
-						return "Got any spare bones for sale? I'm looking to replace my broken hip... again.";
-				}
-			}
+                return Main.rand.Next(7) switch
+                {
+                    0 => "You would not believe some of the things people throw at me... Wanna buy some of it?",
+                    1 => "I'd lend you a hand, but last time I did that, I didn't get it back for a month.",
+                    2 => "Stay away from the spiders. They'll suck out your insides and leave you a hollow shell of a man. Trust me on this one.",
+                    3 => "Excellent! Someone's finally come by to take some of these maggots off my hands.",
+                    4 => "There's no illness or condition that can't be cured by some of my Slime Oil! Trust me, it works, just look at my lively figure!",
+                    5 => "The only things constant in this world are death and taxes, I've got both!",
+                    _ => "Got any spare bones for sale? I'm looking to replace my broken hip... again.",
+                };
+            }
 		}
 
 		public override void SetChatButtons(ref string button, ref string button2)

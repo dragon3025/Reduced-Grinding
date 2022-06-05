@@ -389,6 +389,17 @@ namespace ReducedGrinding.Global
             recipe.AddIngredient(ItemID.PoisonDart);
             recipe.AddTile(TileID.LihzahrdAltar);
             recipe.Register();
+
+            //Other
+            recipe = Mod.CreateRecipe(ItemID.PurpleSolution, 100);
+            recipe.AddIngredient(ItemID.VilePowder);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.RedSolution, 100);
+            recipe.AddIngredient(ItemID.ViciousPowder);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
         }
     }
 }

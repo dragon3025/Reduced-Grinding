@@ -3,7 +3,7 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
     <ShowAllFiles>true</ShowAllFiles>
-    <ActiveDebugProfile>Terraria</ActiveDebugProfile>
+    <ActiveDebugProfile>TerrariaServer</ActiveDebugProfile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartAction>Program</StartAction>

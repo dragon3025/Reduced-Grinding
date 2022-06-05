@@ -1,6 +1,6 @@
+using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
-using System;
 
 namespace ReducedGrinding
 {
@@ -14,118 +14,123 @@ namespace ReducedGrinding
         [Label("[i:1299] Binoculars")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootBinocularsIncrease;
+        public int BinocularsIncrease;
 
         [Label("[i:4823] Empress and [i:2609] Fishron Wings")]
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(7)]
-        public int LootEmpressAndFishronWingsIncrease;
+        public int EmpressAndFishronWingsIncrease;
 
         [Label("[i:4715] Stellar Tune")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int LootStellarTuneIncrease;
+        public int StellarTuneIncrease;
 
         [Label("[i:5075] Rainbow Cursor")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int LootRainbowCursor;
+        public int RainbowCursor;
 
         [Header("Non-Boss Loot")]
+
+        [Label("[i:3349] Town NPC Weapons")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TownNPCWeapons;
 
         [Label("[i:1533] Biome Key Increase")]
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootBiomeKeyIncrease;
+        public int BiomeKeyIncrease;
 
         [Label("[i:723] Beam Sword")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootBeamSwordIncrease;
+        public int BeamSwordIncrease;
 
         [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove")]
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootBloodyMacheteAndBladedGlovesIncrease;
+        public int BloodyMacheteAndBladedGlovesIncrease;
 
         [Label("[i:1774] Goodie Bag")]
         [Tooltip("Only drops during Halloween")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootGoodieBagIncrease;
+        public int GoodieBagIncrease;
 
         [Label("[i:1314] KO Cannon")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootKOCannonIncrease;
+        public int KOCannonIncrease;
 
         [Label("[i:1172] Lizard Egg")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootLizardEggIncrease;
+        public int LizardEggIncrease;
 
         [Label("[i:682] Marrow")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootMarrowIncrease;
+        public int MarrowIncrease;
 
         [Label("[i:1513] Paladin's Hammer")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootPaladinsHammerIncrease;
+        public int PaladinsHammerIncrease;
 
         [Label("[i:938] Paladin's Shield")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootPaladinsShieldIncrease;
+        public int PaladinsShieldIncrease;
 
         [Label("[i:244] Plumber’s Hat")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootPlumbersHatIncrease;
+        public int PlumbersHatIncrease;
 
         [Label("[i:1869] Present")]
         [Tooltip("Only drops during Christmas")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootPresentIncrease;
+        public int PresentIncrease;
 
         [Label("[i:1300] Rifle Scope and [i:1254]Sniper Rifle")]
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootRifleScopeAndSniperRifleIncrease;
+        public int RifleScopeAndSniperRifleIncrease;
 
         [Range(0, 10000)]
         [Label("[i:759] Rocket Launcher")]
         [DefaultValue(0)]
-        public int LootRocketLauncherIncrease;
+        public int RocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
         [DefaultValue(0)]
-        public int LootRodofDiscordIncrease;
+        public int RodofDiscordIncrease;
 
         [Range(0, 10000)]
         [Label("[i:68] Rotten Chunk and [i:1330] Vertebra")]
         [Tooltip("This sets the same drop rate for each")]
         [DefaultValue(0)]
-        public int LootRottenChunkAndVertebra;
+        public int RottenChunkAndVertebra;
 
         [Label("[i:1309] Slime Staff (Hover for more info)")]
         [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootSlimeStaffIncrease;
+        public int SlimeStaffIncrease;
 
         [Label("[i:1514] SWAT Helmet and [i:679]Tactical Shotgun")]
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootSWATHelmetAndTacticalShotgunIncrease;
+        public int SWATHelmetAndTacticalShotgunIncrease;
 
         [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. This is done in attempt to imitate the upcoming 1.4.4 update)")]
 
@@ -133,70 +138,70 @@ namespace ReducedGrinding
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootCoinGunBaseIncrease;
+        public int CoinGunBaseIncrease;
 
         [Label("[i:672] Cutlass (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootCutlassBaseIncrease;
+        public int CutlassBaseIncrease;
 
         [Label("[i:854] Discount Card (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootDiscountCardBaseIncrease;
+        public int DiscountCardBaseIncrease;
 
         [Label("[i:3033] Gold Ring (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootGoldRingBaseIncrease;
+        public int GoldRingBaseIncrease;
 
         [Label("[i:855] Lucky Coin (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootLuckyCoinBaseIncrease;
+        public int LuckyCoinBaseIncrease;
 
         [Label("[i:2584] Pirate Staff (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PirateLootPirateStaffBaseIncrease;
+        public int PirateStaffBaseIncrease;
 
         [Header("Drops that don't happen in vanilla.")]
 
         [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
         [Range(0, 999)]
-        public int[] LootDesertFossilFromDuneSplicer = new int[] { 0, 0 };
+        public int[] DesertFossilFromDuneSplicer = new int[] { 0, 0 };
 
         [Label("[i:3347] Desert Fossil from Tomb Crawler (Min and Max in any order)")]
         [Range(0, 999)]
-        public int[] LootDesertFossilFromTombCrawler = new int[] { 0, 0 };
+        public int[] DesertFossilFromTombCrawler = new int[] { 0, 0 };
 
         [Label("[i:169] Sand from Dune Splicer (Min and Max in any order)")]
         [Range(1, 999)]
-        public int[] LootSandFromDuneSplicer = new int[] { 0, 0 };
+        public int[] SandFromDuneSplicer = new int[] { 0, 0 };
 
         [Label("[i:169] Sand from Tomb Crawler (Min and Max in any order)")]
         [Range(1, 999)]
-        public int[] LootSandFromTombCrawler = new int[] { 0, 0 };
+        public int[] SandFromTombCrawler = new int[] { 0, 0 };
 
         [Label("[i:857] Sandstorm in a Bottle from Sand Elemental")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int LootSandstormInABottleFromSandElemental;
+        public int SandstormInABottleFromSandElemental;
 
         [Label("[i:2673] Truffle Worm from Duke Fishron")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LootTrufflewormFromDukeFishron;
+        public int TrufflewormFromDukeFishron;
 
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
         [DefaultValue(150)]
-        public int LootSnowballLauncherFromSpikedIceSlime;
+        public int SnowballLauncherFromSpikedIceSlime;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -620,10 +625,6 @@ namespace ReducedGrinding
     public class FOtherVanillaNPCConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Label("All NPCs Sell Their Death Loot")]
-        [DefaultValue(false)]
-        public bool AllNPCsSellTheirDeathLoot;
 
         [Header("Merchant Sells")]
 

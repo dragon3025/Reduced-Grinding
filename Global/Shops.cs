@@ -17,7 +17,7 @@ namespace ReducedGrinding.Global
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            Terraria.Player player = Main.player[Main.myPlayer];
+            Player player = Main.player[Main.myPlayer];
 			//Mod luiafk = ModLoader.GetMod("Luiafk");
 
 			switch (type)
@@ -33,11 +33,6 @@ namespace ReducedGrinding.Global
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
 						nextSlot++;
 					}
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.GreenCap);
-						nextSlot++;
-					}
 					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsAllMiningGear)
 					{
 						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
@@ -46,102 +41,7 @@ namespace ReducedGrinding.Global
 						nextSlot++;
 					}
 					break;
-				case NPCID.DyeTrader:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.DyeTradersScimitar);
-						nextSlot++;
-					}
-					break;
-				case NPCID.DD2Bartender:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.AleThrowingGlove);
-						nextSlot++;
-					}
-					break;
-				case NPCID.Stylist:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.StylistKilLaKillScissorsIWish);
-						nextSlot++;
-					}
-					break;
-				case NPCID.Painter:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.PainterPaintballGun);
-						nextSlot++;
-					}
-					break;
-				case NPCID.Clothier:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.RedHat);
-						nextSlot++;
-					}
-					break;
-				case NPCID.TaxCollector:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.TaxCollectorsStickOfDoom);
-						nextSlot++;
-					}
-					break;
-				case NPCID.Steampunker:
-					/*if (luiafk == null)
-					{
-						if (WorldGen.crimson)
-						{
-							if (Main.bloodMoon || Main.eclipse)
-							{
-								shop.item[nextSlot].SetDefaults(ItemID.PurpleSolution);
-								nextSlot++;
-							}
-						}
-						else
-						{
-							if (Main.bloodMoon || Main.eclipse)
-							{
-								shop.item[nextSlot].SetDefaults(ItemID.RedSolution);
-								nextSlot++;
-							}
-							if (luiafk == null)
-							{
-								shop.item[nextSlot].SetDefaults(2193); //Flesh Cloning Vat
-								nextSlot++;
-							}
-						}
-					}*/
-					break;
 				case NPCID.Dryad:
-					/*if (luiafk == null)
-					{
-						if (WorldGen.crimson)
-						{
-							if (Main.bloodMoon || player.ZoneCorrupt)
-							{
-								shop.item[nextSlot].SetDefaults(ItemID.CorruptSeeds);
-								nextSlot++;
-								shop.item[nextSlot].SetDefaults(ItemID.VilePowder);
-								nextSlot++;
-							}
-							if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
-								shop.item[nextSlot].SetDefaults(ItemID.CorruptPlanterBox);
-						}
-						else
-						{
-							if (Main.bloodMoon || player.ZoneCrimson)
-							{
-								shop.item[nextSlot].SetDefaults(ItemID.CrimsonSeeds);
-								nextSlot++;
-								shop.item[nextSlot].SetDefaults(ItemID.ViciousPowder);
-								nextSlot++;
-							}
-							if (NPC.downedBoss2) //Brain of Cthulhu or Eater of Worlds
-								shop.item[nextSlot].SetDefaults(ItemID.CrimsonPlanterBox);
-						}
-					}*/
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>());
@@ -167,32 +67,6 @@ namespace ReducedGrinding.Global
 					{
 						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>());
 						nextSlot++;
-					}
-					break;
-				case NPCID.TravellingMerchant:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.PeddlersHat);
-						nextSlot++;
-					}
-					break;
-				case NPCID.PartyGirl:
-					if (GetInstance<FOtherVanillaNPCConfig>().AllNPCsSellTheirDeathLoot)
-					{
-						bool hasPartyGrenade = false;
-						for (int i = 0; i < shop.item.Length; i++)
-						{
-							if (shop.item[i].type == ItemID.PartyGirlGrenade)
-							{
-								hasPartyGrenade = true;
-								break;
-							}
-						}
-						if (!hasPartyGrenade)
-						{
-							shop.item[nextSlot].SetDefaults(ItemID.PartyGirlGrenade);
-							nextSlot++;
-						}
 					}
 					break;
 				case NPCID.SkeletonMerchant:

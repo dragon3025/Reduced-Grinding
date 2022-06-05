@@ -12,7 +12,7 @@ namespace ReducedGrinding.Global
         {
             if (item.type == ItemID.Sundial && GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
             {
-                TooltipLine tooltip = new TooltipLine(Mod, "Test","Place in the world to make time travel faster while sleeping.");
+                TooltipLine tooltip = new(Mod, "Reduced Grinding","Place in the world to make time travel faster while sleeping.");
                 tooltips.Add(tooltip);
             }
         }
@@ -30,20 +30,20 @@ namespace ReducedGrinding.Global
 
             // Boss Bags
             if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease, ItemID.FishronWings);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.FishronWings);
             if (arg == ItemID.FairyQueenBossBag)
             {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootEmpressAndFishronWingsIncrease, ItemID.RainbowWings);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootStellarTuneIncrease, ItemID.SparkleGuitar);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootRainbowCursor, ItemID.RainbowCursor);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.RainbowWings);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().StellarTuneIncrease, ItemID.SparkleGuitar);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().RainbowCursor, ItemID.RainbowCursor);
             }
             if (arg == ItemID.EyeOfCthulhuBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootBinocularsIncrease, ItemID.Binoculars);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().BinocularsIncrease, ItemID.Binoculars);
 
             //Other Grab Bags
             if (arg == ItemID.DungeonFishingCrate || arg == ItemID.DungeonFishingCrateHard)
             {
-                List<int> dungeonFurniture = new List<int>() {
+                List<int> dungeonFurniture = new() {
                     1396,
                     1397,
                     1398,
@@ -104,7 +104,7 @@ namespace ReducedGrinding.Global
 
             //Boss Bag drops that don't happen in vanilla.
             if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().LootTrufflewormFromDukeFishron, ItemID.TruffleWorm);
+                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron, ItemID.TruffleWorm);
         }
     }
 }

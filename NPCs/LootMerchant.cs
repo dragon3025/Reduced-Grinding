@@ -74,17 +74,13 @@ namespace ReducedGrinding.NPCs
 
         public override string GetChat()
         {
-            switch (Main.rand.Next(4))
+            return Main.rand.Next(4) switch
             {
-                case 0:
-                    return "I like to collect loot from monsters and a little mining, want to buy any?";
-                case 1:
-                    return "If you're looking for loot, you've come to the right place.";
-                case 2:
-                    return "Looking for loot?";
-                default:
-                    return "You could kill some mobs for their loot, or you could buy them from me.";
-            }
+                0 => "I like to collect loot from monsters and a little mining, want to buy any?",
+                1 => "If you're looking for loot, you've come to the right place.",
+                2 => "Looking for loot?",
+                _ => "You could kill some mobs for their loot, or you could buy them from me.",
+            };
         }
 
         public override void SetChatButtons(ref string button, ref string button2)

@@ -16,17 +16,17 @@ namespace ReducedGrinding.Global
 
 			//int worldSize = Main.maxTilesX / 4200 == 1 ? 1 : Main.maxTilesX / 4200 == 1.5 ? 2 : 3; in case I need it.
 
-			List<int> missingPyramidItems = new List<int> { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
-			List<int> missingLivingWoodItems = new List<int> { ItemID.BabyBirdStaff, ItemID.SunflowerMinecart, ItemID.LadybugMinecart};
-			List<int> missingMushroomItems = new List<int> { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants};
+			List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
+			List<int> missingLivingWoodItems = new() { ItemID.BabyBirdStaff, ItemID.SunflowerMinecart, ItemID.LadybugMinecart};
+			List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants};
 			bool beeMinecartMissing = true;
 
-			List<int> desertChests = new List<int>();
-			List<int> ivyChests = new List<int>();
-			List<int> livingWoodChests = new List<int>();
-			List<int> woodChests = new List<int>();
-			List<int> mushroomChests = new List<int>();
-			List<int> centerGoldChests = new List<int>();
+			List<int> desertChests = new();
+			List<int> ivyChests = new();
+			List<int> livingWoodChests = new();
+			List<int> woodChests = new();
+			List<int> mushroomChests = new();
+			List<int> centerGoldChests = new();
 
 			int worldCenterLeft = (Main.maxTilesX / 2) - 420;
 			int worldCenterRight = (Main.maxTilesX / 2) + 420;
@@ -47,7 +47,7 @@ namespace ReducedGrinding.Global
 					{
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
-							List<int> missingPyramidItemsOld = new List<int>();
+							List<int> missingPyramidItemsOld = new();
 							missingPyramidItemsOld.AddRange(missingPyramidItems);
 
 							foreach (int itemType in missingPyramidItemsOld)
@@ -85,7 +85,7 @@ namespace ReducedGrinding.Global
 						livingWoodChests.Add(chestIndex);
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
-							List<int> missingLivingWoodItemsOld = new List<int>();
+							List<int> missingLivingWoodItemsOld = new();
 							missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
 
 							foreach (int itemType in missingLivingWoodItemsOld)
@@ -103,7 +103,7 @@ namespace ReducedGrinding.Global
 						mushroomChests.Add(chestIndex);
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
-							List<int> missingMushroomItemsOld = new List<int>();
+							List<int> missingMushroomItemsOld = new();
 							missingMushroomItemsOld.AddRange(missingMushroomItems);
 
 							foreach (int itemType in missingMushroomItemsOld)

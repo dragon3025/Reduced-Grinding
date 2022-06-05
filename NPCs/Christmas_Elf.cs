@@ -51,27 +51,21 @@ namespace ReducedGrinding.NPCs
         {
             if (!Main.dayTime)
             {
-                switch (Main.rand.Next(2))
+                return Main.rand.Next(2) switch
                 {
-                    case 0:
-                        return "What a beautiful night, the stars are bright and shinning!";
-                    default:
-                        return "What brings you here on this silent night?";
-                }
+                    0 => "What a beautiful night, the stars are bright and shinning!",
+                    _ => "What brings you here on this silent night?",
+                };
             }
             else
             {
-                switch (Main.rand.Next(4))
+                return Main.rand.Next(4) switch
                 {
-                    case 0:
-                        return "Hmm Hmm Hmmmmmmm Hmm Hmm Hmmmmmmmmm, Jingle all the...oh hello there!";
-                    case 1:
-                        return "I'm sorry I can't give you a discount, even if you've been good for goodness sake.";
-                    case 2:
-                        return "Deck the halls with lights that you can purchase at my store.";
-                    default:
-                        return "You better watch out, those slimes are tough.";
-                }
+                    0 => "Hmm Hmm Hmmmmmmm Hmm Hmm Hmmmmmmmmm, Jingle all the...oh hello there!",
+                    1 => "I'm sorry I can't give you a discount, even if you've been good for goodness sake.",
+                    2 => "Deck the halls with lights that you can purchase at my store.",
+                    _ => "You better watch out, those slimes are tough.",
+                };
             }
         }
 
