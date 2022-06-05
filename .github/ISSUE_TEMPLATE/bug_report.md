@@ -10,8 +10,12 @@ assignees: ''
 Terraria Version:
 TModLoader Version:
 
+**Mods Installed**
+- Reduced Grinding
+- Any other mods (try testing with only my mod installed, to be sure my mod is causing the problem).
+
 **Describe the bug**
-A clear and concise description of what the bug is.
+A clear and concise description of what the bug is. Where you playing in single player when the bug happened?
 
 **To Reproduce**
 Steps to reproduce the behavior:
