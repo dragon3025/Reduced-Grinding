@@ -1,14 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using static Terraria.ModLoader.ModContent;
 using System.Collections.Generic;
+using Terraria;
 using Terraria.Chat;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria;
-
-
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
@@ -25,16 +22,6 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateTime()
         {
-
-            //for (int i = 0; i < Main.npc.Length; i++) TO-DO Somehow make a way to name the Guide and Steampunker so you can get their items.
-            //{
-            //    if (Main.npc[i].type == NPCID.Guide)
-            //    {
-            //        Main.npc[i].GivenName = "TestName";
-            //        break;
-            //    }
-            //}
-
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
 
             if (GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)

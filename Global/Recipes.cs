@@ -107,29 +107,12 @@ namespace ReducedGrinding.Global
             //Infection Key Switching
             recipe = Mod.CreateRecipe(ItemID.CrimsonKey);
             recipe.AddIngredient(ItemID.CorruptionKey);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
             recipe = Mod.CreateRecipe(ItemID.CorruptionKey);
             recipe.AddIngredient(ItemID.CrimsonKey);
-            recipe.Register();
-
-            //Giant Shelly, Salamander, Crawdad Banner Switching
-            recipe = Mod.CreateRecipe(ItemID.CrawdadBanner);
-            recipe.AddIngredient(ItemID.GiantShellyBanner);
-            recipe.AddIngredient(ItemID.SalamanderBanner);
-            recipe.AddTile(TileID.Loom);
-            recipe.Register();
-
-            recipe = Mod.CreateRecipe(ItemID.SalamanderBanner);
-            recipe.AddIngredient(ItemID.CrawdadBanner);
-            recipe.AddIngredient(ItemID.GiantShellyBanner);
-            recipe.AddTile(TileID.Loom);
-            recipe.Register();
-
-            recipe = Mod.CreateRecipe(ItemID.GiantShellyBanner);
-            recipe.AddIngredient(ItemID.SalamanderBanner);
-            recipe.AddIngredient(ItemID.CrawdadBanner);
-            recipe.AddTile(TileID.Loom);
+            recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
             //Easier Hardmode Voodoo Doll
