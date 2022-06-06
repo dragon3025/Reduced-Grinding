@@ -22,25 +22,6 @@ namespace ReducedGrinding.Global
 
 			switch (type)
 			{
-				case NPCID.Merchant:
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsSwiftnessPotion)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.SwiftnessPotion);
-						nextSlot++;
-					}
-					if (GetInstance<HOtherModdedItemsConfig>().MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem)
-					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Gold_Reflection_Mirror>());
-						nextSlot++;
-					}
-					if (GetInstance<FOtherVanillaNPCConfig>().MerchantSellsAllMiningGear)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
-						nextSlot++;
-					}
-					break;
 				case NPCID.Dryad:
 					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
 					{

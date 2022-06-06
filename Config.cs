@@ -625,28 +625,6 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Vanilla NPCs")]
-    public class FOtherVanillaNPCConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Header("Merchant Sells")]
-
-        [Label("[i:410] All Mining Gear;")]
-        [DefaultValue(true)]
-        public bool MerchantSellsAllMiningGear;
-
-        [Label("[i:290] Swiftness Potion")]
-        [DefaultValue(true)]
-        public bool MerchantSellsSwiftnessPotion;
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
     [Label("Other Modded Items")]
     public class HOtherModdedItemsConfig : ModConfig
     {
@@ -661,11 +639,6 @@ namespace ReducedGrinding
         [Label("$Mods.ReducedGrinding.Common.GoblinRetreatOrderLable")]
         [DefaultValue(true)]
         public bool GoblinTinkererSellsGoblinRetreatOrder;
-
-        [Tooltip("Allows crafting golden critters")]
-        [Label("$Mods.ReducedGrinding.Common.GoldReflectionMirror")]
-        [DefaultValue(false)]
-        public bool MerchantSellsGoldReflectionMirrorForCraftingGoldCrittersItem;
 
         [Tooltip("Ends the Pirate Invasion")]
         [Label("$Mods.ReducedGrinding.Common.PirateRetreatOrder")]
@@ -787,6 +760,13 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
+
+        [Header("Other")]
+
+        [Label("Allow crafting [i:2889]Gold Critters")]
+        [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
+        [DefaultValue(false)]
+        public bool CraftableGoldCritters;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
