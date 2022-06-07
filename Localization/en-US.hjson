@@ -1,0 +1,15 @@
+Mods: {
+	ReducedGrinding: {
+		ItemName: {
+			MoonBall: Moon Ball
+		}
+		ItemTooltip: {
+			MoonBall: "Advances the Moon Phase."
+		}
+		Config: {
+			Label: {
+				MoonBall: "Wizard Sells {$Mods.ReducedGrinding.ItemName.MoonBall}"
+			}
+		}
+	}
+}

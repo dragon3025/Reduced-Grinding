@@ -8,8 +8,8 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Moon Ball");
-            Tooltip.SetDefault("Advances the Moon Phase.\nHaving this in your inventory removes all Moon Phase restrictions on the Skeleton Merchant.");
+            DisplayName.SetDefault("{$Mods.ReducedGrinding.ItemName.MoonBall}");
+            Tooltip.SetDefault("{$Mods.ReducedGrinding.ItemTooltip.MoonBall}");
         }
 		
 		public override void SetDefaults()

@@ -43,68 +43,6 @@ namespace ReducedGrinding.Global
 						nextSlot++;
 					}
 					break;
-				case NPCID.SkeletonMerchant:
-					if (player.HasItem(ItemType<Items.Moon_Ball>()))
-					{
-						nextSlot = 0;
-						shop.item[nextSlot].SetDefaults(3001);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(28);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3002);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(282);
-						nextSlot++;
-						if (Main.time % 60.0 * 60.0 * 6.0 <= 10800.0)
-						{
-							shop.item[nextSlot].SetDefaults(3004);
-						}
-						else
-						{
-							shop.item[nextSlot].SetDefaults(8);
-						}
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3003);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(40);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3310);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3313);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3312);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(3311);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(166);
-						nextSlot++;
-						shop.item[nextSlot].SetDefaults(965);
-						nextSlot++;
-						if (Main.hardMode)
-						{
-							shop.item[nextSlot].SetDefaults(3316);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(3315);
-							nextSlot++;
-							shop.item[nextSlot].SetDefaults(3334);
-							nextSlot++;
-							if (Main.bloodMoon)
-							{
-								shop.item[nextSlot].SetDefaults(3258);
-								nextSlot++;
-							}
-						}
-						shop.item[nextSlot].SetDefaults(3043);
-						nextSlot++;
-
-					}
-					//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
-					if (GetInstance<IOtherConfig>().BoneMerchant)
-					{
-						shop.item[nextSlot].SetDefaults(ItemType<Items.Skull_Call>());
-						nextSlot++;
-					}
-					break;
 			}
         }
 		

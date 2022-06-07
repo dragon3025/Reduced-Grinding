@@ -631,21 +631,21 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Tooltip("Ends the Goblin Invasion")]
-        [Label("$Mods.ReducedGrinding.Common.GoblinRetreatOrderLable")]
+        [Label("Goblin Retreat Order")]
         [DefaultValue(true)]
         public bool GoblinTinkererSellsGoblinRetreatOrder;
 
         [Tooltip("Ends the Pirate Invasion")]
-        [Label("$Mods.ReducedGrinding.Common.PirateRetreatOrder")]
+        [Label("Pirate Retreat Order")]
         [DefaultValue(true)]
         public bool PirateSellsPirateRetreatOrder;
 
-        [Tooltip("Advances the Moon Phase")]
-        [Label("$Mods.ReducedGrinding.Common.MoonBall")]
+        [Tooltip("$Mods.ReducedGrinding.ItemTooltip.MoonBall")]
+        [Label("$Mods.ReducedGrinding.Config.Label.MoonBall")]
         [DefaultValue(true)]
         public bool WizardSellsMoonBall;
 
-        [Label("Plantera Sap from Plantera")]
+        [Label("Plantera Sap Drop from Plantera")]
         [Tooltip("Summons Plantera. Chance of dropping is 1 / n, where n is the configuration setting. Set to 0 to disable.")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;

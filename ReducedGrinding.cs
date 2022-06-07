@@ -22,29 +22,6 @@ namespace ReducedGrinding
     class ReducedGrinding : Mod
     {
 
-        public override void Load() //TO-DO Non of this is working
-        {
-            ModTranslation text = LocalizationLoader.CreateTranslation("Common.GoblinRetreatOrderLable");
-            text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>()}] Goblin Retreat Order");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.PirateRetreatOrder");
-            text.SetDefault($"Pirate Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>()}] Pirate Retreat Order");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.MoonBall");
-            text.SetDefault($"Wizard Sells [i:{ModContent.ItemType<Items.Moon_Ball>()}] Moon Ball");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.WarPotion");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.BuffPotions.War_Potion>()}] War Potion (Crafted with [i:300] Battle Potion; gives Battle and War Buffs).");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.ChaosPotion");
-            text.SetDefault($"[i:{ModContent.ItemType<Items.BuffPotions.Chaos_Potion>()}] Chaos Potion (Crafted with [i:{ModContent.ItemType<Items.BuffPotions.War_Potion>()}] War Potion; gives Battle, War, and Chaos Buffs).");
-            LocalizationLoader.AddTranslation(text);
-        }
-
         /*public override void PostSetupContent() TODO
 		{
 			Mod censusMod = ModLoader.GetMod("Census");
