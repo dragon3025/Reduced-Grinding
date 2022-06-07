@@ -8,14 +8,6 @@ namespace ReducedGrinding.Global
 {
 	public class Item : GlobalItem
 	{
-		public override void ModifyTooltips(Terraria.Item item, List<TooltipLine> tooltips)
-        {
-            if (item.type == ItemID.Sundial && GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
-            {
-                TooltipLine tooltip = new(Mod, "Reduced Grinding","Place in the world to make time travel faster while sleeping.");
-                tooltips.Add(tooltip);
-            }
-        }
 
         public override void OpenVanillaBag(string context, Terraria.Player player, int arg)
         {

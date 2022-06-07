@@ -1,11 +1,11 @@
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
 using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
-	public class Shops : GlobalNPC
+    public class Shops : GlobalNPC
     {
 
 		public override void GetChat(NPC npc, ref string chat)
@@ -22,36 +22,29 @@ namespace ReducedGrinding.Global
 
 			switch (type)
 			{
-				case NPCID.Dryad:
-					if (GetInstance<HOtherModdedItemsConfig>().DryadSellsPlanteraBulbAfterPlanteraDefeated && NPC.downedPlantBoss)
-					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>());
-						nextSlot++;
-					}
-					break;
 				case NPCID.Wizard:
 					if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Moon_Ball>());
+						shop.item[nextSlot].SetDefaults(ItemType<Items.Moon_Ball>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.Pirate:
 					if (GetInstance<HOtherModdedItemsConfig>().PirateSellsPirateRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>());
+						shop.item[nextSlot].SetDefaults(ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.GoblinTinkerer:
 					if (GetInstance<HOtherModdedItemsConfig>().GoblinTinkererSellsGoblinRetreatOrder)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>());
+						shop.item[nextSlot].SetDefaults(ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
 				case NPCID.SkeletonMerchant:
-					if (player.HasItem(ModContent.ItemType<Items.Moon_Ball>()))
+					if (player.HasItem(ItemType<Items.Moon_Ball>()))
 					{
 						nextSlot = 0;
 						shop.item[nextSlot].SetDefaults(3001);
@@ -108,7 +101,7 @@ namespace ReducedGrinding.Global
 					//if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
 					if (GetInstance<IOtherConfig>().BoneMerchant)
 					{
-						shop.item[nextSlot].SetDefaults(ModContent.ItemType<Items.Skull_Call>());
+						shop.item[nextSlot].SetDefaults(ItemType<Items.Skull_Call>());
 						nextSlot++;
 					}
 					break;
@@ -118,9 +111,9 @@ namespace ReducedGrinding.Global
 		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
 			bool travelingMerchantExists = false;
-			for (int i = 0; i < Terraria.Main.npc.Length; i++)
+			for (int i = 0; i < Main.npc.Length; i++)
 			{
-				if (Terraria.Main.npc[i].type == NPCID.TravellingMerchant)
+				if (Main.npc[i].type == NPCID.TravellingMerchant)
 				{
 					travelingMerchantExists = true;
 					break;

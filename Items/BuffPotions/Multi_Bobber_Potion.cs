@@ -27,7 +27,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.Multi_Bobber>();
-            Item.buffTime = 10800;
+            Item.buffTime = 10800; //3 hours
         }
 
         //Recipe uses groups so I added it in Recipes.

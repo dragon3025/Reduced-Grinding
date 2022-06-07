@@ -15,7 +15,7 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.FindBuffIndex(ModContent.BuffType<Buffs.Multi_Bobber>()) != -1 && GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
+            if (player.FindBuffIndex(BuffType<Buffs.Multi_Bobber>()) != -1 && GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
             {
                 int bobberAmount = 10;
                 float spreadAmount = 75f;

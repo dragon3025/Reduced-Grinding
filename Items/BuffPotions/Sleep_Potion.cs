@@ -10,7 +10,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sleep Potion");
-            Tooltip.SetDefault("Increases sleep rate.");
+            Tooltip.SetDefault("Increases time rate while sleeping.");
         }
 
         public override void SetDefaults()
@@ -22,11 +22,11 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Terraria.Item.sellPrice(0, 0, 2, 0);
+            Item.value = Item.sellPrice(0, 0, 2, 0);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.Sleep>();
-            Item.buffTime = 43200;
+            Item.buffType = BuffType<Buffs.Sleep>();
+            Item.buffTime = 43200; //12 hours
         }
 
         public override void AddRecipes()

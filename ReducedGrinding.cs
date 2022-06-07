@@ -22,18 +22,10 @@ namespace ReducedGrinding
     class ReducedGrinding : Mod
     {
 
-        public override void Load()
+        public override void Load() //TO-DO Non of this is working
         {
-            ModTranslation text = LocalizationLoader.CreateTranslation("Common.PlanteraBulbLable");
-            text.SetDefault($"Dryad Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Plantera_Bulb>()}] Plantera Bulb After Plantera Defeated");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.GoblinRetreatOrderLable");
+            ModTranslation text = LocalizationLoader.CreateTranslation("Common.GoblinRetreatOrderLable");
             text.SetDefault($"Goblin Tinkerer Sells [i:{ModContent.ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>()}] Goblin Retreat Order");
-            LocalizationLoader.AddTranslation(text);
-
-            text = LocalizationLoader.CreateTranslation("Common.GoldReflectionMirror");
-            text.SetDefault($"Merchant Sells [i:{ModContent.ItemType<Items.Gold_Reflection_Mirror>()}] Gold Reflection Mirror For Crafting Gold Critters Item");
             LocalizationLoader.AddTranslation(text);
 
             text = LocalizationLoader.CreateTranslation("Common.PirateRetreatOrder");
@@ -82,12 +74,9 @@ namespace ReducedGrinding
         internal enum MessageType : byte
         {
             advanceMoonPhase,
-            sundialSearchTimer,
-            sundialX,
-            sundialY,
-            nearPylon,
             noMoreAnglerResetsToday,
-            dayTime
+            dayTime,
+            timeCharm
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -98,23 +87,14 @@ namespace ReducedGrinding
                 case MessageType.advanceMoonPhase:
                     Global.Update.advanceMoonPhase = reader.ReadBoolean();
                     break;
-                case MessageType.sundialSearchTimer:
-                    Global.Update.sundialSearchTimer = reader.ReadInt32();
-                    break;
-                case MessageType.sundialX:
-                    Global.Update.sundialX = reader.ReadInt32();
-                    break;
-                case MessageType.sundialY:
-                    Global.Update.sundialY = reader.ReadInt32();
-                    break;
-                case MessageType.nearPylon:
-                    Global.Update.nearPylon = reader.ReadBoolean();
-                    break;
                 case MessageType.noMoreAnglerResetsToday:
                     Global.Update.noMoreAnglerResetsToday = reader.ReadBoolean();
                     break;
                 case MessageType.dayTime:
                     Global.Update.dayTime = reader.ReadBoolean();
+                    break;
+                case MessageType.timeCharm:
+                    Global.Update.timeCharm = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("ExampleMod: Unknown Message type: {0}", msgType);

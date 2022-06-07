@@ -630,11 +630,6 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("Summons Plantera")]
-        [Label("$Mods.ReducedGrinding.Common.PlanteraBulbLable")]
-        [DefaultValue(true)]
-        public bool DryadSellsPlanteraBulbAfterPlanteraDefeated;
-
         [Tooltip("Ends the Goblin Invasion")]
         [Label("$Mods.ReducedGrinding.Common.GoblinRetreatOrderLable")]
         [DefaultValue(true)]
@@ -728,23 +723,17 @@ namespace ReducedGrinding
         [Range(0, 55)]
         public int SleepBoostBase;
 
-        [Label("Multiplier for world without an Enchanted Sundial")]
-        [Tooltip("If less than 1, the Map will have an icon for the highest Enchanted Sundial.")]
-        [DefaultValue(0.5f)]
-        [Increment(0.01f)]
-        public float SleepBoostNoSundialMultiplier;
-
-        [Label("Sundial Search Speed (Hover for more info)")]
-        [Tooltip("Searchs once every n in-game Minutes, where n is the configuration setting. Increase this if you experience lag.")]
-        [DefaultValue(1)]
-        [Range(1,1440)]
-        public int SundialSearchSpeed;
-
         [Label("Multiplier for No Player with Sleep Buff")]
         [Tooltip("If less than 1, you'll be able to craft Sleep Potion, which gives Sleep Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
+
+        [Label("Multiplier for in-active Time Charm")]
+        [Tooltip("Time Charm is an item crafted at an Enchanted Sundial. Sleep Boost is multiplied by this unless its toggled on. Set to 0 to disable.")]
+        [DefaultValue(0.5f)]
+        [Increment(0.01f)]
+        public float SleepBoostTimeCharmMultiplier;
 
         [Header("\n\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
 

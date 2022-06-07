@@ -25,7 +25,7 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Terraria.Item.buyPrice(0, 0, 2, 0);
+            Item.value = Item.buyPrice(0, 0, 2, 0);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
         }

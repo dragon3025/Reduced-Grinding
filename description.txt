@@ -7,6 +7,7 @@ here's a summary of this mod:
 
 This mod isn't supposed to make the game too easy, but makes
 it so you don't have to spend huge amounts of time farming for
-loot. It's highly configurable, so you can adjust, enable, or
-disable features to your liking.
+loot. It may also add other conveniences. It's highly
+configurable, so you can adjust, enable, or disable features
+to your liking.
 

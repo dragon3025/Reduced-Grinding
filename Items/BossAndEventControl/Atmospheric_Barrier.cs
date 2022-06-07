@@ -20,7 +20,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
 			Item.width = 36;
 			Item.height = 40;
 			Item.maxStack = 1;
-            Item.value = Terraria.Item.buyPrice(0, 3, 46);
+            Item.value = Item.buyPrice(0, 3, 46);
 			Item.rare = ItemRarityID.Red;
             Item.useAnimation = 20;
             Item.useTime = 45;

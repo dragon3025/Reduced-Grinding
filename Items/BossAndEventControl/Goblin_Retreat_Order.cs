@@ -22,7 +22,7 @@ namespace ReducedGrinding.Items.BossAndEventControl
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.value = Terraria.Item.buyPrice(0, 0, 20);
+            Item.value = Item.buyPrice(0, 0, 20);
 			Item.UseSound = SoundID.Item4;
             Item.consumable = true;
         }

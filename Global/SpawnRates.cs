@@ -9,12 +9,12 @@ namespace ReducedGrinding.Global
         {
             public override void EditSpawnRate(Terraria.Player player, ref int spawnRate, ref int maxSpawns)
             {
-                if (player.FindBuffIndex(ModContent.BuffType<Buffs.War>()) != -1)
+                if (player.FindBuffIndex(BuffType<Buffs.War>()) != -1)
                 {
                     spawnRate = (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().WarPotionSpawnrateMultiplier);
                     maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().WarPotionMaxSpawnsMultiplier);
                 }
-                if (player.FindBuffIndex(ModContent.BuffType<Buffs.Chaos>()) != -1)
+                if (player.FindBuffIndex(BuffType<Buffs.Chaos>()) != -1)
                 {
                     spawnRate = (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().ChaosPotionSpawnrateMultiplier);
                     maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().ChaosPotionMaxSpawnsMultiplier);

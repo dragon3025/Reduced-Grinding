@@ -54,7 +54,7 @@ namespace ReducedGrinding.Global
 								if (chest.item[inventoryIndex].type == itemType)
 								{
 									missingPyramidItems.Remove(itemType);
-									ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Found pyramid item, missing count: " + missingPyramidItems.Count.ToString());
+                                    GetInstance<ReducedGrinding>().Logger.Debug("Found pyramid item, missing count: " + missingPyramidItems.Count.ToString());
 								}
 						}
 						if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
@@ -70,7 +70,7 @@ namespace ReducedGrinding.Global
 							if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
 							{
 								beeMinecartMissing = false;
-								ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Found Bee Minecart");
+                                GetInstance<ReducedGrinding>().Logger.Debug("Found Bee Minecart");
 							}
 						}
 					}
@@ -92,7 +92,7 @@ namespace ReducedGrinding.Global
 								if (chest.item[inventoryIndex].type == itemType)
 								{
 									missingLivingWoodItems.Remove(itemType);
-									ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Found Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
+                                    GetInstance<ReducedGrinding>().Logger.Debug("Found Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
 								}
 						}
 					}
@@ -110,7 +110,7 @@ namespace ReducedGrinding.Global
 								if (chest.item[inventoryIndex].type == itemType)
 								{
 									missingMushroomItems.Remove(itemType);
-									ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Found mushroom item, missing count: " + missingMushroomItems.Count.ToString());
+                                    GetInstance<ReducedGrinding>().Logger.Debug("Found mushroom item, missing count: " + missingMushroomItems.Count.ToString());
 								}
 						}
 					}
@@ -121,9 +121,9 @@ namespace ReducedGrinding.Global
 					desertChests.Add(chestIndex);
 			}
 
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("");
+            GetInstance<ReducedGrinding>().Logger.Debug("");
 
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Desert Chests: " + desertChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Desert Chests: " + desertChests.Count.ToString());
 			if (desertChests.Count > 0)
             {
 				while (missingPyramidItems.Count > 0)
@@ -138,7 +138,7 @@ namespace ReducedGrinding.Global
 						{
 							chest.item[inventoryIndex].SetDefaults(missingPyramidItems[0]);
 							missingPyramidItems.RemoveAt(0);
-							ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed pyramid item, missing count: " + missingPyramidItems.Count.ToString());
+                            GetInstance<ReducedGrinding>().Logger.Debug("Placed pyramid item, missing count: " + missingPyramidItems.Count.ToString());
 							if (desertChests.Count > 1)
 								desertChests.RemoveAt(desertChestsIndex);
 							break;
@@ -147,7 +147,7 @@ namespace ReducedGrinding.Global
 				}
             }
 
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Ivy Chests: " + ivyChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Ivy Chests: " + ivyChests.Count.ToString());
 			if (beeMinecartMissing && ivyChests.Count > 0)
 			{
 				int chestIndex = ivyChests[Main.rand.Next(ivyChests.Count)];
@@ -158,14 +158,14 @@ namespace ReducedGrinding.Global
 					if (chest.item[inventoryIndex].type == ItemID.None)
 					{
 						chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
-						ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed Bee Minecart");
+                        GetInstance<ReducedGrinding>().Logger.Debug("Placed Bee Minecart");
 						break;
 					}
 				}
 			}
 
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Living Wood Chests: " + livingWoodChests.Count.ToString());
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Surface Chests: " + woodChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Living Wood Chests: " + livingWoodChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Surface Chests: " + woodChests.Count.ToString());
 			if ((woodChests.Count + livingWoodChests.Count) > 0)
 			{
 				while (missingLivingWoodItems.Count > 0)
@@ -182,7 +182,7 @@ namespace ReducedGrinding.Global
 							{
 								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
 								missingLivingWoodItems.RemoveAt(0);
-								ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
+                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
 								livingWoodChests.RemoveAt(livingWoodChestsIndex);
 								break;
 							}
@@ -200,7 +200,7 @@ namespace ReducedGrinding.Global
 							{
 								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
 								missingLivingWoodItems.RemoveAt(0);
-								ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
+                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
 								if (woodChests.Count > 1)
 									woodChests.RemoveAt(surfaceChestIndex);
 								break;
@@ -210,8 +210,8 @@ namespace ReducedGrinding.Global
 				}
 			}
 
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Mushroom Chests: " + mushroomChests.Count.ToString());
-			ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Center Gold Chests: " + centerGoldChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Mushroom Chests: " + mushroomChests.Count.ToString());
+            GetInstance<ReducedGrinding>().Logger.Debug("Center Gold Chests: " + centerGoldChests.Count.ToString());
 			if ((mushroomChests.Count + centerGoldChests.Count) > 0)
 			{
 				while (missingMushroomItems.Count > 0)
@@ -228,7 +228,7 @@ namespace ReducedGrinding.Global
 							{
 								chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
 								missingMushroomItems.RemoveAt(0);
-								ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
+                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
 								mushroomChests.RemoveAt(mushroomChestIndex);
 								break;
 							}
@@ -246,7 +246,7 @@ namespace ReducedGrinding.Global
 							{
 								chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
 								missingMushroomItems.RemoveAt(0);
-								ModContent.GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
+                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
 								if (centerGoldChests.Count > 1)
 									centerGoldChests.RemoveAt(centerGoldChestIndex);
 								break;

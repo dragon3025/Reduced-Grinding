@@ -21,11 +21,11 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Terraria.Item.buyPrice(0, 0, 1, 13);
+            Item.value = Item.buyPrice(0, 0, 1, 13);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.War>();
-            Item.buffTime = 25200;
+            Item.buffTime = 25200; //7 Hours
         }
 
         public override void AddRecipes()

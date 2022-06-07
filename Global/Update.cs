@@ -13,44 +13,13 @@ namespace ReducedGrinding.Global
     {
         //Gets recording into world save
         public static bool advanceMoonPhase = false;
-        public static int sundialSearchTimer = 0;
-        public static int sundialX = -1;
-        public static int sundialY = -1;
-        public static bool nearPylon = false;
         public static bool noMoreAnglerResetsToday = false;
         public static bool dayTime = true;
+        public static bool timeCharm = false;
 
         public override void PostUpdateTime()
         {
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
-
-            if (GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier < 1)
-            {
-                sundialSearchTimer++;
-                if (sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
-                {
-                    nearPylon = false;
-                    sundialX = sundialY = -1;
-                    for (int i = 0; i < Main.maxTilesY; i++)
-                    {
-                        for (int j = 0; j < Main.maxTilesX; j++)
-                        {
-                            if (Main.tile[j, i].TileType == TileID.Sundial)
-                            {
-                                sundialX = j + 1;
-                                sundialY = i + 1;
-                                goto finishedSundialCheck;
-                            }
-                        }
-                    }
-                    finishedSundialCheck: { }
-                }
-
-                if (sundialX == -1)
-                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostNoSundialMultiplier;
-            }
-            else
-                sundialX = sundialY = -1;
 
             bool boostTime = true;
             if (Main.fastForwardTime)
@@ -77,27 +46,12 @@ namespace ReducedGrinding.Global
             {
                 if (!Main.player[i].active)
                     continue;
+
                 activePlayers.Add(i);
-                if (sundialX > -1 && !nearPylon && sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
-                {
-                    for (int x = -20; x <= 20; x++)
-                    {
-                        for (int y = -20; y <= 20; y++)
-                        {
-                            Point tileLocation = Main.player[i].Center.ToTileCoordinates();
-                            int tilex = tileLocation.X + x;
-                            int tiley = tileLocation.Y + y;
-                            if (Main.tile[tilex, tiley].TileType == TileID.TeleportationPylon)
-                            {
-                                nearPylon = true;
-                                goto finishedPylonCheck;
-                            }
-                        }
-                    }
-                    finishedPylonCheck: { }
-                }
-                if (boostTime && !playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
+
+                if (boostTime && !playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
                     playerWithSleepBuff = true;
+
                 if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
                 {
                     for (int j = 0; j <= 2; j++)
@@ -156,18 +110,21 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (sundialSearchTimer == GetInstance<IOtherConfig>().SundialSearchSpeed * 60)
-                sundialSearchTimer = 0;
-
             if (boostTime)
             {
-                if (playerWithSleepBuff)
+
+                if (!playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
                     sleepBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
+
+                if (!timeCharm && GetInstance<IOtherConfig>().SleepBoostTimeCharmMultiplier < 1)
+                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostTimeCharmMultiplier;
+
                 Main.time += (int)sleepBoost;
+
                 foreach (int i in activePlayers)
                 {
-                    if (Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>()) != -1)
-                        Main.player[i].buffTime[Main.player[i].FindBuffIndex(ModContent.BuffType<Buffs.Sleep>())] -= (int)sleepBoost;
+                    if (Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
+                        Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>())] -= (int)sleepBoost;
                 }
             }
 
@@ -203,25 +160,16 @@ namespace ReducedGrinding.Global
             {
                 ModPacket packet = Mod.GetPacket();
 
-                packet.Write((byte)ReducedGrinding.MessageType.sundialSearchTimer);
-                packet.Write(sundialSearchTimer);
-
-                packet.Write((byte)ReducedGrinding.MessageType.sundialX);
-                packet.Write(sundialX);
-
-                packet.Write((byte)ReducedGrinding.MessageType.sundialY);
-                packet.Write(sundialY);
-
-                packet.Write((byte)ReducedGrinding.MessageType.nearPylon);
-                packet.Write(nearPylon);
-
                 packet.Write((byte)ReducedGrinding.MessageType.noMoreAnglerResetsToday);
                 packet.Write(noMoreAnglerResetsToday);
 
                 packet.Write((byte)ReducedGrinding.MessageType.dayTime);
                 packet.Write(dayTime);
-                packet.Send();
 
+                packet.Write((byte)ReducedGrinding.MessageType.timeCharm);
+                packet.Write(timeCharm);
+
+                packet.Send();
                 NetMessage.SendData(MessageID.WorldData);
             }
         }
@@ -245,7 +193,7 @@ namespace ReducedGrinding.Global
                 {
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);
-                    packet.Write(Global.Update.advanceMoonPhase);
+                    packet.Write(advanceMoonPhase);
                     packet.Send();
                     NetMessage.SendData(MessageID.WorldData);
                 }
