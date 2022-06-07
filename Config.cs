@@ -645,6 +645,11 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool WizardSellsMoonBall;
 
+        [Label("Plantera Sap from Plantera")]
+        [Tooltip("Summons Plantera. Chance of dropping is 1 / n, where n is the configuration setting. Set to 0 to disable.")]
+        [DefaultValue(0)]
+        public int PlanteraSapFromPlantera;
+
         /* TO-DO
          * The headers for both potion was using "$Mods.ReducedGrinding.Common.WarPotion", but that's no longer working
          */

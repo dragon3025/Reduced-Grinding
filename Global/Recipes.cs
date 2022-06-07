@@ -184,7 +184,6 @@ namespace ReducedGrinding.Global
             }
 
             //Craftable Rare Chest (Disabled by Default)
-
             if (GetInstance<IOtherConfig>().CraftableRareChests)
             {
                 recipe = Mod.CreateRecipe(ItemID.IvyChest);

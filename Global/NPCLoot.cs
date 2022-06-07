@@ -1,10 +1,10 @@
 using ReducedGrinding.Common.ItemDropRules.Conditions;
-using static Terraria.ModLoader.ModContent;
 using System.Linq;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
@@ -176,8 +176,15 @@ namespace ReducedGrinding.Global
             }
 
             //Drops that don't happen in vanilla
+
+            //Boss Drops
             if (npc.type == NPCID.DukeFishron)
                 try_boss_loot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron);
+
+            if (npc.type == NPCID.Plantera)
+                try_loot(ItemType<Items.BossAndEventControl.Plantera_Sap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
+
+            //Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)
             {
                 try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyLootConfig>().DesertFossilFromDuneSplicer);
@@ -186,6 +193,7 @@ namespace ReducedGrinding.Global
                 try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
                 try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
             }
+
             if (npc.type == NPCID.TombCrawlerHead)
             {
                 try_loot_max_min(ItemID.DesertFossil, GetInstance<AEnemyLootConfig>().DesertFossilFromTombCrawler);
@@ -194,10 +202,13 @@ namespace ReducedGrinding.Global
                 try_conditional_loot_max_min(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
                 try_conditional_loot_max_min(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
             }
+
             if (npc.type == NPCID.SandElemental)
                 try_loot(ItemID.SandstorminaBottle, GetInstance<AEnemyLootConfig>().SandstormInABottleFromSandElemental);
+
             if (npc.type == NPCID.SpikedIceSlime)
                 try_loot(ItemID.SnowballLauncher, GetInstance<AEnemyLootConfig>().SnowballLauncherFromSpikedIceSlime);
+
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
                 try_loot_max_min(ItemID.Marble, GetInstance<AEnemyLootConfig>().MarbleFromMarbleCaveEnemies);
         }
