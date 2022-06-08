@@ -630,16 +630,6 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("Ends the Goblin Invasion")]
-        [Label("Goblin Retreat Order")]
-        [DefaultValue(true)]
-        public bool GoblinTinkererSellsGoblinRetreatOrder;
-
-        [Tooltip("Ends the Pirate Invasion")]
-        [Label("Pirate Retreat Order")]
-        [DefaultValue(true)]
-        public bool PirateSellsPirateRetreatOrder;
-
         [Tooltip("$Mods.ReducedGrinding.ItemTooltip.MoonBall")]
         [Label("$Mods.ReducedGrinding.Config.Label.MoonBall")]
         [DefaultValue(true)]
@@ -761,6 +751,10 @@ namespace ReducedGrinding
         [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
         [DefaultValue(false)]
         public bool CraftableGoldCritters;
+
+        [Label("Cancel Invasions When All Players Are Underground")]
+        [DefaultValue(true)]
+        public bool CancelInvasionsIfAllPlayersAreUnderground;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

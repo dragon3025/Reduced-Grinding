@@ -42,12 +42,25 @@ namespace ReducedGrinding.Global
             int fishermenCount = 0;
             List<int> activePlayers = new() { };
 
+            bool cancelInvasion = false;
+            if ((int)Main.time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+            {
+                int invasionType = Main.invasionType;
+                if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
+                    cancelInvasion = true;
+            }
+
             for (int i = 0; i < 255; i++)
             {
                 if (!Main.player[i].active)
                     continue;
 
                 activePlayers.Add(i);
+
+                Point playerPosition = Main.player[i].Center.ToTileCoordinates();
+
+                if (playerPosition.Y <= Main.worldSurface + 67.5f)
+                    cancelInvasion = false;
 
                 if (boostTime && !playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
                     playerWithSleepBuff = true;
@@ -108,6 +121,15 @@ namespace ReducedGrinding.Global
                             Main.player[i].ClearBuff(BuffID.Darkness);
                     }
                 }
+            }
+
+            if (cancelInvasion)
+            {
+                Main.invasionType = InvasionID.None;
+                if (Main.netMode == NetmodeID.Server)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion is gone."), new Color(255, 255, 0));
+                else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+                    Main.NewText("The invasion is gone.", new Color(255, 255, 0));
             }
 
             if (boostTime)

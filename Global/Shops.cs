@@ -10,36 +10,19 @@ namespace ReducedGrinding.Global
 
 		public override void GetChat(NPC npc, ref string chat)
 		{
-            Terraria.Player player = Main.player[Main.myPlayer];
+            Player player = Main.player[Main.myPlayer];
 			if (npc.type == NPCID.Angler)
 				Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
 		}
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
-            Player player = Main.player[Main.myPlayer];
-			//Mod luiafk = ModLoader.GetMod("Luiafk");
-
-			switch (type)
+            switch (type)
 			{
 				case NPCID.Wizard:
 					if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
 					{
 						shop.item[nextSlot].SetDefaults(ItemType<Items.Moon_Ball>());
-						nextSlot++;
-					}
-					break;
-				case NPCID.Pirate:
-					if (GetInstance<HOtherModdedItemsConfig>().PirateSellsPirateRetreatOrder)
-					{
-						shop.item[nextSlot].SetDefaults(ItemType<Items.BossAndEventControl.Pirate_Retreat_Order>());
-						nextSlot++;
-					}
-					break;
-				case NPCID.GoblinTinkerer:
-					if (GetInstance<HOtherModdedItemsConfig>().GoblinTinkererSellsGoblinRetreatOrder)
-					{
-						shop.item[nextSlot].SetDefaults(ItemType<Items.BossAndEventControl.Goblin_Retreat_Order>());
 						nextSlot++;
 					}
 					break;
