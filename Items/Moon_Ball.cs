@@ -1,10 +1,10 @@
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
 {
-	public class Moon_Ball : ModItem
+    public class Moon_Ball : ModItem
     {
         public override void SetStaticDefaults()
         {

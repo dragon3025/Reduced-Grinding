@@ -219,7 +219,8 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("Multi-Bobber Potion's Bobber Amount (Set to 1, to disable recipe)")]
+        [Label("Multi-Bobber Potion's Bobber Amount")]
+        [Tooltip("Set to 1 to disable recipe")]
         [Range(1, 100)]
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
@@ -682,21 +683,14 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("Permanent version of the Skeleton Merchant")]
-        [Label("Allow Bone Merchant Spawning")]
-        [DefaultValue(false)]
-        public bool BoneMerchant;
-
-        [Label("Bone Merchant Disabled When Luiafk Is Installed")]
-        [DefaultValue(false)]
-        public bool BoneMerchantDisabledWhenLuiafkIsInstalled;
-
         [Tooltip("Permanent version of Santa Claus")]
         [Label("Allow Christmas Elf Spawning")]
         [DefaultValue(true)]
         public bool ChristmasElf;
 
-        [Tooltip("Sells what's needed to fight the next Vanilla boss (you can still aquire these items normally)")]
+        [Tooltip("" +
+            "Sells what's needed to fight the next Vanilla boss (you can still aquire these items\n" +
+            "normally)")]
         [Label("Allow Loot Merchant Spawning")]
         [DefaultValue(false)]
         public bool LootMerchant;
@@ -707,10 +701,13 @@ namespace ReducedGrinding
 
         [Label("Add Missing Rare Chest Items During World Generation")]
         [DefaultValue(true)]
-        [Tooltip("After Vanilla World Generation, this mod will detect if certain rare chest items are missing from the world and add them to the world. For example: Pyramid items that are missing because the world didn't generate enough Pyramids.")]
+        [Tooltip("" +
+            "After Vanilla World Generation, this mod will detect if certain rare chest items are\n" +
+            "missing from the world and add them to the world. For example: Pyramid items that are\n" +
+            "missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
-        [Header("\n\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
+        [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
 
         [Label("Starting Boost Amount (In-Game Minutes Added)")]
         [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
@@ -719,18 +716,22 @@ namespace ReducedGrinding
         public int SleepBoostBase;
 
         [Label("Multiplier for No Player with Sleep Buff")]
-        [Tooltip("If less than 1, you'll be able to craft Sleep Potion, which gives Sleep Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
+        [Tooltip("" +
+            "If less than 1, you'll be able to craft Sleep Potion, which gives the Sleep Buff. If\n" +
+            "no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
 
-        [Label("Multiplier for in-active Time Charm")]
-        [Tooltip("Time Charm is an item crafted at an Enchanted Sundial. Sleep Boost is multiplied by this unless its toggled on. Set to 0 to disable.")]
+        [Label("Multiplier for active Time Charm")]
+        [Tooltip("" +
+            "Time Charm is an item crafted at an Enchanted Sundial. Sleep Boost is multiplied by\n" +
+            "this unless its toggled on. Set to 0 to disable.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostTimeCharmMultiplier;
 
-        [Header("\n\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
+        [Header("\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
         [Range(0, 10000)]
@@ -755,6 +756,14 @@ namespace ReducedGrinding
         [Label("Cancel Invasions When All Players Are Underground")]
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
+
+        [Label("Merchant Sells Miner's Shirt and Miner's Pants")]
+        [DefaultValue(false)]
+        public bool MerchantSellsMinersShirtAndPants;
+
+        [Label("Skeleton Merchant Ignores Moonphases")]
+        [DefaultValue(false)]
+        public bool SkeletonMerchantIgnoresMoonphases;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

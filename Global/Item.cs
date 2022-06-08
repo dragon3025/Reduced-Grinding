@@ -6,9 +6,8 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
-	public class Item : GlobalItem
-	{
-
+    public class Item : GlobalItem
+    {
         public override void OpenVanillaBag(string context, Terraria.Player player, int arg)
         {
             var source = player.GetSource_OpenItem(arg);

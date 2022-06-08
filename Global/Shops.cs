@@ -26,6 +26,49 @@ namespace ReducedGrinding.Global
 						nextSlot++;
 					}
 					break;
+				case NPCID.Merchant:
+					if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
+					{
+						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
+						nextSlot++;
+
+						shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
+						nextSlot++;
+					}
+					break;
+				case NPCID.SkeletonMerchant:
+					if (GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases)
+					{
+						shop.item[0].SetDefaults(ItemID.StrangeBrew);
+						shop.item[1].SetDefaults(ItemID.LesserHealingPotion);
+						shop.item[2].SetDefaults(ItemID.SpelunkerGlowstick);
+						shop.item[3].SetDefaults(ItemID.Glowstick);
+						shop.item[4].SetDefaults(ItemID.BoneTorch);
+						shop.item[5].SetDefaults(ItemID.Torch);
+						shop.item[6].SetDefaults(ItemID.BoneArrow);
+						shop.item[7].SetDefaults(ItemID.WoodenArrow);
+						shop.item[8].SetDefaults(ItemID.BlueCounterweight);
+						shop.item[9].SetDefaults(ItemID.RedCounterweight);
+						shop.item[10].SetDefaults(ItemID.PurpleCounterweight);
+						shop.item[11].SetDefaults(ItemID.GreenCounterweight);
+						shop.item[12].SetDefaults(ItemID.Bomb);
+						shop.item[13].SetDefaults(ItemID.Rope);
+						nextSlot = 14;
+						if (Main.hardMode)
+						{
+							shop.item[14].SetDefaults(ItemID.Gradient);
+							shop.item[15].SetDefaults(ItemID.FormatC);
+							shop.item[16].SetDefaults(ItemID.YoYoGlove);
+							nextSlot = 17;
+							if (Main.bloodMoon)
+							{
+								shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+								nextSlot++;
+							}
+						}
+						shop.item[nextSlot].SetDefaults(ItemID.MagicLantern);
+					}
+					break;
 			}
         }
 		
