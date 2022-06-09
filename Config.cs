@@ -67,6 +67,11 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int KOCannonIncrease;
 
+        [Label("[i:38] Lens")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int LensIncrease;
+
         [Label("[i:1172] Lizard Egg")]
         [Range(0, 10000)]
         [DefaultValue(0)]
@@ -764,6 +769,11 @@ namespace ReducedGrinding
         [Label("Skeleton Merchant Ignores Moonphases")]
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
+
+        [Label("[i:67] Infection Powder per Mushroom (Set to 5 to disable custom recipe)")]
+        [Range(5, 999)]
+        [DefaultValue(5)]
+        public int InfectionPowderPerMushroom;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

@@ -380,6 +380,19 @@ namespace ReducedGrinding.Global
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
+
+            if (GetInstance<IOtherConfig>().InfectionPowderPerMushroom > 5)
+            {
+                recipe = Mod.CreateRecipe(ItemID.VilePowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
+                recipe.AddIngredient(ItemID.VileMushroom);
+                recipe.AddTile(TileID.DemonAltar);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.ViciousPowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
+                recipe.AddIngredient(ItemID.ViciousMushroom);
+                recipe.AddTile(TileID.DemonAltar);
+                recipe.Register();
+            }
         }
     }
 }
