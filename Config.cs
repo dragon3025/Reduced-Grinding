@@ -9,7 +9,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("All configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1299] Binoculars")]
         [Range(0, 10000)]
@@ -230,7 +230,7 @@ namespace ReducedGrinding
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
 
-        [Header("The configurations below will give a chance at resetting the Angler Quest when finishing it. The chance will wait until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest before rolling. The chance is (1 / configuration setting), set to 0 to disable.")]
+        [Header("Angler Reset Chance\n\nThe configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.")]
 
         [Label("Before Hardmode")]
         [Range(0, 10000)]
@@ -642,7 +642,7 @@ namespace ReducedGrinding
         public bool WizardSellsMoonBall;
 
         [Label("Plantera Sap Drop from Plantera")]
-        [Tooltip("Summons Plantera. Chance of dropping is 1 / n, where n is the configuration setting. Set to 0 to disable.")]
+        [Tooltip("Summons Plantera. Chance of dropping is 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
@@ -736,7 +736,7 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostTimeCharmMultiplier;
 
-        [Header("\nCrates\n\nAll configurations in this section will add an 1/n chance for a drop, where n is the configuration setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
+        [Header("\nCrates\n\nAll configurations in this section will add an 1 / configuration_setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
         [Range(0, 10000)]
@@ -752,6 +752,18 @@ namespace ReducedGrinding
         public int CrateEnchantedSundial;
 
         [Header("Other")]
+
+        [Label("Periodic Holiday Timeline Day Length")]
+        /*[Tooltip("" +
+            "For every 12 days, Halloween will happen on the 10th Day and Christmas will happen on\n" +
+            "the 12th Day.")]*/
+        [Tooltip("" +
+            "Set to 0 to disable. This mod will run a timeline for spawning Halloween and Christmas\n" +
+            "events. Where n is the configuration setting: the timeline will be n * 12 days long,\n" +
+            "Halloween will be the (9 * n + 1) day, and Christmas will be the last day.")]
+        [Range(1, 30)]
+        [DefaultValue(2)]
+        public int PeriodicHollidayTimelineDayLength;
 
         [Label("Allow crafting [i:2889]Gold Critters")]
         [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
@@ -770,7 +782,8 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
 
-        [Label("[i:67] Infection Powder per Mushroom (Set to 5 to disable custom recipe)")]
+        [Label("[i:67] Infection Powder per Mushroom")]
+        [Tooltip("Set to 5 to disable custom recipe")]
         [Range(5, 999)]
         [DefaultValue(5)]
         public int InfectionPowderPerMushroom;

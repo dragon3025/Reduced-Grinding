@@ -53,7 +53,8 @@ namespace ReducedGrinding
             advanceMoonPhase,
             noMoreAnglerResetsToday,
             dayTime,
-            timeCharm
+            timeCharm,
+            seasonalDay
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -72,6 +73,9 @@ namespace ReducedGrinding
                     break;
                 case MessageType.timeCharm:
                     Global.Update.timeCharm = reader.ReadBoolean();
+                    break;
+                case MessageType.seasonalDay:
+                    Global.Update.seasonalDay = reader.ReadInt32();
                     break;
                 default:
                     Logger.WarnFormat("ExampleMod: Unknown Message type: {0}", msgType);

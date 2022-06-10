@@ -16,6 +16,7 @@ namespace ReducedGrinding.Global
         public static bool noMoreAnglerResetsToday = false;
         public static bool dayTime = true;
         public static bool timeCharm = false;
+        public static int seasonalDay = 0;
 
         public override void PostUpdateTime()
         {
@@ -127,7 +128,7 @@ namespace ReducedGrinding.Global
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion is gone."), new Color(255, 255, 0));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion is gone."), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
                     Main.NewText("The invasion is gone.", new Color(255, 255, 0));
             }
@@ -172,6 +173,48 @@ namespace ReducedGrinding.Global
             if (Main.dayTime && dayTime != Main.dayTime)
             {
                 noMoreAnglerResetsToday = false;
+
+                if (GetInstance<IOtherConfig>().PeriodicHollidayTimelineDayLength > 0)
+                {
+                    int dayLength = GetInstance<IOtherConfig>().PeriodicHollidayTimelineDayLength;
+                    if (seasonalDay == 0)
+                        seasonalDay = 1;
+                    else
+                    {
+                        seasonalDay++;
+                        if (seasonalDay == dayLength * 9 + 1)
+                        {
+                            Main.halloween = true;
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay == dayLength * 9 + 2)
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay == dayLength * 12)
+                        {
+                            Main.xMas = true;
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay > dayLength * 12)
+                        {
+                            seasonalDay = 1;
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                        }
+                    }
+                }
             }
             if (dayTime != Main.dayTime)
             {
@@ -190,6 +233,9 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.timeCharm);
                 packet.Write(timeCharm);
+
+                packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
+                packet.Write(seasonalDay);
 
                 packet.Send();
                 NetMessage.SendData(MessageID.WorldData);
