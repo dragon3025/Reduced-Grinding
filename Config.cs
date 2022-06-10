@@ -646,10 +646,6 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
-        /* TO-DO
-         * The headers for both potion was using "$Mods.ReducedGrinding.Common.WarPotion", but that's no longer working
-         */
-
         [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nWarPotion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
@@ -688,18 +684,6 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("Permanent version of Santa Claus")]
-        [Label("Allow Christmas Elf Spawning")]
-        [DefaultValue(true)]
-        public bool ChristmasElf;
-
-        [Tooltip("" +
-            "Sells what's needed to fight the next Vanilla boss (you can still aquire these items\n" +
-            "normally)")]
-        [Label("Allow Loot Merchant Spawning")]
-        [DefaultValue(false)]
-        public bool LootMerchant;
-
         [Label("Craftable Rare Chests")]
         [DefaultValue(false)]
         public bool CraftableRareChests;
@@ -736,7 +720,7 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostTimeCharmMultiplier;
 
-        [Header("\nCrates\n\nAll configurations in this section will add an 1 / configuration_setting. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
+        [Header("\nCrates\n\nAll configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
         [Range(0, 10000)]
@@ -754,9 +738,6 @@ namespace ReducedGrinding
         [Header("Other")]
 
         [Label("Periodic Holiday Timeline Day Length")]
-        /*[Tooltip("" +
-            "For every 12 days, Halloween will happen on the 10th Day and Christmas will happen on\n" +
-            "the 12th Day.")]*/
         [Tooltip("" +
             "Set to 0 to disable. This mod will run a timeline for spawning Halloween and Christmas\n" +
             "events. Where n is the configuration setting: the timeline will be n * 12 days long,\n" +
