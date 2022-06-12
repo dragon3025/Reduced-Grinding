@@ -2,1036 +2,668 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria;
+using static Terraria.ModLoader.ModContent;
+using System.Collections.Generic;
+
+
+
+using Microsoft.Win32;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using ReLogic.Content;
+using ReLogic.Content.Sources;
+using ReLogic.Graphics;
+using ReLogic.Localization.IME;
+using ReLogic.OS;
+using ReLogic.Peripherals.RGB;
+using ReLogic.Utilities;
+using System;
+using System.Collections;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Terraria.Achievements;
+using Terraria.Audio;
+using Terraria.Chat;
+using Terraria.Cinematics;
+using Terraria.DataStructures;
+using Terraria.Enums;
+using Terraria.GameContent;
+using Terraria.GameContent.Achievements;
+using Terraria.GameContent.Ambience;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Creative;
+using Terraria.GameContent.Drawing;
+using Terraria.GameContent.Events;
+using Terraria.GameContent.Golf;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.GameContent.Liquid;
+using Terraria.GameContent.NetModules;
+using Terraria.GameContent.Skies;
+using Terraria.GameContent.UI;
+using Terraria.GameContent.UI.BigProgressBar;
+using Terraria.GameContent.UI.Chat;
+using Terraria.GameContent.UI.States;
+using Terraria.GameInput;
+using Terraria.Graphics;
+using Terraria.Graphics.Capture;
+using Terraria.Graphics.Effects;
+using Terraria.Graphics.Light;
+using Terraria.Graphics.Renderers;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
+using Terraria.Initializers;
+using Terraria.IO;
+using Terraria.Localization;
+using Terraria.Map;
+using Terraria.Net;
+using Terraria.ObjectData;
+using Terraria.Social;
+using Terraria.UI;
+using Terraria.UI.Chat;
+using Terraria.UI.Gamepad;
+using Terraria.Utilities;
+using Terraria.WorldBuilding;
 
 namespace ReducedGrinding.Global
 {
     public class Shops : GlobalNPC
     {
-
-		public override void GetChat(NPC npc, ref string chat)
-		{
+        public override void GetChat(NPC npc, ref string chat)
+        {
             Player player = Main.player[Main.myPlayer];
-			if (npc.type == NPCID.Angler)
-				Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
-		}
+            if (npc.type == NPCID.Angler)
+                Main.NewText("Quest Completed: " + player.anglerQuestsFinished, 0, 255, 255);
+        }
 
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void SetupShop(int type, Chest shop, ref int nextSlot)
         {
             switch (type)
-			{
-				case NPCID.Wizard:
-					if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
-					{
-						shop.item[nextSlot].SetDefaults(ItemType<Items.Moon_Ball>());
-						nextSlot++;
-					}
-					break;
-				case NPCID.Merchant:
-					if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
-					{
-						shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
-						nextSlot++;
+            {
+                case NPCID.Wizard:
+                    if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemType<Items.Moon_Ball>());
+                        nextSlot++;
+                    }
+                    break;
+                case NPCID.Merchant:
+                    if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
+                        nextSlot++;
 
-						shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
-						nextSlot++;
-					}
-					break;
-				case NPCID.SkeletonMerchant:
-					if (GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases)
-					{
-						shop.item[0].SetDefaults(ItemID.StrangeBrew);
-						shop.item[1].SetDefaults(ItemID.LesserHealingPotion);
-						shop.item[2].SetDefaults(ItemID.SpelunkerGlowstick);
-						shop.item[3].SetDefaults(ItemID.Glowstick);
-						shop.item[4].SetDefaults(ItemID.BoneTorch);
-						shop.item[5].SetDefaults(ItemID.Torch);
-						shop.item[6].SetDefaults(ItemID.BoneArrow);
-						shop.item[7].SetDefaults(ItemID.WoodenArrow);
-						shop.item[8].SetDefaults(ItemID.BlueCounterweight);
-						shop.item[9].SetDefaults(ItemID.RedCounterweight);
-						shop.item[10].SetDefaults(ItemID.PurpleCounterweight);
-						shop.item[11].SetDefaults(ItemID.GreenCounterweight);
-						shop.item[12].SetDefaults(ItemID.Bomb);
-						shop.item[13].SetDefaults(ItemID.Rope);
-						nextSlot = 14;
-						if (Main.hardMode)
-						{
-							shop.item[14].SetDefaults(ItemID.Gradient);
-							shop.item[15].SetDefaults(ItemID.FormatC);
-							shop.item[16].SetDefaults(ItemID.YoYoGlove);
-							nextSlot = 17;
-							if (Main.bloodMoon)
-							{
-								shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
-								nextSlot++;
-							}
-						}
-						shop.item[nextSlot].SetDefaults(ItemID.MagicLantern);
-					}
-					break;
-			}
+                        shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
+                        nextSlot++;
+                    }
+                    break;
+                case NPCID.SkeletonMerchant: //TO-DO This isn't a very compatible way of doing this. Use a foreach loop that checks if the item exist in the shop.
+                    if (GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases)
+                    {
+                        shop.item[0].SetDefaults(ItemID.StrangeBrew);
+                        shop.item[1].SetDefaults(ItemID.LesserHealingPotion);
+                        shop.item[2].SetDefaults(ItemID.SpelunkerGlowstick);
+                        shop.item[3].SetDefaults(ItemID.Glowstick);
+                        shop.item[4].SetDefaults(ItemID.BoneTorch);
+                        shop.item[5].SetDefaults(ItemID.Torch);
+                        shop.item[6].SetDefaults(ItemID.BoneArrow);
+                        shop.item[7].SetDefaults(ItemID.WoodenArrow);
+                        shop.item[8].SetDefaults(ItemID.BlueCounterweight);
+                        shop.item[9].SetDefaults(ItemID.RedCounterweight);
+                        shop.item[10].SetDefaults(ItemID.PurpleCounterweight);
+                        shop.item[11].SetDefaults(ItemID.GreenCounterweight);
+                        shop.item[12].SetDefaults(ItemID.Bomb);
+                        shop.item[13].SetDefaults(ItemID.Rope);
+                        nextSlot = 14;
+                        if (Main.hardMode)
+                        {
+                            shop.item[14].SetDefaults(ItemID.Gradient);
+                            shop.item[15].SetDefaults(ItemID.FormatC);
+                            shop.item[16].SetDefaults(ItemID.YoYoGlove);
+                            nextSlot = 17;
+                            if (Main.bloodMoon)
+                            {
+                                shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+                                nextSlot++;
+                            }
+                        }
+                        shop.item[nextSlot].SetDefaults(ItemID.MagicLantern);
+                    }
+                    break;
+            }
         }
-		
-		public override void SetupTravelShop(int[] shop, ref int nextSlot)
-		{
-			bool travelingMerchantExists = false;
-			for (int i = 0; i < Main.npc.Length; i++)
-			{
-				if (Main.npc[i].type == NPCID.TravellingMerchant)
-				{
-					travelingMerchantExists = true;
-					break;
-				}
-			}
-			if (travelingMerchantExists)
-			{
-				if (Main.netMode == NetmodeID.SinglePlayer) //I can't get this to run in a server, I get errors instead.
-				{
-					bool addItem;
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.LifeformAnalyzer)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLifeformAnalyzerIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.LifeformAnalyzer;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDPSMeterIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.DPSMeter)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDPSMeterIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.DPSMeter;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantStopwatchIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Stopwatch)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantStopwatchIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Stopwatch;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMetalDetector > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.MetalDetector)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMetalDetector && addItem)
-						{
-							shop[nextSlot] = ItemID.MetalDetector;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCelestialMagnetIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.CelestialMagnet)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCelestialMagnetIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.CelestialMagnet;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAmmoBoxIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.AmmoBox)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAmmoBoxIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.AmmoBox;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPaintSprayerIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintSprayer)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPaintSprayerIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintSprayer;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBrickLayerIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.BrickLayer)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBrickLayerIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.BrickLayer;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPortableCementMixerIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PortableCementMixer)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPortableCementMixerIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PortableCementMixer;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantExtendoGripIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.ExtendoGrip)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantExtendoGripIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.ExtendoGrip;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGatligatorIncrease > 0 && nextSlot < 39 && Main.hardMode)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Gatligator)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGatligatorIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Gatligator;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPulseBowIncrease > 0 && nextSlot < 39 && Main.hardMode && NPC.downedPlantBoss)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PulseBow)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPulseBowIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PulseBow;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSakeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Sake)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSakeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Sake;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPhoIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Pho)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPhoIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Pho;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPadThaiIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PadThai)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPadThaiIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PadThai;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantUltraBrightTorchIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.UltrabrightTorch)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantUltraBrightTorchIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.UltrabrightTorch;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMagicHatIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.MagicHat)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMagicHatIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.MagicHat;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGypsyRobeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.GypsyRobe)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGypsyRobeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.GypsyRobe;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGiIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Gi)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGiIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Gi;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPresseratorIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.ActuationAccessory)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPresseratorIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.ActuationAccessory;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowCounterweightIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.YellowCounterweight)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowCounterweightIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.YellowCounterweight;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlackCounterweightIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.BlackCounterweight)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlackCounterweightIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.BlackCounterweight;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSittingDucksFishingPoleIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.SittingDucksFishingRod)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSittingDucksFishingPoleIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.SittingDucksFishingRod;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKatanaIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Katana)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKatanaIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Katana;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode1Increase > 0 && nextSlot < 39 && NPC.downedBoss1)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Code1)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode1Increase && addItem)
-						{
-							shop[nextSlot] = ItemID.Code1;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease > 0 && nextSlot < 39 && Terraria.WorldGen.shadowOrbSmashed)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Revolver)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRevolverIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Revolver;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode2Increase > 0 && nextSlot < 39 && NPC.downedMechBossAny)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Code2)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCode2Increase && addItem)
-						{
-							shop[nextSlot] = ItemID.Code2;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockRed)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockRed;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockRedPlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockRedPlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockYellow)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockYellow;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockYellowPlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantYellowTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockYellowPlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockGreen)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockGreen;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockGreenPlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantGreenTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockGreenPlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockBlue)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockBlue;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockBluePlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockBluePlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockPink)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockPink;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockPinkPlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantPinkTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockPinkPlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamBlockIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockWhite)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamBlockIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockWhite;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamPlatformIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TeamBlockWhitePlatform)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWhiteTeamPlatformIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TeamBlockWhitePlatform;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDiamondRingIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.DiamondRing)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDiamondRingIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.DiamondRing;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAngelHaloIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.AngelHalo)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAngelHaloIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.AngelHalo;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFezIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Fez)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFezIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Fez;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWinterCapeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.WinterCape)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWinterCapeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.WinterCape;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedCapeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.RedCape)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedCapeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.RedCape;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCrimsonCapeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.CrimsonCloak)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCrimsonCapeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.CrimsonCloak;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMysteriousCapeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.MysteriousCape)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMysteriousCapeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.MysteriousCape;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKimonoIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.Kimono)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantKimonoIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.Kimono;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWaterGunIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.WaterGun)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantWaterGunIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.WaterGun;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCompanionCubeIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.CompanionCube)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCompanionCubeIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.CompanionCube;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantChaliceIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.SteampunkCup)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantChaliceIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.SteampunkCup;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantArcaneRuneWallIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.ArcaneRuneWall)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantArcaneRuneWallIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.ArcaneRuneWall;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFancyDishesIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.FancyDishes)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantFancyDishesIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.FancyDishes;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDynastyWoodIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.DynastyWood)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantDynastyWoodIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.DynastyWood;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedDynastyShinglesIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.RedDynastyShingles)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantRedDynastyShinglesIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.RedDynastyShingles;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueDynastyShinglesIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.BlueDynastyShingles)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantBlueDynastyShinglesIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.BlueDynastyShingles;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantZebraSkinIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.ZebraSkin)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantZebraSkinIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.ZebraSkin;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLeopardSkinIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.LeopardSkin)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantLeopardSkinIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.LeopardSkin;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTigerSkinIncrease > 0 && nextSlot < 39)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.TigerSkin)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTigerSkinIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.TigerSkin;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCastleMarsbergIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingCastleMarsberg)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCastleMarsbergIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingCastleMarsberg;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMartiaLisaIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingMartiaLisa)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantMartiaLisaIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingMartiaLisa;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheTruthIsUpThereIncrease > 0 && nextSlot < 39 && NPC.downedMartians)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingTheTruthIsUpThere)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheTruthIsUpThereIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingTheTruthIsUpThere;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantNotAKidNorASquidIncrease > 0 && nextSlot < 39 && NPC.downedMoonlord)
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.MoonLordPainting)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantNotAKidNorASquidIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.MoonLordPainting;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAcornsIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingAcorns)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAcornsIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingAcorns;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantColdSnapIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingColdSnap)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantColdSnapIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingColdSnap;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCursedSaintIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingCursedSaint)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantCursedSaintIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingCursedSaint;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSnowfellasIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingSnowfellas)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantSnowfellasIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingSnowfellas;
-							nextSlot++;
-						}
-					}
-					if (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheSeasonIncrease > 0 && nextSlot < 39 && (GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantAlwaysXMasForConfigurations || Main.xMas))
-					{
-						addItem = true;
-						for (int i = 0; i < shop.Length; i++)
-						{
-							if (shop[i] == ItemID.PaintingTheSeason)
-								addItem = false;
-						}
-						if (Main.rand.NextFloat() < GetInstance<ETravelingAndStationaryMerchantConfig>().TravelingMerchantTheSeasonIncrease && addItem)
-						{
-							shop[nextSlot] = ItemID.PaintingTheSeason;
-							nextSlot++;
-						}
-					}
-				}
-				if (Main.netMode == NetmodeID.Server)
-				{
-					NetMessage.SendData(MessageID.WorldData);
-				}
-			}
-		}
+
+        public override void SetupTravelShop(int[] shop, ref int nextSlot)
+        {
+            if (GetInstance<IOtherConfig>().TravelingMerchantItemBoost)
+            {
+                Player player = null;
+                for (int j = 0; j < 255; j++)
+                {
+                    Player player2 = Main.player[j];
+                    if (player2.active && (player == null || player.luck < player2.luck))
+                    {
+                        player = player2;
+                    }
+                }
+                if (player == null)
+                {
+                    player = new Player();
+                }
+                int amountToAdd = 5;
+                int itemsAdded = 0;
+                int[] itemChance = new int[6]
+                {
+                    100,
+                    200,
+                    300,
+                    400,
+                    500,
+                    600
+                };
+                while (itemsAdded < amountToAdd)
+                {
+                    int shopItem = 0;
+                    if (player.RollLuck(itemChance[4]) == 0)
+                    {
+                        shopItem = 3309;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 3314;
+                    }
+                    if (player.RollLuck(itemChance[5]) == 0)
+                    {
+                        shopItem = 1987;
+                    }
+                    if (player.RollLuck(itemChance[4]) == 0 && Main.hardMode)
+                    {
+                        shopItem = 2270;
+                    }
+                    if (player.RollLuck(itemChance[4]) == 0 && Main.hardMode)
+                    {
+                        shopItem = 4760;
+                    }
+                    if (player.RollLuck(itemChance[4]) == 0)
+                    {
+                        shopItem = 2278;
+                    }
+                    if (player.RollLuck(itemChance[4]) == 0)
+                    {
+                        shopItem = 2271;
+                    }
+                    if (player.RollLuck(itemChance[4]) == 0 && (NPC.downedBoss1 || NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode))
+                    {
+                        shopItem = 4347;
+                        if (Main.hardMode)
+                        {
+                            shopItem = 4348;
+                        }
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0 && Main.hardMode && NPC.downedPlantBoss)
+                    {
+                        shopItem = 2223;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2272;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2219;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2276;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2284;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2285;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2286;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 2287;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 4744;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0 && NPC.downedBoss3)
+                    {
+                        shopItem = 2296;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 3628;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0 && Main.hardMode)
+                    {
+                        shopItem = 4091;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 4603;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 4604;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 4605;
+                    }
+                    if (player.RollLuck(itemChance[3]) == 0)
+                    {
+                        shopItem = 4550;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && NPC.downedBoss2) //TO-DO Switch this to testing for bullet or rifle.
+                    {
+                        shopItem = 2269;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 2177;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 1988;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 2275;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 2279;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 2277;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4555;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4321;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4323;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4549;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4561;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4774;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4562;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4558;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4559;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4563;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0)
+                    {
+                        shopItem = 4666;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && NPC.downedBoss1)
+                    {
+                        shopItem = 3262;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && NPC.downedMechBossAny)
+                    {
+                        shopItem = 3284;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.hardMode && NPC.downedMoonlord)
+                    {
+                        shopItem = 3596;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.hardMode && NPC.downedMartians)
+                    {
+                        shopItem = 2865;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.hardMode && NPC.downedMartians)
+                    {
+                        shopItem = 2866;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.hardMode && NPC.downedMartians)
+                    {
+                        shopItem = 2867;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.xMas)
+                    {
+                        shopItem = 3055;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.xMas)
+                    {
+                        shopItem = 3056;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.xMas)
+                    {
+                        shopItem = 3057;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.xMas)
+                    {
+                        shopItem = 3058;
+                    }
+                    if (player.RollLuck(itemChance[2]) == 0 && Main.xMas)
+                    {
+                        shopItem = 3059;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2214;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2215;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2216;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2217;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 3624;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2273;
+                    }
+                    if (player.RollLuck(itemChance[1]) == 0)
+                    {
+                        shopItem = 2274;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2266;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2267;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2268;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2281 + Main.rand.Next(3);
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2258;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2242;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 2260;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 3637;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 4420;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 3119;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 3118;
+                    }
+                    if (player.RollLuck(itemChance[0]) == 0)
+                    {
+                        shopItem = 3099;
+                    }
+                    if (shopItem != 0)
+                    {
+                        for (int k = 0; k < 40; k++)
+                        {
+                            if (Main.travelShop[k] == shopItem)
+                            {
+                                shopItem = 0;
+                                break;
+                            }
+                            if (shopItem == 3637)
+                            {
+                                int num5 = Main.travelShop[k];
+                                if ((uint)(num5 - 3621) <= 1u || (uint)(num5 - 3633) <= 9u)
+                                {
+                                    shopItem = 0;
+                                }
+                                if (shopItem == 0)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (shopItem == 0)
+                    {
+                        continue;
+                    }
+                    itemsAdded++;
+                    Main.travelShop[nextSlot] = shopItem;
+                    nextSlot++;
+                    if (shopItem == 2260)
+                    {
+                        Main.travelShop[nextSlot] = 2261;
+                        nextSlot++;
+                        Main.travelShop[nextSlot] = 2262;
+                        nextSlot++;
+                    }
+                    if (shopItem == 4555)
+                    {
+                        Main.travelShop[nextSlot] = 4556;
+                        nextSlot++;
+                        Main.travelShop[nextSlot] = 4557;
+                        nextSlot++;
+                    }
+                    if (shopItem == 4321)
+                    {
+                        Main.travelShop[nextSlot] = 4322;
+                        nextSlot++;
+                    }
+                    if (shopItem == 4323)
+                    {
+                        Main.travelShop[nextSlot] = 4324;
+                        nextSlot++;
+                        Main.travelShop[nextSlot] = 4365;
+                        nextSlot++;
+                    }
+                    if (shopItem == 4666)
+                    {
+                        Main.travelShop[nextSlot] = 4664;
+                        nextSlot++;
+                        Main.travelShop[nextSlot] = 4665;
+                        nextSlot++;
+                    }
+                    if (shopItem == 3637)
+                    {
+                        nextSlot--;
+                        switch (Main.rand.Next(6))
+                        {
+                            case 0:
+                                Main.travelShop[nextSlot++] = 3637;
+                                Main.travelShop[nextSlot++] = 3642;
+                                break;
+                            case 1:
+                                Main.travelShop[nextSlot++] = 3621;
+                                Main.travelShop[nextSlot++] = 3622;
+                                break;
+                            case 2:
+                                Main.travelShop[nextSlot++] = 3634;
+                                Main.travelShop[nextSlot++] = 3639;
+                                break;
+                            case 3:
+                                Main.travelShop[nextSlot++] = 3633;
+                                Main.travelShop[nextSlot++] = 3638;
+                                break;
+                            case 4:
+                                Main.travelShop[nextSlot++] = 3635;
+                                Main.travelShop[nextSlot++] = 3640;
+                                break;
+                            case 5:
+                                Main.travelShop[nextSlot++] = 3636;
+                                Main.travelShop[nextSlot++] = 3641;
+                                break;
+                        }
+                    }
+                }
+
+                if (GetInstance<IOtherConfig>().TravelingMerchantMartianChance > 0)
+                {
+                    if (NPC.downedMartians && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantMartianChance) == 0)
+                    {
+                        int[] items = new int[] {
+                        2865,
+                        2866,
+                        2867
+                    };
+                        foreach (int i in items)
+                        {
+                            bool addItem = true;
+                            for (int k = 0; k < 40; k++)
+                            {
+                                if (Main.travelShop[k] == i)
+                                {
+                                    addItem = false;
+                                    break;
+                                }
+                            }
+                            if (addItem)
+                            {
+                                Main.travelShop[nextSlot] = i;
+                                nextSlot++;
+                            }
+                        }
+                    }
+                }
+
+                if (GetInstance<IOtherConfig>().TravelingMerchantChristmasChance > 0)
+                {
+                    if (Main.xMas && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantChristmasChance) == 0)
+                    {
+                        int[] items = new int[] {
+                        3055,
+                        3056,
+                        3057,
+                        3058
+                    };
+                        foreach (int i in items)
+                        {
+                            bool addItem = true;
+                            for (int k = 0; k < 40; k++)
+                            {
+                                if (Main.travelShop[k] == i)
+                                {
+                                    addItem = false;
+                                    break;
+                                }
+                            }
+                            if (addItem)
+                            {
+                                Main.travelShop[nextSlot] = i;
+                                nextSlot++;
+                            }
+                        }
+                    }
+                }
+
+                if (GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance > 0)
+                {
+                    if (NPC.downedMoonlord && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance) == 0)
+                    {
+                        bool addItem = true;
+                        for (int k = 0; k < 40; k++)
+                        {
+                            if (Main.travelShop[k] == 3596)
+                            {
+                                addItem = false;
+                                break;
+                            }
+                        }
+                        if (addItem)
+                        {
+                            Main.travelShop[nextSlot] = 3596;
+                            nextSlot++;
+                        }
+                    }
+                }
+
+                if (GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance > 0)
+                {
+                    if (NPC.downedPlantBoss && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance) == 0)
+                    {
+                        bool addItem = true;
+                        for (int k = 0; k < 40; k++)
+                        {
+                            if (Main.travelShop[k] == ItemID.PulseBow)
+                            {
+                                addItem = false;
+                                break;
+                            }
+                        }
+                        if (addItem)
+                        {
+                            Main.travelShop[nextSlot] = ItemID.PulseBow;
+                            nextSlot++;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

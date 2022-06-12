@@ -174,9 +174,9 @@ namespace ReducedGrinding.Global
             {
                 noMoreAnglerResetsToday = false;
 
-                if (GetInstance<IOtherConfig>().PeriodicHollidayTimelineDayLength > 0)
+                if (GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength > 0)
                 {
-                    int dayLength = GetInstance<IOtherConfig>().PeriodicHollidayTimelineDayLength;
+                    int dayLength = GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength;
                     if (seasonalDay == 0)
                         seasonalDay = 1;
                     else

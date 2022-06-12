@@ -254,383 +254,6 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Traveling and Stationary Merchant")]
-    public class ETravelingAndStationaryMerchantConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Header("Stationary Merchant:\n\nThis NPC sells everything the Traveling Merchant has a chance to sell, but there's a catch. By default, his prices are higher, especially when the Traveling Merchant is away. Also by default, the rarer the item, the more expensive the item is. The price for each item will get modified by the configurations below.")]
-        [Label("Allow Spawning")]
-        [DefaultValue(true)]
-        public bool StationaryMerchant;
-
-        [Label("Base Multiplier When Merchant Present")]
-        [Increment(.09f)]
-        [Range(1f, 10f)]
-        [DefaultValue(4f)]
-        public float S_MerchantPriceMultiplierDuringSale;
-
-        [Label("Base Multiplier When Merchant Away")]
-        [Increment(.09f)]
-        [Range(1f, 10f)]
-        [DefaultValue(8f)]
-        public float S_MerchantPriceMultiplier;
-
-        [Tooltip("The Traveling Merchant Shop has 6 Rarity Tiers. The price each item in the Stationary Merchant's shop will be multiplied by 1 + ((Rarity_Tier - 1) * This_Configuration)")]
-        [Label("Rarity Fee Rate")]
-        [Increment(.09f)]
-        [Range(0f, 10f)]
-        [DefaultValue(1f)]
-        public float S_MerchantRarityFee;
-
-        [Header("Traveling Merchant Shop Item Chance Increases")]
-        [Label("[i:3055] Acorns")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantAcornsIncrease;
-
-        [Label("[i:2177] Ammo Box")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantAmmoBoxIncrease;
-
-        [Label("[i:1987] Angel Halo")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantAngelHaloIncrease;
-
-        [Label("[i:2271] Arcane Rune Wall")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantArcaneRuneWallIncrease;
-
-        [Label("[i:3309] Black Counter Weight")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantBlackCounterweightIncrease;
-
-        [Label("[i:2262] Blue Dynasty Shingles")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantBlueDynastyShinglesIncrease;
-
-        [Label("[i:3634] Blue Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantBlueTeamBlockIncrease;
-
-        [Label("[i:3639] Blue Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantBlueTeamPlatformIncrease;
-
-        [Label("[i:2214] Brick Layer")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantBrickLayerIncrease;
-
-        [Label("[i:2865] Castle Marsberg")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCastleMarsbergIncrease;
-
-        [Label("[i:2219] Celestial Magnet")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCelestialMagnetIncrease;
-
-        [Label("[i:2258] Chalice")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantChaliceIncrease;
-
-        [Label("[i:3262] Code 1")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCode1Increase;
-
-        [Label("[i:3284] Code 2")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCode2Increase;
-
-        [Label("[i:3056] Cold Snap")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantColdSnapIncrease;
-
-        [Label("[i:3628] Companion Cube")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCompanionCubeIncrease;
-
-        [Label("[i:2284] Crimson Cloak")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCrimsonCapeIncrease;
-
-        [Label("[i:3057] Cursed Saint")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantCursedSaintIncrease;
-
-        [Label("[i:3119] DPS Meter")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDPSMeterIncrease;
-
-        [Label("[i:2276] Diamond Ring")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDiamondRingIncrease;
-
-        [Label("[i:2260] Dynasty Wood")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDynastyWoodIncrease;
-
-        [Label("[i:2215] Extendo Grip")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantExtendoGripIncrease;
-
-        [Label("[i:2242] Fancy Dishes")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantFancyDishesIncrease;
-
-        [Label("[i:1988] Fez")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantFezIncrease;
-
-        [Label("[i:2270] Gatligator")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantGatligatorIncrease;
-
-        [Label("[i:2277] Gi")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantGiIncrease;
-
-        [Label("[i:3633] Green Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantGreenTeamBlockIncrease;
-
-        [Label("[i:3638] Green Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantGreenTeamPlatformIncrease;
-
-        [Label("[i:2279] Gypsy Robe")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantGypsyRobeIncrease;
-
-        [Label("[i:2273] Katana")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantKatanaIncrease;
-
-        [Label("[i:2278] Kimono")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantKimonoIncrease;
-
-        [Label("[i:2282] Leopard Skin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantLeopardSkinIncrease;
-
-        [Label("[i:3118] Lifeform Analyzer")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantLifeformAnalyzerIncrease;
-
-        [Label("[i:2275] Magic Hat")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantMagicHatIncrease;
-
-        [Label("[i:2866] Martia Lisa")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantMartiaLisaIncrease;
-
-        [Tooltip("Normaly, not sold by the Traveling Merchant")]
-        [Label("[i:3102] Metal Detector")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantMetalDetector;
-
-        [Label("[i:2285] Mysterious Cape")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantMysteriousCapeIncrease;
-
-        [Label("[i:3596] Not a Kid Nor a Squid")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantNotAKidNorASquidIncrease;
-
-        [Label("[i:2267] Pad Thai")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPadThaiIncrease;
-
-        [Label("[i:2216] Paint Sprayer")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPaintSprayerIncrease;
-
-        [Label("[i:2268] Pho")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPhoIncrease;
-
-        [Label("[i:3636] Pink Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPinkTeamBlockIncrease;
-
-        [Label("[i:3641] Pink Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPinkTeamPlatformIncrease;
-
-        [Label("[i:2217] Portable Cement Mixer")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPortableCementMixerIncrease;
-
-        [Label("[i:3624] Presserator")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPresseratorIncrease;
-
-        [Label("[i:2223] Pulse Bow")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantPulseBowIncrease;
-
-        [Label("[i:2286] Red Cape")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantRedCapeIncrease;
-
-        [Label("[i:2261] Red Dynasty Shingles")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantRedDynastyShinglesIncrease;
-
-        [Label("[i:3621] Red Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantRedTeamBlockIncrease;
-
-        [Label("[i:3622] Red Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantRedTeamPlatformIncrease;
-
-        [Label("[i:2269] Revelover")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantRevolverIncrease;
-
-        [Label("[i:2266] Sake")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantSakeIncrease;
-
-        [Label("[i:2296] Sitting Duck’s Fishing Pole")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantSittingDucksFishingPoleIncrease;
-
-        [Label("[i:3058] Snowfellas")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantSnowfellasIncrease;
-
-        [Label("[i:3099] Stopwatch")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantStopwatchIncrease;
-
-        [Label("[i:3059] The Season")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantTheSeasonIncrease;
-
-        [Label("[i:2867] The Truth is Up There")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantTheTruthIsUpThereIncrease;
-
-        [Label("[i:2281] Tiger Skin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantTigerSkinIncrease;
-
-        [Label("[i:2274] Ultrabright Torch")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantUltraBrightTorchIncrease;
-
-        [Label("[i:2272] Water Gun")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantWaterGunIncrease;
-
-        [Label("[i:3637] White Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantWhiteTeamBlockIncrease;
-
-        [Label("[i:3642] White Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantWhiteTeamPlatformIncrease;
-
-        [Label("[i:2287] Winter Cape")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantWinterCapeIncrease;
-
-        [Label("[i:3314] Yellow Counterweight")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantYellowCounterweightIncrease;
-
-        [Label("[i:3635] Yellow Team Block")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantYellowTeamBlockIncrease;
-
-        [Label("[i:3640] Yellow Team Platform")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantYellowTeamPlatformIncrease;
-
-        [Label("[i:2283] Zebra Skin")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TravelingMerchantZebraSkinIncrease;
-
-        [Label("Increased Christmas Item chances requires Christmas")]
-        [DefaultValue(true)]
-        public bool TravelingMerchantAlwaysXMasForConfigurations;
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
     [Label("Other Modded Items")]
     public class HOtherModdedItemsConfig : ModConfig
     {
@@ -735,16 +358,39 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
 
-        [Header("Other")]
+        [Header("Traveling Merchant")]
 
+        [Label("Extra Rolls For Items")]
+        [DefaultValue(0)]
+        public int TravelingMerchantExtraRolls;
+
+        [Label("[i:3059] Christmas Paintings Extra Chance")]
+        [Range(0, 600)]
+        [DefaultValue(13)]
+        public int TravelingMerchantChristmasChance;
+
+        [Label("[i:2867] Martian Paintings Extra Chance")]
+        [Range(0, 600)]
+        [DefaultValue(0)]
+        public int TravelingMerchantMartianChance;
+
+        [Label("[i:3596] Not a Kid, nor a Squid Extra Chance")]
+        [Range(0, 600)]
+        [DefaultValue(0)]
+        public int TravelingMerchantNotAKidNorASquidChance;
+
+        [Label("[i:2223] Pulse Bow Extra Chance")]
+        [Range(0, 600)]
+        [DefaultValue(100)]
+        public int TravelingMerchantPulseBowChance;
+
+        [Header("Periodic Holiday Timeline Day Length.\n\nThis mod will run a timeline for spawning Halloween and Christmas events. Where n is the configuration setting: the timeline will be n * 12 days long, Halloween will be the (9 * n + 1) day, and Christmas will be the last day. Set to 0 to disable.")]
         [Label("Periodic Holiday Timeline Day Length")]
-        [Tooltip("" +
-            "Set to 0 to disable. This mod will run a timeline for spawning Halloween and Christmas\n" +
-            "events. Where n is the configuration setting: the timeline will be n * 12 days long,\n" +
-            "Halloween will be the (9 * n + 1) day, and Christmas will be the last day.")]
         [Range(1, 30)]
         [DefaultValue(2)]
-        public int PeriodicHollidayTimelineDayLength;
+        public int PeriodicHolidayTimelineDayLength;
+
+        [Header("Other")]
 
         [Label("Allow crafting [i:2889]Gold Critters")]
         [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
