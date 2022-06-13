@@ -3,6 +3,11 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
@@ -36,37 +41,50 @@ namespace ReducedGrinding.Global
                         nextSlot++;
                     }
                     break;
-                case NPCID.SkeletonMerchant: //TO-DO This isn't a very compatible way of doing this. Use a foreach loop that checks if the item exist in the shop.
+                case NPCID.SkeletonMerchant:
                     if (GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases)
                     {
-                        shop.item[0].SetDefaults(ItemID.StrangeBrew);
-                        shop.item[1].SetDefaults(ItemID.LesserHealingPotion);
-                        shop.item[2].SetDefaults(ItemID.SpelunkerGlowstick);
-                        shop.item[3].SetDefaults(ItemID.Glowstick);
-                        shop.item[4].SetDefaults(ItemID.BoneTorch);
-                        shop.item[5].SetDefaults(ItemID.Torch);
-                        shop.item[6].SetDefaults(ItemID.BoneArrow);
-                        shop.item[7].SetDefaults(ItemID.WoodenArrow);
-                        shop.item[8].SetDefaults(ItemID.BlueCounterweight);
-                        shop.item[9].SetDefaults(ItemID.RedCounterweight);
-                        shop.item[10].SetDefaults(ItemID.PurpleCounterweight);
-                        shop.item[11].SetDefaults(ItemID.GreenCounterweight);
-                        shop.item[12].SetDefaults(ItemID.Bomb);
-                        shop.item[13].SetDefaults(ItemID.Rope);
-                        nextSlot = 14;
+                        List<int> shopItems = new() {
+                            ItemID.StrangeBrew,
+                            ItemID.LesserHealingPotion,
+                            ItemID.SpelunkerGlowstick,
+                            ItemID.Glowstick,
+                            ItemID.BoneTorch,
+                            ItemID.WoodenArrow,
+                            ItemID.BlueCounterweight,
+                            ItemID.RedCounterweight,
+                            ItemID.PurpleCounterweight,
+                            ItemID.GreenCounterweight,
+                            ItemID.Bomb,
+                            ItemID.Rope,
+                            ItemID.MagicLantern
+                        };
                         if (Main.hardMode)
                         {
-                            shop.item[14].SetDefaults(ItemID.Gradient);
-                            shop.item[15].SetDefaults(ItemID.FormatC);
-                            shop.item[16].SetDefaults(ItemID.YoYoGlove);
-                            nextSlot = 17;
+                            shopItems.Add(ItemID.Gradient);
+                            shopItems.Add(ItemID.FormatC);
+                            shopItems.Add(ItemID.YoYoGlove);
                             if (Main.bloodMoon)
+                                shopItems.Add(ItemID.SlapHand);
+                        }
+
+                        foreach (int i in shopItems)
+                        {
+                            bool addItem = true;
+                            for (int j = 0; j < 40; j++)
                             {
-                                shop.item[nextSlot].SetDefaults(ItemID.SlapHand);
+                                if (shop.item[j].type == i)
+                                {
+                                    addItem = false;
+                                    break;
+                                }
+                            }
+                            if (addItem)
+                            {
+                                shop.item[nextSlot].SetDefaults(i);
                                 nextSlot++;
                             }
                         }
-                        shop.item[nextSlot].SetDefaults(ItemID.MagicLantern);
                     }
                     break;
                 case NPCID.BestiaryGirl:
