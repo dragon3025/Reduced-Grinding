@@ -360,26 +360,32 @@ namespace ReducedGrinding
 
         [Header("Traveling Merchant")]
 
-        [Label("Extra Rolls For Items")]
+        [Label("Extra Chance Rolls For Items")]
+        [Tooltip("Shop inventories are limited to 40 items, unless another mod changes this limit")]
+        [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantExtraRolls;
 
         [Label("[i:3059] Christmas Paintings Extra Chance")]
+        [Tooltip("Chance is 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(13)]
         public int TravelingMerchantChristmasChance;
 
         [Label("[i:2867] Martian Paintings Extra Chance")]
+        [Tooltip("Chance is 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantMartianChance;
 
         [Label("[i:3596] Not a Kid, nor a Squid Extra Chance")]
+        [Tooltip("Chance is 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantNotAKidNorASquidChance;
 
         [Label("[i:2223] Pulse Bow Extra Chance")]
+        [Tooltip("Chance is 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
