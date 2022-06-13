@@ -86,12 +86,36 @@ namespace ReducedGrinding.Global
                 };
                 try_grab_bag_drop(GetInstance<IOtherConfig>().DungeonCrateDungeonFurniture, dungeonFurniture[Main.rand.Next(dungeonFurniture.Count)]);
             }
-            if (arg == ItemID.GoldenCrate)
+
+            List<int> statues = new() {
+                ItemID.KingStatue,
+                ItemID.QueenStatue,
+                ItemID.HeartStatue,
+                ItemID.StarStatue,
+                ItemID.BombStatue
+            };
+
+            if (arg == ItemID.GoldenCrateHard)
+            {
                 try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial, ItemID.Sundial);
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue, statues[Main.rand.Next(statues.Count)]);
+            }
             if (arg == ItemID.IronCrateHard)
+            {
                 try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial * 3, ItemID.Sundial);
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 3, statues[Main.rand.Next(statues.Count)]);
+            }
             if (arg == ItemID.WoodenCrateHard)
+            {
                 try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial * 10, ItemID.Sundial);
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 10, statues[Main.rand.Next(statues.Count)]);
+            }
+            if (arg == ItemID.GoldenCrate)
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue, statues[Main.rand.Next(statues.Count)]);
+            if (arg == ItemID.IronCrate)
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 3, statues[Main.rand.Next(statues.Count)]);
+            if (arg == ItemID.WoodenCrate)
+                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 10, statues[Main.rand.Next(statues.Count)]);
 
             //Boss Bag drops that don't happen in vanilla.
             if (arg == ItemID.FishronBossBag)

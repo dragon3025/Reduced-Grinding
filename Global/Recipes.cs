@@ -101,147 +101,7 @@ namespace ReducedGrinding.Global
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
-            //Golden Critters (Disabled by Default)
-            if (GetInstance<IOtherConfig>().CraftableGoldCritters)
-            {
-                recipe = Mod.CreateRecipe(ItemID.GoldBird);
-                recipe.AddRecipeGroup(RecipeGroupID.Birds);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldBunny);
-                recipe.AddIngredient(ItemID.Bunny);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldButterfly);
-                recipe.AddRecipeGroup(RecipeGroupID.Butterflies);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldDragonfly);
-                recipe.AddRecipeGroup(RecipeGroupID.Dragonflies);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldFrog);
-                recipe.AddIngredient(ItemID.Frog);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldGoldfish);
-                recipe.AddIngredient(ItemID.Goldfish);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldGrasshopper);
-                recipe.AddIngredient(ItemID.Grasshopper);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldLadyBug);
-                recipe.AddIngredient(ItemID.LadyBug);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldMouse);
-                recipe.AddIngredient(ItemID.Mouse);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldSeahorse);
-                recipe.AddIngredient(ItemID.Seahorse);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.SquirrelGold);
-                recipe.AddRecipeGroup(RecipeGroupID.Squirrels);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldWaterStrider);
-                recipe.AddIngredient(ItemID.WaterStrider);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.GoldWorm);
-                recipe.AddIngredient(ItemID.Worm);
-                recipe.AddIngredient(ItemID.GoldCoin, 10);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-            }
-
-            //Craftable Rare Chest (Disabled by Default)
-            if (GetInstance<IOtherConfig>().CraftableRareChests)
-            {
-                recipe = Mod.CreateRecipe(ItemID.IvyChest);
-                recipe.AddIngredient(ItemID.RichMahogany, 8);
-                recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
-                recipe.AddTile(TileID.WorkBenches);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.WaterChest);
-                recipe.AddIngredient(ItemID.Coral, 2);
-                recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
-                recipe.AddTile(TileID.WorkBenches);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.WebCoveredChest);
-                recipe.AddIngredient(ItemID.Cobweb, 5);
-                recipe.AddIngredient(ItemID.Chest);
-                recipe.AddTile(TileID.WorkBenches);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.CrimsonChest, 2);
-                recipe.AddIngredient(ItemID.CrimsonChest);
-                recipe.AddIngredient(ItemID.CrimsonKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.CorruptionChest, 2);
-                recipe.AddIngredient(ItemID.CorruptionChest);
-                recipe.AddIngredient(ItemID.CorruptionKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.HallowedChest, 2);
-                recipe.AddIngredient(ItemID.HallowedChest);
-                recipe.AddIngredient(ItemID.HallowedKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.IceChest, 2);
-                recipe.AddIngredient(ItemID.IceChest);
-                recipe.AddIngredient(ItemID.FrozenKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.JungleChest, 2);
-                recipe.AddIngredient(ItemID.JungleChest);
-                recipe.AddIngredient(ItemID.JungleKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Mod.CreateRecipe(ItemID.DesertChest, 2);
-                recipe.AddIngredient(ItemID.DesertChest);
-                recipe.AddIngredient(ItemID.DungeonDesertKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-            }
-
-            //Crates
+            //Crate Downgrading
             recipe = Mod.CreateRecipe(ItemID.WoodenCrate);
             recipe.AddIngredient(ItemID.WoodenCrateHard);
             recipe.AddTile(TileID.CrystalBall);
@@ -359,16 +219,6 @@ namespace ReducedGrinding.Global
             recipe.Register();
 
             //Other
-            recipe = Mod.CreateRecipe(ItemID.PurpleSolution, 100);
-            recipe.AddIngredient(ItemID.VilePowder);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Mod.CreateRecipe(ItemID.RedSolution, 100);
-            recipe.AddIngredient(ItemID.ViciousPowder);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
             if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
             {
                 recipe = Mod.CreateRecipe(ItemType<Items.BuffPotions.Multi_Bobber_Potion>());
@@ -391,6 +241,188 @@ namespace ReducedGrinding.Global
                 recipe = Mod.CreateRecipe(ItemID.ViciousPowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
                 recipe.AddIngredient(ItemID.ViciousMushroom);
                 recipe.AddTile(TileID.DemonAltar);
+                recipe.Register();
+            }
+
+            //if (GetInstance<IOtherConfig>().CraftableKingAndQueenStatues)
+            //{
+            //    recipe = Mod.CreateRecipe(ItemID.KingStatue);
+            //    recipe.AddIngredient(ItemID.StoneBlock, 50);
+            //    recipe.AddTile(TileID.HeavyWorkBench);
+            //    recipe.Register();
+            //
+            //    recipe = Mod.CreateRecipe(ItemID.QueenStatue);
+            //    recipe.AddIngredient(ItemID.StoneBlock, 50);
+            //    recipe.AddTile(TileID.HeavyWorkBench);
+            //    recipe.Register();
+            //}
+
+            if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
+            {
+                recipe = Mod.CreateRecipe(ItemID.TeleportationPylonVictory);
+                recipe.AddIngredient(ItemID.TeleportationPylonDesert);
+                recipe.AddIngredient(ItemID.TeleportationPylonHallow);
+                recipe.AddIngredient(ItemID.TeleportationPylonJungle);
+                recipe.AddIngredient(ItemID.TeleportationPylonMushroom);
+                recipe.AddIngredient(ItemID.TeleportationPylonOcean);
+                recipe.AddIngredient(ItemID.TeleportationPylonPurity);
+                recipe.AddIngredient(ItemID.TeleportationPylonSnow);
+                recipe.AddIngredient(ItemID.TeleportationPylonUnderground);
+                if (GetInstance<IOtherConfig>().CraftableUniversalPylon == 3)
+                {
+                    recipe.AddIngredient(ItemID.SoulofLight);
+                    recipe.AddIngredient(ItemID.SoulofNight);
+                    recipe.AddIngredient(ItemID.SoulofFlight);
+                    recipe.AddIngredient(ItemID.SoulofFright);
+                    recipe.AddIngredient(ItemID.SoulofMight);
+                    recipe.AddIngredient(ItemID.SoulofSight);
+                }
+                if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 1)
+                    recipe.AddTile(TileID.CrystalBall);
+                else
+                    recipe.AddTile(TileID.TinkerersWorkbench);
+                recipe.Register();
+            }
+
+            //Unused
+
+            //Golden Critters
+            if (GetInstance<IOtherConfig>().CraftableGoldCritters)
+            {
+                recipe = Mod.CreateRecipe(ItemID.GoldBird);
+                recipe.AddRecipeGroup(RecipeGroupID.Birds);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldBunny);
+                recipe.AddIngredient(ItemID.Bunny);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldButterfly);
+                recipe.AddRecipeGroup(RecipeGroupID.Butterflies);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldDragonfly);
+                recipe.AddRecipeGroup(RecipeGroupID.Dragonflies);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldFrog);
+                recipe.AddIngredient(ItemID.Frog);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldGoldfish);
+                recipe.AddIngredient(ItemID.Goldfish);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldGrasshopper);
+                recipe.AddIngredient(ItemID.Grasshopper);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldLadyBug);
+                recipe.AddIngredient(ItemID.LadyBug);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldMouse);
+                recipe.AddIngredient(ItemID.Mouse);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldSeahorse);
+                recipe.AddIngredient(ItemID.Seahorse);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.SquirrelGold);
+                recipe.AddRecipeGroup(RecipeGroupID.Squirrels);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldWaterStrider);
+                recipe.AddIngredient(ItemID.WaterStrider);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.GoldWorm);
+                recipe.AddIngredient(ItemID.Worm);
+                recipe.AddIngredient(ItemID.GoldCoin, 10);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+            }
+
+            //Craftable Rare Chest
+            if (GetInstance<IOtherConfig>().CraftableRareChests)
+            {
+                recipe = Mod.CreateRecipe(ItemID.IvyChest);
+                recipe.AddIngredient(ItemID.RichMahogany, 8);
+                recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+                recipe.AddTile(TileID.WorkBenches);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.WaterChest);
+                recipe.AddIngredient(ItemID.Coral, 2);
+                recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+                recipe.AddTile(TileID.WorkBenches);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.WebCoveredChest);
+                recipe.AddIngredient(ItemID.Cobweb, 5);
+                recipe.AddIngredient(ItemID.Chest);
+                recipe.AddTile(TileID.WorkBenches);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.CrimsonChest, 2);
+                recipe.AddIngredient(ItemID.CrimsonChest);
+                recipe.AddIngredient(ItemID.CrimsonKey);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.CorruptionChest, 2);
+                recipe.AddIngredient(ItemID.CorruptionChest);
+                recipe.AddIngredient(ItemID.CorruptionKey);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.HallowedChest, 2);
+                recipe.AddIngredient(ItemID.HallowedChest);
+                recipe.AddIngredient(ItemID.HallowedKey);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.IceChest, 2);
+                recipe.AddIngredient(ItemID.IceChest);
+                recipe.AddIngredient(ItemID.FrozenKey);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.JungleChest, 2);
+                recipe.AddIngredient(ItemID.JungleChest);
+                recipe.AddIngredient(ItemID.JungleKey);
+                recipe.AddTile(TileID.CrystalBall);
+                recipe.Register();
+
+                recipe = Mod.CreateRecipe(ItemID.DesertChest, 2);
+                recipe.AddIngredient(ItemID.DesertChest);
+                recipe.AddIngredient(ItemID.DungeonDesertKey);
+                recipe.AddTile(TileID.CrystalBall);
                 recipe.Register();
             }
         }

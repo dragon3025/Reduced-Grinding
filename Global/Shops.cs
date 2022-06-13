@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -68,6 +69,26 @@ namespace ReducedGrinding.Global
                         shop.item[nextSlot].SetDefaults(ItemID.MagicLantern);
                     }
                     break;
+                case NPCID.BestiaryGirl:
+                    if (GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate < 1f)
+                    {
+                        BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
+                        bool sellingUniversalPylon = false;
+                        for (int i = 0; i <= 40; i++)
+                        {
+                            if (shop.item[i].type == ItemID.TeleportationPylonVictory)
+                            {
+                                sellingUniversalPylon = true;
+                                break;
+                            }
+                        }
+                        if (!sellingUniversalPylon && bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.TeleportationPylonVictory);
+                            nextSlot++;
+                        }
+                    }
+                    break;
             }
         }
 
@@ -86,7 +107,7 @@ namespace ReducedGrinding.Global
             {
                 player = new Player();
             }
-            int amountToAdd = 5;
+            int amountToAdd = GetInstance<IOtherConfig>().TravelingMerchantExtraRolls;
             int itemsAdded = 0;
             int[] itemChance = new int[6]
             {

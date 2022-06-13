@@ -343,20 +343,30 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostTimeCharmMultiplier;
 
-        [Header("\nCrates\n\nAll configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot\n\n[i:3205] Dungeon Crate / Stockade Crate")]
+        [Header("\nCrates\n\nAll configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n[i:3205] Dungeon / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
         [Range(0, 10000)]
         [DefaultValue(1)]
         public int DungeonCrateDungeonFurniture;
 
-        [Header("[i:2336] Golden Crate")]
+        [Header("[i:3981] Titanium / Mythril / Pearlwood")]
 
         [Label("[i:3064] Enchanted Sundial")]
-        [Tooltip("Chance is divided by 3 for Mythril and divided by 10 for Pearlwood")]
+        [Tooltip("Denominator is multiplied by 3 for Mythril and 10 for Pearlwood")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
+
+        [Header("[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants")]
+
+        [Label("[i:438] King / Queen / Bomb / Heart / Star Statue")]
+        [Tooltip("" +
+            "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril and 10\n" +
+            "for Pearlwood")]
+        [Range(0, 10000)]
+        [DefaultValue(5)]
+        public int CrateStatue;
 
         [Header("Traveling Merchant")]
 
@@ -420,6 +430,21 @@ namespace ReducedGrinding
         [Range(5, 999)]
         [DefaultValue(5)]
         public int InfectionPowderPerMushroom;
+
+        [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]
+        [Tooltip("" +
+            "In vanilla, there are 523 entries. 51% can be achieved before Hardmode. Set to 100% to disable.")]
+        [Increment(0.01f)]
+        [DefaultValue(1f)]
+        public float UniversalPylonBestiaryCompletionRate;
+
+        [Label("Craftable [i:4951] Universal Pylon Difficulty")]
+        [Tooltip("" +
+            "0: Disabled, 1: Crafted out of all other Pylons, 2: Same as 1, + crafted at Crystal\n" +
+            "Ball instead of Tinker's Workshop, 3: Same as 2 + crafted with all Souls")]
+        [Range(0, 3)]
+        [DefaultValue(3)]
+        public int CraftableUniversalPylon;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
