@@ -207,9 +207,15 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int TrufflewormFromDukeFishron;
 
+        [Label("[i:4144] Terragrim from Most Hardmode Grab Bags")]
+        [Tooltip("From all Boss Bags that can drop Developer Items")]
+        [Range(0, 10000)]
+        [DefaultValue(60)]
+        public int TerragrimFromHardmodeGrabBag;
+
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
-        [DefaultValue(150)]
+        [DefaultValue(60)]
         public int SnowballLauncherFromSpikedIceSlime;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
@@ -321,10 +327,17 @@ namespace ReducedGrinding
 
         [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
 
+        [Label("[i:306] Gold Chest with [i:4144] Terragrim per World Generation")]
+        [Tooltip("" +
+            "After world generation, this mod will select this many Gold Chest, and insert a\n" +
+            "Terragrim into it.")]
+        [DefaultValue(1)]
+        public int TerragrimChests;
+
         [Label("Starting Boost Amount (In-Game Minutes Added)")]
         [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
-        [DefaultValue(55)]
         [Range(0, 55)]
+        [DefaultValue(55)]
         public int SleepBoostBase;
 
         [Label("Multiplier for No Player with Sleep Buff")]

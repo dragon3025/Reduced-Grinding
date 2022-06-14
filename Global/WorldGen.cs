@@ -27,6 +27,7 @@ namespace ReducedGrinding.Global
 			List<int> woodChests = new();
 			List<int> mushroomChests = new();
 			List<int> centerGoldChests = new();
+			List<int> goldChests = new();
 
 			int worldCenterLeft = (Main.maxTilesX / 2) - 420;
 			int worldCenterRight = (Main.maxTilesX / 2) + 420;
@@ -59,6 +60,7 @@ namespace ReducedGrinding.Global
 						}
 						if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
 							centerGoldChests.Add(chestIndex);
+						goldChests.Add(chestIndex);
 					}
 
 					TileSubID = 10; //Ivy Chest
@@ -254,6 +256,33 @@ namespace ReducedGrinding.Global
 						}
 					}
 				}
+			}
+
+			GetInstance<ReducedGrinding>().Logger.Debug("Gold Chests: " + goldChests.Count.ToString());
+			int terragrimToAdd = GetInstance<IOtherConfig>().TerragrimChests;
+			GetInstance<ReducedGrinding>().Logger.Debug("Terragrims to add: " + terragrimToAdd.ToString());
+			while (terragrimToAdd > 0)
+			{
+				if (goldChests.Count > 0)
+				{
+					int goldChestIndex = Main.rand.Next(goldChests.Count);
+					int chestIndex = goldChests[goldChestIndex];
+
+					Chest chest = Main.chest[chestIndex];
+					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+					{
+						if (chest.item[inventoryIndex].type == ItemID.None)
+						{
+							chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
+							terragrimToAdd--;
+							GetInstance<ReducedGrinding>().Logger.Debug("Placed Terragrim, Terragrims left to add: " + terragrimToAdd.ToString());
+							goldChests.RemoveAt(goldChestIndex);
+							break;
+						}
+					}
+				}
+				else
+					terragrimToAdd = 0;
 			}
 		}
 	}
