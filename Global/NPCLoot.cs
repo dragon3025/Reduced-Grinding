@@ -184,7 +184,7 @@ namespace ReducedGrinding.Global
                 TryBossLoot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron);
 
             if (npc.type == NPCID.Plantera)
-                TryLoot(ItemType<Items.BossAndEventControl.Plantera_Sap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
+                TryLoot(ItemType<Items.Plantera_Sap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
 
             //Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)

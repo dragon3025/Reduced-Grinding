@@ -4,7 +4,7 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace ReducedGrinding.Items.BossAndEventControl
+namespace ReducedGrinding.Items
 {
     public class Plantera_Sap : ModItem
     {

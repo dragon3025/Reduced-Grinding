@@ -12,6 +12,9 @@ namespace ReducedGrinding.Global
         public static RecipeGroup baitCritterLow;
         public static RecipeGroup baitCritterMed;
         public static RecipeGroup baitCritterHigh;
+        public static RecipeGroup altBalloons;
+        public static RecipeGroup fartInAJarAccessory;
+        public static RecipeGroup horseshoeAccessory;
 
         public override void Unload()
         {
@@ -77,6 +80,35 @@ namespace ReducedGrinding.Global
                 ItemID.GoldWorm
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
+
+            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Honey Balloon or Fart Balloon.", new int[]
+            {
+                ItemID.HoneyBalloon,
+                ItemID.BalloonHorseshoeHoney,
+                ItemID.FartInABalloon,
+                ItemID.BalloonHorseshoeFart
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:altBalloons", altBalloons);
+
+            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Fart in a Jar Variant.", new int[]
+            {
+                ItemID.FartinaJar,
+                ItemID.FartInABalloon,
+                ItemID.BalloonHorseshoeFart
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:fartInAJarAccessory", fartInAJarAccessory);
+
+            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Lucky Horseshoe Variant.", new int[]
+            {
+                ItemID.BalloonHorseshoeFart,
+                ItemID.BalloonHorseshoeHoney,
+                ItemID.BalloonHorseshoeSharkron,
+                ItemID.BlueHorseshoeBalloon,
+                ItemID.ObsidianHorseshoe,
+                ItemID.WhiteHorseshoeBalloon,
+                ItemID.YellowHorseshoeBalloon
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:horseshoeAccessory", horseshoeAccessory);
         }
 
         public override void AddRecipes()
@@ -218,6 +250,42 @@ namespace ReducedGrinding.Global
             recipe.AddTile(TileID.LihzahrdAltar);
             recipe.Register();
 
+            //Tinker's Accessory Downgrading
+            recipe = Mod.CreateRecipe(ItemID.CloudinaBottle);
+            recipe.AddRecipeGroup("ReducedGrinding:fartInAJarAccessory");
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.LuckyHorseshoe);
+            recipe.AddRecipeGroup("ReducedGrinding:horseshoeAccessory");
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.ShinyRedBalloon);
+            recipe.AddRecipeGroup("ReducedGrinding:altBalloons");
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.SandstorminaBalloon);
+            recipe.AddIngredient(ItemID.YellowHorseshoeBalloon);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.BlizzardinaBalloon);
+            recipe.AddIngredient(ItemID.WhiteHorseshoeBalloon);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.CloudinaBalloon);
+            recipe.AddIngredient(ItemID.BlueHorseshoeBalloon);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.ObsidianSkull);
+            recipe.AddIngredient(ItemID.ObsidianHorseshoe);
+            recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
             //Other
             if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
             {
@@ -243,19 +311,6 @@ namespace ReducedGrinding.Global
                 recipe.AddTile(TileID.DemonAltar);
                 recipe.Register();
             }
-
-            //if (GetInstance<IOtherConfig>().CraftableKingAndQueenStatues)
-            //{
-            //    recipe = Mod.CreateRecipe(ItemID.KingStatue);
-            //    recipe.AddIngredient(ItemID.StoneBlock, 50);
-            //    recipe.AddTile(TileID.HeavyWorkBench);
-            //    recipe.Register();
-            //
-            //    recipe = Mod.CreateRecipe(ItemID.QueenStatue);
-            //    recipe.AddIngredient(ItemID.StoneBlock, 50);
-            //    recipe.AddTile(TileID.HeavyWorkBench);
-            //    recipe.Register();
-            //}
 
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
             {
