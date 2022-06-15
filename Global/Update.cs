@@ -124,7 +124,7 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (cancelInvasion)
+            if (cancelInvasion && Main.invasionX == Main.spawnTileX)
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)

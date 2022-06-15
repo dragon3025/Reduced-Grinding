@@ -363,6 +363,10 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
 
+        [Label("Sleep Potion Duration in Hours")]
+        [DefaultValue(12)]
+        public int SleepPotionDurationInHours;
+
         [Label("Multiplier for active Time Charm")]
         [Tooltip("" +
             "Time Charm is an item crafted at an Enchanted Sundial. Sleep Boost is multiplied by\n" +
@@ -388,7 +392,7 @@ namespace ReducedGrinding
 
         [Header("[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants")]
 
-        [Label("[i:438] King / Queen / Bomb / Heart / Star Statue")]
+        [Label("[i:438] King, Queen, Heart, Star, and Bomb Statue")]
         [Tooltip("" +
             "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril and 10\n" +
             "for Pearlwood")]
