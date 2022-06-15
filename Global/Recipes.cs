@@ -17,6 +17,7 @@ namespace ReducedGrinding.Global
         public static RecipeGroup horseshoeAccessory;
         public static RecipeGroup infectionMushroom;
         public static RecipeGroup infectionOre;
+        public static RecipeGroup dungeonBrick;
 
         public override void Unload()
         {
@@ -28,6 +29,7 @@ namespace ReducedGrinding.Global
             horseshoeAccessory = null;
             infectionMushroom = null;
             infectionOre = null;
+            dungeonBrick = null;
         }
 
         public override void AddRecipeGroups()
@@ -130,6 +132,14 @@ namespace ReducedGrinding.Global
                 ItemID.CrimtaneOre
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:infectionOre", infectionOre);
+
+            dungeonBrick = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Dungeon Brick.", new int[]
+            {
+                ItemID.BlueBrick,
+                ItemID.GreenBrick,
+                ItemID.PinkBrick
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:dungeonBrick", dungeonBrick);
         }
 
         public override void AddRecipes()
@@ -305,6 +315,53 @@ namespace ReducedGrinding.Global
             recipe = Mod.CreateRecipe(ItemID.ObsidianSkull);
             recipe.AddIngredient(ItemID.ObsidianHorseshoe);
             recipe.AddTile(TileID.TinkerersWorkbench);
+            recipe.Register();
+
+            //Dungeon Bricks
+
+            recipe = Mod.CreateRecipe(ItemID.BlueBrick);
+            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.GreenBrick);
+            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.PinkBrick);
+            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.BlueBrick);
+            recipe.AddIngredient(ItemID.BlueBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.GreenBrick);
+            recipe.AddIngredient(ItemID.GreenBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.PinkBrick);
+            recipe.AddIngredient(ItemID.PinkBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.BlueBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.BlueBrick);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.GreenBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.GreenBrick);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemID.PinkBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.PinkBrick);
+            recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
 
             //Other
