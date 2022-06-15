@@ -294,31 +294,31 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
-        [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nWarPotion")]
+        [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nGreater Battle Potion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
-        public float WarPotionMaxSpawnsMultiplier;
+        public float GreaterBattlePotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
-        public float WarPotionSpawnrateMultiplier;
+        public float GreaterBattlePotionSpawnrateMultiplier;
 
-        [Header("ChaosPotion")]
+        [Header("Super Battle Potion")]
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
-        public float ChaosPotionMaxSpawnsMultiplier;
+        public float SuperBattlePotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
         [DefaultValue(8f)]
-        public float ChaosPotionSpawnrateMultiplier;
+        public float SuperBattlePotionSpawnrateMultiplier;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
