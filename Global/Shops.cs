@@ -446,11 +446,11 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
+                itemsAdded++;
                 if (shopItem == 0)
                 {
                     continue;
                 }
-                itemsAdded++;
                 Main.travelShop[nextSlot] = shopItem;
                 nextSlot++;
                 if (shopItem == 2260)

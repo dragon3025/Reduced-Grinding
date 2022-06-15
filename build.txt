@@ -1,5 +1,5 @@
 author = Dragon3025
-version = 7.0.1
+version = 7.0.2
 displayName = Reduced Grinding (Beta)
 homepage = http://forums.terraria.org/index.php?threads/reduced-grinding.51082/
 hideCode = false
