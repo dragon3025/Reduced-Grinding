@@ -11,7 +11,7 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Plantera Sap");
-            Tooltip.SetDefault("Use in the Jungle to summon Plantera.");
+            Tooltip.SetDefault("Use in the Jungle to summon Plantera");
 
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;

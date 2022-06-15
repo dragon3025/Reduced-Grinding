@@ -9,7 +9,7 @@ namespace ReducedGrinding.Buffs
         {
             Main.buffNoTimeDisplay[Type] = false;
             DisplayName.SetDefault("Sleep");
-            Description.SetDefault("Increases time rate while sleeping.");
+            Description.SetDefault("Increases time rate while sleeping");
         }
     }
 }

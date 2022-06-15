@@ -11,7 +11,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Multi-Bobber Potion");
-            Tooltip.SetDefault("Use 10 Bobbers at a time.");
+            Tooltip.SetDefault("Use 10 Bobbers at a time");
         }
 
         public override void SetDefaults()

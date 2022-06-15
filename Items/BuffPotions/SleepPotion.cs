@@ -10,7 +10,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Sleep Potion");
-            Tooltip.SetDefault("Increases time rate while sleeping.");
+            Tooltip.SetDefault("Increases time rate while sleeping");
         }
 
         public override void SetDefaults()

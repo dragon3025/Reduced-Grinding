@@ -9,7 +9,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Super Battle Potion");
-            Tooltip.SetDefault("Massively increases enemy spawn rate.");
+            Tooltip.SetDefault("Massively increases enemy spawn rate");
         }
 
         public override void SetDefaults()

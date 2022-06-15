@@ -9,7 +9,7 @@ namespace ReducedGrinding.Buffs
         {
             Main.buffNoTimeDisplay[Type] = false;
             DisplayName.SetDefault("Greater Battle");
-            Description.SetDefault("Enemy spawn rate greatly increased.");
+            Description.SetDefault("Enemy spawn rate greatly increased");
         }
     }
 }

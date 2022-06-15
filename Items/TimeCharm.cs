@@ -13,7 +13,7 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Time Charm");
-            Tooltip.SetDefault("Use to increase time rate while sleeping.");
+            Tooltip.SetDefault("Use to increase time rate while sleeping");
         }
 
         public override void SetDefaults()
