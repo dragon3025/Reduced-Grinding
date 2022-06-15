@@ -5,7 +5,7 @@ using ReducedGrinding.Global;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
-    public class Multi_Bobber_Potion : ModItem
+    public class MultiBobberPotion : ModItem
     {
 
         public override void SetStaticDefaults()
@@ -26,7 +26,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.value = Terraria.Item.buyPrice(0, 0, 2);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.Multi_Bobber>();
+            Item.buffType = ModContent.BuffType<Buffs.MultiBobber>();
             Item.buffTime = 10800; //3 hours
         }
 

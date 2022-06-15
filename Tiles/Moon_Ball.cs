@@ -37,7 +37,7 @@ namespace ReducedGrinding.Tiles
 
 		public override void KillMultiTile(int x, int y, int frameX, int frameY)
 		{
-            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Moon_Ball>());
+            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.MoonBall>());
 		}
 
 		public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
@@ -65,7 +65,7 @@ namespace ReducedGrinding.Tiles
             Player player = Main.LocalPlayer;
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			player.cursorItemIconID = ModContent.ItemType<Items.Moon_Ball>();
+			player.cursorItemIconID = ModContent.ItemType<Items.MoonBall>();
 		}
 
 		public override void NumDust(int x, int y, bool fail, ref int num)

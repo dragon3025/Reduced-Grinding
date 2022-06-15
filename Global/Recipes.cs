@@ -15,12 +15,19 @@ namespace ReducedGrinding.Global
         public static RecipeGroup altBalloons;
         public static RecipeGroup fartInAJarAccessory;
         public static RecipeGroup horseshoeAccessory;
+        public static RecipeGroup infectionMushroom;
+        public static RecipeGroup infectionOre;
 
         public override void Unload()
         {
             baitCritterLow = null;
             baitCritterMed = null;
             baitCritterHigh = null;
+            altBalloons = null;
+            fartInAJarAccessory = null;
+            horseshoeAccessory = null;
+            infectionMushroom = null;
+            infectionOre = null;
         }
 
         public override void AddRecipeGroups()
@@ -81,7 +88,7 @@ namespace ReducedGrinding.Global
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
 
-            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Honey Balloon or Fart Balloon.", new int[]
+            altBalloons = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Honey Balloon or Fart Balloon.", new int[]
             {
                 ItemID.HoneyBalloon,
                 ItemID.BalloonHorseshoeHoney,
@@ -90,7 +97,7 @@ namespace ReducedGrinding.Global
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:altBalloons", altBalloons);
 
-            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Fart in a Jar Variant.", new int[]
+            fartInAJarAccessory = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Fart in a Jar Variant.", new int[]
             {
                 ItemID.FartinaJar,
                 ItemID.FartInABalloon,
@@ -98,7 +105,7 @@ namespace ReducedGrinding.Global
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:fartInAJarAccessory", fartInAJarAccessory);
 
-            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Lucky Horseshoe Variant.", new int[]
+            horseshoeAccessory = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Lucky Horseshoe Variant.", new int[]
             {
                 ItemID.BalloonHorseshoeFart,
                 ItemID.BalloonHorseshoeHoney,
@@ -109,6 +116,20 @@ namespace ReducedGrinding.Global
                 ItemID.YellowHorseshoeBalloon
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:horseshoeAccessory", horseshoeAccessory);
+
+            infectionMushroom = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Vile Mushroom or Vicious Mushroom.", new int[]
+            {
+                ItemID.VileMushroom,
+                ItemID.ViciousMushroom
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:infectionMushroom", infectionMushroom);
+
+            infectionOre = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Demonite Ore or Crimtane Ore.", new int[]
+            {
+                ItemID.DemoniteOre,
+                ItemID.CrimtaneOre
+            });
+            RecipeGroup.RegisterGroup("ReducedGrinding:infectionOre", infectionOre);
         }
 
         public override void AddRecipes()
@@ -289,7 +310,7 @@ namespace ReducedGrinding.Global
             //Other
             if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
             {
-                recipe = Mod.CreateRecipe(ItemType<Items.BuffPotions.Multi_Bobber_Potion>());
+                recipe = Mod.CreateRecipe(ItemType<Items.BuffPotions.MultiBobberPotion>());
                 recipe.AddIngredient(ItemID.BottledWater);
                 recipe.AddIngredient(ItemID.Waterleaf);
                 recipe.AddRecipeGroup("ReducedGrinding:baitCritterLow");
@@ -338,6 +359,18 @@ namespace ReducedGrinding.Global
                     recipe.AddTile(TileID.TinkerersWorkbench);
                 recipe.Register();
             }
+
+            recipe = Mod.CreateRecipe(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddIngredient(ItemID.BattlePotion);
+            recipe.AddRecipeGroup("ReducedGrinding:infectionMushroom");
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+
+            recipe = Mod.CreateRecipe(ItemType<Items.BuffPotions.SuperBattlePotion>());
+            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddRecipeGroup("ReducedGrinding:infectionOre");
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
 
             //Unused
 

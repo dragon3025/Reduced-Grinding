@@ -4,12 +4,12 @@ using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding
 {
-    [Label("Enemy Loot")]
+    [Label("Enemy Loot Vanilla")]
     public class AEnemyLootConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("These are drops that happen in vanilla. All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1299] Binoculars")]
         [Range(0, 10000)]
@@ -175,7 +175,37 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
 
-        [Header("Drops that don't happen in vanilla.")]
+        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
+        {
+            message = "Can't change settings in a server.";
+            return false;
+        }
+    }
+
+    [Label("Enemy Loot Non-Vanilla")]
+    public class BEnemyLootNonVanillaConfig : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
+
+        [Header("These are drops that never happen in vanilla, for example: Marble never drops from Marble Cave enemies. All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
+
+        [Label("[i:1309] Slime Staff From Slime King")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int SlimeStaffFromSlimeKing;
+
+        [Label("[i:2673] Truffle Worm from Duke Fishron")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int TrufflewormFromDukeFishron;
+
+        [Label("[i:4144] Terragrim from Most Hardmode Grab Bags")]
+        [Tooltip("From all Boss Bags that can drop Developer Items")]
+        [Range(0, 10000)]
+        [DefaultValue(60)]
+        public int TerragrimFromHardmodeGrabBag;
+
+        [Header("Non-Boss Loot")]
 
         [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
         [Range(0, 999)]
@@ -201,17 +231,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int SandstormInABottleFromSandElemental;
-
-        [Label("[i:2673] Truffle Worm from Duke Fishron")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TrufflewormFromDukeFishron;
-
-        [Label("[i:4144] Terragrim from Most Hardmode Grab Bags")]
-        [Tooltip("From all Boss Bags that can drop Developer Items")]
-        [Range(0, 10000)]
-        [DefaultValue(60)]
-        public int TerragrimFromHardmodeGrabBag;
 
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
@@ -285,7 +304,7 @@ namespace ReducedGrinding
         [Label("Spawn Rate Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
-        [DefaultValue(3f)]
+        [DefaultValue(4f)]
         public float WarPotionSpawnrateMultiplier;
 
         [Header("ChaosPotion")]
@@ -298,7 +317,7 @@ namespace ReducedGrinding
         [Label("Spawn Rate Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
-        [DefaultValue(4f)]
+        [DefaultValue(8f)]
         public float ChaosPotionSpawnrateMultiplier;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
@@ -313,10 +332,6 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("Craftable Rare Chests")]
-        [DefaultValue(false)]
-        public bool CraftableRareChests;
-
         [Label("Add Missing Rare Chest Items During World Generation")]
         [DefaultValue(true)]
         [Tooltip("" +
@@ -325,14 +340,14 @@ namespace ReducedGrinding
             "missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
-        [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
-
         [Label("[i:306] Gold Chest with [i:4144] Terragrim per World Generation")]
         [Tooltip("" +
             "After world generation, this mod will select this many Gold Chest, and insert a\n" +
             "Terragrim into it.")]
         [DefaultValue(1)]
         public int TerragrimChests;
+
+        [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
 
         [Label("Starting Boost Amount (In-Game Minutes Added)")]
         [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
@@ -421,11 +436,6 @@ namespace ReducedGrinding
 
         [Header("Other")]
 
-        [Label("Allow crafting [i:2889]Gold Critters")]
-        [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
-        [DefaultValue(false)]
-        public bool CraftableGoldCritters;
-
         [Label("Cancel Invasions When All Players Are Underground")]
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
@@ -444,12 +454,14 @@ namespace ReducedGrinding
         [DefaultValue(5)]
         public int InfectionPowderPerMushroom;
 
-        [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]
-        [Tooltip("" +
-            "In vanilla, there are 523 entries. 51% can be achieved before Hardmode. Set to 100% to disable.")]
-        [Increment(0.01f)]
-        [DefaultValue(1f)]
-        public float UniversalPylonBestiaryCompletionRate;
+        [Label("Allow crafting [i:2889]Gold Critters")]
+        [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
+        [DefaultValue(false)]
+        public bool CraftableGoldCritters;
+
+        [Label("Craftable Rare Chests")]
+        [DefaultValue(false)]
+        public bool CraftableRareChests;
 
         [Label("Craftable [i:4951] Universal Pylon Difficulty")]
         [Tooltip("" +
@@ -458,6 +470,13 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(3)]
         public int CraftableUniversalPylon;
+
+        [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]
+        [Tooltip("" +
+            "In vanilla, there are 523 entries. 51% can be achieved before Hardmode. Set to 100% to disable.")]
+        [Increment(0.01f)]
+        [DefaultValue(1f)]
+        public float UniversalPylonBestiaryCompletionRate;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

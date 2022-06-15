@@ -4,11 +4,11 @@ using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
-    public class Chaos_Potion : ModItem
+    public class SuperBattlePotion : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Chaos Potion");
+            DisplayName.SetDefault("Super Battle Potion");
             Tooltip.SetDefault("Massively increases enemy spawn rate.");
         }
 
@@ -21,7 +21,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Item.buyPrice(0, 0, 2, 34);
+            Item.value = Item.buyPrice(0, 0, 3);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
         }
@@ -34,18 +34,11 @@ namespace ReducedGrinding.Items.BuffPotions
         public override bool? UseItem(Terraria.Player player)
         {
             player.AddBuff(BuffID.Battle, 25200); //7 Hours
-            player.AddBuff(ModContent.BuffType<Buffs.War>(), 25200); //7 Hours
-            player.AddBuff(ModContent.BuffType<Buffs.Chaos>(), 25200); //7 Hours
+            player.AddBuff(ModContent.BuffType<Buffs.GreaterBattle>(), 25200); //7 Hours
+            player.AddBuff(ModContent.BuffType<Buffs.SuperBattle>(), 25200); //7 Hours
             return true;
         }
 
-        public override void AddRecipes()
-        {
-            CreateRecipe()
-                .AddIngredient(ModContent.ItemType<Items.BuffPotions.War_Potion>())
-                .AddIngredient(ItemID.PixieDust, 1)
-                .AddTile(TileID.Bottles)
-                .Register();
-        }
+        //Recipe is in Recipes.cs because it uses groups.
     }
 }

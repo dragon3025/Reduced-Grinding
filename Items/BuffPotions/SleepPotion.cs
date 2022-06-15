@@ -5,7 +5,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
-    public class Sleep_Potion : ModItem
+    public class SleepPotion : ModItem
     {
         public override void SetStaticDefaults()
         {

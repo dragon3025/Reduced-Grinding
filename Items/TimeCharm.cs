@@ -8,7 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items
 {
-    public class Time_Charm : ModItem
+    public class TimeCharm : ModItem
     {
         public override void SetStaticDefaults()
         {

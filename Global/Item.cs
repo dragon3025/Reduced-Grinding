@@ -119,10 +119,13 @@ namespace ReducedGrinding.Global
 
             //Boss Bag drops that don't happen in vanilla.
             if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron, ItemID.TruffleWorm);
+                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, ItemID.TruffleWorm);
 
             if (arg == ItemID.DestroyerBossBag || arg == ItemID.TwinsBossBag || arg == ItemID.SkeletronPrimeBossBag || arg == ItemID.PlanteraBossBag || arg == ItemID.GolemBossBag || arg == ItemID.FishronBossBag || arg == ItemID.MoonLordBossBag || arg == ItemID.FairyQueenBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().TerragrimFromHardmodeGrabBag, ItemID.Terragrim);
+                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().TerragrimFromHardmodeGrabBag, ItemID.Terragrim);
+
+            if (arg == ItemID.KingSlimeBossBag)
+                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, ItemID.SlimeStaff);
         }
     }
 }

@@ -65,7 +65,7 @@ namespace ReducedGrinding.Global
             if (npc.type == NPCID.DukeFishron)
             {
                 TryBossLoot(ItemID.FishronWings, GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease);
-                TryBossLoot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron);
+                TryBossLoot(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron);
             }
             if (npc.type == NPCID.HallowBoss)
             {
@@ -181,38 +181,41 @@ namespace ReducedGrinding.Global
 
             //Boss Drops
             if (npc.type == NPCID.DukeFishron)
-                TryBossLoot(ItemID.TruffleWorm, GetInstance<AEnemyLootConfig>().TrufflewormFromDukeFishron);
+                TryBossLoot(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron);
 
             if (npc.type == NPCID.Plantera)
-                TryLoot(ItemType<Items.Plantera_Sap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
+                TryLoot(ItemType<Items.PlanteraSap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
+
+            if (npc.type == NPCID.KingSlime)
+                TryBossLoot(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing);
 
             //Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)
             {
-                TryLootMaxMin(ItemID.DesertFossil, GetInstance<AEnemyLootConfig>().DesertFossilFromDuneSplicer);
-                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
-                TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
-                TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
-                TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().SandFromDuneSplicer);
+                TryLootMaxMin(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromDuneSplicer);
+                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
+                TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
+                TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
+                TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
             }
 
             if (npc.type == NPCID.TombCrawlerHead)
             {
-                TryLootMaxMin(ItemID.DesertFossil, GetInstance<AEnemyLootConfig>().DesertFossilFromTombCrawler);
-                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
-                TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
-                TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
-                TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<AEnemyLootConfig>().SandFromTombCrawler);
+                TryLootMaxMin(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromTombCrawler);
+                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
+                TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
+                TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
+                TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
             }
 
             if (npc.type == NPCID.SandElemental)
-                TryLoot(ItemID.SandstorminaBottle, GetInstance<AEnemyLootConfig>().SandstormInABottleFromSandElemental);
+                TryLoot(ItemID.SandstorminaBottle, GetInstance<BEnemyLootNonVanillaConfig>().SandstormInABottleFromSandElemental);
 
             if (npc.type == NPCID.SpikedIceSlime)
-                TryLoot(ItemID.SnowballLauncher, GetInstance<AEnemyLootConfig>().SnowballLauncherFromSpikedIceSlime);
+                TryLoot(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime);
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
-                TryLootMaxMin(ItemID.Marble, GetInstance<AEnemyLootConfig>().MarbleFromMarbleCaveEnemies);
+                TryLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies);
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

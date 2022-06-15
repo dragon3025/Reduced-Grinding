@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
 {
-    public class Plantera_Sap : ModItem
+    public class PlanteraSap : ModItem
     {
         public override void SetStaticDefaults()
         {

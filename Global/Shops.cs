@@ -23,7 +23,7 @@ namespace ReducedGrinding.Global
                 case NPCID.Wizard:
                     if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemType<Items.Moon_Ball>());
+                        shop.item[nextSlot].SetDefaults(ItemType<Items.MoonBall>());
                         nextSlot++;
                     }
                     break;
