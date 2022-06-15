@@ -21,33 +21,6 @@ namespace ReducedGrinding
 
     class ReducedGrinding : Mod
     {
-
-        /*public override void PostSetupContent() TODO
-		{
-			Mod censusMod = ModLoader.GetMod("Census");
-			if (censusMod != null)
-			{
-				if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant)
-					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "Summon with a \"Skull Call\".");
-				else
-					censusMod.Call("TownNPCCondition", NPCType("BoneMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
-
-				if (GetInstance<IOtherCustomNPCsConfig>().LootMerchant)
-					censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), "No conditions.");
-				else
-					censusMod.Call("TownNPCCondition", NPCType("LootMerchant"), " [c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
-
-				if (GetInstance<IOtherCustomNPCsConfig>().ChristmasElf)
-					censusMod.Call("TownNPCCondition", NPCType("Christmas_Elf"), "Defeat the Frost Legion.");
-				else
-					censusMod.Call("TownNPCCondition", NPCType("Christmas_Elf"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
-
-				if (GetInstance<ETravelingAndStationaryMerchantConfig>().StationaryMerchant)
-					censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "No conditions.");
-				else
-					censusMod.Call("TownNPCCondition", NPCType("StationaryMerchant"), "[c/FF7F7F:DISABLED IN THE CONFIGURATIONS.]");
-			}
-		}*/
         internal enum MessageType : byte
         {
             advanceMoonPhase,

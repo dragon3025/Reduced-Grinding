@@ -266,9 +266,6 @@ namespace ReducedGrinding.Global
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
-
-            //Mod luiafk = ModLoader.GetMod("Luiafk"); TODO
-            //if (GetInstance<IOtherCustomNPCsConfig>().BoneMerchant && !(luiafk != null && GetInstance<IOtherCustomNPCsConfig>().BoneMerchantDisabledWhenLuiafkIsInstalled))
         }
     }
 }
