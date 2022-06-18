@@ -284,8 +284,8 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("$Mods.ReducedGrinding.ItemTooltip.MoonBall")]
-        [Label("$Mods.ReducedGrinding.Config.Label.MoonBall")]
+        [Tooltip("Moon Ball")]
+        [Label("Wizard Sells Moon Ball")]
         [DefaultValue(true)]
         public bool WizardSellsMoonBall;
 
@@ -403,7 +403,10 @@ namespace ReducedGrinding
         [Header("Traveling Merchant")]
 
         [Label("Extra Chance Rolls For Items")]
-        [Tooltip("Shop inventories are limited to 40 items, unless another mod changes this limit")]
+        [Tooltip("" +
+            "Shop inventories are limited to 40 items, unless another mod changes this limit. This\n" +
+            "will roll item chances, but if it fails every item chance possible, it will skip the\n" +
+            "roll to prevent crashing from an infinite loop.")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantExtraRolls;

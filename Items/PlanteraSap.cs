@@ -23,7 +23,7 @@ namespace ReducedGrinding.Items
         {
             Item.width = 20;
             Item.height = 24;
-            Item.maxStack = 1;
+            Item.maxStack = 999;
             Item.value = 0;
             Item.rare = ItemRarityID.Lime;
             Item.useAnimation = 20;

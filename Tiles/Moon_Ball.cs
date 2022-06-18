@@ -30,7 +30,7 @@ namespace ReducedGrinding.Tiles
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Moon Ball");
 			AddMapEntry(new Color(191, 191, 255), name);
-			DustType = DustID.Cloud;
+			DustType = DustID.Marble;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			Main.tileLighted[Type] = true;
 		}

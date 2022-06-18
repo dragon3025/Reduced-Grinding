@@ -381,12 +381,12 @@ namespace ReducedGrinding.Global
             {
                 recipe = Mod.CreateRecipe(ItemID.VilePowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
                 recipe.AddIngredient(ItemID.VileMushroom);
-                recipe.AddTile(TileID.DemonAltar);
+                recipe.AddTile(TileID.Bottles);
                 recipe.Register();
 
                 recipe = Mod.CreateRecipe(ItemID.ViciousPowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
                 recipe.AddIngredient(ItemID.ViciousMushroom);
-                recipe.AddTile(TileID.DemonAltar);
+                recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
 

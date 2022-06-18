@@ -8,15 +8,15 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("{$Mods.ReducedGrinding.ItemName.MoonBall}");
-            Tooltip.SetDefault("{$Mods.ReducedGrinding.ItemTooltip.MoonBall}");
+            DisplayName.SetDefault("Moon Ball");
+            Tooltip.SetDefault("Advances the Moon Phase");
         }
 		
 		public override void SetDefaults()
 		{
             Item.width = 28;
             Item.height = 30;
-            Item.maxStack = 99;
+            Item.maxStack = 999;
 			Item.useTurn = true;
 			Item.autoReuse = true;
             Item.rare = ItemRarityID.Orange;

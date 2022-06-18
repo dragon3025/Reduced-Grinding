@@ -128,9 +128,9 @@ namespace ReducedGrinding.Global
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion is gone."), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find you, so they left."), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    Main.NewText("The invasion is gone.", new Color(255, 255, 0));
+                    Main.NewText("The invasion couldn't find you, so they left.", new Color(255, 255, 0));
             }
 
             if (boostTime)
