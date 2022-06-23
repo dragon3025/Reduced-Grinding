@@ -8,6 +8,7 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
+            // DisplayName.SetDefault("{$Mods.ReducedGrinding.ItemName.MoonBall}"); //I'm struggling to figure this out
             DisplayName.SetDefault("Moon Ball");
             Tooltip.SetDefault("Advances the Moon Phase");
         }

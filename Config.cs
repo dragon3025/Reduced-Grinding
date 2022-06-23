@@ -340,6 +340,12 @@ namespace ReducedGrinding
             "missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
+        [Label("[i:4281] Finch Staff From Tree Shaking")]
+        [Tooltip("" +
+            "Chance is 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.")]
+        [DefaultValue(300)]
+        public int FinchStaffFromTreeShaking;
+
         [Label("[i:306] Gold Chest with [i:4144] Terragrim per World Generation")]
         [Tooltip("" +
             "After world generation, this mod will select this many Gold Chest, and insert a\n" +
