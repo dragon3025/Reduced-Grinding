@@ -1,7 +1,11 @@
 Reduced Grinding 1.4
 
+	LINKS
+Open Source on Github: https://github.com/dragon3025/Reduced-Grinding
 Want to give Feedback / Report Bug? Post here: https://github.com/dragon3025/Reduced-Grinding/issues
+or on the Forum Page: https://forums.terraria.org/index.php?threads/reduced-grinding.51082/
 
+	INFO
 This mod isn't supposed to make the game too easy, but makes it so you don't have to spend huge amounts of time farming for loot. It may also add other conveniences. It's highly configurable, so you can adjust, enable, or disable features to your liking. Here's some of the features:
 
 [i:75] Extra chances for certain enemy drops (I considered drop rarity and enemy rarity).

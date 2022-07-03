@@ -284,10 +284,12 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Tooltip("Moon Ball")]
-        [Label("Wizard Sells Moon Ball")]
+        [Label("Moon Ball")]
+        [Tooltip("" +
+            "Advances the moon phase and will stop the Blood Moon when advancing to a new moon. Set\n" +
+            "to false to disable the recipe.")]
         [DefaultValue(true)]
-        public bool WizardSellsMoonBall;
+        public bool MoonBall;
 
         [Label("Plantera Sap Drop from Plantera")]
         [Tooltip("Summons Plantera. Chance of dropping is 1 / configuration_setting. Set to 0 to disable.")]
@@ -481,7 +483,7 @@ namespace ReducedGrinding
             "0: Disabled, 1: Crafted out of all other Pylons, 2: Same as 1, + crafted at Crystal\n" +
             "Ball instead of Tinker's Workshop, 3: Same as 2 + crafted with all Souls")]
         [Range(0, 3)]
-        [DefaultValue(3)]
+        [DefaultValue(1)]
         public int CraftableUniversalPylon;
 
         [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]

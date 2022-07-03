@@ -429,6 +429,16 @@ namespace ReducedGrinding.Global
             recipe.AddTile(TileID.Bottles);
             recipe.Register();
 
+            if (GetInstance<HOtherModdedItemsConfig>().MoonBall)
+            {
+                recipe = Recipe.Create(ItemType<Items.MoonBall>());
+                recipe.AddIngredient(ItemID.MeteoriteBar, 20);
+                recipe.AddIngredient(ItemID.FallenStar, 20);
+                recipe.AddIngredient(ItemID.Glass, 20);
+                recipe.AddTile(TileID.DemonAltar);
+                recipe.Register();
+            }
+
             //Unused
 
             //Golden Critters

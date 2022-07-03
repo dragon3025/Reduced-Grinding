@@ -20,13 +20,6 @@ namespace ReducedGrinding.Global
         {
             switch (type)
             {
-                case NPCID.Wizard:
-                    if (GetInstance<HOtherModdedItemsConfig>().WizardSellsMoonBall)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemType<Items.MoonBall>());
-                        nextSlot++;
-                    }
-                    break;
                 case NPCID.Merchant:
                     if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
                     {
