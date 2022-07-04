@@ -12,9 +12,6 @@ namespace ReducedGrinding.Global
     {
         public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
-            if (npc.lifeMax > 1 && npc.damage > 0 && !npc.friendly && npc.type != NPCID.Slimer && npc.value > 0f)
-                return;
-
             void TryLoot(int itemType, int denominator)
             {
                 if (denominator > 0)
