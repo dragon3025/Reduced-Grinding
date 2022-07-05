@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -11,6 +12,7 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             DisplayName.SetDefault("Sleep Potion");
             Tooltip.SetDefault("Increases time rate while sleeping");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

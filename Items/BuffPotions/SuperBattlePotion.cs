@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +11,7 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             DisplayName.SetDefault("Super Battle Potion");
             Tooltip.SetDefault("Massively increases enemy spawn rate");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -17,7 +19,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.width = 20;
             Item.height = 30;
             Item.maxStack = 30;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;

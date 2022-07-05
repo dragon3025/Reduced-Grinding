@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,6 +12,7 @@ namespace ReducedGrinding.Items
             // DisplayName.SetDefault("{$Mods.ReducedGrinding.ItemName.MoonBall}"); //I'm struggling to figure this out
             DisplayName.SetDefault("Moon Ball");
             Tooltip.SetDefault("Advances the Moon Phase");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 		
 		public override void SetDefaults()
@@ -20,13 +22,12 @@ namespace ReducedGrinding.Items
             Item.maxStack = 999;
 			Item.useTurn = true;
 			Item.autoReuse = true;
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.consumable = true;
             Item.value = Item.buyPrice(0, 10, 0, 0);
-			Item.rare = ItemRarityID.Orange;
 			Item.createTile = ModContent.TileType<Tiles.Moon_Ball>();
 		}
 	}

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Chat;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -14,6 +15,7 @@ namespace ReducedGrinding.Items
         {
             DisplayName.SetDefault("Time Charm");
             Tooltip.SetDefault("Use to increase time rate while sleeping");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

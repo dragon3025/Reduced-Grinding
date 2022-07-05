@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ReducedGrinding.Global;
@@ -12,6 +13,7 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             DisplayName.SetDefault("Multi-Bobber Potion");
             Tooltip.SetDefault("Use 10 Bobbers at a time");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
@@ -19,7 +21,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.width = 20;
             Item.height = 30;
             Item.maxStack = 30;
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;

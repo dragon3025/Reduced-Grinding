@@ -13,7 +13,7 @@ namespace ReducedGrinding.Items
             DisplayName.SetDefault("Plantera Sap");
             Tooltip.SetDefault("Use in the Jungle to summon Plantera");
 
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 3;
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
 
             NPCID.Sets.MPAllowedEnemies[NPCID.Plantera] = true;
@@ -47,13 +47,9 @@ namespace ReducedGrinding.Items
                 int type = NPCID.Plantera;
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
                     NPC.SpawnOnPlayer(player.whoAmI, type);
-                }
                 else
-                {
                     NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
-                }
             }
 
             return true;

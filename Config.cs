@@ -297,6 +297,7 @@ namespace ReducedGrinding
         public int PlanteraSapFromPlantera;
 
         [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nGreater Battle Potion")]
+
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
@@ -310,6 +311,7 @@ namespace ReducedGrinding
         public float GreaterBattlePotionSpawnrateMultiplier;
 
         [Header("Super Battle Potion")]
+
         [Label("Max Spawns Multiplier")]
         [Increment(.09f)]
         [Range(1f, 10f)]
@@ -321,6 +323,24 @@ namespace ReducedGrinding
         [Range(1f, 10f)]
         [DefaultValue(8f)]
         public float SuperBattlePotionSpawnrateMultiplier;
+
+        [Header("Staff of Difficulty. Disable all to disable the recipe.")]
+
+        [Label("Enable Switching to Journey")]
+        [DefaultValue(false)]
+        public bool StaffOfDifficultyJourney;
+
+        [Label("Enable Switching to Normal")]
+        [DefaultValue(false)]
+        public bool StaffOfDifficultyNormal;
+
+        [Label("Enable Switching to Expert")]
+        [DefaultValue(false)]
+        public bool StaffOfDifficultyExpert;
+
+        [Label("Enable Switching to Master")]
+        [DefaultValue(false)]
+        public bool StaffOfDifficultyMaster;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
