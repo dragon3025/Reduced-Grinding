@@ -299,13 +299,13 @@ namespace ReducedGrinding
         [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nGreater Battle Potion")]
 
         [Label("Max Spawns Multiplier")]
-        [Increment(.09f)]
+        [Increment(.1f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float GreaterBattlePotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
-        [Increment(.09f)]
+        [Increment(.1f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float GreaterBattlePotionSpawnrateMultiplier;
@@ -313,16 +313,26 @@ namespace ReducedGrinding
         [Header("Super Battle Potion")]
 
         [Label("Max Spawns Multiplier")]
-        [Increment(.09f)]
+        [Increment(.1f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float SuperBattlePotionMaxSpawnsMultiplier;
 
         [Label("Spawn Rate Multiplier")]
-        [Increment(.09f)]
+        [Increment(.1f)]
         [Range(1f, 10f)]
         [DefaultValue(8f)]
         public float SuperBattlePotionSpawnrateMultiplier;
+
+        [Header("")]
+
+        [Label("Max Spawn Effect on Invasion Size")]
+        [Tooltip("" +
+            "At 1, the invasion size will be multiplied by the max spawn multipliers by each buff.\n" +
+            "At 0, it will be multiplied by 1.")]
+        [Increment(0.01f)]
+        [DefaultValue(1f)]
+        public float ModBattlePotionMaxSpawnEffectOnInvasion;
 
         [Header("Staff of Difficulty. Disable all to disable the recipe.")]
 

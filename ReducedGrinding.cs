@@ -27,7 +27,11 @@ namespace ReducedGrinding
             noMoreAnglerResetsToday,
             dayTime,
             timeCharm,
-            seasonalDay
+            seasonalDay,
+            invasionWithGreaterBattleBuff,
+            invasionWithSuperBattleBuff,
+            instantInvasion,
+            celestialSigil
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -49,6 +53,18 @@ namespace ReducedGrinding
                     break;
                 case MessageType.seasonalDay:
                     Global.Update.seasonalDay = reader.ReadInt32();
+                    break;
+                case MessageType.invasionWithGreaterBattleBuff:
+                    Global.Update.invasionWithGreaterBattleBuff = reader.ReadBoolean();
+                    break;
+                case MessageType.invasionWithSuperBattleBuff:
+                    Global.Update.invasionWithSuperBattleBuff = reader.ReadBoolean();
+                    break;
+                case MessageType.instantInvasion:
+                    Global.Update.instantInvasion = reader.ReadBoolean();
+                    break;
+                case MessageType.celestialSigil:
+                    Global.Update.celestialSigil = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("ExampleMod: Unknown Message type: {0}", msgType);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
@@ -17,9 +18,15 @@ namespace ReducedGrinding.Global
         public static bool dayTime = true;
         public static bool timeCharm = false;
         public static int seasonalDay = 0;
+        public static bool invasionWithGreaterBattleBuff = false;
+        public static bool invasionWithSuperBattleBuff = false;
+        public static bool instantInvasion = false;
+        public static bool celestialSigil = false;
 
         public override void PostUpdateTime()
         {
+            int time = (int)Main.time;
+
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
 
             bool boostTime = true;
@@ -44,9 +51,23 @@ namespace ReducedGrinding.Global
             List<int> activePlayers = new() { };
 
             bool cancelInvasion = false;
-            if ((int)Main.time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+            int invasionType = Main.invasionType;
+            bool playerWithGreaterBattleBuff = false;
+            bool playerWithSuperBattleBuff = false;
+
+            if (invasionType == 0)
             {
-                int invasionType = Main.invasionType;
+                invasionWithGreaterBattleBuff = false;
+                invasionWithSuperBattleBuff = false;
+            }
+            else if (instantInvasion)
+            {
+                Main.invasionX = Main.spawnTileX;
+            }
+            instantInvasion = false;
+
+            if (time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+            {
                 if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
                     cancelInvasion = true;
             }
@@ -57,6 +78,12 @@ namespace ReducedGrinding.Global
                     continue;
 
                 activePlayers.Add(i);
+
+                if (!playerWithGreaterBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
+                    playerWithGreaterBattleBuff = true;
+
+                if (!playerWithSuperBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
+                    playerWithSuperBattleBuff = true;
 
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
@@ -132,6 +159,44 @@ namespace ReducedGrinding.Global
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
                     Main.NewText("The invasion couldn't find you, so they left.", new Color(255, 255, 0));
             }
+            else if (invasionType > 0)
+            {
+                float invasionBoost = 1f;
+                if (invasionWithGreaterBattleBuff != playerWithGreaterBattleBuff)
+                {
+                    if (!invasionWithGreaterBattleBuff)
+                    {
+                        invasionWithGreaterBattleBuff = true;
+                        invasionBoost *= GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier;
+                    }
+                    else
+                    {
+                        invasionWithGreaterBattleBuff = false;
+                        invasionBoost /= GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier;
+                    }
+                }
+                if (invasionWithSuperBattleBuff != playerWithSuperBattleBuff)
+                {
+                    if (!invasionWithSuperBattleBuff)
+                    {
+                        invasionWithSuperBattleBuff = true;
+                        invasionBoost *= GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier;
+                    }
+                    else
+                    {
+                        invasionWithSuperBattleBuff = false;
+                        invasionBoost /= GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier;
+                    }
+                }
+
+                float invasionBoostEffect = GetInstance<HOtherModdedItemsConfig>().ModBattlePotionMaxSpawnEffectOnInvasion;
+                invasionBoost = (1 * (1 - invasionBoostEffect)) + (invasionBoost * invasionBoostEffect);
+
+                Main.invasionSize = (int)(Main.invasionSize * invasionBoost);
+                Main.invasionSizeStart = (int)(Main.invasionSizeStart * invasionBoost);
+                Main.invasionProgress = (int)(Main.invasionProgress * invasionBoost);
+                Main.invasionProgressMax = (int)(Main.invasionProgressMax * invasionBoost);
+            }
 
             if (boostTime)
             {
@@ -158,8 +223,6 @@ namespace ReducedGrinding.Global
                     if (Main.rand.NextBool(anglerResetChance))
                     {
                         Main.AnglerQuestSwap();
-                        if (Main.netMode == NetmodeID.Server)
-                            NetMessage.SendData(MessageID.WorldData);
                         if (Main.netMode == NetmodeID.SinglePlayer)
                             Main.NewText("The Angler has another job for you!", 0, 255, 255);
                         else if (Main.netMode == NetmodeID.Server)
@@ -221,6 +284,13 @@ namespace ReducedGrinding.Global
                 dayTime = Main.dayTime;
             }
 
+            if (celestialSigil) //TO-DO Remove once 1.4.4 comes out
+            {
+                if (NPC.MoonLordCountdown > 720)
+                    NPC.MoonLordCountdown = 720;
+            }
+            celestialSigil = false;
+
             if (Main.netMode == NetmodeID.Server)
             {
                 ModPacket packet = Mod.GetPacket();
@@ -236,6 +306,18 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
                 packet.Write(seasonalDay);
+
+                packet.Write((byte)ReducedGrinding.MessageType.invasionWithGreaterBattleBuff);
+                packet.Write(invasionWithGreaterBattleBuff);
+
+                packet.Write((byte)ReducedGrinding.MessageType.invasionWithSuperBattleBuff);
+                packet.Write(invasionWithSuperBattleBuff);
+
+                packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
+                packet.Write(instantInvasion);
+
+                packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
+                packet.Write(celestialSigil);
 
                 packet.Send();
                 NetMessage.SendData(MessageID.WorldData);
