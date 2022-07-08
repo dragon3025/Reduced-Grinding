@@ -137,7 +137,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgunIncrease;
 
-        [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. This is done in attempt to imitate the upcoming 1.4.4 update)")]
+        [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. Pirate ships will always drop 1 Golden Furniture item. This is done in attempt to imitate the upcoming 1.4.4 update)")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
 
         [Label("[i:905] Coin Gun (Hover for more info)")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
@@ -442,9 +442,9 @@ namespace ReducedGrinding
 
         [Label("Extra Chance Rolls For Items")]
         [Tooltip("" +
-            "Shop inventories are limited to 40 items, unless another mod changes this limit. This\n" +
-            "will roll item chances, but if it fails every item chance possible, it will skip the\n" +
-            "roll to prevent crashing from an infinite loop.")]
+            "Shop inventories are limited to 40 items, unless you're using the Shop Expander mod.\n" +
+            "This will roll item chances, but if it fails every item chance possible, it will skip\n" +
+            "the roll to prevent crashing from an infinite loop.")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantExtraRolls;

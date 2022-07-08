@@ -20,6 +20,8 @@ This mod isn't supposed to make the game too easy, but makes it so you don't hav
 [i:75] Holiday Timeline. It loops through a larger portion of days, Halloween, a shorter portion of day(s), then Christmas.
 [i:75] Cancel Invasions when all players go underground.
 [i:75] Craftable Pylon. Can be disabled or set to 1 of 3 difficulties.
+[i:75] Temporary until 1.4.4 comes out: Celestial Sigil is crafted with 12 of each fragment and summons the Moon Lord in 12 seconds.
+[i:75] Temporary until 1.4.4 comes out: Pirate drops are twice as likely. Pirate Ships will always drop 1 Golden Furniture item.
 
 
 Off / 0% by Default:
@@ -27,3 +29,4 @@ Off / 0% by Default:
 [i:75] Extra rolls for Traveling Merchant shop items.
 [i:75] Extra increased chance for Martian Paintings and Moon Lord Painting from Traveling Merchant.
 [i:75] Reduce Bestiary requirement for Universal Pylon.
+[i:75] Staff of Difficulty. Changes difficulty settings.

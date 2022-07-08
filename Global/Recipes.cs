@@ -4,7 +4,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace ReducedGrinding.Global
+namespace ReducedGrinding.GlobalRecipes
 {
 
     class Recipes : ModSystem
@@ -144,17 +144,8 @@ namespace ReducedGrinding.Global
 
         public override void AddRecipes()
         {
-            //Easier Celestial Sigil TO-DO (Remove once 1.4.4 comes out).
-            Recipe recipe = Recipe.Create(ItemID.CelestialSigil);
-            recipe.AddIngredient(ItemID.FragmentSolar, 12);
-            recipe.AddIngredient(ItemID.FragmentVortex, 12);
-            recipe.AddIngredient(ItemID.FragmentNebula, 12);
-            recipe.AddIngredient(ItemID.FragmentStardust, 12);
-            recipe.AddTile(TileID.LunarCraftingStation);
-            recipe.Register();
-
             //Infection Key Switching
-            recipe = Recipe.Create(ItemID.CrimsonKey);
+            Recipe recipe = Recipe.Create(ItemID.CrimsonKey);
             recipe.AddIngredient(ItemID.CorruptionKey);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
@@ -377,19 +368,6 @@ namespace ReducedGrinding.Global
                 recipe.Register();
             }
 
-            if (GetInstance<IOtherConfig>().InfectionPowderPerMushroom > 5)
-            {
-                recipe = Recipe.Create(ItemID.VilePowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
-                recipe.AddIngredient(ItemID.VileMushroom);
-                recipe.AddTile(TileID.Bottles);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.ViciousPowder, GetInstance<IOtherConfig>().InfectionPowderPerMushroom);
-                recipe.AddIngredient(ItemID.ViciousMushroom);
-                recipe.AddTile(TileID.Bottles);
-                recipe.Register();
-            }
-
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
             {
                 recipe = Recipe.Create(ItemID.TeleportationPylonVictory);
@@ -581,5 +559,41 @@ namespace ReducedGrinding.Global
                 recipe.Register();
             }
         }
+
+
+        public override void PostAddRecipes()
+        {
+            for (int i = 0; i < Recipe.numRecipes; i++)
+            {
+                Recipe recipe = Main.recipe[i];
+
+                if (recipe.HasResult(ItemID.CelestialSigil)) //Easier Celestial Sigil TO-DO (Remove once 1.4.4 comes out).
+                {
+                    int[] fragments = new int[4]
+                    {
+                        ItemID.FragmentNebula,
+                        ItemID.FragmentSolar,
+                        ItemID.FragmentStardust,
+                        ItemID.FragmentVortex
+                    };
+                    foreach (int j in fragments)
+                    {
+                        recipe.RemoveIngredient(j);
+                        recipe.AddIngredient(j, 12);
+                    }
+                }
+
+                int infectionPowderPerMushroom = GetInstance<IOtherConfig>().InfectionPowderPerMushroom;
+                if (infectionPowderPerMushroom > 5)
+                {
+                    if (recipe.HasResult(ItemID.VilePowder))
+                        recipe.ReplaceResult(ItemID.VilePowder, infectionPowderPerMushroom);
+
+                    if (recipe.HasResult(ItemID.ViciousPowder))
+                        recipe.ReplaceResult(ItemID.ViciousPowder, infectionPowderPerMushroom);
+                }
+            }
+        }
+
     }
 }
