@@ -376,7 +376,8 @@ namespace ReducedGrinding
 
         [Label("[i:4281] Finch Staff From Tree Shaking")]
         [Tooltip("" +
-            "Chance is 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.")]
+            "Chance is 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.\n" +
+            "Set to 0 to disable.")]
         [DefaultValue(300)]
         public int FinchStaffFromTreeShaking;
 
