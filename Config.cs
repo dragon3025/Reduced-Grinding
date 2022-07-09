@@ -126,7 +126,9 @@ namespace ReducedGrinding
         public int RottenChunkAndVertebra;
 
         [Label("[i:1309] Slime Staff (Hover for more info)")]
-        [Tooltip("This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that drop it.")]
+        [Tooltip("" +
+            "This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that\n" +
+            "drop it. If world difficulty is normal, then this multiplied by (10/7)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SlimeStaffIncrease;

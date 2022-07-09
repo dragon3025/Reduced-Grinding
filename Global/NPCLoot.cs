@@ -119,6 +119,8 @@ namespace ReducedGrinding.Global
                     slimestaffmultiplier = 1;
                 if (npc.type == NPCID.SandSlime)
                     slimestaffmultiplier = 80;
+                if (Main.GameMode == GameModeID.Normal)
+                    slimestaffmultiplier = slimestaffmultiplier * 10 / 7;
                 TryLoot(ItemID.SlimeStaff, GetInstance<AEnemyLootConfig>().SlimeStaffIncrease * slimestaffmultiplier);
             }
             if (npc.type == NPCID.SkeletonSniper)

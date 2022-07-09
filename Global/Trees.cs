@@ -9,12 +9,15 @@ namespace ReducedGrinding.GlobalTrees
     public sealed class ReducedGrindingTrees : GlobalItem
 	{
 		public override void OnSpawn(Item item, IEntitySource source) {
-			if (Main.rand.NextBool(GetInstance<IOtherConfig>().FinchStaffFromTreeShaking))
+			if (source is EntitySource_ShakeTree)
 			{
-				if (source is EntitySource_ShakeTree)
+				if (GetInstance<IOtherConfig>().FinchStaffFromTreeShaking > 0)
 				{
-					var newSource = item.GetSource_FromThis();
-					Item.NewItem(newSource, item.Center, ItemID.BabyBirdStaff);
+					if (Main.rand.NextBool(GetInstance<IOtherConfig>().FinchStaffFromTreeShaking))
+					{
+						var newSource = item.GetSource_FromThis();
+						Item.NewItem(newSource, item.Center, ItemID.BabyBirdStaff);
+					}
 				}
 			}
 		}

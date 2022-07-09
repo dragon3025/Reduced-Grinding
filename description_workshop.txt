@@ -1,4 +1,4 @@
-Reduced Grinding 1.4
+Reduced Grinding
 
 	LINKS
 Open Source on Github: https://github.com/dragon3025/Reduced-Grinding
