@@ -94,6 +94,11 @@ namespace ReducedGrinding.Global
                             shop.item[nextSlot].SetDefaults(ItemID.TeleportationPylonVictory);
                             nextSlot++;
                         }
+                        if (GetInstance<HOtherModdedItemsConfig>().BestiaryTrophy && bestiaryProgressReport.CompletionPercent >= 1f)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemType<Items.BestiaryTrophy>());
+                            nextSlot++;
+                        }
                     }
                     break;
             }

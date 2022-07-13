@@ -61,17 +61,17 @@ namespace ReducedGrinding.Global
             //Boss Drops
             if (npc.type == NPCID.DukeFishron)
             {
-                TryBossLoot(ItemID.FishronWings, GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease);
+                TryBossLoot(ItemID.FishronWings, (int)(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease * 3f / 2f));
                 TryBossLoot(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron);
             }
             if (npc.type == NPCID.HallowBoss)
             {
-                TryBossLoot(ItemID.RainbowWings, GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease);
-                TryBossLoot(ItemID.SparkleGuitar, GetInstance<AEnemyLootConfig>().StellarTuneIncrease);
+                TryBossLoot(ItemID.RainbowWings, (int)(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease * 3f / 2f));
+                TryBossLoot(ItemID.SparkleGuitar, (int)(GetInstance<AEnemyLootConfig>().StellarTuneIncrease * 5f / 2f));
                 TryBossLoot(ItemID.RainbowCursor, GetInstance<AEnemyLootConfig>().RainbowCursor);
             }
             if (npc.type == NPCID.EyeofCthulhu)
-                TryBossLoot(ItemID.Binoculars, GetInstance<AEnemyLootConfig>().BinocularsIncrease);
+                TryBossLoot(ItemID.Binoculars, (int)(GetInstance<AEnemyLootConfig>().BinocularsIncrease * 4f / 3f));
 
             //Non-Boss Drops
 
@@ -109,36 +109,66 @@ namespace ReducedGrinding.Global
             if (npc.type == NPCID.FireImp)
                 TryLoot(ItemID.PlumbersHat, GetInstance<AEnemyLootConfig>().PlumbersHatIncrease);
             if (npc.type == NPCID.ChaosElemental)
-                TryLoot(ItemID.RodofDiscord, GetInstance<AEnemyLootConfig>().RodofDiscordIncrease);
+            {
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                    multiplier = 5f / 4f;
+                TryLoot(ItemID.RodofDiscord, (int)(GetInstance<AEnemyLootConfig>().RodofDiscordIncrease * multiplier));
+            }
             if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
                 TryLoot(ItemID.LizardEgg, GetInstance<AEnemyLootConfig>().LizardEggIncrease);
             if (NPC_IsAnyTypes(-4, 1, 16, 138, 141, 147, 184, 187, 433, 204, 302, 333, 334, 335, 336, 535, 658, 659, 660, -6, -7, -8, -9, 537)) //Slimestaff Slimes
             {
-                int slimestaffmultiplier = 100;
+                float slimestaffmultiplier = 100f;
                 if (npc.type == NPCID.Pinky)
-                    slimestaffmultiplier = 1;
+                    slimestaffmultiplier = 1f;
                 if (npc.type == NPCID.SandSlime)
-                    slimestaffmultiplier = 80;
+                    slimestaffmultiplier = 80f;
                 if (Main.GameMode == GameModeID.Normal)
-                    slimestaffmultiplier = slimestaffmultiplier * 10 / 7;
-                TryLoot(ItemID.SlimeStaff, GetInstance<AEnemyLootConfig>().SlimeStaffIncrease * slimestaffmultiplier);
+                    slimestaffmultiplier *= 10f / 7f;
+                TryLoot(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffIncrease * slimestaffmultiplier));
+                if (GetInstance<HOtherModdedItemsConfig>().SlimeTrophy)
+                {
+                    slimestaffmultiplier *= 70f;
+                    TryLoot(ItemType<Items.SlimeTrophy>(), (int)slimestaffmultiplier);
+                }
             }
             if (npc.type == NPCID.SkeletonSniper)
             {
-                TryLoot(ItemID.RifleScope, GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease);
-                TryLoot(ItemID.SniperRifle, GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease);
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                    multiplier = 22f / 144f / (1f / 12f);
+                TryLoot(ItemID.RifleScope, (int)(GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease * multiplier));
+                TryLoot(ItemID.SniperRifle, (int)(GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease * multiplier));
             }
             if (npc.type == NPCID.TacticalSkeleton)
             {
-                TryLoot(ItemID.SWATHelmet, GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease);
-                TryLoot(ItemID.TacticalShotgun, GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease);
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                {
+                    multiplier = 23f / 144f / (1f / 12f);
+                }
+                TryLoot(ItemID.SWATHelmet, (int)(GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease * multiplier));
+                TryLoot(ItemID.TacticalShotgun, (int)(GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease * multiplier));
             }
             if (npc.type == NPCID.SkeletonCommando)
-                TryLoot(ItemID.RocketLauncher, GetInstance<AEnemyLootConfig>().RocketLauncherIncrease);
+            {
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                    multiplier = 35f / 324f / (1f / 18f);
+                TryLoot(ItemID.RocketLauncher, (int)(GetInstance<AEnemyLootConfig>().RocketLauncherIncrease * multiplier));
+            }
             if (npc.type == NPCID.Paladin)
             {
-                TryLoot(ItemID.PaladinsHammer, GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease);
-                TryLoot(ItemID.PaladinsShield, GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease);
+                float PaladinsHammerIncreasemultiplier = 1f;
+                float PaladinsShieldIncreasemultiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                {
+                    PaladinsHammerIncreasemultiplier = 22f / 225f / (1f / 15f);
+                    PaladinsShieldIncreasemultiplier = 763f / 5625f / (7f / 75f);
+                }
+                TryLoot(ItemID.PaladinsHammer, (int)(GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease * PaladinsHammerIncreasemultiplier));
+                TryLoot(ItemID.PaladinsShield, (int)(GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease * PaladinsShieldIncreasemultiplier));
             }
             if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.DevourerHead || npc.type == NPCID.Corruptor)
                 TryLoot(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);

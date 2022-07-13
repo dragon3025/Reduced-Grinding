@@ -9,20 +9,24 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("These are drops that happen in vanilla. All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("These are extra item drop chances from enemy loot. Chance = 1 / configuration_setting. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1299] Binoculars")]
+        [Tooltip("If world difficulty is normal, this is multiplied by (4/3)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BinocularsIncrease;
 
         [Label("[i:4823] Empress and [i:2609] Fishron Wings")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("" +
+            "This sets the same drop rate for each. If the world difficulty is normal, this is\n" +
+            "multiplied by (3/2)")]
         [Range(0, 10000)]
         [DefaultValue(7)]
         public int EmpressAndFishronWingsIncrease;
 
         [Label("[i:4715] Stellar Tune")]
+        [Tooltip("If world difficulty is normal, this is multiplied by (5/2)")]
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int StellarTuneIncrease;
@@ -83,11 +87,13 @@ namespace ReducedGrinding
         public int MarrowIncrease;
 
         [Label("[i:1513] Paladin's Hammer")]
+        [Tooltip("If world difficulty is normal, this is multiplied by 146.67%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsHammerIncrease;
 
         [Label("[i:938] Paladin's Shield")]
+        [Tooltip("If world difficulty is normal, this is multiplied by 145.33%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsShieldIncrease;
@@ -104,18 +110,21 @@ namespace ReducedGrinding
         public int PresentIncrease;
 
         [Label("[i:1300] Rifle Scope and [i:1254]Sniper Rifle")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
+            "multiplied by 183.33%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RifleScopeAndSniperRifleIncrease;
 
         [Range(0, 10000)]
         [Label("[i:759] Rocket Launcher")]
+        [Tooltip("If world difficulty is normal, this is multiplied by 194.44%")]
         [DefaultValue(0)]
         public int RocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
+        [Tooltip("If world difficulty is normal, this is multiplied by (5/4)")]
         [DefaultValue(0)]
         public int RodofDiscordIncrease;
 
@@ -128,13 +137,14 @@ namespace ReducedGrinding
         [Label("[i:1309] Slime Staff (Hover for more info)")]
         [Tooltip("" +
             "This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that\n" +
-            "drop it. If world difficulty is normal, then this multiplied by (10/7)")]
+            "drop it. If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SlimeStaffIncrease;
 
         [Label("[i:1514] SWAT Helmet and [i:679]Tactical Shotgun")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
+            "multiplied by 191.66%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgunIncrease;
@@ -189,7 +199,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("These are drops that never happen in vanilla, for example: Marble never drops from Marble Cave enemies. All configurations in this section will add an (1 / configuration_setting) chance to drop. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("These are item drop chances from enemy loot. These drop chances don't happen in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.\n\nBoss Loot")]
 
         [Label("[i:1309] Slime Staff From Slime King")]
         [Range(0, 10000)]
@@ -289,12 +299,27 @@ namespace ReducedGrinding
         [Label("Moon Ball")]
         [Tooltip("" +
             "Advances the moon phase and will stop the Blood Moon when advancing to a new moon. Set\n" +
-            "to false to disable the recipe.")]
+            "to false to disable the recipe. Crafted out of Meteorite, Glass, and Fallen Star.")]
         [DefaultValue(true)]
         public bool MoonBall;
 
+        [Label("Slime Trophy")]
+        [Tooltip("" +
+            "This trophy's drop chances are the same as Slime Staff in vanilla. Slime staff is\n" +
+            "sometimes seen as a trophy item, so this is an alternative if Slime Staff's drop rates\n" +
+            "are increased.")]
+        [DefaultValue(true)]
+        public bool SlimeTrophy;
+
+        [Label("Bestiary Trophy")]
+        [Tooltip("" +
+            "If the Bestiary is 100% complete, the Zoologoist will sell this Trophy. This acts as a\n" +
+            "replacement reward if the Universal Pylon is set to be craftable.")]
+        [DefaultValue(true)]
+        public bool BestiaryTrophy;
+
         [Label("Plantera Sap Drop from Plantera")]
-        [Tooltip("Summons Plantera. Chance of dropping is 1 / configuration_setting. Set to 0 to disable.")]
+        [Tooltip("Summons Plantera. Chance = 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
@@ -376,7 +401,7 @@ namespace ReducedGrinding
 
         [Label("[i:4281] Finch Staff From Tree Shaking")]
         [Tooltip("" +
-            "Chance is 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.\n" +
+            "Chance = 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.\n" +
             "Set to 0 to disable.")]
         [DefaultValue(300)]
         public int FinchStaffFromTreeShaking;
@@ -453,25 +478,25 @@ namespace ReducedGrinding
         public int TravelingMerchantExtraRolls;
 
         [Label("[i:3059] Christmas Paintings Extra Chance")]
-        [Tooltip("Chance is 1 / configuration_setting")]
+        [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(13)]
         public int TravelingMerchantChristmasChance;
 
         [Label("[i:2867] Martian Paintings Extra Chance")]
-        [Tooltip("Chance is 1 / configuration_setting")]
+        [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantMartianChance;
 
         [Label("[i:3596] Not a Kid, nor a Squid Extra Chance")]
-        [Tooltip("Chance is 1 / configuration_setting")]
+        [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantNotAKidNorASquidChance;
 
         [Label("[i:2223] Pulse Bow Extra Chance")]
-        [Tooltip("Chance is 1 / configuration_setting")]
+        [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
