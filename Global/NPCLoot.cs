@@ -12,6 +12,8 @@ namespace ReducedGrinding.Global
     {
         public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
+
+            #region Functions
             void TryLoot(int itemType, int denominator)
             {
                 if (denominator > 0)
@@ -56,9 +58,10 @@ namespace ReducedGrinding.Global
                     }
                 }
                 return matches;
-            }
+            } 
+            #endregion
 
-            //Boss Drops
+            #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
             {
                 TryBossLoot(ItemID.FishronWings, (int)(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease * 3f / 2f));
@@ -72,10 +75,11 @@ namespace ReducedGrinding.Global
             }
             if (npc.type == NPCID.EyeofCthulhu)
                 TryBossLoot(ItemID.Binoculars, (int)(GetInstance<AEnemyLootConfig>().BinocularsIncrease * 4f / 3f));
+            #endregion
 
-            //Non-Boss Drops
+            #region Non-Boss Drops
 
-            //Town NPC Drops
+            #region Town NPC Drops
             if (npc.type == NPCID.Guide)
             {
                 npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.GreenCap && drop.condition is Conditions.NamedNPC npcNameCondition && npcNameCondition.neededName == "Andrew");
@@ -100,8 +104,9 @@ namespace ReducedGrinding.Global
                 TryLoot(ItemID.TaxCollectorsStickOfDoom, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
             if (npc.type == NPCID.Princess)
                 TryLoot(ItemID.PrincessWeapon, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+            #endregion
 
-            //Basic NPCs
+            #region Basic NPCs
             if (npc.type == NPCID.SkeletonArcher)
                 TryLoot(ItemID.Marrow, GetInstance<AEnemyLootConfig>().MarrowIncrease);
             if (npc.type == NPCID.ArmoredSkeleton)
@@ -181,8 +186,9 @@ namespace ReducedGrinding.Global
                 TryLoot(ItemID.Vertebrae, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
             if (npc.type == NPCID.DemonEye || npc.type == NPCID.DemonEye2 || npc.type == NPCID.CataractEye || npc.type == NPCID.CataractEye2 || npc.type == NPCID.SleepyEye || npc.type == NPCID.SleepyEye2 || npc.type == NPCID.DialatedEye || npc.type == NPCID.DialatedEye2 || npc.type == NPCID.GreenEye || npc.type == NPCID.GreenEye2 || npc.type == NPCID.PurpleEye || npc.type == NPCID.PurpleEye2 || npc.type == NPCID.DemonEyeOwl || npc.type == NPCID.DemonEyeSpaceship || npc.type == NPCID.WanderingEye)
                 TryLoot(ItemID.Lens, GetInstance<AEnemyLootConfig>().LensIncrease);
+            #endregion
 
-            //Pirate Drops
+            #region Pirates
             if (NPC_IsAnyTypes(212, 213, 214, 215, 216, 491)) //All Human Pirates and Flying Dutchman
             {
                 //
@@ -210,10 +216,12 @@ namespace ReducedGrinding.Global
                 TryLoot(ItemID.GoldRing, (int)(GetInstance<AEnemyLootConfig>().GoldRingBaseIncrease * denominator_multiplier));
                 TryLoot(ItemID.Cutlass, (int)(GetInstance<AEnemyLootConfig>().CutlassBaseIncrease * denominator_multiplier));
             }
+            #endregion
+            #endregion
 
-            //Drops that don't happen in vanilla
+            #region Drops That Don't Happen in Vanilla
 
-            //Boss Drops
+            #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
                 TryBossLoot(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron);
 
@@ -222,8 +230,9 @@ namespace ReducedGrinding.Global
 
             if (npc.type == NPCID.KingSlime)
                 TryBossLoot(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing);
+            #endregion
 
-            //Non-Boss Drops
+            #region Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)
             {
                 TryLootMaxMin(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromDuneSplicer);
@@ -249,7 +258,9 @@ namespace ReducedGrinding.Global
                 TryLoot(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime);
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
-                TryLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies);
+                TryLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies); 
+            #endregion
+            #endregion
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)

@@ -1,32 +1,27 @@
 Reduced Grinding
 
-	LINKS
-Open Source on Github: https://github.com/dragon3025/Reduced-Grinding
-Want to give Feedback / Report Bug? Post here: https://github.com/dragon3025/Reduced-Grinding/issues
-or on the Forum Page: https://forums.terraria.org/index.php?threads/reduced-grinding.51082/
+====INFO====
 
-	INFO
-This mod isn't supposed to make the game too easy, but makes it so you don't have to spend huge amounts of time farming for loot. It may also add other conveniences. It's highly configurable, so you can adjust, enable, or disable features to your liking. Here's some of the features:
+Open Source at GitHub. Report issues there or at home page.
 
-[i:75] Extra chances for certain enemy drops (I considered drop rarity and enemy rarity).
-[i:75] Sandstorm in a Bottle from Sand Elemental and Terragrim from Boss Bags that can drop Developer Items.
-[i:75] Multi Bobber Potion: Crafted out 3 bait critters each with a different tier of fishing power. 10 Bobbers by default.
-[i:75] You can set Angler to reset after all Angler Armor-wearing players have finished their quest. By default: 0% before Hardmode and 50% after Hardmode.
-[i:75] Moonball, sold by Wizard, which advances the Moon Phase. It can cancel the Blood Moon.
-[i:75] Greater Battle Potion and Super Battle Potion to increase enemy spawns.
-[i:75] After world generation, this mod will look for rare items that may possible not generate and add 1 of each to the world. Example: Pyramid Items.
-[i:75] Sleep Boost: Increases sleep rate. Default amount is also increased if there's a player that used a new Sleep Potion. There's also a new Time Charm, which is crafted at an Enchanted Sundial. Toggle it on to increase this amount even more.
-[i:75] Extra increased chance for Christmas Paintings and Pulse Bow from Traveling Merchant.
-[i:75] Holiday Timeline. It loops through a larger portion of days, Halloween, a shorter portion of day(s), then Christmas.
-[i:75] Cancel Invasions when all players go underground.
-[i:75] Craftable Pylon. Can be disabled or set to 1 of 3 difficulties.
-[i:75] Temporary until 1.4.4 comes out: Celestial Sigil is crafted with 12 of each fragment and summons the Moon Lord in 12 seconds.
-[i:75] Temporary until 1.4.4 comes out: Pirate drops are twice as likely. Pirate Ships will always drop 1 Golden Furniture item.
+This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info).
 
+- Item chances for certain enemy drops. Item values scale to new drop rates by default.
+- Potion for using 10-Bobbers.
+- A chance for Angler to reset. Default starts at 0%, but later increases.
+- Moonball to advance Moon Phase or skip the Blood Moon.
+- Greater + Super Battle Potion to increase enemy spawns.
+- Faster time flow while sleeping.
+- Holiday timeline for periodic Halloween and Christmas days.
+- Cancel Invasions when all players go underground.
+- Helpful recipes including Universal Plyon.
 
-Off / 0% by Default:
+====TEMPORARY UNTIL 1.4.4:====
 
-[i:75] Extra rolls for Traveling Merchant shop items.
-[i:75] Extra increased chance for Martian Paintings and Moon Lord Painting from Traveling Merchant.
-[i:75] Reduce Bestiary requirement for Universal Pylon.
-[i:75] Staff of Difficulty. Changes difficulty settings.
+- Celestial Sigil is crafted with 12 of each fragment and summons the Moon Lord in 12 seconds.
+- Pirate drops are twice as likely. Pirate Ships will always drop 1 Golden Furniture item.
+
+====OFF BY DEFAULT====
+
+- Reduce Bestiary requirement for Universal Pylon.
+- Staff of Difficulty. Changes difficulty settings.

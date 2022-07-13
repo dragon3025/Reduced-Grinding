@@ -144,7 +144,7 @@ namespace ReducedGrinding.GlobalRecipes
 
         public override void AddRecipes()
         {
-            //Infection Key Switching
+            #region Infection Key Switching
             Recipe recipe = Recipe.Create(ItemID.CrimsonKey);
             recipe.AddIngredient(ItemID.CorruptionKey);
             recipe.AddTile(TileID.CrystalBall);
@@ -154,8 +154,9 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.CrimsonKey);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
+            #endregion
 
-            //Crate Downgrading
+            #region Crate Downgrading
             recipe = Recipe.Create(ItemID.WoodenCrate);
             recipe.AddIngredient(ItemID.WoodenCrateHard);
             recipe.AddTile(TileID.CrystalBall);
@@ -220,8 +221,9 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.GoldenCrateHard);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
+            #endregion
 
-            //Traps
+            #region Traps
             recipe = Recipe.Create(ItemID.DartTrap);
             recipe.AddIngredient(ItemID.StoneBlock);
             recipe.AddIngredient(ItemID.PoisonDart);
@@ -271,8 +273,9 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.PoisonDart);
             recipe.AddTile(TileID.LihzahrdAltar);
             recipe.Register();
+            #endregion
 
-            //Tinker's Accessory Downgrading
+            #region Tinker's Accessory Downgrading
             recipe = Recipe.Create(ItemID.CloudinaBottle);
             recipe.AddRecipeGroup("ReducedGrinding:fartInAJarAccessory");
             recipe.AddTile(TileID.TinkerersWorkbench);
@@ -307,9 +310,9 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.ObsidianHorseshoe);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
+            #endregion
 
-            //Dungeon Bricks
-
+            #region Dungeon Bricks and Platforms
             recipe = Recipe.Create(ItemID.BlueBrick);
             recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
             recipe.AddTile(TileID.CrystalBall);
@@ -354,8 +357,9 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.PinkBrick);
             recipe.AddTile(TileID.WorkBenches);
             recipe.Register();
+            #endregion
 
-            //Other
+            #region Other
             if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
@@ -416,10 +420,11 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddTile(TileID.DemonAltar);
                 recipe.Register();
             }
+            #endregion
 
-            //Unused
+            #region Disabled by Default
 
-            //Golden Critters
+            #region Golden Critters
             if (GetInstance<IOtherConfig>().CraftableGoldCritters)
             {
                 recipe = Recipe.Create(ItemID.GoldBird);
@@ -500,8 +505,9 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddTile(TileID.CrystalBall);
                 recipe.Register();
             }
+            #endregion
 
-            //Craftable Rare Chest
+            #region Craftable Rare Chests
             if (GetInstance<IOtherConfig>().CraftableRareChests)
             {
                 recipe = Recipe.Create(ItemID.IvyChest);
@@ -557,7 +563,9 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddIngredient(ItemID.DungeonDesertKey);
                 recipe.AddTile(TileID.CrystalBall);
                 recipe.Register();
-            }
+            } 
+            #endregion
+            #endregion
         }
 
 
