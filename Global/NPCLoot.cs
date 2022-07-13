@@ -117,21 +117,26 @@ namespace ReducedGrinding.Global
             }
             if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
                 TryLoot(ItemID.LizardEgg, GetInstance<AEnemyLootConfig>().LizardEggIncrease);
-            if (NPC_IsAnyTypes(-4, 1, 16, 138, 141, 147, 184, 187, 433, 204, 302, 333, 334, 335, 336, 535, 658, 659, 660, -6, -7, -8, -9, 537)) //Slimestaff Slimes
+            if (npc.type == NPCID.Pinky)
             {
-                float slimestaffmultiplier = 100f;
-                if (npc.type == NPCID.Pinky)
-                    slimestaffmultiplier = 1f;
-                if (npc.type == NPCID.SandSlime)
-                    slimestaffmultiplier = 80f;
+                float multiplier = 1f;
                 if (Main.GameMode == GameModeID.Normal)
-                    slimestaffmultiplier *= 10f / 7f;
-                TryLoot(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffIncrease * slimestaffmultiplier));
-                if (GetInstance<HOtherModdedItemsConfig>().SlimeTrophy)
-                {
-                    slimestaffmultiplier *= 70f;
-                    TryLoot(ItemType<Items.SlimeTrophy>(), (int)slimestaffmultiplier);
-                }
+                    multiplier = 10f / 7f;
+                TryLoot(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease * multiplier));
+            }
+            if (npc.type == NPCID.SandSlime)
+            {
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                    multiplier = 10f / 7f;
+                TryLoot(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease * multiplier));
+            }
+            if (NPC_IsAnyTypes(1, 16, 138, 141, 147, 184, 187, 433, 204, 302, 333, 334, 335, 336, 535, 658, 659, 660, -6, -7, -8, -9)) //All other Slime Staff Slimes.
+            {
+                float multiplier = 1f;
+                if (Main.GameMode == GameModeID.Normal)
+                    multiplier = 10f / 7f;
+                TryLoot(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease * multiplier));
             }
             if (npc.type == NPCID.SkeletonSniper)
             {
@@ -273,7 +278,7 @@ namespace ReducedGrinding.Global
                 globalLoot.Add(new ItemDropWithConditionRule(4714, config, 1, 1, new Conditions.DesertKeyCondition()));
             }
 
-            config = GetInstance<AEnemyLootConfig>().BloodyMacheteAndBladedGlovesIncrease;
+            config = GetInstance<AEnemyLootConfig>().BloodyMacheteAndBladedGloveIncrease;
             if (config > 0)
             {
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1825, config));

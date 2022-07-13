@@ -58,7 +58,7 @@ namespace ReducedGrinding
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int BloodyMacheteAndBladedGlovesIncrease;
+        public int BloodyMacheteAndBladedGloveIncrease;
 
         [Label("[i:1774] Goodie Bag")]
         [Tooltip("Only drops during Halloween")]
@@ -134,14 +134,6 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int RottenChunkAndVertebra;
 
-        [Label("[i:1309] Slime Staff (Hover for more info)")]
-        [Tooltip("" +
-            "This is multiplied by 1 for Pinky, 80 for Sand Slime, and 100 for all other Slimes that\n" +
-            "drop it. If world difficulty is normal, this multiplied by (10/7)")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int SlimeStaffIncrease;
-
         [Label("[i:1514] SWAT Helmet and [i:679]Tactical Shotgun")]
         [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
             "multiplied by 191.66%")]
@@ -186,6 +178,29 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
+
+        [Header("[i:1309] Slime Staff")]
+
+        [Label("From Pinky")]
+        [Tooltip("" +
+            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Range(0, 10000)]
+        [DefaultValue(4)]
+        public int SlimeStaffFromPinkyIncrease;
+
+        [Label("From Sand Slime")]
+        [Tooltip("" +
+            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Range(0, 10000)]
+        [DefaultValue(56)]
+        public int SlimeStaffFromSandSlimeIncrease;
+
+        [Label("From Others")]
+        [Tooltip("" +
+            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Range(0, 10000)]
+        [DefaultValue(70)]
+        public int SlimeStaffFromOtherSlimesIncrease;
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -391,6 +406,14 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        [Label("Adjust Values For Drop Increases")]
+        [Tooltip("" +
+            "If enabled, items with extra drop rates will have their values reduced depending on\n" +
+            "how much their drop rate is increased. New value is multiplied by (chance /\n" +
+            "total_new_chance).")]
+        [DefaultValue(true)]
+        public bool AdjustItemValuesForDropIncreases;
+        
         [Label("Add Missing Rare Chest Items During World Generation")]
         [DefaultValue(true)]
         [Tooltip("" +
