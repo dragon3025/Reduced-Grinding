@@ -96,7 +96,7 @@ namespace ReducedGrinding.Global
                         }
                         if (GetInstance<HOtherModdedItemsConfig>().BestiaryTrophy && bestiaryProgressReport.CompletionPercent >= 1f)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemType<Items.BestiaryTrophy>());
+                            shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.BestiaryTrophy>());
                             nextSlot++;
                         }
                     }

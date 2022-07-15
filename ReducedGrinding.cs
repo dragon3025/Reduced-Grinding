@@ -1,20 +1,29 @@
-/*To debug, use:
-ErrorLogger.Log(<string>); /NO LONGER WORKS
+/* To debug, use:
+ * using static Terraria.ModLoader.ModContent;
+ * GetInstance<ReducedGrinding>().Logger.Debug("");
+ * 
+ * To turn into a string use:
+ * Value.ToString()
+ * 
+ * To show text in chat use:
+ * Main.NewText(string);
+ */
 
-To turn into a string use:
-Value.ToString()
-
-To show text in chat use:
-Main.NewText(string);
-or
-Main.NewText(string, red, green, blue);
-
-Chatting a value:
-Main.NewText(Value.ToString(), 255, 255, 255);
-*/
 
 using System.IO;
 using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.ModContent;
+using Microsoft.Xna.Framework;
+using System;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.GameContent.ObjectInteractions;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.ObjectData;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
@@ -36,6 +45,7 @@ namespace ReducedGrinding
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
+            GetInstance<ReducedGrinding>().Logger.Debug("");
             MessageType msgType = (MessageType)reader.ReadByte();
             switch (msgType)
             {
@@ -67,9 +77,39 @@ namespace ReducedGrinding
                     Global.Update.celestialSigil = reader.ReadBoolean();
                     break;
                 default:
-                    Logger.WarnFormat("ExampleMod: Unknown Message type: {0}", msgType);
+                    Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
             }
+        }
+    }
+
+    class ReducedGrindingSave : ModSystem
+    {
+        public override void SaveWorldData(TagCompound tag)
+        {
+            tag.Add("noMoreAnglerResetsToday", Global.Update.noMoreAnglerResetsToday);
+            tag.Add("dayTime", Global.Update.dayTime);
+            tag.Add("timeCharm", Global.Update.timeCharm);
+            tag.Add("seasonalDay", Math.Max(1, Global.Update.seasonalDay));
+            tag.Add("invasionWithGreaterBattleBuff", Global.Update.invasionWithGreaterBattleBuff);
+            tag.Add("invasionWithSuperBattleBuff", Global.Update.invasionWithSuperBattleBuff);
+        }
+
+        public override void LoadWorldData(TagCompound tag)
+        {
+            tag.TryGet("noMoreAnglerResetsToday", out bool noMoreAnglerResetsToday);
+            tag.TryGet("dayTime", out bool dayTime);
+            tag.TryGet("timeCharm", out bool timeCharm);
+            tag.TryGet("seasonalDay", out int seasonalDay);
+            tag.TryGet("invasionWithGreaterBattleBuff", out bool invasionWithGreaterBattleBuff);
+            tag.TryGet("invasionWithSuperBattleBuff", out bool invasionWithSuperBattleBuff);
+
+            Global.Update.noMoreAnglerResetsToday = noMoreAnglerResetsToday;
+            Global.Update.dayTime = dayTime;
+            Global.Update.timeCharm = timeCharm;
+            Global.Update.seasonalDay = Math.Max(1, seasonalDay);
+            Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
+            Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
         }
     }
 }

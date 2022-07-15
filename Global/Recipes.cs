@@ -413,7 +413,7 @@ namespace ReducedGrinding.GlobalRecipes
 
             if (GetInstance<HOtherModdedItemsConfig>().MoonBall)
             {
-                recipe = Recipe.Create(ItemType<Items.MoonBall>());
+                recipe = Recipe.Create(ItemType<Items.Placeable.MoonBall>());
                 recipe.AddIngredient(ItemID.MeteoriteBar, 20);
                 recipe.AddIngredient(ItemID.FallenStar, 20);
                 recipe.AddIngredient(ItemID.Glass, 20);
