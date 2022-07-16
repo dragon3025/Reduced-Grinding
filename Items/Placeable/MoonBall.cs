@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items.Placeable
@@ -9,7 +10,6 @@ namespace ReducedGrinding.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("{$Mods.ReducedGrinding.ItemName.MoonBall}"); //I'm struggling to figure this out
             DisplayName.SetDefault("Moon Ball");
             Tooltip.SetDefault("Advances the Moon Phase");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;

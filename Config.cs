@@ -312,9 +312,9 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Label("Moon Ball")]
-        [Tooltip("" +
-            "Advances the moon phase and will stop the Blood Moon when advancing to a new moon. Set\n" +
-            "to false to disable the recipe. Crafted out of Meteorite, Glass, and Fallen Star.")]
+
+
+        [Tooltip("$Mods.ReducedGrinding.Config.ToolTip.MoonBall")]
         [DefaultValue(true)]
         public bool MoonBall;
 

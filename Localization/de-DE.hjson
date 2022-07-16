@@ -1,0 +1,18 @@
+Mods: {
+	ReducedGrinding: {
+		ItemName: {
+			MoonBall: Mondball
+		}
+		ItemTooltip: {
+			MoonBall: Bewegt die Mondphase vor
+		}
+		MapObject: {
+			MoonBall: Mondball
+		}
+		Config: {
+			Label: {
+				MoonBall: "Wizard Sells {$Mods.ReducedGrinding.ItemName.MoonBall}"
+			}
+		}
+	}
+}
