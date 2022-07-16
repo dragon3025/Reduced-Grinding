@@ -11,7 +11,15 @@ Mods: {
 		}
 		Config: {
 			Label: {
-				MoonBall: "Wizard Sells {$Mods.ReducedGrinding.ItemName.MoonBall}"
+				MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
+			}
+			ToolTip: {
+				MoonBall:
+					'''
+					Bewegt die Mondphase vor und stoppt den Blutmond, wenn
+					zu einem Neumond voranschreiten. Auf false setzen, um das Rezept zu deaktivieren.
+					Hergestellt aus Meteorit, Glas und gefallenem Stern.
+					'''
 			}
 		}
 	}

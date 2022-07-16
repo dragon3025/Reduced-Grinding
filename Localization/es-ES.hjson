@@ -1,0 +1,26 @@
+Mods: {
+	ReducedGrinding: {
+		ItemName: {
+			MoonBall: Bola De Luna
+		}
+		ItemTooltip: {
+			MoonBall: Avanza la Fase Lunar
+		}
+		MapObject: {
+			MoonBall: Bola De Luna
+		}
+		Config: {
+			Label: {
+				MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
+			}
+			ToolTip: {
+				MoonBall:
+					'''
+					Avanza la fase lunar y detendrá la Luna de Sangre cuando
+					avanzando hacia una luna nueva. Establézcalo en falso para deshabilitar la receta.
+					Fabricado con meteorito, vidrio y estrella caída.
+					'''
+			}
+		}
+	}
+}

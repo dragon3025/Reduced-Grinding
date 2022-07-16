@@ -311,9 +311,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("Moon Ball")]
-
-
+        [Label("$Mods.ReducedGrinding.Config.Label.MoonBall")]
         [Tooltip("$Mods.ReducedGrinding.Config.ToolTip.MoonBall")]
         [DefaultValue(true)]
         public bool MoonBall;
