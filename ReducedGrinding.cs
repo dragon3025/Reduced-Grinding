@@ -10,19 +10,11 @@
  */
 
 
+using System;
 using System.IO;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using static Terraria.ModLoader.ModContent;
-using Microsoft.Xna.Framework;
-using System;
-using Terraria;
-using Terraria.DataStructures;
-using Terraria.GameContent.ObjectInteractions;
-using Terraria.ID;
-using Terraria.Localization;
-using Terraria.ModLoader;
-using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
@@ -110,6 +102,12 @@ namespace ReducedGrinding
             Global.Update.seasonalDay = Math.Max(1, seasonalDay);
             Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
             Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
+        }
+
+        public override void OnModLoad()
+        {
+            NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
+            NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
         }
     }
 }

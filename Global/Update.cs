@@ -237,11 +237,17 @@ namespace ReducedGrinding.Global
             {
                 noMoreAnglerResetsToday = false;
 
-                if (GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength > 0)
+                if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
                 {
-                    int dayLength = GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength;
+                    int yearLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth * 12;
+                    float halloweenDay = 304f / 365f;
+                    float xMasDay = 359f / 365f;
+
+                    GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day * halloweenDay: " + ((int)Math.Round(yearLength * halloweenDay)).ToString());
+                    GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day * xMasDay: " + ((int)Math.Round(yearLength * xMasDay)).ToString());
+
                     seasonalDay++;
-                    if (seasonalDay == dayLength * 9 + 1)
+                    if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
                     {
                         Main.halloween = true;
                         if (Main.netMode == NetmodeID.Server)
@@ -249,14 +255,14 @@ namespace ReducedGrinding.Global
                         else
                             Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
                     }
-                    else if (seasonalDay == dayLength * 9 + 2)
+                    else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
                     {
                         if (Main.netMode == NetmodeID.Server)
                             ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
                         else
                             Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
                     }
-                    else if (seasonalDay == dayLength * 12)
+                    else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
                     {
                         Main.xMas = true;
                         if (Main.netMode == NetmodeID.Server)
@@ -264,14 +270,15 @@ namespace ReducedGrinding.Global
                         else
                             Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
                     }
-                    else if (seasonalDay > dayLength * 12)
+                    else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
                     {
-                        seasonalDay = 1;
                         if (Main.netMode == NetmodeID.Server)
                             ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
                         else
                             Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
                     }
+                    if (seasonalDay == yearLength + 1)
+                        seasonalDay = 1;
                     GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day: " + seasonalDay.ToString());
                 }
             }

@@ -32,8 +32,8 @@ namespace ReducedGrinding.Tiles
 		public override void AnimateTile(ref int frame, ref int frameCounter)
 		{
 			int seasonalDay = Global.Update.seasonalDay;
-			int dayLength = GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength;
-			frame = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / dayLength)) - 1;
+			int monthLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth;
+			frame = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / monthLength)) - 1;
 		}
 
 		public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
@@ -44,50 +44,61 @@ namespace ReducedGrinding.Tiles
 		public override bool RightClick(int x, int y)
 		{
 			int seasonalDay = Global.Update.seasonalDay;
-			int dayLength = GetInstance<IOtherConfig>().PeriodicHolidayTimelineDayLength;
-			int month = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / dayLength));
-			string text = "";
-			text = "Day: " + seasonalDay.ToString() + " Month: ";
+			int monthLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth;
+			int month = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / monthLength));
+			string dateText = "";
 			switch (month)
 			{
 				case 1:
-					text += "January";
+					dateText += "January ";
 					break;
 				case 2:
-					text += "Febuary";
+					dateText += "Febuary ";
 					break;
 				case 3:
-					text += "March";
+					dateText += "March ";
 					break;
 				case 4:
-					text += "April";
+					dateText += "April ";
 					break;
 				case 5:
-					text += "May";
+					dateText += "May ";
 					break;
 				case 6:
-					text += "June";
+					dateText += "June ";
 					break;
 				case 7:
-					text += "July";
+					dateText += "July ";
 					break;
 				case 8:
-					text += "August";
+					dateText += "August ";
 					break;
 				case 9:
-					text += "September";
+					dateText += "September ";
 					break;
 				case 10:
-					text += "October";
+					dateText += "October ";
 					break;
 				case 11:
-					text += "November";
+					dateText += "November ";
 					break;
 				case 12:
-					text += "December";
+					dateText += "December ";
 					break;
 			}
-			Main.NewText(text, new Color(255, 255, 0));
+			int dayOfMonth = ((seasonalDay - 1) % monthLength) + 1;
+			dateText += dayOfMonth.ToString();
+            dateText += dayOfMonth switch
+            {
+                1 => "st",
+                2 => "nd",
+                3 => "rd",
+                21 => "st",
+                22 => "nd",
+                23 => "rd",
+                _ => "th",
+            };
+            Main.NewText(dateText, new Color(255, 255, 0));
 
 			return true;
 		}

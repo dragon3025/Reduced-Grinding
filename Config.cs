@@ -406,14 +406,8 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("Adjust Values For Drop Increases")]
-        [Tooltip("" +
-            "If enabled, items with extra drop rates will have their values reduced depending on\n" +
-            "how much their drop rate is increased. New value is multiplied by (chance /\n" +
-            "total_new_chance).")]
-        [DefaultValue(true)]
-        public bool AdjustItemValuesForDropIncreases;
-        
+        [Header("World Generation")]
+
         [Label("Add Missing Rare Chest Items During World Generation")]
         [DefaultValue(true)]
         [Tooltip("" +
@@ -524,25 +518,14 @@ namespace ReducedGrinding
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
 
-        [Header("Periodic Holiday Timeline Day Length.\n\nThis mod will run a timeline for spawning Halloween and Christmas events. Where n is the configuration setting: the timeline will be n * 12 days long, Halloween will be the (9 * n + 1) day, and Christmas will be the last day. Set to 0 to disable.")]
-        [Label("Periodic Holiday Timeline Day Length")]
+      //[Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. Real-world days of a year for Holidays is used to calculate when the events should happen.")]
+        [Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be perchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.")]
+        [Label("Days Per Month (12 Months per year)")]
         [Range(1, 30)]
         [DefaultValue(2)]
-        public int PeriodicHolidayTimelineDayLength;
+        public int HolidayTimelineDaysPerMonth;
 
-        [Header("Other")]
-
-        [Label("Cancel Invasions When All Players Are Underground")]
-        [DefaultValue(true)]
-        public bool CancelInvasionsIfAllPlayersAreUnderground;
-
-        [Label("Merchant Sells Miner's Shirt and Miner's Pants")]
-        [DefaultValue(false)]
-        public bool MerchantSellsMinersShirtAndPants;
-
-        [Label("Skeleton Merchant Ignores Moonphases")]
-        [DefaultValue(false)]
-        public bool SkeletonMerchantIgnoresMoonphases;
+        [Header("Crafting")]
 
         [Label("[i:67] Infection Powder per Mushroom")]
         [Tooltip("Set to 5 to disable custom recipe")]
@@ -566,6 +549,36 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
+
+        [Header("Other")]
+
+        [Label("Cancel Invasions When All Players Are Underground")]
+        [DefaultValue(true)]
+        public bool CancelInvasionsIfAllPlayersAreUnderground;
+
+        [Label("Lunar Pillar Shield Health")]
+        [Tooltip("" +
+            "The amount of enemies to lower their shield. If world difficulty is normal, this is\n" +
+            "multiplied by (2/3)")]
+        [Range(1, 150)]
+        [DefaultListValue(150)] //TO-DO 1.4.4 May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
+        public int LunarPillarShieldHealth;
+
+        [Label("Merchant Sells Miner's Shirt and Miner's Pants")]
+        [DefaultValue(false)]
+        public bool MerchantSellsMinersShirtAndPants;
+
+        [Label("Adjust Values For Drop Increases")]
+        [Tooltip("" +
+            "If enabled, items with extra drop rates will have their values reduced depending on\n" +
+            "how much their drop rate is increased. New value is multiplied by (chance /\n" +
+            "total_new_chance).")]
+        [DefaultValue(true)]
+        public bool AdjustItemValuesForDropIncreases;
+
+        [Label("Skeleton Merchant Ignores Moonphases")]
+        [DefaultValue(false)]
+        public bool SkeletonMerchantIgnoresMoonphases;
 
         [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]
         [Tooltip("" +

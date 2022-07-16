@@ -25,8 +25,12 @@ namespace ReducedGrinding.Global
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
                         nextSlot++;
-
                         shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
+                        nextSlot++;
+                    }
+                    if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.Calendar>());
                         nextSlot++;
                     }
                     break;
