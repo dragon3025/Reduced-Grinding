@@ -1,288 +1,283 @@
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria;
-using static Terraria.ModLoader.ModContent;
 using System.Collections.Generic;
-
+using Terraria;
+using Terraria.ID;
+using Terraria.IO;
+using Terraria.ModLoader;
+using Terraria.WorldBuilding;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
     public class WorldGen : ModSystem
     {
-		public override void PostWorldGen()
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        {
+			int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+
+			if (FinalCleanupIndex != -1)
+			{
+				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Example Mod Ores", 237.4298f));
+			}
+		}
+
+		public class ReducedGrindingGen : GenPass
 		{
-			if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
-				return;
+			public ReducedGrindingGen(string name, float loadWeight) : base(name, loadWeight) {}
 
-			//int worldSize = Main.maxTilesX / 4200 == 1 ? 1 : Main.maxTilesX / 4200 == 1.5 ? 2 : 3; in case I need it.
-
-			List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet , ItemID.SandstorminaBottle };
-			List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart};
-			List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants};
-			bool beeMinecartMissing = true;
-
-			List<int> desertChests = new();
-			List<int> ivyChests = new();
-			List<int> livingWoodChests = new();
-			List<int> woodChests = new();
-			List<int> mushroomChests = new();
-			List<int> centerGoldChests = new();
-			List<int> goldChests = new();
-
-			int worldCenterLeft = (Main.maxTilesX / 2) - 420;
-			int worldCenterRight = (Main.maxTilesX / 2) + 420;
-			int worldCenterTop = (Main.maxTilesY / 2) - 600;
-			int worldCenterBottom = (Main.maxTilesY / 2) + 600;
-
-			for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
+			protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
 			{
-				Chest chest = Main.chest[chestIndex];
+				if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
+					return;
 
-				if (chest == null)
-					continue;
+				progress.Message = "Adding Non-Existing Rare Chest Loot";
 
-				int TileSubID = 1; //Gold Chest
-				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
+				List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };
+				List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
+				List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants };
+				bool beeMinecartMissing = true;
+
+				List<int> desertChests = new();
+				List<int> ivyChests = new();
+				List<int> livingWoodChests = new();
+				List<int> woodChests = new();
+				List<int> mushroomChests = new();
+				List<int> centerGoldChests = new();
+				List<int> goldChests = new();
+
+				int worldCenterLeft = (Main.maxTilesX / 2) - 420;
+				int worldCenterRight = (Main.maxTilesX / 2) + 420;
+				int worldCenterTop = (Main.maxTilesY / 2) - 600;
+				int worldCenterBottom = (Main.maxTilesY / 2) + 600;
+
+				for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
 				{
-					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-					{
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							List<int> missingPyramidItemsOld = new();
-							missingPyramidItemsOld.AddRange(missingPyramidItems);
+					Chest chest = Main.chest[chestIndex];
 
-							foreach (int itemType in missingPyramidItemsOld)
-								if (chest.item[inventoryIndex].type == itemType)
-								{
-									missingPyramidItems.Remove(itemType);
-                                    GetInstance<ReducedGrinding>().Logger.Debug("Found pyramid item, missing count: " + missingPyramidItems.Count.ToString());
-								}
-						}
-						if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
-							centerGoldChests.Add(chestIndex);
-						goldChests.Add(chestIndex);
-					}
+					if (chest == null)
+						continue;
 
-					TileSubID = 10; //Ivy Chest
-					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+					int TileSubID = 1; //Gold Chest
+					if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
 					{
-						ivyChests.Add(chestIndex);
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+						if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
 						{
-							if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 							{
-								beeMinecartMissing = false;
-                                GetInstance<ReducedGrinding>().Logger.Debug("Found Bee Minecart");
+								List<int> missingPyramidItemsOld = new();
+								missingPyramidItemsOld.AddRange(missingPyramidItems);
+
+								foreach (int itemType in missingPyramidItemsOld)
+									if (chest.item[inventoryIndex].type == itemType)
+									{
+										missingPyramidItems.Remove(itemType);
+									}
+							}
+							if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
+								centerGoldChests.Add(chestIndex);
+							goldChests.Add(chestIndex);
+						}
+
+						TileSubID = 10; //Ivy Chest
+						if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+						{
+							ivyChests.Add(chestIndex);
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
+								{
+									beeMinecartMissing = false;
+								}
+							}
+						}
+
+						TileSubID = 0; //Surface Chest
+						if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+							woodChests.Add(chestIndex);
+
+						TileSubID = 12; //Living Wood Chest
+						if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+						{
+							livingWoodChests.Add(chestIndex);
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								List<int> missingLivingWoodItemsOld = new();
+								missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
+
+								foreach (int itemType in missingLivingWoodItemsOld)
+									if (chest.item[inventoryIndex].type == itemType)
+									{
+										missingLivingWoodItems.Remove(itemType);
+									}
+							}
+						}
+
+						TileSubID = 32; //Mushroom Chest
+						if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+						{
+							mushroomChests.Add(chestIndex);
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								List<int> missingMushroomItemsOld = new();
+								missingMushroomItemsOld.AddRange(missingMushroomItems);
+
+								foreach (int itemType in missingMushroomItemsOld)
+									if (chest.item[inventoryIndex].type == itemType)
+									{
+										missingMushroomItems.Remove(itemType);
+									}
 							}
 						}
 					}
 
-					TileSubID = 0; //Surface Chest
-					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-						woodChests.Add(chestIndex);
+					TileSubID = 10; //Sandstone Chest
+					if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+						desertChests.Add(chestIndex);
+				}
 
-					TileSubID = 12; //Living Wood Chest
-					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
+				if (desertChests.Count > 0)
+				{
+					while (missingPyramidItems.Count > 0)
 					{
-						livingWoodChests.Add(chestIndex);
+						int desertChestsIndex = Main.rand.Next(desertChests.Count);
+						int chestIndex = desertChests[desertChestsIndex];
+
+						Chest chest = Main.chest[chestIndex];
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
-							List<int> missingLivingWoodItemsOld = new();
-							missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
-
-							foreach (int itemType in missingLivingWoodItemsOld)
-								if (chest.item[inventoryIndex].type == itemType)
-								{
-									missingLivingWoodItems.Remove(itemType);
-                                    GetInstance<ReducedGrinding>().Logger.Debug("Found Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
-								}
-						}
-					}
-
-					TileSubID = 32; //Mushroom Chest
-					if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-					{
-						mushroomChests.Add(chestIndex);
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							List<int> missingMushroomItemsOld = new();
-							missingMushroomItemsOld.AddRange(missingMushroomItems);
-
-							foreach (int itemType in missingMushroomItemsOld)
-								if (chest.item[inventoryIndex].type == itemType)
-								{
-									missingMushroomItems.Remove(itemType);
-                                    GetInstance<ReducedGrinding>().Logger.Debug("Found mushroom item, missing count: " + missingMushroomItems.Count.ToString());
-								}
+							if (chest.item[inventoryIndex].type == ItemID.None)
+							{
+								chest.item[inventoryIndex].SetDefaults(missingPyramidItems[0]);
+								missingPyramidItems.RemoveAt(0);
+								if (desertChests.Count > 1)
+									desertChests.RemoveAt(desertChestsIndex);
+								break;
+							}
 						}
 					}
 				}
 
-				TileSubID = 10; //Sandstone Chest
-				if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-					desertChests.Add(chestIndex);
-			}
-
-            GetInstance<ReducedGrinding>().Logger.Debug("");
-
-            GetInstance<ReducedGrinding>().Logger.Debug("Desert Chests: " + desertChests.Count.ToString());
-			if (desertChests.Count > 0)
-            {
-				while (missingPyramidItems.Count > 0)
+				if (beeMinecartMissing && ivyChests.Count > 0)
 				{
-					int desertChestsIndex = Main.rand.Next(desertChests.Count);
-					int chestIndex = desertChests[desertChestsIndex];
+					int chestIndex = ivyChests[Main.rand.Next(ivyChests.Count)];
 
 					Chest chest = Main.chest[chestIndex];
 					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 					{
 						if (chest.item[inventoryIndex].type == ItemID.None)
 						{
-							chest.item[inventoryIndex].SetDefaults(missingPyramidItems[0]);
-							missingPyramidItems.RemoveAt(0);
-                            GetInstance<ReducedGrinding>().Logger.Debug("Placed pyramid item, missing count: " + missingPyramidItems.Count.ToString());
-							if (desertChests.Count > 1)
-								desertChests.RemoveAt(desertChestsIndex);
+							chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
 							break;
 						}
 					}
 				}
-            }
 
-            GetInstance<ReducedGrinding>().Logger.Debug("Ivy Chests: " + ivyChests.Count.ToString());
-			if (beeMinecartMissing && ivyChests.Count > 0)
-			{
-				int chestIndex = ivyChests[Main.rand.Next(ivyChests.Count)];
-
-				Chest chest = Main.chest[chestIndex];
-				for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+				if ((woodChests.Count + livingWoodChests.Count) > 0)
 				{
-					if (chest.item[inventoryIndex].type == ItemID.None)
+					while (missingLivingWoodItems.Count > 0)
 					{
-						chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
-                        GetInstance<ReducedGrinding>().Logger.Debug("Placed Bee Minecart");
-						break;
+						if (livingWoodChests.Count > 0)
+						{
+							int livingWoodChestsIndex = Main.rand.Next(livingWoodChests.Count);
+							int chestIndex = livingWoodChests[livingWoodChestsIndex];
+
+							Chest chest = Main.chest[chestIndex];
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								if (chest.item[inventoryIndex].type == ItemID.None)
+								{
+									chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+									missingLivingWoodItems.RemoveAt(0);
+									livingWoodChests.RemoveAt(livingWoodChestsIndex);
+									break;
+								}
+							}
+						}
+						else
+						{
+							int surfaceChestIndex = Main.rand.Next(woodChests.Count);
+							int chestIndex = woodChests[surfaceChestIndex];
+
+							Chest chest = Main.chest[chestIndex];
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								if (chest.item[inventoryIndex].type == ItemID.None)
+								{
+									chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+									missingLivingWoodItems.RemoveAt(0);
+									if (woodChests.Count > 1)
+										woodChests.RemoveAt(surfaceChestIndex);
+									break;
+								}
+							}
+						}
 					}
 				}
-			}
 
-            GetInstance<ReducedGrinding>().Logger.Debug("Living Wood Chests: " + livingWoodChests.Count.ToString());
-            GetInstance<ReducedGrinding>().Logger.Debug("Surface Chests: " + woodChests.Count.ToString());
-			if ((woodChests.Count + livingWoodChests.Count) > 0)
-			{
-				while (missingLivingWoodItems.Count > 0)
+				if ((mushroomChests.Count + centerGoldChests.Count) > 0)
 				{
-					if (livingWoodChests.Count > 0)
+					while (missingMushroomItems.Count > 0)
 					{
-						int livingWoodChestsIndex = Main.rand.Next(livingWoodChests.Count);
-						int chestIndex = livingWoodChests[livingWoodChestsIndex];
+						if (mushroomChests.Count > 0)
+						{
+							int mushroomChestIndex = Main.rand.Next(mushroomChests.Count);
+							int chestIndex = mushroomChests[mushroomChestIndex];
+
+							Chest chest = Main.chest[chestIndex];
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								if (chest.item[inventoryIndex].type == ItemID.None)
+								{
+									chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
+									missingMushroomItems.RemoveAt(0);
+									mushroomChests.RemoveAt(mushroomChestIndex);
+									break;
+								}
+							}
+						}
+						else
+						{
+							int centerGoldChestIndex = Main.rand.Next(centerGoldChests.Count);
+							int chestIndex = centerGoldChests[centerGoldChestIndex];
+
+							Chest chest = Main.chest[chestIndex];
+							for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+							{
+								if (chest.item[inventoryIndex].type == ItemID.None)
+								{
+									chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
+									missingMushroomItems.RemoveAt(0);
+									if (centerGoldChests.Count > 1)
+										centerGoldChests.RemoveAt(centerGoldChestIndex);
+									break;
+								}
+							}
+						}
+					}
+				}
+
+				int terragrimToAdd = GetInstance<IOtherConfig>().TerragrimChests;
+				while (terragrimToAdd > 0)
+				{
+					if (goldChests.Count > 0)
+					{
+						int goldChestIndex = Main.rand.Next(goldChests.Count);
+						int chestIndex = goldChests[goldChestIndex];
 
 						Chest chest = Main.chest[chestIndex];
 						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
 						{
 							if (chest.item[inventoryIndex].type == ItemID.None)
 							{
-								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
-								missingLivingWoodItems.RemoveAt(0);
-                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
-								livingWoodChests.RemoveAt(livingWoodChestsIndex);
+								chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
+								terragrimToAdd--;
+								goldChests.RemoveAt(goldChestIndex);
 								break;
 							}
 						}
 					}
 					else
-					{
-						int surfaceChestIndex = Main.rand.Next(woodChests.Count);
-						int chestIndex = woodChests[surfaceChestIndex];
-
-						Chest chest = Main.chest[chestIndex];
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
-								missingLivingWoodItems.RemoveAt(0);
-                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Living Wood item, missing count: " + missingLivingWoodItems.Count.ToString());
-								if (woodChests.Count > 1)
-									woodChests.RemoveAt(surfaceChestIndex);
-								break;
-							}
-						}
-					}
+						terragrimToAdd = 0;
 				}
-			}
-
-            GetInstance<ReducedGrinding>().Logger.Debug("Mushroom Chests: " + mushroomChests.Count.ToString());
-            GetInstance<ReducedGrinding>().Logger.Debug("Center Gold Chests: " + centerGoldChests.Count.ToString());
-			if ((mushroomChests.Count + centerGoldChests.Count) > 0)
-			{
-				while (missingMushroomItems.Count > 0)
-				{
-					if (mushroomChests.Count > 0)
-					{
-						int mushroomChestIndex = Main.rand.Next(mushroomChests.Count);
-						int chestIndex = mushroomChests[mushroomChestIndex];
-
-						Chest chest = Main.chest[chestIndex];
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
-								missingMushroomItems.RemoveAt(0);
-                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
-								mushroomChests.RemoveAt(mushroomChestIndex);
-								break;
-							}
-						}
-					}
-					else
-					{
-						int centerGoldChestIndex = Main.rand.Next(centerGoldChests.Count);
-						int chestIndex = centerGoldChests[centerGoldChestIndex];
-
-						Chest chest = Main.chest[chestIndex];
-						for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-						{
-							if (chest.item[inventoryIndex].type == ItemID.None)
-							{
-								chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
-								missingMushroomItems.RemoveAt(0);
-                                GetInstance<ReducedGrinding>().Logger.Debug("Placed Mushroom item, missing count: " + missingMushroomItems.Count.ToString());
-								if (centerGoldChests.Count > 1)
-									centerGoldChests.RemoveAt(centerGoldChestIndex);
-								break;
-							}
-						}
-					}
-				}
-			}
-
-			GetInstance<ReducedGrinding>().Logger.Debug("Gold Chests: " + goldChests.Count.ToString());
-			int terragrimToAdd = GetInstance<IOtherConfig>().TerragrimChests;
-			GetInstance<ReducedGrinding>().Logger.Debug("Terragrims to add: " + terragrimToAdd.ToString());
-			while (terragrimToAdd > 0)
-			{
-				if (goldChests.Count > 0)
-				{
-					int goldChestIndex = Main.rand.Next(goldChests.Count);
-					int chestIndex = goldChests[goldChestIndex];
-
-					Chest chest = Main.chest[chestIndex];
-					for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-					{
-						if (chest.item[inventoryIndex].type == ItemID.None)
-						{
-							chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
-							terragrimToAdd--;
-							GetInstance<ReducedGrinding>().Logger.Debug("Placed Terragrim, Terragrims left to add: " + terragrimToAdd.ToString());
-							goldChests.RemoveAt(goldChestIndex);
-							break;
-						}
-					}
-				}
-				else
-					terragrimToAdd = 0;
 			}
 		}
 	}
