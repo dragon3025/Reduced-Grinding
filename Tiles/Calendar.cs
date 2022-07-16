@@ -18,6 +18,7 @@ namespace ReducedGrinding.Tiles
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.FramesOnKillWall[Type] = true;
+			TileID.Sets.HasOutlines[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x3Wall);
 			TileObjectData.addTile(Type);

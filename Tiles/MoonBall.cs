@@ -18,18 +18,18 @@ namespace ReducedGrinding.Tiles
 			Main.tileNoAttach[Type] = true;
 			Main.tileTable[Type] = false;
 			Main.tileLavaDeath[Type] = true;
+			Main.tileShine[Type] = 300;
 			TileID.Sets.HasOutlines[Type] = true;
+
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(1, 1);
-			//TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
-			TileObjectData.newTile.StyleHorizontal = true;
-			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
+
 			ModTranslation name = CreateMapEntryName();
 			name.SetDefault("Moon Ball");
 			AddMapEntry(new Color(191, 191, 255), name);
+
 			DustType = DustID.Marble;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			Main.tileLighted[Type] = true;
