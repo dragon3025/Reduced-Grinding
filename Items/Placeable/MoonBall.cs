@@ -19,7 +19,7 @@ namespace ReducedGrinding.Items.Placeable
         {
             Item.width = 28;
             Item.height = 30;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.useTurn = true;
             Item.autoReuse = true;
             Item.rare = ItemRarityID.Blue;

@@ -17,15 +17,15 @@ namespace ReducedGrinding.Items.Placeable
         {
             Item.width = 34;
             Item.height = 46;
-            Item.maxStack = 999;
+            Item.maxStack = 9999;
             Item.useTurn = true;
             Item.autoReuse = true;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ItemRarityID.White;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
-            Item.value = Item.buyPrice(1);
+            Item.value = Item.buyPrice(0, 0, 1);
             Item.createTile = ModContent.TileType<Tiles.Calendar>();
         }
     }
