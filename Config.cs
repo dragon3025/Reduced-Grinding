@@ -9,7 +9,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("These are extra item drop chances from enemy loot. Chance = 1 / configuration_setting. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SectionInfo")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.BinocularsIncrease")]
         [Tooltip("If world difficulty is normal, this is multiplied by (4/3)")]
@@ -36,7 +36,7 @@ namespace ReducedGrinding
         [DefaultValue(4)]
         public int RainbowCursor;
 
-        [Header("Non-Boss Loot")]
+        [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.NonBossLoot")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.TownNPCWeapons")]
         [Range(0, 10000)]
@@ -141,7 +141,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgunIncrease;
 
-        [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. Pirate ships will always drop 1 Golden Furniture item. This is done in attempt to imitate the upcoming 1.4.4 update)")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
+        [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.PirateLoot")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.CoinGunBaseIncrease")]
         [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
@@ -179,7 +179,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
 
-        [Header("[i:1309] Slime Staff")]
+        [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SlimeStaff")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SlimeStaffFromPinkyIncrease")]
         [Tooltip("" +
@@ -214,7 +214,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("These are item drop chances from enemy loot. These drop chances don't exist in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.\n\nBoss Loot")]
+        [Header("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Header.SectionInfo")]
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.SlimeStaffFromSlimeKing")]
         [Range(0, 10000)]
@@ -232,7 +232,7 @@ namespace ReducedGrinding
         [DefaultValue(60)]
         public int TerragrimFromHardmodeGrabBag;
 
-        [Header("Non-Boss Loot")]
+        [Header("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Header.NonBossLoot")]
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.DesertFossilFromDuneSplicer")]
         [Range(0, 999)]
@@ -282,7 +282,7 @@ namespace ReducedGrinding
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
 
-        [Header("Angler Reset Chance\n\nThe configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.")]
+        [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.AnglerResetChance")]
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.AnglerRecentChanceBeforeHardmode")]
         [Range(0, 10000)]
@@ -336,7 +336,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
-        [Header("Spawn Increasing Potions\n\nIf you experience lag, try turning down max spawns first.\n\nGreater Battle Potion")]
+        [Header("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Header.SpawnIncreasingPotions")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.GreaterBattlePotionMaxSpawnsMultiplier")]
         [Increment(.1f)]
@@ -350,7 +350,7 @@ namespace ReducedGrinding
         [DefaultValue(4f)]
         public float GreaterBattlePotionSpawnrateMultiplier;
 
-        [Header("Super Battle Potion")]
+        [Header("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Header.SuperBattlePotion")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.SuperBattlePotionMaxSpawnsMultiplier")]
         [Increment(.1f)]
@@ -374,7 +374,7 @@ namespace ReducedGrinding
         [DefaultValue(1f)]
         public float ModBattlePotionMaxSpawnEffectOnInvasion;
 
-        [Header("Staff of Difficulty. Disable all to disable the recipe.")]
+        [Header("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Header.StaffOfDifficulty")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.StaffOfDifficultyJourney")]
         [DefaultValue(false)]
@@ -404,7 +404,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("World Generation")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.WorldGeneration")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.GenerateMissingRareChestItems")]
         [DefaultValue(true)]
@@ -428,7 +428,7 @@ namespace ReducedGrinding
         [DefaultValue(1)]
         public int TerragrimChests;
 
-        [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.SleepBoost")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostBase")]
         [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion and Time Charm recipes.")]
@@ -457,14 +457,14 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostInactiveTimeCharmMultiplier;
 
-        [Header("\nCrates\n\nAll configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n[i:3205] Dungeon / Stockade Crate")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Crates")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.DungeonCrateDungeonFurniture")]
         [Range(0, 10000)]
         [DefaultValue(1)]
         public int DungeonCrateDungeonFurniture;
 
-        [Header("[i:3981] Titanium / Mythril / Pearlwood")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.HardmodeRegularCrates")]
 
         [Label("")]
         [Tooltip("Denominator is multiplied by 3 for Mythril and 10 for Pearlwood")]
@@ -472,7 +472,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
 
-        [Header("[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.RegularCrates")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CrateStatue")]
         [Tooltip("" +
@@ -482,7 +482,7 @@ namespace ReducedGrinding
         [DefaultValue(5)]
         public int CrateStatue;
 
-        [Header("Traveling Merchant")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.TravelingMerchant")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantExtraRolls")]
         [Tooltip("" +
@@ -517,14 +517,13 @@ namespace ReducedGrinding
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
 
-      //[Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. Real-world days of a year for Holidays is used to calculate when the events should happen.")]
-        [Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be purchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.PeriodicHolidayTimeline")]
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.HolidayTimelineDaysPerMonth")]
         [Range(1, 30)]
         [DefaultValue(2)]
         public int HolidayTimelineDaysPerMonth;
 
-        [Header("Crafting")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Crafting")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.InfectionPowderPerMushroom")]
         [Tooltip("Set to 5 to disable custom recipe")]
@@ -549,7 +548,7 @@ namespace ReducedGrinding
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
 
-        [Header("Other")]
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Other")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CancelInvasionsIfAllPlayersAreUnderground")]
         [DefaultValue(true)]

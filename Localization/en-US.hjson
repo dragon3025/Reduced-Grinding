@@ -13,6 +13,7 @@ Mods: {
 			MoonBall: Moon Ball
 			PlanteraSap: Plantera Sap
 			SlimeTrophy: Slime Trophy
+			StaffOfDifficulty: Staff of Difficulty
 		}
 		ItemTooltip: {
 			MoonBall: Advances the Moon Phase
@@ -22,6 +23,20 @@ Mods: {
 		}
 		Config: {
 			AEnemyLootConfig: {
+				Header: {
+					SectionInfo:
+						'''
+						These are extra item drop chances from enemy loot. Chance = 1 / configuration_setting. Set to 0 to disable.
+						
+						Boss Loot
+						'''
+					NonBossLoot: Non-Boss Loot
+					PirateLoot:
+						'''
+						Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. Pirate ships will always drop 1 Golden Furniture item. This is done in attempt to imitate the upcoming 1.4.4 update)
+						'''
+					SlimeStaff: "[i:1309] Slime Staff"
+				}
 				Label: {
 					BinocularsIncrease: "[i:1299] Binoculars"
 					EmpressAndFishronWingsIncrease: "[i:4823] Empress and [i:2609] Fishron Wings"
@@ -57,6 +72,15 @@ Mods: {
 				}
 			}
 			BEnemyLootNonVanillaConfig: {
+				Header: {
+					SectionInfo:
+						'''
+						These are item drop chances from enemy loot. These drop chances don't exist in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.
+						
+						Boss Loot
+						'''
+					NonBossLoot: Non-Boss Loot
+				}
 				Label: {
 					SlimeStaffFromSlimeKing: "[i:1309] Slime Staff From Slime King"
 					TrufflewormFromDukeFishron: "[i:2673] Truffle Worm from Duke Fishron"
@@ -71,6 +95,14 @@ Mods: {
 				}
 			}
 			CFishingConfig: {
+				Header: {
+					AnglerResetChance:
+						'''
+						Angler Reset Chance
+						
+						The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.
+						'''
+				}
 				Label: {
 					MultiBobberPotionBobberAmount: Multi-Bobber Potion's Bobber Amount
 					AnglerRecentChanceBeforeHardmode: Before Hardmode
@@ -79,6 +111,17 @@ Mods: {
 				}
 			}
 			HOtherModdedItemsConfig: {
+				Header: {
+					SpawnIncreasingPotions:
+						'''
+						Spawn Increasing Potions
+						If you experience lag, try turning down max spawns first.
+						
+						Greater Battle Potion
+						'''
+					SuperBattlePotion: Super Battle Potion
+					StaffOfDifficulty: "{$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Disable all to disable the recipe."
+				}
 				Label: {
 					MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
 					SlimeTrophy: "{$Mods.ReducedGrinding.ItemName.SlimeTrophy}"
@@ -104,6 +147,32 @@ Mods: {
 				}
 			}
 			IOtherConfig: {
+				Header: {
+					WorldGeneration: World Generation
+					SleepBoost:
+						'''
+						Sleep boost
+						
+						In vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.
+						'''
+					Crates:
+						'''
+						Crates
+						
+						All configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n[i:3205] Dungeon / Stockade Crate
+						'''
+					HardmodeRegularCrates: "[i:3981] Titanium / Mythril / Pearlwood"
+					RegularCrates: "[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants"
+					TravelingMerchant: Traveling Merchant
+					PeriodicHolidayTimeline:
+						'''
+						Periodic Holiday Timeline.
+						
+						This mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be purchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.
+						'''
+					Crafting: Crafting
+					Other: Other
+				}
 				Label: {
 					GenerateMissingRareChestItems: Add Missing Rare Chest Items During World Generation
 					FinchStaffFromTreeShaking: "[i:4281] Finch Staff From Tree Shaking"
