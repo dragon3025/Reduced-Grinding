@@ -70,6 +70,41 @@ Mods: {
 					SlimeStaffFromSandSlimeIncrease: "From Sand Slime"
 					SlimeStaffFromOtherSlimesIncrease: "From Others"
 				}
+				Tooltip:{
+					BinocularsIncrease: If world difficulty is normal, this is multiplied by (4/3)
+					EmpressAndFishronWingsIncrease:
+						'''
+						This sets the same drop rate for each. If the world difficulty is normal, this
+						is multiplied by (3/2)
+						'''
+					StellarTuneIncrease: If world difficulty is normal, this is multiplied by (5/2)
+					BiomeKeyIncrease: This sets the same drop rate for each
+					BloodyMacheteAndBladedGloveIncrease: This sets the same drop rate for each
+					GoodieBagIncrease: Only drops during Halloween
+					PaladinsHammerIncrease: If world difficulty is normal, this is multiplied by 146.67%
+					PaladinsShieldIncrease: If world difficulty is normal, this is multiplied by 145.33%
+					PresentIncrease: Only drops during Christmas
+					RifleScopeAndSniperRifleIncrease: 
+						'''
+						This sets the same drop rate for each. If world difficulty is normal, this is
+						multiplied by 183.33%
+						'''
+					RocketLauncherIncrease: If world difficulty is normal, this is multiplied by 194.44%
+					RodofDiscordIncrease: If world difficulty is normal, this is multiplied by (5/4)
+					RottenChunkAndVertebra: This sets the same drop rate for each
+					SWATHelmetAndTacticalShotgunIncrease:
+						'''
+						This sets the same drop rate for each. If world difficulty is normal, this is
+						multiplied by 191.66%
+						'''
+					CoinGunBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					CutlassBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					DiscountCardBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					GoldRingBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					LuckyCoinBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					PirateStaffBaseIncrease: This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates
+					SlimeStaff: If world difficulty is normal, this multiplied by (10/7)
+				}
 			}
 			BEnemyLootNonVanillaConfig: {
 				Header: {
@@ -137,7 +172,7 @@ Mods: {
 					StaffOfDifficultyExpert: Enable Switching to Expert
 					StaffOfDifficultyMaster: Enable Switching to Master
 				}
-				ToolTip: {
+				Tooltip: {
 					MoonBall:
 						'''
 						Advances the moon phase and will stop the Blood Moon when

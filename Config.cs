@@ -12,21 +12,19 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SectionInfo")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.BinocularsIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by (4/3)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.BinocularsIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BinocularsIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.EmpressAndFishronWingsIncrease")]
-        [Tooltip("" +
-            "This sets the same drop rate for each. If the world difficulty is normal, this is\n" +
-            "multiplied by (3/2)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.EmpressAndFishronWingsIncrease")]
         [Range(0, 10000)]
         [DefaultValue(7)]
         public int EmpressAndFishronWingsIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.StellarTuneIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by (5/2)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.StellarTuneIncrease")]
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int StellarTuneIncrease;
@@ -44,7 +42,7 @@ namespace ReducedGrinding
         public int TownNPCWeapons;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.BiomeKeyIncrease")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.BiomeKeyIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BiomeKeyIncrease;
@@ -55,13 +53,13 @@ namespace ReducedGrinding
         public int BeamSwordIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.BloodyMacheteAndBladedGloveIncrease")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.BloodyMacheteAndBladedGloveIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BloodyMacheteAndBladedGloveIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.GoodieBagIncrease")]
-        [Tooltip("Only drops during Halloween")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.GoodieBagIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int GoodieBagIncrease;
@@ -87,13 +85,13 @@ namespace ReducedGrinding
         public int MarrowIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.PaladinsHammerIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by 146.67%")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.PaladinsHammerIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsHammerIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.PaladinsShieldIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by 145.33%")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.PaladinsShieldIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsShieldIncrease;
@@ -104,39 +102,37 @@ namespace ReducedGrinding
         public int PlumbersHatIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.PresentIncrease")]
-        [Tooltip("Only drops during Christmas")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.PresentIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PresentIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.RifleScopeAndSniperRifleIncrease")]
-        [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
-            "multiplied by 183.33%")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.RifleScopeAndSniperRifleIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RifleScopeAndSniperRifleIncrease;
 
         [Range(0, 10000)]
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.RocketLauncherIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by 194.44%")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.RocketLauncherIncrease")]
         [DefaultValue(0)]
         public int RocketLauncherIncrease;
 
         [Range(0, 10000)]
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.RodofDiscordIncrease")]
-        [Tooltip("If world difficulty is normal, this is multiplied by (5/4)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.RodofDiscordIncrease")]
         [DefaultValue(0)]
         public int RodofDiscordIncrease;
 
         [Range(0, 10000)]
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.RottenChunkAndVertebra")]
-        [Tooltip("This sets the same drop rate for each")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.RottenChunkAndVertebra")]
         [DefaultValue(0)]
         public int RottenChunkAndVertebra;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SWATHelmetAndTacticalShotgunIncrease")]
-        [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
-            "multiplied by 191.66%")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SWATHelmetAndTacticalShotgunIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgunIncrease;
@@ -144,37 +140,37 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.PirateLoot")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.CoinGunBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.CoinGunBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CoinGunBaseIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.CutlassBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.CutlassBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CutlassBaseIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.DiscountCardBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.DiscountCardBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int DiscountCardBaseIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.GoldRingBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.GoldRingBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int GoldRingBaseIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.LuckyCoinBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.LuckyCoinBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LuckyCoinBaseIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.PirateStaffBaseIncrease")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.PirateStaffBaseIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
@@ -182,22 +178,19 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SlimeStaff")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SlimeStaffFromPinkyIncrease")]
-        [Tooltip("" +
-            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SlimeStaff")]
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int SlimeStaffFromPinkyIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SlimeStaffFromSandSlimeIncrease")]
-        [Tooltip("" +
-            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SlimeStaff")]
         [Range(0, 10000)]
         [DefaultValue(56)]
         public int SlimeStaffFromSandSlimeIncrease;
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SlimeStaffFromOtherSlimesIncrease")]
-        [Tooltip("" +
-            "If world difficulty is normal, this multiplied by (10/7)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SlimeStaff")]
         [Range(0, 10000)]
         [DefaultValue(70)]
         public int SlimeStaffFromOtherSlimesIncrease;
@@ -312,7 +305,7 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.MoonBall")]
-        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.ToolTip.MoonBall")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.MoonBall")]
         [DefaultValue(true)]
         public bool MoonBall;
 
