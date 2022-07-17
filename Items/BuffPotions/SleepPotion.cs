@@ -33,7 +33,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 || GetInstance<IOtherConfig>().SleepBoostBase == 0)
+            if (GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && GetInstance<IOtherConfig>().SleepBoostBase > 0)
             {
                 CreateRecipe()
                   .AddIngredient(ItemID.BottledWater)

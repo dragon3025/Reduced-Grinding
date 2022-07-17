@@ -406,7 +406,7 @@ namespace ReducedGrinding
 
         [Header("World Generation")]
 
-        [Label("Add Missing Rare Chest Items During World Generation")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.GenerateMissingRareChestItems")]
         [DefaultValue(true)]
         [Tooltip("" +
             "After Vanilla World Generation, this mod will detect if certain rare chest items are\n" +
@@ -414,14 +414,14 @@ namespace ReducedGrinding
             "missing because the world didn't generate enough Pyramids.")]
         public bool GenerateMissingRareChestItems;
 
-        [Label("[i:4281] Finch Staff From Tree Shaking")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.FinchStaffFromTreeShaking")]
         [Tooltip("" +
             "Chance = 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.\n" +
             "Set to 0 to disable.")]
         [DefaultValue(300)]
         public int FinchStaffFromTreeShaking;
 
-        [Label("[i:306] Gold Chest with [i:4144] Terragrim per World Generation")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TerragrimChests")]
         [Tooltip("" +
             "After world generation, this mod will select this many Gold Chest, and insert a\n" +
             "Terragrim into it.")]
@@ -430,13 +430,13 @@ namespace ReducedGrinding
 
         [Header("\nSleep boost and Sleep Potion\n\nIn vanilla, sleeping makes time travel at 5 in-game minutes per real-life second. This mod will add more time after this. The amount of time added can be reduced by different conditions listed below.")]
 
-        [Label("Starting Boost Amount (In-Game Minutes Added)")]
-        [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion recipe.")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostBase")]
+        [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion and Time Charm recipes.")]
         [Range(0, 55)]
         [DefaultValue(55)]
         public int SleepBoostBase;
 
-        [Label("Multiplier for No Player with Sleep Buff")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostNoPotionBuffMultiplier")]
         [Tooltip("" +
             "If less than 1, you'll be able to craft Sleep Potion, which gives the Sleep Buff. If\n" +
             "no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
@@ -444,28 +444,29 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
 
-        [Label("Sleep Potion Duration in Hours")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepPotionDurationInHours")]
         [DefaultValue(12)]
         public int SleepPotionDurationInHours;
 
-        [Label("Multiplier for active Time Charm")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostTimeCharmMultiplier")]
         [Tooltip("" +
-            "Time Charm is an item crafted at an Enchanted Sundial. Sleep Boost is multiplied by\n" +
-            "this unless its toggled on. Set to 0 to disable.")]
+            "If less than 1, you'll be able to craft the Time Charm at an Enchanted Sundial, whichs\n" +
+            "its effect on or off for the world. If the world's Time Charm is on, Sleep Boost is\n" +
+            "multiplied by this amount.")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
-        public float SleepBoostTimeCharmMultiplier;
+        public float SleepBoostInactiveTimeCharmMultiplier;
 
         [Header("\nCrates\n\nAll configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n[i:3205] Dungeon / Stockade Crate")]
 
-        [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.DungeonCrateDungeonFurniture")]
         [Range(0, 10000)]
         [DefaultValue(1)]
         public int DungeonCrateDungeonFurniture;
 
         [Header("[i:3981] Titanium / Mythril / Pearlwood")]
 
-        [Label("[i:3064] Enchanted Sundial")]
+        [Label("")]
         [Tooltip("Denominator is multiplied by 3 for Mythril and 10 for Pearlwood")]
         [Range(0, 10000)]
         [DefaultValue(0)]
@@ -473,7 +474,7 @@ namespace ReducedGrinding
 
         [Header("[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants")]
 
-        [Label("[i:438] King, Queen, Heart, Star, and Bomb Statue")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CrateStatue")]
         [Tooltip("" +
             "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril and 10\n" +
             "for Pearlwood")]
@@ -483,7 +484,7 @@ namespace ReducedGrinding
 
         [Header("Traveling Merchant")]
 
-        [Label("Extra Chance Rolls For Items")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantExtraRolls")]
         [Tooltip("" +
             "Shop inventories are limited to 40 items, unless you're using the Shop Expander mod.\n" +
             "This will roll item chances, but if it fails every item chance possible, it will skip\n" +
@@ -492,55 +493,55 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int TravelingMerchantExtraRolls;
 
-        [Label("[i:3059] Christmas Paintings Extra Chance")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantChristmasChance")]
         [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(13)]
         public int TravelingMerchantChristmasChance;
 
-        [Label("[i:2867] Martian Paintings Extra Chance")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantMartianChance")]
         [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantMartianChance;
 
-        [Label("[i:3596] Not a Kid, nor a Squid Extra Chance")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantNotAKidNorASquidChance")]
         [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantNotAKidNorASquidChance;
 
-        [Label("[i:2223] Pulse Bow Extra Chance")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantPulseBowChance")]
         [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
 
       //[Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. Real-world days of a year for Holidays is used to calculate when the events should happen.")]
-        [Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be perchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.")]
-        [Label("Days Per Month (12 Months per year)")]
+        [Header("Periodic Holiday Timeline.\n\nThis mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be purchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.HolidayTimelineDaysPerMonth")]
         [Range(1, 30)]
         [DefaultValue(2)]
         public int HolidayTimelineDaysPerMonth;
 
         [Header("Crafting")]
 
-        [Label("[i:67] Infection Powder per Mushroom")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.InfectionPowderPerMushroom")]
         [Tooltip("Set to 5 to disable custom recipe")]
         [Range(5, 999)]
         [DefaultValue(5)]
         public int InfectionPowderPerMushroom;
 
-        [Label("Allow crafting [i:2889]Gold Critters")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CraftableGoldCritters")]
         [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
         [DefaultValue(false)]
         public bool CraftableGoldCritters;
 
-        [Label("Craftable Rare Chests")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CraftableRareChests")]
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
-        [Label("Craftable [i:4951] Universal Pylon Difficulty")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CraftableUniversalPylon")]
         [Tooltip("" +
             "0: Disabled, 1: Crafted out of all other Pylons, 2: Same as 1, + crafted at Crystal\n" +
             "Ball instead of Tinker's Workshop, 3: Same as 2 + crafted with all Souls")]
@@ -550,11 +551,11 @@ namespace ReducedGrinding
 
         [Header("Other")]
 
-        [Label("Cancel Invasions When All Players Are Underground")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CancelInvasionsIfAllPlayersAreUnderground")]
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
 
-        [Label("Lunar Pillar Shield Health")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.LunarPillarShieldHealth")]
         [Tooltip("" +
             "The amount of enemies to lower their shield. If world difficulty is normal, this is\n" +
             "multiplied by (2/3)")]
@@ -562,11 +563,11 @@ namespace ReducedGrinding
         [DefaultListValue(150)] //TO-DO 1.4.4 May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
         public int LunarPillarShieldHealth;
 
-        [Label("Merchant Sells Miner's Shirt and Miner's Pants")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.MerchantSellsMinersShirtAndPants")]
         [DefaultValue(false)]
         public bool MerchantSellsMinersShirtAndPants;
 
-        [Label("Adjust Values For Drop Increases")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AdjustItemValuesForDropIncreases")]
         [Tooltip("" +
             "If enabled, items with extra drop rates will have their values reduced depending on\n" +
             "how much their drop rate is increased. New value is multiplied by (chance /\n" +
@@ -574,11 +575,11 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
-        [Label("Skeleton Merchant Ignores Moonphases")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SkeletonMerchantIgnoresMoonphases")]
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
 
-        [Label("[i:4951] Universal Pylon, Bestiary completion % to unlock")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.UniversalPylonBestiaryCompletionRate")]
         [Tooltip("" +
             "In vanilla, there are 523 entries. 51% can be achieved before Hardmode. Set to 100% to disable.")]
         [Increment(0.01f)]

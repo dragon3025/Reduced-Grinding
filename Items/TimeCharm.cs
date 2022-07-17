@@ -62,7 +62,7 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            if (GetInstance<IOtherConfig>().SleepBoostTimeCharmMultiplier < 1 || GetInstance<IOtherConfig>().SleepBoostBase == 0)
+            if (GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier < 1 && GetInstance<IOtherConfig>().SleepBoostBase > 0)
             {
                 CreateRecipe()
                   .AddIngredient(ItemID.SunplateBlock)

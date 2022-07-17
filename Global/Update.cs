@@ -30,6 +30,8 @@ namespace ReducedGrinding.Global
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
 
             bool boostTime = true;
+            if (sleepBoost == 0)
+                boostTime = false;
             if (Main.fastForwardTime)
                 boostTime = false;
             if (Main.CurrentFrameFlags.SleepingPlayersCount != Main.CurrentFrameFlags.ActivePlayersCount)
@@ -204,8 +206,8 @@ namespace ReducedGrinding.Global
                 if (!playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
                     sleepBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
 
-                if (!timeCharm && GetInstance<IOtherConfig>().SleepBoostTimeCharmMultiplier < 1)
-                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostTimeCharmMultiplier;
+                if (!timeCharm && GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier < 1)
+                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier;
 
                 Main.time += (int)sleepBoost;
 

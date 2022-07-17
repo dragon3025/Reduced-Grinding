@@ -103,6 +103,36 @@ Mods: {
 						'''
 				}
 			}
+			IOtherConfig: {
+				Label: {
+					GenerateMissingRareChestItems: Add Missing Rare Chest Items During World Generation
+					FinchStaffFromTreeShaking: "[i:4281] Finch Staff From Tree Shaking"
+					TerragrimChests: "[i:306] Gold Chest with [i:4144] Terragrim per World Generation"
+					SleepBoostBase: Starting Boost Amount (In-Game Minutes Added)
+					SleepBoostNoPotionBuffMultiplier: Multiplier for No Player with Sleep Buff
+					SleepPotionDurationInHours: Sleep Potion Duration in Hours
+					SleepBoostInactiveTimeCharmMultiplier: Multiplier for inactive Time Charm
+					DungeonCrateDungeonFurniture: "[i:1408] Dungeon Color Furniture Piece (Random Color)"
+					CrateEnchantedSundial: "[i:3064] Enchanted Sundial"
+					CrateStatue: "[i:438] King, Queen, Heart, Star, and Bomb Statue"
+					TravelingMerchantExtraRolls: "Extra Chance Rolls For Items"
+					TravelingMerchantChristmasChance: "[i:3059] Christmas Paintings Extra Chance"
+					TravelingMerchantMartianChance: "[i:2867] Martian Paintings Extra Chance"
+					TravelingMerchantNotAKidNorASquidChance: "[i:3596] Not a Kid, nor a Squid Extra Chance"
+					TravelingMerchantPulseBowChance: "[i:2223] Pulse Bow Extra Chance"
+					HolidayTimelineDaysPerMonth: "Days Per Month (12 Months per year)"
+					InfectionPowderPerMushroom: "[i:67] Infection Powder per Mushroom"
+					CraftableGoldCritters: "Allow crafting [i:2889]Gold Critters"
+					CraftableRareChests: Craftable Rare Chests
+					CraftableUniversalPylon: "Craftable [i:4951] Universal Pylon Difficulty"
+					CancelInvasionsIfAllPlayersAreUnderground: Cancel Invasions When All Players Are Underground
+					LunarPillarShieldHealth: Lunar Pillar Shield Health
+					MerchantSellsMinersShirtAndPants: Merchant Sells Miner's Shirt and Miner's Pants
+					AdjustItemValuesForDropIncreases: Adjust Values For Drop Increases
+					SkeletonMerchantIgnoresMoonphases: Skeleton Merchant Ignores Moonphases
+					UniversalPylonBestiaryCompletionRate: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
+				}
+			}
 		}
 	}
 }
