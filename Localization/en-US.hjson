@@ -22,6 +22,7 @@ Mods: {
 			MoonBall: Moon Ball
 		}
 		Config: {
+			#Note: I make line breaks to prevent 80 characters for each tooltip line (because of indents, the character count starts higher).
 			AEnemyLootConfig: {
 				Header: {
 					SectionInfo:
@@ -38,6 +39,7 @@ Mods: {
 					SlimeStaff: "[i:1309] Slime Staff"
 				}
 				Label: {
+					Section: Enemy Loot Vanilla
 					BinocularsIncrease: "[i:1299] Binoculars"
 					EmpressAndFishronWingsIncrease: "[i:4823] Empress and [i:2609] Fishron Wings"
 					StellarTuneIncrease: "[i:4715] Stellar Tune"
@@ -117,6 +119,7 @@ Mods: {
 					NonBossLoot: Non-Boss Loot
 				}
 				Label: {
+					Section: Enemy Loot Non-Vanilla
 					SlimeStaffFromSlimeKing: "[i:1309] Slime Staff From Slime King"
 					TrufflewormFromDukeFishron: "[i:2673] Truffle Worm from Duke Fishron"
 					TerragrimFromHardmodeGrabBag: "[i:4144] Terragrim from Most Hardmode Grab Bags"
@@ -127,6 +130,9 @@ Mods: {
 					SandFromTombCrawler: "[i:169] Sand from Tomb Crawler (Min and Max in any order)"
 					SandstormInABottleFromSandElemental: "[i:857] Sandstorm in a Bottle from Sand Elemental"
 					SnowballLauncherFromSpikedIceSlime: "[i:951] Snowball Launcher from Spiked Ice Slime"
+				}
+				Tooltip: {
+					TerragrimFromHardmodeGrabBag: From all Boss Bags that can drop Developer Items
 				}
 			}
 			CFishingConfig: {
@@ -139,10 +145,14 @@ Mods: {
 						'''
 				}
 				Label: {
+					Section: Fishing
 					MultiBobberPotionBobberAmount: Multi-Bobber Potion's Bobber Amount
 					AnglerRecentChanceBeforeHardmode: Before Hardmode
 					AnglerRecentChanceHardmode: Hardmode
 					AnglerRecentChanceAfterPlantera: After Plantera
+				}
+				Tooltip: {
+					MultiBobberPotionBobberAmount: Set to 1 to disable recipe
 				}
 			}
 			HOtherModdedItemsConfig: {
@@ -158,6 +168,7 @@ Mods: {
 					StaffOfDifficulty: "{$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Disable all to disable the recipe."
 				}
 				Label: {
+					Section: Other Modded Items
 					MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
 					SlimeTrophy: "{$Mods.ReducedGrinding.ItemName.SlimeTrophy}"
 					BestiaryTrophy: "{$Mods.ReducedGrinding.ItemName.BestiaryTrophy}"
@@ -179,6 +190,23 @@ Mods: {
 						advancing to a new moon. Set to false to disable the recipe.
 						Crafted out of Meteorite, Glass, and Fallen Star.
 						'''
+					SlimeTrophy:
+						'''
+						This trophy's drop chances are the same as Slime Staff in vanilla. Slime Staff
+						is sometimes seen as a trophy item, so this is an alternative trophy item in
+						case you set lower drop rates for Slime Staff.
+						'''
+					BestiaryTrophy:
+						'''
+						If the Bestiary is 100% complete, the Zoologoist will sell this Trophy. This
+						acts as a replacement reward if the Universal Pylon is set to be craftable.
+						'''
+					PlanteraSapFromPlantera: Summons Plantera. Chance = 1 / configuration_setting. Set to 0 to disable.
+					ModBattlePotionMaxSpawnEffectOnInvasion:
+						'''
+						At 100%, the invasion size will be multiplied by the max spawn multipliers by
+						Greater Battle Buff and Super Battle Buff. At 0%, it will be multiplied by 1.
+						'''
 				}
 			}
 			IOtherConfig: {
@@ -194,7 +222,9 @@ Mods: {
 						'''
 						Crates
 						
-						All configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n[i:3205] Dungeon / Stockade Crate
+						All configurations in this section will add an (1 / configuration_setting) to drop. Set to 0 to disable. Drops from Boss Treasure Bags use the configurations for Boss Loot.
+						
+						[i:3205] Dungeon / Stockade Crate
 						'''
 					HardmodeRegularCrates: "[i:3981] Titanium / Mythril / Pearlwood"
 					RegularCrates: "[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants"
@@ -209,6 +239,7 @@ Mods: {
 					Other: Other
 				}
 				Label: {
+					Section: Other
 					GenerateMissingRareChestItems: Add Missing Rare Chest Items During World Generation
 					FinchStaffFromTreeShaking: "[i:4281] Finch Staff From Tree Shaking"
 					TerragrimChests: "[i:306] Gold Chest with [i:4144] Terragrim per World Generation"
@@ -235,6 +266,82 @@ Mods: {
 					AdjustItemValuesForDropIncreases: Adjust Values For Drop Increases
 					SkeletonMerchantIgnoresMoonphases: Skeleton Merchant Ignores Moonphases
 					UniversalPylonBestiaryCompletionRate: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
+				}
+				Tooltip: {
+					GenerateMissingRareChestItems:
+						'''
+						After Vanilla World Generation, this mod will detect if specific rare chest items
+						are missing from the world, for example: Pyramid items that are missing because
+						the world didn't generate enough Pyramids. It will add these items in specific
+						chest.
+						'''
+					FinchStaffFromTreeShaking:
+						'''
+						Chance = 1 / configuration_setting. Note: Trees can only be shaken 300 times per
+						day. Set to 0 to disable.
+						'''
+					TerragrimChests:
+						'''
+						After world generation, this mod will select this many Gold Chest, and insert a
+						Terragrim into it.
+						'''
+					SleepBoostBase:
+						'''
+						Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion and
+						Time Charm recipes.
+						'''
+					SleepBoostNoPotionBuffMultiplier:
+						'''
+						If less than 1, you'll be able to craft Sleep Potion, which gives the Sleep
+						Buff. If no player has a Sleep Buff, then the Sleep Boost is multiplied by this
+						amount.
+						'''
+					SleepBoostInactiveTimeCharmMultiplier:
+						'''
+						If less than 1, you'll be able to craft the Time Charm at an Enchanted Sundial,
+						which gives or removes the Time Chart for the world (the world starts without
+						it). If the world doesn't have the Time Charm effect, Sleep Boost is multiplied
+						by this amount.
+						'''
+					CrateEnchantedSundial:
+						'''
+						Denominator is multiplied by 3 for Mythril and 10 for
+						Pearlwood
+						'''
+					CrateStatue:
+						'''
+						Randomly selects 1 of the 5 statues. Denominator is multiplied
+						by 3 for Mythril and 10 for Pearlwood
+						'''
+					TravelingMerchantExtraRolls:
+						'''
+						Gives extra chances for adding items to the shop. Use the Shop Expander mod to
+						allow more than 40 items.
+						'''
+					TravelingMerchantItemExtraChance: Chance = 1 / configuration_setting
+					InfectionPowderPerMushroom: Set to 5 to disable custom recipe
+					CraftableGoldCritters: Recipes use 10 Gold Coins to prevent exploiting the recipe for money
+					CraftableUniversalPylon: 
+						'''
+						0: Disabled 1: Crafted out of all other Pylons 2: Same as 1, + crafted at
+						Crystal Ball instead of Tinker's Workshop 3: Same as 2 + crafted with all Souls
+						'''
+					LunarPillarShieldHealth:
+						'''
+						The amount of enemies to lower their shield. If world difficulty is normal, this
+						is multiplied by (2/3).
+						'''
+					AdjustItemValuesForDropIncreases:
+						'''
+						If enabled, items with extra drop rates will have their values
+						reduced depending on how much their drop rate is increased.
+						New value is multiplied by (chance / total_new_chance).
+						'''
+					UniversalPylonBestiaryCompletionRate:
+						'''
+						In vanilla, there are 523 entries. 51% can be achieved before
+						Hardmode. Set to 100% to disable
+						'''
 				}
 			}
 		}

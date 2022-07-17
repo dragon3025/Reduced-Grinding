@@ -4,7 +4,7 @@ using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding
 {
-    [Label("Enemy Loot Vanilla")]
+    [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.Section")]
     public class AEnemyLootConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -202,7 +202,7 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Enemy Loot Non-Vanilla")]
+    [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.Section")]
     public class BEnemyLootNonVanillaConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -220,7 +220,7 @@ namespace ReducedGrinding
         public int TrufflewormFromDukeFishron;
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.TerragrimFromHardmodeGrabBag")]
-        [Tooltip("From all Boss Bags that can drop Developer Items")]
+        [Tooltip("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Tooltip.TerragrimFromHardmodeGrabBag")]
         [Range(0, 10000)]
         [DefaultValue(60)]
         public int TerragrimFromHardmodeGrabBag;
@@ -264,13 +264,13 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Fishing")]
+    [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.Section")]
     public class CFishingConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBobberAmount")]
-        [Tooltip("Set to 1 to disable recipe")]
+        [Tooltip("$Mods.ReducedGrinding.Config.CFishingConfig.Tooltip.MultiBobberPotionBobberAmount")]
         [Range(1, 100)]
         [DefaultValue(10)]
         public int MultiBobberPotionBobberAmount;
@@ -299,7 +299,7 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Other Modded Items")]
+    [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.Section")]
     public class HOtherModdedItemsConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -310,22 +310,17 @@ namespace ReducedGrinding
         public bool MoonBall;
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.SlimeTrophy")]
-        [Tooltip("" +
-            "This trophy's drop chances are the same as Slime Staff in vanilla. Slime staff is\n" +
-            "sometimes seen as a trophy item, so this is an alternative if Slime Staff's drop rates\n" +
-            "are increased.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.SlimeTrophy")]
         [DefaultValue(true)]
         public bool SlimeTrophy;
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.BestiaryTrophy")]
-        [Tooltip("" +
-            "If the Bestiary is 100% complete, the Zoologoist will sell this Trophy. This acts as a\n" +
-            "replacement reward if the Universal Pylon is set to be craftable.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.BestiaryTrophy")]
         [DefaultValue(true)]
         public bool BestiaryTrophy;
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.PlanteraSapFromPlantera")]
-        [Tooltip("Summons Plantera. Chance = 1 / configuration_setting. Set to 0 to disable.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.PlanteraSapFromPlantera")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
@@ -360,9 +355,7 @@ namespace ReducedGrinding
         [Header("")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.ModBattlePotionMaxSpawnEffectOnInvasion")]
-        [Tooltip("" +
-            "At 1, the invasion size will be multiplied by the max spawn multipliers by each buff.\n" +
-            "At 0, it will be multiplied by 1.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.ModBattlePotionMaxSpawnEffectOnInvasion")]
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float ModBattlePotionMaxSpawnEffectOnInvasion;
@@ -392,7 +385,7 @@ namespace ReducedGrinding
         }
     }
 
-    [Label("Other")]
+    [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.Section")]
     public class IOtherConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -401,38 +394,29 @@ namespace ReducedGrinding
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.GenerateMissingRareChestItems")]
         [DefaultValue(true)]
-        [Tooltip("" +
-            "After Vanilla World Generation, this mod will detect if certain rare chest items are\n" +
-            "missing from the world and add them to the world. For example: Pyramid items that are\n" +
-            "missing because the world didn't generate enough Pyramids.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.GenerateMissingRareChestItems")]
         public bool GenerateMissingRareChestItems;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.FinchStaffFromTreeShaking")]
-        [Tooltip("" +
-            "Chance = 1 / configuration_setting. Note: Trees can only be shaken 300 times per day.\n" +
-            "Set to 0 to disable.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.FinchStaffFromTreeShaking")]
         [DefaultValue(300)]
         public int FinchStaffFromTreeShaking;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TerragrimChests")]
-        [Tooltip("" +
-            "After world generation, this mod will select this many Gold Chest, and insert a\n" +
-            "Terragrim into it.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TerragrimChests")]
         [DefaultValue(1)]
         public int TerragrimChests;
 
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.SleepBoost")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostBase")]
-        [Tooltip("Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion and Time Charm recipes.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.SleepBoostBase")]
         [Range(0, 55)]
         [DefaultValue(55)]
         public int SleepBoostBase;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostNoPotionBuffMultiplier")]
-        [Tooltip("" +
-            "If less than 1, you'll be able to craft Sleep Potion, which gives the Sleep Buff. If\n" +
-            "no player has a Sleep Buff, then the Sleep Boost is multiplied by this amount.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.SleepBoostNoPotionBuffMultiplier")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
@@ -441,11 +425,8 @@ namespace ReducedGrinding
         [DefaultValue(12)]
         public int SleepPotionDurationInHours;
 
-        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostTimeCharmMultiplier")]
-        [Tooltip("" +
-            "If less than 1, you'll be able to craft the Time Charm at an Enchanted Sundial, whichs\n" +
-            "its effect on or off for the world. If the world's Time Charm is on, Sleep Boost is\n" +
-            "multiplied by this amount.")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostInactiveTimeCharmMultiplier")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.SleepBoostInactiveTimeCharmMultiplier")]
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostInactiveTimeCharmMultiplier;
@@ -459,8 +440,8 @@ namespace ReducedGrinding
 
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.HardmodeRegularCrates")]
 
-        [Label("")]
-        [Tooltip("Denominator is multiplied by 3 for Mythril and 10 for Pearlwood")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CrateEnchantedSundial")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.CrateEnchantedSundial")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
@@ -468,9 +449,7 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.RegularCrates")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CrateStatue")]
-        [Tooltip("" +
-            "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril and 10\n" +
-            "for Pearlwood")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.CrateStatue")]
         [Range(0, 10000)]
         [DefaultValue(5)]
         public int CrateStatue;
@@ -478,34 +457,31 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.TravelingMerchant")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantExtraRolls")]
-        [Tooltip("" +
-            "Shop inventories are limited to 40 items, unless you're using the Shop Expander mod.\n" +
-            "This will roll item chances, but if it fails every item chance possible, it will skip\n" +
-            "the roll to prevent crashing from an infinite loop.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantExtraRolls")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantExtraRolls;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantChristmasChance")]
-        [Tooltip("Chance = 1 / configuration_setting")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
         [DefaultValue(13)]
         public int TravelingMerchantChristmasChance;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantMartianChance")]
-        [Tooltip("Chance = 1 / configuration_setting")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantMartianChance;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantNotAKidNorASquidChance")]
-        [Tooltip("Chance = 1 / configuration_setting")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
         [DefaultValue(0)]
         public int TravelingMerchantNotAKidNorASquidChance;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantPulseBowChance")]
-        [Tooltip("Chance = 1 / configuration_setting")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
@@ -519,13 +495,13 @@ namespace ReducedGrinding
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Crafting")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.InfectionPowderPerMushroom")]
-        [Tooltip("Set to 5 to disable custom recipe")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.InfectionPowderPerMushroom")]
         [Range(5, 999)]
         [DefaultValue(5)]
         public int InfectionPowderPerMushroom;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CraftableGoldCritters")]
-        [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.CraftableGoldCritters")]
         [DefaultValue(false)]
         public bool CraftableGoldCritters;
 
@@ -534,9 +510,7 @@ namespace ReducedGrinding
         public bool CraftableRareChests;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CraftableUniversalPylon")]
-        [Tooltip("" +
-            "0: Disabled, 1: Crafted out of all other Pylons, 2: Same as 1, + crafted at Crystal\n" +
-            "Ball instead of Tinker's Workshop, 3: Same as 2 + crafted with all Souls")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.CraftableUniversalPylon")]
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
@@ -548,9 +522,7 @@ namespace ReducedGrinding
         public bool CancelInvasionsIfAllPlayersAreUnderground;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.LunarPillarShieldHealth")]
-        [Tooltip("" +
-            "The amount of enemies to lower their shield. If world difficulty is normal, this is\n" +
-            "multiplied by (2/3)")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.LunarPillarShieldHealth")]
         [Range(1, 150)]
         [DefaultListValue(150)] //TO-DO 1.4.4 May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
         public int LunarPillarShieldHealth;
@@ -560,10 +532,7 @@ namespace ReducedGrinding
         public bool MerchantSellsMinersShirtAndPants;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AdjustItemValuesForDropIncreases")]
-        [Tooltip("" +
-            "If enabled, items with extra drop rates will have their values reduced depending on\n" +
-            "how much their drop rate is increased. New value is multiplied by (chance /\n" +
-            "total_new_chance).")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.AdjustItemValuesForDropIncreases")]
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
@@ -572,8 +541,7 @@ namespace ReducedGrinding
         public bool SkeletonMerchantIgnoresMoonphases;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.UniversalPylonBestiaryCompletionRate")]
-        [Tooltip("" +
-            "In vanilla, there are 523 entries. 51% can be achieved before Hardmode. Set to 100% to disable.")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.UniversalPylonBestiaryCompletionRate")]
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float UniversalPylonBestiaryCompletionRate;
