@@ -19,7 +19,42 @@ Mods: {
 		}
 		Config: {
 			Label: {
-				MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
+				AEnemyLootConfig: {
+					BinocularsIncrease: "[i:1299] Binoculars"
+					EmpressAndFishronWingsIncrease: "[i:4823] Empress and [i:2609] Fishron Wings"
+					StellarTuneIncrease: "[i:4715] Stellar Tune"
+					RainbowCursor: "[i:5075] Rainbow Cursor"
+					TownNPCWeapons: "[i:3349] Town NPC Weapons"
+					BiomeKeyIncrease: "[i:1533] Biome Key Increase"
+					BeamSwordIncrease: "[i:723] Beam Sword"
+					BloodyMacheteAndBladedGloveIncrease: "[i:1825] Bloody Machete and [i:1827] Bladed Glove"
+					GoodieBagIncrease: "[i:1774] Goodie Bag"
+					KOCannonIncrease: "[i:1314] KO Cannon"
+					LensIncrease: "[i:38] Lens"
+					LizardEggIncrease: "[i:1172] Lizard Egg"
+					MarrowIncrease: "[i:682] Marrow"
+					PaladinsHammerIncrease: "[i:1513] Paladin's Hammer"
+					PaladinsShieldIncrease: "[i:938] Paladin's Shield"
+					PlumbersHatIncrease: "[i:244] Plumber’s Hat"
+					PresentIncrease: "[i:1869] Present"
+					RifleScopeAndSniperRifleIncrease: "[i:1300] Rifle Scope and [i:1254]Sniper Rifle"
+					RocketLauncherIncrease: "[i:759] Rocket Launcher"
+					RodofDiscordIncrease: "[i:1326] Rod of Discord"
+					RottenChunkAndVertebra: "[i:68] Rotten Chunk and [i:1330] Vertebra"
+					SWATHelmetAndTacticalShotgunIncrease: "[i:1514] SWAT Helmet and [i:679]Tactical Shotgun"
+					CoinGunBaseIncrease: "[i:905] Coin Gun (Hover for more info)"
+					CutlassBaseIncrease: "[i:672] Cutlass (Hover for more info)"
+					DiscountCardBaseIncrease: "[i:854] Discount Card (Hover for more info)"
+					GoldRingBaseIncrease: "[i:3033] Gold Ring (Hover for more info)"
+					LuckyCoinBaseIncrease: "[i:855] Lucky Coin (Hover for more info)"
+					PirateStaffBaseIncrease: "[i:2584] Pirate Staff (Hover for more info)"
+					SlimeStaffFromPinkyIncrease: "From Pinky"
+					SlimeStaffFromSandSlimeIncrease: "From Sand Slime"
+					SlimeStaffFromOtherSlimesIncrease: "From Others"
+				}
+				HOtherModdedItemsConfig: {
+					MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
+				}
 			}
 			ToolTip: {
 				MoonBall:
