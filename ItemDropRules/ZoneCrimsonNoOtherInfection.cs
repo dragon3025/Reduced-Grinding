@@ -1,4 +1,5 @@
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
@@ -24,7 +25,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return "Only in the Hallow.";
+			return $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.ZoneCrimsonNoOtherInfection")}";
 		}
 	}
 }

@@ -8,18 +8,66 @@
 
 Mods: {
 	ReducedGrinding: {
+		BuffName: {
+			GreaterBattle: Greater Battle
+			MultiBobber: Multi-Bobber Potion
+			Sleep: Sleep
+			SuperBattle: Super Battle
+		}
+		BuffDescription: {
+			GreaterBattle: Enemy spawn rate greatly increased
+			MultiBobber: Use 10 Bobbers at a time
+			Sleep: Increases time rate while sleeping
+			SuperBattle: Enemy spawn rate massively increased
+		}
 		ItemName: {
 			BestiaryTrophy: Bestiary Trophy
+			Calendar: Calendar
+			GreaterBattlePotion: Greater Battle Potion
 			MoonBall: Moon Ball
+			MultiBobberPotion: Multi-Bobber Potion
 			PlanteraSap: Plantera Sap
+			SleepPotion: SleepPotion
 			SlimeTrophy: Slime Trophy
 			StaffOfDifficulty: Staff of Difficulty
+			SuperBattlePotion: Super Battle Potion
+			TimeCharm: Time Charm
 		}
 		ItemTooltip: {
+			Calendar: Shows the current date
+			GreaterBattlePotion: Greatly increases enemy spawn rate
 			MoonBall: Advances the Moon Phase
+			MultiBobberPotion: Use multiple bobbers at a time
+			PlanteraSap: Use in the Jungle to summon Plantera
+			SleepPotion: Increases time rate while sleeping
+			StaffOfDifficulty: A creative tool that switches the difficulty modes
+			SuperBattlePotion: Massively increases enemy spawn rate
+			TimeCharm: Use to increase time rate while sleeping
 		}
 		MapObject: {
+			Calendar: Calendar
 			MoonBall: Moon Ball
+		}
+		Other: {
+			AddingRareChestLoot: Adding Non-Existing Rare Chest Loot
+			InvasionLeft: The invasion couldn't find you, so they left.
+			QuestCompleted: Quests Completed
+			NewAnglerJob: The Angler Decided to Give You Another Job.
+			ZoneNonInfection: Not in the Corruption, Crimson, or Hallow.
+			ZoneCorruptnNoOtherInfection: Only in the Corruption.
+			ZoneCrimsonNoOtherInfection: Only in the Hallow.
+			ZoneHallow: Only in the Hallow.
+		}
+		RecipeGroups: {
+			BaitCritterLow: Any bait critter with less than 20 Power
+			BaitCritterMed: Any bait critter at least 20 Power and less than 25 Power
+			BaitCritterHigh: Any bait critter with at least 25 Power
+			AltBalloons: Any Honey Balloon or Fart Balloon
+			FartInAJarAccessory: Any Fart in a Jar Variant
+			HorseshoeAccessory: Obsidian Horseshoe or Any Horseshoe Balloon
+			InfectionMushroom: Vile Mushroom or Vicious Mushroom
+			InfectionOre: Demonite Ore or Crimtane Ore
+			DungeonBrick: Any Dungeon Brick
 		}
 		Config: {
 			#Note: I make line breaks to prevent 80 characters for each tooltip line (because of indents, the character count starts higher).

@@ -34,7 +34,8 @@ namespace ReducedGrinding.GlobalRecipes
 
         public override void AddRecipeGroups()
         {
-            baitCritterLow = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with less than 20 Power.", new int[]
+            //baitCritterLow = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with less than 20 Power.", new int[]
+            baitCritterLow = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterLow")}", new int[]
             {
                 ItemID.MonarchButterfly,
                 ItemID.SulphurButterfly,
@@ -51,7 +52,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterLow", baitCritterLow);
 
-            baitCritterMed = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with at least 20 Power and less than 25 Power.", new int[]
+            baitCritterMed = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterMed")}", new int[]
             {
                 ItemID.UlyssesButterfly,
                 ItemID.BlackDragonfly,
@@ -68,7 +69,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterMed", baitCritterMed);
 
-            baitCritterHigh = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with at least 25 Power.", new int[]
+            baitCritterHigh = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterHigh")}", new int[]
             {
                 ItemID.JuliaButterfly,
                 ItemID.Lavafly,
@@ -90,7 +91,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
 
-            altBalloons = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Honey Balloon or Fart Balloon.", new int[]
+            altBalloons = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.AltBalloons")}", new int[]
             {
                 ItemID.HoneyBalloon,
                 ItemID.BalloonHorseshoeHoney,
@@ -99,7 +100,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:altBalloons", altBalloons);
 
-            fartInAJarAccessory = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Fart in a Jar Variant.", new int[]
+            fartInAJarAccessory = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.FartInAJarAccessory")}", new int[]
             {
                 ItemID.FartinaJar,
                 ItemID.FartInABalloon,
@@ -107,33 +108,33 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:fartInAJarAccessory", fartInAJarAccessory);
 
-            horseshoeAccessory = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Lucky Horseshoe Variant.", new int[]
+            horseshoeAccessory = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.HorseshoeAccessory")}", new int[]
             {
+                ItemID.BlueHorseshoeBalloon,
                 ItemID.BalloonHorseshoeFart,
                 ItemID.BalloonHorseshoeHoney,
                 ItemID.BalloonHorseshoeSharkron,
-                ItemID.BlueHorseshoeBalloon,
                 ItemID.ObsidianHorseshoe,
                 ItemID.WhiteHorseshoeBalloon,
                 ItemID.YellowHorseshoeBalloon
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:horseshoeAccessory", horseshoeAccessory);
 
-            infectionMushroom = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Vile Mushroom or Vicious Mushroom.", new int[]
+            infectionMushroom = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.InfectionMushroom")}", new int[]
             {
                 ItemID.VileMushroom,
                 ItemID.ViciousMushroom
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:infectionMushroom", infectionMushroom);
 
-            infectionOre = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Demonite Ore or Crimtane Ore.", new int[]
+            infectionOre = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.InfectionOre")}", new int[]
             {
                 ItemID.DemoniteOre,
                 ItemID.CrimtaneOre
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:infectionOre", infectionOre);
 
-            dungeonBrick = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " Dungeon Brick.", new int[]
+            dungeonBrick = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.DungeonBrick")}", new int[]
             {
                 ItemID.BlueBrick,
                 ItemID.GreenBrick,

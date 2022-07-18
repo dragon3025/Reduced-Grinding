@@ -3,6 +3,15 @@ using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ReducedGrinding.Global;
+using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.Chat;
+using Terraria.ID;
+using Terraria.Localization;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -12,7 +21,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Multi-Bobber Potion");
-            Tooltip.SetDefault("Use 10 Bobbers at a time");
+            Tooltip.SetDefault("Use multiple bobbers at a time");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

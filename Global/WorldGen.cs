@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
@@ -16,7 +17,7 @@ namespace ReducedGrinding.Global
 
 			if (FinalCleanupIndex != -1)
 			{
-				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Example Mod Ores", 237.4298f));
+				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen($"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}", 237.4298f));
 			}
 		}
 
@@ -29,7 +30,7 @@ namespace ReducedGrinding.Global
 				if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
 					return;
 
-				progress.Message = "Adding Non-Existing Rare Chest Loot";
+				progress.Message = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}";
 
 				List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };
 				List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };

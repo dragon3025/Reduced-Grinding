@@ -236,7 +236,7 @@ namespace ReducedGrinding.Global
             if (npc.type == NPCID.DuneSplicerHead)
             {
                 TryLootMaxMin(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromDuneSplicer);
-                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
+                TryCondtionalLootMaxMin(ItemID.SandBlock, new ZoneNonInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
                 TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
                 TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
                 TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
@@ -245,7 +245,7 @@ namespace ReducedGrinding.Global
             if (npc.type == NPCID.TombCrawlerHead)
             {
                 TryLootMaxMin(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromTombCrawler);
-                TryCondtionalLootMaxMin(ItemID.SandBlock, new NoInfectionZone(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
+                TryCondtionalLootMaxMin(ItemID.SandBlock, new ZoneNonInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
                 TryCondtionalLootMaxMin(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
                 TryCondtionalLootMaxMin(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
                 TryCondtionalLootMaxMin(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);

@@ -1,8 +1,9 @@
 using Terraria.GameContent.ItemDropRules;
+using Terraria.Localization;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
-	public class NoInfectionZone : IItemDropRuleCondition
+    public class ZoneNonInfection : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
@@ -25,7 +26,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return "Not in the Corruption, Crimson, or Hallow.";
+			return $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.ZoneNonInfection")}";
 		}
 	}
 }

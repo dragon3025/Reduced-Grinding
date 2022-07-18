@@ -1,12 +1,5 @@
 using Terraria.GameContent.ItemDropRules;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.Chat;
-using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
@@ -26,7 +19,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return "Only in the Hallow.";
+			return $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.ZoneHallow")}";
 		}
 	}
 }

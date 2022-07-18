@@ -10,6 +10,7 @@ namespace ReducedGrinding.Items.Placeable
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Calendar");
+            Tooltip.SetDefault("Shows the current date");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

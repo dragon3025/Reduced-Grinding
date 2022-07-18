@@ -156,10 +156,11 @@ namespace ReducedGrinding.Global
             if (cancelInvasion && Main.invasionX == Main.spawnTileX)
             {
                 Main.invasionType = InvasionID.None;
+                string InvasionLeftMessage = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.InvasionLeft")}";
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find you, so they left."), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(InvasionLeftMessage), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    Main.NewText("The invasion couldn't find you, so they left.", new Color(255, 255, 0));
+                    Main.NewText(InvasionLeftMessage, new Color(255, 255, 0));
             }
             else if (invasionType > 0)
             {
@@ -225,10 +226,13 @@ namespace ReducedGrinding.Global
                     if (Main.rand.NextBool(anglerResetChance))
                     {
                         Main.AnglerQuestSwap();
+                        string newAnglerJobMessage = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.NewAnglerJob")}";
                         if (Main.netMode == NetmodeID.SinglePlayer)
-                            Main.NewText("The Angler has another job for you!", 0, 255, 255);
+                            Main.NewText(newAnglerJobMessage, 0, 255, 255);
                         else if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler has another job for you!"), new Color(0, 255, 255));
+                        {
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(newAnglerJobMessage), new Color(0, 255, 255));
+                        }
                     }
                     else
                         noMoreAnglerResetsToday = true;
@@ -244,9 +248,6 @@ namespace ReducedGrinding.Global
                     int yearLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth * 12;
                     float halloweenDay = 304f / 365f;
                     float xMasDay = 359f / 365f;
-
-                    GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day * halloweenDay: " + ((int)Math.Round(yearLength * halloweenDay)).ToString());
-                    GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day * xMasDay: " + ((int)Math.Round(yearLength * xMasDay)).ToString());
 
                     seasonalDay++;
                     if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
