@@ -16,7 +16,7 @@ Mods: {
 		}
 		BuffDescription: {
 			GreaterBattle: Enemy spawn rate greatly increased
-			MultiBobber: Use 10 Bobbers at a time
+			MultiBobber: Use 10 bobbers at a time
 			Sleep: Increases time rate while sleeping
 			SuperBattle: Enemy spawn rate massively increased
 		}
@@ -27,7 +27,7 @@ Mods: {
 			MoonBall: Moon Ball
 			MultiBobberPotion: Multi-Bobber Potion
 			PlanteraSap: Plantera Sap
-			SleepPotion: SleepPotion
+			SleepPotion: Sleep Potion
 			SlimeTrophy: Slime Trophy
 			StaffOfDifficulty: Staff of Difficulty
 			SuperBattlePotion: Super Battle Potion
@@ -51,11 +51,11 @@ Mods: {
 		Other: {
 			AddingRareChestLoot: Adding Non-Existing Rare Chest Loot
 			InvasionLeft: The invasion couldn't find you, so they left.
-			QuestCompleted: Quests Completed
+			QuestCompleted: Quests completed
 			NewAnglerJob: The Angler Decided to Give You Another Job.
 			ZoneNonInfection: Not in the Corruption, Crimson, or Hallow.
 			ZoneCorruptnNoOtherInfection: Only in the Corruption.
-			ZoneCrimsonNoOtherInfection: Only in the Hallow.
+			ZoneCrimsonNoOtherInfection: Only in the Crimson.
 			ZoneHallow: Only in the Hallow.
 		}
 		RecipeGroups: {
