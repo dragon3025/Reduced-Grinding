@@ -152,7 +152,7 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                //TO-DO 1.4.4 will add this
+                //TO-DO 1.4.4 will add this (I don't know about SugarRush though)
                 if (Main.player[i].FindBuffIndex(BuffID.Sharpened) != -1)
                     Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Sharpened)] = 600;
 
@@ -164,6 +164,9 @@ namespace ReducedGrinding.Global
 
                 if (Main.player[i].FindBuffIndex(BuffID.Bewitched) != -1)
                     Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Bewitched)] = 600;
+
+                if (Main.player[i].FindBuffIndex(BuffID.SugarRush) != -1)
+                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.SugarRush)] = 600;
             }
 
             if (cancelInvasion && Main.invasionX == Main.spawnTileX)
