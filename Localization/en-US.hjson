@@ -213,7 +213,7 @@ Mods: {
 						Greater Battle Potion
 						'''
 					SuperBattlePotion: Super Battle Potion
-					StaffOfDifficulty: "{$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Disable all to disable the recipe."
+					StaffOfDifficulty: "{$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe."
 				}
 				Label: {
 					Section: Other Modded Items

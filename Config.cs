@@ -250,7 +250,7 @@ namespace ReducedGrinding
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.SandstormInABottleFromSandElemental")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int SandstormInABottleFromSandElemental;
+        public int SandstormInABottleFromSandElemental; //TO-DO 1.4.4 will make it easier to get this.
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.SnowballLauncherFromSpikedIceSlime")]
         [Range(0, 10000)]

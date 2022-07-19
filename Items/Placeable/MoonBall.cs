@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items.Placeable

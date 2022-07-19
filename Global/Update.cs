@@ -151,6 +151,19 @@ namespace ReducedGrinding.Global
                             Main.player[i].ClearBuff(BuffID.Darkness);
                     }
                 }
+
+                //TO-DO 1.4.4 will add this
+                if (Main.player[i].FindBuffIndex(BuffID.Sharpened) != -1)
+                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Sharpened)] = 600;
+
+                if (Main.player[i].FindBuffIndex(BuffID.Clairvoyance) != -1)
+                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Clairvoyance)] = 600;
+
+                if (Main.player[i].FindBuffIndex(BuffID.AmmoBox) != -1)
+                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.AmmoBox)] = 600;
+
+                if (Main.player[i].FindBuffIndex(BuffID.Bewitched) != -1)
+                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Bewitched)] = 600;
             }
 
             if (cancelInvasion && Main.invasionX == Main.spawnTileX)

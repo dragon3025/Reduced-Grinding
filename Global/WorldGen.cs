@@ -32,6 +32,7 @@ namespace ReducedGrinding.Global
 
 				progress.Message = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}";
 
+				//TO-DO 1.4.4 will make it easier to get sandstorm in a bottle.
 				List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };
 				List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
 				List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants };
