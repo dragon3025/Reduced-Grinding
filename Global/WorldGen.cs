@@ -17,7 +17,7 @@ namespace ReducedGrinding.Global
 
 			if (FinalCleanupIndex != -1)
 			{
-				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen($"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}", 237.4298f));
+				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen($"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}", 10f));
 			}
 		}
 

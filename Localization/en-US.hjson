@@ -57,6 +57,11 @@ Mods: {
 			ZoneCorruptnNoOtherInfection: Only in the Corruption.
 			ZoneCrimsonNoOtherInfection: Only in the Crimson.
 			ZoneHallow: Only in the Hallow.
+			AnkhMaterialUseFromInventory:
+				'''
+				Ankh Material
+				Equip to allow "Ankh Material" accessories to work from your inventory
+				'''
 		}
 		RecipeGroups: {
 			BaitCritterLow: Any bait critter with less than 20 Power
@@ -305,15 +310,16 @@ Mods: {
 					TravelingMerchantPulseBowChance: "[i:2223] Pulse Bow Extra Chance"
 					HolidayTimelineDaysPerMonth: "Days Per Month (12 Months per year)"
 					InfectionPowderPerMushroom: "[i:67] Infection Powder per Mushroom"
-					CraftableGoldCritters: "Allow crafting [i:2889]Gold Critters"
+					CraftableGoldCritters: "Allow crafting [i:2889] Gold Critters"
 					CraftableRareChests: Craftable Rare Chests
 					CraftableUniversalPylon: "Craftable [i:4951] Universal Pylon Difficulty"
 					CancelInvasionsIfAllPlayersAreUnderground: Cancel Invasions When All Players Are Underground
 					LunarPillarShieldHealth: Lunar Pillar Shield Health
-					MerchantSellsMinersShirtAndPants: Merchant Sells Miner's Shirt and Miner's Pants
+					MerchantSellsMinersShirtAndPants: Merchant Sells [i:410] Miner's Shirt and [i:411] Miner's Pants
 					AdjustItemValuesForDropIncreases: Adjust Values For Drop Increases
 					SkeletonMerchantIgnoresMoonphases: Skeleton Merchant Ignores Moonphases
 					UniversalPylonBestiaryCompletionRate: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
+					AnkhMaterialUseFromInventory: Equipping [i:1612] Ankh Charm Material Allows Use From Inventory
 				}
 				Tooltip: {
 					GenerateMissingRareChestItems:
@@ -389,6 +395,12 @@ Mods: {
 						'''
 						In vanilla, there are 523 entries. 51% can be achieved before
 						Hardmode. Set to 100% to disable
+						'''
+					AnkhMaterialUseFromInventory:
+						'''
+						If enabled, equipping any accessory in the Ankh Charm crafting
+						tree will allow all other accessories in the Ankh Charm
+						crafting tree to work from your inventory.
 						'''
 				}
 			}

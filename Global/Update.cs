@@ -108,47 +108,50 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                bool equipped_to_ankh_material = false;
-                for (int j = 3; j <= 9; j++)
+                if (GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
                 {
-                    int accessoryType = Main.player[i].armor[j].type;
-
-                    if (accessoryType == ItemID.Vitamins || accessoryType == ItemID.ArmorPolish || accessoryType == ItemID.AdhesiveBandage || accessoryType == ItemID.Bezoar || accessoryType == ItemID.Nazar || accessoryType == ItemID.Megaphone || accessoryType == ItemID.TrifoldMap || accessoryType == ItemID.FastClock || accessoryType == ItemID.Blindfold || accessoryType == ItemID.ArmorBracing || accessoryType == ItemID.MedicatedBandage || accessoryType == ItemID.CountercurseMantra || accessoryType == ItemID.ThePlan)
+                    bool equipped_to_ankh_material = false;
+                    for (int j = 3; j <= 9; j++)
                     {
-                        equipped_to_ankh_material = true;
-                        break;
+                        int accessoryType = Main.player[i].armor[j].type;
+
+                        if (accessoryType == ItemID.Vitamins || accessoryType == ItemID.ArmorPolish || accessoryType == ItemID.AdhesiveBandage || accessoryType == ItemID.Bezoar || accessoryType == ItemID.Nazar || accessoryType == ItemID.Megaphone || accessoryType == ItemID.TrifoldMap || accessoryType == ItemID.FastClock || accessoryType == ItemID.Blindfold || accessoryType == ItemID.ArmorBracing || accessoryType == ItemID.MedicatedBandage || accessoryType == ItemID.CountercurseMantra || accessoryType == ItemID.ThePlan)
+                        {
+                            equipped_to_ankh_material = true;
+                            break;
+                        }
                     }
-                }
 
-                if (equipped_to_ankh_material)
-                {
-                    for (int j = 0; j < Main.player[i].inventory.Length; j++)
+                    if (equipped_to_ankh_material)
                     {
-                        int itemType = Main.player[i].inventory[j].type;
+                        for (int j = 0; j < Main.player[i].inventory.Length; j++)
+                        {
+                            int itemType = Main.player[i].inventory[j].type;
 
-                        if (itemType == ItemID.ArmorBracing || itemType == ItemID.Vitamins)
-                            Main.player[i].ClearBuff(BuffID.Weak);
+                            if (itemType == ItemID.ArmorBracing || itemType == ItemID.Vitamins)
+                                Main.player[i].ClearBuff(BuffID.Weak);
 
-                        if (itemType == ItemID.ArmorBracing || itemType == ItemID.ArmorPolish)
-                            Main.player[i].ClearBuff(BuffID.BrokenArmor);
+                            if (itemType == ItemID.ArmorBracing || itemType == ItemID.ArmorPolish)
+                                Main.player[i].ClearBuff(BuffID.BrokenArmor);
 
-                        if (itemType == ItemID.MedicatedBandage || itemType == ItemID.AdhesiveBandage)
-                            Main.player[i].ClearBuff(BuffID.Bleeding);
-                        if (itemType == ItemID.MedicatedBandage || itemType == ItemID.Bezoar)
-                            Main.player[i].ClearBuff(BuffID.Poisoned);
+                            if (itemType == ItemID.MedicatedBandage || itemType == ItemID.AdhesiveBandage)
+                                Main.player[i].ClearBuff(BuffID.Bleeding);
+                            if (itemType == ItemID.MedicatedBandage || itemType == ItemID.Bezoar)
+                                Main.player[i].ClearBuff(BuffID.Poisoned);
 
-                        if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Nazar)
-                            Main.player[i].ClearBuff(BuffID.Cursed);
-                        if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Megaphone)
-                            Main.player[i].ClearBuff(BuffID.Silenced);
+                            if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Nazar)
+                                Main.player[i].ClearBuff(BuffID.Cursed);
+                            if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Megaphone)
+                                Main.player[i].ClearBuff(BuffID.Silenced);
 
-                        if (itemType == ItemID.ThePlan || itemType == ItemID.FastClock)
-                            Main.player[i].ClearBuff(BuffID.Slow);
-                        if (itemType == ItemID.ThePlan || itemType == ItemID.TrifoldMap)
-                            Main.player[i].ClearBuff(BuffID.Confused);
+                            if (itemType == ItemID.ThePlan || itemType == ItemID.FastClock)
+                                Main.player[i].ClearBuff(BuffID.Slow);
+                            if (itemType == ItemID.ThePlan || itemType == ItemID.TrifoldMap)
+                                Main.player[i].ClearBuff(BuffID.Confused);
 
-                        if (itemType == ItemID.Blindfold)
-                            Main.player[i].ClearBuff(BuffID.Darkness);
+                            if (itemType == ItemID.Blindfold)
+                                Main.player[i].ClearBuff(BuffID.Darkness);
+                        }
                     }
                 }
 
@@ -298,7 +301,6 @@ namespace ReducedGrinding.Global
                     }
                     if (seasonalDay == yearLength + 1)
                         seasonalDay = 1;
-                    GetInstance<ReducedGrinding>().Logger.Debug("Seasonal Day: " + seasonalDay.ToString());
                 }
             }
             if (dayTime != Main.dayTime)

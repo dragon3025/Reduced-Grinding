@@ -517,6 +517,16 @@ namespace ReducedGrinding
 
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Other")]
 
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AdjustItemValuesForDropIncreases")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.AdjustItemValuesForDropIncreases")]
+        [DefaultValue(true)]
+        public bool AdjustItemValuesForDropIncreases;
+
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AnkhMaterialUseFromInventory")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.AnkhMaterialUseFromInventory")]
+        [DefaultValue(true)]
+        public bool AnkhMaterialUseFromInventory;
+
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.CancelInvasionsIfAllPlayersAreUnderground")]
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
@@ -530,11 +540,6 @@ namespace ReducedGrinding
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.MerchantSellsMinersShirtAndPants")]
         [DefaultValue(false)]
         public bool MerchantSellsMinersShirtAndPants;
-
-        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AdjustItemValuesForDropIncreases")]
-        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.AdjustItemValuesForDropIncreases")]
-        [DefaultValue(true)]
-        public bool AdjustItemValuesForDropIncreases;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SkeletonMerchantIgnoresMoonphases")]
         [DefaultValue(false)]
