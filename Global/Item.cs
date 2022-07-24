@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -19,124 +19,127 @@ namespace ReducedGrinding.Global
             }
         }
 
-        public override void OpenVanillaBag(string context, Terraria.Player player, int arg)
+        public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)
         {
-            var source = player.GetSource_OpenItem(arg);
-
-            void try_grab_bag_drop(int config, int itemType, int amount = 1)
+            void AddLoot(int config, int itemType)
             {
                 if (config > 0)
-                    if (Main.rand.NextBool(config))
-                        player.QuickSpawnItem(source, itemType, amount);
+                    itemLoot.Add(ItemDropRule.Common(itemType, config));
+            }
+
+            void AddLootOneFromRule(int config, IItemDropRule[] itemTypes)
+            {
+                if (config > 0)
+                    itemLoot.Add(new OneFromRulesRule(config, itemTypes));
             }
 
             // Boss Bags
-            if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.FishronWings);
-            if (arg == ItemID.FairyQueenBossBag)
+            if (item.type == ItemID.FishronBossBag)
+                AddLoot(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.FishronWings);
+            if (item.type == ItemID.FairyQueenBossBag)
             {
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.RainbowWings);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().StellarTuneIncrease, ItemID.SparkleGuitar);
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().RainbowCursor, ItemID.RainbowCursor);
+                AddLoot(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease, ItemID.RainbowWings);
+                AddLoot(GetInstance<AEnemyLootConfig>().StellarTuneIncrease, ItemID.SparkleGuitar);
+                AddLoot(GetInstance<AEnemyLootConfig>().RainbowCursor, ItemID.RainbowCursor);
             }
-            if (arg == ItemID.EyeOfCthulhuBossBag)
-                try_grab_bag_drop(GetInstance<AEnemyLootConfig>().BinocularsIncrease, ItemID.Binoculars);
+            if (item.type == ItemID.EyeOfCthulhuBossBag)
+                AddLoot(GetInstance<AEnemyLootConfig>().BinocularsIncrease, ItemID.Binoculars);
 
             //Other Grab Bags
-            if (arg == ItemID.DungeonFishingCrate || arg == ItemID.DungeonFishingCrateHard)
+            if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
             {
-                List<int> dungeonFurniture = new() {
-                    1396,
-                    1397,
-                    1398,
-                    1399,
-                    1400,
-                    1401,
-                    1402,
-                    1403,
-                    1404,
-                    1405,
-                    1406,
-                    1407,
-                    1408,
-                    1409,
-                    1410,
-                    1411,
-                    1412,
-                    1413,
-                    1414,
-                    1415,
-                    1416,
-                    1470,
-                    1471,
-                    1472,
-                    2376,
-                    2377,
-                    2378,
-                    2386,
-                    2387,
-                    2388,
-                    2402,
-                    2403,
-                    2404,
-                    2645,
-                    2646,
-                    2647,
-                    2652,
-                    2653,
-                    2654,
-                    2658,
-                    2659,
-                    2660,
-                    2664,
-                    2665,
-                    2666,
-                    3900,
-                    3901,
-                    3902
+                IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
+                    ItemDropRule.Common(1396),
+                    ItemDropRule.Common(1397),
+                    ItemDropRule.Common(1398),
+                    ItemDropRule.Common(1399),
+                    ItemDropRule.Common(1400),
+                    ItemDropRule.Common(1401),
+                    ItemDropRule.Common(1402),
+                    ItemDropRule.Common(1403),
+                    ItemDropRule.Common(1404),
+                    ItemDropRule.Common(1405),
+                    ItemDropRule.Common(1406),
+                    ItemDropRule.Common(1407),
+                    ItemDropRule.Common(1408),
+                    ItemDropRule.Common(1409),
+                    ItemDropRule.Common(1410),
+                    ItemDropRule.Common(1411),
+                    ItemDropRule.Common(1412),
+                    ItemDropRule.Common(1413),
+                    ItemDropRule.Common(1414),
+                    ItemDropRule.Common(1415),
+                    ItemDropRule.Common(1416),
+                    ItemDropRule.Common(1470),
+                    ItemDropRule.Common(1471),
+                    ItemDropRule.Common(1472),
+                    ItemDropRule.Common(2376),
+                    ItemDropRule.Common(2377),
+                    ItemDropRule.Common(2378),
+                    ItemDropRule.Common(2386),
+                    ItemDropRule.Common(2387),
+                    ItemDropRule.Common(2388),
+                    ItemDropRule.Common(2402),
+                    ItemDropRule.Common(2403),
+                    ItemDropRule.Common(2404),
+                    ItemDropRule.Common(2645),
+                    ItemDropRule.Common(2646),
+                    ItemDropRule.Common(2647),
+                    ItemDropRule.Common(2652),
+                    ItemDropRule.Common(2653),
+                    ItemDropRule.Common(2654),
+                    ItemDropRule.Common(2658),
+                    ItemDropRule.Common(2659),
+                    ItemDropRule.Common(2660),
+                    ItemDropRule.Common(2664),
+                    ItemDropRule.Common(2665),
+                    ItemDropRule.Common(2666),
+                    ItemDropRule.Common(3900),
+                    ItemDropRule.Common(3901),
+                    ItemDropRule.Common(3902)
                 };
-                try_grab_bag_drop(GetInstance<IOtherConfig>().DungeonCrateDungeonFurniture, dungeonFurniture[Main.rand.Next(dungeonFurniture.Count)]);
+                AddLootOneFromRule(GetInstance<IOtherConfig>().DungeonCrateDungeonFurniture, dungeonFurniture);
             }
 
-            List<int> statues = new() {
-                ItemID.KingStatue,
-                ItemID.QueenStatue,
-                ItemID.HeartStatue,
-                ItemID.StarStatue,
-                ItemID.BombStatue
+            IItemDropRule[] statues = new IItemDropRule[] {
+                ItemDropRule.Common(ItemID.KingStatue),
+                ItemDropRule.Common(ItemID.QueenStatue),
+                ItemDropRule.Common(ItemID.HeartStatue),
+                ItemDropRule.Common(ItemID.StarStatue),
+                ItemDropRule.Common(ItemID.BombStatue)
             };
 
-            if (arg == ItemID.GoldenCrateHard)
+            if (item.type == ItemID.GoldenCrateHard)
             {
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial, ItemID.Sundial);
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue, statues[Main.rand.Next(statues.Count)]);
+                AddLoot(GetInstance<IOtherConfig>().CrateEnchantedSundial, ItemID.Sundial);
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue, statues);
             }
-            if (arg == ItemID.IronCrateHard)
+            if (item.type == ItemID.IronCrateHard)
             {
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial * 3, ItemID.Sundial);
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 3, statues[Main.rand.Next(statues.Count)]);
+                AddLoot(GetInstance<IOtherConfig>().CrateEnchantedSundial * 3, ItemID.Sundial);
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue * 3, statues);
             }
-            if (arg == ItemID.WoodenCrateHard)
+            if (item.type == ItemID.WoodenCrateHard)
             {
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateEnchantedSundial * 10, ItemID.Sundial);
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 10, statues[Main.rand.Next(statues.Count)]);
+                AddLoot(GetInstance<IOtherConfig>().CrateEnchantedSundial * 10, ItemID.Sundial);
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue * 10, statues);
             }
-            if (arg == ItemID.GoldenCrate)
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue, statues[Main.rand.Next(statues.Count)]);
-            if (arg == ItemID.IronCrate)
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 3, statues[Main.rand.Next(statues.Count)]);
-            if (arg == ItemID.WoodenCrate)
-                try_grab_bag_drop(GetInstance<IOtherConfig>().CrateStatue * 10, statues[Main.rand.Next(statues.Count)]);
+            if (item.type == ItemID.GoldenCrate)
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue, statues);
+            if (item.type == ItemID.IronCrate)
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue * 3, statues);
+            if (item.type == ItemID.WoodenCrate)
+                AddLootOneFromRule(GetInstance<IOtherConfig>().CrateStatue * 10, statues);
 
             //Boss Bag drops that don't happen in vanilla.
-            if (arg == ItemID.FishronBossBag)
-                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, ItemID.TruffleWorm);
+            if (item.type == ItemID.FishronBossBag)
+                AddLoot(GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, ItemID.TruffleWorm);
 
-            if (arg == ItemID.DestroyerBossBag || arg == ItemID.TwinsBossBag || arg == ItemID.SkeletronPrimeBossBag || arg == ItemID.PlanteraBossBag || arg == ItemID.GolemBossBag || arg == ItemID.FishronBossBag || arg == ItemID.MoonLordBossBag || arg == ItemID.FairyQueenBossBag)
-                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().TerragrimFromHardmodeGrabBag, ItemID.Terragrim);
+            if (item.type == ItemID.DestroyerBossBag || item.type == ItemID.TwinsBossBag || item.type == ItemID.SkeletronPrimeBossBag || item.type == ItemID.PlanteraBossBag || item.type == ItemID.GolemBossBag || item.type == ItemID.FishronBossBag || item.type == ItemID.MoonLordBossBag || item.type == ItemID.FairyQueenBossBag)
+                AddLoot(GetInstance<BEnemyLootNonVanillaConfig>().TerragrimFromHardmodeGrabBag, ItemID.Terragrim);
 
-            if (arg == ItemID.KingSlimeBossBag)
-                try_grab_bag_drop(GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, ItemID.SlimeStaff);
+            if (item.type == ItemID.KingSlimeBossBag)
+                AddLoot(GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, ItemID.SlimeStaff);
         }
     }
 }
