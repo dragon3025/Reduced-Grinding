@@ -16,6 +16,7 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using static Terraria.ModLoader.ModContent;
+using Terraria.ID;
 
 namespace ReducedGrinding
 {
@@ -72,6 +73,8 @@ namespace ReducedGrinding
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
             }
+            if (Main.netMode == NetmodeID.Server)
+                NetMessage.SendData(MessageID.WorldData);
         }
     }
 

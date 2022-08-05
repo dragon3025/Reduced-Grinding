@@ -25,6 +25,8 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateTime()
         {
+            bool updatePacket = false;
+            
             int time = (int)Main.time;
 
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
@@ -65,8 +67,9 @@ namespace ReducedGrinding.Global
             else if (instantInvasion)
             {
                 Main.invasionX = Main.spawnTileX;
+                instantInvasion = false;
+                updatePacket = true;
             }
-            instantInvasion = false;
 
             if (time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
             {
@@ -186,6 +189,7 @@ namespace ReducedGrinding.Global
                 float invasionBoost = 1f;
                 if (invasionWithGreaterBattleBuff != playerWithGreaterBattleBuff)
                 {
+                    updatePacket = true;
                     if (!invasionWithGreaterBattleBuff)
                     {
                         invasionWithGreaterBattleBuff = true;
@@ -199,6 +203,7 @@ namespace ReducedGrinding.Global
                 }
                 if (invasionWithSuperBattleBuff != playerWithSuperBattleBuff)
                 {
+                    updatePacket = true;
                     if (!invasionWithSuperBattleBuff)
                     {
                         invasionWithSuperBattleBuff = true;
@@ -254,68 +259,76 @@ namespace ReducedGrinding.Global
                         }
                     }
                     else
+                    {
                         noMoreAnglerResetsToday = true;
+                        updatePacket = true;
+                    }
                 }
             }
 
-            if (Main.dayTime && dayTime != Main.dayTime)
-            {
-                noMoreAnglerResetsToday = false;
-
-                if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
-                {
-                    int yearLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth * 12;
-                    float halloweenDay = 304f / 365f;
-                    float xMasDay = 359f / 365f;
-
-                    seasonalDay++;
-                    if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
-                    {
-                        Main.halloween = true;
-                        if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
-                        else
-                            Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
-                    }
-                    else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                        else
-                            Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                    }
-                    else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
-                    {
-                        Main.xMas = true;
-                        if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                        else
-                            Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                    }
-                    else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                        else
-                            Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                    }
-                    if (seasonalDay == yearLength + 1)
-                        seasonalDay = 1;
-                }
-            }
             if (dayTime != Main.dayTime)
             {
                 dayTime = Main.dayTime;
+                updatePacket = true;
+
+                if (Main.dayTime)
+                {
+                    noMoreAnglerResetsToday = false;
+                    updatePacket = true;
+
+                    if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
+                    {
+                        int yearLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth * 12;
+                        float halloweenDay = 304f / 365f;
+                        float xMasDay = 359f / 365f;
+
+                        seasonalDay++;
+                        if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
+                        {
+                            Main.halloween = true;
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
+                        {
+                            Main.xMas = true;
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                        }
+                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
+                        {
+                            if (Main.netMode == NetmodeID.Server)
+                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                            else
+                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                        }
+                        if (seasonalDay == yearLength + 1)
+                            seasonalDay = 1;
+                    }
+                }
+
             }
 
             if (celestialSigil) //TO-DO Remove once 1.4.4 comes out
             {
                 if (NPC.MoonLordCountdown > 720)
                     NPC.MoonLordCountdown = 720;
+                celestialSigil = false;
+                updatePacket = true;
             }
-            celestialSigil = false;
 
-            if (Main.netMode == NetmodeID.Server)
+            if (updatePacket && Main.netMode == NetmodeID.Server)
             {
                 ModPacket packet = Mod.GetPacket();
 
@@ -324,9 +337,6 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.dayTime);
                 packet.Write(dayTime);
-
-                packet.Write((byte)ReducedGrinding.MessageType.timeCharm);
-                packet.Write(timeCharm);
 
                 packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
                 packet.Write(seasonalDay);
