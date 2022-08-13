@@ -269,11 +269,17 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBobberAmount")]
-        [Tooltip("$Mods.ReducedGrinding.Config.CFishingConfig.Tooltip.MultiBobberPotionBobberAmount")]
-        [Range(1, 100)]
-        [DefaultValue(10)]
-        public int MultiBobberPotionBobberAmount;
+        [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.MultiBobberPotion")]
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonus")]
+        [Range(0, 100)]
+        [DefaultValue(9)]
+        public int MultiBobberPotionBonus;
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonusCalamity")]
+        [Range(0, 100)]
+        [DefaultValue(5)]
+        public int MultiBobberPotionBonusCalamity;
 
         [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.AnglerResetChance")]
 

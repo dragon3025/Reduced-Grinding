@@ -23,6 +23,7 @@ namespace ReducedGrinding
 
     class ReducedGrinding : Mod
     {
+
         internal enum MessageType : byte
         {
             advanceMoonPhase,
@@ -80,6 +81,9 @@ namespace ReducedGrinding
 
     class ReducedGrindingSave : ModSystem
     {
+        public static bool usingCalamity = false;
+        public static int multiBobberBonus = 0;
+
         public override void SaveWorldData(TagCompound tag)
         {
             tag.Add("noMoreAnglerResetsToday", Global.Update.noMoreAnglerResetsToday);
@@ -111,6 +115,12 @@ namespace ReducedGrinding
         {
             NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
             NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
+            multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
+            if (ModLoader.TryGetMod("CalamityMod", out _))
+            {
+                usingCalamity = true;
+                multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonusCalamity;
+            }
         }
     }
 }

@@ -313,11 +313,10 @@ namespace ReducedGrinding.Global
                             else
                                 Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
                         }
-                        if (seasonalDay == yearLength + 1)
+                        if (seasonalDay >= yearLength + 1)
                             seasonalDay = 1;
                     }
                 }
-
             }
 
             if (celestialSigil) //TO-DO Remove once 1.4.4 comes out
@@ -360,7 +359,6 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateWorld()
         {
-
             if (advanceMoonPhase)
             {
                 advanceMoonPhase = false;

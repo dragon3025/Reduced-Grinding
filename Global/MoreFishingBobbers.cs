@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
@@ -15,23 +16,20 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1 && GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
+            if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1 && ReducedGrindingSave.multiBobberBonus > 0)
             {
-                int bobberAmount = 10;
+                int bobbersToAdd = ReducedGrindingSave.multiBobberBonus;
+
                 float spreadAmount = 75f;
-                for (int index = 0; index < bobberAmount; ++index)
+
+                for (int index = 0; index < bobbersToAdd; ++index)
                 {
                     Vector2 bobberSpeed = velocity + new Vector2(Main.rand.NextFloat(-spreadAmount, spreadAmount) * 0.05f, Main.rand.NextFloat(-spreadAmount, spreadAmount) * 0.05f);
                     Projectile.NewProjectile(source, position, bobberSpeed, type, 0, 0f, player.whoAmI);
                 }
             }
-            else
-            {
-                Vector2 bobberSpeed = velocity;
-                Projectile.NewProjectile(source, position, bobberSpeed, type, 0, 0f, player.whoAmI);
-            }
 
-            return false;
+            return true;
         }
     }
 }

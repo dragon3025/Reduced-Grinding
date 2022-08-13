@@ -361,7 +361,7 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
 
             #region Other
-            if (GetInstance<CFishingConfig>().MultiBobberPotionBobberAmount > 1)
+            if (ReducedGrindingSave.multiBobberBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
                 recipe.AddIngredient(ItemID.BottledWater);
