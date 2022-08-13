@@ -488,7 +488,7 @@ namespace ReducedGrinding
 
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.PeriodicHolidayTimeline")]
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.HolidayTimelineDaysPerMonth")]
-        [Range(1, 30)]
+        [Range(0, 30)]
         [DefaultValue(2)]
         public int HolidayTimelineDaysPerMonth;
 

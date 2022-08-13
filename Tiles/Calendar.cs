@@ -33,7 +33,10 @@ namespace ReducedGrinding.Tiles
 		{
 			int seasonalDay = Global.Update.seasonalDay;
 			int monthLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth;
-			frame = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / monthLength)) - 1;
+			if (monthLength == 0)
+				frame = 0;
+			else
+				frame = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / monthLength)) - 1;
 		}
 
 		public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
@@ -45,6 +48,11 @@ namespace ReducedGrinding.Tiles
 		{
 			int seasonalDay = Global.Update.seasonalDay;
 			int monthLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth;
+			if (monthLength == 0)
+            {
+				Main.NewText("Periodic Holidays Disabled in Configurations", new Color(255, 127, 127));
+				return true;
+			}
 			int month = Math.Max(1, (int)Math.Ceiling(1f * seasonalDay / monthLength));
 			string dateText = "";
 			switch (month)
