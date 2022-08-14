@@ -273,13 +273,39 @@ namespace ReducedGrinding
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonus")]
         [Range(0, 100)]
-        [DefaultValue(9)]
+        [DefaultValue(3)]
         public int MultiBobberPotionBonus;
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonusCalamity")]
         [Range(0, 100)]
-        [DefaultValue(5)]
+        [DefaultValue(1)]
         public int MultiBobberPotionBonusCalamity;
+
+        [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.GreaterMultiBobberPotion")]
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonus")]
+        [Range(0, 100)]
+        [DefaultValue(6)]
+        public int GreaterMultiBobberPotionBonus;
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonusCalamity")]
+        [Tooltip("$Mods.ReducedGrinding.Config.CFishingConfig.Tooltip.GreaterMultiBobberPotionCalamity")]
+        [Range(0, 100)]
+        [DefaultValue(2)]
+        public int GreaterMultiBobberPotionBonusCalamity;
+
+        [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.SuperMultiBobberPotion")]
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonus")]
+        [Range(0, 100)]
+        [DefaultValue(9)]
+        public int SuperMultiBobberPotionBonus;
+
+        [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonusCalamity")]
+        [Tooltip("$Mods.ReducedGrinding.Config.CFishingConfig.Tooltip.SuperMultiBobberPotionCalamity")]
+        [Range(0, 100)]
+        [DefaultValue(4)]
+        public int SuperMultiBobberPotionBonusCalamity;
 
         [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.AnglerResetChance")]
 

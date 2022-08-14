@@ -83,6 +83,8 @@ namespace ReducedGrinding
     {
         public static bool usingCalamity = false;
         public static int multiBobberBonus = 0;
+        public static int greaterMultiBobberBonus = 0;
+        public static int superMultiBobberBonus = 0;
 
         public override void SaveWorldData(TagCompound tag)
         {
@@ -115,11 +117,18 @@ namespace ReducedGrinding
         {
             NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
             NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
-            multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
             if (ModLoader.TryGetMod("CalamityMod", out _))
             {
                 usingCalamity = true;
                 multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonusCalamity;
+                greaterMultiBobberBonus = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonusCalamity;
+                superMultiBobberBonus = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonusCalamity;
+            }
+            else
+            {
+                multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
+                greaterMultiBobberBonus = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus;
+                superMultiBobberBonus = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus;
             }
         }
     }

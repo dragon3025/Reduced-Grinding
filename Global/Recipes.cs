@@ -360,7 +360,7 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
-            #region Other
+            #region Multi Bobber Potions
             if (ReducedGrindingSave.multiBobberBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
@@ -373,6 +373,30 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.Register();
             }
 
+            if (ReducedGrindingSave.greaterMultiBobberBonus > 0)
+            {
+                recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
+                recipe.AddIngredient(ItemType<Items.BuffPotions.MultiBobberPotion>());
+                recipe.AddIngredient(ItemID.CrystalShard);
+                if (ReducedGrindingSave.usingCalamity)
+                    recipe.AddIngredient(ItemID.VialofVenom);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+
+            if (ReducedGrindingSave.superMultiBobberBonus > 0)
+            {
+                recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperMultiBobberPotion>());
+                recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
+                recipe.AddIngredient(ItemID.Ectoplasm);
+                if (ReducedGrindingSave.usingCalamity)
+                    recipe.AddIngredient(ItemID.LunarOre);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+            #endregion
+
+            #region Other
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
             {
                 recipe = Recipe.Create(ItemID.TeleportationPylonVictory);

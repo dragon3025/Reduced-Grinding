@@ -197,6 +197,8 @@ Mods: {
 						The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.
 						'''
 					MultiBobberPotion: Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
+					GreaterMultiBobberPotion: Greater Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
+					SuperMultiBobberPotion: Super Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
 				}
 				Label: {
 					Section: Fishing
@@ -205,6 +207,10 @@ Mods: {
 					AnglerRecentChanceBeforeHardmode: Before Hardmode
 					AnglerRecentChanceHardmode: Hardmode
 					AnglerRecentChanceAfterPlantera: After Plantera
+				}
+				Tooltip: {
+					GreaterMultiBobberPotionCalamity: Recipe will be post-Plantera when using Calamity
+					SuperMultiBobberPotionCalamity: Recipe will be post-Moon Lord when using Calamity
 				}
 			}
 			HOtherModdedItemsConfig: {

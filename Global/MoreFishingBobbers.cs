@@ -16,10 +16,17 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 
         public override bool Shoot(Item item, Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
         {
-            if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1 && ReducedGrindingSave.multiBobberBonus > 0)
-            {
-                int bobbersToAdd = ReducedGrindingSave.multiBobberBonus;
+            int bobbersToAdd = 0;
 
+            if (player.FindBuffIndex(BuffType<Buffs.SuperMultiBobber>()) != -1)
+                bobbersToAdd = ReducedGrindingSave.superMultiBobberBonus;
+            else if (player.FindBuffIndex(BuffType<Buffs.GreaterMultiBobber>()) != -1)
+                bobbersToAdd = ReducedGrindingSave.greaterMultiBobberBonus;
+            else if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1)
+                bobbersToAdd = ReducedGrindingSave.multiBobberBonus;
+
+            if (bobbersToAdd > 0)
+            {
                 float spreadAmount = 75f;
 
                 for (int index = 0; index < bobbersToAdd; ++index)

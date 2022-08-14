@@ -6,13 +6,13 @@ using ReducedGrinding.Global;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
-    public class MultiBobberPotion : ModItem
+    public class GreaterMultiBobberPotion : ModItem
     {
 
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Multi-Bobber Potion");
-            Tooltip.SetDefault("Adds more bobbers when fishing");
+            DisplayName.SetDefault("Greater Multi-Bobber Potion");
+            Tooltip.SetDefault("Adds even more bobbers when fishing");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -25,11 +25,17 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Terraria.Item.sellPrice(0, 0, 2);
+            Item.value = Terraria.Item.sellPrice(0, 0, 18);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.MultiBobber>();
+            Item.buffType = ModContent.BuffType<Buffs.GreaterMultiBobber>();
             Item.buffTime = 10800; //3 hours
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            player.ClearBuff(ModContent.BuffType<Buffs.MultiBobber>());
+            return base.UseItem(player);
         }
 
         //Recipe uses groups so I added it in Recipes.
