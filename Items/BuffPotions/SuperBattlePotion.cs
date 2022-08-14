@@ -23,21 +23,17 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Item.buyPrice(0, 0, 3);
+            Item.value = Item.sellPrice(0, 0, 12, 10);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
+            Item.buffType = ModContent.BuffType<Buffs.SuperBattle>();
+            Item.buffTime = 25200; //7 Minutes
         }
 
-        public override bool CanUseItem(Terraria.Player player)
+        public override bool? UseItem(Player player)
         {
-            return true;
-        }
-
-        public override bool? UseItem(Terraria.Player player)
-        {
-            player.AddBuff(BuffID.Battle, 25200); //7 Hours
-            player.AddBuff(ModContent.BuffType<Buffs.GreaterBattle>(), 25200); //7 Hours
-            player.AddBuff(ModContent.BuffType<Buffs.SuperBattle>(), 25200); //7 Hours
+            player.AddBuff(BuffID.Battle, 25200); //7 minutes
+            player.AddBuff(ModContent.BuffType<Buffs.GreaterBattle>(), 25200); //7 minutes
             return true;
         }
 

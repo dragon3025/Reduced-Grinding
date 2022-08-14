@@ -28,7 +28,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = BuffType<Buffs.Sleep>();
-            Item.buffTime = GetInstance<IOtherConfig>().SleepPotionDurationInHours * 3600;
+            Item.buffTime = GetInstance<IOtherConfig>().SleepPotionDurationInMinutes * 3600;
         }
 
         public override void AddRecipes()

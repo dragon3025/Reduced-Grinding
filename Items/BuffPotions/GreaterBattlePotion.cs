@@ -23,11 +23,17 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Item.buyPrice(0, 0, 14);
+            Item.value = Item.sellPrice(0, 0, 2, 10);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.GreaterBattle>();
-            Item.buffTime = 25200; //7 Hours
+            Item.buffTime = 25200; //7 Minutes
+        }
+
+        public override bool? UseItem(Player player)
+        {
+            player.AddBuff(BuffID.Battle, 25200); //7 minutes
+            return true;
         }
 
         //Recipe is in Recipes.cs because it uses groups.

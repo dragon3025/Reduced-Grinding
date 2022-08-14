@@ -25,11 +25,11 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
-            Item.value = Terraria.Item.sellPrice(0, 0, 68);
+            Item.value = Terraria.Item.sellPrice(0, 0, 52, 40);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
             Item.buffType = ModContent.BuffType<Buffs.SuperMultiBobber>();
-            Item.buffTime = 10800; //3 hours
+            Item.buffTime = 10800; //3 minutes
         }
 
         public override bool? UseItem(Player player)

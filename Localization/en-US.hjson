@@ -303,7 +303,7 @@ Mods: {
 					TerragrimChests: "[i:306] Gold Chest with [i:4144] Terragrim per World Generation"
 					SleepBoostBase: Starting Boost Amount (In-Game Minutes Added)
 					SleepBoostNoPotionBuffMultiplier: Multiplier for No Player with Sleep Buff
-					SleepPotionDurationInHours: Sleep Potion Duration in Hours
+					SleepPotionDurationInMinutes: Sleep Potion Duration in Minutes
 					SleepBoostInactiveTimeCharmMultiplier: Multiplier for inactive Time Charm
 					DungeonCrateDungeonFurniture: "[i:1408] Dungeon Color Furniture Piece (Random Color)"
 					CrateEnchantedSundial: "[i:3064] Enchanted Sundial"

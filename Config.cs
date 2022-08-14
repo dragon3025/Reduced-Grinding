@@ -453,9 +453,9 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         public float SleepBoostNoPotionBuffMultiplier;
 
-        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepPotionDurationInHours")]
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepPotionDurationInMinutes")]
         [DefaultValue(12)]
-        public int SleepPotionDurationInHours;
+        public int SleepPotionDurationInMinutes;
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostInactiveTimeCharmMultiplier")]
         [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.SleepBoostInactiveTimeCharmMultiplier")]

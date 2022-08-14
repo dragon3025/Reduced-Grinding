@@ -377,7 +377,7 @@ namespace ReducedGrinding.GlobalRecipes
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
                 recipe.AddIngredient(ItemType<Items.BuffPotions.MultiBobberPotion>());
-                recipe.AddIngredient(ItemID.CrystalShard);
+                recipe.AddIngredient(ItemID.GelBalloon);
                 if (ReducedGrindingSave.usingCalamity)
                     recipe.AddIngredient(ItemID.VialofVenom);
                 recipe.AddTile(TileID.Bottles);
@@ -394,6 +394,20 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
+            #endregion
+
+            #region Battle Potions
+            recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddIngredient(ItemID.BattlePotion);
+            recipe.AddRecipeGroup("ReducedGrinding:infectionMushroom");
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
+            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddRecipeGroup("ReducedGrinding:infectionOre");
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
             #endregion
 
             #region Other
@@ -423,18 +437,6 @@ namespace ReducedGrinding.GlobalRecipes
                     recipe.AddTile(TileID.TinkerersWorkbench);
                 recipe.Register();
             }
-
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddIngredient(ItemID.BattlePotion);
-            recipe.AddRecipeGroup("ReducedGrinding:infectionMushroom");
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
-            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddRecipeGroup("ReducedGrinding:infectionOre");
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
 
             if (GetInstance<HOtherModdedItemsConfig>().MoonBall)
             {
