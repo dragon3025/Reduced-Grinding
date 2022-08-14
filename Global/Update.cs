@@ -22,6 +22,8 @@ namespace ReducedGrinding.Global
         public static bool invasionWithSuperBattleBuff = false;
         public static bool instantInvasion = false;
         public static bool celestialSigil = false;
+        public static bool xMas = false;
+        public static bool halloween = false;
 
         public override void PostUpdateTime()
         {
@@ -282,10 +284,12 @@ namespace ReducedGrinding.Global
                         float halloweenDay = 304f / 365f;
                         float xMasDay = 359f / 365f;
 
+                        halloween = xMas = false;
+
                         seasonalDay++;
                         if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
                         {
-                            Main.halloween = true;
+                            Main.halloween = halloween = true;
                             if (Main.netMode == NetmodeID.Server)
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
                             else
@@ -300,7 +304,7 @@ namespace ReducedGrinding.Global
                         }
                         else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
                         {
-                            Main.xMas = true;
+                            Main.xMas = xMas = true;
                             if (Main.netMode == NetmodeID.Server)
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
                             else
@@ -359,6 +363,15 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateWorld()
         {
+            if (ReducedGrindingSave.usingFargowiltas)
+            {
+                //This mod will undo the period timeline feature, so this is here to undo the undo.
+                if (!Main.xMas && xMas)
+                    Main.xMas = xMas;
+                if (!Main.halloween && halloween)
+                    Main.halloween = halloween;
+            }
+
             if (advanceMoonPhase)
             {
                 advanceMoonPhase = false;

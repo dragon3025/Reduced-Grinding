@@ -82,6 +82,7 @@ namespace ReducedGrinding
     class ReducedGrindingSave : ModSystem
     {
         public static bool usingCalamity = false;
+        public static bool usingFargowiltas = false;
         public static int multiBobberBonus = 0;
         public static int greaterMultiBobberBonus = 0;
         public static int superMultiBobberBonus = 0;
@@ -117,6 +118,7 @@ namespace ReducedGrinding
         {
             NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
             NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
+
             if (ModLoader.TryGetMod("CalamityMod", out _))
             {
                 usingCalamity = true;
@@ -129,6 +131,11 @@ namespace ReducedGrinding
                 multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
                 greaterMultiBobberBonus = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus;
                 superMultiBobberBonus = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus;
+            }
+
+            if (ModLoader.TryGetMod("Fargowiltas", out _))
+            {
+                usingFargowiltas = true;
             }
         }
     }
