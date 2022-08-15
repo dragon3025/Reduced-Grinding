@@ -386,6 +386,11 @@ namespace ReducedGrinding
 
         [Header("")]
 
+        [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.BattlePotionsAffectInvasions")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.BattlePotionsAffectInvasions")]
+        [DefaultValue(true)]
+        public bool BattlePotionsAffectInvasions;
+
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.ModBattlePotionMaxSpawnEffectOnInvasion")]
         [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.ModBattlePotionMaxSpawnEffectOnInvasion")]
         [Increment(0.01f)]

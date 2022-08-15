@@ -86,11 +86,13 @@ namespace ReducedGrinding.Global
 
                 activePlayers.Add(i);
 
-                if (!playerWithGreaterBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
-                    playerWithGreaterBattleBuff = true;
-
-                if (!playerWithSuperBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
-                    playerWithSuperBattleBuff = true;
+                if (GetInstance<HOtherModdedItemsConfig>().BattlePotionsAffectInvasions)
+                {
+                    if (!playerWithGreaterBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
+                        playerWithGreaterBattleBuff = true;
+                    if (!playerWithSuperBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
+                        playerWithSuperBattleBuff = true;
+                }
 
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
@@ -193,29 +195,19 @@ namespace ReducedGrinding.Global
                 {
                     updatePacket = true;
                     if (!invasionWithGreaterBattleBuff)
-                    {
-                        invasionWithGreaterBattleBuff = true;
-                        invasionBoost *= GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier;
-                    }
+                        invasionBoost *= 2;
                     else
-                    {
-                        invasionWithGreaterBattleBuff = false;
-                        invasionBoost /= GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier;
-                    }
+                        invasionBoost /= 2;
+                    invasionWithGreaterBattleBuff = !invasionWithGreaterBattleBuff;
                 }
                 if (invasionWithSuperBattleBuff != playerWithSuperBattleBuff)
                 {
                     updatePacket = true;
                     if (!invasionWithSuperBattleBuff)
-                    {
-                        invasionWithSuperBattleBuff = true;
-                        invasionBoost *= GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier;
-                    }
+                        invasionBoost *= 2;
                     else
-                    {
-                        invasionWithSuperBattleBuff = false;
-                        invasionBoost /= GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier;
-                    }
+                        invasionBoost /= 2;
+                    invasionWithSuperBattleBuff = !invasionWithSuperBattleBuff;
                 }
 
                 float invasionBoostEffect = GetInstance<HOtherModdedItemsConfig>().ModBattlePotionMaxSpawnEffectOnInvasion;

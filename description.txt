@@ -7,7 +7,7 @@ Open Source at GitHub. Report issues there or at home page.
 This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info).
 
 - Item chances for certain enemy drops. Item values scale to new drop rates by default.
-- Potion for using 10-Bobbers.
+- Potions for using more bobbers (3-tiers).
 - A chance for Angler to reset. Default starts at 0%, but later increases.
 - Moonball to advance Moon Phase or skip the Blood Moon.
 - Greater + Super Battle Potion to increase enemy spawns.
