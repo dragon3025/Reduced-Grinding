@@ -114,6 +114,7 @@ Mods: {
 					RocketLauncherIncrease: "[i:759] Rocket Launcher"
 					RodofDiscordIncrease: "[i:1326] Rod of Discord"
 					RottenChunkAndVertebra: "[i:68] Rotten Chunk and [i:1330] Vertebra"
+					SoulOfLightAndNight: "[i:520] Soul of Light and [i:521] Soul of Night"
 					SWATHelmetAndTacticalShotgunIncrease: "[i:1514] SWAT Helmet and [i:679]Tactical Shotgun"
 					CoinGunBaseIncrease: "[i:905] Coin Gun (Hover for more info)"
 					CutlassBaseIncrease: "[i:672] Cutlass (Hover for more info)"
@@ -147,6 +148,7 @@ Mods: {
 					RocketLauncherIncrease: If world difficulty is normal, this is multiplied by 194.44%
 					RodofDiscordIncrease: If world difficulty is normal, this is multiplied by (5/4)
 					RottenChunkAndVertebra: This sets the same drop rate for each
+					SoulOfLightAndNight: This sets the same drop rate for each
 					SWATHelmetAndTacticalShotgunIncrease:
 						'''
 						This sets the same drop rate for each. If world difficulty is normal, this is
@@ -263,20 +265,20 @@ Mods: {
 					PlanteraSapFromPlantera: Summons Plantera. Chance = 1 / configuration_setting. Set to 0 to disable.
 					ModBattlePotionMaxSpawnEffectOnInvasion:
 						'''
-						At 100%, the invasion size will be multiplied by the max spawn multipliers by
-						Greater Battle Buff and Super Battle Buff. At 0%, it will be multiplied by 1.
+						At 100%, the invasion size will be multiplied by 2 when using Greater Battle
+						Buff and 2 when using Super Battle Buff. At 0%, it will be multiplied by 1.
 						'''
 					BattlePotionsAffectInvasions:
 						'''
-						If true, Greater Battle Buff will set invasion rate and size to x2 the vanilla
-						amount and Super Battle Buff will set invasion rate + size to x4 the usual rate
-						and size. The invasion progress will be adjusted when these buffs are used.
+						If true, Greater Battle Buff will set invasion spawn rate and max spawns to x2
+						the vanilla amount and Super Battle Buff will do the same. Invasion progress
+						will be modified when using these buffs.
 						'''
 				}
 			}
 			IOtherConfig: {
 				Header: {
-					WorldGeneration: World Generation
+					RareItems: Rare Items
 					SleepBoost:
 						'''
 						Sleep boost

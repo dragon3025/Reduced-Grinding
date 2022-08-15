@@ -10,6 +10,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        #region Boss Loot
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SectionInfo")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.BinocularsIncrease")]
@@ -34,7 +35,11 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(4)]
         public int RainbowCursor;
+        #endregion
 
+        #region Non-Boss Loot
+
+        #region Regular
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.NonBossLoot")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.TownNPCWeapons")]
@@ -132,12 +137,20 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int RottenChunkAndVertebra;
 
+        [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SoulOfLightAndNight")]
+        [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SoulOfLightAndNight")]
+        [Range(0, 10000)]
+        [DefaultValue(0)]
+        public int SoulOfLightAndNight;
+
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SWATHelmetAndTacticalShotgunIncrease")]
         [Tooltip("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Tooltip.SWATHelmetAndTacticalShotgunIncrease")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgunIncrease;
+        #endregion
 
+        #region Pirates
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.PirateLoot")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.CoinGunBaseIncrease")]
@@ -175,7 +188,9 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
+        #endregion
 
+        #region Slime Staff
         [Header("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Header.SlimeStaff")]
 
         [Label("$Mods.ReducedGrinding.Config.AEnemyLootConfig.Label.SlimeStaffFromPinkyIncrease")]
@@ -195,6 +210,8 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(70)]
         public int SlimeStaffFromOtherSlimesIncrease;
+        #endregion
+        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -208,6 +225,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        #region Boss Loot
         [Header("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Header.SectionInfo")]
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.SlimeStaffFromSlimeKing")]
@@ -225,7 +243,9 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(60)]
         public int TerragrimFromHardmodeGrabBag;
+        #endregion
 
+        #region Non-Boss Loot
         [Header("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Header.NonBossLoot")]
 
         [Label("$Mods.ReducedGrinding.Config.BEnemyLootNonVanillaConfig.Label.DesertFossilFromDuneSplicer")]
@@ -257,6 +277,7 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(60)]
         public int SnowballLauncherFromSpikedIceSlime;
+        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -270,6 +291,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        #region Multi-Bobber Potions
         [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.MultiBobberPotion")]
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.MultiBobberPotionBonus")]
@@ -307,7 +329,9 @@ namespace ReducedGrinding
         [Range(0, 100)]
         [DefaultValue(4)]
         public int SuperMultiBobberPotionBonusCalamity;
+        #endregion
 
+        #region Angler Reset Chance
         [Header("$Mods.ReducedGrinding.Config.CFishingConfig.Header.AnglerResetChance")]
 
         [Label("$Mods.ReducedGrinding.Config.CFishingConfig.Label.AnglerRecentChanceBeforeHardmode")]
@@ -324,6 +348,7 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(2)]
         public int AnglerRecentChanceAfterPlantera;
+        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -337,6 +362,7 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        #region Regular
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.MoonBall")]
         [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.MoonBall")]
         [DefaultValue(true)]
@@ -356,7 +382,9 @@ namespace ReducedGrinding
         [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.PlanteraSapFromPlantera")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
+        #endregion
 
+        #region Battle Potions
         [Header("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Header.SpawnIncreasingPotions")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.GreaterBattlePotionMaxSpawnsMultiplier")]
@@ -397,7 +425,9 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float ModBattlePotionMaxSpawnEffectOnInvasion;
+        #endregion
 
+        #region Staff of Difficulty
         [Header("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Header.StaffOfDifficulty")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.StaffOfDifficultyJourney")]
@@ -415,6 +445,7 @@ namespace ReducedGrinding
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.StaffOfDifficultyMaster")]
         [DefaultValue(false)]
         public bool StaffOfDifficultyMaster;
+        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -428,7 +459,8 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.WorldGeneration")]
+        #region Rare Items
+        [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.RareItems")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.GenerateMissingRareChestItems")]
         [DefaultValue(true)]
@@ -444,7 +476,9 @@ namespace ReducedGrinding
         [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TerragrimChests")]
         [DefaultValue(1)]
         public int TerragrimChests;
+        #endregion
 
+        #region Sleep Boost
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.SleepBoost")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.SleepBoostBase")]
@@ -468,7 +502,9 @@ namespace ReducedGrinding
         [DefaultValue(0.5f)]
         [Increment(0.01f)]
         public float SleepBoostInactiveTimeCharmMultiplier;
+        #endregion
 
+        #region Crates
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Crates")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.DungeonCrateDungeonFurniture")]
@@ -491,7 +527,9 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(5)]
         public int CrateStatue;
+        #endregion
 
+        #region Traveling Merchant
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.TravelingMerchant")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.TravelingMerchantExtraRolls")]
@@ -523,13 +561,18 @@ namespace ReducedGrinding
         [Range(0, 600)]
         [DefaultValue(100)]
         public int TravelingMerchantPulseBowChance;
+        #endregion
 
+        #region Holiday Timeline
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.PeriodicHolidayTimeline")]
+
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.HolidayTimelineDaysPerMonth")]
         [Range(0, 30)]
         [DefaultValue(2)]
         public int HolidayTimelineDaysPerMonth;
+        #endregion
 
+        #region Crafting
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Crafting")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.InfectionPowderPerMushroom")]
@@ -552,7 +595,9 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
+        #endregion
 
+        #region Other
         [Header("$Mods.ReducedGrinding.Config.IOtherConfig.Header.Other")]
 
         [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AdjustItemValuesForDropIncreases")]
@@ -588,6 +633,7 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float UniversalPylonBestiaryCompletionRate;
+        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

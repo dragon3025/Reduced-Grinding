@@ -295,6 +295,13 @@ namespace ReducedGrinding.Global
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1825, config));
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1827, config));
             }
+
+            config = GetInstance<AEnemyLootConfig>().SoulOfLightAndNight;
+            if (config > 0)
+            {
+                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfLight(), ItemID.SoulofLight, config));
+                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfNight(), ItemID.SoulofNight, config));
+            }
         }
     }
 }
