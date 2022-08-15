@@ -11,5 +11,11 @@ namespace ReducedGrinding.Buffs
             DisplayName.SetDefault("Super Multi-Bobber Potion");
 			Description.SetDefault("Adds a lot of bobbers while fishing");
         }
+
+        public override void Update(Player player, ref int buffIndex)
+        {
+            player.ClearBuff(ModContent.BuffType<MultiBobber>());
+            player.ClearBuff(ModContent.BuffType<SuperMultiBobber>());
+        }
     }
 }

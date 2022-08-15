@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
@@ -387,7 +388,7 @@ namespace ReducedGrinding
         [Header("")]
 
         [Label("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.BattlePotionsAffectInvasions")]
-        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Label.BattlePotionsAffectInvasions")]
+        [Tooltip("$Mods.ReducedGrinding.Config.HOtherModdedItemsConfig.Tooltip.BattlePotionsAffectInvasions")]
         [DefaultValue(true)]
         public bool BattlePotionsAffectInvasions;
 

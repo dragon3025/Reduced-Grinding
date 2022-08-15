@@ -196,9 +196,9 @@ Mods: {
 						
 						The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.
 						'''
-					MultiBobberPotion: Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
-					GreaterMultiBobberPotion: Greater Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
-					SuperMultiBobberPotion: Super Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.
+					MultiBobberPotion: "[i:ReducedGrinding/MultiBobberPotion]Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe."
+					GreaterMultiBobberPotion: "[i:ReducedGrinding/GreaterMultiBobberPotion] Greater Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe."
+					SuperMultiBobberPotion: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe."
 				}
 				Label: {
 					Section: Fishing
@@ -220,17 +220,17 @@ Mods: {
 						Spawn Increasing Potions
 						If you experience lag, try turning down max spawns first.
 						
-						Greater Battle Potion
+						[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion
 						'''
-					SuperBattlePotion: Super Battle Potion
-					StaffOfDifficulty: "{$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe."
+					SuperBattlePotion: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
+					StaffOfDifficulty: "[i:ReducedGrinding/StaffOfDifficulty] {$Mods.ReducedGrinding.ItemName.StaffOfDifficulty}. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe."
 				}
 				Label: {
 					Section: Other Modded Items
-					MoonBall: "{$Mods.ReducedGrinding.ItemName.MoonBall}"
-					SlimeTrophy: "{$Mods.ReducedGrinding.ItemName.SlimeTrophy}"
-					BestiaryTrophy: "{$Mods.ReducedGrinding.ItemName.BestiaryTrophy}"
-					PlanteraSapFromPlantera: "{$Mods.ReducedGrinding.ItemName.PlanteraSap} Drop from Plantera"
+					MoonBall: "[i:ReducedGrinding/MoonBall] {$Mods.ReducedGrinding.ItemName.MoonBall}"
+					SlimeTrophy: "[i:ReducedGrinding/SlimeTrophy] {$Mods.ReducedGrinding.ItemName.SlimeTrophy}"
+					BestiaryTrophy: "[i:ReducedGrinding/BestiaryTrophy] {$Mods.ReducedGrinding.ItemName.BestiaryTrophy}"
+					PlanteraSapFromPlantera: "[i:ReducedGrinding/PlanteraSap] {$Mods.ReducedGrinding.ItemName.PlanteraSap} Drop from Plantera"
 					BattlePotionsAffectInvasions: Battle Potions Affect Invasions
 					GreaterBattlePotionMaxSpawnsMultiplier: Max Spawns Multiplier
 					GreaterBattlePotionSpawnrateMultiplier: Spawn Rate Multiplier
@@ -265,6 +265,7 @@ Mods: {
 						'''
 						At 100%, the invasion size will be multiplied by the max spawn multipliers by
 						Greater Battle Buff and Super Battle Buff. At 0%, it will be multiplied by 1.
+						'''
 					BattlePotionsAffectInvasions:
 						'''
 						If true, Greater Battle Buff will set invasion rate and size to x2 the vanilla
@@ -297,7 +298,7 @@ Mods: {
 						'''
 						Periodic Holiday Timeline.
 						
-						This mod will run a looping timeline for periodically triggering Halloween and Christmas events. A calendar item can also be purchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.
+						This mod will run a looping timeline for periodically triggering Halloween and Christmas events. A [i:ReducedGrinding/Calendar] Calendar item can also be purchased from the Merchant to see the current date. Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.
 						'''
 					Crafting: Crafting
 					Other: Other
@@ -308,9 +309,9 @@ Mods: {
 					FinchStaffFromTreeShaking: "[i:4281] Finch Staff From Tree Shaking"
 					TerragrimChests: "[i:306] Gold Chest with [i:4144] Terragrim per World Generation"
 					SleepBoostBase: Starting Boost Amount (In-Game Minutes Added)
-					SleepBoostNoPotionBuffMultiplier: Multiplier for No Player with Sleep Buff
-					SleepPotionDurationInMinutes: Sleep Potion Duration in Minutes
-					SleepBoostInactiveTimeCharmMultiplier: Multiplier for inactive Time Charm
+					SleepBoostNoPotionBuffMultiplier: "Multiplier for No Player with [i:ReducedGrinding/SleepPotion] Sleep Buff"
+					SleepPotionDurationInMinutes: "[i:ReducedGrinding/SleepPotion] Sleep Potion Duration in Minutes"
+					SleepBoostInactiveTimeCharmMultiplier: "Multiplier for inactive [i:ReducedGrinding/TimeCharm] Time Charm"
 					DungeonCrateDungeonFurniture: "[i:1408] Dungeon Color Furniture Piece (Random Color)"
 					CrateEnchantedSundial: "[i:3064] Enchanted Sundial"
 					CrateStatue: "[i:438] King, Queen, Heart, Star, and Bomb Statue"
