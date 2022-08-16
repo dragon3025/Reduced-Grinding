@@ -15,7 +15,7 @@ namespace ReducedGrinding.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
             player.ClearBuff(ModContent.BuffType<MultiBobber>());
-            player.ClearBuff(ModContent.BuffType<SuperMultiBobber>());
+            player.ClearBuff(ModContent.BuffType<GreaterMultiBobber>());
         }
     }
 }
