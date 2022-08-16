@@ -333,6 +333,7 @@ Mods: {
 					AdjustItemValuesForDropIncreases: Adjust Values For Drop Increases
 					SkeletonMerchantIgnoresMoonphases: Skeleton Merchant Ignores Moonphases
 					UniversalPylonBestiaryCompletionRate: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
+					AllSpawningRegularMimics: "Allow spawning Regular and Ice Mimics"
 					AnkhMaterialUseFromInventory: Equipping [i:1612] Ankh Charm Material Allows Use From Inventory
 				}
 				Tooltip: {
@@ -409,6 +410,11 @@ Mods: {
 						'''
 						In vanilla, there are 523 entries. 51% can be achieved before
 						Hardmode. Set to 100% to disable
+						'''
+					AllSpawningRegularMimics:
+						'''
+						If enable, placing nothing but 1 Key of Light and 1 Key of Night in a chest will
+						spawn a regular Mimic. Doing this in a Snow Biome will spawn an Ice Mimic.
 						'''
 					AnkhMaterialUseFromInventory:
 						'''

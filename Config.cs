@@ -633,6 +633,11 @@ namespace ReducedGrinding
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float UniversalPylonBestiaryCompletionRate;
+
+        [Label("$Mods.ReducedGrinding.Config.IOtherConfig.Label.AllSpawningRegularMimics")]
+        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.AllSpawningRegularMimics")]
+        [DefaultValue(false)]
+        public bool AllSpawningRegularMimics;
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
