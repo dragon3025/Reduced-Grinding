@@ -26,8 +26,18 @@ namespace ReducedGrinding.Items.Placeable
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
-            Item.value = Item.buyPrice(0, 10, 0, 0);
+            Item.value = Item.sellPrice(0, 3, 80, 0);
             Item.createTile = ModContent.TileType<Tiles.MoonBall>();
+        }
+
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+              .AddIngredient(ItemID.MeteoriteBar, 20)
+              .AddIngredient(ItemID.FallenStar, 20)
+              .AddIngredient(ItemID.Glass, 20)
+              .AddTile(TileID.DemonAltar)
+              .Register();
         }
     }
 }

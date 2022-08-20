@@ -25,7 +25,7 @@ namespace ReducedGrinding.Items.Placeable
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
             Item.consumable = true;
-            Item.value = Item.buyPrice(0, 10);
+            Item.value = Item.sellPrice(0, 2);
             Item.createTile = ModContent.TileType<Tiles.SlimeTrophy>();
         }
     }

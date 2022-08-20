@@ -437,16 +437,6 @@ namespace ReducedGrinding.GlobalRecipes
                     recipe.AddTile(TileID.TinkerersWorkbench);
                 recipe.Register();
             }
-
-            if (GetInstance<HOtherModdedItemsConfig>().MoonBall)
-            {
-                recipe = Recipe.Create(ItemType<Items.Placeable.MoonBall>());
-                recipe.AddIngredient(ItemID.MeteoriteBar, 20);
-                recipe.AddIngredient(ItemID.FallenStar, 20);
-                recipe.AddIngredient(ItemID.Glass, 20);
-                recipe.AddTile(TileID.DemonAltar);
-                recipe.Register();
-            }
             #endregion
 
             #region Disabled by Default

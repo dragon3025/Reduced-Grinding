@@ -19,7 +19,7 @@ namespace ReducedGrinding.Global
                         spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionSpawnrateMultiplier));
                         maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier);
                     }
-                    else if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
+                    if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
                     {
                         spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier));
                         maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier);
