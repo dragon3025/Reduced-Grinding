@@ -12,14 +12,16 @@ namespace ReducedGrinding.Global
 {
     public class Update : ModSystem
     {
-        //Gets recording into world save
-        public static bool advanceMoonPhase = false;
+        //Gets recorded into world save
         public static bool noMoreAnglerResetsToday = false;
         public static bool dayTime = true;
         public static bool timeCharm = false;
         public static int seasonalDay = 1;
         public static bool invasionWithGreaterBattleBuff = false;
         public static bool invasionWithSuperBattleBuff = false;
+
+        //Info sent to server, but not recorded into world save
+        public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
         public static bool celestialSigil = false;
         public static bool xMas = false;
@@ -28,6 +30,7 @@ namespace ReducedGrinding.Global
         public override void PostUpdateTime()
         {
             bool updatePacket = false;
+            bool sendNetMessageData = false;
             
             int time = (int)Main.time;
 
@@ -235,6 +238,8 @@ namespace ReducedGrinding.Global
                     if (Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
                         Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>())] -= (int)sleepBoost;
                 }
+
+                sendNetMessageData = true;
             }
 
             if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
@@ -348,9 +353,13 @@ namespace ReducedGrinding.Global
                 packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
                 packet.Write(celestialSigil);
 
+                sendNetMessageData = true;
+
                 packet.Send();
-                NetMessage.SendData(MessageID.WorldData);
             }
+
+            if (sendNetMessageData)
+                NetMessage.SendData(MessageID.WorldData);
         }
 
         public override void PostUpdateWorld()
