@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using Terraria.Localization;
 
 namespace ReducedGrinding.Global
 {
@@ -53,6 +53,7 @@ namespace ReducedGrinding.Global
                             ItemID.Rope,
                             ItemID.MagicLantern
                         };
+
                         if (Main.hardMode)
                         {
                             shopItems.Add(ItemID.Gradient);
@@ -124,6 +125,7 @@ namespace ReducedGrinding.Global
             {
                 player = new Player();
             }
+            #region Extra Item Rolls
             int amountToAdd = GetInstance<IOtherConfig>().TravelingMerchantExtraRolls;
             int itemsAdded = 0;
             int[] itemChance = new int[6]
@@ -521,69 +523,65 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+            #endregion
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantMartianChance > 0)
+            #region Individual Item Rolls
+            if (NPC.downedMartians && GetInstance<IOtherConfig>().TravelingMerchantMartianChance > 0)
             {
-                if (NPC.downedMartians && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantMartianChance) == 0)
-                {
-                    int[] items = new int[] {
+                int[] items = new int[] {
                         2865,
                         2866,
                         2867
                     };
-                    foreach (int i in items)
+                foreach (int i in items)
+                {
+                    bool addItem = true;
+                    for (int k = 0; k < 40; k++)
                     {
-                        bool addItem = true;
-                        for (int k = 0; k < 40; k++)
+                        if (Main.travelShop[k] == i)
                         {
-                            if (Main.travelShop[k] == i)
-                            {
-                                addItem = false;
-                                break;
-                            }
+                            addItem = false;
+                            break;
                         }
-                        if (addItem)
-                        {
-                            Main.travelShop[nextSlot] = i;
-                            nextSlot++;
-                        }
+                    }
+                    if (addItem && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantMartianChance) == 0)
+                    {
+                        Main.travelShop[nextSlot] = i;
+                        nextSlot++;
                     }
                 }
             }
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantChristmasChance > 0)
+            if (Main.xMas && GetInstance<IOtherConfig>().TravelingMerchantChristmasChance > 0)
             {
-                if (Main.xMas && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantChristmasChance) == 0)
-                {
-                    int[] items = new int[] {
+                int[] items = new int[] {
                         3055,
                         3056,
                         3057,
                         3058
                     };
-                    foreach (int i in items)
+                foreach (int i in items)
+                {
+                    bool addItem = true;
+                    for (int k = 0; k < 40; k++)
                     {
-                        bool addItem = true;
-                        for (int k = 0; k < 40; k++)
+                        if (Main.travelShop[k] == i)
                         {
-                            if (Main.travelShop[k] == i)
-                            {
-                                addItem = false;
-                                break;
-                            }
+                            addItem = false;
+                            break;
                         }
-                        if (addItem)
-                        {
-                            Main.travelShop[nextSlot] = i;
-                            nextSlot++;
-                        }
+                    }
+                    if (addItem && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantChristmasChance) == 0)
+                    {
+                        Main.travelShop[nextSlot] = i;
+                        nextSlot++;
                     }
                 }
             }
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance > 0)
+            if (NPC.downedMoonlord && GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance > 0)
             {
-                if (NPC.downedMoonlord && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance) == 0)
+                if (player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance) == 0)
                 {
                     bool addItem = true;
                     for (int k = 0; k < 40; k++)
@@ -602,9 +600,9 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance > 0)
+            if (NPC.downedPlantBoss && GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance > 0)
             {
-                if (NPC.downedPlantBoss && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance) == 0)
+                if (player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance) == 0)
                 {
                     bool addItem = true;
                     for (int k = 0; k < 40; k++)
@@ -622,6 +620,7 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+            #endregion
         }
     }
 }
