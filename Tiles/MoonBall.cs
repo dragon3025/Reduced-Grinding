@@ -2,7 +2,6 @@ using Terraria;
 using Terraria.ObjectData;
 using Terraria.ModLoader;
 using Terraria.ID;
-using Terraria.Enums;
 using Terraria.DataStructures;
 using Microsoft.Xna.Framework;
 using Terraria.GameContent.ObjectInteractions;
@@ -26,7 +25,7 @@ namespace ReducedGrinding.Tiles
 			TileObjectData.addTile(Type);
 
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Moon Ball");
+			name.SetDefault("Moon Ball"); //Localize
 			AddMapEntry(new Color(191, 191, 255), name);
 
 			DustType = DustID.Marble;

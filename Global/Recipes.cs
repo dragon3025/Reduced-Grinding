@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -34,8 +33,7 @@ namespace ReducedGrinding.GlobalRecipes
 
         public override void AddRecipeGroups()
         {
-            //baitCritterLow = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " bait critter with less than 20 Power.", new int[]
-            baitCritterLow = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterLow")}", new int[]
+            baitCritterLow = new RecipeGroup(() => "Any bait critter with less than 20 Power", new int[] //Localize
             {
                 ItemID.MonarchButterfly,
                 ItemID.SulphurButterfly,
@@ -52,7 +50,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterLow", baitCritterLow);
 
-            baitCritterMed = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterMed")}", new int[]
+            baitCritterMed = new RecipeGroup(() => "Any bait critter with at least 20 Power and less than 25 Power", new int[] //Localize
             {
                 ItemID.UlyssesButterfly,
                 ItemID.BlackDragonfly,
@@ -69,7 +67,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterMed", baitCritterMed);
 
-            baitCritterHigh = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.BaitCritterHigh")}", new int[]
+            baitCritterHigh = new RecipeGroup(() => "Any bait critter with at least 25 Power", new int[] //Localize
             {
                 ItemID.JuliaButterfly,
                 ItemID.Lavafly,
@@ -91,7 +89,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
 
-            altBalloons = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.AltBalloons")}", new int[]
+            altBalloons = new RecipeGroup(() => "Any Honey or Fart Balloon", new int[] //Localize
             {
                 ItemID.HoneyBalloon,
                 ItemID.BalloonHorseshoeHoney,
@@ -100,7 +98,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:altBalloons", altBalloons);
 
-            fartInAJarAccessory = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.FartInAJarAccessory")}", new int[]
+            fartInAJarAccessory = new RecipeGroup(() => "Any Fart in a Jar variant", new int[] //Localize
             {
                 ItemID.FartinaJar,
                 ItemID.FartInABalloon,
@@ -108,7 +106,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:fartInAJarAccessory", fartInAJarAccessory);
 
-            horseshoeAccessory = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.HorseshoeAccessory")}", new int[]
+            horseshoeAccessory = new RecipeGroup(() => "Obsidian Horseshoe or any Horseshoe Balloon", new int[] //Localize
             {
                 ItemID.BlueHorseshoeBalloon,
                 ItemID.BalloonHorseshoeFart,
@@ -120,21 +118,21 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:horseshoeAccessory", horseshoeAccessory);
 
-            infectionMushroom = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.InfectionMushroom")}", new int[]
+            infectionMushroom = new RecipeGroup(() => "Vile Mushroom or Vicious Mushroom", new int[] //Localize
             {
                 ItemID.VileMushroom,
                 ItemID.ViciousMushroom
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:infectionMushroom", infectionMushroom);
 
-            infectionOre = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.InfectionOre")}", new int[]
+            infectionOre = new RecipeGroup(() => "Demonite Ore or Crimtane Ore", new int[] //Localize
             {
                 ItemID.DemoniteOre,
                 ItemID.CrimtaneOre
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:infectionOre", infectionOre);
 
-            dungeonBrick = new RecipeGroup(() => $"{Language.GetTextValue($"Mods.ReducedGrinding.RecipeGroups.DungeonBrick")}", new int[]
+            dungeonBrick = new RecipeGroup(() => "Any Dungeon Brick", new int[] //Localize
             {
                 ItemID.BlueBrick,
                 ItemID.GreenBrick,

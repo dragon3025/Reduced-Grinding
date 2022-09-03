@@ -82,14 +82,26 @@ namespace ReducedGrinding.Global
             #region Town NPC Drops
             if (npc.type == NPCID.Guide)
             {
-                npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.GreenCap && drop.condition is Conditions.NamedNPC npcNameCondition && npcNameCondition.neededName == "Andrew");
+                npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.GreenCap);
                 npcLoot.Add(ItemDropRule.Common(ItemID.GreenCap, 1));
             }
             if (npc.type == NPCID.Steampunker)
             {
-                npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar && drop.condition is Conditions.NamedNPC npcNameCondition && npcNameCondition.neededName == "Whitney");
+                npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar);
                 npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
             }
+
+            //if (npc.type == NPCID.Guide)
+            //{
+            //    npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.GreenCap && drop.condition is Conditions.NamedNPC //npcNameCondition && npcNameCondition.neededName == "Andrew");
+            //    npcLoot.Add(ItemDropRule.Common(ItemID.GreenCap, 1));
+            //}
+            //if (npc.type == NPCID.Steampunker)
+            //{
+            //    npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar && drop.condition is Conditions.NamedNPC //npcNameCondition && npcNameCondition.neededName == "Whitney");
+            //    npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
+            //}
+
             if (npc.type == NPCID.DyeTrader)
                 AddLoot(ItemID.DyeTradersScimitar, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
             if (npc.type == NPCID.Painter)

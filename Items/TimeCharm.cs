@@ -38,17 +38,17 @@ namespace ReducedGrinding.Items
             {
                 Global.Update.timeCharm = true;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Time rate while sleeping is increased."), new Color(255, 255, 0));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Time rate while sleeping is increased."), new Color(255, 255, 0)); //Localize
                 else
-                    Main.NewText("Time rate while sleeping is increased.", 255, 255, 0);
+                    Main.NewText("Time rate while sleeping is increased.", 255, 255, 0); //Localize
             }
             else
             {
                 Global.Update.timeCharm = false;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Time rate while sleeping is normal."), new Color(255, 255, 0));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Time rate while sleeping is normal."), new Color(255, 255, 0)); //Localize
                 else
-                    Main.NewText("Time rate while sleeping is normal.", 255, 255, 0);
+                    Main.NewText("Time rate while sleeping is normal.", 255, 255, 0); //Localize
             }
             if (Main.netMode == NetmodeID.MultiplayerClient) //Client
             {

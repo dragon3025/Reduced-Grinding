@@ -25,7 +25,7 @@ namespace ReducedGrinding.Tiles
 			AnimationFrameHeight = 54;
 
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Calendar");
+			name.SetDefault("Calendar"); //Localize
 			AddMapEntry(new Color(255, 255, 255), name);
 		}
 
@@ -58,7 +58,7 @@ namespace ReducedGrinding.Tiles
 			switch (month)
 			{
 				case 1:
-					dateText += "January ";
+					dateText += "January "; //Localize (this and the months below)
 					break;
 				case 2:
 					dateText += "Febuary ";
@@ -98,7 +98,7 @@ namespace ReducedGrinding.Tiles
 			dateText += dayOfMonth.ToString();
             dateText += dayOfMonth switch
             {
-                1 => "st",
+                1 => "st", //Localize (and the other suffixes below)
                 2 => "nd",
                 3 => "rd",
                 21 => "st",

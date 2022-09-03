@@ -1,9 +1,8 @@
 using Terraria.GameContent.ItemDropRules;
-using Terraria.Localization;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
-	public class ZoneHallow : IItemDropRuleCondition
+    public class ZoneHallow : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
@@ -19,7 +18,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.ZoneHallow")}";
+			return "Only in the Hallow"; //Localize
 		}
 	}
 }

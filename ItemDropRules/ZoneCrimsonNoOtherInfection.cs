@@ -1,9 +1,8 @@
 using Terraria.GameContent.ItemDropRules;
-using Terraria.Localization;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
-	public class ZoneCrimsonNoOtherInfection : IItemDropRuleCondition
+    public class ZoneCrimsonNoOtherInfection : IItemDropRuleCondition
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
@@ -25,7 +24,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.ZoneCrimsonNoOtherInfection")}";
+			return "Only in the Crimson"; //Localize
 		}
 	}
 }

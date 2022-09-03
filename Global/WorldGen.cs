@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
@@ -17,7 +16,7 @@ namespace ReducedGrinding.Global
 
 			if (FinalCleanupIndex != -1)
 			{
-				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen($"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}", 10f));
+				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Rare Chest Loot", 10f)); //Localize
 			}
 		}
 
@@ -30,7 +29,7 @@ namespace ReducedGrinding.Global
 				if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
 					return;
 
-				progress.Message = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AddingRareChestLoot")}";
+				progress.Message = "Adding Non-Existing Rare Chest Loot"; //Localize
 
 				//TO-DO 1.4.4 will make it easier to get sandstorm in a bottle.
 				List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };

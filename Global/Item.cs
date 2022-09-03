@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -15,7 +14,8 @@ namespace ReducedGrinding.Global
                 return;
             if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
             {
-                tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.AnkhMaterialUseFromInventory")}"));
+                tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material" +
+                    "Equip to allow 'Ankh Material' accessories to work from your inventory"));//Localize
             }
         }
 

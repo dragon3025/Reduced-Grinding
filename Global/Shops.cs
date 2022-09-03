@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -14,7 +13,7 @@ namespace ReducedGrinding.Global
         {
             Player player = Main.player[Main.myPlayer];
             if (npc.type == NPCID.Angler)
-                Main.NewText($"{Language.GetTextValue($"Mods.ReducedGrinding.Other.QuestCompleted")}" + ": " + player.anglerQuestsFinished, 0, 255, 255);
+                Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255); //Localize
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)

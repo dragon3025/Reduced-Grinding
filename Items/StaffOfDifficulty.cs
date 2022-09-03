@@ -53,7 +53,7 @@ namespace ReducedGrinding.Items
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
                             goto changeDifficulty;
                         player.difficulty = 0;
-                        text = "Expert mode is now enabled!";
+                        text = "Expert mode is now enabled!"; //Localize
                         textColor = new Color(255, 179, 0);
                         break;
                     case 1:
@@ -62,7 +62,7 @@ namespace ReducedGrinding.Items
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
                             goto changeDifficulty;
                         player.difficulty = 0;
-                        text = "Master mode is now enabled!";
+                        text = "Master mode is now enabled!"; //Localize
                         textColor = new Color(255, 0, 0);
                         break;
 
@@ -72,7 +72,7 @@ namespace ReducedGrinding.Items
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyJourney)
                             goto changeDifficulty;
                         player.difficulty = 3;
-                        text = "Journey mode is now enabled!";
+                        text = "Journey mode is now enabled!"; //Localize
                         textColor = new Color(255, 127, 255);
                         break;
 
@@ -82,7 +82,7 @@ namespace ReducedGrinding.Items
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
                             goto changeDifficulty;
                         player.difficulty = 0;
-                        text = "Normal mode is now enabled!";
+                        text = "Normal mode is now enabled!"; //Localize
                         textColor = new Color(255, 255, 255);
                         break;
                 }
@@ -91,7 +91,7 @@ namespace ReducedGrinding.Items
             }
             else
             {
-                text = "The configuration isn't allowing you to change to any difficulty mode.";
+                text = "The configuration isn't allowing you to change to any difficulty mode."; //Localize
                 textColor = new Color(255, 0, 0);
             }
 

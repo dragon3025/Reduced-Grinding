@@ -185,11 +185,10 @@ namespace ReducedGrinding.Global
             if (cancelInvasion && Main.invasionX == Main.spawnTileX)
             {
                 Main.invasionType = InvasionID.None;
-                string InvasionLeftMessage = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.InvasionLeft")}";
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(InvasionLeftMessage), new Color(255, 255, 0)); //TO-DO (I don't think this correct)
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find you, so they left."), new Color(255, 255, 0)); //Localize
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    Main.NewText(InvasionLeftMessage, new Color(255, 255, 0));
+                    Main.NewText("The invasion couldn't find you, so they left.", new Color(255, 255, 0)); //Localize
             }
             else if (invasionType > 0)
             {
@@ -249,12 +248,11 @@ namespace ReducedGrinding.Global
                     if (Main.rand.NextBool(anglerResetChance))
                     {
                         Main.AnglerQuestSwap();
-                        string newAnglerJobMessage = $"{Language.GetTextValue($"Mods.ReducedGrinding.Other.NewAnglerJob")}";
                         if (Main.netMode == NetmodeID.SinglePlayer)
-                            Main.NewText(newAnglerJobMessage, 0, 255, 255);
+                            Main.NewText("The Angler decided to give you another job.", 0, 255, 255); //Localize
                         else if (Main.netMode == NetmodeID.Server)
                         {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(newAnglerJobMessage), new Color(0, 255, 255));
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255)); //Localize
                         }
                     }
                     else
