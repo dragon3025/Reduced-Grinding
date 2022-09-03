@@ -34,7 +34,8 @@ namespace ReducedGrinding
             invasionWithGreaterBattleBuff,
             invasionWithSuperBattleBuff,
             instantInvasion,
-            celestialSigil
+            celestialSigil,
+            travelingMerchantDiceRolls
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -70,6 +71,9 @@ namespace ReducedGrinding
                 case MessageType.celestialSigil:
                     Global.Update.celestialSigil = reader.ReadBoolean();
                     break;
+                case MessageType.travelingMerchantDiceRolls:
+                    Global.Update.travelingMerchantDiceRolls = reader.ReadInt32();
+                    break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
@@ -95,6 +99,7 @@ namespace ReducedGrinding
             tag.Add("seasonalDay", Math.Max(1, Global.Update.seasonalDay));
             tag.Add("invasionWithGreaterBattleBuff", Global.Update.invasionWithGreaterBattleBuff);
             tag.Add("invasionWithSuperBattleBuff", Global.Update.invasionWithSuperBattleBuff);
+            tag.Add("travelingMerchantDiceRolls", Global.Update.travelingMerchantDiceRolls);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -105,6 +110,7 @@ namespace ReducedGrinding
             tag.TryGet("seasonalDay", out int seasonalDay);
             tag.TryGet("invasionWithGreaterBattleBuff", out bool invasionWithGreaterBattleBuff);
             tag.TryGet("invasionWithSuperBattleBuff", out bool invasionWithSuperBattleBuff);
+            tag.TryGet("travelingMerchantDiceRolls", out int travelingMerchantDiceRolls);
 
             Global.Update.noMoreAnglerResetsToday = noMoreAnglerResetsToday;
             Global.Update.dayTime = dayTime;
@@ -112,6 +118,7 @@ namespace ReducedGrinding
             Global.Update.seasonalDay = Math.Max(1, seasonalDay);
             Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
             Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
+            Global.Update.travelingMerchantDiceRolls = travelingMerchantDiceRolls;
         }
 
         public override void OnModLoad()

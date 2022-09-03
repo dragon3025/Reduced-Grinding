@@ -47,7 +47,7 @@ namespace ReducedGrinding.Tiles
 		public override bool RightClick(int x, int y)
 		{
 			Global.Update.advanceMoonPhase = true;
-			if (Main.netMode == NetmodeID.MultiplayerClient) //Client
+			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
 				ModPacket packet = Mod.GetPacket();
 				packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);

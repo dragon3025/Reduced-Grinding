@@ -50,7 +50,7 @@ namespace ReducedGrinding.Items
                 else
                     Main.NewText("Time rate while sleeping is normal.", 255, 255, 0); //Localize
             }
-            if (Main.netMode == NetmodeID.MultiplayerClient) //Client
+            if (Main.netMode == NetmodeID.MultiplayerClient)
             {
                 ModPacket packet = Mod.GetPacket();
                 packet.Write((byte)ReducedGrinding.MessageType.timeCharm);

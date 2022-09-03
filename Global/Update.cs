@@ -19,6 +19,7 @@ namespace ReducedGrinding.Global
         public static int seasonalDay = 1;
         public static bool invasionWithGreaterBattleBuff = false;
         public static bool invasionWithSuperBattleBuff = false;
+        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -82,6 +83,7 @@ namespace ReducedGrinding.Global
                     cancelInvasion = true;
             }
 
+            #region For Each Player
             for (int i = 0; i < 255; i++)
             {
                 if (!Main.player[i].active)
@@ -181,7 +183,9 @@ namespace ReducedGrinding.Global
                 if (Main.player[i].FindBuffIndex(BuffID.SugarRush) != -1)
                     Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.SugarRush)] = 600;
             }
+            #endregion
 
+            #region InvasionModifing
             if (cancelInvasion && Main.invasionX == Main.spawnTileX)
             {
                 Main.invasionType = InvasionID.None;
@@ -220,7 +224,9 @@ namespace ReducedGrinding.Global
                 Main.invasionProgress = (int)(Main.invasionProgress * invasionBoost);
                 Main.invasionProgressMax = (int)(Main.invasionProgressMax * invasionBoost);
             }
+            #endregion
 
+            #region BoostTime
             if (boostTime)
             {
 
@@ -240,7 +246,9 @@ namespace ReducedGrinding.Global
 
                 sendNetMessageData = true;
             }
+            #endregion
 
+            #region Angler
             if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
             {
                 if (fishermenCount <= Main.anglerWhoFinishedToday.Count)
@@ -262,16 +270,19 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+            #endregion
+
 
             if (dayTime != Main.dayTime)
             {
                 dayTime = Main.dayTime;
                 updatePacket = true;
 
+                #region NewDay
                 if (Main.dayTime)
                 {
+                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
                     noMoreAnglerResetsToday = false;
-                    updatePacket = true;
 
                     if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
                     {
@@ -316,6 +327,7 @@ namespace ReducedGrinding.Global
                             seasonalDay = 1;
                     }
                 }
+                #endregion
             }
 
             if (celestialSigil) //TO-DO Remove once 1.4.4 comes out
@@ -326,6 +338,7 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
+            #region ClientToServerData
             if (updatePacket && Main.netMode == NetmodeID.Server)
             {
                 ModPacket packet = Mod.GetPacket();
@@ -351,6 +364,9 @@ namespace ReducedGrinding.Global
                 packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
                 packet.Write(celestialSigil);
 
+                packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
+                packet.Write(travelingMerchantDiceRolls);
+
                 sendNetMessageData = true;
 
                 packet.Send();
@@ -358,6 +374,7 @@ namespace ReducedGrinding.Global
 
             if (sendNetMessageData)
                 NetMessage.SendData(MessageID.WorldData);
+            #endregion
         }
 
         public override void PostUpdateWorld()

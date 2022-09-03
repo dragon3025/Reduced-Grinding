@@ -343,7 +343,7 @@ namespace ReducedGrinding
 
         #region Angler Reset Chance
         [Header("Angler Reset Chance\n\n" +
-            "The configurations below will give a(1 / configuration_setting) chance at resetting the Angler Quest when finishing it.The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.")]
+            "The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.")]
 
         [Label("Before Hardmode")]
         [Range(0, 10000)]
@@ -582,23 +582,33 @@ namespace ReducedGrinding
         #endregion
 
         #region Traveling Merchant
-        [Header("Traveling Merchant")]
+        [Header("Traveling Merchant\n\n" +
+            "[i:ReducedGrinding/MerchantDice] Merchant Dice. For a limited amount of times per day, you can use this to re-roll the Traveling Merchant shop. The Traveling Merchant will only sell it if it's set higher than 0.")]
 
-        [Label("Extra Chance Rolls For Items")]
-        [Tooltip("" +
-            "Gives extra chances for adding items to the shop. Use the Shop Expander mod to\n" +
-            "allow more than 40 items.")]
-        [Range(0, 600)]
+        [Label("Before Hardmode")]
+        [Range(0, 100)]
         [DefaultValue(0)]
-        public int TravelingMerchantExtraRolls;
+        public int TravelingMerchantDiceUsesBeforeHardmode;
 
-        [Label("[i:3059] Christmas Paintings Extra Chance")]
+        [Label("Hardmode")]
+        [Range(0, 100)]
+        [DefaultValue(0)]
+        public int TravelingMerchantDiceUsesHardmode;
+
+        [Label("After Plantera")]
+        [Range(0, 100)]
+        [DefaultValue(0)]
+        public int TravelingMerchantDiceUsesAfterPlantera;
+
+        [Header("Extra item rolls (chance = 1 / configuration setting)")]
+
+        [Label("[i:3059] Christmas Paintings Extra Chance (for each)")]
         [Tooltip("Chance = 1 / configuration_setting")]
         [Range(0, 600)]
-        [DefaultValue(13)]
+        [DefaultValue(5)]
         public int TravelingMerchantChristmasChance;
 
-        [Label("[i:2867] Martian Paintings Extra Chance")]
+        [Label("[i:2867] Martian Paintings Extra Chance (for each)")]
         [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
         [DefaultValue(0)]
@@ -613,7 +623,7 @@ namespace ReducedGrinding
         [Label("[i:2223] Pulse Bow Extra Chance")]
         [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
         [Range(0, 600)]
-        [DefaultValue(100)]
+        [DefaultValue(10)]
         public int TravelingMerchantPulseBowChance;
         #endregion
 
