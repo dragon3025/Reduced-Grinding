@@ -20,7 +20,7 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             Item.width = 20;
             Item.height = 30;
-            Item.maxStack = 30;
+            Item.maxStack = 300;
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;

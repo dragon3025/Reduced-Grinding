@@ -24,7 +24,7 @@ namespace ReducedGrinding.Items
             Item.height = 34;
             Item.maxStack = 1;
             Item.value = Item.sellPrice(0, 0, 6);
-            Item.rare = ItemRarityID.Orange;
+            Item.rare = ItemRarityID.Pink;
             Item.useAnimation = 20;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;

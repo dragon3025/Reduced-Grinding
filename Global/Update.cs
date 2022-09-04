@@ -27,12 +27,13 @@ namespace ReducedGrinding.Global
         public static bool celestialSigil = false;
         public static bool xMas = false;
         public static bool halloween = false;
+        public static int timeHiddenFromInvasion = 0;
 
         public override void PostUpdateTime()
         {
             bool updatePacket = false;
             bool sendNetMessageData = false;
-            
+
             int time = (int)Main.time;
 
             float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
@@ -60,7 +61,7 @@ namespace ReducedGrinding.Global
             int fishermenCount = 0;
             List<int> activePlayers = new() { };
 
-            bool cancelInvasion = false;
+            bool allPlayersHiddenFromInvasion = false;
             int invasionType = Main.invasionType;
             bool playerWithGreaterBattleBuff = false;
             bool playerWithSuperBattleBuff = false;
@@ -80,7 +81,7 @@ namespace ReducedGrinding.Global
             if (time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
             {
                 if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                    cancelInvasion = true;
+                    allPlayersHiddenFromInvasion = true;
             }
 
             #region For Each Player
@@ -101,8 +102,8 @@ namespace ReducedGrinding.Global
 
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
-                if (playerPosition.Y <= Main.worldSurface + 67.5f)
-                    cancelInvasion = false;
+                if (allPlayersHiddenFromInvasion && playerPosition.Y <= Main.worldSurface + 67.5f)
+                    allPlayersHiddenFromInvasion = false;
 
                 if (boostTime && !playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
                     playerWithSleepBuff = true;
@@ -186,13 +187,36 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region InvasionModifing
-            if (cancelInvasion && Main.invasionX == Main.spawnTileX)
+            if (time % 60 == 0)
+            {
+                if (allPlayersHiddenFromInvasion)
+                {
+                    if (timeHiddenFromInvasion == 0)
+                    {
+                        if (Main.netMode == NetmodeID.Server)
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0)); //Localize
+                        else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+                            Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0)); //Localize
+                    }
+                    timeHiddenFromInvasion++;
+                    updatePacket = true;
+                }
+                else if (timeHiddenFromInvasion > 0)
+                {
+                    timeHiddenFromInvasion--;
+                    updatePacket = true;
+                }
+            }
+
+            if (timeHiddenFromInvasion >= 20 && Main.invasionX == Main.spawnTileX)
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find you, so they left."), new Color(255, 255, 0)); //Localize
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0)); //Localize
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    Main.NewText("The invasion couldn't find you, so they left.", new Color(255, 255, 0)); //Localize
+                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0)); //Localize
+                timeHiddenFromInvasion = 0;
+                updatePacket = true;
             }
             else if (invasionType > 0)
             {
@@ -366,6 +390,9 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                 packet.Write(travelingMerchantDiceRolls);
+
+                packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
+                packet.Write(timeHiddenFromInvasion);
 
                 sendNetMessageData = true;
 

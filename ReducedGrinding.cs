@@ -35,7 +35,8 @@ namespace ReducedGrinding
             invasionWithSuperBattleBuff,
             instantInvasion,
             celestialSigil,
-            travelingMerchantDiceRolls
+            travelingMerchantDiceRolls,
+            timeHiddenFromInvasion
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -73,6 +74,9 @@ namespace ReducedGrinding
                     break;
                 case MessageType.travelingMerchantDiceRolls:
                     Global.Update.travelingMerchantDiceRolls = reader.ReadInt32();
+                    break;
+                case MessageType.timeHiddenFromInvasion:
+                    Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);

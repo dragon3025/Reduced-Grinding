@@ -20,7 +20,7 @@ namespace ReducedGrinding.Items.Placeable
             Item.maxStack = 9999;
             Item.useTurn = true;
             Item.autoReuse = true;
-            Item.rare = ItemRarityID.Purple;
+            Item.rare = ItemRarityID.Red;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
