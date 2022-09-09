@@ -36,7 +36,8 @@ namespace ReducedGrinding
             instantInvasion,
             celestialSigil,
             travelingMerchantDiceRolls,
-            timeHiddenFromInvasion
+            timeHiddenFromInvasion,
+            dutchmanKills
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -78,6 +79,9 @@ namespace ReducedGrinding
                 case MessageType.timeHiddenFromInvasion:
                     Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
                     break;
+                case MessageType.dutchmanKills:
+                    Global.Update.dutchmanKills = reader.ReadInt32();
+                    break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
@@ -104,6 +108,7 @@ namespace ReducedGrinding
             tag.Add("invasionWithGreaterBattleBuff", Global.Update.invasionWithGreaterBattleBuff);
             tag.Add("invasionWithSuperBattleBuff", Global.Update.invasionWithSuperBattleBuff);
             tag.Add("travelingMerchantDiceRolls", Global.Update.travelingMerchantDiceRolls);
+            tag.Add("dutchmanKills", Global.Update.dutchmanKills);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -115,6 +120,7 @@ namespace ReducedGrinding
             tag.TryGet("invasionWithGreaterBattleBuff", out bool invasionWithGreaterBattleBuff);
             tag.TryGet("invasionWithSuperBattleBuff", out bool invasionWithSuperBattleBuff);
             tag.TryGet("travelingMerchantDiceRolls", out int travelingMerchantDiceRolls);
+            tag.TryGet("dutchmanKills", out int dutchmanKills);
 
             Global.Update.noMoreAnglerResetsToday = noMoreAnglerResetsToday;
             Global.Update.dayTime = dayTime;
@@ -123,6 +129,7 @@ namespace ReducedGrinding
             Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
             Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
             Global.Update.travelingMerchantDiceRolls = travelingMerchantDiceRolls;
+            Global.Update.dutchmanKills = dutchmanKills;
         }
 
         public override void OnModLoad()

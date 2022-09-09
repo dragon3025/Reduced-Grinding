@@ -58,7 +58,7 @@ namespace ReducedGrinding.Global
                     }
                 }
                 return matches;
-            } 
+            }
             #endregion
 
             #region Boss Drops
@@ -90,17 +90,6 @@ namespace ReducedGrinding.Global
                 npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar);
                 npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
             }
-
-            //if (npc.type == NPCID.Guide)
-            //{
-            //    npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.GreenCap && drop.condition is Conditions.NamedNPC //npcNameCondition && npcNameCondition.neededName == "Andrew");
-            //    npcLoot.Add(ItemDropRule.Common(ItemID.GreenCap, 1));
-            //}
-            //if (npc.type == NPCID.Steampunker)
-            //{
-            //    npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar && drop.condition is Conditions.NamedNPC //npcNameCondition && npcNameCondition.neededName == "Whitney");
-            //    npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
-            //}
 
             if (npc.type == NPCID.DyeTrader)
                 AddLoot(ItemID.DyeTradersScimitar, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
@@ -206,9 +195,9 @@ namespace ReducedGrinding.Global
                 //
                 //TO-DO 1.4.4 is going to boost pirate drop rates. I added coding to immitate the new rates, but when the udpate comes out: look into the changes and the source code, and modify the coding below. So far, it's unknown exactly how the Flying Dutchman rates will be, but I assume it has to at least be twice as likely (some will go as far as 10 times more likely, but it's unknown what that is).
 
-                float denominator_multiplier = 10;
+                int denominator_multiplier = 10;
                 if (npc.type == NPCID.PirateCaptain)
-                    denominator_multiplier = 2.5f;
+                    denominator_multiplier = 5;
                 else if (npc.type == NPCID.PirateShip)
                     denominator_multiplier = 1;
 
@@ -219,14 +208,19 @@ namespace ReducedGrinding.Global
                 }
 
                 if (npc.type == NPCID.PirateShip)
+                {
                     npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, 1704, 1705, 1710, 1716, 1720, 2133, 2137, 2143, 2147, 2151, 2155, 2238, 2379, 2389, 2405, 2663, 2843, 3885, 3904, 3910)); //Always drop 1 Golden Furniture
+                    var config = GetInstance<AEnemyLootConfig>().TheDutchmansTresureChance;
+                    if (config > 0)
+                        AddCondtionalLootMaxMin(ItemType<Items.TheDutchmansTreasure>(), new FirstDutchman(), new int[] { config, config }); //TO-DO When 1.4.4 comes out, it's possible that I'll adjust these or remove the item.
+                }
 
-                AddLoot(ItemID.CoinGun, (int)(GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease * denominator_multiplier));
-                AddLoot(ItemID.LuckyCoin, (int)(GetInstance<AEnemyLootConfig>().LuckyCoinBaseIncrease * denominator_multiplier));
-                AddLoot(ItemID.DiscountCard, (int)(GetInstance<AEnemyLootConfig>().DiscountCardBaseIncrease * denominator_multiplier));
-                AddLoot(ItemID.PirateStaff, (int)(GetInstance<AEnemyLootConfig>().PirateStaffBaseIncrease * denominator_multiplier));
-                AddLoot(ItemID.GoldRing, (int)(GetInstance<AEnemyLootConfig>().GoldRingBaseIncrease * denominator_multiplier));
-                AddLoot(ItemID.Cutlass, (int)(GetInstance<AEnemyLootConfig>().CutlassBaseIncrease * denominator_multiplier));
+                AddLoot(ItemID.CoinGun, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease * denominator_multiplier);
+                AddLoot(ItemID.LuckyCoin, GetInstance<AEnemyLootConfig>().LuckyCoinBaseIncrease * denominator_multiplier);
+                AddLoot(ItemID.DiscountCard, GetInstance<AEnemyLootConfig>().DiscountCardBaseIncrease * denominator_multiplier);
+                AddLoot(ItemID.PirateStaff, GetInstance<AEnemyLootConfig>().PirateStaffBaseIncrease * denominator_multiplier);
+                AddLoot(ItemID.GoldRing, GetInstance<AEnemyLootConfig>().GoldRingBaseIncrease * denominator_multiplier);
+                AddLoot(ItemID.Cutlass, GetInstance<AEnemyLootConfig>().CutlassBaseIncrease * denominator_multiplier);
             }
             #endregion
             #endregion
@@ -270,7 +264,7 @@ namespace ReducedGrinding.Global
                 AddLoot(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime);
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
-                AddLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies); 
+                AddLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies);
             #endregion
             #endregion
         }
@@ -313,6 +307,21 @@ namespace ReducedGrinding.Global
             {
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfLight(), ItemID.SoulofLight, config));
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfNight(), ItemID.SoulofNight, config));
+            }
+        }
+
+        public override void OnKill(NPC npc)
+        {
+            if (npc.type == NPCID.PirateShip)
+            {
+                Update.dutchmanKills++;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.dutchmanKills);
+                    packet.Write(Update.dutchmanKills);
+                    packet.Send();
+                }
             }
         }
     }

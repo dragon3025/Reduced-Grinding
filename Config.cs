@@ -163,40 +163,46 @@ namespace ReducedGrinding
         [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. Pirate ships will always drop 1 Golden Furniture item. This is done in attempt to imitate the upcoming 1.4.4 update)")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
 
         [Label("[i:905] Coin Gun (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CoinGunBaseIncrease;
 
         [Label("[i:672] Cutlass (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CutlassBaseIncrease;
 
         [Label("[i:854] Discount Card (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int DiscountCardBaseIncrease;
 
         [Label("[i:3033] Gold Ring (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int GoldRingBaseIncrease;
 
         [Label("[i:855] Lucky Coin (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LuckyCoinBaseIncrease;
 
         [Label("[i:2584] Pirate Staff (Hover for more info)")]
-        [Tooltip("This is multiplied by 2.5 for Pirate Captain and 10 for Regular Pirates")]
+        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PirateStaffBaseIncrease;
+
+        [Label("[i:ReducedGrinding/TheDutchmansTreasure] The Dutchman's Treasure Items")]
+        [Tooltip("This grab bag will drop from the 1st killed Flying Dutchman for each Pirate Invasion. It drops rare pirate items and 2 Gold Coins. Chance for each item is 1 / configuration_setting. Set to 0, to disable this item.")]
+        [Range(0, 10000)]
+        [DefaultValue(5)]
+        public int TheDutchmansTresureChance;
         #endregion
 
         #region Slime Staff
@@ -436,13 +442,12 @@ namespace ReducedGrinding
 
         [Header("")]
 
-        [Label("Battle Potions Affect Invasions")]
+        [Label("Custom Battle Potions Affect Invasions")]
         [Tooltip("" +
-            "If true, Greater Battle Buff will set invasion spawn rate and max spawns to x2\n" +
-            "the vanilla amount and Super Battle Buff will do the same.Invasion progress\n" +
-            "will be modified when using these buffs.")]
-        [DefaultValue(true)]
-        public bool BattlePotionsAffectInvasions;
+            "If set higher than 0, Greater Battle Buff and Super Battle Buff will multiply invasion max spawns and spawn rate by 2. If set to 1, it will only do this for vanilla invasions. Invasion progress will also adjust to these amounts.")]
+        [DefaultValue(0)]
+        [Range(0, 2)]
+        public int BattlePotionsAffectInvasions;
 
         [Label("Max Spawn Effect on Invasion Size")]
         [Tooltip("" +

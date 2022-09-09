@@ -1,20 +1,21 @@
+using ReducedGrinding.Global;
+using Terraria;
 using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
 
 namespace ReducedGrinding.Common.ItemDropRules.Conditions
 {
-    public class ZoneNonInfection : IItemDropRuleCondition
+    public class FirstDutchman : IItemDropRuleCondition
     {
         public bool CanDrop(DropAttemptInfo info)
         {
             if (info.IsInSimulation)
                 return false;
-            if (info.player.ZoneCrimson)
+            if (Main.invasionType != InvasionID.PirateInvasion)
                 return false;
-            if (info.player.ZoneHallow)
-                return false;
-            if (info.player.ZoneCorrupt)
-                return false;
-            return true;
+            if (Update.dutchmanKills == 0)
+                return true;
+            return false;
         }
 
         public bool CanShowItemDropInUI()
@@ -24,7 +25,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
         public string GetConditionDescription()
         {
-            return "Not in the Corruption, Crimson, or Hallow"; //Localize
+            return "Only 1 per invasion"; //Localize
         }
     }
 }

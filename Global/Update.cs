@@ -20,6 +20,7 @@ namespace ReducedGrinding.Global
         public static bool invasionWithGreaterBattleBuff = false;
         public static bool invasionWithSuperBattleBuff = false;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
+        public static int dutchmanKills = 0;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -66,7 +67,17 @@ namespace ReducedGrinding.Global
             bool playerWithGreaterBattleBuff = false;
             bool playerWithSuperBattleBuff = false;
 
-            if (invasionType == 0)
+            int BattlePotionsAffectInvasions = GetInstance<HOtherModdedItemsConfig>().BattlePotionsAffectInvasions;
+            bool useInvasionBuffing = false;
+            if (BattlePotionsAffectInvasions > 1 && Main.invasionType != InvasionID.None)
+            {
+                if (BattlePotionsAffectInvasions == 2)
+                    useInvasionBuffing = true;
+                else if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
+                    useInvasionBuffing = true;
+            }
+
+            if (invasionType == InvasionID.None)
             {
                 invasionWithGreaterBattleBuff = false;
                 invasionWithSuperBattleBuff = false;
@@ -78,6 +89,13 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
+
+            if (Main.invasionType != InvasionID.PirateInvasion && dutchmanKills > 0)
+            {
+                dutchmanKills = 0;
+                updatePacket = true;
+            }
+
             if (time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
             {
                 if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
@@ -85,6 +103,7 @@ namespace ReducedGrinding.Global
             }
 
             #region For Each Player
+
             for (int i = 0; i < 255; i++)
             {
                 if (!Main.player[i].active)
@@ -92,7 +111,7 @@ namespace ReducedGrinding.Global
 
                 activePlayers.Add(i);
 
-                if (GetInstance<HOtherModdedItemsConfig>().BattlePotionsAffectInvasions)
+                if (useInvasionBuffing)
                 {
                     if (!playerWithGreaterBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
                         playerWithGreaterBattleBuff = true;
@@ -393,6 +412,9 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
                 packet.Write(timeHiddenFromInvasion);
+
+                packet.Write((byte)ReducedGrinding.MessageType.dutchmanKills);
+                packet.Write(dutchmanKills);
 
                 sendNetMessageData = true;
 

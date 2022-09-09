@@ -6,9 +6,9 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 	{
 		public bool CanDrop(DropAttemptInfo info)
 		{
-			if (!info.IsInSimulation)
-				return info.player.ZoneHallow;
-			return false;
+			if (info.IsInSimulation)
+				return false;
+			return info.player.ZoneHallow;
 		}
 
 		public bool CanShowItemDropInUI()
