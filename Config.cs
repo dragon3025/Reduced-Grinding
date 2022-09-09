@@ -199,7 +199,10 @@ namespace ReducedGrinding
         public int PirateStaffBaseIncrease;
 
         [Label("[i:ReducedGrinding/TheDutchmansTreasure] The Dutchman's Treasure Items")]
-        [Tooltip("This grab bag will drop from the 1st killed Flying Dutchman for each Pirate Invasion. It drops rare pirate items and 2 Gold Coins. Chance for each item is 1 / configuration_setting. Set to 0, to disable this item.")]
+        [Tooltip("" +
+            "This grab bag will drop from the 1st killed Flying Dutchman for each Pirate Invasion. It drops rare\n" +
+            "pirate items and 2 Gold Coins. Chance for each item is 1 / configuration_setting. Set to 0, to\n" +
+            "disable this item.")]
         [Range(0, 10000)]
         [DefaultValue(5)]
         public int TheDutchmansTresureChance;
@@ -292,7 +295,7 @@ namespace ReducedGrinding
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
         [DefaultValue(60)]
-        public int SnowballLauncherFromSpikedIceSlime;
+        public int SnowballLauncherFromSpikedIceSlime; //TO-DO This might not be needed it 1.4.4
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

@@ -261,7 +261,7 @@ namespace ReducedGrinding.Global
                 AddLoot(ItemID.SandstorminaBottle, GetInstance<BEnemyLootNonVanillaConfig>().SandstormInABottleFromSandElemental);
 
             if (npc.type == NPCID.SpikedIceSlime)
-                AddLoot(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime);
+                AddLoot(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
                 AddLootMaxMin(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies);
