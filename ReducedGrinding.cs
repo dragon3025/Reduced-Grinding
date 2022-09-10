@@ -1,4 +1,4 @@
-/* To debug, use:
+﻿/* To debug, use:
  * using static Terraria.ModLoader.ModContent;
  * GetInstance<ReducedGrinding>().Logger.Debug("");
  * 
@@ -13,16 +13,24 @@
 using System;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using static Terraria.ModLoader.ModContent;
-using Terraria.ID;
 
 namespace ReducedGrinding
 {
 
     class ReducedGrinding : Mod
     {
+        public override void Load()
+        {
+            ModLoader.TryGetMod("Wikithis", out Mod wikithis);
+            if (wikithis != null && !Main.dedServ)
+            {
+                wikithis.Call("AddModURL", this, "terrariamods.fandom.com$Reduced_Grinding");
+            }
+        }
 
         internal enum MessageType : byte
         {
