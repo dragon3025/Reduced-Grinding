@@ -13,7 +13,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
                 return false;
             if (Main.invasionType != InvasionID.PirateInvasion)
                 return false;
-            if (Update.dutchmanKills == 0)
+            if (!Update.dutchManKilled)
                 return true;
             return false;
         }

@@ -20,7 +20,7 @@ namespace ReducedGrinding.Global
         public static bool invasionWithGreaterBattleBuff = false;
         public static bool invasionWithSuperBattleBuff = false;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
-        public static int dutchmanKills = 0;
+        public static bool dutchManKilled = false;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -90,9 +90,9 @@ namespace ReducedGrinding.Global
             }
 
 
-            if (Main.invasionType != InvasionID.PirateInvasion && dutchmanKills > 0)
+            if (Main.invasionType != InvasionID.PirateInvasion && dutchManKilled)
             {
-                dutchmanKills = 0;
+                dutchManKilled = false;
                 updatePacket = true;
             }
 
@@ -413,8 +413,8 @@ namespace ReducedGrinding.Global
                 packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
                 packet.Write(timeHiddenFromInvasion);
 
-                packet.Write((byte)ReducedGrinding.MessageType.dutchmanKills);
-                packet.Write(dutchmanKills);
+                packet.Write((byte)ReducedGrinding.MessageType.dutchmanKilled);
+                packet.Write(dutchManKilled);
 
                 sendNetMessageData = true;
 

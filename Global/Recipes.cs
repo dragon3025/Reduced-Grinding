@@ -11,24 +11,12 @@ namespace ReducedGrinding.GlobalRecipes
         public static RecipeGroup baitCritterLow;
         public static RecipeGroup baitCritterMed;
         public static RecipeGroup baitCritterHigh;
-        public static RecipeGroup altBalloons;
-        public static RecipeGroup fartInAJarAccessory;
-        public static RecipeGroup horseshoeAccessory;
-        public static RecipeGroup infectionMushroom;
-        public static RecipeGroup infectionOre;
-        public static RecipeGroup dungeonBrick;
 
         public override void Unload()
         {
             baitCritterLow = null;
             baitCritterMed = null;
             baitCritterHigh = null;
-            altBalloons = null;
-            fartInAJarAccessory = null;
-            horseshoeAccessory = null;
-            infectionMushroom = null;
-            infectionOre = null;
-            dungeonBrick = null;
         }
 
         public override void AddRecipeGroups()
@@ -88,57 +76,6 @@ namespace ReducedGrinding.GlobalRecipes
                 ItemID.GoldWorm
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
-
-            altBalloons = new RecipeGroup(() => "Any Honey or Fart Balloon", new int[] //Localize
-            {
-                ItemID.HoneyBalloon,
-                ItemID.BalloonHorseshoeHoney,
-                ItemID.FartInABalloon,
-                ItemID.BalloonHorseshoeFart
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:altBalloons", altBalloons);
-
-            fartInAJarAccessory = new RecipeGroup(() => "Any Fart in a Jar variant", new int[] //Localize
-            {
-                ItemID.FartinaJar,
-                ItemID.FartInABalloon,
-                ItemID.BalloonHorseshoeFart
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:fartInAJarAccessory", fartInAJarAccessory);
-
-            horseshoeAccessory = new RecipeGroup(() => "Obsidian Horseshoe or any Horseshoe Balloon", new int[] //Localize
-            {
-                ItemID.BlueHorseshoeBalloon,
-                ItemID.BalloonHorseshoeFart,
-                ItemID.BalloonHorseshoeHoney,
-                ItemID.BalloonHorseshoeSharkron,
-                ItemID.ObsidianHorseshoe,
-                ItemID.WhiteHorseshoeBalloon,
-                ItemID.YellowHorseshoeBalloon
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:horseshoeAccessory", horseshoeAccessory);
-
-            infectionMushroom = new RecipeGroup(() => "Vile Mushroom or Vicious Mushroom", new int[] //Localize
-            {
-                ItemID.VileMushroom,
-                ItemID.ViciousMushroom
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:infectionMushroom", infectionMushroom);
-
-            infectionOre = new RecipeGroup(() => "Demonite Ore or Crimtane Ore", new int[] //Localize
-            {
-                ItemID.DemoniteOre,
-                ItemID.CrimtaneOre
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:infectionOre", infectionOre);
-
-            dungeonBrick = new RecipeGroup(() => "Any Dungeon Brick", new int[] //Localize
-            {
-                ItemID.BlueBrick,
-                ItemID.GreenBrick,
-                ItemID.PinkBrick
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:dungeonBrick", dungeonBrick);
         }
 
         public override void AddRecipes()
@@ -275,20 +212,60 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
 
             #region Tinker's Accessory Downgrading
-            recipe = Recipe.Create(ItemID.CloudinaBottle);
-            recipe.AddRecipeGroup("ReducedGrinding:fartInAJarAccessory");
+			int[] fartInAJarAccessory = new int[]
+			{
+                ItemID.BalloonHorseshoeFart,
+                ItemID.FartInABalloon,
+                ItemID.FartinaJar
+			};
+			
+			foreach (int i in fartInAJarAccessory)
+            {
+				recipe = Recipe.Create(ItemID.CloudinaBottle);
+				recipe.AddIngredient(i);
+				recipe.AddTile(TileID.TinkerersWorkbench);
+				recipe.Register();
+            }
+
+            recipe = Recipe.Create(ItemID.HoneyComb);
+            recipe.AddIngredient(ItemID.HoneyBalloon);
             recipe.AddTile(TileID.TinkerersWorkbench);
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.LuckyHorseshoe);
-            recipe.AddRecipeGroup("ReducedGrinding:horseshoeAccessory");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+            int[] horseshoeAccessory = new int[]
+            {
+                ItemID.BalloonHorseshoeFart,
+                ItemID.BalloonHorseshoeHoney,
+                ItemID.BalloonHorseshoeSharkron,
+                ItemID.BlueHorseshoeBalloon,
+                ItemID.ObsidianHorseshoe,
+                ItemID.WhiteHorseshoeBalloon,
+                ItemID.YellowHorseshoeBalloon
+            };
+			
+			foreach (int i in horseshoeAccessory)
+            {
+				recipe = Recipe.Create(ItemID.LuckyHorseshoe);
+				recipe.AddIngredient(i);
+				recipe.AddTile(TileID.TinkerersWorkbench);
+				recipe.Register();
+			}
 
-            recipe = Recipe.Create(ItemID.ShinyRedBalloon);
-            recipe.AddRecipeGroup("ReducedGrinding:altBalloons");
-            recipe.AddTile(TileID.TinkerersWorkbench);
-            recipe.Register();
+            int[] altBalloons = new int[]
+            {
+                ItemID.HoneyBalloon,
+                ItemID.BalloonHorseshoeHoney,
+                ItemID.FartInABalloon,
+                ItemID.BalloonHorseshoeFart
+            };
+			
+			foreach (int i in altBalloons)
+			{
+				recipe = Recipe.Create(ItemID.ShinyRedBalloon);
+				recipe.AddIngredient(i);
+				recipe.AddTile(TileID.TinkerersWorkbench);
+				recipe.Register();
+			}
 
             recipe = Recipe.Create(ItemID.SandstorminaBalloon);
             recipe.AddIngredient(ItemID.YellowHorseshoeBalloon);
@@ -313,17 +290,32 @@ namespace ReducedGrinding.GlobalRecipes
 
             #region Dungeon Bricks and Platforms
             recipe = Recipe.Create(ItemID.BlueBrick);
-            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddIngredient(ItemID.GreenBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueBrick);
+            recipe.AddIngredient(ItemID.PinkBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.GreenBrick);
-            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddIngredient(ItemID.BlueBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
-
+			
+            recipe = Recipe.Create(ItemID.GreenBrick);
+            recipe.AddIngredient(ItemID.PinkBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+			
             recipe = Recipe.Create(ItemID.PinkBrick);
-            recipe.AddRecipeGroup("ReducedGrinding:dungeonBrick");
+            recipe.AddIngredient(ItemID.BlueBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+			
+            recipe = Recipe.Create(ItemID.PinkBrick);
+            recipe.AddIngredient(ItemID.GreenBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
@@ -397,13 +389,25 @@ namespace ReducedGrinding.GlobalRecipes
             #region Battle Potions
             recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
             recipe.AddIngredient(ItemID.BattlePotion);
-            recipe.AddRecipeGroup("ReducedGrinding:infectionMushroom");
+            recipe.AddIngredient(ItemID.VileMushroom);
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+			
+            recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddIngredient(ItemID.BattlePotion);
+            recipe.AddIngredient(ItemID.ViciousMushroom);
             recipe.AddTile(TileID.Bottles);
             recipe.Register();
 
             recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
             recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddRecipeGroup("ReducedGrinding:infectionOre");
+            recipe.AddIngredient(ItemID.DemoniteOre);
+            recipe.AddTile(TileID.Bottles);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
+            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
+            recipe.AddIngredient(ItemID.CrimtaneOre);
             recipe.AddTile(TileID.Bottles);
             recipe.Register();
             #endregion

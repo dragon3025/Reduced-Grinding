@@ -18,7 +18,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void SetDefaults()
         {
-            Item.width = 20;
+            Item.width = 28;
             Item.height = 30;
             Item.maxStack = 300;
             Item.rare = ItemRarityID.Pink;

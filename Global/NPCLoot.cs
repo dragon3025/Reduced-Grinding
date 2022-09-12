@@ -314,13 +314,16 @@ namespace ReducedGrinding.Global
         {
             if (npc.type == NPCID.PirateShip)
             {
-                Update.dutchmanKills++;
-                if (Main.netMode == NetmodeID.Server)
+                if (!Update.dutchManKilled)
                 {
-                    ModPacket packet = Mod.GetPacket();
-                    packet.Write((byte)ReducedGrinding.MessageType.dutchmanKills);
-                    packet.Write(Update.dutchmanKills);
-                    packet.Send();
+                    Update.dutchManKilled = true;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        ModPacket packet = Mod.GetPacket();
+                        packet.Write((byte)ReducedGrinding.MessageType.dutchmanKilled);
+                        packet.Write(Update.dutchManKilled);
+                        packet.Send();
+                    }
                 }
             }
         }

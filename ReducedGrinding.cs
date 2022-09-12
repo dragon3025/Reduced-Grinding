@@ -45,7 +45,7 @@ namespace ReducedGrinding
             celestialSigil,
             travelingMerchantDiceRolls,
             timeHiddenFromInvasion,
-            dutchmanKills
+            dutchmanKilled
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -87,8 +87,8 @@ namespace ReducedGrinding
                 case MessageType.timeHiddenFromInvasion:
                     Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
                     break;
-                case MessageType.dutchmanKills:
-                    Global.Update.dutchmanKills = reader.ReadInt32();
+                case MessageType.dutchmanKilled:
+                    Global.Update.dutchManKilled = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
@@ -116,7 +116,7 @@ namespace ReducedGrinding
             tag.Add("invasionWithGreaterBattleBuff", Global.Update.invasionWithGreaterBattleBuff);
             tag.Add("invasionWithSuperBattleBuff", Global.Update.invasionWithSuperBattleBuff);
             tag.Add("travelingMerchantDiceRolls", Global.Update.travelingMerchantDiceRolls);
-            tag.Add("dutchmanKills", Global.Update.dutchmanKills);
+            tag.Add("dutchmanKillsV2", Global.Update.dutchManKilled);
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -128,7 +128,7 @@ namespace ReducedGrinding
             tag.TryGet("invasionWithGreaterBattleBuff", out bool invasionWithGreaterBattleBuff);
             tag.TryGet("invasionWithSuperBattleBuff", out bool invasionWithSuperBattleBuff);
             tag.TryGet("travelingMerchantDiceRolls", out int travelingMerchantDiceRolls);
-            tag.TryGet("dutchmanKills", out int dutchmanKills);
+            tag.TryGet("dutchmanKillsV2", out bool dutchmanKilled);
 
             Global.Update.noMoreAnglerResetsToday = noMoreAnglerResetsToday;
             Global.Update.dayTime = dayTime;
@@ -137,7 +137,7 @@ namespace ReducedGrinding
             Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
             Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
             Global.Update.travelingMerchantDiceRolls = travelingMerchantDiceRolls;
-            Global.Update.dutchmanKills = dutchmanKills;
+            Global.Update.dutchManKilled = dutchmanKilled;
         }
 
         public override void OnModLoad()
