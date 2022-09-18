@@ -44,12 +44,10 @@ namespace ReducedGrinding.Items
             {
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
 
-                int type = NPCID.Plantera;
-
                 if (Main.netMode != NetmodeID.MultiplayerClient)
-                    NPC.SpawnOnPlayer(player.whoAmI, type);
+                    NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
                 else
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: type);
+                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: NPCID.Plantera);
             }
 
             return true;

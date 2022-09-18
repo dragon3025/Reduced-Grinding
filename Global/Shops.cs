@@ -13,7 +13,42 @@ namespace ReducedGrinding.Global
         {
             Player player = Main.player[Main.myPlayer];
             if (npc.type == NPCID.Angler)
+            {
                 Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255); //Localize
+                if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
+                {
+                    bool spawnFishMerchant = true;
+                    int fishMerchantID = NPCType<NPCs.FishMerchant>();
+                    int anglerNPC = -1;
+                    for (int i = 0; i < Main.npc.Length; i++)
+                    {
+                        if (spawnFishMerchant && Main.npc[i].type == fishMerchantID)
+                        {
+                            spawnFishMerchant = false;
+                            break;
+                        }
+                        if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler)
+                            anglerNPC = i;
+                    }
+                    if (spawnFishMerchant)
+                    {
+                        if (Main.netMode != NetmodeID.MultiplayerClient)
+                            NPC.SpawnOnPlayer(player.whoAmI, fishMerchantID);
+                        else
+                            NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: fishMerchantID);
+                        for (int i = 0; i < Main.npc.Length; i++)
+                        {
+                            if (Main.npc[i].type == fishMerchantID)
+                            {
+                                Main.npc[i].position = Main.npc[anglerNPC].position;
+                                if (Main.netMode == NetmodeID.MultiplayerClient)
+                                    NetMessage.SendData(MessageID.WorldData);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         public override void SetupShop(int type, Chest shop, ref int nextSlot)

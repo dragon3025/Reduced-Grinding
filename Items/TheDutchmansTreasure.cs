@@ -6,7 +6,6 @@ using Terraria.ModLoader;
 
 namespace ReducedGrinding.Items
 {
-    // Basic code for a boss treasure bag
     public class TheDutchmansTreasure : ModItem
     {
         public override void SetStaticDefaults()

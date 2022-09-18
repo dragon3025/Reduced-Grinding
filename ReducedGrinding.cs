@@ -13,6 +13,7 @@
 using System;
 using System.IO;
 using Terraria;
+using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -23,8 +24,12 @@ namespace ReducedGrinding
 
     class ReducedGrinding : Mod
     {
+        public static int FishCoin;
+
         public override void Load()
         {
+            FishCoin = CustomCurrencyManager.RegisterCurrency(new Currencies.FishCoinCurrency(ModContent.ItemType<Items.FishCoin>(), 9999L, "Fish Coin")); //Localize
+
             ModLoader.TryGetMod("Wikithis", out Mod wikithis);
             if (wikithis != null && !Main.dedServ)
             {
@@ -103,9 +108,6 @@ namespace ReducedGrinding
     {
         public static bool usingCalamity = false;
         public static bool usingFargowiltas = false;
-        public static int multiBobberBonus = 0;
-        public static int greaterMultiBobberBonus = 0;
-        public static int superMultiBobberBonus = 0;
 
         public override void SaveWorldData(TagCompound tag)
         {
@@ -146,23 +148,10 @@ namespace ReducedGrinding
             NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
 
             if (ModLoader.TryGetMod("CalamityMod", out _))
-            {
                 usingCalamity = true;
-                multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonusCalamity;
-                greaterMultiBobberBonus = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonusCalamity;
-                superMultiBobberBonus = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonusCalamity;
-            }
-            else
-            {
-                multiBobberBonus = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
-                greaterMultiBobberBonus = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus;
-                superMultiBobberBonus = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus;
-            }
 
             if (ModLoader.TryGetMod("Fargowiltas", out _))
-            {
                 usingFargowiltas = true;
-            }
         }
     }
 }

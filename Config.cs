@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
+using Terraria.ID;
 
 /* Localize
  * Every Header, Label, and Tooltip on this page and the message given for AcceptClientChanges
@@ -311,63 +312,167 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         #region Multi-Bobber Potions
-        [Header("[i:ReducedGrinding/MultiBobberPotion]Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.")]
+        [Header("Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.")]
 
-        [Label("Without Mods Below")]
-        [Range(0, 100)]
-        [DefaultValue(3)]
-        public int MultiBobberPotionBonus;
-
-        [Label("With Calamity")]
+        [Label("[i:ReducedGrinding/MultiBobberPotion]Multi-Bobber Potion")]
         [Range(0, 100)]
         [DefaultValue(1)]
-        public int MultiBobberPotionBonusCalamity;
+        public int MultiBobberPotionBonus;
 
-        [Header("[i:ReducedGrinding/GreaterMultiBobberPotion] Greater Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.")]
-
-        [Label("Without Mods Below")]
-        [Range(0, 100)]
-        [DefaultValue(6)]
-        public int GreaterMultiBobberPotionBonus;
-
-        [Label("With Calamity")]
-        [Tooltip("Recipe will be post-Plantera when using Calamity")]
+        [Label("[i:ReducedGrinding/GreaterMultiBobberPotion] Greater Multi-Bobber Potion")]
         [Range(0, 100)]
         [DefaultValue(2)]
-        public int GreaterMultiBobberPotionBonusCalamity;
+        public int GreaterMultiBobberPotionBonus;
 
-        [Header("[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion Extra Bobber Amount. Set to 0 to disable recipe.")]
-
-        [Label("Without Mods Below")]
+        [Label("[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion")]
         [Range(0, 100)]
-        [DefaultValue(9)]
+        [DefaultValue(3)]
         public int SuperMultiBobberPotionBonus;
+        #endregion
 
-        [Label("With Calamity")]
-        [Tooltip("Recipe will be post-Moon Lord when using Calamity")]
-        [Range(0, 100)]
-        [DefaultValue(4)]
-        public int SuperMultiBobberPotionBonusCalamity;
+        #region Reward Modifying
+
+        [Header("Quest Completion Requirements For Guaranteed Rewards")]
+
+        [Label("Fuzzy Carrot")]
+        [Tooltip("Vanilla default: 5")]
+        [Range(1, 150)]
+        [DefaultValue(3)]
+        public int FuzzyCarrotQuestRewarded;
+
+        [Label("Angler Hat")]
+        [Tooltip("Vanilla default: 10")]
+        [Range(1, 150)]
+        [DefaultValue(5)]
+        public int AnglerHatQuestRewarded;
+
+        [Label("Angler Vest")]
+        [Tooltip("Vanilla default: 15")]
+        [Range(1, 150)]
+        [DefaultValue(10)]
+        public int AnglerVestQuestRewarded;
+
+        [Label("Angler Pants")]
+        [Tooltip("Vanilla default: 20")]
+        [Range(1, 150)]
+        [DefaultValue(20)]
+        public int AnglerPantsQuestRewarded;
+
+        [Label("Golden Fishing Rod")]
+        [Tooltip("Vanilla default: 30")]
+        [Range(1, 150)]
+        [DefaultValue(30)]
+        public int GoldenFishingRodQuestRewarded;
+
         #endregion
 
         #region Angler Reset Chance
         [Header("Angler Reset Chance\n\n" +
-            "The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen until the amount of players wearing any piece of Angler Armor is less than or equal to the amount of players that finished the current Quest. Set to 0 to disable.")]
+            "The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen if a player wearing any piece of Angler Armor hasn't finished their Quest. Set to 0 to disable.")]
 
         [Label("Before Hardmode")]
         [Range(0, 10000)]
-        [DefaultValue(0)]
+        [DefaultValue(1)]
         public int AnglerRecentChanceBeforeHardmode;
 
         [Label("Hardmode")]
         [Range(0, 10000)]
-        [DefaultValue(2)]
+        [DefaultValue(1)]
         public int AnglerRecentChanceHardmode;
 
         [Label("After Plantera")]
         [Range(0, 10000)]
-        [DefaultValue(2)]
+        [DefaultValue(1)]
         public int AnglerRecentChanceAfterPlantera;
+        #endregion
+
+        #region Fish Merchant
+        [Header("Fish Merchant\n\n" +
+            "You can set it so the Angler rewards the player with an amount of Fish Coins when completing a quest. These are used to buy Angler Quest rewards from a new Fish Merchant, who appears when talking to the Angler.")]
+
+        [Label("[i:ReducedGrinding/FishCoin] Fish Coins Rewarded")]
+        [Tooltip("Set both to 0, to disable the Fish Merchant from spawning")]
+        [Range(1, 999)]
+        [DefaultValue(1)]
+        public int FishCoinsRewardedForQuest;
+
+        [Header("Fish Merchant Shop Prices\n\n" +
+            "Set the Fish Coin prices here for the Fish Merchant. Setting to 0 will disable the item from appearing in the shop. Some items wont appear in the shop until their vanilla requirement is met (for example: Hardmode items).")]
+
+        [Label("[i:2428] Fuzzy Carrot")]
+        [Range(1, 9999)]
+        [DefaultValue(3)]
+        public int FuzzyCarrotPrice;
+
+        [Label("[i:2367] Angler Hat")]
+        [Range(1, 9999)]
+        [DefaultValue(5)]
+        public int AnglerHatPrice;
+
+        [Label("[i:2368] Angler Vest")]
+        [Range(1, 9999)]
+        [DefaultValue(5)]
+        public int AnglerVestPrice;
+
+        [Label("[i:2369] Angler Pants")]
+        [Range(1, 9999)]
+        [DefaultValue(5)]
+        public int AnglerPantsPrice;
+
+        [Label("[i:2294] Golden Fishing Rod")]
+        [Range(1, 9999)]
+        [DefaultValue(25)]
+        public int GoldenFishingRod;
+
+        [Label("[i:2422] Hotline Fishing Rod")]
+        [Range(1, 9999)]
+        [DefaultValue(10)]
+        public int HotlineFishingHook;
+
+        [Label("[i:2494] Fin Wings")]
+        [Range(1, 9999)]
+        [DefaultValue(7)]
+        public int FinWings;
+
+        [Label("[i:3021] Bottomless Water Bucket")]
+        [Range(1, 9999)]
+        [DefaultValue(7)]
+        public int BottomlessWaterBucket;
+
+        [Label("[i:3032] Super Absorbent Sponge")]
+        [Range(1, 9999)]
+        [DefaultValue(7)]
+        public int SuperAbsorbantSponge;
+
+        [Label("[i:3183] Golden Bug Net")]
+        [Range(1, 9999)]
+        [DefaultValue(8)]
+        public int GoldenBugNet;
+
+        [Label("[i:2360] Fish Hook")]
+        [Range(1, 9999)]
+        [DefaultValue(6)]
+        public int FishHook;
+
+        [Label("[i:4067] Minecarp")]
+        [Range(1, 9999)]
+        [DefaultValue(6)]
+        public int Minecarp;
+
+        [Label("[i:2373] Angler Tackle Bag Ingredients")]
+        [Range(1, 9999)]
+        [DefaultValue(8)]
+        public int AnglerTackleBagIngredients;
+
+        [Label("[i:3120] Fish Finder Ingredients")]
+        [Range(1, 9999)]
+        [DefaultValue(6)]
+        public int FishFinderIngredients;
+
+        [Label("[i:2498] Vanity Sets")]
+        [Range(1, 9999)]
+        [DefaultValue(8)]
+        public int VanitySets;
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

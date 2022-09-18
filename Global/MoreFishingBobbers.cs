@@ -18,11 +18,11 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
             int bobbersToAdd = 0;
 
             if (player.FindBuffIndex(BuffType<Buffs.SuperMultiBobber>()) != -1)
-                bobbersToAdd = ReducedGrindingSave.superMultiBobberBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus;
             else if (player.FindBuffIndex(BuffType<Buffs.GreaterMultiBobber>()) != -1)
-                bobbersToAdd = ReducedGrindingSave.greaterMultiBobberBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus;
             else if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1)
-                bobbersToAdd = ReducedGrindingSave.multiBobberBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
 
             if (bobbersToAdd > 0)
             {

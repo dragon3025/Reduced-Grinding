@@ -351,7 +351,7 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
 
             #region Multi Bobber Potions
-            if (ReducedGrindingSave.multiBobberBonus > 0)
+            if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
                 recipe.AddIngredient(ItemID.BottledWater);
@@ -363,7 +363,7 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.Register();
             }
 
-            if (ReducedGrindingSave.greaterMultiBobberBonus > 0)
+            if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
                 recipe.AddIngredient(ItemType<Items.BuffPotions.MultiBobberPotion>());
@@ -374,7 +374,7 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.Register();
             }
 
-            if (ReducedGrindingSave.superMultiBobberBonus > 0)
+            if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperMultiBobberPotion>());
                 recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
