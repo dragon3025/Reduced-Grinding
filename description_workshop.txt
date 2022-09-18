@@ -8,7 +8,8 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 
 - Item chances for certain enemy drops. Item values scale to new drop rates by default.
 - Potions for using more bobbers (3-tiers).
-- A chance for Angler to reset. Default starts at 0%, but later increases.
+- Angler Quest resets when all Angler Armor wearing players have finished their quest.
+- Fishing Tokens when finishing Quests, to purchase items from the Fish Merchant.
 - Moonball to advance Moon Phase or skip the Blood Moon.
 - Greater + Super Battle Potion to increase enemy spawns.
 - Faster time flow while sleeping.
