@@ -2,6 +2,8 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
+
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -26,17 +28,33 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.value = Item.sellPrice(0, 0, 12, 10);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.SuperBattle>();
+            Item.buffType = BuffType<Buffs.SuperBattle>();
             Item.buffTime = 25200; //7 Minutes
         }
 
         public override bool? UseItem(Player player)
         {
             player.AddBuff(BuffID.Battle, 25200); //7 minutes
-            player.AddBuff(ModContent.BuffType<Buffs.GreaterBattle>(), 25200); //7 minutes
+            player.AddBuff(BuffType<Buffs.GreaterBattle>(), 25200); //7 minutes
             return true;
         }
 
-        //Recipe is in Recipes.cs because it uses groups.
+        public override void AddRecipes()
+        {
+            if (GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionSpawnrateMultiplier > 1)
+            {
+                Recipe recipe = Recipe.Create(ItemType<SuperBattlePotion>());
+                recipe.AddIngredient(ItemType<GreaterBattlePotion>());
+                recipe.AddIngredient(ItemID.DemoniteOre);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+
+                recipe = Recipe.Create(ItemType<SuperBattlePotion>());
+                recipe.AddIngredient(ItemType<GreaterBattlePotion>());
+                recipe.AddIngredient(ItemID.CrimtaneOre);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+        }
     }
 }

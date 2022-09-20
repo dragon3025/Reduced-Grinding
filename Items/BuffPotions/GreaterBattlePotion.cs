@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -36,7 +37,22 @@ namespace ReducedGrinding.Items.BuffPotions
             return true;
         }
 
-        //Recipe is in Recipes.cs because it uses groups.
+        public override void AddRecipes()
+        {
+            if (GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier > 1)
+            {
+                Recipe recipe = Recipe.Create(ItemType<GreaterBattlePotion>());
+                recipe.AddIngredient(ItemID.BattlePotion);
+                recipe.AddIngredient(ItemID.VileMushroom);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
 
+                recipe = Recipe.Create(ItemType<GreaterBattlePotion>());
+                recipe.AddIngredient(ItemID.BattlePotion);
+                recipe.AddIngredient(ItemID.ViciousMushroom);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+        }
     }
 }

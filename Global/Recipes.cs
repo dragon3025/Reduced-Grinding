@@ -350,7 +350,6 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
-            #region Multi Bobber Potions
             if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
@@ -362,33 +361,6 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
-            #endregion
-
-            #region Battle Potions
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddIngredient(ItemID.BattlePotion);
-            recipe.AddIngredient(ItemID.VileMushroom);
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-			
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddIngredient(ItemID.BattlePotion);
-            recipe.AddIngredient(ItemID.ViciousMushroom);
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
-            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddIngredient(ItemID.DemoniteOre);
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperBattlePotion>());
-            recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterBattlePotion>());
-            recipe.AddIngredient(ItemID.CrimtaneOre);
-            recipe.AddTile(TileID.Bottles);
-            recipe.Register();
-            #endregion
 
             #region Other
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
