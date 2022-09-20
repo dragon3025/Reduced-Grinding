@@ -1,8 +1,9 @@
+using ReducedGrinding.Global;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReducedGrinding.Global;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -21,24 +22,36 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.width = 20;
             Item.height = 30;
             Item.maxStack = 300;
-            Item.rare = ItemRarityID.Yellow;
+            Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Red : ItemRarityID.Yellow;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
             Item.value = Terraria.Item.sellPrice(0, 0, 52, 40);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.SuperMultiBobber>();
+            Item.buffType = BuffType<Buffs.SuperMultiBobber>();
             Item.buffTime = 10800; //3 minutes
         }
 
         public override bool? UseItem(Player player)
         {
-            player.ClearBuff(ModContent.BuffType<Buffs.MultiBobber>());
-            player.ClearBuff(ModContent.BuffType<Buffs.GreaterMultiBobber>());
+            player.ClearBuff(BuffType<Buffs.MultiBobber>());
+            player.ClearBuff(BuffType<Buffs.GreaterMultiBobber>());
             return base.UseItem(player);
         }
 
-        //Recipe uses groups so I added it in Recipes.
+        public override void AddRecipes()
+        {
+            if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
+            {
+                Recipe recipe = Recipe.Create(ItemType<SuperMultiBobberPotion>());
+                recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
+                recipe.AddIngredient(ItemID.Ectoplasm);
+                if (ReducedGrindingSave.usingCalamity)
+                    recipe.AddIngredient(ItemID.LunarOre);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+        }
     }
 }

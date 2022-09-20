@@ -3,9 +3,6 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
@@ -32,22 +29,18 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.value = Terraria.Item.sellPrice(0, 0, 2, 40);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.GreaterMultiBobber>();
+            Item.buffType = BuffType<Buffs.GreaterMultiBobber>();
             Item.buffTime = 10800; //3 minutes
         }
 
         public override bool? UseItem(Player player)
         {
-            player.ClearBuff(ModContent.BuffType<Buffs.MultiBobber>());
+            player.ClearBuff(BuffType<Buffs.MultiBobber>());
             return base.UseItem(player);
         }
 
         public override void AddRecipes()
         {
-            CreateRecipe()
-              .AddIngredient(ItemID.DirtBlock)
-              .Register();
-
             if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
             {
                 Recipe recipe = Recipe.Create(ItemType<GreaterMultiBobberPotion>());

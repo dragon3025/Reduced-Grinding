@@ -362,17 +362,6 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
-
-            if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
-            {
-                recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperMultiBobberPotion>());
-                recipe.AddIngredient(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
-                recipe.AddIngredient(ItemID.Ectoplasm);
-                if (ReducedGrindingSave.usingCalamity)
-                    recipe.AddIngredient(ItemID.LunarOre);
-                recipe.AddTile(TileID.Bottles);
-                recipe.Register();
-            }
             #endregion
 
             #region Battle Potions
