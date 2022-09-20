@@ -11,7 +11,7 @@ namespace ReducedGrinding.Items
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Mermaid Costume Bag"); //Localize
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}"); //Localize
+            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}\nGives entire Mermaid Vanity set"); //Localize
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
