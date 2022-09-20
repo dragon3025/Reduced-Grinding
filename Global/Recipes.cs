@@ -363,17 +363,6 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.Register();
             }
 
-            if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
-            {
-                recipe = Recipe.Create(ItemType<Items.BuffPotions.GreaterMultiBobberPotion>());
-                recipe.AddIngredient(ItemType<Items.BuffPotions.MultiBobberPotion>());
-                recipe.AddIngredient(ItemID.GelBalloon);
-                if (ReducedGrindingSave.usingCalamity)
-                    recipe.AddIngredient(ItemID.VialofVenom);
-                recipe.AddTile(TileID.Bottles);
-                recipe.Register();
-            }
-
             if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.SuperMultiBobberPotion>());

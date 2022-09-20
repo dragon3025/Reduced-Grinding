@@ -1,8 +1,12 @@
+using ReducedGrinding.Global;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReducedGrinding.Global;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -21,7 +25,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.width = 28;
             Item.height = 30;
             Item.maxStack = 300;
-            Item.rare = ItemRarityID.Pink;
+            Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Lime : ItemRarityID.Pink;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -38,6 +42,22 @@ namespace ReducedGrinding.Items.BuffPotions
             return base.UseItem(player);
         }
 
-        //Recipe uses groups so I added it in Recipes.
+        public override void AddRecipes()
+        {
+            CreateRecipe()
+              .AddIngredient(ItemID.DirtBlock)
+              .Register();
+
+            if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
+            {
+                Recipe recipe = Recipe.Create(ItemType<GreaterMultiBobberPotion>());
+                recipe.AddIngredient(ItemType<MultiBobberPotion>());
+                recipe.AddIngredient(ItemID.GelBalloon);
+                if (ReducedGrindingSave.usingCalamity)
+                    recipe.AddIngredient(ItemID.VialofVenom);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+        }
     }
 }
