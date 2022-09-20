@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -30,26 +31,83 @@ namespace ReducedGrinding.Global
         public static bool halloween = false;
         public static int timeHiddenFromInvasion = 0;
 
+        public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
+        {
+            if (CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled)
+                return;
+            if (!(Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount && Main.CurrentFrameFlags.SleepingPlayersCount > 0))
+                return;
+
+            float increase = GetInstance<IOtherConfig>().StartingSleepRateIncrease;
+            float increaseForLifeCrystals = GetInstance<IOtherConfig>().LifeCrystalSleepRateIncrease;
+            int increaseForPreHardmodeBosses = GetInstance<IOtherConfig>().PreHardmodeBossSleepRateIncrease;
+            int increaseForHardmode = GetInstance<IOtherConfig>().HardmodeSleepRateIncrease;
+            int increaseForMechBosses = GetInstance<IOtherConfig>().MechBossSleepRateIncrease;
+            int increaseForTimeCharm = GetInstance<IOtherConfig>().TimeCharmSleepRateIncrease;
+
+            if (increase == 0 && increaseForLifeCrystals == 0 && increaseForPreHardmodeBosses == 0 && increaseForHardmode == 0 && increaseForMechBosses == 0 && increaseForTimeCharm == 0)
+                return;
+
+            if (increaseForLifeCrystals > 0)
+            {
+                float lifeCrystalsUsed = 0;
+                float testLifeCrystalsUsed;
+                for (int i = 0; i <= 255; i++)
+                {
+                    if (!Main.player[i].active)
+                        continue;
+
+                    testLifeCrystalsUsed = Main.player[i].statLifeMax > 400 ? 15 : (Main.player[i].statLifeMax - 100) / 20;
+                    if (lifeCrystalsUsed < testLifeCrystalsUsed)
+                        lifeCrystalsUsed = testLifeCrystalsUsed;
+                }
+                increaseForLifeCrystals *= lifeCrystalsUsed / 15;
+                increase += increaseForLifeCrystals;
+            }
+
+            void adjustSleepBoostModifier(bool condition, int amount)
+            {
+                if (condition)
+                    increase += amount;
+            }
+
+            adjustSleepBoostModifier(NPC.downedBoss1, increaseForPreHardmodeBosses);
+            adjustSleepBoostModifier(NPC.downedBoss2, increaseForPreHardmodeBosses);
+            adjustSleepBoostModifier(NPC.downedBoss3, increaseForPreHardmodeBosses);
+
+            adjustSleepBoostModifier(Main.hardMode, increaseForHardmode);
+
+            adjustSleepBoostModifier(NPC.downedMechBoss1, increaseForMechBosses);
+            adjustSleepBoostModifier(NPC.downedMechBoss2, increaseForMechBosses);
+            adjustSleepBoostModifier(NPC.downedMechBoss3, increaseForMechBosses);
+
+            adjustSleepBoostModifier(timeCharm, increaseForTimeCharm);
+
+            if (increase > 0)
+            {
+                if ((int)Main.time % 60 == 0)
+                    Main.NewText(increase.ToString());
+
+                for (int i = 0; i < 255; i++)
+                {
+                    if (!Main.player[i].active)
+                        continue;
+
+                    Main.player[i].taxTimer -= increase;
+                }
+
+                timeRate += increase;
+                tileUpdateRate += increase;
+                eventUpdateRate += increase;
+            }
+        }
+
         public override void PostUpdateTime()
         {
             bool updatePacket = false;
             bool sendNetMessageData = false;
 
             int time = (int)Main.time;
-
-            float sleepBoost = GetInstance<IOtherConfig>().SleepBoostBase;
-
-            bool boostTime = true;
-            if (sleepBoost == 0)
-                boostTime = false;
-            if (Main.fastForwardTime)
-                boostTime = false;
-            if (Main.CurrentFrameFlags.SleepingPlayersCount != Main.CurrentFrameFlags.ActivePlayersCount)
-                boostTime = false;
-            if (Main.CurrentFrameFlags.SleepingPlayersCount < 1)
-                boostTime = false;
-
-            bool playerWithSleepBuff = false;
 
             int anglerResetChance;
             if (NPC.downedPlantBoss)
@@ -123,9 +181,6 @@ namespace ReducedGrinding.Global
 
                 if (allPlayersHiddenFromInvasion && playerPosition.Y <= Main.worldSurface + 67.5f)
                     allPlayersHiddenFromInvasion = false;
-
-                if (boostTime && !playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1 && Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
-                    playerWithSleepBuff = true;
 
                 if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
                 {
@@ -266,28 +321,6 @@ namespace ReducedGrinding.Global
                 Main.invasionSizeStart = (int)(Main.invasionSizeStart * invasionBoost);
                 Main.invasionProgress = (int)(Main.invasionProgress * invasionBoost);
                 Main.invasionProgressMax = (int)(Main.invasionProgressMax * invasionBoost);
-            }
-            #endregion
-
-            #region BoostTime
-            if (boostTime)
-            {
-
-                if (!playerWithSleepBuff && GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier < 1)
-                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostNoPotionBuffMultiplier;
-
-                if (!timeCharm && GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier < 1)
-                    sleepBoost *= GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier;
-
-                Main.time += (int)sleepBoost;
-
-                foreach (int i in activePlayers)
-                {
-                    if (Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>()) != -1)
-                        Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffType<Buffs.Sleep>())] -= (int)sleepBoost;
-                }
-
-                sendNetMessageData = true;
             }
             #endregion
 

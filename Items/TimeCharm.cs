@@ -44,11 +44,7 @@ namespace ReducedGrinding.Items
             }
             else
             {
-                Global.Update.timeCharm = false;
-                if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Time rate while sleeping is normal."), new Color(255, 255, 0)); //Localize
-                else
-                    Main.NewText("Time rate while sleeping is normal.", 255, 255, 0); //Localize
+                Main.NewText("The effects of Time Charm is already active in this world.", 255, 255, 0); //Localize
             }
             if (Main.netMode == NetmodeID.MultiplayerClient)
             {
@@ -62,11 +58,10 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            if (GetInstance<IOtherConfig>().SleepBoostInactiveTimeCharmMultiplier < 1 && GetInstance<IOtherConfig>().SleepBoostBase > 0)
+            if (GetInstance<IOtherConfig>().TimeCharmSleepRateIncrease > 0)
             {
                 CreateRecipe()
                   .AddIngredient(ItemID.SunplateBlock)
-                  .AddIngredient(ItemID.SoulofFlight)
                   .AddIngredient(ItemID.SoulofLight)
                   .AddIngredient(ItemID.SoulofNight)
                   .AddTile(TileID.Sundial)

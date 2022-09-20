@@ -625,41 +625,45 @@ namespace ReducedGrinding
         public int TerragrimChests;
         #endregion
 
-        #region Sleep Boost
+        #region Sleep Time Rate
         [Header("" +
-            "Sleep boost\n" +
-            "In vanilla, sleeping makes time travel at 5 in-game minutes per real - life second.This mod will add more time after this.The amount of time added can be reduced by different conditions listed below.")]
+            "Sleeping Time Rate Increase\n" +
+            "In vanilla, sleeping multiplies the time rate by 5; this mod will then add to the time rate using the conditions below.")]
 
-        [Label("Starting Boost Amount (In-Game Minutes Added)")]
+        [Label("Starting increase amount")]
+        [Tooltip("This amount is added without any condition")]
+        [DefaultValue(0)]
+        public int StartingSleepRateIncrease;
+
+        [Label("Increase for 15 Life Crystals Used")]
         [Tooltip("" +
-            "Set to 0 to disable Sleep Boost completely, and disable the Sleep Potion and\n" +
-            "Time Charm recipes.")]
-        [Range(0, 55)]
-        [DefaultValue(55)]
-        public int SleepBoostBase;
+            "This setting will only look at the Player with the most health. Each Life\n" +
+            "Crystal used accumulates to this amount.")]
+        [DefaultValue(10)]
+        public int LifeCrystalSleepRateIncrease;
 
-        [Label("Multiplier for No Player with [i:ReducedGrinding/SleepPotion] Sleep Buff")]
+        [Label("Increase for each Eye, Eater / Brain, and Skel Boss Defeated")]
         [Tooltip("" +
-            "If less than 1, you'll be able to craft Sleep Potion, which gives the Sleep\n" +
-            "Buff.If no player has a Sleep Buff, then the Sleep Boost is multiplied by this\n" +
-            "amount.")]
-        [DefaultValue(0.5f)]
-        [Increment(0.01f)]
-        public float SleepBoostNoPotionBuffMultiplier;
+            "Eye of Cthulhu, Eater of Worlds / Brain of Cthulhu, and Skeletron")]
+        [DefaultValue(5)]
+        public int PreHardmodeBossSleepRateIncrease;
 
-        [Label("[i:ReducedGrinding/SleepPotion] Sleep Potion Duration in Minutes")]
-        [DefaultValue(12)]
-        public int SleepPotionDurationInMinutes;
+        [Label("Increase for entering Hardmode")]
+        [DefaultValue(15)]
+        public int HardmodeSleepRateIncrease;
 
-        [Label("Multiplier for inactive [i:ReducedGrinding/TimeCharm] Time Charm")]
+        [Label("Increase for each Mech Boss Defeated")]
+        [DefaultValue(5)]
+        public int MechBossSleepRateIncrease;
+
+        [Label("Increase for Time Charm (hover for More Info)")]
         [Tooltip("" +
-            "If less than 1, you'll be able to craft the Time Charm at an Enchanted Sundial,\n" +
-            "which gives or removes the Time Chart for the world(the world starts without\n" +
-            "it).If the world doesn't have the Time Charm effect, Sleep Boost is multiplied\n" +
-            "by this amount.")]
-        [DefaultValue(0.5f)]
-        [Increment(0.01f)]
-        public float SleepBoostInactiveTimeCharmMultiplier;
+            "This item is crafted at an Enchanted Sundial and can only be used once per\n" +
+            "world. When used, it permentatly increases the Sleep Time Rate by this\n" +
+            "setting. Setting to 0 will disable the recipe.")]
+        [DefaultValue(0)]
+        public int TimeCharmSleepRateIncrease;
+
         #endregion
 
         #region Crates

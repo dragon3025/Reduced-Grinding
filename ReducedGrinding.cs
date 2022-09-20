@@ -109,37 +109,67 @@ namespace ReducedGrinding
         public static bool usingCalamity = false;
         public static bool usingFargowiltas = false;
 
+        public override void OnWorldUnload()
+        {
+            Global.Update.noMoreAnglerResetsToday = false;
+            Global.Update.dayTime = true;
+            Global.Update.timeCharm = false;
+            Global.Update.seasonalDay = 1;
+            Global.Update.invasionWithGreaterBattleBuff = false;
+            Global.Update.invasionWithSuperBattleBuff = false;
+            Global.Update.travelingMerchantDiceRolls = 0;
+            Global.Update.dutchManKilled = false;
+        }
+
+        public override void OnWorldLoad()
+        {
+            Global.Update.noMoreAnglerResetsToday = false;
+            Global.Update.dayTime = true;
+            Global.Update.timeCharm = false;
+            Global.Update.seasonalDay = 1;
+            Global.Update.invasionWithGreaterBattleBuff = false;
+            Global.Update.invasionWithSuperBattleBuff = false;
+            Global.Update.travelingMerchantDiceRolls = 0;
+            Global.Update.dutchManKilled = false;
+        }
+
         public override void SaveWorldData(TagCompound tag)
         {
-            tag.Add("noMoreAnglerResetsToday", Global.Update.noMoreAnglerResetsToday);
-            tag.Add("dayTime", Global.Update.dayTime);
-            tag.Add("timeCharm", Global.Update.timeCharm);
-            tag.Add("seasonalDay", Math.Max(1, Global.Update.seasonalDay));
-            tag.Add("invasionWithGreaterBattleBuff", Global.Update.invasionWithGreaterBattleBuff);
-            tag.Add("invasionWithSuperBattleBuff", Global.Update.invasionWithSuperBattleBuff);
-            tag.Add("travelingMerchantDiceRolls", Global.Update.travelingMerchantDiceRolls);
-            tag.Add("dutchmanKillsV2", Global.Update.dutchManKilled);
+            tag["noMoreAnglerResetsToday"] = Global.Update.noMoreAnglerResetsToday;
+            tag["dayTime"] = Global.Update.dayTime;
+            tag["timeCharm"] = Global.Update.timeCharm;
+            tag["seasonalDay"] = Math.Max(1, Global.Update.seasonalDay);
+            tag["invasionWithGreaterBattleBuff"] = Global.Update.invasionWithGreaterBattleBuff;
+            tag["invasionWithSuperBattleBuff"] = Global.Update.invasionWithSuperBattleBuff;
+            tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
+            tag["dutchmanKillsV2"] = Global.Update.dutchManKilled;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
-            tag.TryGet("noMoreAnglerResetsToday", out bool noMoreAnglerResetsToday);
-            tag.TryGet("dayTime", out bool dayTime);
-            tag.TryGet("timeCharm", out bool timeCharm);
-            tag.TryGet("seasonalDay", out int seasonalDay);
-            tag.TryGet("invasionWithGreaterBattleBuff", out bool invasionWithGreaterBattleBuff);
-            tag.TryGet("invasionWithSuperBattleBuff", out bool invasionWithSuperBattleBuff);
-            tag.TryGet("travelingMerchantDiceRolls", out int travelingMerchantDiceRolls);
-            tag.TryGet("dutchmanKillsV2", out bool dutchmanKilled);
+            if (!tag.TryGet("noMoreAnglerResetsToday", out Global.Update.noMoreAnglerResetsToday))
+                Global.Update.noMoreAnglerResetsToday = false;
 
-            Global.Update.noMoreAnglerResetsToday = noMoreAnglerResetsToday;
-            Global.Update.dayTime = dayTime;
-            Global.Update.timeCharm = timeCharm;
-            Global.Update.seasonalDay = Math.Max(1, seasonalDay);
-            Global.Update.invasionWithGreaterBattleBuff = invasionWithGreaterBattleBuff;
-            Global.Update.invasionWithSuperBattleBuff = invasionWithSuperBattleBuff;
-            Global.Update.travelingMerchantDiceRolls = travelingMerchantDiceRolls;
-            Global.Update.dutchManKilled = dutchmanKilled;
+            if (!tag.TryGet("dayTime", out Global.Update.dayTime))
+                Global.Update.dayTime = true;
+
+            if (!tag.TryGet("timeCharm", out Global.Update.timeCharm))
+                Global.Update.timeCharm = false;
+
+            if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
+                Global.Update.seasonalDay = 1;
+
+            if (!tag.TryGet("invasionWithGreaterBattleBuff", out Global.Update.invasionWithGreaterBattleBuff))
+                Global.Update.invasionWithGreaterBattleBuff = false;
+
+            if (!tag.TryGet("invasionWithSuperBattleBuff", out Global.Update.invasionWithSuperBattleBuff))
+                Global.Update.invasionWithSuperBattleBuff = false;
+
+            if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
+                Global.Update.travelingMerchantDiceRolls = 0;
+
+            if (!tag.TryGet("dutchmanKills", out Global.Update.dutchManKilled))
+                Global.Update.dutchManKilled = false;
         }
 
         public override void OnModLoad()
