@@ -11,9 +11,12 @@ namespace ReducedGrinding.Global
 {
     public class NPCLoot : GlobalNPC
     {
+
+        readonly static AEnemyLootConfig lootConfig = GetInstance<AEnemyLootConfig>();
+        readonly static BEnemyLootNonVanillaConfig nonVanillaLootConfig = GetInstance<BEnemyLootNonVanillaConfig>();
+
         public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
-
             #region Functions
             void lootAdd(int itemType, int denominator)
             {
@@ -62,18 +65,15 @@ namespace ReducedGrinding.Global
 
             #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
-            {
-                lootAddBasedOnExpertMode(ItemID.FishronWings, (int)(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease * 3f / 2f), 0);
-                lootAddBasedOnExpertMode(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 0);
-            }
+                lootAddBasedOnExpertMode(ItemID.FishronWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
             if (npc.type == NPCID.HallowBoss)
             {
-                lootAddBasedOnExpertMode(ItemID.RainbowWings, (int)(GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease * 3f / 2f), 0);
-                lootAddBasedOnExpertMode(ItemID.SparkleGuitar, (int)(GetInstance<AEnemyLootConfig>().StellarTuneIncrease * 5f / 2f), 0);
-                lootAddBasedOnExpertMode(ItemID.RainbowCursor, GetInstance<AEnemyLootConfig>().RainbowCursor, 0);
+                lootAddBasedOnExpertMode(ItemID.RainbowWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
+                lootAddBasedOnExpertMode(ItemID.SparkleGuitar, (int)(lootConfig.StellarTuneIncrease * 5f / 2f), 0);
+                lootAddBasedOnExpertMode(ItemID.RainbowCursor, lootConfig.RainbowCursor, 0);
             }
             if (npc.type == NPCID.EyeofCthulhu)
-                lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(GetInstance<AEnemyLootConfig>().BinocularsIncrease * 4f / 3f), 0);
+                lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(lootConfig.BinocularsIncrease * 4f / 3f), 0);
             #endregion
 
             #region Non-Boss Drops
@@ -91,37 +91,37 @@ namespace ReducedGrinding.Global
             }
 
             if (npc.type == NPCID.DyeTrader)
-                lootAdd(ItemID.DyeTradersScimitar, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.DyeTradersScimitar, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.Painter)
-                lootAdd(ItemID.PainterPaintballGun, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.PainterPaintballGun, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.DD2Bartender)
-                lootAdd(ItemID.AleThrowingGlove, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.AleThrowingGlove, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.Stylist)
-                lootAdd(ItemID.StylistKilLaKillScissorsIWish, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.StylistKilLaKillScissorsIWish, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.Mechanic)
-                lootAdd(ItemID.CombatWrench, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.CombatWrench, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.TaxCollector)
-                lootAdd(ItemID.TaxCollectorsStickOfDoom, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.TaxCollectorsStickOfDoom, lootConfig.TownNPCWeapons);
             if (npc.type == NPCID.Princess)
-                lootAdd(ItemID.PrincessWeapon, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                lootAdd(ItemID.PrincessWeapon, lootConfig.TownNPCWeapons);
             #endregion
 
             #region Basic NPCs
             if (npc.type == NPCID.SkeletonArcher)
-                lootAdd(ItemID.Marrow, GetInstance<AEnemyLootConfig>().MarrowIncrease);
+                lootAdd(ItemID.Marrow, lootConfig.MarrowIncrease);
             if (npc.type == NPCID.ArmoredSkeleton)
-                lootAdd(ItemID.BeamSword, GetInstance<AEnemyLootConfig>().BeamSwordIncrease);
+                lootAdd(ItemID.BeamSword, lootConfig.BeamSwordIncrease);
             if (npc.type == NPCID.FireImp)
-                lootAdd(ItemID.PlumbersHat, GetInstance<AEnemyLootConfig>().PlumbersHatIncrease);
+                lootAdd(ItemID.PlumbersHat, lootConfig.PlumbersHatIncrease);
             if (npc.type == NPCID.ChaosElemental)
-                lootAddBasedOnExpertMode(ItemID.RodofDiscord, (int)(GetInstance<AEnemyLootConfig>().RodofDiscordIncrease * 5f / 4f), GetInstance<AEnemyLootConfig>().RodofDiscordIncrease);
+                lootAddBasedOnExpertMode(ItemID.RodofDiscord, (int)(lootConfig.RodofDiscordIncrease * 5f / 4f), lootConfig.RodofDiscordIncrease);
             if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
-                lootAdd(ItemID.LizardEgg, GetInstance<AEnemyLootConfig>().LizardEggIncrease);
+                lootAdd(ItemID.LizardEgg, lootConfig.LizardEggIncrease);
             //netID is used for slimes because weird duplicate loot issues involving their variants (negative IDs) happen. Looking at Terraria source code, slime drops is the only time they use coding to remove duplicate drops.
             if (npc.netID == NPCID.Pinky)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease * 10f / 7f), GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease);
+                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromPinkyIncrease * 10f / 7f), lootConfig.SlimeStaffFromPinkyIncrease);
             if (npc.netID == NPCID.SandSlime)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease * 10f / 7f), GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease);
+                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromSandSlimeIncrease * 10f / 7f), lootConfig.SlimeStaffFromSandSlimeIncrease);
             int[] otherSlimeStaffSlimes = new int[] {
                 -6,
                 -7,
@@ -149,31 +149,31 @@ namespace ReducedGrinding.Global
             foreach (int i in otherSlimeStaffSlimes)
             {
                 if (npc.netID == i)
-                    lootAddBasedOnExpertMode(ItemID.Meowmere, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease * 10f / 7), GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease);
+                    lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromOtherSlimesIncrease * 10f / 7), lootConfig.SlimeStaffFromOtherSlimesIncrease);
             }
             if (npc.type == NPCID.SkeletonSniper)
             {
-                lootAddBasedOnExpertMode(ItemID.RifleScope, (int)(GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease);
-                lootAddBasedOnExpertMode(ItemID.SniperRifle, (int)(GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease);
+                lootAddBasedOnExpertMode(ItemID.RifleScope, (int)(lootConfig.RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), lootConfig.RifleScopeAndSniperRifleIncrease);
+                lootAddBasedOnExpertMode(ItemID.SniperRifle, (int)(lootConfig.RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), lootConfig.RifleScopeAndSniperRifleIncrease);
             }
             if (npc.type == NPCID.TacticalSkeleton)
             {
-                lootAddBasedOnExpertMode(ItemID.SWATHelmet, (int)(GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease);
-                lootAddBasedOnExpertMode(ItemID.TacticalShotgun, (int)(GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease);
+                lootAddBasedOnExpertMode(ItemID.SWATHelmet, (int)(lootConfig.SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), lootConfig.SWATHelmetAndTacticalShotgunIncrease);
+                lootAddBasedOnExpertMode(ItemID.TacticalShotgun, (int)(lootConfig.SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), lootConfig.SWATHelmetAndTacticalShotgunIncrease);
             }
             if (npc.type == NPCID.SkeletonCommando)
-                lootAddBasedOnExpertMode(ItemID.RocketLauncher, (int)(GetInstance<AEnemyLootConfig>().RocketLauncherIncrease * (35f / 324f / (1f / 18f))), GetInstance<AEnemyLootConfig>().RocketLauncherIncrease);
+                lootAddBasedOnExpertMode(ItemID.RocketLauncher, (int)(lootConfig.RocketLauncherIncrease * (35f / 324f / (1f / 18f))), lootConfig.RocketLauncherIncrease);
             if (npc.type == NPCID.Paladin)
             {
-                lootAddBasedOnExpertMode(ItemID.PaladinsHammer, (int)(GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease * (22f / 225f / (1f / 15f))), GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease);
-                lootAddBasedOnExpertMode(ItemID.PaladinsShield, (int)(GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease * (763f / 5625f / (7f / 75f))), GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease);
+                lootAddBasedOnExpertMode(ItemID.PaladinsHammer, (int)(lootConfig.PaladinsHammerIncrease * (22f / 225f / (1f / 15f))), lootConfig.PaladinsHammerIncrease);
+                lootAddBasedOnExpertMode(ItemID.PaladinsShield, (int)(lootConfig.PaladinsShieldIncrease * (763f / 5625f / (7f / 75f))), lootConfig.PaladinsShieldIncrease);
             }
             if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.Corruptor)
-                lootAdd(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
+                lootAdd(ItemID.RottenChunk, lootConfig.RottenChunkAndVertebra);
             if (npc.type == NPCID.DevourerHead || npc.type == NPCID.DevourerBody || npc.type == NPCID.DevourerBody)
             {
-                if (GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra > 0)
-                    npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra, 1, 2));
+                if (lootConfig.RottenChunkAndVertebra > 0)
+                    npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk, lootConfig.RottenChunkAndVertebra, 1, 2));
             }
             int[] vertebraDroppers = new int[]
             {
@@ -182,7 +182,7 @@ namespace ReducedGrinding.Global
             foreach (int i in vertebraDroppers)
             {
                 if (npc.type == i)
-                    lootAdd(ItemID.Vertebrae, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
+                    lootAdd(ItemID.Vertebrae, lootConfig.RottenChunkAndVertebra);
             }
             int[] demonEyes = new int[] {
                 190,
@@ -203,7 +203,7 @@ namespace ReducedGrinding.Global
             foreach (int i in demonEyes)
             {
                 if (npc.type == i)
-                    lootAdd(ItemID.Lens, GetInstance<AEnemyLootConfig>().LensIncrease);
+                    lootAdd(ItemID.Lens, lootConfig.LensIncrease);
             }
             #endregion
             #region Pirates
@@ -236,59 +236,60 @@ namespace ReducedGrinding.Global
                 if (npc.type == NPCID.PirateShip)
                 {
                     npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, 1704, 1705, 1710, 1716, 1720, 2133, 2137, 2143, 2147, 2151, 2155, 2238, 2379, 2389, 2405, 2663, 2843, 3885, 3904, 3910)); //Always drop 1 Golden Furniture
-                    var TheDutchmansTresureChance = GetInstance<AEnemyLootConfig>().TheDutchmansTresureChance;
+                    var TheDutchmansTresureChance = lootConfig.TheDutchmansTresureChance;
                     if (TheDutchmansTresureChance > 0)
                         lootAddMinMaxConditional(ItemType<Items.TheDutchmansTreasure>(), new FirstDutchman(), new int[] { TheDutchmansTresureChance, TheDutchmansTresureChance }); //TO-DO When 1.4.4 comes out, it's possible that I'll adjust these or remove the item.
                 }
 
-                lootAdd(ItemID.CoinGun, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.LuckyCoin, GetInstance<AEnemyLootConfig>().LuckyCoinBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.DiscountCard, GetInstance<AEnemyLootConfig>().DiscountCardBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.PirateStaff, GetInstance<AEnemyLootConfig>().PirateStaffBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.GoldRing, GetInstance<AEnemyLootConfig>().GoldRingBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.Cutlass, GetInstance<AEnemyLootConfig>().CutlassBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.CoinGun, lootConfig.CoinGunBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.LuckyCoin, lootConfig.LuckyCoinBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.DiscountCard, lootConfig.DiscountCardBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.PirateStaff, lootConfig.PirateStaffBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.GoldRing, lootConfig.GoldRingBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.Cutlass, lootConfig.CutlassBaseIncrease * denominator_multiplier);
             }
             #endregion
             #endregion
+
             #region Drops That Don't Happen in Vanilla
-            #region Boss Drops
+                #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
-                lootAddBasedOnExpertMode(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 0);
+                lootAddBasedOnExpertMode(ItemID.TruffleWorm, nonVanillaLootConfig.TrufflewormFromDukeFishron, 0);
 
             if (npc.type == NPCID.Plantera)
                 lootAdd(ItemType<Items.PlanteraSap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
 
             if (npc.type == NPCID.KingSlime)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, 0);
+                lootAddBasedOnExpertMode(ItemID.SlimeStaff, nonVanillaLootConfig.SlimeStaffFromSlimeKing, 0);
             #endregion
 
-            #region Non-Boss Drops
+                #region Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)
             {
-                lootAddMinMax(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromDuneSplicer);
+                lootAddMinMax(ItemID.DesertFossil, nonVanillaLootConfig.DesertFossilFromDuneSplicer);
+                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
+                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
+                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
+                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), nonVanillaLootConfig.SandFromDuneSplicer);
             }
 
             if (npc.type == NPCID.TombCrawlerHead)
             {
-                lootAddMinMax(ItemID.DesertFossil, GetInstance<BEnemyLootNonVanillaConfig>().DesertFossilFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), GetInstance<BEnemyLootNonVanillaConfig>().SandFromTombCrawler);
+                lootAddMinMax(ItemID.DesertFossil, nonVanillaLootConfig.DesertFossilFromTombCrawler);
+                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), nonVanillaLootConfig.SandFromTombCrawler);
+                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), nonVanillaLootConfig.SandFromTombCrawler);
+                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), nonVanillaLootConfig.SandFromTombCrawler);
+                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), nonVanillaLootConfig.SandFromTombCrawler);
             }
 
             if (npc.type == NPCID.SandElemental)
-                lootAdd(ItemID.SandstorminaBottle, GetInstance<BEnemyLootNonVanillaConfig>().SandstormInABottleFromSandElemental);
+                lootAdd(ItemID.SandstorminaBottle, nonVanillaLootConfig.SandstormInABottleFromSandElemental);
 
             if (npc.type == NPCID.SpikedIceSlime)
-                lootAdd(ItemID.SnowballLauncher, GetInstance<BEnemyLootNonVanillaConfig>().SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4
+                lootAdd(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
-                lootAddMinMax(ItemID.Marble, GetInstance<BEnemyLootNonVanillaConfig>().MarbleFromMarbleCaveEnemies);
+                lootAddMinMax(ItemID.Marble, nonVanillaLootConfig.MarbleFromMarbleCaveEnemies);
             #endregion
             #endregion
         }
@@ -296,19 +297,19 @@ namespace ReducedGrinding.Global
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             //Non-Boss Loot
-            int config = GetInstance<AEnemyLootConfig>().GoodieBagIncrease;
+            int config = lootConfig.GoodieBagIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
 
-            config = GetInstance<AEnemyLootConfig>().PresentIncrease;
+            config = lootConfig.PresentIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(ItemID.Present, config, 1, 1, new Conditions.XmasPresentDrop()));
 
-            config = GetInstance<AEnemyLootConfig>().KOCannonIncrease;
+            config = lootConfig.KOCannonIncrease;
             if (config > 0)
                 globalLoot.Add(new ItemDropWithConditionRule(1314, config, 1, 1, new Conditions.KOCannon()));
 
-            config = GetInstance<AEnemyLootConfig>().BiomeKeyIncrease;
+            config = lootConfig.BiomeKeyIncrease;
             if (config > 0)
             {
                 globalLoot.Add(new ItemDropWithConditionRule(1533, config, 1, 1, new Conditions.JungleKeyCondition()));
@@ -319,14 +320,14 @@ namespace ReducedGrinding.Global
                 globalLoot.Add(new ItemDropWithConditionRule(4714, config, 1, 1, new Conditions.DesertKeyCondition()));
             }
 
-            config = GetInstance<AEnemyLootConfig>().BloodyMacheteAndBladedGloveIncrease;
+            config = lootConfig.BloodyMacheteAndBladedGloveIncrease;
             if (config > 0)
             {
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1825, config));
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1827, config));
             }
 
-            config = GetInstance<AEnemyLootConfig>().SoulOfLightAndNight;
+            config = lootConfig.SoulOfLightAndNight;
             if (config > 0)
             {
                 globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfLight(), ItemID.SoulofLight, config));
