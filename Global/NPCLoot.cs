@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
+//Note netID is sometimes used when involving NPCs with negative IDs (variant NPCs), otherwise it gives duplicate loot drops to multiple NPCs. Not always does this happen though.
 namespace ReducedGrinding.Global
 {
     public class NPCLoot : GlobalNPC
@@ -116,16 +117,21 @@ namespace ReducedGrinding.Global
                 lootAddBasedOnExpertMode(ItemID.RodofDiscord, (int)(GetInstance<AEnemyLootConfig>().RodofDiscordIncrease * 5f / 4f), GetInstance<AEnemyLootConfig>().RodofDiscordIncrease);
             if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
                 lootAdd(ItemID.LizardEgg, GetInstance<AEnemyLootConfig>().LizardEggIncrease);
-            if (npc.type == NPCID.Pinky)
+            //netID is used for slimes because weird duplicate loot issues involving their variants (negative IDs) happen. Looking at Terraria source code, slime drops is the only time they use coding to remove duplicate drops.
+            if (npc.netID == NPCID.Pinky)
                 lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease * 10f / 7f), GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease);
-            if (npc.type == NPCID.SandSlime)
+            if (npc.netID == NPCID.SandSlime)
                 lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease * 10f / 7f), GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease);
             int[] otherSlimeStaffSlimes = new int[] {
+                -6,
+                -7,
+                -8,
+                -9,
                 1,
+                16,
                 138,
                 141,
                 147,
-                16,
                 184,
                 187,
                 204,
@@ -136,18 +142,14 @@ namespace ReducedGrinding.Global
                 336,
                 433,
                 535,
-                -6,
                 658,
                 659,
-                660,
-                -7,
-                -8,
-                -9
+                660
             };
             foreach (int i in otherSlimeStaffSlimes)
             {
-                if (npc.type == i)
-                    lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease * 10f / 7), GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease);
+                if (npc.netID == i)
+                    lootAddBasedOnExpertMode(ItemID.Meowmere, (int)(GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease * 10f / 7), GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease);
             }
             if (npc.type == NPCID.SkeletonSniper)
             {
@@ -166,11 +168,22 @@ namespace ReducedGrinding.Global
                 lootAddBasedOnExpertMode(ItemID.PaladinsHammer, (int)(GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease * (22f / 225f / (1f / 15f))), GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease);
                 lootAddBasedOnExpertMode(ItemID.PaladinsShield, (int)(GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease * (763f / 5625f / (7f / 75f))), GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease);
             }
-            if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.DevourerHead || npc.type == NPCID.Corruptor)
+            if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.Corruptor)
                 lootAdd(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
-            if (npc.type == NPCID.BloodCrawler || npc.type == NPCID.BloodCrawlerWall || npc.type == NPCID.Crimera || npc.type == NPCID.LittleCrimera || npc.type == NPCID.BigCrimera || npc.type == NPCID.FaceMonster || npc.type == NPCID.FloatyGross)
-                lootAdd(ItemID.Vertebrae, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
-
+            if (npc.type == NPCID.DevourerHead || npc.type == NPCID.DevourerBody || npc.type == NPCID.DevourerBody)
+            {
+                if (GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra > 0)
+                    npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra, 1, 2));
+            }
+            int[] vertebraDroppers = new int[]
+            {
+                181, 173, 239, 182, 240
+            };
+            foreach (int i in vertebraDroppers)
+            {
+                if (npc.type == i)
+                    lootAdd(ItemID.Vertebrae, GetInstance<AEnemyLootConfig>().RottenChunkAndVertebra);
+            }
             int[] demonEyes = new int[] {
                 190,
                 191,
@@ -180,7 +193,7 @@ namespace ReducedGrinding.Global
                 2,
                 317,
                 318
-                - 38,
+                -38,
                 -39,
                 -40,
                 -41,
@@ -193,7 +206,6 @@ namespace ReducedGrinding.Global
                     lootAdd(ItemID.Lens, GetInstance<AEnemyLootConfig>().LensIncrease);
             }
             #endregion
-
             #region Pirates
             int[] pirates = new int[] {
                 491,
@@ -238,9 +250,7 @@ namespace ReducedGrinding.Global
             }
             #endregion
             #endregion
-
             #region Drops That Don't Happen in Vanilla
-
             #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
                 lootAddBasedOnExpertMode(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 0);
