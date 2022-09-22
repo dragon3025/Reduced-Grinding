@@ -42,7 +42,6 @@ namespace ReducedGrinding
             advanceMoonPhase,
             noMoreAnglerResetsToday,
             dayTime,
-            timeCharm,
             seasonalDay,
             invasionWithGreaterBattleBuff,
             invasionWithSuperBattleBuff,
@@ -67,9 +66,6 @@ namespace ReducedGrinding
                     break;
                 case MessageType.dayTime:
                     Global.Update.dayTime = reader.ReadBoolean();
-                    break;
-                case MessageType.timeCharm:
-                    Global.Update.timeCharm = reader.ReadBoolean();
                     break;
                 case MessageType.seasonalDay:
                     Global.Update.seasonalDay = reader.ReadInt32();
@@ -113,7 +109,6 @@ namespace ReducedGrinding
         {
             Global.Update.noMoreAnglerResetsToday = false;
             Global.Update.dayTime = true;
-            Global.Update.timeCharm = false;
             Global.Update.seasonalDay = 1;
             Global.Update.invasionWithGreaterBattleBuff = false;
             Global.Update.invasionWithSuperBattleBuff = false;
@@ -125,7 +120,6 @@ namespace ReducedGrinding
         {
             Global.Update.noMoreAnglerResetsToday = false;
             Global.Update.dayTime = true;
-            Global.Update.timeCharm = false;
             Global.Update.seasonalDay = 1;
             Global.Update.invasionWithGreaterBattleBuff = false;
             Global.Update.invasionWithSuperBattleBuff = false;
@@ -137,7 +131,6 @@ namespace ReducedGrinding
         {
             tag["noMoreAnglerResetsToday"] = Global.Update.noMoreAnglerResetsToday;
             tag["dayTime"] = Global.Update.dayTime;
-            tag["timeCharm"] = Global.Update.timeCharm;
             tag["seasonalDay"] = Math.Max(1, Global.Update.seasonalDay);
             tag["invasionWithGreaterBattleBuff"] = Global.Update.invasionWithGreaterBattleBuff;
             tag["invasionWithSuperBattleBuff"] = Global.Update.invasionWithSuperBattleBuff;
@@ -152,9 +145,6 @@ namespace ReducedGrinding
 
             if (!tag.TryGet("dayTime", out Global.Update.dayTime))
                 Global.Update.dayTime = true;
-
-            if (!tag.TryGet("timeCharm", out Global.Update.timeCharm))
-                Global.Update.timeCharm = false;
 
             if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
                 Global.Update.seasonalDay = 1;

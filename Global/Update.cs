@@ -16,7 +16,6 @@ namespace ReducedGrinding.Global
         //Gets recorded into world save
         public static bool noMoreAnglerResetsToday = false;
         public static bool dayTime = true;
-        public static bool timeCharm = false;
         public static int seasonalDay = 1;
         public static bool invasionWithGreaterBattleBuff = false;
         public static bool invasionWithSuperBattleBuff = false;
