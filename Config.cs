@@ -743,7 +743,7 @@ namespace ReducedGrinding
         #region Sleep Time Rate
         [Header("" +
             "Sleeping Time Rate Increase\n" +
-            "In vanilla, sleeping multiplies the time rate by 5; after this this mod will add to the time rate using the conditions below.")]
+            "In vanilla, sleeping multiplies the time rate by 5; afterward, an amount will get added to the time rate using the conditions below.")]
 
         [Label("Pre-Hardmode")]
         [DefaultValue(0)]

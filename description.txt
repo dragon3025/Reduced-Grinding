@@ -12,10 +12,9 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Fishing Tokens when finishing Quests, to purchase items from the Fish Merchant.
 - Moonball to advance Moon Phase or skip the Blood Moon.
 - Greater + Super Battle Potion to increase enemy spawns.
-- Faster time flow while sleeping.
 - Holiday timeline for periodic Halloween and Christmas days.
 - Cancel Invasions when all players go underground.
-- Helpful recipes including Universal Plyon.
+- Helpful recipes including Universal Plyon; Universal Pylon recipe has 3 difficulty settings.
 
 ====TEMPORARY UNTIL 1.4.4:====
 
@@ -26,3 +25,4 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 
 - Reduce Bestiary requirement for Universal Pylon.
 - Staff of Difficulty. Changes difficulty settings.
+- Faster time flow while sleeping.
