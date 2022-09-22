@@ -1,7 +1,6 @@
 using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
-using Terraria.ID;
 
 /* Localize
  * Every Header, Label, and Tooltip on this page and the message given for AcceptClientChanges
@@ -625,47 +624,6 @@ namespace ReducedGrinding
         public int TerragrimChests;
         #endregion
 
-        #region Sleep Time Rate
-        [Header("" +
-            "Sleeping Time Rate Increase\n" +
-            "In vanilla, sleeping multiplies the time rate by 5; this mod will then add to the time rate using the conditions below.")]
-
-        [Label("Starting increase amount")]
-        [Tooltip("This amount is added without any condition")]
-        [DefaultValue(0)]
-        public int StartingSleepRateIncrease;
-
-        [Label("Increase for 15 Life Crystals Used")]
-        [Tooltip("" +
-            "This setting will only look at the Player with the most health. Each Life\n" +
-            "Crystal used accumulates to this amount.")]
-        [DefaultValue(10)]
-        public int LifeCrystalSleepRateIncrease;
-
-        [Label("Increase for each Eye, Eater / Brain, and Skel Boss Defeated")]
-        [Tooltip("" +
-            "Eye of Cthulhu, Eater of Worlds / Brain of Cthulhu, and Skeletron")]
-        [DefaultValue(5)]
-        public int PreHardmodeBossSleepRateIncrease;
-
-        [Label("Increase for entering Hardmode")]
-        [DefaultValue(15)]
-        public int HardmodeSleepRateIncrease;
-
-        [Label("Increase for each Mech Boss Defeated")]
-        [DefaultValue(5)]
-        public int MechBossSleepRateIncrease;
-
-        [Label("Increase for Time Charm (hover for More Info)")]
-        [Tooltip("" +
-            "This item is crafted at an Enchanted Sundial and can only be used once per\n" +
-            "world. When used, it permentatly increases the Sleep Time Rate by this\n" +
-            "setting. Setting to 0 will disable the recipe.")]
-        [DefaultValue(0)]
-        public int TimeCharmSleepRateIncrease;
-
-        #endregion
-
         #region Crates
         [Header("" +
             "Crates\n\n" +
@@ -780,6 +738,24 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
+        #endregion
+
+        #region Sleep Time Rate
+        [Header("" +
+            "Sleeping Time Rate Increase\n" +
+            "In vanilla, sleeping multiplies the time rate by 5; after this this mod will add to the time rate using the conditions below.")]
+
+        [Label("Pre-Hardmode")]
+        [DefaultValue(0)]
+        public int SleepRateIncreasePreHardmode;
+
+        [Label("Hardmode")]
+        [DefaultValue(0)]
+        public int SleepRateIncreaseHardmode;
+
+        [Label("Post-Plantera")]
+        [DefaultValue(0)]
+        public int SleepRateIncreasePostPlantera;
         #endregion
 
         #region Other

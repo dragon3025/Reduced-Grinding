@@ -38,56 +38,17 @@ namespace ReducedGrinding.Global
             if (!(Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount && Main.CurrentFrameFlags.SleepingPlayersCount > 0))
                 return;
 
-            float increase = GetInstance<IOtherConfig>().StartingSleepRateIncrease;
-            float increaseForLifeCrystals = GetInstance<IOtherConfig>().LifeCrystalSleepRateIncrease;
-            int increaseForPreHardmodeBosses = GetInstance<IOtherConfig>().PreHardmodeBossSleepRateIncrease;
-            int increaseForHardmode = GetInstance<IOtherConfig>().HardmodeSleepRateIncrease;
-            int increaseForMechBosses = GetInstance<IOtherConfig>().MechBossSleepRateIncrease;
-            int increaseForTimeCharm = GetInstance<IOtherConfig>().TimeCharmSleepRateIncrease;
+            int increase;
 
-            if (increase == 0 && increaseForLifeCrystals == 0 && increaseForPreHardmodeBosses == 0 && increaseForHardmode == 0 && increaseForMechBosses == 0 && increaseForTimeCharm == 0)
-                return;
-
-            if (increaseForLifeCrystals > 0)
-            {
-                float lifeCrystalsUsed = 0;
-                float testLifeCrystalsUsed;
-                for (int i = 0; i <= 255; i++)
-                {
-                    if (!Main.player[i].active)
-                        continue;
-
-                    testLifeCrystalsUsed = Main.player[i].statLifeMax > 400 ? 15 : (Main.player[i].statLifeMax - 100) / 20;
-                    if (lifeCrystalsUsed < testLifeCrystalsUsed)
-                        lifeCrystalsUsed = testLifeCrystalsUsed;
-                }
-                increaseForLifeCrystals *= lifeCrystalsUsed / 15;
-                increase += increaseForLifeCrystals;
-            }
-
-            void adjustSleepBoostModifier(bool condition, int amount)
-            {
-                if (condition)
-                    increase += amount;
-            }
-
-            adjustSleepBoostModifier(NPC.downedBoss1, increaseForPreHardmodeBosses);
-            adjustSleepBoostModifier(NPC.downedBoss2, increaseForPreHardmodeBosses);
-            adjustSleepBoostModifier(NPC.downedBoss3, increaseForPreHardmodeBosses);
-
-            adjustSleepBoostModifier(Main.hardMode, increaseForHardmode);
-
-            adjustSleepBoostModifier(NPC.downedMechBoss1, increaseForMechBosses);
-            adjustSleepBoostModifier(NPC.downedMechBoss2, increaseForMechBosses);
-            adjustSleepBoostModifier(NPC.downedMechBoss3, increaseForMechBosses);
-
-            adjustSleepBoostModifier(timeCharm, increaseForTimeCharm);
+            if (NPC.downedPlantBoss)
+                increase = GetInstance<IOtherConfig>().SleepRateIncreasePostPlantera;
+            else if (Main.hardMode)
+                increase = GetInstance<IOtherConfig>().SleepRateIncreaseHardmode;
+            else
+                increase = GetInstance<IOtherConfig>().SleepRateIncreasePreHardmode;
 
             if (increase > 0)
             {
-                if ((int)Main.time % 60 == 0)
-                    Main.NewText(increase.ToString());
-
                 for (int i = 0; i < 255; i++)
                 {
                     if (!Main.player[i].active)
