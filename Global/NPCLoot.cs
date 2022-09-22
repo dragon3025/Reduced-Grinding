@@ -63,9 +63,17 @@ namespace ReducedGrinding.Global
             }
             #endregion
 
+            //Loot Removing Experimenting (so far not completely successful).
+            //Conditions.NotExpert notExpert = new Conditions.NotExpert();
+            //LeadingConditionRule notExpertLCR = new LeadingConditionRule(new Conditions.NotExpert());
             #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
                 lootAddBasedOnExpertMode(ItemID.FishronWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
+            /*if (npc.type == NPCID.DukeFishron && lootConfig.EmpressAndFishronWingsIncrease > 0)
+            {
+                //npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.FishronWings);
+                npcLoot.Add(new ItemDropWithConditionRule(ItemID.FishronWings, lootConfig.EmpressAndFishronWingsIncrease, 1, 1, notExpert));
+            }*/
             if (npc.type == NPCID.HallowBoss)
             {
                 lootAddBasedOnExpertMode(ItemID.RainbowWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
@@ -74,6 +82,11 @@ namespace ReducedGrinding.Global
             }
             if (npc.type == NPCID.EyeofCthulhu)
                 lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(lootConfig.BinocularsIncrease * 4f / 3f), 0);
+            /*if (npc.type == NPCID.EyeofCthulhu && lootConfig.BinocularsIncrease > 0)
+            {
+                //npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.Binoculars);
+                lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(lootConfig.BinocularsIncrease * 4f / 3f), 0);
+            }*/
             #endregion
 
             #region Non-Boss Drops
