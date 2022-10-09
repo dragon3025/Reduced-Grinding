@@ -10,6 +10,38 @@ namespace ReducedGrinding.Global
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
         {
+            //TO-DO When 1.4.4 comes out, a lot of stuff may need adjusted or removed (including the Fish Merchant)
+            #region Remove Furniture
+            bool furnitureRemoved = false;
+            int[] furniturePool = new int[]
+            {
+                2442, //Furniture
+                2443,
+                2444,
+                2445,
+                2497,
+                2495,
+                2446,
+                2447,
+                2448,
+                2449,
+                2490,
+                2496
+            };
+            foreach (int i in furniturePool)
+            {
+                for (int j = 0; j < rewardItems.Count; j++)
+                {
+                    if (rewardItems[j].type == i)
+                    {
+                        furnitureRemoved = true;
+                        rewardItems.RemoveAt(j);
+                        goto furnitureTestFinished;
+                    }
+                }
+            }
+            furnitureTestFinished: { };
+            #endregion
 
             #region Modify Requirements
             int fuzzyCarrotQuestRequirement = GetInstance<CFishingConfig>().FuzzyCarrotQuestRewarded;
@@ -18,20 +50,21 @@ namespace ReducedGrinding.Global
             int anglerPantsQuestRequirement = GetInstance<CFishingConfig>().AnglerPantsQuestRewarded;
             int goldenFishingRodQuestRequirement = GetInstance<CFishingConfig>().GoldenFishingRodQuestRewarded;
 
-            List<Terraria.Item> itemsToRemove = new();
-
             #region Remove rewards at old requirements
+            int questDone = Player.anglerQuestsFinished;
+
+            List<Terraria.Item> itemsToRemove = new();
             for (int i = 0; i < rewardItems.Count; i++)
             {
-                if (rewardItems[i].type == ItemID.FuzzyCarrot && fuzzyCarrotQuestRequirement != 5 && Player.anglerQuestsFinished == 5)
+                if (rewardItems[i].type == ItemID.FuzzyCarrot && fuzzyCarrotQuestRequirement != 5 && questDone == 5)
                     itemsToRemove.Add(rewardItems[i]);
-                if (rewardItems[i].type == ItemID.AnglerHat && anglerHatQuestRequirement != 10 && Player.anglerQuestsFinished == 10)
+                if (rewardItems[i].type == ItemID.AnglerHat && anglerHatQuestRequirement != 10 && questDone == 10)
                     itemsToRemove.Add(rewardItems[i]);
-                if (rewardItems[i].type == ItemID.AnglerVest && anglerVestQuestRequirement != 15 && Player.anglerQuestsFinished == 15)
+                if (rewardItems[i].type == ItemID.AnglerVest && anglerVestQuestRequirement != 15 && questDone == 15)
                     itemsToRemove.Add(rewardItems[i]);
-                if (rewardItems[i].type == ItemID.AnglerPants && anglerPantsQuestRequirement != 20 && Player.anglerQuestsFinished == 20)
+                if (rewardItems[i].type == ItemID.AnglerPants && anglerPantsQuestRequirement != 20 && questDone == 20)
                     itemsToRemove.Add(rewardItems[i]);
-                if (rewardItems[i].type == ItemID.GoldenFishingRod && goldenFishingRodQuestRequirement != 30 && Player.anglerQuestsFinished == 30)
+                if (rewardItems[i].type == ItemID.GoldenFishingRod && goldenFishingRodQuestRequirement != 30 && questDone == 30)
                     itemsToRemove.Add(rewardItems[i]);
             }
             foreach (Terraria.Item item in itemsToRemove)
@@ -39,31 +72,31 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Add rewards at new requirement
-            if (fuzzyCarrotQuestRequirement != 5 && Player.anglerQuestsFinished == fuzzyCarrotQuestRequirement)
+            if (fuzzyCarrotQuestRequirement != 5 && questDone == fuzzyCarrotQuestRequirement)
             {
                 Terraria.Item fuzzyCarrot = new();
                 fuzzyCarrot.SetDefaults(ItemID.FuzzyCarrot);
                 rewardItems.Add(fuzzyCarrot);
             }
-            if (anglerHatQuestRequirement != 10 && Player.anglerQuestsFinished == anglerHatQuestRequirement)
+            if (anglerHatQuestRequirement != 10 && questDone == anglerHatQuestRequirement)
             {
                 Terraria.Item AnglerHat = new();
                 AnglerHat.SetDefaults(ItemID.AnglerHat);
                 rewardItems.Add(AnglerHat);
             }
-            if (anglerVestQuestRequirement != 15 && Player.anglerQuestsFinished == anglerVestQuestRequirement)
+            if (anglerVestQuestRequirement != 15 && questDone == anglerVestQuestRequirement)
             {
                 Terraria.Item AnglerVest = new();
                 AnglerVest.SetDefaults(ItemID.AnglerVest);
                 rewardItems.Add(AnglerVest);
             }
-            if (anglerPantsQuestRequirement != 20 && Player.anglerQuestsFinished == anglerPantsQuestRequirement)
+            if (anglerPantsQuestRequirement != 20 && questDone == anglerPantsQuestRequirement)
             {
                 Terraria.Item anglerPants = new();
                 anglerPants.SetDefaults(ItemID.AnglerPants);
                 rewardItems.Add(anglerPants);
             }
-            if (goldenFishingRodQuestRequirement != 30 && Player.anglerQuestsFinished == goldenFishingRodQuestRequirement)
+            if (goldenFishingRodQuestRequirement != 30 && questDone == goldenFishingRodQuestRequirement)
             {
                 Terraria.Item goldenFishingRod = new();
                 goldenFishingRod.SetDefaults(ItemID.GoldenFishingRod);
@@ -71,6 +104,13 @@ namespace ReducedGrinding.Global
             }
             #endregion
             #endregion
+
+            if (questDone == 25)
+            {
+                Terraria.Item bottomlessWaterBucket = new();
+                bottomlessWaterBucket.SetDefaults(ItemID.BottomlessBucket);
+                rewardItems.Add(bottomlessWaterBucket);
+            }
 
             #region Fish Coin
             int fishCoinAmount = GetInstance<CFishingConfig>().FishCoinsRewardedForQuest;
@@ -83,60 +123,71 @@ namespace ReducedGrinding.Global
             }
             #endregion
 
-            #region Extra Furniture Drop
-            //TO-DO Remove when 1.4.4 comes out.
-            int questFinished = Player.anglerQuestsFinished;
-            float dropRate = 1f;
-            dropRate = (questFinished <= 50) ? (dropRate - questFinished * 0.01f) : ((questFinished <= 100) ? (0.5f - (questFinished - 50) * 0.005f) : ((questFinished > 150) ? 0.15f : (0.25f - (questFinished - 100) * 0.002f)));
-            dropRate *= 0.9f;
-            dropRate *= (float)(Player.currentShoppingSettings.PriceAdjustment + 1.0) / 2f;
-
-            Main.NewText("Happyness: " + Player.currentShoppingSettings.PriceAdjustment.ToString()); //TO-DO Remove
-
-            if (Main.rand.NextBool((int)(70 * dropRate)))
+            #region If a Furniture Item Was Removed, Add Back a Potion Only
+            if (furnitureRemoved)
             {
-                Terraria.Item extraFurnitureItem = new();
-                switch (Main.rand.Next(11))
+                Terraria.Item newPotionItem = new();
+                switch (Main.rand.Next(3))
                 {
                     case 0:
-                        extraFurnitureItem.SetDefaults(2442);
+                        newPotionItem.SetDefaults(2354);
+                        newPotionItem.stack = Main.rand.Next(2, 6);
                         break;
                     case 1:
-                        extraFurnitureItem.SetDefaults(2443);
+                        newPotionItem.SetDefaults(2355);
+                        newPotionItem.stack = Main.rand.Next(2, 6);
                         break;
-                    case 2:
-                        extraFurnitureItem.SetDefaults(2444);
-                        break;
-                    case 3:
-                        extraFurnitureItem.SetDefaults(2445);
-                        break;
-                    case 4:
-                        extraFurnitureItem.SetDefaults(2497);
-                        break;
-                    case 5:
-                        extraFurnitureItem.SetDefaults(2495);
-                        break;
-                    case 6:
-                        extraFurnitureItem.SetDefaults(2446);
-                        break;
-                    case 7:
-                        extraFurnitureItem.SetDefaults(2447);
-                        break;
-                    case 8:
-                        extraFurnitureItem.SetDefaults(2448);
-                        break;
-                    case 9:
-                        extraFurnitureItem.SetDefaults(2449);
-                        break;
-                    case 10:
-                        extraFurnitureItem.SetDefaults(2490);
-                        break;
-                    case 11:
-                        extraFurnitureItem.SetDefaults(2496);
+                    default:
+                        newPotionItem.SetDefaults(2356);
+                        newPotionItem.stack = Main.rand.Next(2, 6);
                         break;
                 }
-                rewardItems.Add(extraFurnitureItem);
+                rewardItems.Add(newPotionItem);
             }
+            #endregion
+
+            #region New Furniture Roll (Higher Chance and No Potion)
+            Terraria.Item newFurnitureItem = new();
+            switch (Main.rand.Next(19))
+            {
+                case 0:
+                    newFurnitureItem.SetDefaults(2442);
+                    break;
+                case 1:
+                    newFurnitureItem.SetDefaults(2443);
+                    break;
+                case 2:
+                    newFurnitureItem.SetDefaults(2444);
+                    break;
+                case 3:
+                    newFurnitureItem.SetDefaults(2445);
+                    break;
+                case 4:
+                    newFurnitureItem.SetDefaults(2497);
+                    break;
+                case 5:
+                    newFurnitureItem.SetDefaults(2495);
+                    break;
+                case 6:
+                    newFurnitureItem.SetDefaults(2446);
+                    break;
+                case 7:
+                    newFurnitureItem.SetDefaults(2447);
+                    break;
+                case 8:
+                    newFurnitureItem.SetDefaults(2448);
+                    break;
+                case 9:
+                    newFurnitureItem.SetDefaults(2449);
+                    break;
+                case 10:
+                    newFurnitureItem.SetDefaults(2490);
+                    break;
+                case 12:
+                    newFurnitureItem.SetDefaults(2496);
+                    break;
+            }
+            rewardItems.Add(newFurnitureItem);
             #endregion
         }
     }
