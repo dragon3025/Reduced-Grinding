@@ -228,9 +228,9 @@ namespace ReducedGrinding.Global
                     if (timeHiddenFromInvasion == 0)
                     {
                         if (Main.netMode == NetmodeID.Server)
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0)); //Localize
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0));
                         else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                            Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0)); //Localize
+                            Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0));
                     }
                     timeHiddenFromInvasion++;
                     updatePacket = true;
@@ -246,9 +246,9 @@ namespace ReducedGrinding.Global
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0)); //Localize
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
                 else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
-                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0)); //Localize
+                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
                 timeHiddenFromInvasion = 0;
                 updatePacket = true;
             }
@@ -293,10 +293,10 @@ namespace ReducedGrinding.Global
                     {
                         Main.AnglerQuestSwap();
                         if (Main.netMode == NetmodeID.SinglePlayer)
-                            Main.NewText("The Angler decided to give you another job.", 0, 255, 255); //Localize
+                            Main.NewText("The Angler decided to give you another job.", 0, 255, 255);
                         else if (Main.netMode == NetmodeID.Server)
                         {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255)); //Localize
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
                         }
                     }
                     else

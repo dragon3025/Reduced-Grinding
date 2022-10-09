@@ -14,7 +14,7 @@ namespace ReducedGrinding.Global
             Player player = Main.player[Main.myPlayer];
             if (npc.type == NPCID.Angler)
             {
-                Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255); //Localize
+                Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255);
                 if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
                 {
                     bool spawnFishMerchant = true;

@@ -28,7 +28,7 @@ namespace ReducedGrinding
 
         public override void Load()
         {
-            FishCoin = CustomCurrencyManager.RegisterCurrency(new Currencies.FishCoinCurrency(ModContent.ItemType<Items.FishCoin>(), 9999L, "Fish Coin")); //Localize
+            FishCoin = CustomCurrencyManager.RegisterCurrency(new Currencies.FishCoinCurrency(ModContent.ItemType<Items.FishCoin>(), 9999L, "Fish Coin"));
 
             ModLoader.TryGetMod("Wikithis", out Mod wikithis);
             if (wikithis != null && !Main.dedServ)
@@ -162,7 +162,7 @@ namespace ReducedGrinding
                 Global.Update.dutchManKilled = false;
         }
 
-        public override void OnModLoad()
+        public override void OnModLoad() //TO-DO Remove lunar shield adjust when 1.4.4 comes out for tmodloader
         {
             NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
             NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);

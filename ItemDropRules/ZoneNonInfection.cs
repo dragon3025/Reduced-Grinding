@@ -24,7 +24,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
         public string GetConditionDescription()
         {
-            return "Not in the Corruption, Crimson, or Hallow"; //Localize
+            return "Not in the Corruption, Crimson, or Hallow";
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
         public string GetConditionDescription()
         {
-            return "Only in the Crimson"; //Localize
+            return "Only in the Crimson";
         }
     }
 }

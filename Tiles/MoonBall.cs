@@ -25,7 +25,7 @@ namespace ReducedGrinding.Tiles
 			TileObjectData.addTile(Type);
 
 			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Moon Ball"); //Localize
+			name.SetDefault("Moon Ball");
 			AddMapEntry(new Color(191, 191, 255), name);
 
 			DustType = DustID.Marble;

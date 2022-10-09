@@ -18,7 +18,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
 		public string GetConditionDescription()
 		{
-			return "Only in the Hallow"; //Localize
+			return "Only in the Hallow";
 		}
 	}
 }

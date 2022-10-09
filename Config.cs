@@ -2,10 +2,6 @@ using System;
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-/* Localize
- * Every Header, Label, and Tooltip on this page and the message given for AcceptClientChanges
- */
-
 namespace ReducedGrinding
 {
     [Label("Enemy Loot Vanilla")]

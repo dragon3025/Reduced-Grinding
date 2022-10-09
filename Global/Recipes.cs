@@ -21,7 +21,7 @@ namespace ReducedGrinding.GlobalRecipes
 
         public override void AddRecipeGroups()
         {
-            baitCritterLow = new RecipeGroup(() => "Any bait critter with less than 20 Power", new int[] //Localize
+            baitCritterLow = new RecipeGroup(() => "Any bait critter with less than 20 Power", new int[]
             {
                 ItemID.MonarchButterfly,
                 ItemID.SulphurButterfly,
@@ -38,7 +38,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterLow", baitCritterLow);
 
-            baitCritterMed = new RecipeGroup(() => "Any bait critter with at least 20 Power and less than 25 Power", new int[] //Localize
+            baitCritterMed = new RecipeGroup(() => "Any bait critter with at least 20 Power and less than 25 Power", new int[]
             {
                 ItemID.UlyssesButterfly,
                 ItemID.BlackDragonfly,
@@ -55,7 +55,7 @@ namespace ReducedGrinding.GlobalRecipes
             });
             RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterMed", baitCritterMed);
 
-            baitCritterHigh = new RecipeGroup(() => "Any bait critter with at least 25 Power", new int[] //Localize
+            baitCritterHigh = new RecipeGroup(() => "Any bait critter with at least 25 Power", new int[]
             {
                 ItemID.JuliaButterfly,
                 ItemID.Lavafly,

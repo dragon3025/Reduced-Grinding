@@ -40,7 +40,7 @@ namespace ReducedGrinding.Items
                 Global.Update.travelingMerchantDiceRolls--;
                 if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString()), new Color(255, 255, 0)); //Localize
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString()), new Color(255, 255, 0));
                     NetMessage.SendData(MessageID.WorldData);
                 }
                 else if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -51,10 +51,10 @@ namespace ReducedGrinding.Items
                     packet.Send();
                 }
                 else
-                    Main.NewText("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString(), 255, 255, 0); //Localize
+                    Main.NewText("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString(), 255, 255, 0);
             }
             else
-                Main.NewText("You have no more re-rolls left.", 255, 127, 127); //Localize
+                Main.NewText("You have no more re-rolls left.", 255, 127, 127);
             return true;
         }
     }

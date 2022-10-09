@@ -25,7 +25,7 @@ namespace ReducedGrinding.Common.ItemDropRules.Conditions
 
         public string GetConditionDescription()
         {
-            return "Only 1 per invasion"; //Localize
+            return "Only 1 per invasion";
         }
     }
 }

@@ -10,8 +10,8 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("The Dutchman's Treasure"); //Localize
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}\n'Don't worry, it's not made of plastic'"); //Localize
+            DisplayName.SetDefault("The Dutchman's Treasure");
+            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}\n'Don't worry, it's not made of plastic'");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

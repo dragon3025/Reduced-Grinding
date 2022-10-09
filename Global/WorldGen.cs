@@ -16,7 +16,7 @@ namespace ReducedGrinding.Global
 
 			if (FinalCleanupIndex != -1)
 			{
-				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Rare Chest Loot", 10f)); //Localize
+				tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Rare Chest Loot", 10f));
 			}
 		}
 
@@ -29,7 +29,7 @@ namespace ReducedGrinding.Global
 				if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
 					return;
 
-				progress.Message = "Adding Non-Existing Rare Chest Loot"; //Localize
+				progress.Message = "Adding Non-Existing Rare Chest Loot";
 
 				//TO-DO 1.4.4 will make it easier to get sandstorm in a bottle.
 				List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };

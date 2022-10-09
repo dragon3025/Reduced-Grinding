@@ -15,7 +15,7 @@ namespace ReducedGrinding.Global
             if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
             {
                 tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material" +
-                    "Equip to allow 'Ankh Material' accessories to work from your inventory"));//Localize
+                    "Equip to allow 'Ankh Material' accessories to work from your inventory"));
             }
         }
 
