@@ -4,7 +4,7 @@ Reduced Grinding
 
 Open Source at GitHub. Report issues there or at home page.
 
-This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info).
+This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info and for link to Wiki page).
 
 - Item chances for certain enemy drops. Item values scale to new drop rates by default.
 - Potions for using more bobbers (3-tiers).

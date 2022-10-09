@@ -31,3 +31,4 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 Open Source on Github: https://github.com/dragon3025/Reduced-Grinding
 Want to give Feedback / Report Bug? Post here: https://github.com/dragon3025/Reduced-Grinding/issues
 or on the Home Page: https://forums.terraria.org/index.php?threads/reduced-grinding.51082/
+Wiki: https://terrariamods.fandom.com/wiki/Reduced_Grinding
