@@ -202,7 +202,7 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                //TO-DO 1.4.4 will add this (I don't know about SugarRush though)
+                //TO-DO 1.4.4+ will add this (I don't know about SugarRush though)
                 if (Main.player[i].FindBuffIndex(BuffID.Sharpened) != -1)
                     Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Sharpened)] = 600;
 
@@ -366,7 +366,7 @@ namespace ReducedGrinding.Global
                 #endregion
             }
 
-            if (celestialSigil) //TO-DO Remove once 1.4.4 comes out
+            if (celestialSigil) //TO-DO Remove once 1.4.4+ comes out
             {
                 if (NPC.MoonLordCountdown > 720)
                     NPC.MoonLordCountdown = 720;

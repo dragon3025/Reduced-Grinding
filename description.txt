@@ -16,7 +16,7 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Cancel Invasions when all players go underground.
 - Helpful recipes including Universal Plyon; Universal Pylon recipe has 3 difficulty settings.
 
-====TEMPORARY UNTIL 1.4.4:====
+====TEMPORARY UNTIL 1.4.4+:====
 
 - Celestial Sigil is crafted with 12 of each fragment and summons the Moon Lord in 12 seconds.
 - Pirate drops are twice as likely. Pirate Ships will always drop 1 Golden Furniture item.

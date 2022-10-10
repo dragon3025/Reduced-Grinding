@@ -10,7 +10,7 @@ namespace ReducedGrinding.Global
     {
         public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
         {
-            //TO-DO When 1.4.4 comes out, a lot of stuff may need adjusted or removed (including the Fish Merchant)
+            //TO-DO When 1.4.4+ comes out, a lot of stuff may need adjusted or removed (including the Fish Merchant)
             #region Remove Furniture
             bool furnitureRemoved = false;
             int[] furniturePool = new int[]

@@ -220,52 +220,84 @@ namespace ReducedGrinding.Global
             }
             #endregion
             #region Pirates
-            int[] pirates = new int[] {
-                491,
-                216,
-                215,
-                214,
+            int[] piratesGrunts = new int[] {
+                212,
                 213,
-                212
+                214,
+                215
             };
-            foreach (int i in pirates)
-            if (npc.type == i) //All Human Pirates and Flying Dutchman
+            foreach (int i in piratesGrunts)
             {
-                //
-                //TO-DO 1.4.4 is going to boost pirate drop rates. I added coding to immitate the new rates, but when the udpate comes out: look into the changes and the source code, and modify the coding below. So far, it's unknown exactly how the Flying Dutchman rates will be, but I assume it has to at least be twice as likely (some will go as far as 10 times more likely, but it's unknown what that is).
-
-                int denominator_multiplier = 10;
-                if (npc.type == NPCID.PirateCaptain)
-                    denominator_multiplier = 5;
-                else if (npc.type == NPCID.PirateShip)
-                    denominator_multiplier = 1;
-
+                if (npc.type == i)
+                {
+                    foreach (var rule in npcLoot.Get())
+                    {
+                        if (rule is CommonDrop commonDrop)
+                        {
+                            if (commonDrop.itemId == ItemID.CoinGun)
+                                commonDrop.chanceDenominator = 4000;
+                            if (commonDrop.itemId == ItemID.LuckyCoin)
+                                commonDrop.chanceDenominator = 2000;
+                            if (commonDrop.itemId == ItemID.DiscountCard)
+                                commonDrop.chanceDenominator = 1000;
+                            if (commonDrop.itemId == ItemID.PirateStaff)
+                                commonDrop.chanceDenominator = 1000;
+                            if (commonDrop.itemId == ItemID.GoldRing)
+                                commonDrop.chanceDenominator = 500;
+                            if (commonDrop.itemId == ItemID.Cutlass)
+                                commonDrop.chanceDenominator = 200;
+                        }
+                    }
+                }
+            }
+            if (npc.type == NPCID.PirateCaptain)
+            {
                 foreach (var rule in npcLoot.Get())
                 {
-                    if (rule is CommonDrop commonDrop && (commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.CoinGun || commonDrop.itemId == ItemID.LuckyCoin || commonDrop.itemId == ItemID.DiscountCard || commonDrop.itemId == ItemID.PirateStaff || commonDrop.itemId == ItemID.GoldRing || commonDrop.itemId == ItemID.Cutlass))
-                        commonDrop.chanceDenominator /= 2;
+                    if (rule is CommonDrop commonDrop)
+                    {
+                        if (commonDrop.itemId == ItemID.CoinGun)
+                            commonDrop.chanceDenominator = 1000;
+                        if (commonDrop.itemId == ItemID.LuckyCoin)
+                            commonDrop.chanceDenominator = 500;
+                        if (commonDrop.itemId == ItemID.DiscountCard)
+                            commonDrop.chanceDenominator = 250;
+                        if (commonDrop.itemId == ItemID.PirateStaff)
+                            commonDrop.chanceDenominator = 250;
+                        if (commonDrop.itemId == ItemID.GoldRing)
+                            commonDrop.chanceDenominator = 125;
+                        if (commonDrop.itemId == ItemID.Cutlass)
+                            commonDrop.chanceDenominator = 50;
+                    }
                 }
-
-                if (npc.type == NPCID.PirateShip)
+            }
+            if (npc.type == NPCID.PirateShip)
+            {
+                foreach (var rule in npcLoot.Get())
                 {
-                    npcLoot.Add(ItemDropRule.OneFromOptionsNotScalingWithLuck(1, 1704, 1705, 1710, 1716, 1720, 2133, 2137, 2143, 2147, 2151, 2155, 2238, 2379, 2389, 2405, 2663, 2843, 3885, 3904, 3910)); //Always drop 1 Golden Furniture
-                    var TheDutchmansTresureChance = lootConfig.TheDutchmansTresureChance;
-                    if (TheDutchmansTresureChance > 0)
-                        lootAddMinMaxConditional(ItemType<Items.TheDutchmansTreasure>(), new FirstDutchman(), new int[] { TheDutchmansTresureChance, TheDutchmansTresureChance }); //TO-DO When 1.4.4 comes out, it's possible that I'll adjust these or remove the item.
+                    if (rule is CommonDrop commonDrop)
+                    {
+                        if (commonDrop.itemId == ItemID.CoinGun)
+                            commonDrop.chanceDenominator = 50;
+                        if (commonDrop.itemId == ItemID.LuckyCoin)
+                            commonDrop.chanceDenominator = 15;
+                        if (commonDrop.itemId == ItemID.DiscountCard)
+                            commonDrop.chanceDenominator = 15;
+                        if (commonDrop.itemId == ItemID.PirateStaff)
+                            commonDrop.chanceDenominator = 15;
+                        if (commonDrop.itemId == ItemID.GoldRing)
+                            commonDrop.chanceDenominator = 15;
+                        if (commonDrop.itemId == ItemID.Cutlass)
+                            commonDrop.chanceDenominator = 10;
+                    }
                 }
-
-                lootAdd(ItemID.CoinGun, lootConfig.CoinGunBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.LuckyCoin, lootConfig.LuckyCoinBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.DiscountCard, lootConfig.DiscountCardBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.PirateStaff, lootConfig.PirateStaffBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.GoldRing, lootConfig.GoldRingBaseIncrease * denominator_multiplier);
-                lootAdd(ItemID.Cutlass, lootConfig.CutlassBaseIncrease * denominator_multiplier);
+                lootAdd(ItemID.CoinGun, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease);
             }
             #endregion
             #endregion
 
             #region Drops That Don't Happen in Vanilla
-                #region Boss Drops
+            #region Boss Drops
             if (npc.type == NPCID.DukeFishron)
                 lootAddBasedOnExpertMode(ItemID.TruffleWorm, nonVanillaLootConfig.TrufflewormFromDukeFishron, 0);
 
@@ -276,7 +308,7 @@ namespace ReducedGrinding.Global
                 lootAddBasedOnExpertMode(ItemID.SlimeStaff, nonVanillaLootConfig.SlimeStaffFromSlimeKing, 0);
             #endregion
 
-                #region Non-Boss Drops
+            #region Non-Boss Drops
             if (npc.type == NPCID.DuneSplicerHead)
             {
                 lootAddMinMax(ItemID.DesertFossil, nonVanillaLootConfig.DesertFossilFromDuneSplicer);
@@ -299,7 +331,7 @@ namespace ReducedGrinding.Global
                 lootAdd(ItemID.SandstorminaBottle, nonVanillaLootConfig.SandstormInABottleFromSandElemental);
 
             if (npc.type == NPCID.SpikedIceSlime)
-                lootAdd(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4
+                lootAdd(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4+
 
             if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
                 lootAddMinMax(ItemID.Marble, nonVanillaLootConfig.MarbleFromMarbleCaveEnemies);

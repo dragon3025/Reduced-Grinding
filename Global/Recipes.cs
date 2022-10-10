@@ -212,19 +212,19 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
 
             #region Tinker's Accessory Downgrading
-			int[] fartInAJarAccessory = new int[]
-			{
+            int[] fartInAJarAccessory = new int[]
+            {
                 ItemID.BalloonHorseshoeFart,
                 ItemID.FartInABalloon,
                 ItemID.FartinaJar
-			};
-			
-			foreach (int i in fartInAJarAccessory)
+            };
+
+            foreach (int i in fartInAJarAccessory)
             {
-				recipe = Recipe.Create(ItemID.CloudinaBottle);
-				recipe.AddIngredient(i);
-				recipe.AddTile(TileID.TinkerersWorkbench);
-				recipe.Register();
+                recipe = Recipe.Create(ItemID.CloudinaBottle);
+                recipe.AddIngredient(i);
+                recipe.AddTile(TileID.TinkerersWorkbench);
+                recipe.Register();
             }
 
             recipe = Recipe.Create(ItemID.HoneyComb);
@@ -242,14 +242,14 @@ namespace ReducedGrinding.GlobalRecipes
                 ItemID.WhiteHorseshoeBalloon,
                 ItemID.YellowHorseshoeBalloon
             };
-			
-			foreach (int i in horseshoeAccessory)
+
+            foreach (int i in horseshoeAccessory)
             {
-				recipe = Recipe.Create(ItemID.LuckyHorseshoe);
-				recipe.AddIngredient(i);
-				recipe.AddTile(TileID.TinkerersWorkbench);
-				recipe.Register();
-			}
+                recipe = Recipe.Create(ItemID.LuckyHorseshoe);
+                recipe.AddIngredient(i);
+                recipe.AddTile(TileID.TinkerersWorkbench);
+                recipe.Register();
+            }
 
             int[] altBalloons = new int[]
             {
@@ -258,14 +258,14 @@ namespace ReducedGrinding.GlobalRecipes
                 ItemID.FartInABalloon,
                 ItemID.BalloonHorseshoeFart
             };
-			
-			foreach (int i in altBalloons)
-			{
-				recipe = Recipe.Create(ItemID.ShinyRedBalloon);
-				recipe.AddIngredient(i);
-				recipe.AddTile(TileID.TinkerersWorkbench);
-				recipe.Register();
-			}
+
+            foreach (int i in altBalloons)
+            {
+                recipe = Recipe.Create(ItemID.ShinyRedBalloon);
+                recipe.AddIngredient(i);
+                recipe.AddTile(TileID.TinkerersWorkbench);
+                recipe.Register();
+            }
 
             recipe = Recipe.Create(ItemID.SandstorminaBalloon);
             recipe.AddIngredient(ItemID.YellowHorseshoeBalloon);
@@ -303,17 +303,17 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.BlueBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
-			
+
             recipe = Recipe.Create(ItemID.GreenBrick);
             recipe.AddIngredient(ItemID.PinkBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
-			
+
             recipe = Recipe.Create(ItemID.PinkBrick);
             recipe.AddIngredient(ItemID.BlueBrick);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
-			
+
             recipe = Recipe.Create(ItemID.PinkBrick);
             recipe.AddIngredient(ItemID.GreenBrick);
             recipe.AddTile(TileID.CrystalBall);
@@ -532,7 +532,7 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddIngredient(ItemID.DungeonDesertKey);
                 recipe.AddTile(TileID.CrystalBall);
                 recipe.Register();
-            } 
+            }
             #endregion
             #endregion
         }
@@ -544,7 +544,7 @@ namespace ReducedGrinding.GlobalRecipes
             {
                 Recipe recipe = Main.recipe[i];
 
-                if (recipe.HasResult(ItemID.CelestialSigil)) //Easier Celestial Sigil TO-DO (Remove once 1.4.4 comes out).
+                if (recipe.HasResult(ItemID.CelestialSigil)) //Easier Celestial Sigil TO-DO (Remove once 1.4.4+ comes out).
                 {
                     int[] fragments = new int[4]
                     {

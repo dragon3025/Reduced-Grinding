@@ -156,52 +156,12 @@ namespace ReducedGrinding
         #endregion
 
         #region Pirates
-        [Header("Pirate Loot (Before the additional chance from the settings below, items are set to drop twice as likely. Pirate ships will always drop 1 Golden Furniture item. This is done in attempt to imitate the upcoming 1.4.4 update)")] //TO-DO Remove info about the 1.4.4 mimic when that update comes out.
+        [Header("Pirate Loot (this mod changes the Pirate drop rates to match 1.4.4+)")] //TO-DO remove this info when 1.4.4+ comes out.
 
-        [Label("[i:905] Coin Gun (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
+        [Label("[i:905] Coin Gun From Flying Dutchman")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CoinGunBaseIncrease;
-
-        [Label("[i:672] Cutlass (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CutlassBaseIncrease;
-
-        [Label("[i:854] Discount Card (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int DiscountCardBaseIncrease;
-
-        [Label("[i:3033] Gold Ring (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int GoldRingBaseIncrease;
-
-        [Label("[i:855] Lucky Coin (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LuckyCoinBaseIncrease;
-
-        [Label("[i:2584] Pirate Staff (Hover for more info)")]
-        [Tooltip("This is multiplied by 5 for Pirate Captain and 20 for Regular Pirates")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PirateStaffBaseIncrease;
-
-        [Label("[i:ReducedGrinding/TheDutchmansTreasure] The Dutchman's Treasure Items")]
-        [Tooltip("" +
-            "This grab bag will drop from the 1st killed Flying Dutchman for each Pirate Invasion. It drops rare\n" +
-            "pirate items and 2 Gold Coins. Chance for each item is 1 / configuration_setting. Set to 0, to\n" +
-            "disable this item.")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int TheDutchmansTresureChance;
         #endregion
 
         #region Slime Staff
@@ -286,12 +246,12 @@ namespace ReducedGrinding
         [Label("[i:857] Sandstorm in a Bottle from Sand Elemental")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int SandstormInABottleFromSandElemental; //TO-DO 1.4.4 will make it easier to get this.
+        public int SandstormInABottleFromSandElemental; //TO-DO 1.4.4+ will make it easier to get this.
 
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
         [DefaultValue(60)]
-        public int SnowballLauncherFromSpikedIceSlime; //TO-DO This might not be needed it 1.4.4
+        public int SnowballLauncherFromSpikedIceSlime; //TO-DO This might not be needed it 1.4.4+
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
@@ -782,7 +742,7 @@ namespace ReducedGrinding
             "The amount of enemies to lower their shield. If world difficulty is normal, this\n" +
             "is multiplied by (2 / 3).")]
         [Range(1, 150)]
-        [DefaultListValue(150)] //TO-DO 1.4.4 May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
+        [DefaultListValue(150)] //TO-DO 1.4.4+ May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
         public int LunarPillarShieldHealth;
 
         [Label("Merchant Sells [i:410] Miner's Shirt and [i:411] Miner's Pants")]

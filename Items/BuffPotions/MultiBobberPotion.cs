@@ -1,8 +1,8 @@
+using ReducedGrinding.Global;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReducedGrinding.Global;
 
 namespace ReducedGrinding.Items.BuffPotions
 {

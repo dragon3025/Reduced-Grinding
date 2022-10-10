@@ -115,7 +115,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             };
             foreach (int i in goodieBagItems)
                 if (item.type == i)
-                FindNewValue(0.0125f, GetInstance<AEnemyLootConfig>().GoodieBagIncrease);
+                    FindNewValue(0.0125f, GetInstance<AEnemyLootConfig>().GoodieBagIncrease);
 
             if (item.type == ItemID.KOCannon)
                 FindNewValue(0.001f, GetInstance<AEnemyLootConfig>().KOCannonIncrease);
@@ -187,18 +187,6 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 
             if (item.type == ItemID.CoinGun)
                 FindNewValue(0.0025f, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease);
-
-            if (item.type == ItemID.Cutlass)
-                FindNewValue(0.1f, GetInstance<AEnemyLootConfig>().CutlassBaseIncrease);
-
-            if (item.type == ItemID.DiscountCard)
-                FindNewValue(0.01f, GetInstance<AEnemyLootConfig>().DiscountCardBaseIncrease);
-
-            if (item.type == ItemID.GoldRing)
-                FindNewValue(0.02f, GetInstance<AEnemyLootConfig>().GoldRingBaseIncrease);
-
-            if (item.type == ItemID.PirateStaff)
-                FindNewValue(0.01f, GetInstance<AEnemyLootConfig>().PirateStaffBaseIncrease);
 
             if (item.type == ItemID.SlimeStaff)
             {
