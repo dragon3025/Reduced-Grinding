@@ -1,4 +1,4 @@
-using ReducedGrinding.Common.ItemDropRules.Conditions;
+using System;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
@@ -17,76 +17,46 @@ namespace ReducedGrinding.Global
 
         public override void ModifyNPCLoot(NPC npc, Terraria.ModLoader.NPCLoot npcLoot)
         {
-            #region Functions
-            void lootAdd(int itemType, int denominator)
-            {
-                if (denominator > 0)
-                    npcLoot.Add(ItemDropRule.Common(itemType, denominator));
-            }
-
-            void lootAddMinMax(int itemType, int[] config)
-            {
-                if (config.Max() > 0)
-                    npcLoot.Add(ItemDropRule.Common(itemType, 1, config.Min(), config.Max()));
-            }
-
-            void lootAddBasedOnExpertMode(int itemType, int normalDenominator, int expertDenominator)
-            {
-                if (normalDenominator > 0 || expertDenominator > 0)
-                {
-                    IItemDropRule normalDrop = ItemDropRule.Common(itemType, normalDenominator);
-                    IItemDropRule expertDrop = ItemDropRule.Common(itemType, expertDenominator);
-
-                    if (normalDenominator == 0)
-                        normalDrop = ItemDropRule.DropNothing();
-
-                    if (expertDenominator == 0)
-                        expertDrop = ItemDropRule.DropNothing();
-
-                    if (normalDenominator > 0)
-                        npcLoot.Add(new DropBasedOnExpertMode(normalDrop, expertDrop));
-                }
-            }
-
-            void lootAddMinMaxConditional(int itemType, IItemDropRuleCondition condition, int[] config)
-            {
-                if (config.Max() > 0 && config.Min() >= 0)
-                {
-                    IItemDropRule conditionalRule = new LeadingConditionRule(condition);
-
-                    IItemDropRule rule = ItemDropRule.Common(itemType, 1, config.Min(), config.Max());
-
-                    conditionalRule.OnSuccess(rule);
-
-                    npcLoot.Add(conditionalRule);
-                }
-            }
-            #endregion
-
-            //Loot Removing Experimenting (so far not completely successful).
-            //Conditions.NotExpert notExpert = new Conditions.NotExpert();
-            //LeadingConditionRule notExpertLCR = new LeadingConditionRule(new Conditions.NotExpert());
             #region Boss Drops
-            if (npc.type == NPCID.DukeFishron)
-                lootAddBasedOnExpertMode(ItemID.FishronWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
-            /*if (npc.type == NPCID.DukeFishron && lootConfig.EmpressAndFishronWingsIncrease > 0)
+            if (npc.type == NPCID.DukeFishron && lootConfig.EmpressAndFishronWings > 0)
             {
-                //npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.FishronWings);
-                npcLoot.Add(new ItemDropWithConditionRule(ItemID.FishronWings, lootConfig.EmpressAndFishronWingsIncrease, 1, 1, notExpert));
-            }*/
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.FishronWings)
+                        drop.chanceDenominator = (int)(lootConfig.EmpressAndFishronWings * 3f / 2f);
+                }
+            }
             if (npc.type == NPCID.HallowBoss)
             {
-                lootAddBasedOnExpertMode(ItemID.RainbowWings, (int)(lootConfig.EmpressAndFishronWingsIncrease * 3f / 2f), 0);
-                lootAddBasedOnExpertMode(ItemID.SparkleGuitar, (int)(lootConfig.StellarTuneIncrease * 5f / 2f), 0);
-                lootAddBasedOnExpertMode(ItemID.RainbowCursor, lootConfig.RainbowCursor, 0);
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is LeadingConditionRule drop)
+                    {
+                        foreach (var chainedRule in drop.ChainedRules)
+                        {
+                            if (chainedRule.RuleToChain is CommonDrop commonDrop)
+                            {
+                                if (commonDrop.itemId == ItemID.RainbowWings && lootConfig.EmpressAndFishronWings > 0)
+                                    commonDrop.chanceDenominator = (int)(lootConfig.EmpressAndFishronWings * 3f / 2f);
+
+                                if (commonDrop.itemId == ItemID.SparkleGuitar && lootConfig.StellarTune > 0)
+                                    commonDrop.chanceDenominator = (int)(lootConfig.StellarTune * 5f / 2f);
+
+                                if (commonDrop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
+                                    commonDrop.chanceDenominator = lootConfig.RainbowCursor;
+                            }
+                        }
+                    }
+                }
             }
-            if (npc.type == NPCID.EyeofCthulhu)
-                lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(lootConfig.BinocularsIncrease * 4f / 3f), 0);
-            /*if (npc.type == NPCID.EyeofCthulhu && lootConfig.BinocularsIncrease > 0)
+            if (npc.type == NPCID.EyeofCthulhu && lootConfig.Binoculars > 0)
             {
-                //npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.Binoculars);
-                lootAddBasedOnExpertMode(ItemID.Binoculars, (int)(lootConfig.BinocularsIncrease * 4f / 3f), 0);
-            }*/
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.Binoculars)
+                        drop.chanceDenominator = (int)(lootConfig.Binoculars * 4f / 3f);
+                }
+            }
             #endregion
 
             #region Non-Boss Drops
@@ -103,39 +73,129 @@ namespace ReducedGrinding.Global
                 npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
             }
 
-            if (npc.type == NPCID.DyeTrader)
-                lootAdd(ItemID.DyeTradersScimitar, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.Painter)
-                lootAdd(ItemID.PainterPaintballGun, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.DD2Bartender)
-                lootAdd(ItemID.AleThrowingGlove, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.Stylist)
-                lootAdd(ItemID.StylistKilLaKillScissorsIWish, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.Mechanic)
-                lootAdd(ItemID.CombatWrench, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.TaxCollector)
-                lootAdd(ItemID.TaxCollectorsStickOfDoom, lootConfig.TownNPCWeapons);
-            if (npc.type == NPCID.Princess)
-                lootAdd(ItemID.PrincessWeapon, lootConfig.TownNPCWeapons);
+            if (lootConfig.TownNPCWeapons > 0)
+            {
+                int[] otherTownNPCs = new int[]
+                {
+                    NPCID.DyeTrader,
+                    NPCID.Painter,
+                    NPCID.DD2Bartender,
+                    NPCID.Stylist,
+                    NPCID.Mechanic,
+                    NPCID.TaxCollector,
+                    NPCID.Princess
+                }; //Excluding Party Girl
+                foreach (int i in otherTownNPCs)
+                {
+                    if (npc.type == i)
+                    {
+                        foreach (var rule in npcLoot.Get())
+                        {
+                            if (rule is CommonDrop drop) //The all drop only 1 item, so we don't need to test the itemID.
+                                drop.chanceDenominator = lootConfig.TownNPCWeapons;
+                        }
+                    }
+                }
+            }
             #endregion
 
             #region Basic NPCs
-            if (npc.type == NPCID.SkeletonArcher)
-                lootAdd(ItemID.Marrow, lootConfig.MarrowIncrease);
-            if (npc.type == NPCID.ArmoredSkeleton)
-                lootAdd(ItemID.BeamSword, lootConfig.BeamSwordIncrease);
-            if (npc.type == NPCID.FireImp)
-                lootAdd(ItemID.PlumbersHat, lootConfig.PlumbersHatIncrease);
-            if (npc.type == NPCID.ChaosElemental)
-                lootAddBasedOnExpertMode(ItemID.RodofDiscord, (int)(lootConfig.RodofDiscordIncrease * 5f / 4f), lootConfig.RodofDiscordIncrease);
-            if (npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake)
-                lootAdd(ItemID.LizardEgg, lootConfig.LizardEggIncrease);
-            //netID is used for slimes because weird duplicate loot issues involving their variants (negative IDs) happen. Looking at Terraria source code, slime drops is the only time they use coding to remove duplicate drops.
-            if (npc.netID == NPCID.Pinky)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromPinkyIncrease * 10f / 7f), lootConfig.SlimeStaffFromPinkyIncrease);
-            if (npc.netID == NPCID.SandSlime)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromSandSlimeIncrease * 10f / 7f), lootConfig.SlimeStaffFromSandSlimeIncrease);
-            int[] otherSlimeStaffSlimes = new int[] {
+            if (npc.type == NPCID.SkeletonArcher && lootConfig.Marrow > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.Marrow)
+                        drop.chanceDenominator = lootConfig.Marrow;
+                }
+            }
+            if (npc.type == NPCID.ArmoredSkeleton && lootConfig.BeamSword > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.BeamSword)
+                        drop.chanceDenominator = lootConfig.BeamSword;
+                }
+            }
+            if (npc.type == NPCID.FireImp && lootConfig.PlumbersHat > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.PlumbersHat)
+                        drop.chanceDenominator = lootConfig.PlumbersHat;
+                }
+            }
+
+            if (npc.type == NPCID.ChaosElemental && lootConfig.RodofDiscord > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is LeadingConditionRule drop)
+                    {
+                        if (drop.condition is Conditions.TenthAnniversaryIsUp tenthAnniversaryIsUp)
+                        {
+                            foreach (var chainedRule in drop.ChainedRules)
+                            {
+                                if (chainedRule.RuleToChain is CommonDrop commonDrop)
+                                {
+                                    if (commonDrop.itemId == ItemID.RodofDiscord)
+                                        commonDrop.chanceDenominator = Math.Max(1, (int)(lootConfig.RodofDiscord / 4f));
+                                }
+                            }
+                        }
+                        if (drop.condition is Conditions.TenthAnniversaryIsNotUp tenthAnniversaryIsNotUp)
+                        {
+                            foreach (var chainedRule in drop.ChainedRules)
+                            {
+                                if (chainedRule.RuleToChain is DropBasedOnExpertMode dropBasedOnExpertMode)
+                                {
+                                    if (dropBasedOnExpertMode.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.RodofDiscord)
+                                        expertDrop.chanceDenominator = lootConfig.RodofDiscord;
+                                    if (dropBasedOnExpertMode.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.RodofDiscord)
+                                        normalDrop.chanceDenominator = (int)(lootConfig.RodofDiscord * 5f / 4f);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if ((npc.type == NPCID.Lihzahrd || npc.type == NPCID.LihzahrdCrawler || npc.type == NPCID.FlyingSnake) && lootConfig.LizardEgg > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.LizardEgg)
+                        drop.chanceDenominator = lootConfig.LizardEgg;
+                }
+            }
+            //Negative IDs is used for slimes because weird duplicate loot issues involving their variants (negative IDs) happen. Looking at Terraria source code, slime drops is the only time they use coding to remove duplicate drops.
+            if (npc.netID == NPCID.Pinky && lootConfig.SlimeStaffFromPinky > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is DropBasedOnExpertMode drop)
+                    {
+                        if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                            expertDrop.chanceDenominator = lootConfig.SlimeStaffFromPinky;
+                        if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                            normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromPinky * 10f / 7f);
+                    }
+                }
+            }
+            if (npc.netID == NPCID.SandSlime && lootConfig.SlimeStaffFromSandSlime > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is DropBasedOnExpertMode drop)
+                    {
+                        if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                            expertDrop.chanceDenominator = lootConfig.SlimeStaffFromSandSlime;
+                        if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                            normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromSandSlime * 10f / 7f);
+                    }
+                }
+            }
+            if (lootConfig.SlimeStaffFromOtherSlimes > 0)
+            {
+                int[] otherSlimeStaffSlimes = new int[] {
                 -6,
                 -7,
                 -8,
@@ -159,67 +219,164 @@ namespace ReducedGrinding.Global
                 659,
                 660
             };
-            foreach (int i in otherSlimeStaffSlimes)
-            {
-                if (npc.netID == i)
-                    lootAddBasedOnExpertMode(ItemID.SlimeStaff, (int)(lootConfig.SlimeStaffFromOtherSlimesIncrease * 10f / 7), lootConfig.SlimeStaffFromOtherSlimesIncrease);
+                foreach (int i in otherSlimeStaffSlimes)
+                {
+                    if (npc.netID == i)
+                    {
+                        foreach (var rule in npcLoot.Get())
+                        {
+                            if (rule is DropBasedOnExpertMode drop)
+                            {
+                                if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                                    expertDrop.chanceDenominator = lootConfig.SlimeStaffFromOtherSlimes;
+                                if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                                    normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromOtherSlimes * 10f / 7f);
+                            }
+                        }
+                    }
+                }
             }
-            if (npc.type == NPCID.SkeletonSniper)
+            if (npc.type == NPCID.SkeletonSniper && lootConfig.RifleScopeAndSniperRifle > 0)
             {
-                lootAddBasedOnExpertMode(ItemID.RifleScope, (int)(lootConfig.RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), lootConfig.RifleScopeAndSniperRifleIncrease);
-                lootAddBasedOnExpertMode(ItemID.SniperRifle, (int)(lootConfig.RifleScopeAndSniperRifleIncrease * (22f / 144f / (1f / 12f))), lootConfig.RifleScopeAndSniperRifleIncrease);
+                npcLoot.RemoveWhere(
+                    rule => rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDropWithRerolls drop2 && (drop2.itemId == ItemID.RifleScope || drop2.itemId == ItemID.SniperRifle));
+
+                int expertDenom = lootConfig.RifleScopeAndSniperRifle;
+                int normalDenom = (int)(expertDenom * (22f / 144f / (1f / 12f)));
+
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.RifleScope, normalDenom), new CommonDrop(ItemID.RifleScope, expertDenom)));
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.SniperRifle, normalDenom), new CommonDrop(ItemID.SniperRifle, expertDenom)));
             }
-            if (npc.type == NPCID.TacticalSkeleton)
+            if (npc.type == NPCID.TacticalSkeleton && lootConfig.SWATHelmetAndTacticalShotgun > 0)
             {
-                lootAddBasedOnExpertMode(ItemID.SWATHelmet, (int)(lootConfig.SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), lootConfig.SWATHelmetAndTacticalShotgunIncrease);
-                lootAddBasedOnExpertMode(ItemID.TacticalShotgun, (int)(lootConfig.SWATHelmetAndTacticalShotgunIncrease * (23f / 144f / (1f / 12f))), lootConfig.SWATHelmetAndTacticalShotgunIncrease);
+                npcLoot.RemoveWhere(
+                    rule => rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDropWithRerolls drop2 && (drop2.itemId == ItemID.SWATHelmet || drop2.itemId == ItemID.TacticalShotgun));
+
+                int expertDenom = lootConfig.SWATHelmetAndTacticalShotgun;
+                int normalDenom = (int)(expertDenom * (22f / 144f / (1f / 12f)));
+
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.SWATHelmet, normalDenom), new CommonDrop(ItemID.SWATHelmet, expertDenom)));
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.TacticalShotgun, normalDenom), new CommonDrop(ItemID.TacticalShotgun, expertDenom)));
             }
-            if (npc.type == NPCID.SkeletonCommando)
-                lootAddBasedOnExpertMode(ItemID.RocketLauncher, (int)(lootConfig.RocketLauncherIncrease * (35f / 324f / (1f / 18f))), lootConfig.RocketLauncherIncrease);
+            if (npc.type == NPCID.SkeletonCommando && lootConfig.RocketLauncher > 0)
+            {
+                npcLoot.RemoveWhere(
+                    rule => rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDropWithRerolls drop2 && drop2.itemId == ItemID.RocketLauncher);
+
+                int expertDenom = lootConfig.RocketLauncher;
+                int normalDenom = (int)(expertDenom * (35f / 324f / (1f / 18f)));
+
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.RocketLauncher, normalDenom), new CommonDrop(ItemID.RocketLauncher, expertDenom)));
+            }
             if (npc.type == NPCID.Paladin)
             {
-                lootAddBasedOnExpertMode(ItemID.PaladinsHammer, (int)(lootConfig.PaladinsHammerIncrease * (22f / 225f / (1f / 15f))), lootConfig.PaladinsHammerIncrease);
-                lootAddBasedOnExpertMode(ItemID.PaladinsShield, (int)(lootConfig.PaladinsShieldIncrease * (763f / 5625f / (7f / 75f))), lootConfig.PaladinsShieldIncrease);
+                if (lootConfig.PaladinsHammer > 0)
+                {
+                    npcLoot.RemoveWhere(
+                    rule => rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDropWithRerolls drop2 && drop2.itemId == ItemID.PaladinsHammer);
+
+                    int expertDenom = lootConfig.PaladinsHammer;
+                    int normalDenom = (int)(expertDenom * (22f / 225f / (1f / 15f)));
+
+                    npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.PaladinsHammer, normalDenom), new CommonDrop(ItemID.PaladinsHammer, expertDenom)));
+                }
+                if (lootConfig.PaladinsShield > 0)
+                {
+                    npcLoot.RemoveWhere(
+                    rule => rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDropWithRerolls drop2 && drop2.itemId == ItemID.PaladinsShield);
+
+                    int expertDenom = lootConfig.PaladinsShield;
+                    int normalDenom = (int)(expertDenom * (763f / 5625f / (7f / 75f)));
+
+                    npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.PaladinsShield, normalDenom), new CommonDrop(ItemID.PaladinsShield, expertDenom)));
+                }
             }
-            if (npc.type == NPCID.EaterofSouls || npc.type == NPCID.LittleEater || npc.type == NPCID.BigEater || npc.type == NPCID.Corruptor)
-                lootAdd(ItemID.RottenChunk, lootConfig.RottenChunkAndVertebra);
-            if (npc.type == NPCID.DevourerHead || npc.type == NPCID.DevourerBody || npc.type == NPCID.DevourerBody)
+
+
+            if (lootConfig.RottenChunkAndVertebra > 0)
             {
-                if (lootConfig.RottenChunkAndVertebra > 0)
-                    npcLoot.Add(ItemDropRule.Common(ItemID.RottenChunk, lootConfig.RottenChunkAndVertebra, 1, 2));
-            }
-            int[] vertebraDroppers = new int[]
-            {
+                int[] rottenChunkNPCs = new int[]
+                {
+                    6,
+                    7,
+                    8,
+                    9,
+                    94
+                };
+                foreach (int i in rottenChunkNPCs)
+                {
+                    if (npc.type == i)
+                    {
+                        foreach (var rule in npcLoot.Get())
+                        {
+                            if (rule is CommonDrop drop && drop.itemId == ItemID.RottenChunk)
+                            {
+                                drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
+                            }
+                        }
+                    }
+                }
+
+                int[] vertebraNPCs = new int[]
+                {
                 181, 173, 239, 182, 240
-            };
-            foreach (int i in vertebraDroppers)
-            {
-                if (npc.type == i)
-                    lootAdd(ItemID.Vertebrae, lootConfig.RottenChunkAndVertebra);
+                };
+                foreach (int i in vertebraNPCs)
+                {
+                    if (npc.type == i)
+                    {
+                        if (npc.type == i)
+                        {
+                            foreach (var rule in npcLoot.Get())
+                            {
+                                if (rule is CommonDrop drop && drop.itemId == ItemID.Vertebrae)
+                                {
+                                    drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            int[] demonEyes = new int[] {
-                190,
-                191,
-                192,
-                193,
-                194,
-                2,
-                317,
-                318
-                -38,
-                -39,
-                -40,
-                -41,
-                -42,
-                -43
-            };
-            foreach (int i in demonEyes)
+            if (lootConfig.Lens > 0)
             {
-                if (npc.type == i)
-                    lootAdd(ItemID.Lens, lootConfig.LensIncrease);
+                int[] demonEyes = new int[]
+                {
+                    133,
+                    190,
+                    191,
+                    192,
+                    193,
+                    194,
+                    2,
+                    317,
+                    318
+                };
+                foreach (int i in demonEyes)
+                {
+                    if (npc.type == NPCID.WanderingEye)
+                    {
+                        foreach (var rule in npcLoot.Get())
+                        {
+                            if (rule is CommonDrop drop)
+                            {
+                                foreach (var chainedRule in drop.ChainedRules)
+                                {
+                                    if (chainedRule.RuleToChain is CommonDrop drop2)
+                                    {
+                                        if (drop2.itemId == ItemID.Lens)
+                                            drop2.chanceDenominator = lootConfig.Lens;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             #endregion
+
             #region Pirates
+            //TO-DO When 1.4.4+ comes out for tModLoader, remove all of this except for the Flying Dutchman Coingun configuration.
             int[] piratesGrunts = new int[] {
                 212,
                 213,
@@ -278,7 +435,12 @@ namespace ReducedGrinding.Global
                     if (rule is CommonDrop commonDrop)
                     {
                         if (commonDrop.itemId == ItemID.CoinGun)
-                            commonDrop.chanceDenominator = 50;
+                        {
+                            if (lootConfig.CoinGun > 0)
+                                commonDrop.chanceDenominator = lootConfig.CoinGun;
+                            else
+                                commonDrop.chanceDenominator = 50;
+                        }
                         if (commonDrop.itemId == ItemID.LuckyCoin)
                             commonDrop.chanceDenominator = 15;
                         if (commonDrop.itemId == ItemID.DiscountCard)
@@ -291,109 +453,72 @@ namespace ReducedGrinding.Global
                             commonDrop.chanceDenominator = 10;
                     }
                 }
-                lootAdd(ItemID.CoinGun, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease);
             }
             #endregion
             #endregion
 
             #region Drops That Don't Happen in Vanilla
             #region Boss Drops
-            if (npc.type == NPCID.DukeFishron)
-                lootAddBasedOnExpertMode(ItemID.TruffleWorm, nonVanillaLootConfig.TrufflewormFromDukeFishron, 0);
+            if (npc.type == NPCID.DukeFishron && nonVanillaLootConfig.TrufflewormFromDukeFishron > 0)
+                npcLoot.Add(new CommonDrop(ItemID.TruffleWorm, nonVanillaLootConfig.TrufflewormFromDukeFishron));
 
-            if (npc.type == NPCID.Plantera)
-                lootAdd(ItemType<Items.PlanteraSap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera);
+            if (npc.type == NPCID.Plantera && GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera > 0)
+                npcLoot.Add(new CommonDrop(ItemType<Items.PlanteraSap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera));
 
-            if (npc.type == NPCID.KingSlime)
-                lootAddBasedOnExpertMode(ItemID.SlimeStaff, nonVanillaLootConfig.SlimeStaffFromSlimeKing, 0);
+            if (npc.type == NPCID.KingSlime && nonVanillaLootConfig.SlimeStaffFromSlimeKing > 0)
+                npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.SlimeStaff, nonVanillaLootConfig.SlimeStaffFromSlimeKing), new DropNothing()));
             #endregion
 
             #region Non-Boss Drops
-            if (npc.type == NPCID.DuneSplicerHead)
-            {
-                lootAddMinMax(ItemID.DesertFossil, nonVanillaLootConfig.DesertFossilFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), nonVanillaLootConfig.SandFromDuneSplicer);
-                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), nonVanillaLootConfig.SandFromDuneSplicer);
-            }
+            //TO-DO in 1.4.4+ Flinx spawn easier. Test this out (both pre-hardmode and hardmode).
+            if (npc.type == NPCID.SpikedIceSlime && nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime > 0)
+                npcLoot.Add(new CommonDrop(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime));
 
-            if (npc.type == NPCID.TombCrawlerHead)
-            {
-                lootAddMinMax(ItemID.DesertFossil, nonVanillaLootConfig.DesertFossilFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.SandBlock, new ZoneNonInfection(), nonVanillaLootConfig.SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.EbonsandBlock, new ZoneCorruptnNoOtherInfection(), nonVanillaLootConfig.SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.CrimsandBlock, new ZoneCrimsonNoOtherInfection(), nonVanillaLootConfig.SandFromTombCrawler);
-                lootAddMinMaxConditional(ItemID.PearlsandBlock, new ZoneHallow(), nonVanillaLootConfig.SandFromTombCrawler);
-            }
-
-            if (npc.type == NPCID.SandElemental)
-                lootAdd(ItemID.SandstorminaBottle, nonVanillaLootConfig.SandstormInABottleFromSandElemental);
-
-            if (npc.type == NPCID.SpikedIceSlime)
-                lootAdd(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime); //TO-DO This might not be needed it 1.4.4+
-
-            if (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa)
-                lootAddMinMax(ItemID.Marble, nonVanillaLootConfig.MarbleFromMarbleCaveEnemies);
+            if (nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Max() > 0 && (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa))
+                npcLoot.Add(new CommonDrop(ItemID.Marble, 1, nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Min(), nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Max()));
             #endregion
             #endregion
         }
 
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
-            //Non-Boss Loot
-            int config = lootConfig.GoodieBagIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(1774, config, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            globalLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.BloodyMachete);
+            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BloodyMachete, 1, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BladedGlove, 1, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
 
-            config = lootConfig.PresentIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(ItemID.Present, config, 1, 1, new Conditions.XmasPresentDrop()));
-
-            config = lootConfig.KOCannonIncrease;
-            if (config > 0)
-                globalLoot.Add(new ItemDropWithConditionRule(1314, config, 1, 1, new Conditions.KOCannon()));
-
-            config = lootConfig.BiomeKeyIncrease;
-            if (config > 0)
+            foreach (var rule in globalLoot.Get())
             {
-                globalLoot.Add(new ItemDropWithConditionRule(1533, config, 1, 1, new Conditions.JungleKeyCondition()));
-                globalLoot.Add(new ItemDropWithConditionRule(1534, config, 1, 1, new Conditions.CorruptKeyCondition()));
-                globalLoot.Add(new ItemDropWithConditionRule(1535, config, 1, 1, new Conditions.CrimsonKeyCondition()));
-                globalLoot.Add(new ItemDropWithConditionRule(1536, config, 1, 1, new Conditions.HallowKeyCondition()));
-                globalLoot.Add(new ItemDropWithConditionRule(1537, config, 1, 1, new Conditions.FrozenKeyCondition()));
-                globalLoot.Add(new ItemDropWithConditionRule(4714, config, 1, 1, new Conditions.DesertKeyCondition()));
-            }
-
-            config = lootConfig.BloodyMacheteAndBladedGloveIncrease;
-            if (config > 0)
-            {
-                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1825, config));
-                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.HalloweenWeapons(), 1827, config));
-            }
-
-            config = lootConfig.SoulOfLightAndNight;
-            if (config > 0)
-            {
-                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfLight(), ItemID.SoulofLight, config));
-                globalLoot.Add(ItemDropRule.ByCondition(new Conditions.SoulOfNight(), ItemID.SoulofNight, config));
-            }
-        }
-
-        public override void OnKill(NPC npc)
-        {
-            if (npc.type == NPCID.PirateShip)
-            {
-                if (!Update.dutchManKilled)
+                if (rule is ItemDropWithConditionRule drop)
                 {
-                    Update.dutchManKilled = true;
-                    if (Main.netMode == NetmodeID.Server)
+                    if (drop.itemId == ItemID.GoodieBag && lootConfig.GoodieBag > 0)
+                        drop.chanceDenominator = lootConfig.GoodieBag;
+
+                    if (drop.itemId == ItemID.Present && lootConfig.Present > 0)
+                        drop.chanceDenominator = lootConfig.Present;
+
+                    if (drop.itemId == ItemID.KOCannon && lootConfig.KOCannon > 0)
+                        drop.chanceDenominator = lootConfig.KOCannon;
+
+                    if (lootConfig.BiomeKey > 0)
                     {
-                        ModPacket packet = Mod.GetPacket();
-                        packet.Write((byte)ReducedGrinding.MessageType.dutchmanKilled);
-                        packet.Write(Update.dutchManKilled);
-                        packet.Send();
+                        int[] biomeKeys = new int[]
+                        {
+                            1533,
+                            1534,
+                            1535,
+                            1536,
+                            1537,
+                            4714
+                        };
+                        foreach (int i in biomeKeys)
+                        {
+                            if (drop.itemId == i)
+                                drop.chanceDenominator = lootConfig.BiomeKey;
+                        }
                     }
+
+                    if (lootConfig.SoulOfLightAndNight > 0 && (drop.itemId == ItemID.SoulofLight || drop.itemId == ItemID.SoulofNight))
+                        drop.chanceDenominator = lootConfig.SoulOfLightAndNight;
                 }
             }
         }

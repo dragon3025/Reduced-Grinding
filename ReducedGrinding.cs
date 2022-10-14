@@ -48,8 +48,7 @@ namespace ReducedGrinding
             instantInvasion,
             celestialSigil,
             travelingMerchantDiceRolls,
-            timeHiddenFromInvasion,
-            dutchmanKilled
+            timeHiddenFromInvasion
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -88,9 +87,6 @@ namespace ReducedGrinding
                 case MessageType.timeHiddenFromInvasion:
                     Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
                     break;
-                case MessageType.dutchmanKilled:
-                    Global.Update.dutchManKilled = reader.ReadBoolean();
-                    break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
@@ -113,7 +109,6 @@ namespace ReducedGrinding
             Global.Update.invasionWithGreaterBattleBuff = false;
             Global.Update.invasionWithSuperBattleBuff = false;
             Global.Update.travelingMerchantDiceRolls = 0;
-            Global.Update.dutchManKilled = false;
         }
 
         public override void OnWorldLoad()
@@ -124,7 +119,6 @@ namespace ReducedGrinding
             Global.Update.invasionWithGreaterBattleBuff = false;
             Global.Update.invasionWithSuperBattleBuff = false;
             Global.Update.travelingMerchantDiceRolls = 0;
-            Global.Update.dutchManKilled = false;
         }
 
         public override void SaveWorldData(TagCompound tag)
@@ -135,7 +129,6 @@ namespace ReducedGrinding
             tag["invasionWithGreaterBattleBuff"] = Global.Update.invasionWithGreaterBattleBuff;
             tag["invasionWithSuperBattleBuff"] = Global.Update.invasionWithSuperBattleBuff;
             tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
-            tag["dutchmanKillsV2"] = Global.Update.dutchManKilled;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -157,9 +150,6 @@ namespace ReducedGrinding
 
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
                 Global.Update.travelingMerchantDiceRolls = 0;
-
-            if (!tag.TryGet("dutchmanKills", out Global.Update.dutchManKilled))
-                Global.Update.dutchManKilled = false;
         }
 
         public override void OnModLoad() //TO-DO Remove lunar shield adjust when 1.4.4+ comes out for tmodloader

@@ -45,34 +45,56 @@ namespace ReducedGrinding.Global
                 List<int> centerGoldChests = new();
                 List<int> goldChests = new();
 
+                //TO-DO In certain secret seeds, it may be best to look for chest in different sections. In 1.4.4 there are secret seeds that starts the player down below.
                 int worldCenterLeft = (Main.maxTilesX / 2) - 420;
                 int worldCenterRight = (Main.maxTilesX / 2) + 420;
                 int worldCenterTop = (Main.maxTilesY / 2) - 600;
                 int worldCenterBottom = (Main.maxTilesY / 2) + 600;
 
-                for (int chestIndex = 0; chestIndex < 8000; chestIndex++)
+                #region Scan Chests and Add Terragrim
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
                     Chest chest = Main.chest[chestIndex];
 
                     if (chest == null)
                         continue;
 
-                    int TileSubID = 1; //Gold Chest
+                    int TileSubID = 0; //Regular Chest
+                    if (!(Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36))
+                    {
+                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                        {
+                            if (chest.item[inventoryIndex].type == ItemID.None)
+                            {
+                                if (Main.rand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                                    chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
+                                break;
+                            }
+                        }
+                    }
+
+                    TileSubID = 1; //Gold Chest
                     if (Main.tile[chest.x, chest.y].TileType == TileID.Containers)
                     {
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            if (missingPyramidItems.Count > 0)
                             {
-                                List<int> missingPyramidItemsOld = new();
-                                missingPyramidItemsOld.AddRange(missingPyramidItems);
+                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                {
+                                    List<int> missingPyramidItemsOld = new();
+                                    missingPyramidItemsOld.AddRange(missingPyramidItems);
 
-                                foreach (int itemType in missingPyramidItemsOld)
-                                    if (chest.item[inventoryIndex].type == itemType)
+                                    foreach (int itemType in missingPyramidItemsOld)
                                     {
-                                        missingPyramidItems.Remove(itemType);
+                                        if (chest.item[inventoryIndex].type == itemType)
+                                        {
+                                            missingPyramidItems.Remove(itemType);
+                                        }
                                     }
+                                }
                             }
+
                             if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
                                 centerGoldChests.Add(chestIndex);
                             goldChests.Add(chestIndex);
@@ -82,11 +104,14 @@ namespace ReducedGrinding.Global
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
                             ivyChests.Add(chestIndex);
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            if (beeMinecartMissing)
                             {
-                                if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
+                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
                                 {
-                                    beeMinecartMissing = false;
+                                    if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
+                                    {
+                                        beeMinecartMissing = false;
+                                    }
                                 }
                             }
                         }
@@ -99,16 +124,19 @@ namespace ReducedGrinding.Global
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
                             livingWoodChests.Add(chestIndex);
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            if (missingLivingWoodItems.Count > 0)
                             {
-                                List<int> missingLivingWoodItemsOld = new();
-                                missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
+                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                {
+                                    List<int> missingLivingWoodItemsOld = new();
+                                    missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
 
-                                foreach (int itemType in missingLivingWoodItemsOld)
-                                    if (chest.item[inventoryIndex].type == itemType)
-                                    {
-                                        missingLivingWoodItems.Remove(itemType);
-                                    }
+                                    foreach (int itemType in missingLivingWoodItemsOld)
+                                        if (chest.item[inventoryIndex].type == itemType)
+                                        {
+                                            missingLivingWoodItems.Remove(itemType);
+                                        }
+                                }
                             }
                         }
 
@@ -116,16 +144,19 @@ namespace ReducedGrinding.Global
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
                             mushroomChests.Add(chestIndex);
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            if (missingMushroomItems.Count > 0)
                             {
-                                List<int> missingMushroomItemsOld = new();
-                                missingMushroomItemsOld.AddRange(missingMushroomItems);
+                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                {
+                                    List<int> missingMushroomItemsOld = new();
+                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
 
-                                foreach (int itemType in missingMushroomItemsOld)
-                                    if (chest.item[inventoryIndex].type == itemType)
-                                    {
-                                        missingMushroomItems.Remove(itemType);
-                                    }
+                                    foreach (int itemType in missingMushroomItemsOld)
+                                        if (chest.item[inventoryIndex].type == itemType)
+                                        {
+                                            missingMushroomItems.Remove(itemType);
+                                        }
+                                }
                             }
                         }
                     }
@@ -134,7 +165,9 @@ namespace ReducedGrinding.Global
                     if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         desertChests.Add(chestIndex);
                 }
+                #endregion
 
+                #region Add Missing Items
                 if (desertChests.Count > 0)
                 {
                     while (missingPyramidItems.Count > 0)
@@ -255,30 +288,7 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
-
-                int terragrimToAdd = GetInstance<IOtherConfig>().TerragrimChests;
-                while (terragrimToAdd > 0)
-                {
-                    if (goldChests.Count > 0)
-                    {
-                        int goldChestIndex = Main.rand.Next(goldChests.Count);
-                        int chestIndex = goldChests[goldChestIndex];
-
-                        Chest chest = Main.chest[chestIndex];
-                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-                        {
-                            if (chest.item[inventoryIndex].type == ItemID.None)
-                            {
-                                chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
-                                terragrimToAdd--;
-                                goldChests.RemoveAt(goldChestIndex);
-                                break;
-                            }
-                        }
-                    }
-                    else
-                        terragrimToAdd = 0;
-                }
+                #endregion
             }
         }
     }

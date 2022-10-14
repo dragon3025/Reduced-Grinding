@@ -10,28 +10,28 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         #region Boss Loot
-        [Header("These are extra item drop chances from enemy loot. Chance = 1 / configuration_setting. Set to 0 to disable.\n\n" +
+        [Header("You can change item drop rates using the following configurations. Chance = 1 / configuration_setting. Set to 0 to use the vanilla drop rate.\n\n" +
             "Boss Loot")]
 
         [Label("[i: 1299] Binoculars")]
         [Tooltip("If world difficulty is normal, this is multiplied by (4/3)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int BinocularsIncrease;
+        public int Binoculars;
 
         [Label("[i:4823] Empress and [i:2609] Fishron Wings")]
         [Tooltip("" +
             "This sets the same drop rate for each. If the world difficulty is normal, this\n" +
             "is multiplied by (3 / 2)")]
         [Range(0, 10000)]
-        [DefaultValue(7)]
-        public int EmpressAndFishronWingsIncrease;
+        [DefaultValue(5)]
+        public int EmpressAndFishronWings;
 
         [Label("[i:4715] Stellar Tune")]
         [Tooltip("If world difficulty is normal, this is multiplied by (5/2)")]
         [Range(0, 10000)]
-        [DefaultValue(4)]
-        public int StellarTuneIncrease;
+        [DefaultValue(5)]
+        public int StellarTune;
 
         [Label("[i:5075] Rainbow Cursor")]
         [Range(0, 10000)]
@@ -45,6 +45,9 @@ namespace ReducedGrinding
         [Header("Non-Boss Loot")]
 
         [Label("[i:3349] Town NPC Weapons")]
+        [Tooltip("" +
+            "This mod will remove the name requirement for the Guide and\n" +
+            "Steampunker. This setting doesn't affect the Party Girl.")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TownNPCWeapons;
@@ -53,67 +56,61 @@ namespace ReducedGrinding
         [Tooltip("This sets the same drop rate for each")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int BiomeKeyIncrease;
+        public int BiomeKey;
 
         [Label("[i:723] Beam Sword")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int BeamSwordIncrease;
-
-        [Label("[i:1825] Bloody Machete and [i:1827] Bladed Glove")]
-        [Tooltip("This sets the same drop rate for each")]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int BloodyMacheteAndBladedGloveIncrease;
+        public int BeamSword;
 
         [Label("[i:1774] Goodie Bag")]
         [Tooltip("Only drops during Halloween")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int GoodieBagIncrease;
+        public int GoodieBag;
 
         [Label("[i:1314] KO Cannon")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int KOCannonIncrease;
+        public int KOCannon;
 
         [Label("[i:38] Lens")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LensIncrease;
+        public int Lens;
 
         [Label("[i:1172] Lizard Egg")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int LizardEggIncrease;
+        public int LizardEgg;
 
         [Label("[i:682] Marrow")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int MarrowIncrease;
+        public int Marrow;
 
         [Label("[i:1513] Paladin's Hammer")]
         [Tooltip("If world difficulty is normal, this is multiplied by 146.67%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PaladinsHammerIncrease;
+        public int PaladinsHammer;
 
         [Label("[i:938] Paladin's Shield")]
         [Tooltip("If world difficulty is normal, this is multiplied by 145.33%")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PaladinsShieldIncrease;
+        public int PaladinsShield;
 
         [Label("[i:244] Plumber’s Hat")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PlumbersHatIncrease;
+        public int PlumbersHat;
 
         [Label("[i:1869] Present")]
         [Tooltip("Only drops during Christmas")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int PresentIncrease;
+        public int Present;
 
         [Label("[i:1300] Rifle Scope and [i:1254]Sniper Rifle")]
         [Tooltip("" +
@@ -121,19 +118,21 @@ namespace ReducedGrinding
             "multiplied by 183.33 % ")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int RifleScopeAndSniperRifleIncrease;
+        public int RifleScopeAndSniperRifle;
 
         [Range(0, 10000)]
         [Label("[i:759] Rocket Launcher")]
         [Tooltip("If world difficulty is normal, this is multiplied by 194.44%")]
         [DefaultValue(0)]
-        public int RocketLauncherIncrease;
+        public int RocketLauncher;
 
         [Range(0, 10000)]
         [Label("[i:1326] Rod of Discord")]
-        [Tooltip("If world difficulty is normal, this is multiplied by (5/4)")]
+        [Tooltip("" +
+            "If world difficulty is normal, this is multiplied by (5/4). In a Celebrationmk10\n" +
+            "world, it's divided by 4 (it round upwards if below 1)")]
         [DefaultValue(0)]
-        public int RodofDiscordIncrease;
+        public int RodofDiscord;
 
         [Range(0, 10000)]
         [Label("[i:68] Rotten Chunk and [i:1330] Vertebra")]
@@ -148,21 +147,18 @@ namespace ReducedGrinding
         public int SoulOfLightAndNight;
 
         [Label("[i:1514] SWAT Helmet and [i:679]Tactical Shotgun")]
-        [Tooltip("This sets the same drop rate for each. If world difficulty is normal, this is\n" +
+        [Tooltip("" +
+            "This sets the same drop rate for each. If world difficulty is normal, this is\n" +
             "multiplied by 191.66 % ")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int SWATHelmetAndTacticalShotgunIncrease;
+        public int SWATHelmetAndTacticalShotgun;
         #endregion
-
-        #region Pirates
-        [Header("Pirate Loot (this mod changes the Pirate drop rates to match 1.4.4+)")] //TO-DO remove this info when 1.4.4+ comes out.
 
         [Label("[i:905] Coin Gun From Flying Dutchman")]
         [Range(0, 10000)]
         [DefaultValue(0)]
-        public int CoinGunBaseIncrease;
-        #endregion
+        public int CoinGun;
 
         #region Slime Staff
         [Header("[i:1309] Slime Staff")]
@@ -171,19 +167,19 @@ namespace ReducedGrinding
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
         [DefaultValue(4)]
-        public int SlimeStaffFromPinkyIncrease;
+        public int SlimeStaffFromPinky;
 
         [Label("From Sand Slime")]
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
         [DefaultValue(56)]
-        public int SlimeStaffFromSandSlimeIncrease;
+        public int SlimeStaffFromSandSlime;
 
         [Label("From Others")]
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
         [DefaultValue(70)]
-        public int SlimeStaffFromOtherSlimesIncrease;
+        public int SlimeStaffFromOtherSlimes;
         #endregion
         #endregion
 
@@ -200,7 +196,7 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         #region Boss Loot
-        [Header("These are item drop chances from enemy loot. These drop chances don't exist in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.\n\n" +
+        [Header("These drop chances don't exist in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.\n\n" +
             "Boss Loot")]
 
         [Label("[i:1309] Slime Staff From Slime King")]
@@ -212,41 +208,14 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TrufflewormFromDukeFishron;
-
-        [Label("[i:4144] Terragrim from Most Hardmode Grab Bags")]
-        [Tooltip("From all vanilla Hardmode Bags except Queen Slime (the same bags that can drop Developer Items)")]
-        [Range(0, 10000)]
-        [DefaultValue(60)]
-        public int TerragrimFromHardmodeGrabBag;
         #endregion
 
         #region Non-Boss Loot
         [Header("Non-Boss Loot")]
 
-        [Label("[i:3347] Desert Fossil from Dune Splicer (Min and Max in any order)")]
-        [Range(0, 999)]
-        public int[] DesertFossilFromDuneSplicer = new int[] { 0, 0 };
-
-        [Label("[i:3347] Desert Fossil from Tomb Crawler (Min and Max in any order)")]
-        [Range(0, 999)]
-        public int[] DesertFossilFromTombCrawler = new int[] { 0, 0 };
-
         [Label("[i:3081] Marble from Marble Cave Enemies (Min and Max in any order)")]
         [Range(0, 999)]
         public int[] MarbleFromMarbleCaveEnemies = new int[] { 5, 10 };
-
-        [Label("[i:169] Sand from Dune Splicer (Min and Max in any order)")]
-        [Range(1, 999)]
-        public int[] SandFromDuneSplicer = new int[] { 0, 0 };
-
-        [Label("[i:169] Sand from Tomb Crawler (Min and Max in any order)")]
-        [Range(1, 999)]
-        public int[] SandFromTombCrawler = new int[] { 0, 0 };
-
-        [Label("[i:857] Sandstorm in a Bottle from Sand Elemental")]
-        [Range(0, 10000)]
-        [DefaultValue(4)]
-        public int SandstormInABottleFromSandElemental; //TO-DO 1.4.4+ will make it easier to get this.
 
         [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
         [Range(0, 10000)]
@@ -572,12 +541,13 @@ namespace ReducedGrinding
         [DefaultValue(300)]
         public int FinchStaffFromTreeShaking;
 
-        [Label("[i:306] Gold Chest with [i:4144] Terragrim per World Generation")]
+        [Label("[i:4144] Chest Terragrim Chance")]
         [Tooltip("" +
-            "After world generation, this mod will select this many Gold Chest, and insert a\n" +
-            "Terragrim into it.")]
-        [DefaultValue(1)]
-        public int TerragrimChests;
+            "Chance for vanilla chest to generate with Terragrim inside. This excludes\n" +
+            "[i:48]Regular Wooden Chests. Chance = 1 / configuration_setting. Set to 0 to\n" +
+            "disable.")]
+        [DefaultValue(75)]
+        public int TerragrimChestChance;
         #endregion
 
         #region Crates

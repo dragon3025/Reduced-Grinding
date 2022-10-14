@@ -350,6 +350,20 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
+            //TO-DO Remove when 1.4.4+ adds this
+            recipe = Recipe.Create(ItemID.SandstorminaBottle);
+            recipe.AddIngredient(ItemID.CloudinaBottle);
+            recipe.AddIngredient(ItemID.AncientBattleArmorMaterial);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            //TO-DO Remove when 1.4.4+ adds this
+            recipe = Recipe.Create(ItemID.BlizzardinaBottle);
+            recipe.AddIngredient(ItemID.CloudinaBottle);
+            recipe.AddIngredient(ItemID.FrostCore);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
             if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());

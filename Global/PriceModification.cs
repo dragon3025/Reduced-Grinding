@@ -8,6 +8,8 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 {
     public class PriceModification : GlobalItem
     {
+        readonly static AEnemyLootConfig lootConfig = GetInstance<AEnemyLootConfig>();
+
         public override void SetDefaults(Item item)
         {
             if (!GetInstance<IOtherConfig>().AdjustItemValuesForDropIncreases)
@@ -24,34 +26,31 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             }
 
             if (item.type == ItemID.Binoculars)
-                FindNewValue(1f / 30f, GetInstance<AEnemyLootConfig>().BinocularsIncrease);
+                FindNewValue(1f / 30f, lootConfig.Binoculars);
 
             if (item.type == ItemID.FishronWings || item.type == ItemID.RainbowWings)
-                FindNewValue(0.1f, GetInstance<AEnemyLootConfig>().EmpressAndFishronWingsIncrease);
+                FindNewValue(0.1f, lootConfig.EmpressAndFishronWings);
 
             if (item.type == ItemID.SparkleGuitar)
-                FindNewValue(0.05f, GetInstance<AEnemyLootConfig>().StellarTuneIncrease);
+                FindNewValue(0.05f, lootConfig.StellarTune);
 
             if (item.type == ItemID.RainbowCursor)
-                FindNewValue(0.05f, GetInstance<AEnemyLootConfig>().RainbowCursor);
+                FindNewValue(0.05f, lootConfig.RainbowCursor);
 
             if (item.type == ItemID.DyeTradersScimitar || item.type == ItemID.StylistKilLaKillScissorsIWish || item.type == ItemID.CombatWrench || item.type == ItemID.TaxCollectorsStickOfDoom || item.type == ItemID.PrincessWeapon)
-                FindNewValue(0.125f, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                FindNewValue(0.125f, lootConfig.TownNPCWeapons);
 
             if (item.type == ItemID.AleThrowingGlove)
-                FindNewValue(1f / 6f, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                FindNewValue(1f / 6f, lootConfig.TownNPCWeapons);
 
             if (item.type == ItemID.PainterPaintballGun)
-                FindNewValue(0.1f, GetInstance<AEnemyLootConfig>().TownNPCWeapons);
+                FindNewValue(0.1f, lootConfig.TownNPCWeapons);
 
             if (item.type == ItemID.PiranhaGun || item.type == ItemID.ScourgeoftheCorruptor || item.type == ItemID.VampireKnives || item.type == ItemID.RainbowGun || item.type == ItemID.StaffoftheFrostHydra || item.type == ItemID.StormTigerStaff)
-                FindNewValue(0.0004f, GetInstance<AEnemyLootConfig>().BiomeKeyIncrease);
+                FindNewValue(0.0004f, lootConfig.BiomeKey);
 
             if (item.type == ItemID.BeamSword)
-                FindNewValue(1f / 150f, GetInstance<AEnemyLootConfig>().BeamSwordIncrease);
-
-            if (item.type == ItemID.BloodyMachete || item.type == ItemID.BladedGlove)
-                FindNewValue(0.0005f, GetInstance<AEnemyLootConfig>().BloodyMacheteAndBladedGloveIncrease);
+                FindNewValue(1f / 150f, lootConfig.BeamSword);
 
             int[] goodieBagItems = new int[]
             {
@@ -115,25 +114,25 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             };
             foreach (int i in goodieBagItems)
                 if (item.type == i)
-                    FindNewValue(0.0125f, GetInstance<AEnemyLootConfig>().GoodieBagIncrease);
+                    FindNewValue(0.0125f, lootConfig.GoodieBag);
 
             if (item.type == ItemID.KOCannon)
-                FindNewValue(0.001f, GetInstance<AEnemyLootConfig>().KOCannonIncrease);
+                FindNewValue(0.001f, lootConfig.KOCannon);
 
             if (item.type == ItemID.LizardEgg)
-                FindNewValue(0.001f, GetInstance<AEnemyLootConfig>().LizardEggIncrease);
+                FindNewValue(0.001f, lootConfig.LizardEgg);
 
             if (item.type == ItemID.Marrow)
-                FindNewValue(0.005f, GetInstance<AEnemyLootConfig>().MarrowIncrease);
+                FindNewValue(0.005f, lootConfig.Marrow);
 
             if (item.type == ItemID.PaladinsHammer)
-                FindNewValue(22f / 225f, GetInstance<AEnemyLootConfig>().PaladinsHammerIncrease);
+                FindNewValue(22f / 225f, lootConfig.PaladinsHammer);
 
             if (item.type == ItemID.PaladinsShield)
-                FindNewValue(763f / 5625f, GetInstance<AEnemyLootConfig>().PaladinsShieldIncrease);
+                FindNewValue(763f / 5625f, lootConfig.PaladinsShield);
 
             if (item.type == ItemID.PlumbersHat)
-                FindNewValue(0.004f, GetInstance<AEnemyLootConfig>().PlumbersHatIncrease);
+                FindNewValue(0.004f, lootConfig.PlumbersHat);
 
             int[] presentItems = new int[]
             {
@@ -171,22 +170,22 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             };
             foreach (int i in presentItems)
                 if (item.type == i)
-                    FindNewValue(1f / 13f, GetInstance<AEnemyLootConfig>().PresentIncrease);
+                    FindNewValue(1f / 13f, lootConfig.Present);
 
             if (item.type == ItemID.RifleScope || item.type == ItemID.SniperRifle)
-                FindNewValue(23f / 144f, GetInstance<AEnemyLootConfig>().RifleScopeAndSniperRifleIncrease);
+                FindNewValue(23f / 144f, lootConfig.RifleScopeAndSniperRifle);
 
             if (item.type == ItemID.RocketLauncher)
-                FindNewValue(35f / 324f, GetInstance<AEnemyLootConfig>().RocketLauncherIncrease);
+                FindNewValue(35f / 324f, lootConfig.RocketLauncher);
 
             if (item.type == ItemID.RodofDiscord)
-                FindNewValue(0.0025f, GetInstance<AEnemyLootConfig>().RodofDiscordIncrease);
+                FindNewValue(0.0025f, lootConfig.RodofDiscord);
 
             if (item.type == ItemID.SWATHelmet || item.type == ItemID.TacticalShotgun)
-                FindNewValue(23f / 144f, GetInstance<AEnemyLootConfig>().SWATHelmetAndTacticalShotgunIncrease);
+                FindNewValue(23f / 144f, lootConfig.SWATHelmetAndTacticalShotgun);
 
             if (item.type == ItemID.CoinGun)
-                FindNewValue(0.0025f, GetInstance<AEnemyLootConfig>().CoinGunBaseIncrease);
+                FindNewValue(0.0025f, lootConfig.CoinGun);
 
             if (item.type == ItemID.SlimeStaff)
             {
@@ -194,9 +193,9 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 float chanceChangePinky = 1f;
                 float chanceChangeSand = 1f;
 
-                float chanceOther = GetInstance<AEnemyLootConfig>().SlimeStaffFromOtherSlimesIncrease;
-                float chancePinky = GetInstance<AEnemyLootConfig>().SlimeStaffFromPinkyIncrease;
-                float chanceSand = GetInstance<AEnemyLootConfig>().SlimeStaffFromSandSlimeIncrease;
+                float chanceOther = lootConfig.SlimeStaffFromOtherSlimes;
+                float chancePinky = lootConfig.SlimeStaffFromPinky;
+                float chanceSand = lootConfig.SlimeStaffFromSandSlime;
 
                 if (chanceOther > 0)
                     chanceChangeOther = 1f / 7000f / ((1f / 7000f) + (1f / chanceOther));
