@@ -75,6 +75,9 @@ namespace ReducedGrinding
         public int KOCannon;
 
         [Label("[i:38] Lens")]
+        [Tooltip("" +
+            "Lens wont drop if Black Lens drops, so\n" +
+            "chance = (99 / 100) * (1 / configuration_setting)")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int Lens;
@@ -544,8 +547,7 @@ namespace ReducedGrinding
         [Label("[i:4144] Chest Terragrim Chance")]
         [Tooltip("" +
             "Chance for vanilla chest to generate with Terragrim inside. This excludes\n" +
-            "[i:48]Regular Wooden Chests. Chance = 1 / configuration_setting. Set to 0 to\n" +
-            "disable.")]
+            "Regular Wooden Chests. Chance = 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(75)]
         public int TerragrimChestChance;
         #endregion

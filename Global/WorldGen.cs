@@ -1,3 +1,4 @@
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -6,9 +7,9 @@ using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
 
-namespace ReducedGrinding.Global
+namespace ReducedGrinding.Global.WorldGeneration
 {
-    public class WorldGen : ModSystem
+    public class ReducedGrindingWorldGen : ModSystem
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
@@ -26,18 +27,78 @@ namespace ReducedGrinding.Global
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
-                    return;
+                //NOTE: Random generation fucntions like Main.Rand will automatically use the world's seed when generating numbers which means every action and every random number will the same for 2 worlds with the same seed.
 
                 progress.Message = "Adding Non-Existing Rare Chest Loot";
 
-                //TO-DO 1.4.4+ will make it easier to get sandstorm in a bottle.
-                List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.PharaohsRobe, ItemID.FlyingCarpet, ItemID.SandstorminaBottle };
                 List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
-                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat, ItemID.MushroomVest, ItemID.MushroomPants };
+                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 bool beeMinecartMissing = true;
 
-                List<int> desertChests = new();
+                void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
+                {
+                    Point biomePosition = WorldGen.mushroomBiomesPosition[mushroomBiome].ToPoint();
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int x = Main.rand.Next(biomePosition.X - 100, biomePosition.X + 100);
+                        int y = Main.rand.Next(biomePosition.Y - 100, biomePosition.Y + 100);
+                        int yDirection = 1;
+                        if (y > biomePosition.Y)
+                            yDirection = -1;
+                        for (; (yDirection == 1 && y < biomePosition.Y + 100) || (yDirection == -1 && y > biomePosition.Y - 100); y += yDirection)
+                        {
+                            if (Framing.GetTileSafely(x, y).TileType == TileID.MushroomPlants)
+                            {
+                                for (int chestX = x - 5; chestX < x + 5; chestX++)
+                                {
+                                    int chestIndex = WorldGen.PlaceChest(chestX, y, style: 32);
+                                    if (chestIndex != -1)
+                                    {
+                                        Chest chest = Main.chest[chestIndex];
+
+                                        if (item == ItemID.MushroomHat || (item != ItemID.ShroomMinecart && Main.rand.NextBool(2)))
+                                        {
+                                            int slot = 0;
+                                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
+                                            slot++;
+                                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
+                                            slot++;
+                                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
+                                        }
+                                        else
+                                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
+                                        if (item != -1)
+                                        {
+                                            missingMushroomItems.Remove(item);
+                                        }
+                                        goto placedMushroomChest;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    placedMushroomChest: { };
+                }
+
+                List<int> mushroomBiomes = new();
+                for (int i = 0; i < WorldGen.mushroomBiomesPosition.Length; i++)
+                {
+                    if (WorldGen.mushroomBiomesPosition[i].X != 0 && WorldGen.mushroomBiomesPosition[i].Y != 0)
+                        mushroomBiomes.Add(i);
+                }
+
+                for (int i = 0; i < mushroomBiomes.Count; i++)
+                {
+                    if (Main.rand.NextBool(4))
+                    {
+                        tryToPlaceMushroomChest(i);
+                    }
+                }
+
+                if (GetInstance<IOtherConfig>().GenerateMissingRareChestItems == false)
+                    return;
+
                 List<int> ivyChests = new();
                 List<int> livingWoodChests = new();
                 List<int> woodChests = new();
@@ -62,12 +123,12 @@ namespace ReducedGrinding.Global
                     int TileSubID = 0; //Regular Chest
                     if (!(Main.tile[chest.x, chest.y].TileType == TileID.Containers && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36))
                     {
-                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                        for (int slot = 0; slot < 40; slot++)
                         {
-                            if (chest.item[inventoryIndex].type == ItemID.None)
+                            if (chest.item[slot].type == ItemID.None)
                             {
                                 if (Main.rand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
-                                    chest.item[inventoryIndex].SetDefaults(ItemID.Terragrim);
+                                    chest.item[slot].SetDefaults(ItemID.Terragrim);
                                 break;
                             }
                         }
@@ -78,23 +139,6 @@ namespace ReducedGrinding.Global
                     {
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
-                            if (missingPyramidItems.Count > 0)
-                            {
-                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-                                {
-                                    List<int> missingPyramidItemsOld = new();
-                                    missingPyramidItemsOld.AddRange(missingPyramidItems);
-
-                                    foreach (int itemType in missingPyramidItemsOld)
-                                    {
-                                        if (chest.item[inventoryIndex].type == itemType)
-                                        {
-                                            missingPyramidItems.Remove(itemType);
-                                        }
-                                    }
-                                }
-                            }
-
                             if (chest.x >= worldCenterLeft && chest.x <= worldCenterRight && chest.y >= worldCenterTop && chest.y <= worldCenterBottom)
                                 centerGoldChests.Add(chestIndex);
                             goldChests.Add(chestIndex);
@@ -106,9 +150,9 @@ namespace ReducedGrinding.Global
                             ivyChests.Add(chestIndex);
                             if (beeMinecartMissing)
                             {
-                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                for (int slot = 0; slot < 40; slot++)
                                 {
-                                    if (chest.item[inventoryIndex].type == ItemID.BeeMinecart)
+                                    if (chest.item[slot].type == ItemID.BeeMinecart)
                                     {
                                         beeMinecartMissing = false;
                                     }
@@ -124,15 +168,34 @@ namespace ReducedGrinding.Global
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
                             livingWoodChests.Add(chestIndex);
+                            if (Main.rand.NextBool(15))
+                            {
+                                for (int slot = 0; slot < 40; slot++)
+                                {
+                                    if (chest.item[slot].type == ItemID.None)
+                                    {
+                                        if (Main.rand.NextBool(2))
+                                        {
+                                            chest.item[slot].SetDefaults(ItemID.LadybugMinecart);
+                                            missingLivingWoodItems.Remove(ItemID.LadybugMinecart);
+                                        }
+                                        else
+                                        {
+                                            chest.item[slot].SetDefaults(ItemID.SunflowerMinecart);
+                                            missingLivingWoodItems.Remove(ItemID.SunflowerMinecart);
+                                        }
+                                    }
+                                }
+                            }
                             if (missingLivingWoodItems.Count > 0)
                             {
-                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                for (int slot = 0; slot < 40; slot++)
                                 {
                                     List<int> missingLivingWoodItemsOld = new();
                                     missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
 
                                     foreach (int itemType in missingLivingWoodItemsOld)
-                                        if (chest.item[inventoryIndex].type == itemType)
+                                        if (chest.item[slot].type == itemType)
                                         {
                                             missingLivingWoodItems.Remove(itemType);
                                         }
@@ -146,13 +209,13 @@ namespace ReducedGrinding.Global
                             mushroomChests.Add(chestIndex);
                             if (missingMushroomItems.Count > 0)
                             {
-                                for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                                for (int slot = 0; slot < 40; slot++)
                                 {
                                     List<int> missingMushroomItemsOld = new();
                                     missingMushroomItemsOld.AddRange(missingMushroomItems);
 
                                     foreach (int itemType in missingMushroomItemsOld)
-                                        if (chest.item[inventoryIndex].type == itemType)
+                                        if (chest.item[slot].type == itemType)
                                         {
                                             missingMushroomItems.Remove(itemType);
                                         }
@@ -160,46 +223,20 @@ namespace ReducedGrinding.Global
                             }
                         }
                     }
-
-                    TileSubID = 10; //Sandstone Chest
-                    if (Main.tile[chest.x, chest.y].TileType == TileID.Containers2 && Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-                        desertChests.Add(chestIndex);
                 }
                 #endregion
 
                 #region Add Missing Items
-                if (desertChests.Count > 0)
-                {
-                    while (missingPyramidItems.Count > 0)
-                    {
-                        int desertChestsIndex = Main.rand.Next(desertChests.Count);
-                        int chestIndex = desertChests[desertChestsIndex];
-
-                        Chest chest = Main.chest[chestIndex];
-                        for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-                        {
-                            if (chest.item[inventoryIndex].type == ItemID.None)
-                            {
-                                chest.item[inventoryIndex].SetDefaults(missingPyramidItems[0]);
-                                missingPyramidItems.RemoveAt(0);
-                                if (desertChests.Count > 1)
-                                    desertChests.RemoveAt(desertChestsIndex);
-                                break;
-                            }
-                        }
-                    }
-                }
-
                 if (beeMinecartMissing && ivyChests.Count > 0)
                 {
                     int chestIndex = ivyChests[Main.rand.Next(ivyChests.Count)];
 
                     Chest chest = Main.chest[chestIndex];
-                    for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                    for (int slot = 0; slot < 40; slot++)
                     {
-                        if (chest.item[inventoryIndex].type == ItemID.None)
+                        if (chest.item[slot].type == ItemID.None)
                         {
-                            chest.item[inventoryIndex].SetDefaults(ItemID.BeeMinecart);
+                            chest.item[slot].SetDefaults(ItemID.BeeMinecart);
                             break;
                         }
                     }
@@ -215,11 +252,11 @@ namespace ReducedGrinding.Global
                             int chestIndex = livingWoodChests[livingWoodChestsIndex];
 
                             Chest chest = Main.chest[chestIndex];
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                if (chest.item[inventoryIndex].type == ItemID.None)
+                                if (chest.item[slot].type == ItemID.None)
                                 {
-                                    chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+                                    chest.item[slot].SetDefaults(missingLivingWoodItems[0]);
                                     missingLivingWoodItems.RemoveAt(0);
                                     livingWoodChests.RemoveAt(livingWoodChestsIndex);
                                     break;
@@ -232,11 +269,11 @@ namespace ReducedGrinding.Global
                             int chestIndex = woodChests[surfaceChestIndex];
 
                             Chest chest = Main.chest[chestIndex];
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                if (chest.item[inventoryIndex].type == ItemID.None)
+                                if (chest.item[slot].type == ItemID.None)
                                 {
-                                    chest.item[inventoryIndex].SetDefaults(missingLivingWoodItems[0]);
+                                    chest.item[slot].SetDefaults(missingLivingWoodItems[0]);
                                     missingLivingWoodItems.RemoveAt(0);
                                     if (woodChests.Count > 1)
                                         woodChests.RemoveAt(surfaceChestIndex);
@@ -247,46 +284,13 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                if ((mushroomChests.Count + centerGoldChests.Count) > 0)
+                int mushroomChestAttempts = 0;
+                while (missingMushroomItems.Count > 0)
                 {
-                    while (missingMushroomItems.Count > 0)
-                    {
-                        if (mushroomChests.Count > 0)
-                        {
-                            int mushroomChestIndex = Main.rand.Next(mushroomChests.Count);
-                            int chestIndex = mushroomChests[mushroomChestIndex];
-
-                            Chest chest = Main.chest[chestIndex];
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-                            {
-                                if (chest.item[inventoryIndex].type == ItemID.None)
-                                {
-                                    chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
-                                    missingMushroomItems.RemoveAt(0);
-                                    mushroomChests.RemoveAt(mushroomChestIndex);
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int centerGoldChestIndex = Main.rand.Next(centerGoldChests.Count);
-                            int chestIndex = centerGoldChests[centerGoldChestIndex];
-
-                            Chest chest = Main.chest[chestIndex];
-                            for (int inventoryIndex = 0; inventoryIndex < 40; inventoryIndex++)
-                            {
-                                if (chest.item[inventoryIndex].type == ItemID.None)
-                                {
-                                    chest.item[inventoryIndex].SetDefaults(missingMushroomItems[0]);
-                                    missingMushroomItems.RemoveAt(0);
-                                    if (centerGoldChests.Count > 1)
-                                        centerGoldChests.RemoveAt(centerGoldChestIndex);
-                                    break;
-                                }
-                            }
-                        }
-                    }
+                    tryToPlaceMushroomChest(Main.rand.Next(0, mushroomBiomes.Count), missingMushroomItems[0]);
+                    mushroomChestAttempts++;
+                    if (mushroomChestAttempts >= 5)
+                        break;
                 }
                 #endregion
             }

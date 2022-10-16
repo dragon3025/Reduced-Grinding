@@ -149,9 +149,11 @@ namespace ReducedGrinding.Global
             if (item.type == ItemID.WoodenCrate)
                 itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
 
-            //TO-DO Remove when 1.4.4+ adds this
             if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
-                itemLoot.Add(new CommonDrop(ItemID.SandstorminaBottle, 35));
+            {
+                itemLoot.Add(new CommonDrop(ItemID.SandstorminaBottle, 35)); //TO-DO Remove when 1.4.4+ adds this
+                itemLoot.Add(new CommonDrop(ItemID.FlyingCarpet, 35));
+            }
 
             //Boss Bag drops that don't happen in vanilla.
             if (item.type == ItemID.FishronBossBag)

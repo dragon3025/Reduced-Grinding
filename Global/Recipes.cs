@@ -364,6 +364,28 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
+            //Crystal Ball as Shimmer (Remove when 1.4.4+ comes out)
+            recipe = Recipe.Create(ItemID.PharaohsMask);
+            recipe.AddIngredient(ItemID.SandstorminaBottle);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PharaohsRobe);
+            recipe.AddIngredient(ItemID.FlyingCarpet);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            //TO-DO when 1.4.4+ comes out, convert this into a shimmer transmutation if possible
+            recipe = Recipe.Create(ItemID.SandstorminaBottle);
+            recipe.AddIngredient(ItemID.PharaohsMask);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.FlyingCarpet);
+            recipe.AddIngredient(ItemID.PharaohsRobe);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
             if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
             {
                 recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
