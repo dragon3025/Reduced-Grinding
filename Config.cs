@@ -537,13 +537,6 @@ namespace ReducedGrinding
             "chest.")]
         public bool GenerateMissingRareChestItems;
 
-        [Label("[i:4281] Finch Staff From Tree Shaking")]
-        [Tooltip("" +
-            "Chance = 1 / configuration_setting. Note: Trees can only be shaken 300 times per\n" +
-            "day. Set to 0 to disable.")]
-        [DefaultValue(300)]
-        public int FinchStaffFromTreeShaking;
-
         [Label("[i:4144] Chest Terragrim Chance")]
         [Tooltip("" +
             "Chance for vanilla chest to generate with Terragrim inside. This excludes\n" +

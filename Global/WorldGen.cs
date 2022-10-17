@@ -31,7 +31,6 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 progress.Message = "Adding Non-Existing Rare Chest Loot";
 
-                List<int> missingLivingWoodItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 bool beeMinecartMissing = true;
 
@@ -100,9 +99,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                     return;
 
                 List<int> ivyChests = new();
-                List<int> livingWoodChests = new();
-                List<int> woodChests = new();
-                List<int> mushroomChests = new();
                 List<int> centerGoldChests = new();
                 List<int> goldChests = new();
 
@@ -160,53 +156,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                             }
                         }
 
-                        TileSubID = 0; //Surface Chest
-                        if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-                            woodChests.Add(chestIndex);
-
-                        TileSubID = 12; //Living Wood Chest
-                        if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
-                        {
-                            livingWoodChests.Add(chestIndex);
-                            if (Main.rand.NextBool(15))
-                            {
-                                for (int slot = 0; slot < 40; slot++)
-                                {
-                                    if (chest.item[slot].type == ItemID.None)
-                                    {
-                                        if (Main.rand.NextBool(2))
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.LadybugMinecart);
-                                            missingLivingWoodItems.Remove(ItemID.LadybugMinecart);
-                                        }
-                                        else
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.SunflowerMinecart);
-                                            missingLivingWoodItems.Remove(ItemID.SunflowerMinecart);
-                                        }
-                                    }
-                                }
-                            }
-                            if (missingLivingWoodItems.Count > 0)
-                            {
-                                for (int slot = 0; slot < 40; slot++)
-                                {
-                                    List<int> missingLivingWoodItemsOld = new();
-                                    missingLivingWoodItemsOld.AddRange(missingLivingWoodItems);
-
-                                    foreach (int itemType in missingLivingWoodItemsOld)
-                                        if (chest.item[slot].type == itemType)
-                                        {
-                                            missingLivingWoodItems.Remove(itemType);
-                                        }
-                                }
-                            }
-                        }
-
                         TileSubID = 32; //Mushroom Chest
                         if (Main.tile[chest.x, chest.y].TileFrameX == TileSubID * 36)
                         {
-                            mushroomChests.Add(chestIndex);
                             if (missingMushroomItems.Count > 0)
                             {
                                 for (int slot = 0; slot < 40; slot++)
@@ -238,48 +190,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                         {
                             chest.item[slot].SetDefaults(ItemID.BeeMinecart);
                             break;
-                        }
-                    }
-                }
-
-                if ((woodChests.Count + livingWoodChests.Count) > 0)
-                {
-                    while (missingLivingWoodItems.Count > 0)
-                    {
-                        if (livingWoodChests.Count > 0)
-                        {
-                            int livingWoodChestsIndex = Main.rand.Next(livingWoodChests.Count);
-                            int chestIndex = livingWoodChests[livingWoodChestsIndex];
-
-                            Chest chest = Main.chest[chestIndex];
-                            for (int slot = 0; slot < 40; slot++)
-                            {
-                                if (chest.item[slot].type == ItemID.None)
-                                {
-                                    chest.item[slot].SetDefaults(missingLivingWoodItems[0]);
-                                    missingLivingWoodItems.RemoveAt(0);
-                                    livingWoodChests.RemoveAt(livingWoodChestsIndex);
-                                    break;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            int surfaceChestIndex = Main.rand.Next(woodChests.Count);
-                            int chestIndex = woodChests[surfaceChestIndex];
-
-                            Chest chest = Main.chest[chestIndex];
-                            for (int slot = 0; slot < 40; slot++)
-                            {
-                                if (chest.item[slot].type == ItemID.None)
-                                {
-                                    chest.item[slot].SetDefaults(missingLivingWoodItems[0]);
-                                    missingLivingWoodItems.RemoveAt(0);
-                                    if (woodChests.Count > 1)
-                                        woodChests.RemoveAt(surfaceChestIndex);
-                                    break;
-                                }
-                            }
                         }
                     }
                 }

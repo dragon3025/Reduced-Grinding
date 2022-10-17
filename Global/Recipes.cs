@@ -365,6 +365,11 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
 
             //Crystal Ball as Shimmer (Remove when 1.4.4+ comes out)
+            recipe = Recipe.Create(ItemID.BabyBirdStaff);
+            recipe.AddIngredient(ItemID.LivingWoodWand);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
             recipe = Recipe.Create(ItemID.PharaohsMask);
             recipe.AddIngredient(ItemID.SandstorminaBottle);
             recipe.AddTile(TileID.CrystalBall);
@@ -383,6 +388,21 @@ namespace ReducedGrinding.GlobalRecipes
 
             recipe = Recipe.Create(ItemID.FlyingCarpet);
             recipe.AddIngredient(ItemID.PharaohsRobe);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.SunflowerMinecart);
+            recipe.AddIngredient(ItemID.LeafWand);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.LadybugMinecart);
+            recipe.AddIngredient(ItemID.SunflowerMinecart);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.SunflowerMinecart);
+            recipe.AddIngredient(ItemID.LadybugMinecart);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
