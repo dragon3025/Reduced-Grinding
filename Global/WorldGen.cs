@@ -32,6 +32,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 progress.Message = "Adding Non-Existing Rare Chest Loot";
 
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
+                List<int> terragrimChests = new();
 
                 void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
                 {
@@ -541,20 +542,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
 
-                    if (WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                    if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
                         tileSubID = 0; //Regular Chest
                         if (!(chestType1 && tileFrameX == tileSubID * 36))
-                        {
-                            for (int slot = 0; slot < 40; slot++)
-                            {
-                                if (chest.item[slot].type == ItemID.None)
-                                {
-                                    chest.item[slot].SetDefaults(ItemID.Terragrim);
-                                    break;
-                                }
-                            }
-                        }
+                            terragrimChests.Add(chestIndex);
                     }
 
                     tileSubID = 32; //Mushroom Chest
@@ -578,8 +570,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
                 #endregion
 
-                #region Add Missing Items
-
+                #region Add Missing Mushroom Items and Terragrims
                 int mushroomChestAttempts = 0;
                 while (missingMushroomItems.Count > 0)
                 {
@@ -587,6 +578,22 @@ namespace ReducedGrinding.Global.WorldGeneration
                     mushroomChestAttempts++;
                     if (mushroomChestAttempts >= 5)
                         break;
+                }
+
+                foreach (int chestIndex in terragrimChests)
+                {
+                    if (WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                    {
+                        Chest chest = Main.chest[chestIndex];
+                        for (int slot = 0; slot < 40; slot++)
+                        {
+                            if (chest.item[slot].type == ItemID.None)
+                            {
+                                chest.item[slot].SetDefaults(ItemID.Terragrim);
+                                break;
+                            }
+                        }
+                    }
                 }
                 #endregion
             }
