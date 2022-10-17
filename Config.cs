@@ -525,25 +525,12 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        #region Rare Items
-        [Header("Rare Items")]
-
-        [Label("Add Missing Rare Chest Items During World Generation")]
-        [DefaultValue(true)]
-        [Tooltip("" +
-            "After Vanilla World Generation, this mod will detect if specific rare chest items\n" +
-            "are missing from the world, for example: Pyramid items that are missing because\n" +
-            "the world didn't generate enough Pyramids. It will add these items in specific\n" +
-            "chest.")]
-        public bool GenerateMissingRareChestItems;
-
         [Label("[i:4144] Chest Terragrim Chance")]
         [Tooltip("" +
-            "Chance for vanilla chest to generate with Terragrim inside. This excludes\n" +
+            "Chance for vanilla chests to generate with Terragrim inside. This excludes\n" +
             "Regular Wooden Chests. Chance = 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(75)]
         public int TerragrimChestChance;
-        #endregion
 
         #region Crates
         [Header("" +
