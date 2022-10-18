@@ -483,8 +483,8 @@ namespace ReducedGrinding.Global
         public override void ModifyGlobalLoot(GlobalLoot globalLoot)
         {
             globalLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.BloodyMachete);
-            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BloodyMachete, 1, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
-            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BladedGlove, 1, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BloodyMachete, 2000, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
+            globalLoot.Add(new ItemDropWithConditionRule(ItemID.BladedGlove, 2000, 1, 1, new Conditions.HalloweenGoodieBagDrop()));
 
             foreach (var rule in globalLoot.Get())
             {
