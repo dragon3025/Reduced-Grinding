@@ -37,6 +37,9 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             if (item.type == ItemID.RainbowCursor)
                 FindNewValue(0.05f, lootConfig.RainbowCursor);
 
+            if (item.type == ItemID.HallowBossDye)
+                item.value = item.value / 12; //Rate increased from 25% to 100% and drop amount increased from 1 to 3.
+
             if (item.type == ItemID.DyeTradersScimitar || item.type == ItemID.StylistKilLaKillScissorsIWish || item.type == ItemID.CombatWrench || item.type == ItemID.TaxCollectorsStickOfDoom || item.type == ItemID.PrincessWeapon)
                 FindNewValue(0.125f, lootConfig.TownNPCWeapons);
 

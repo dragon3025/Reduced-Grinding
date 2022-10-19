@@ -35,7 +35,7 @@ namespace ReducedGrinding
 
         [Label("[i:5075] Rainbow Cursor")]
         [Range(0, 10000)]
-        [DefaultValue(4)]
+        [DefaultValue(3)]
         public int RainbowCursor;
         #endregion
 
@@ -169,19 +169,19 @@ namespace ReducedGrinding
         [Label("From Pinky")]
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
-        [DefaultValue(4)]
+        [DefaultValue(5)]
         public int SlimeStaffFromPinky;
 
         [Label("From Sand Slime")]
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
-        [DefaultValue(56)]
+        [DefaultValue(75)]
         public int SlimeStaffFromSandSlime;
 
         [Label("From Others")]
         [Tooltip("If world difficulty is normal, this multiplied by (10/7)")]
         [Range(0, 10000)]
-        [DefaultValue(70)]
+        [DefaultValue(100)]
         public int SlimeStaffFromOtherSlimes;
         #endregion
         #endregion
@@ -535,7 +535,7 @@ namespace ReducedGrinding
         #region Crates
         [Header("" +
             "Crates\n\n" +
-            "All configurations in this section will add an(1 / configuration_setting) to drop. Set to 0 to disable.Drops from Boss Treasure Bags use the configurations for Boss Loot.\n\n" +
+            "All configurations in this section will add a (1 / configuration_setting) to drop. Set to 0 to disable.\n\n" +
             "[i: 3205] Dungeon / Stockade Crate")]
 
         [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]

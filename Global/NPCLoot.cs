@@ -44,6 +44,12 @@ namespace ReducedGrinding.Global
 
                                 if (commonDrop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
                                     commonDrop.chanceDenominator = lootConfig.RainbowCursor;
+
+                                if (commonDrop.itemId == ItemID.HallowBossDye)
+                                {
+                                    commonDrop.chanceDenominator = 1;
+                                    commonDrop.amountDroppedMinimum = commonDrop.amountDroppedMaximum = 3;
+                                }
                             }
                         }
                     }

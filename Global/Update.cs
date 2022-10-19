@@ -221,7 +221,7 @@ namespace ReducedGrinding.Global
                     {
                         if (Main.netMode == NetmodeID.Server)
                             ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0));
-                        else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+                        else if (Main.netMode == NetmodeID.SinglePlayer)
                             Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0));
                     }
                     timeHiddenFromInvasion++;
@@ -239,7 +239,7 @@ namespace ReducedGrinding.Global
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
                     ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
-                else if (Main.netMode == NetmodeID.SinglePlayer) // Single Player
+                else if (Main.netMode == NetmodeID.SinglePlayer)
                     Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
                 timeHiddenFromInvasion = 0;
                 updatePacket = true;

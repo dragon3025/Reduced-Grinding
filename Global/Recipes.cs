@@ -5,7 +5,6 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.GlobalRecipes
 {
-
     class Recipes : ModSystem
     {
         public static RecipeGroup baitCritterLow;
@@ -350,14 +349,13 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
-            //TO-DO Remove when 1.4.4+ adds this
+            //TO-DO Remove when 1.4.4+ adds these
             recipe = Recipe.Create(ItemID.SandstorminaBottle);
             recipe.AddIngredient(ItemID.CloudinaBottle);
             recipe.AddIngredient(ItemID.AncientBattleArmorMaterial);
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
-            //TO-DO Remove when 1.4.4+ adds this
             recipe = Recipe.Create(ItemID.BlizzardinaBottle);
             recipe.AddIngredient(ItemID.CloudinaBottle);
             recipe.AddIngredient(ItemID.FrostCore);
@@ -367,43 +365,43 @@ namespace ReducedGrinding.GlobalRecipes
             //Crystal Ball as Shimmer (Remove when 1.4.4+ comes out)
             recipe = Recipe.Create(ItemID.BabyBirdStaff);
             recipe.AddIngredient(ItemID.LivingWoodWand);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.PharaohsMask);
             recipe.AddIngredient(ItemID.SandstorminaBottle);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.PharaohsRobe);
             recipe.AddIngredient(ItemID.FlyingCarpet);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             //TO-DO when 1.4.4+ comes out, convert this into a shimmer transmutation if possible
             recipe = Recipe.Create(ItemID.SandstorminaBottle);
             recipe.AddIngredient(ItemID.PharaohsMask);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.FlyingCarpet);
             recipe.AddIngredient(ItemID.PharaohsRobe);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.SunflowerMinecart);
             recipe.AddIngredient(ItemID.LeafWand);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.LadybugMinecart);
             recipe.AddIngredient(ItemID.SunflowerMinecart);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.SunflowerMinecart);
             recipe.AddIngredient(ItemID.LadybugMinecart);
-            recipe.AddTile(TileID.CrystalBall);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
             if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
