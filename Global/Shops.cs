@@ -55,6 +55,10 @@ namespace ReducedGrinding.Global
         {
             switch (type)
             {
+                case NPCID.Mechanic:
+                    shop.item[nextSlot].SetDefaults(ItemID.Teleporter); //Remove when 1.4.4+ Comes out
+                    nextSlot++;
+                    break;
                 case NPCID.Merchant:
                     if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
                     {

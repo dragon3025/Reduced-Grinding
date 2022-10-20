@@ -5,6 +5,7 @@ using Terraria.Enums;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
+//Remove when 1.4.4+ comes out unless there isn't a way to add shimmer features
 namespace ReducedGrinding.Tiles
 {
     public class LumaniteShimmeringStar : ModTile
