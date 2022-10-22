@@ -106,10 +106,16 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
-            if (time % 60 == 0 && GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+            if (time % 60 == 0)
             {
-                if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                    allPlayersHiddenFromInvasion = true;
+                if (NPC.downedMoonlord)
+                    NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 50; //Remove when 1.4.4+ comes out
+
+                if (GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+                {
+                    if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
+                        allPlayersHiddenFromInvasion = true;
+                }
             }
 
             #region For Each Player
@@ -193,22 +199,6 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
-
-                //TO-DO 1.4.4+ will add this (I don't know about SugarRush though)
-                if (Main.player[i].FindBuffIndex(BuffID.Sharpened) != -1)
-                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Sharpened)] = 600;
-
-                if (Main.player[i].FindBuffIndex(BuffID.Clairvoyance) != -1)
-                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Clairvoyance)] = 600;
-
-                if (Main.player[i].FindBuffIndex(BuffID.AmmoBox) != -1)
-                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.AmmoBox)] = 600;
-
-                if (Main.player[i].FindBuffIndex(BuffID.Bewitched) != -1)
-                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.Bewitched)] = 600;
-
-                if (Main.player[i].FindBuffIndex(BuffID.SugarRush) != -1)
-                    Main.player[i].buffTime[Main.player[i].FindBuffIndex(BuffID.SugarRush)] = 600;
             }
             #endregion
 
@@ -306,7 +296,13 @@ namespace ReducedGrinding.Global
                 dayTime = Main.dayTime;
                 updatePacket = true;
 
-                #region NewDay
+                if ((Main.bloodMoon || Main.eclipse) && Main.sundialCooldown > 0)
+                {
+                    Main.sundialCooldown = 0;
+                    sendNetMessageData = true;
+                }
+
+                #region New Morning
                 if (Main.dayTime)
                 {
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
@@ -403,7 +399,7 @@ namespace ReducedGrinding.Global
                 packet.Send();
             }
 
-            if (sendNetMessageData)
+            if (sendNetMessageData && Main.netMode == NetmodeID.Server)
                 NetMessage.SendData(MessageID.WorldData);
             #endregion
         }

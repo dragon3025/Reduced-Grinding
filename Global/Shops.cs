@@ -125,17 +125,24 @@ namespace ReducedGrinding.Global
                     {
                         BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
                         bool sellingUniversalPylon = false;
+                        bool sellingDiggingMoleMinecart = false; //TO-DO Remove when 1.4.4+ comes out
                         for (int i = 0; i <= 40; i++)
                         {
                             if (shop.item[i].type == ItemID.TeleportationPylonVictory)
-                            {
                                 sellingUniversalPylon = true;
+                            if (shop.item[i].type == ItemID.DiggingMoleMinecart)
+                                sellingDiggingMoleMinecart = true;
+                            if (sellingUniversalPylon && sellingDiggingMoleMinecart)
                                 break;
-                            }
                         }
                         if (!sellingUniversalPylon && bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.TeleportationPylonVictory);
+                            nextSlot++;
+                        }
+                        if (!sellingDiggingMoleMinecart && bestiaryProgressReport.CompletionPercent >= 0.35f)
+                        {
+                            shop.item[nextSlot].SetDefaults(ItemID.DiggingMoleMinecart);
                             nextSlot++;
                         }
                         if (GetInstance<HOtherModdedItemsConfig>().BestiaryTrophy && bestiaryProgressReport.CompletionPercent >= 1f)

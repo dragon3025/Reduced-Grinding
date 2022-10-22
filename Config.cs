@@ -689,14 +689,6 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
 
-        [Label("Lunar Pillar Shield Health")]
-        [Tooltip("" +
-            "The amount of enemies to lower their shield. If world difficulty is normal, this\n" +
-            "is multiplied by (2 / 3).")]
-        [Range(1, 150)]
-        [DefaultListValue(150)] //TO-DO 1.4.4+ May possibly lower the shield of pillar (https://www.youtube.com/watch?v=GjuunSx8k5o&t=223s&ab_channel=ChippyGaming). Wait for more info before setting a default amount.
-        public int LunarPillarShieldHealth;
-
         [Label("Merchant Sells [i:410] Miner's Shirt and [i:411] Miner's Pants")]
         [DefaultValue(false)]
         public bool MerchantSellsMinersShirtAndPants;

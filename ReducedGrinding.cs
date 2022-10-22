@@ -152,10 +152,10 @@ namespace ReducedGrinding
                 Global.Update.travelingMerchantDiceRolls = 0;
         }
 
-        public override void OnModLoad() //TO-DO Remove lunar shield adjust when 1.4.4+ comes out for tmodloader
+        public override void OnModLoad()
         {
-            NPC.LunarShieldPowerExpert = GetInstance<IOtherConfig>().LunarPillarShieldHealth;
-            NPC.LunarShieldPowerNormal = Math.Max(1, NPC.LunarShieldPowerExpert * 2 / 3);
+            //Remove when 1.4.4+ comes out
+            NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 100;
 
             if (ModLoader.TryGetMod("CalamityMod", out _))
                 usingCalamity = true;

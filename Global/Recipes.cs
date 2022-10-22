@@ -219,6 +219,20 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileID.CrystalBall);
             recipe.Register();
 
+            recipe = Recipe.Create(ItemID.MagicMirror);
+            recipe.AddIngredient(ItemID.Glass, 10);
+            recipe.AddIngredient(ItemID.GoldBar, 8);
+            recipe.AddIngredient(ItemID.Diamond, 3);
+            recipe.AddTile(TileID.Furnaces);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.MagicMirror);
+            recipe.AddIngredient(ItemID.Glass, 10);
+            recipe.AddIngredient(ItemID.PlatinumBar, 8);
+            recipe.AddIngredient(ItemID.Diamond, 3);
+            recipe.AddTile(TileID.Furnaces);
+            recipe.Register();
+
             //Crystal Ball as Shimmer (Remove these when 1.4.4+ comes out)
             #region Shimmer-Like Recipes
 
