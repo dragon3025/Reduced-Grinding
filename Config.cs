@@ -474,23 +474,6 @@ namespace ReducedGrinding
         [Range(1f, 10f)]
         [DefaultValue(8f)]
         public float SuperBattlePotionSpawnrateMultiplier;
-
-        [Header("")]
-
-        [Label("Custom Battle Potions Affect Invasions")]
-        [Tooltip("" +
-            "If set higher than 0, Greater Battle Buff and Super Battle Buff will multiply invasion max spawns and spawn rate by 2. If set to 1, it will only do this for vanilla invasions. Invasion progress will also adjust to these amounts.")]
-        [DefaultValue(0)]
-        [Range(0, 2)]
-        public int BattlePotionsAffectInvasions;
-
-        [Label("Max Spawn Effect on Invasion Size")]
-        [Tooltip("" +
-            "At 100%, the invasion size will be multiplied by 2 when using Greater Battle\n" +
-            "Buff and 2 when using Super Battle Buff.At 0%, it will be multiplied by 1.")]
-        [Increment(0.01f)]
-        [DefaultValue(1f)]
-        public float ModBattlePotionMaxSpawnEffectOnInvasion;
         #endregion
 
         #region Staff of Difficulty

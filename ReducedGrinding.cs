@@ -43,8 +43,6 @@ namespace ReducedGrinding
             noMoreAnglerResetsToday,
             dayTime,
             seasonalDay,
-            invasionWithGreaterBattleBuff,
-            invasionWithSuperBattleBuff,
             instantInvasion,
             celestialSigil,
             travelingMerchantDiceRolls,
@@ -68,12 +66,6 @@ namespace ReducedGrinding
                     break;
                 case MessageType.seasonalDay:
                     Global.Update.seasonalDay = reader.ReadInt32();
-                    break;
-                case MessageType.invasionWithGreaterBattleBuff:
-                    Global.Update.invasionWithGreaterBattleBuff = reader.ReadBoolean();
-                    break;
-                case MessageType.invasionWithSuperBattleBuff:
-                    Global.Update.invasionWithSuperBattleBuff = reader.ReadBoolean();
                     break;
                 case MessageType.instantInvasion:
                     Global.Update.instantInvasion = reader.ReadBoolean();
@@ -106,8 +98,6 @@ namespace ReducedGrinding
             Global.Update.noMoreAnglerResetsToday = false;
             Global.Update.dayTime = true;
             Global.Update.seasonalDay = 1;
-            Global.Update.invasionWithGreaterBattleBuff = false;
-            Global.Update.invasionWithSuperBattleBuff = false;
             Global.Update.travelingMerchantDiceRolls = 0;
         }
 
@@ -116,8 +106,6 @@ namespace ReducedGrinding
             Global.Update.noMoreAnglerResetsToday = false;
             Global.Update.dayTime = true;
             Global.Update.seasonalDay = 1;
-            Global.Update.invasionWithGreaterBattleBuff = false;
-            Global.Update.invasionWithSuperBattleBuff = false;
             Global.Update.travelingMerchantDiceRolls = 0;
         }
 
@@ -126,8 +114,6 @@ namespace ReducedGrinding
             tag["noMoreAnglerResetsToday"] = Global.Update.noMoreAnglerResetsToday;
             tag["dayTime"] = Global.Update.dayTime;
             tag["seasonalDay"] = Math.Max(1, Global.Update.seasonalDay);
-            tag["invasionWithGreaterBattleBuff"] = Global.Update.invasionWithGreaterBattleBuff;
-            tag["invasionWithSuperBattleBuff"] = Global.Update.invasionWithSuperBattleBuff;
             tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
         }
 
@@ -141,12 +127,6 @@ namespace ReducedGrinding
 
             if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
                 Global.Update.seasonalDay = 1;
-
-            if (!tag.TryGet("invasionWithGreaterBattleBuff", out Global.Update.invasionWithGreaterBattleBuff))
-                Global.Update.invasionWithGreaterBattleBuff = false;
-
-            if (!tag.TryGet("invasionWithSuperBattleBuff", out Global.Update.invasionWithSuperBattleBuff))
-                Global.Update.invasionWithSuperBattleBuff = false;
 
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
                 Global.Update.travelingMerchantDiceRolls = 0;

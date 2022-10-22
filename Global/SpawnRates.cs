@@ -54,31 +54,6 @@ namespace ReducedGrinding.Global
                         maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier);
                     }
                 }
-                else
-                {
-                    int BattlePotionsAffectInvasions = GetInstance<HOtherModdedItemsConfig>().BattlePotionsAffectInvasions;
-                    bool useInvasionBuffing = false;
-
-                    if (BattlePotionsAffectInvasions > 1 && invasionType != InvasionID.None)
-                    {
-
-                        if (BattlePotionsAffectInvasions == 2)
-                            useInvasionBuffing = true;
-                        else if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                            useInvasionBuffing = true;
-                    }
-
-                    if (useInvasionBuffing)
-                    {
-                        int buffEffect = 1;
-                        if (player.FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
-                            buffEffect *= 2;
-                        if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
-                            buffEffect *= 2;
-                        maxSpawns *= buffEffect;
-                        spawnRate = Math.Max(1, spawnRate / buffEffect);
-                    }
-                }
             }
         }
     }

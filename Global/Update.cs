@@ -17,8 +17,6 @@ namespace ReducedGrinding.Global
         public static bool noMoreAnglerResetsToday = false;
         public static bool dayTime = true;
         public static int seasonalDay = 1;
-        public static bool invasionWithGreaterBattleBuff = false;
-        public static bool invasionWithSuperBattleBuff = false;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
 
         //Info sent to server, but not recorded into world save
@@ -81,25 +79,8 @@ namespace ReducedGrinding.Global
 
             bool allPlayersHiddenFromInvasion = false;
             int invasionType = Main.invasionType;
-            bool playerWithGreaterBattleBuff = false;
-            bool playerWithSuperBattleBuff = false;
 
-            int BattlePotionsAffectInvasions = GetInstance<HOtherModdedItemsConfig>().BattlePotionsAffectInvasions;
-            bool useInvasionBuffing = false;
-            if (BattlePotionsAffectInvasions > 1 && Main.invasionType != InvasionID.None)
-            {
-                if (BattlePotionsAffectInvasions == 2)
-                    useInvasionBuffing = true;
-                else if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                    useInvasionBuffing = true;
-            }
-
-            if (invasionType == InvasionID.None)
-            {
-                invasionWithGreaterBattleBuff = false;
-                invasionWithSuperBattleBuff = false;
-            }
-            else if (instantInvasion)
+            if (instantInvasion)
             {
                 Main.invasionX = Main.spawnTileX;
                 instantInvasion = false;
@@ -126,14 +107,6 @@ namespace ReducedGrinding.Global
                     continue;
 
                 activePlayers.Add(i);
-
-                if (useInvasionBuffing)
-                {
-                    if (!playerWithGreaterBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
-                        playerWithGreaterBattleBuff = true;
-                    if (!playerWithSuperBattleBuff && Main.player[i].FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
-                        playerWithSuperBattleBuff = true;
-                }
 
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
@@ -233,36 +206,6 @@ namespace ReducedGrinding.Global
                     Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
                 timeHiddenFromInvasion = 0;
                 updatePacket = true;
-            }
-            else if (invasionType > 0)
-            {
-                float invasionBoost = 1f;
-                if (invasionWithGreaterBattleBuff != playerWithGreaterBattleBuff)
-                {
-                    updatePacket = true;
-                    if (!invasionWithGreaterBattleBuff)
-                        invasionBoost *= 2;
-                    else
-                        invasionBoost /= 2;
-                    invasionWithGreaterBattleBuff = !invasionWithGreaterBattleBuff;
-                }
-                if (invasionWithSuperBattleBuff != playerWithSuperBattleBuff)
-                {
-                    updatePacket = true;
-                    if (!invasionWithSuperBattleBuff)
-                        invasionBoost *= 2;
-                    else
-                        invasionBoost /= 2;
-                    invasionWithSuperBattleBuff = !invasionWithSuperBattleBuff;
-                }
-
-                float invasionBoostEffect = GetInstance<HOtherModdedItemsConfig>().ModBattlePotionMaxSpawnEffectOnInvasion;
-                invasionBoost = (1 * (1 - invasionBoostEffect)) + (invasionBoost * invasionBoostEffect);
-
-                Main.invasionSize = (int)(Main.invasionSize * invasionBoost);
-                Main.invasionSizeStart = (int)(Main.invasionSizeStart * invasionBoost);
-                Main.invasionProgress = (int)(Main.invasionProgress * invasionBoost);
-                Main.invasionProgressMax = (int)(Main.invasionProgressMax * invasionBoost);
             }
             #endregion
 
@@ -375,12 +318,6 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
                 packet.Write(seasonalDay);
-
-                packet.Write((byte)ReducedGrinding.MessageType.invasionWithGreaterBattleBuff);
-                packet.Write(invasionWithGreaterBattleBuff);
-
-                packet.Write((byte)ReducedGrinding.MessageType.invasionWithSuperBattleBuff);
-                packet.Write(invasionWithSuperBattleBuff);
 
                 packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
                 packet.Write(instantInvasion);
