@@ -20,6 +20,11 @@ namespace ReducedGrinding.Global
                 tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material" +
                     "Equip to allow 'Ankh Material' accessories to work from your inventory"));
             }
+            //TO-DO Remove when 1.4.4 comes out. This is disabled because I couldn't get it to work in modplayer (I used AnglerRewards.cs for this).
+            /*if (item.type == ItemID.MiningShirt || item.type == ItemID.MiningPants)
+            {
+                tooltips.Add(new TooltipLine(Mod, "MiningGearNew", "10% increased mining speed"));
+            }*/
         }
 
         public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)

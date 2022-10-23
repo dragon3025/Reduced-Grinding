@@ -3,11 +3,39 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using Terraria.Localization;
 
 namespace ReducedGrinding.Global
 {
     public class AnglerRewards : ModPlayer
     {
+        //TO-DO Remove when 1.4.4 comes out. For some reason this isn't working.
+        /*
+        public override void PostUpdate()
+        {
+            if (Player.setBonus == Language.GetTextValue("ArmorSetBonus.Mining"))
+            {
+                GetInstance<ReducedGrinding>().Logger.Debug("Player has set bonus | Player.pickSpeed: " + Player.pickSpeed.ToString());
+                Player.setBonus = "10% increased mining speed";
+                return;
+            }
+
+            float miningGearPickspeedReduction = 0f;
+
+            if (Player.armor[1].type == ItemID.MiningShirt)
+                miningGearPickspeedReduction += 0.1f;
+            if (Player.armor[2].type == ItemID.MiningPants)
+                miningGearPickspeedReduction += 0.1f;
+
+            if (miningGearPickspeedReduction > 0f)
+                Player.pickSpeed -= miningGearPickspeedReduction;
+
+            if (Player.pickSpeed < 0.3f)
+                Player.pickSpeed = 0.3f;
+
+            GetInstance<ReducedGrinding>().Logger.Debug("Player.pickSpeed: " + Player.pickSpeed.ToString());
+        }*/
+
         public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
         {
             //TO-DO When 1.4.4+ comes out, a lot of stuff may need adjusted or removed (including the Fish Merchant)
