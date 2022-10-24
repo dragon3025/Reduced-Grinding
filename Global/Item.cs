@@ -90,37 +90,9 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
-            #endregion
 
-            #region Crates
-
-            //TO-DO Remove when 1.4.4+ adds this
-            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
-                    {
-                        foreach (var rule2 in drop.rules)
-                        {
-                            if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Aglet))
-                            {
-                                foreach (int i in drop2.dropIds)
-                                {
-                                    if (drop2.dropIds[i] == ItemID.Umbrella)
-                                    {
-                                        drop2.dropIds[i] = ItemID.PortableStool;
-                                        break;
-                                    }
-                                }
-                                drop2.chanceDenominator = 20;
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
+            //Other Grab Bags
+            if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
             {
                 IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
                     ItemDropRule.Common(1396),
@@ -198,15 +170,13 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (lootOtherConfig.CrateStatue > 0)
-            {
-                IItemDropRule[] statues = new IItemDropRule[] {
-                    ItemDropRule.Common(ItemID.KingStatue),
-                    ItemDropRule.Common(ItemID.QueenStatue),
-                    ItemDropRule.Common(ItemID.HeartStatue),
-                    ItemDropRule.Common(ItemID.StarStatue),
-                    ItemDropRule.Common(ItemID.BombStatue)
-                };
+            IItemDropRule[] statues = new IItemDropRule[] {
+                ItemDropRule.Common(ItemID.KingStatue),
+                ItemDropRule.Common(ItemID.QueenStatue),
+                ItemDropRule.Common(ItemID.HeartStatue),
+                ItemDropRule.Common(ItemID.StarStatue),
+                ItemDropRule.Common(ItemID.BombStatue)
+            };
 
                 if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
                     itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
