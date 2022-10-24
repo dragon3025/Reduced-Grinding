@@ -64,9 +64,14 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             chest.item[slot].SetDefaults(ItemID.MushroomVest);
                                             slot++;
                                             chest.item[slot].SetDefaults(ItemID.MushroomPants);
+                                            slot++;
                                         }
                                         else
+                                        {
                                             chest.item[0].SetDefaults(ItemID.ShroomMinecart);
+                                            slot++;
+                                        }
+                                        slot++;
                                         if (item != -1)
                                         {
                                             missingMushroomItems.Remove(item);

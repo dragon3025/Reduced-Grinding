@@ -3,6 +3,15 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Terraria;
+using Terraria.GameContent.ItemDropRules;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ReducedGrinding.Global
 {
@@ -29,7 +38,7 @@ namespace ReducedGrinding.Global
 
         public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)
         {
-            // Boss Bags
+            #region Boss Bags
             if (item.type == ItemID.FishronBossBag && lootConfig.EmpressAndFishronWings > 0)
             {
                 foreach (var rule in itemLoot.Get())
@@ -39,7 +48,14 @@ namespace ReducedGrinding.Global
                         drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
                     }
                 }
+                if (GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron > 0)
+                    itemLoot.Add(new CommonDrop(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron));
             }
+
+            if (item.type == ItemID.KingSlimeBossBag && GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing > 0)
+                itemLoot.Add(new CommonDrop(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing));
+
+
             if (item.type == ItemID.FairyQueenBossBag)
             {
                 foreach (var rule in itemLoot.Get())
@@ -63,6 +79,7 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+
             if (item.type == ItemID.EyeOfCthulhuBossBag && lootConfig.Binoculars > 0)
             {
                 foreach (var rule in itemLoot.Get())
@@ -73,9 +90,37 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+            #endregion
 
-            //Other Grab Bags
-            if (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard)
+            #region Crates
+
+            //TO-DO Remove when 1.4.4+ adds this
+            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
+            {
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        foreach (var rule2 in drop.rules)
+                        {
+                            if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Aglet))
+                            {
+                                foreach (int i in drop2.dropIds)
+                                {
+                                    if (drop2.dropIds[i] == ItemID.Umbrella)
+                                    {
+                                        drop2.dropIds[i] = ItemID.PortableStool;
+                                        break;
+                                    }
+                                }
+                                drop2.chanceDenominator = 20;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
             {
                 IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
                     ItemDropRule.Common(1396),
@@ -130,48 +175,55 @@ namespace ReducedGrinding.Global
                 itemLoot.Add(new OneFromRulesRule(lootOtherConfig.DungeonCrateDungeonFurniture, dungeonFurniture));
             }
 
-            IItemDropRule[] statues = new IItemDropRule[] {
-                ItemDropRule.Common(ItemID.KingStatue),
-                ItemDropRule.Common(ItemID.QueenStatue),
-                ItemDropRule.Common(ItemID.HeartStatue),
-                ItemDropRule.Common(ItemID.StarStatue),
-                ItemDropRule.Common(ItemID.BombStatue)
-            };
+            if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
+            {
+                int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
 
-            if (item.type == ItemID.GoldenCrateHard)
-            {
-                itemLoot.Add(new CommonDrop(ItemID.Sundial, lootOtherConfig.CrateEnchantedSundial));
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        foreach (var rule2 in drop.rules)
+                        {
+                            if (rule2 is SequentialRulesNotScalingWithLuckRule drop2)
+                            {
+                                foreach (var rule3 in drop2.rules)
+                                {
+                                    if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
+                                        drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-            if (item.type == ItemID.IronCrateHard)
+
+            if (lootOtherConfig.CrateStatue > 0)
             {
-                itemLoot.Add(new CommonDrop(ItemID.Sundial, lootOtherConfig.CrateEnchantedSundial * 3));
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
+                IItemDropRule[] statues = new IItemDropRule[] {
+                    ItemDropRule.Common(ItemID.KingStatue),
+                    ItemDropRule.Common(ItemID.QueenStatue),
+                    ItemDropRule.Common(ItemID.HeartStatue),
+                    ItemDropRule.Common(ItemID.StarStatue),
+                    ItemDropRule.Common(ItemID.BombStatue)
+                };
+
+                if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
+
+                if (item.type == ItemID.IronCrate && item.type == ItemID.IronCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
+
+                if (item.type == ItemID.WoodenCrate && item.type == ItemID.WoodenCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
             }
-            if (item.type == ItemID.WoodenCrateHard)
-            {
-                itemLoot.Add(new CommonDrop(ItemID.Sundial, lootOtherConfig.CrateEnchantedSundial * 10));
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
-            }
-            if (item.type == ItemID.GoldenCrate)
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
-            if (item.type == ItemID.IronCrate)
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
-            if (item.type == ItemID.WoodenCrate)
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
 
             if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
             {
                 itemLoot.Add(new CommonDrop(ItemID.SandstorminaBottle, 35)); //TO-DO Remove when 1.4.4+ adds this
                 itemLoot.Add(new CommonDrop(ItemID.FlyingCarpet, 35));
             }
-
-            //Boss Bag drops that don't happen in vanilla.
-            if (item.type == ItemID.FishronBossBag)
-                itemLoot.Add(new CommonDrop(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron));
-
-            if (item.type == ItemID.KingSlimeBossBag)
-                itemLoot.Add(new CommonDrop(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing));
+            #endregion
         }
     }
 }
