@@ -530,8 +530,8 @@ namespace ReducedGrinding
 
         [Label("[i:3064] Enchanted Sundial")]
         [Tooltip("" +
-            "Denominator is multiplied by 3 for Mythril and 10 for\n" +
-            "Pearlwood")]
+            "Changes the chance of Enchanted Sundial drop unless it's set to 0. Denominator\n" +
+            "is multiplied by 3 for Mythril and 10 for Pearlwood")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
@@ -540,8 +540,8 @@ namespace ReducedGrinding
 
         [Label("[i:438] King, Queen, Heart, Star, and Bomb Statue")]
         [Tooltip("" +
-            "Randomly selects 1 of the 5 statues. Denominator is multiplied\n" +
-            "by 3 for Mythril and 10 for Pearlwood")]
+            "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril\n" +
+            "and 10 for Pearlwood")]
         [Range(0, 10000)]
         [DefaultValue(5)]
         public int CrateStatue;
