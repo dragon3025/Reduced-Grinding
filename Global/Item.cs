@@ -87,7 +87,8 @@ namespace ReducedGrinding.Global
 
             #region Crates
             //TO-DO Remove when 1.4.4+ adds this
-            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard)
+            #region 1.4.4 Stuff
+            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard || item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
             {
                 foreach (var rule in itemLoot.Get())
                 {
@@ -95,9 +96,9 @@ namespace ReducedGrinding.Global
                     {
                         foreach (var rule2 in drop.rules)
                         {
-                            if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Aglet))
+                            if ((item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard) && rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Aglet))
                             {
-                                foreach (int i in drop2.dropIds)
+                                for (int i = 0; i < drop2.dropIds.Length; i++)
                                 {
                                     if (drop2.dropIds[i] == ItemID.Umbrella)
                                     {
@@ -107,10 +108,29 @@ namespace ReducedGrinding.Global
                                 }
                                 drop2.chanceDenominator = 20;
                             }
+                            if (item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
+                            {
+                                if (rule2 is SequentialRulesNotScalingWithLuckRule drop3)
+                                {
+                                    foreach (var rule3 in drop3.rules)
+                                    {
+                                        if (rule3 is CommonDropNotScalingWithLuck drop4 && drop4.itemId == ItemID.LifeCrystal)
+                                            drop4.chanceDenominator = 8;
+                                    }
+                                }
+                                if (rule2 is CommonDropNotScalingWithLuck drop5 && drop5.itemId == ItemID.EnchantedSword)
+                                {
+                                    if (item.type == ItemID.GoldenCrate)
+                                        drop5.chanceDenominator = 30;
+                                    else
+                                        drop5.chanceDenominator = 15;
+                                }
+                            }
                         }
                     }
                 }
             }
+            #endregion
 
             if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
             {

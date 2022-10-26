@@ -607,6 +607,12 @@ namespace ReducedGrinding
         #region Crafting
         [Header("Crafting")]
 
+        [Label("[i:947] Chlorophyte Ore Per [i:1006]Bar")]
+        [Tooltip("Set to 5 to disable custom recipe")]
+        [Range(1, 5)]
+        [DefaultValue(5)]
+        public int ChlorophyteOrePerBar;
+
         [Label("[i:67] Infection Powder per Mushroom")]
         [Tooltip("Set to 5 to disable custom recipe")]
         [Range(5, 999)]

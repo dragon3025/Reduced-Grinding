@@ -1399,8 +1399,17 @@ namespace ReducedGrinding.GlobalRecipes
                     if (recipe.HasResult(ItemID.ViciousPowder))
                         recipe.ReplaceResult(ItemID.ViciousPowder, infectionPowderPerMushroom);
                 }
+
+                int ChlorophyteOrePerBar = GetInstance<IOtherConfig>().ChlorophyteOrePerBar;
+                if (ChlorophyteOrePerBar < 5)
+                {
+                    if (recipe.HasResult(ItemID.ChlorophyteBar))
+                    {
+                        recipe.RemoveIngredient(ItemID.ChlorophyteOre);
+                        recipe.AddIngredient(ItemID.ChlorophyteOre, ChlorophyteOrePerBar);
+                    }
+                }
             }
         }
-
     }
 }
