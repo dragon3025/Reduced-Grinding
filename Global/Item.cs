@@ -42,12 +42,11 @@ namespace ReducedGrinding.Global
                     }
                 }
                 if (GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron > 0)
-                    itemLoot.Add(new CommonDrop(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron));
+                    itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 1, 1));
             }
 
             if (item.type == ItemID.KingSlimeBossBag && GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing > 0)
-                itemLoot.Add(new CommonDrop(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing));
-
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, 1, 1));
 
             if (item.type == ItemID.FairyQueenBossBag)
             {
@@ -129,6 +128,32 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
+            }
+            if (item.type == ItemID.FloatingIslandFishingCrate || item.type == ItemID.FloatingIslandFishingCrateHard)
+            {
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        foreach (var rule2 in drop.rules)
+                        {
+                            if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Starfury))
+                            {
+                                List<int> newDropOptions = new();
+                                for (int i = 0; i < drop2.dropIds.Length; i++)
+                                    newDropOptions.Add(drop2.dropIds[i]);
+
+                                newDropOptions.Remove(ItemID.CreativeWings);
+                                newDropOptions.Add(ItemID.LuckyHorseshoe);
+                                newDropOptions.Add(ItemID.CelestialMagnet);
+
+                                drop2.dropIds = newDropOptions.ToArray();
+                            }
+                        }
+                    }
+                }
+                itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
+                itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.Cloud, 2, 50, 100));
             }
             #endregion
 
@@ -232,8 +257,8 @@ namespace ReducedGrinding.Global
 
             if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
             {
-                itemLoot.Add(new CommonDrop(ItemID.SandstorminaBottle, 35)); //TO-DO Remove when 1.4.4+ adds this
-                itemLoot.Add(new CommonDrop(ItemID.FlyingCarpet, 35));
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SandstorminaBottle, 35, 1, 1)); //TO-DO Remove when 1.4.4+ adds this
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.FlyingCarpet, 35, 1, 1));
             }
             #endregion
         }

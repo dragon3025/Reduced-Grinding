@@ -32,7 +32,15 @@ namespace ReducedGrinding.Global.WorldGeneration
                 progress.Message = "Adding Non-Existing Rare Chest Loot";
 
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
+                //TO-DO Remove changes to Skyware Chests when 1.4.4+ comes out
+                List<int> missingSkywareItems = new() {
+                    ItemID.ShinyRedBalloon,
+                    ItemID.Starfury,
+                    ItemID.LuckyHorseshoe,
+                    ItemID.CelestialMagnet
+                }; //Vanilla Skyware items will generate making sure to add rare items that haven't been added yet by going down the list, then it will be random.
                 List<int> terragrimChests = new();
+                List<int> nonSkywareChests = new(); //TO-DO Remove when 1.4.4+ comes out
 
                 void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
                 {
@@ -554,6 +562,57 @@ namespace ReducedGrinding.Global.WorldGeneration
                             terragrimChests.Add(chestIndex);
                     }
 
+                    //TO-DO Remove when 1.4.4+ comes out
+                    tileSubID = 13; //Skyware Chest
+                    if (chestType1 && tileFrameX == tileSubID * 36)
+                    {
+                        for (int slot = 0; slot < 40; slot++)
+                        {
+                            int type = chest.item[slot].type;
+                            if (type == ItemID.CreativeWings || type == ItemID.Starfury || type == ItemID.ShinyRedBalloon)
+                            {
+                                if (missingSkywareItems.Count > 0)
+                                {
+                                    chest.item[slot].SetDefaults(missingSkywareItems[0]);
+                                    missingSkywareItems.RemoveAt(0);
+                                }
+                                else
+                                {
+                                    switch (Main.rand.Next(4))
+                                    {
+                                        case 0:
+                                            chest.item[slot].SetDefaults(ItemID.Starfury);
+                                            break;
+                                        case 1:
+                                            chest.item[slot].SetDefaults(ItemID.LuckyHorseshoe);
+                                            break;
+                                        case 2:
+                                            chest.item[slot].SetDefaults(ItemID.ShinyRedBalloon);
+                                            break;
+                                        case 3:
+                                            chest.item[slot].SetDefaults(ItemID.CelestialMagnet);
+                                            break;
+                                    }
+                                }
+                            }
+                            else if (chest.item[slot].type == ItemID.None)
+                            {
+                                if (Main.rand.NextBool(40))
+                                {
+                                    chest.item[slot].SetDefaults(ItemID.CreativeWings);
+                                    slot++;
+                                }
+                                chest.item[slot].SetDefaults(ItemID.Cloud);
+                                chest.item[slot].stack = Main.rand.Next(50, 101);
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        nonSkywareChests.Add(chestIndex);
+                    }
+
                     tileSubID = 32; //Mushroom Chest
                     if (chestType1 && tileFrameX == tileSubID * 36)
                     {
@@ -575,7 +634,136 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
                 #endregion
 
-                #region Add Missing Mushroom Items and Terragrims
+                #region Final Chest Tweaks
+                //TO-DO Remove when 1.4.4+ comes out
+                foreach (int chestIndex in nonSkywareChests)
+                {
+                    Chest chest = Main.chest[chestIndex];
+                    for (int slot = 0; slot < 40; slot++)
+                    {
+                        int type = chest.item[slot].type;
+                        if (type == ItemID.LuckyHorseshoe)
+                        {
+                            //Regenerate Rare Loot
+                            if (chest.y < Main.rockLayer)
+                            {
+                                switch (WorldGen.genRand.Next(6))
+                                {
+                                    case 0:
+                                        chest.item[slot].SetDefaults(49);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                    case 1:
+                                        chest.item[slot].SetDefaults(50);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                    case 2:
+                                        chest.item[slot].SetDefaults(53);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                    case 3:
+                                        chest.item[slot].SetDefaults(54);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                    case 4:
+                                        chest.item[slot].SetDefaults(5011);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                    default:
+                                        chest.item[slot].SetDefaults(975);
+                                        chest.item[slot].Prefix(-1);
+                                        break;
+                                }
+                            }
+                            else if (chest.y < Main.maxTilesY - 250)
+                            {
+                                int num31 = WorldGen.genRand.Next(7);
+                                bool flag14 = chest.y > WorldGen.lavaLine;
+                                int maxValue = 20;
+                                if (WorldGen.tenthAnniversaryWorldGen)
+                                {
+                                    maxValue = 15;
+                                }
+                                if (WorldGen.genRand.NextBool(maxValue) && flag14)
+                                {
+                                    chest.item[slot].SetDefaults(906);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                                else if (WorldGen.genRand.NextBool(15))
+                                {
+                                    chest.item[slot].SetDefaults(997);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                                else
+                                {
+                                    if (num31 == 0)
+                                    {
+                                        chest.item[slot].SetDefaults(49);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 1)
+                                    {
+                                        chest.item[slot].SetDefaults(50);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 2)
+                                    {
+                                        chest.item[slot].SetDefaults(53);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 3)
+                                    {
+                                        chest.item[slot].SetDefaults(54);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 4)
+                                    {
+                                        chest.item[slot].SetDefaults(5011);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 5)
+                                    {
+                                        chest.item[slot].SetDefaults(975);
+                                        chest.item[slot].Prefix(-1);
+                                    }
+                                    if (num31 == 6)
+                                    {
+                                        chest.item[slot].SetDefaults(930);
+                                        chest.item[slot].Prefix(-1);
+                                        slot++;
+                                        chest.item[slot].SetDefaults(931);
+                                        chest.item[slot].stack = WorldGen.genRand.Next(26) + 25;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                int num37 = WorldGen.genRand.Next(4);
+                                if (num37 == 0)
+                                {
+                                    chest.item[slot].SetDefaults(49);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                                if (num37 == 1)
+                                {
+                                    chest.item[slot].SetDefaults(50);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                                if (num37 == 2)
+                                {
+                                    chest.item[slot].SetDefaults(53);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                                if (num37 == 3)
+                                {
+                                    chest.item[slot].SetDefaults(54);
+                                    chest.item[slot].Prefix(-1);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 int mushroomChestAttempts = 0;
                 while (missingMushroomItems.Count > 0)
                 {
