@@ -139,9 +139,7 @@ namespace ReducedGrinding.Global
                         {
                             if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Starfury))
                             {
-                                List<int> newDropOptions = new();
-                                for (int i = 0; i < drop2.dropIds.Length; i++)
-                                    newDropOptions.Add(drop2.dropIds[i]);
+                                List<int> newDropOptions = drop2.dropIds.ToList();
 
                                 newDropOptions.Remove(ItemID.CreativeWings);
                                 newDropOptions.Add(ItemID.LuckyHorseshoe);
@@ -154,6 +152,58 @@ namespace ReducedGrinding.Global
                 }
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.Cloud, 2, 50, 100));
+            }
+            if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
+            {
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        List<IItemDropRule> newDropRules = drop.rules.ToList();
+                        newDropRules.Add(ItemDropRule.NotScalingWithLuck(ItemID.HellMinecart, 20));
+                        drop.rules = newDropRules.ToArray();
+                    }
+                }
+            }
+            if (item.type == ItemID.OceanCrate || item.type == ItemID.OceanCrateHard)
+            {
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        foreach (var rule2 in drop.rules)
+                        {
+                            if (rule2 is SequentialRulesNotScalingWithLuckRule drop2)
+                            {
+                                foreach (var rule3 in drop2.rules)
+                                {
+                                    if (rule3 is CommonDropNotScalingWithLuck drop3 && drop3.itemId == ItemID.SharkBait)
+                                    {
+                                        List<IItemDropRule> newDropRules = drop2.rules.ToList();
+                                        newDropRules.Remove(rule3);
+                                        drop2.rules = newDropRules.ToArray();
+                                    }
+                                }
+                            }
+                        }
+                        List<IItemDropRule> newDropRules2 = drop.rules.ToList();
+                        newDropRules2.Add(ItemDropRule.NotScalingWithLuck(ItemID.SharkBait, 10));
+                        drop.rules = newDropRules2.ToArray();
+                    }
+                }
+            }
+            if (item.type == ItemID.ObsidianLockbox)
+            {
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is OneFromOptionsNotScaledWithLuckDropRule drop)
+                    {
+                        List<int> newDrops = drop.dropIds.ToList();
+                        newDrops.Remove(ItemID.TreasureMagnet);
+                        drop.dropIds = newDrops.ToArray();
+                    }
+                }
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TreasureMagnet, 5, 1, 1));
             }
             #endregion
 

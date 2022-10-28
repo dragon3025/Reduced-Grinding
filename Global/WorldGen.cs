@@ -566,10 +566,18 @@ namespace ReducedGrinding.Global.WorldGeneration
                     tileSubID = 13; //Skyware Chest
                     if (chestType1 && tileFrameX == tileSubID * 36)
                     {
+                        bool adjustedRareItem = false;
+                        int[] emptySlot = new int[] { -1, -1 };
+                        int eSlot = 0;
                         for (int slot = 0; slot < 40; slot++)
                         {
                             int type = chest.item[slot].type;
-                            if (type == ItemID.CreativeWings || type == ItemID.Starfury || type == ItemID.ShinyRedBalloon)
+                            if (type == ItemID.None && emptySlot[1] == -1)
+                            {
+                                emptySlot[eSlot] = slot;
+                                eSlot++;
+                            }
+                            else if (type == ItemID.CreativeWings || type == ItemID.Starfury || type == ItemID.ShinyRedBalloon)
                             {
                                 if (missingSkywareItems.Count > 0)
                                 {
@@ -578,7 +586,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                                 else
                                 {
-                                    switch (Main.rand.Next(4))
+                                    switch (WorldGen.genRand.Next(4))
                                     {
                                         case 0:
                                             chest.item[slot].SetDefaults(ItemID.Starfury);
@@ -594,18 +602,25 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             break;
                                     }
                                 }
+                                adjustedRareItem = true;
                             }
-                            else if (chest.item[slot].type == ItemID.None)
-                            {
-                                if (Main.rand.NextBool(40))
-                                {
-                                    chest.item[slot].SetDefaults(ItemID.CreativeWings);
-                                    slot++;
-                                }
-                                chest.item[slot].SetDefaults(ItemID.Cloud);
-                                chest.item[slot].stack = Main.rand.Next(50, 101);
+                            if (adjustedRareItem && emptySlot[1] > -1)
                                 break;
+                        }
+                        eSlot = 0;
+                        if (adjustedRareItem && emptySlot[eSlot] > -1)
+                        {
+                            if (WorldGen.genRand.NextBool(40))
+                            {
+                                chest.item[emptySlot[eSlot]].SetDefaults(ItemID.CreativeWings);
+                                chest.item[emptySlot[eSlot]].Prefix(-1);
+                                eSlot++;
                             }
+                        }
+                        if (emptySlot[eSlot] > -1)
+                        {
+                            chest.item[emptySlot[eSlot]].SetDefaults(ItemID.Cloud);
+                            chest.item[emptySlot[eSlot]].stack = WorldGen.genRand.Next(50, 101);
                         }
                     }
                     else
@@ -613,21 +628,247 @@ namespace ReducedGrinding.Global.WorldGeneration
                         nonSkywareChests.Add(chestIndex);
                     }
 
-                    tileSubID = 32; //Mushroom Chest
-                    if (chestType1 && tileFrameX == tileSubID * 36)
+                    int waterChestItem = 0;
+                    if (chestType1)
                     {
-                        if (missingMushroomItems.Count > 0)
+                        tileSubID = 32; //Mushroom Chest
+                        int waterChestSubID = 17; //Remove when 1.4.4+ comes out
+                        int woodChestSubID = 0; //Remove when 1.4.4+ comes out
+                        int livingWoodChestSubID = 12; //Remove when 1.4.4+ comes out
+                        int lockedShadowChestSubID = 4; //Remove when 1.4.4+ comes out
+                        int goldChestSubID = 1; //Remove when 1.4.4+ comes out
+                        if (tileFrameX == tileSubID * 36)
                         {
+                            if (missingMushroomItems.Count > 0)
+                            {
+                                for (int slot = 0; slot < 40; slot++)
+                                {
+                                    List<int> missingMushroomItemsOld = new();
+                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
+
+                                    foreach (int itemType in missingMushroomItemsOld)
+                                        if (chest.item[slot].type == itemType)
+                                        {
+                                            missingMushroomItems.Remove(itemType);
+                                        }
+                                }
+                            }
+                        }
+                        else if (tileFrameX == waterChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
+                        {
+                            int emptySlot = -1;
+                            bool needToFixRareItem = true;
                             for (int slot = 0; slot < 40; slot++)
                             {
-                                List<int> missingMushroomItemsOld = new();
-                                missingMushroomItemsOld.AddRange(missingMushroomItems);
-
-                                foreach (int itemType in missingMushroomItemsOld)
-                                    if (chest.item[slot].type == itemType)
+                                int type = chest.item[slot].type;
+                                if (emptySlot == -1 && type == ItemID.None)
+                                    emptySlot = slot;
+                                else if (type == ItemID.SharkBait)
+                                {
+                                    if (WorldGen.genRand.NextBool(10))
                                     {
-                                        missingMushroomItems.Remove(itemType);
+                                        chest.item[slot].SetDefaults(ItemID.WaterWalkingBoots);
+                                        chest.item[slot].Prefix(-1);
                                     }
+                                    else
+                                    {
+                                        waterChestItem++;
+                                        switch (waterChestItem)
+                                        {
+                                            case 1:
+                                                chest.item[slot].SetDefaults(ItemID.BreathingReed);
+                                                break;
+                                            case 2:
+                                                chest.item[slot].SetDefaults(ItemID.Flipper);
+                                                chest.item[slot].Prefix(-1);
+                                                break;
+                                            case 3:
+                                                chest.item[slot].SetDefaults(ItemID.Trident);
+                                                chest.item[slot].Prefix(-1);
+                                                break;
+                                            default:
+                                                chest.item[slot].SetDefaults(ItemID.FloatingTube);
+                                                chest.item[slot].Prefix(-1);
+                                                waterChestItem = 0;
+                                                break;
+                                        }
+                                    }
+                                    needToFixRareItem = false;
+                                }
+                                else if (type == ItemID.WaterWalkingBoots || type == ItemID.BreathingReed || type == ItemID.Flipper || type == ItemID.Trident || type == ItemID.FloatingTube)
+                                    needToFixRareItem = false;
+                                if (emptySlot > -1 && !needToFixRareItem)
+                                    break;
+                            }
+                            if (emptySlot > -1 && WorldGen.genRand.NextBool(2))
+                                chest.item[emptySlot].SetDefaults(ItemID.SharkBait);
+                        }
+                        else if (tileFrameX == woodChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
+                        {
+                            bool fixedRareLoot = false;
+                            int[] emptySlot = new int[] { -1, -1 };
+                            int eSlot = 0;
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                int type = chest.item[slot].type;
+                                if (type == ItemID.None && emptySlot[1] == -1)
+                                {
+                                    emptySlot[eSlot] = slot;
+                                    eSlot++;
+                                }
+                                else if (type == ItemID.ThrowingKnife || type == ItemID.Glowstick)
+                                {
+                                    switch (WorldGen.genRand.Next(9))
+                                    {
+                                        case 0:
+                                            chest.item[slot].SetDefaults(ItemID.Spear);
+                                            break;
+                                        case 1:
+                                            chest.item[slot].SetDefaults(ItemID.Blowpipe);
+                                            break;
+                                        case 2:
+                                            chest.item[slot].SetDefaults(ItemID.WoodenBoomerang);
+                                            break;
+                                        case 3:
+                                            chest.item[slot].SetDefaults(ItemID.Aglet);
+                                            break;
+                                        case 4:
+                                            chest.item[slot].SetDefaults(ItemID.ClimbingClaws);
+                                            break;
+                                        case 5:
+                                            chest.item[slot].SetDefaults(ItemID.Umbrella);
+                                            break;
+                                        case 6:
+                                            chest.item[slot].SetDefaults(3068/*GuideToPlantFiberCordage*/);
+                                            break;
+                                        case 7:
+                                            chest.item[slot].SetDefaults(ItemID.WandofSparking);
+                                            break;
+                                        case 8:
+                                            chest.item[slot].SetDefaults(ItemID.Radar);
+                                            break;
+                                        case 9:
+                                            chest.item[slot].SetDefaults(ItemID.PortableStool);
+                                            break;
+                                    }
+                                    fixedRareLoot = true;
+                                }
+                                if (fixedRareLoot && emptySlot[1] > -1)
+                                    break;
+                            }
+                            eSlot = 0;
+                            if (WorldGen.genRand.NextBool(6))
+                            {
+                                chest.item[emptySlot[eSlot]].SetDefaults(ItemID.ThrowingKnife);
+                                chest.item[emptySlot[eSlot]].stack = WorldGen.genRand.Next(150, 301);
+                                eSlot++;
+                            }
+                            if (WorldGen.genRand.NextBool(6))
+                            {
+                                chest.item[emptySlot[eSlot]].SetDefaults(ItemID.ThrowingKnife);
+                                chest.item[emptySlot[eSlot]].stack = WorldGen.genRand.Next(150, 301);
+                            }
+                        }
+                        else if (tileFrameX == livingWoodChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
+                        {
+                            int emptySlot = -1;
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                int type = chest.item[slot].type;
+                                if (emptySlot == -1 && type == ItemID.None)
+                                    emptySlot = slot;
+                                else if (type == ItemID.SunflowerMinecart || type == ItemID.LadybugMinecart)
+                                {
+                                    emptySlot = -1;
+                                    break;
+                                }
+                            }
+                            if (emptySlot > -1 && WorldGen.genRand.NextBool(15))
+                            {
+                                if (WorldGen.genRand.NextBool(2))
+                                    chest.item[emptySlot].SetDefaults(ItemID.SunflowerMinecart);
+                                else
+                                    chest.item[emptySlot].SetDefaults(ItemID.LadybugMinecart);
+                            }
+                        }
+                        else if (tileFrameX == lockedShadowChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
+                        {
+                            bool fixedRareItem = false;
+                            int emptySlot = -1;
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                if (emptySlot == -1 && chest.item[slot].type == ItemID.None)
+                                    emptySlot = slot;
+                                else if (chest.item[slot].type == ItemID.TreasureMagnet)
+                                {
+                                    switch (WorldGen.genRand.Next(5))
+                                    {
+                                        case 0:
+                                            chest.item[slot].SetDefaults(ItemID.Sunfury);
+                                            chest.item[slot].Prefix(-1);
+                                            break;
+                                        case 1:
+                                            chest.item[slot].SetDefaults(ItemID.FlowerofFire);
+                                            chest.item[slot].Prefix(-1);
+                                            break;
+                                        case 2:
+                                            chest.item[slot].SetDefaults(ItemID.Flamelash);
+                                            chest.item[slot].Prefix(-1);
+                                            break;
+                                        case 3:
+                                            chest.item[slot].SetDefaults(ItemID.DarkLance);
+                                            chest.item[slot].Prefix(-1);
+                                            break;
+                                        case 4:
+                                            chest.item[slot].SetDefaults(ItemID.HellwingBow);
+                                            chest.item[slot].Prefix(-1);
+                                            break;
+                                    }
+                                    fixedRareItem = true;
+                                }
+                                if (emptySlot > -1 && fixedRareItem)
+                                    break;
+                            }
+                            if (emptySlot > -1 && WorldGen.genRand.NextBool(5))
+                            {
+                                chest.item[emptySlot].SetDefaults(ItemID.TreasureMagnet);
+                                chest.item[emptySlot].Prefix(-1);
+                            }
+                        }
+                        else if (tileFrameX == goldChestSubID * 36) //Remove when 1.4.4+ comes out
+                        {
+                            bool changedItem = false;
+                            int pharoahsRobeSlot = -1;
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                if (chest.item[slot].type == ItemID.PharaohsMask)
+                                {
+                                    switch (WorldGen.genRand.Next(3))
+                                    {
+                                        case 1:
+                                            chest.item[slot].SetDefaults(ItemID.SandstorminaBottle);
+                                            chest.item[slot].Prefix(-1);
+                                            changedItem = true;
+                                            break;
+                                        case 2:
+                                            chest.item[slot].SetDefaults(ItemID.FlyingCarpet);
+                                            chest.item[slot].Prefix(-1);
+                                            changedItem = true;
+                                            break;
+                                    }
+                                }
+                                else if (chest.item[slot].type == ItemID.PharaohsRobe)
+                                    pharoahsRobeSlot = slot;
+                                if (changedItem && pharoahsRobeSlot > -1)
+                                    break;
+                            }
+                            if (changedItem && pharoahsRobeSlot > -1)
+                            {
+                                for (int slot = pharoahsRobeSlot; slot < 39; slot++)
+                                {
+                                    chest.item[slot] = chest.item[slot + 1];
+                                }
+                                chest.item[39].SetDefaults(ItemID.None);
                             }
                         }
                     }
