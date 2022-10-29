@@ -108,13 +108,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num23 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack10 = WorldGen.genRand.Next(10) + 5;
-                                                if (num23 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(WorldGen.ironBar);
                                                 }
-                                                if (num23 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(WorldGen.silverBar);
                                                 }
@@ -123,13 +123,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num24 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack11 = WorldGen.genRand.Next(25) + 25;
-                                                if (num24 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(40);
                                                 }
-                                                if (num24 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(42);
                                                 }
@@ -145,41 +145,41 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.Next(3) > 0)
                                             {
-                                                int num25 = WorldGen.genRand.Next(9);
+                                                int itemChance = WorldGen.genRand.Next(9);
                                                 int stack13 = WorldGen.genRand.Next(1, 3);
-                                                if (num25 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(289);
                                                 }
-                                                if (num25 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(298);
                                                 }
-                                                if (num25 == 2)
+                                                if (itemChance == 2)
                                                 {
                                                     chest.item[slot].SetDefaults(299);
                                                 }
-                                                if (num25 == 3)
+                                                if (itemChance == 3)
                                                 {
                                                     chest.item[slot].SetDefaults(290);
                                                 }
-                                                if (num25 == 4)
+                                                if (itemChance == 4)
                                                 {
                                                     chest.item[slot].SetDefaults(303);
                                                 }
-                                                if (num25 == 5)
+                                                if (itemChance == 5)
                                                 {
                                                     chest.item[slot].SetDefaults(291);
                                                 }
-                                                if (num25 == 6)
+                                                if (itemChance == 6)
                                                 {
                                                     chest.item[slot].SetDefaults(304);
                                                 }
-                                                if (num25 == 7)
+                                                if (itemChance == 7)
                                                 {
                                                     chest.item[slot].SetDefaults(2322);
                                                 }
-                                                if (num25 == 8)
+                                                if (itemChance == 8)
                                                 {
                                                     chest.item[slot].SetDefaults(2329);
                                                 }
@@ -227,13 +227,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num32 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack16 = WorldGen.genRand.Next(8) + 3;
-                                                if (num32 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(WorldGen.goldBar);
                                                 }
-                                                if (num32 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(WorldGen.silverBar);
                                                 }
@@ -242,13 +242,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num33 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack17 = WorldGen.genRand.Next(26) + 25;
-                                                if (num33 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(41);
                                                 }
-                                                if (num33 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(279);
                                                 }
@@ -264,29 +264,29 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.Next(3) > 0)
                                             {
-                                                int num34 = WorldGen.genRand.Next(6);
+                                                int itemChance = WorldGen.genRand.Next(6);
                                                 int stack19 = WorldGen.genRand.Next(1, 3);
-                                                if (num34 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(296);
                                                 }
-                                                if (num34 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(295);
                                                 }
-                                                if (num34 == 2)
+                                                if (itemChance == 2)
                                                 {
                                                     chest.item[slot].SetDefaults(299);
                                                 }
-                                                if (num34 == 3)
+                                                if (itemChance == 3)
                                                 {
                                                     chest.item[slot].SetDefaults(302);
                                                 }
-                                                if (num34 == 4)
+                                                if (itemChance == 4)
                                                 {
                                                     chest.item[slot].SetDefaults(303);
                                                 }
-                                                if (num34 == 5)
+                                                if (itemChance == 5)
                                                 {
                                                     chest.item[slot].SetDefaults(305);
                                                 }
@@ -295,29 +295,29 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.Next(3) > 1)
                                             {
-                                                int num35 = WorldGen.genRand.Next(6);
+                                                int itemChance = WorldGen.genRand.Next(6);
                                                 int stack20 = WorldGen.genRand.Next(1, 3);
-                                                if (num35 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(301);
                                                 }
-                                                if (num35 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(297);
                                                 }
-                                                if (num35 == 2)
+                                                if (itemChance == 2)
                                                 {
                                                     chest.item[slot].SetDefaults(304);
                                                 }
-                                                if (num35 == 3)
+                                                if (itemChance == 3)
                                                 {
                                                     chest.item[slot].SetDefaults(2329);
                                                 }
-                                                if (num35 == 4)
+                                                if (itemChance == 4)
                                                 {
                                                     chest.item[slot].SetDefaults(2351);
                                                 }
-                                                if (num35 == 5)
+                                                if (itemChance == 5)
                                                 {
                                                     chest.item[slot].SetDefaults(2326);
                                                 }
@@ -333,13 +333,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num36 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack22 = WorldGen.genRand.Next(15) + 15;
-                                                if (num36 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(8);
                                                 }
-                                                if (num36 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(282);
                                                 }
@@ -362,13 +362,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num38 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack23 = WorldGen.genRand.Next(15) + 15;
-                                                if (num38 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(117);
                                                 }
-                                                if (num38 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(WorldGen.goldBar);
                                                 }
@@ -377,13 +377,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num39 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack24 = WorldGen.genRand.Next(25) + 50;
-                                                if (num39 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(265);
                                                 }
-                                                if (num39 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     if (WorldGen.SavedOreTiers.Silver == 168)
                                                     {
@@ -406,37 +406,37 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.Next(4) > 0)
                                             {
-                                                int num40 = WorldGen.genRand.Next(8);
+                                                int itemChance = WorldGen.genRand.Next(8);
                                                 int stack26 = WorldGen.genRand.Next(1, 3);
-                                                if (num40 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(296);
                                                 }
-                                                if (num40 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(295);
                                                 }
-                                                if (num40 == 2)
+                                                if (itemChance == 2)
                                                 {
                                                     chest.item[slot].SetDefaults(293);
                                                 }
-                                                if (num40 == 3)
+                                                if (itemChance == 3)
                                                 {
                                                     chest.item[slot].SetDefaults(288);
                                                 }
-                                                if (num40 == 4)
+                                                if (itemChance == 4)
                                                 {
                                                     chest.item[slot].SetDefaults(294);
                                                 }
-                                                if (num40 == 5)
+                                                if (itemChance == 5)
                                                 {
                                                     chest.item[slot].SetDefaults(297);
                                                 }
-                                                if (num40 == 6)
+                                                if (itemChance == 6)
                                                 {
                                                     chest.item[slot].SetDefaults(304);
                                                 }
-                                                if (num40 == 7)
+                                                if (itemChance == 7)
                                                 {
                                                     chest.item[slot].SetDefaults(2323);
                                                 }
@@ -445,37 +445,37 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.Next(3) > 0)
                                             {
-                                                int num41 = WorldGen.genRand.Next(8);
+                                                int itemChance = WorldGen.genRand.Next(8);
                                                 int stack27 = WorldGen.genRand.Next(1, 3);
-                                                if (num41 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(305);
                                                 }
-                                                if (num41 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(301);
                                                 }
-                                                if (num41 == 2)
+                                                if (itemChance == 2)
                                                 {
                                                     chest.item[slot].SetDefaults(302);
                                                 }
-                                                if (num41 == 3)
+                                                if (itemChance == 3)
                                                 {
                                                     chest.item[slot].SetDefaults(288);
                                                 }
-                                                if (num41 == 4)
+                                                if (itemChance == 4)
                                                 {
                                                     chest.item[slot].SetDefaults(300);
                                                 }
-                                                if (num41 == 5)
+                                                if (itemChance == 5)
                                                 {
                                                     chest.item[slot].SetDefaults(2351);
                                                 }
-                                                if (num41 == 6)
+                                                if (itemChance == 6)
                                                 {
                                                     chest.item[slot].SetDefaults(2348);
                                                 }
-                                                if (num41 == 7)
+                                                if (itemChance == 7)
                                                 {
                                                     chest.item[slot].SetDefaults(2345);
                                                 }
@@ -498,13 +498,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                             }
                                             if (WorldGen.genRand.NextBool(2))
                                             {
-                                                int num42 = WorldGen.genRand.Next(2);
+                                                int itemChance = WorldGen.genRand.Next(2);
                                                 int stack29 = WorldGen.genRand.Next(15) + 15;
-                                                if (num42 == 0)
+                                                if (itemChance == 0)
                                                 {
                                                     chest.item[slot].SetDefaults(8);
                                                 }
-                                                if (num42 == 1)
+                                                if (itemChance == 1)
                                                 {
                                                     chest.item[slot].SetDefaults(282);
                                                 }
@@ -918,7 +918,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                             }
                             else if (chest.y < Main.maxTilesY - 250)
                             {
-                                int num31 = WorldGen.genRand.Next(7);
+                                int itemChance = WorldGen.genRand.Next(7);
                                 bool flag14 = chest.y > WorldGen.lavaLine;
                                 int maxValue = 20;
                                 if (WorldGen.tenthAnniversaryWorldGen)
@@ -937,37 +937,37 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                                 else
                                 {
-                                    if (num31 == 0)
+                                    if (itemChance == 0)
                                     {
                                         chest.item[slot].SetDefaults(49);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 1)
+                                    if (itemChance == 1)
                                     {
                                         chest.item[slot].SetDefaults(50);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 2)
+                                    if (itemChance == 2)
                                     {
                                         chest.item[slot].SetDefaults(53);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 3)
+                                    if (itemChance == 3)
                                     {
                                         chest.item[slot].SetDefaults(54);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 4)
+                                    if (itemChance == 4)
                                     {
                                         chest.item[slot].SetDefaults(5011);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 5)
+                                    if (itemChance == 5)
                                     {
                                         chest.item[slot].SetDefaults(975);
                                         chest.item[slot].Prefix(-1);
                                     }
-                                    if (num31 == 6)
+                                    if (itemChance == 6)
                                     {
                                         chest.item[slot].SetDefaults(930);
                                         chest.item[slot].Prefix(-1);
@@ -979,23 +979,23 @@ namespace ReducedGrinding.Global.WorldGeneration
                             }
                             else
                             {
-                                int num37 = WorldGen.genRand.Next(4);
-                                if (num37 == 0)
+                                int itemChance = WorldGen.genRand.Next(4);
+                                if (itemChance == 0)
                                 {
                                     chest.item[slot].SetDefaults(49);
                                     chest.item[slot].Prefix(-1);
                                 }
-                                if (num37 == 1)
+                                if (itemChance == 1)
                                 {
                                     chest.item[slot].SetDefaults(50);
                                     chest.item[slot].Prefix(-1);
                                 }
-                                if (num37 == 2)
+                                if (itemChance == 2)
                                 {
                                     chest.item[slot].SetDefaults(53);
                                     chest.item[slot].Prefix(-1);
                                 }
-                                if (num37 == 3)
+                                if (itemChance == 3)
                                 {
                                     chest.item[slot].SetDefaults(54);
                                     chest.item[slot].Prefix(-1);

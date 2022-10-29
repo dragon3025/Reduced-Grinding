@@ -20,8 +20,8 @@ namespace ReducedGrinding.Global
                 bool awayFromInvasion = true;
                 if (invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0 && player.position.Y < Main.worldSurface * 16.0 + NPC.sHeight)
                 {
-                    int num8 = 3000;
-                    if (player.position.X > Main.invasionX * 16.0 - num8 && player.position.X < Main.invasionX * 16.0 + num8)
+                    int xExtends = 3000;
+                    if (player.position.X > Main.invasionX * 16.0 - xExtends && player.position.X < Main.invasionX * 16.0 + xExtends)
                     {
                         awayFromInvasion = false;
                     }
@@ -29,7 +29,7 @@ namespace ReducedGrinding.Global
                     {
                         for (int k = 0; k < 200; k++)
                         {
-                            if (Main.npc[k].townNPC && Math.Abs(player.position.X - Main.npc[k].Center.X) < num8)
+                            if (Main.npc[k].townNPC && Math.Abs(player.position.X - Main.npc[k].Center.X) < xExtends)
                             {
                                 if (!Main.rand.NextBool(3))
                                 {

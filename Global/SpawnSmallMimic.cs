@@ -70,7 +70,7 @@ namespace ReducedGrinding.Global
                     {
                         y--;
                     }
-                    int number = Chest.FindChest(x, y);
+                    int chest = Chest.FindChest(x, y);
                     for (int j = 0; j < 40; j++)
                     {
                         Main.chest[chestCount].item[j].SetDefaults(ItemID.None);
@@ -91,7 +91,7 @@ namespace ReducedGrinding.Global
                     {
                         number2 = 5;
                     }
-                    NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, number);
+                    NetMessage.SendData(MessageID.ChestUpdates, -1, -1, null, number2, x, y, 0f, chest);
                     NetMessage.SendTileSquare(-1, x, y, 3);
                 }
                 var source = Player.GetSource_FromThis();
