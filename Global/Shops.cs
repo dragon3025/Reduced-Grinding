@@ -152,6 +152,13 @@ namespace ReducedGrinding.Global
                         }
                     }
                     break;
+                case NPCID.WitchDoctor:
+                    if (GetInstance<IOtherConfig>().WitchDoctorSellsChlorophyteOreAfterPlantera && NPC.downedPlantBoss)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteOre);
+                        nextSlot++;
+                    }
+                    break;
             }
         }
 

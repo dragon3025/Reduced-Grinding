@@ -14,19 +14,15 @@ namespace ReducedGrinding.GlobalFasterBossSummons
         {
             if (!GetInstance<IOtherConfig>().AdjustItemValuesForDropIncreases)
                 return;
+
             void FindNewValue(float oldChance, int newChance)
             {
                 if (newChance > 0)
-                {
-                    float chanceChange = 1f;
-                    chanceChange = oldChance / (oldChance + (1f / newChance));
-                    if (item.value > 5)
-                        item.value = Math.Max(5, (int)(item.value * chanceChange));
-                }
+                    item.value = (int)(item.value * oldChance / newChance);
             }
 
             if (item.type == ItemID.Binoculars)
-                FindNewValue(1f / 30f, lootConfig.Binoculars);
+                FindNewValue(1f / 30, lootConfig.Binoculars);
 
             if (item.type == ItemID.FishronWings || item.type == ItemID.RainbowWings)
                 FindNewValue(0.1f, lootConfig.EmpressAndFishronWings);
@@ -44,7 +40,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(0.125f, lootConfig.TownNPCWeapons);
 
             if (item.type == ItemID.AleThrowingGlove)
-                FindNewValue(1f / 6f, lootConfig.TownNPCWeapons);
+                FindNewValue(1f / 6, lootConfig.TownNPCWeapons);
 
             if (item.type == ItemID.PainterPaintballGun)
                 FindNewValue(0.1f, lootConfig.TownNPCWeapons);
@@ -53,7 +49,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(0.0004f, lootConfig.BiomeKey);
 
             if (item.type == ItemID.BeamSword)
-                FindNewValue(1f / 150f, lootConfig.BeamSword);
+                FindNewValue(1f / 150, lootConfig.BeamSword);
 
             int[] goodieBagItems = new int[]
             {
@@ -129,10 +125,10 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(0.005f, lootConfig.Marrow);
 
             if (item.type == ItemID.PaladinsHammer)
-                FindNewValue(22f / 225f, lootConfig.PaladinsHammer);
+                FindNewValue(22f / 225, lootConfig.PaladinsHammer);
 
             if (item.type == ItemID.PaladinsShield)
-                FindNewValue(763f / 5625f, lootConfig.PaladinsShield);
+                FindNewValue(763f / 5625, lootConfig.PaladinsShield);
 
             if (item.type == ItemID.PlumbersHat)
                 FindNewValue(0.004f, lootConfig.PlumbersHat);
@@ -173,43 +169,43 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             };
             foreach (int i in presentItems)
                 if (item.type == i)
-                    FindNewValue(1f / 13f, lootConfig.Present);
+                    FindNewValue(1f / 13, lootConfig.Present);
 
             if (item.type == ItemID.RifleScope || item.type == ItemID.SniperRifle)
-                FindNewValue(23f / 144f, lootConfig.RifleScopeAndSniperRifle);
+                FindNewValue(23f / 144, lootConfig.RifleScopeAndSniperRifle);
 
             if (item.type == ItemID.RocketLauncher)
-                FindNewValue(35f / 324f, lootConfig.RocketLauncher);
+                FindNewValue(35f / 324, lootConfig.RocketLauncher);
 
-            if (item.type == ItemID.RodofDiscord)
+            if (item.type == ItemID.RodofDiscord) //TO-DO When 1.4.4 comes out, adjsut Rod of Harmony's value with it.
                 FindNewValue(0.0025f, lootConfig.RodofDiscord);
 
             if (item.type == ItemID.SWATHelmet || item.type == ItemID.TacticalShotgun)
-                FindNewValue(23f / 144f, lootConfig.SWATHelmetAndTacticalShotgun);
+                FindNewValue(23f / 144, lootConfig.SWATHelmetAndTacticalShotgun);
 
             if (item.type == ItemID.CoinGun)
                 FindNewValue(0.0025f, lootConfig.CoinGun);
 
             if (item.type == ItemID.SlimeStaff)
             {
-                float chanceChangeOther = 1f;
                 float chanceChangePinky = 1f;
                 float chanceChangeSand = 1f;
+                float chanceChangeOther = 1f;
 
-                float chanceOther = lootConfig.SlimeStaffFromOtherSlimes;
                 float chancePinky = lootConfig.SlimeStaffFromPinky;
                 float chanceSand = lootConfig.SlimeStaffFromSandSlime;
+                float chanceOther = lootConfig.SlimeStaffFromOtherSlimes;
 
-                if (chanceOther > 0)
-                    chanceChangeOther = 1f / 7000f / ((1f / 7000f) + (1f / chanceOther));
                 if (chancePinky > 0)
-                    chanceChangePinky = 1f / 7000f / ((1f / 7000f) + (1f / chancePinky));
+                    chanceChangePinky = 1f / 70 / (1f / chancePinky);
                 if (chanceSand > 0)
-                    chanceChangeSand = 1f / 7000f / ((1f / 7000f) + (1f / chanceSand));
+                    chanceChangeSand = 1f / 5600 / (1f / chanceSand);
+                if (chanceOther > 0)
+                    chanceChangeOther = 1f / 7000 / (1f / chanceOther);
 
-                float chanceChangeAverage = (chanceChangeOther + chanceChangePinky + chanceChangeSand) / 3f;
+                float chanceChange = Math.Min(chanceChangePinky, Math.Min(chanceChangeSand, chanceChangeOther));
 
-                item.value = (int)(item.value * chanceChangeAverage);
+                item.value = (int)(item.value * chanceChange);
             }
         }
     }

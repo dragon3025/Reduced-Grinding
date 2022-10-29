@@ -1389,23 +1389,6 @@ namespace ReducedGrinding.GlobalRecipes
                         recipe.AddIngredient(j, 12);
                     }
                 }
-
-                int infectionPowderPerMushroom = GetInstance<IOtherConfig>().InfectionPowderPerMushroom;
-                if (infectionPowderPerMushroom > 5)
-                {
-                    if (recipe.HasResult(ItemID.VilePowder))
-                        recipe.ReplaceResult(ItemID.VilePowder, infectionPowderPerMushroom);
-
-                    if (recipe.HasResult(ItemID.ViciousPowder))
-                        recipe.ReplaceResult(ItemID.ViciousPowder, infectionPowderPerMushroom);
-                }
-
-                int ChlorophyteBarCraftingAmount = GetInstance<IOtherConfig>().ChlorophyteBarCraftingAmount;
-                if (ChlorophyteBarCraftingAmount > 1)
-                {
-                    if (recipe.HasResult(ItemID.ChlorophyteBar))
-                        recipe.ReplaceResult(ItemID.ChlorophyteBar, ChlorophyteBarCraftingAmount);
-                }
             }
         }
     }

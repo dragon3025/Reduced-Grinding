@@ -607,18 +607,6 @@ namespace ReducedGrinding
         #region Crafting
         [Header("Crafting")]
 
-        [Label("[i:1006] Chlorophyte Bar per 5 [i:947] Chlorophyte Ore")]
-        [Tooltip("Set to 1 to disable custom recipe")]
-        [Range(1, 10000)]
-        [DefaultValue(1)]
-        public int ChlorophyteBarCraftingAmount;
-
-        [Label("[i:67] Infection Powder per Mushroom")]
-        [Tooltip("Set to 5 to disable custom recipe")]
-        [Range(5, 999)]
-        [DefaultValue(5)]
-        public int InfectionPowderPerMushroom;
-
         [Label("Allow crafting [i:2889] Gold Critters")]
         [Tooltip("Recipes use 10 Gold Coins to prevent exploiting the recipe for money")]
         [DefaultValue(false)]
@@ -658,11 +646,9 @@ namespace ReducedGrinding
         #region Other
         [Header("Other")]
 
-        [Label("Adjust Values For Drop Increases")]
+        [Label("Adjust Values")]
         [Tooltip("" +
-            "If enabled, items with extra drop rates will have their values\n" +
-            "reduced depending on how much their drop rate is increased.\n" +
-            "New value is multiplied by (chance / total_new_chance).")]
+            "If enabled, this mod will adjust some item values depending on their configuration")]
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
@@ -700,6 +686,10 @@ namespace ReducedGrinding
             "spawn a regular Mimic.Doing this in a Snow Biome will spawn an Ice Mimic.")]
         [DefaultValue(false)]
         public bool AllSpawningRegularMimics;
+
+        [Label("Witch Doctor Sells [i:947] Chlorophyte Ore After Plantera")]
+        [DefaultValue(false)]
+        public bool WitchDoctorSellsChlorophyteOreAfterPlantera;
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
