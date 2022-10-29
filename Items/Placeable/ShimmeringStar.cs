@@ -32,8 +32,8 @@ namespace ReducedGrinding.Items.Placeable
         public override void AddRecipes()
         {
             CreateRecipe()
-              .AddIngredient(ModContent.ItemType<Items.Placeable.ShimmeringStar>())
-              .AddIngredient(ItemID.LunarBar, 10)
+              .AddIngredient(ItemID.Starfish, 1)
+              .AddIngredient(ItemID.FallenStar, 1)
               .Register();
         }
     }

@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.Placeable
 {
@@ -32,12 +33,15 @@ namespace ReducedGrinding.Items.Placeable
 
         public override void AddRecipes()
         {
-            CreateRecipe()
+            if (GetInstance<HOtherModdedItemsConfig>().MoonBall)
+            {
+                CreateRecipe()
               .AddIngredient(ItemID.MeteoriteBar, 20)
               .AddIngredient(ItemID.FallenStar, 20)
               .AddIngredient(ItemID.Glass, 20)
               .AddTile(TileID.DemonAltar)
               .Register();
+            }
         }
     }
 }
