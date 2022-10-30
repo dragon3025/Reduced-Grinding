@@ -153,7 +153,7 @@ namespace ReducedGrinding.Global
                     }
                     break;
                 case NPCID.WitchDoctor:
-                    if (GetInstance<IOtherConfig>().WitchDoctorSellsChlorophyteOreAfterPlantera && NPC.downedPlantBoss)
+                    if (Main.player[Main.myPlayer].ZoneJungle && NPC.downedPlantBoss && GetInstance<IOtherConfig>().WitchDoctorSellsChlorophyteOre)
                     {
                         shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteOre);
                         nextSlot++;

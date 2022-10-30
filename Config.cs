@@ -687,9 +687,10 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool AllSpawningRegularMimics;
 
-        [Label("Witch Doctor Sells [i:947] Chlorophyte Ore After Plantera")]
+        [Label("Witch Doctor Sells [i:947] Chlorophyte Ore")]
+        [Tooltip("He will only sell it in the Jungle after beating Plantera")]
         [DefaultValue(false)]
-        public bool WitchDoctorSellsChlorophyteOreAfterPlantera;
+        public bool WitchDoctorSellsChlorophyteOre;
         #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

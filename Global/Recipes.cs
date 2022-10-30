@@ -686,6 +686,16 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
+            recipe = Recipe.Create(ItemID.PharaohsMask);
+            recipe.AddIngredient(ItemID.SandstorminaBottle);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PharaohsRobe);
+            recipe.AddIngredient(ItemID.FlyingCarpet);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
             recipe = Recipe.Create(ItemID.LavaCharm);
             recipe.AddIngredient(ItemID.MagmaStone);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
@@ -1154,16 +1164,6 @@ namespace ReducedGrinding.GlobalRecipes
 
             //TO-DO when 1.4.4+ comes out, convert this into a shimmer transmutation if possible
             #region Shimmer-Like Recipes not existing in 1.4.4+
-            recipe = Recipe.Create(ItemID.PharaohsMask);
-            recipe.AddIngredient(ItemID.SandstorminaBottle);
-            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PharaohsRobe);
-            recipe.AddIngredient(ItemID.FlyingCarpet);
-            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
-            recipe.Register();
-
             recipe = Recipe.Create(ItemID.SunflowerMinecart);
             recipe.AddIngredient(ItemID.LeafWand);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
