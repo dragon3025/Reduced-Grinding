@@ -6,7 +6,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.GlobalFasterBossSummons
 {
-    public class PriceModification : GlobalItem
+    public class ValueModification : GlobalItem
     {
         readonly static AEnemyLootConfig lootConfig = GetInstance<AEnemyLootConfig>();
 
