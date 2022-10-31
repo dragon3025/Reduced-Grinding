@@ -85,6 +85,112 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Crates
+
+            if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
+            {
+                IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
+                    ItemDropRule.Common(1396),
+                    ItemDropRule.Common(1397),
+                    ItemDropRule.Common(1398),
+                    ItemDropRule.Common(1399),
+                    ItemDropRule.Common(1400),
+                    ItemDropRule.Common(1401),
+                    ItemDropRule.Common(1402),
+                    ItemDropRule.Common(1403),
+                    ItemDropRule.Common(1404),
+                    ItemDropRule.Common(1405),
+                    ItemDropRule.Common(1406),
+                    ItemDropRule.Common(1407),
+                    ItemDropRule.Common(1408),
+                    ItemDropRule.Common(1409),
+                    ItemDropRule.Common(1410),
+                    ItemDropRule.Common(1411),
+                    ItemDropRule.Common(1412),
+                    ItemDropRule.Common(1413),
+                    ItemDropRule.Common(1414),
+                    ItemDropRule.Common(1415),
+                    ItemDropRule.Common(1416),
+                    ItemDropRule.Common(1470),
+                    ItemDropRule.Common(1471),
+                    ItemDropRule.Common(1472),
+                    ItemDropRule.Common(2376),
+                    ItemDropRule.Common(2377),
+                    ItemDropRule.Common(2378),
+                    ItemDropRule.Common(2386),
+                    ItemDropRule.Common(2387),
+                    ItemDropRule.Common(2388),
+                    ItemDropRule.Common(2402),
+                    ItemDropRule.Common(2403),
+                    ItemDropRule.Common(2404),
+                    ItemDropRule.Common(2645),
+                    ItemDropRule.Common(2646),
+                    ItemDropRule.Common(2647),
+                    ItemDropRule.Common(2652),
+                    ItemDropRule.Common(2653),
+                    ItemDropRule.Common(2654),
+                    ItemDropRule.Common(2658),
+                    ItemDropRule.Common(2659),
+                    ItemDropRule.Common(2660),
+                    ItemDropRule.Common(2664),
+                    ItemDropRule.Common(2665),
+                    ItemDropRule.Common(2666),
+                    ItemDropRule.Common(3900),
+                    ItemDropRule.Common(3901),
+                    ItemDropRule.Common(3902)
+                };
+                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.DungeonCrateDungeonFurniture, dungeonFurniture));
+            }
+
+            if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
+            {
+                int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
+
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    {
+                        foreach (var rule2 in drop.rules)
+                        {
+                            if (rule2 is SequentialRulesNotScalingWithLuckRule drop2)
+                            {
+                                foreach (var rule3 in drop2.rules)
+                                {
+                                    if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
+                                        drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (lootOtherConfig.CrateStatue > 0)
+            {
+                IItemDropRule[] statues = new IItemDropRule[] {
+                ItemDropRule.Common(ItemID.KingStatue),
+                ItemDropRule.Common(ItemID.QueenStatue),
+                ItemDropRule.Common(ItemID.HeartStatue),
+                ItemDropRule.Common(ItemID.StarStatue),
+                ItemDropRule.Common(ItemID.BombStatue)
+            };
+
+                if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
+
+                if (item.type == ItemID.IronCrate && item.type == ItemID.IronCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
+
+                if (item.type == ItemID.WoodenCrate && item.type == ItemID.WoodenCrateHard)
+                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
+            }
+
+            if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
+            {
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SandstorminaBottle, 35, 1, 1)); //TO-DO Remove when 1.4.4+ adds this
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.FlyingCarpet, 35, 1, 1));
+            }
+            #endregion
+
             //TO-DO Remove when 1.4.4+ adds this
             #region 1.4.4 Stuff
             if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard || item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
@@ -205,110 +311,28 @@ namespace ReducedGrinding.Global
                 }
                 itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TreasureMagnet, 5, 1, 1));
             }
-            #endregion
-
-            if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
+            if (item.type == ItemID.BrainOfCthulhuBossBag)
             {
-                IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
-                    ItemDropRule.Common(1396),
-                    ItemDropRule.Common(1397),
-                    ItemDropRule.Common(1398),
-                    ItemDropRule.Common(1399),
-                    ItemDropRule.Common(1400),
-                    ItemDropRule.Common(1401),
-                    ItemDropRule.Common(1402),
-                    ItemDropRule.Common(1403),
-                    ItemDropRule.Common(1404),
-                    ItemDropRule.Common(1405),
-                    ItemDropRule.Common(1406),
-                    ItemDropRule.Common(1407),
-                    ItemDropRule.Common(1408),
-                    ItemDropRule.Common(1409),
-                    ItemDropRule.Common(1410),
-                    ItemDropRule.Common(1411),
-                    ItemDropRule.Common(1412),
-                    ItemDropRule.Common(1413),
-                    ItemDropRule.Common(1414),
-                    ItemDropRule.Common(1415),
-                    ItemDropRule.Common(1416),
-                    ItemDropRule.Common(1470),
-                    ItemDropRule.Common(1471),
-                    ItemDropRule.Common(1472),
-                    ItemDropRule.Common(2376),
-                    ItemDropRule.Common(2377),
-                    ItemDropRule.Common(2378),
-                    ItemDropRule.Common(2386),
-                    ItemDropRule.Common(2387),
-                    ItemDropRule.Common(2388),
-                    ItemDropRule.Common(2402),
-                    ItemDropRule.Common(2403),
-                    ItemDropRule.Common(2404),
-                    ItemDropRule.Common(2645),
-                    ItemDropRule.Common(2646),
-                    ItemDropRule.Common(2647),
-                    ItemDropRule.Common(2652),
-                    ItemDropRule.Common(2653),
-                    ItemDropRule.Common(2654),
-                    ItemDropRule.Common(2658),
-                    ItemDropRule.Common(2659),
-                    ItemDropRule.Common(2660),
-                    ItemDropRule.Common(2664),
-                    ItemDropRule.Common(2665),
-                    ItemDropRule.Common(2666),
-                    ItemDropRule.Common(3900),
-                    ItemDropRule.Common(3901),
-                    ItemDropRule.Common(3902)
-                };
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.DungeonCrateDungeonFurniture, dungeonFurniture));
-            }
-
-            if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
-            {
-                int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
-
                 foreach (var rule in itemLoot.Get())
                 {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
+                    if (rule is CommonDrop drop && (drop.itemId == ItemID.TissueSample || drop.itemId == ItemID.CrimtaneOre))
                     {
-                        foreach (var rule2 in drop.rules)
-                        {
-                            if (rule2 is SequentialRulesNotScalingWithLuckRule drop2)
-                            {
-                                foreach (var rule3 in drop2.rules)
-                                {
-                                    if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
-                                        drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
-                                }
-                            }
-                        }
+                        itemLoot.Remove(rule);
                     }
                 }
+                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.TissueSample, 1, 20, 40), new CommonDrop(ItemID.TissueSample, 1, 30, 50)));
+                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.CrimtaneOre, 1, 80, 110), new CommonDrop(ItemID.CrimtaneOre, 1, 110, 135)));
             }
-
-            if (lootOtherConfig.CrateStatue > 0)
+            if (item.type == ItemID.EaterOfWorldsBossBag)
             {
-                IItemDropRule[] statues = new IItemDropRule[] {
-                ItemDropRule.Common(ItemID.KingStatue),
-                ItemDropRule.Common(ItemID.QueenStatue),
-                ItemDropRule.Common(ItemID.HeartStatue),
-                ItemDropRule.Common(ItemID.StarStatue),
-                ItemDropRule.Common(ItemID.BombStatue)
-            };
-
-                if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
-
-                if (item.type == ItemID.IronCrate && item.type == ItemID.IronCrateHard)
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
-
-                if (item.type == ItemID.WoodenCrate && item.type == ItemID.WoodenCrateHard)
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
-            }
-
-            if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
-            {
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SandstorminaBottle, 35, 1, 1)); //TO-DO Remove when 1.4.4+ adds this
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.FlyingCarpet, 35, 1, 1));
+                foreach (var rule in itemLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.ShadowScale)
+                    {
+                        itemLoot.Remove(rule);
+                    }
+                }
+                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.ShadowScale, 1, 20, 40), new CommonDrop(ItemID.ShadowScale, 1, 30, 50)));
             }
             #endregion
         }
