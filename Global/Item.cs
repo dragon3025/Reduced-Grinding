@@ -15,11 +15,12 @@ namespace ReducedGrinding.Global
 
         public override void ModifyTooltips(Terraria.Item item, List<TooltipLine> tooltips)
         {
+            //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
             if (!GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
                 return;
             if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
             {
-                tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material" +
+                tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material\n" +
                     "Equip to allow 'Ankh Material' accessories to work from your inventory"));
             }
             //TO-DO Remove when 1.4.4 comes out. This is disabled because I couldn't get it to work in modplayer (I used AnglerRewards.cs for this).

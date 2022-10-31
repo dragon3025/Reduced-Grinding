@@ -126,6 +126,7 @@ namespace ReducedGrinding.Global
                     }
                 }
 
+                //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
                 if (GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
                 {
                     bool equipped_to_ankh_material = false;
