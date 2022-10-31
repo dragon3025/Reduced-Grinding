@@ -504,22 +504,16 @@ namespace ReducedGrinding.Global
 
             //TO-DO Remove when 1.4.4+ comes out
             #region Future Drop Adjustments
-            //if (npc.type == NPCID.Shark)
-            //{
-            //    foreach (var rule in npcLoot.Get())
-            //    {
-            //        if (rule is CommonDrop drop)
-            //        {
-            //            foreach (var rule2 in drop.ChainedRules)
-            //            {
-            //                if (rule2 is CommonDrop drop2 && drop2.itemId == ItemID.DivingHelmet)
-            //                {
-            //                    drop2.chanceDenominator = 20;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            if (npc.type == NPCID.Shark)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.DivingHelmet)
+                    {
+                        drop.chanceDenominator = 20;
+                    }
+                }
+            }
             if (npc.type == NPCID.Medusa)
             {
                 foreach (var rule in npcLoot.Get())
@@ -561,29 +555,27 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
-            //if (npc.type == NPCID.DeadlySphere)
-            //{
-            //    foreach (var rule in npcLoot.Get())
-            //    {
-            //        if (rule is LeadingConditionRule drop)
-            //        {
-            //            foreach (var rule2 in drop.ChainedRules)
-            //            {
-            //                if (rule2 is DropBasedOnExpertMode drop2)
-            //                {
-            //                    if (drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
-            //                    {
-            //                        drop3.chanceDenominator = 30;
-            //                    }
-            //                    if (drop2.ruleForExpertMode is CommonDropWithRerolls drop4 && drop4.itemId == ItemID.DeadlySphereStaff)
-            //                    {
-            //                        drop4.chanceDenominator = 30;
-            //                    }
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
+            if (npc.type == NPCID.DeadlySphere)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is LeadingConditionRule drop && drop.ChainedRules[0] is DropBasedOnExpertMode drop2 && drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
+                    {
+                        npcLoot.Remove(rule); XXXXXXXXXXXXXX //<-- INTENTIONAL ERROR MAKER, BECAUSE THIS DIDN'T WORK
+
+                        //foreach (var rule2 in drop.ChainedRules)
+                        //{
+                        //if (rule2 is DropBasedOnExpertMode drop2 && drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
+                        //{
+                        //npcLoot.Remove(rule);
+                        //break;
+                        //}
+                        //}
+                    }
+                }
+                Conditions.DownedPlantera condition2 = new Conditions.DownedPlantera();
+                npcLoot.Add(new LeadingConditionRule(condition2)).OnSuccess(ItemDropRule.ExpertGetsRerolls(3249, 30, 1));
+            }
             if (npc.type == NPCID.RedDevil)
             {
                 foreach (var rule in npcLoot.Get())
@@ -662,46 +654,41 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
-            //int[] monsterMeatDroppers = new int[] { 6, 7, 8, 9, 94, 81, 121, 101, 173, 181, 239, 240, 174, 183, 242, 241, 268, 182, 98, 99, 100 };
-            //foreach (int i in monsterMeatDroppers)
-            //{
-            //    if (npc.type == i)
-            //    {
-            //        foreach (var rule in npcLoot.Get())
-            //        {
-            //            if (rule is ItemDropWithConditionRule drop && drop.itemId == 5091/*Monster Meat*/)
-            //            {
-            //                if (drop.condition == new Conditions.DontStarveIsUp())
-            //                {
-            //                    drop.chanceDenominator = 500;
-            //                }
-            //                if (drop.condition == new Conditions.DontStarveIsNotUp())
-            //                {
-            //                    drop.chanceDenominator = 1500;
-            //                }
-            //            }
-            //        }
-            //    }
-            //}
-            //if (npc.type == NPCID.SnowFlinx)
-            //{
-            //    foreach (var rule in npcLoot.Get())
-            //    {
-            //        if (rule is DropBasedOnExpertMode drop)
-            //        {
-            //            if (drop.ruleForNormalMode is CommonDropWithRerolls drop2 && drop2.itemId == ItemID.FlinxFur)
-            //            {
-            //                drop2.chanceDenominator = 1;
-            //                drop2.amountDroppedMaximum = 2;
-            //            }
-            //            if (drop.ruleForExpertMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.FlinxFur)
-            //            {
-            //                drop3.chanceNumerator = 1;
-            //                drop3.chanceDenominator = 1;
-            //            }
-            //        }
-            //    }
-            //}
+            int[] monsterMeatDroppers = new int[] { 6, 7, 8, 9, 94, 81, 121, 101, 173, 181, 239, 240, 174, 183, 242, 241, 268, 182, 98, 99, 100 };
+            foreach (int i in monsterMeatDroppers)
+            {
+                if (npc.type == i)
+                {
+                    foreach (var rule in npcLoot.Get())
+                    {
+                        if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.PigPetItem)
+                        {
+                            npcLoot.Remove(rule);
+                        }
+                    }
+                    npcLoot.Add(new ItemDropWithConditionRule(5091, 500, 1, 1, new Conditions.DontStarveIsUp()));
+                    npcLoot.Add(new ItemDropWithConditionRule(5091, 1500, 1, 1, new Conditions.DontStarveIsNotUp()));
+                }
+            }
+            if (npc.type == NPCID.SnowFlinx)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is DropBasedOnExpertMode drop)
+                    {
+                        if (drop.ruleForNormalMode is CommonDrop drop2 && drop2.itemId == ItemID.FlinxFur)
+                        {
+                            drop2.chanceDenominator = 1;
+                            drop2.amountDroppedMaximum = 2;
+                        }
+                        if (drop.ruleForExpertMode is CommonDrop drop3 && drop3.itemId == ItemID.FlinxFur)
+                        {
+                            drop3.chanceNumerator = 1;
+                            drop3.chanceDenominator = 1;
+                        }
+                    }
+                }
+            }
             if (npc.type == NPCID.BrainofCthulhu)
             {
                 foreach (var rule in npcLoot.Get())
