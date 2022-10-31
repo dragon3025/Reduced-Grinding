@@ -665,11 +665,16 @@ namespace ReducedGrinding.Global
                     {
                         if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.PigPetItem)
                         {
-                            npcLoot.Remove(rule);
+                            if (drop.condition is Conditions.DontStarveIsNotUp)
+                            {
+                                drop.chanceDenominator = 1500;
+                            }
+                            else if (drop.condition is Conditions.DontStarveIsUp)
+                            {
+                                drop.chanceDenominator = 1500;
+                            }
                         }
                     }
-                    npcLoot.Add(new ItemDropWithConditionRule(5091, 500, 1, 1, new Conditions.DontStarveIsUp()));
-                    npcLoot.Add(new ItemDropWithConditionRule(5091, 1500, 1, 1, new Conditions.DontStarveIsNotUp()));
                 }
             }
             if (npc.type == NPCID.SnowFlinx)
