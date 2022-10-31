@@ -559,22 +559,24 @@ namespace ReducedGrinding.Global
             {
                 foreach (var rule in npcLoot.Get())
                 {
-                    if (rule is LeadingConditionRule drop && drop.ChainedRules[0] is DropBasedOnExpertMode drop2 && drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
+                    if (rule is LeadingConditionRule drop)
                     {
-                        npcLoot.Remove(rule); XXXXXXXXXXXXXX //<-- INTENTIONAL ERROR MAKER, BECAUSE THIS DIDN'T WORK
-
-                        //foreach (var rule2 in drop.ChainedRules)
-                        //{
-                        //if (rule2 is DropBasedOnExpertMode drop2 && drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
-                        //{
-                        //npcLoot.Remove(rule);
-                        //break;
-                        //}
-                        //}
+                        foreach (var rule2 in drop.ChainedRules)
+                        {
+                            if (rule2.RuleToChain is DropBasedOnExpertMode drop2)
+                            {
+                                if (drop2.ruleForNormalMode is CommonDropWithRerolls drop3 && drop3.itemId == ItemID.DeadlySphereStaff)
+                                {
+                                    drop3.chanceDenominator = 30;
+                                }
+                                if (drop2.ruleForExpertMode is CommonDropWithRerolls drop4 && drop4.itemId == ItemID.DeadlySphereStaff)
+                                {
+                                    drop4.chanceDenominator = 30;
+                                }
+                            }
+                        }
                     }
                 }
-                Conditions.DownedPlantera condition2 = new Conditions.DownedPlantera();
-                npcLoot.Add(new LeadingConditionRule(condition2)).OnSuccess(ItemDropRule.ExpertGetsRerolls(3249, 30, 1));
             }
             if (npc.type == NPCID.RedDevil)
             {
