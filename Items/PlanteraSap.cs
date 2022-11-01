@@ -45,9 +45,13 @@ namespace ReducedGrinding.Items
                 SoundEngine.PlaySound(SoundID.Roar, player.position);
 
                 if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
                     NPC.SpawnOnPlayer(player.whoAmI, NPCID.Plantera);
+                }
                 else
+                {
                     NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: NPCID.Plantera);
+                }
             }
 
             return true;

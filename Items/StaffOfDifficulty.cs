@@ -51,7 +51,10 @@ namespace ReducedGrinding.Items
                         Main.GameMode = 1;
                         difficultyChanges++;
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
+                        {
                             goto changeDifficulty;
+                        }
+
                         player.difficulty = 0;
                         text = "Expert mode is now enabled!";
                         textColor = new Color(255, 179, 0);
@@ -60,7 +63,10 @@ namespace ReducedGrinding.Items
                         Main.GameMode = 2;
                         difficultyChanges++;
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
+                        {
                             goto changeDifficulty;
+                        }
+
                         player.difficulty = 0;
                         text = "Master mode is now enabled!";
                         textColor = new Color(255, 0, 0);
@@ -70,7 +76,10 @@ namespace ReducedGrinding.Items
                         Main.GameMode = 3;
                         difficultyChanges++;
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyJourney)
+                        {
                             goto changeDifficulty;
+                        }
+
                         player.difficulty = 3;
                         text = "Journey mode is now enabled!";
                         textColor = new Color(255, 127, 255);
@@ -80,7 +89,10 @@ namespace ReducedGrinding.Items
                         Main.GameMode = 0;
                         difficultyChanges++;
                         if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
+                        {
                             goto changeDifficulty;
+                        }
+
                         player.difficulty = 0;
                         text = "Normal mode is now enabled!";
                         textColor = new Color(255, 255, 255);
@@ -103,7 +115,9 @@ namespace ReducedGrinding.Items
             {
                 ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), textColor);
                 if (difficultyChanges < 4)
+                {
                     NetMessage.SendData(MessageID.WorldData);
+                }
             }
 
             return true;

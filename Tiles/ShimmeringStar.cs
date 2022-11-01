@@ -42,12 +42,17 @@ namespace ReducedGrinding.Tiles
                     failText = "Must be placed in the Caverns under the Eastern Beach.";
                 }
                 else if (j < Main.rockLayer || j > Main.UnderworldLayer)
+                {
                     failText = "Must be placed in the Caverns.";
+                }
 
                 if (failText != "")
                 {
                     if (Main.myPlayer == Main.LocalPlayer.whoAmI)
+                    {
                         Main.NewText(failText, new Color(255, 127, 127));
+                    }
+
                     WorldGen.KillTile(i, j);
                     NetMessage.SendData(MessageID.TileManipulation, -1, -1, null, 0, i, j);
                 }

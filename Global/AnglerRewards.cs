@@ -84,18 +84,34 @@ namespace ReducedGrinding.Global
             for (int i = 0; i < rewardItems.Count; i++)
             {
                 if (rewardItems[i].type == ItemID.FuzzyCarrot && fuzzyCarrotQuestRequirement != 5 && questDone == 5)
+                {
                     itemsToRemove.Add(rewardItems[i]);
+                }
+
                 if (rewardItems[i].type == ItemID.AnglerHat && anglerHatQuestRequirement != 10 && questDone == 10)
+                {
                     itemsToRemove.Add(rewardItems[i]);
+                }
+
                 if (rewardItems[i].type == ItemID.AnglerVest && anglerVestQuestRequirement != 15 && questDone == 15)
+                {
                     itemsToRemove.Add(rewardItems[i]);
+                }
+
                 if (rewardItems[i].type == ItemID.AnglerPants && anglerPantsQuestRequirement != 20 && questDone == 20)
+                {
                     itemsToRemove.Add(rewardItems[i]);
+                }
+
                 if (rewardItems[i].type == ItemID.GoldenFishingRod && goldenFishingRodQuestRequirement != 30 && questDone == 30)
+                {
                     itemsToRemove.Add(rewardItems[i]);
+                }
             }
             foreach (Terraria.Item item in itemsToRemove)
+            {
                 rewardItems.Remove(item);
+            }
             #endregion
 
             #region Add rewards at new requirement

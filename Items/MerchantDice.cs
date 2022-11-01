@@ -50,10 +50,15 @@ namespace ReducedGrinding.Items
                     packet.Send();
                 }
                 else
+                {
                     Main.NewText("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString(), 255, 255, 0);
+                }
             }
             else
+            {
                 Main.NewText("You have no more re-rolls left.", 255, 127, 127);
+            }
+
             return true;
         }
     }

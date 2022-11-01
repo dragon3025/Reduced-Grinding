@@ -1,6 +1,5 @@
 ﻿using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -13,7 +12,9 @@ namespace ReducedGrinding.Global
             public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
             {
                 if (!player.active)
+                {
                     return;
+                }
 
                 int invasionType = Main.invasionType;
 

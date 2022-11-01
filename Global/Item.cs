@@ -17,7 +17,10 @@ namespace ReducedGrinding.Global
         {
             //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
             if (!GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
+            {
                 return;
+            }
+
             if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
             {
                 tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material\n" +
@@ -48,11 +51,15 @@ namespace ReducedGrinding.Global
                     }
                 }
                 if (GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron > 0)
+                {
                     itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 1, 1));
+                }
             }
 
             if (item.type == ItemID.KingSlimeBossBag && GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing > 0)
+            {
                 itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, 1, 1));
+            }
 
             if (item.type == ItemID.FairyQueenBossBag)
             {
@@ -61,13 +68,19 @@ namespace ReducedGrinding.Global
                     if (rule is CommonDropNotScalingWithLuck drop)
                     {
                         if (drop.itemId == ItemID.RainbowWings && lootConfig.EmpressAndFishronWings > 0)
+                        {
                             drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
+                        }
 
                         if (drop.itemId == ItemID.SparkleGuitar && lootConfig.StellarTune > 0)
+                        {
                             drop.chanceDenominator = lootConfig.StellarTune;
+                        }
 
                         if (drop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
+                        {
                             drop.chanceDenominator = lootConfig.RainbowCursor;
+                        }
 
                         if (drop.itemId == ItemID.HallowBossDye)
                         {
@@ -162,7 +175,9 @@ namespace ReducedGrinding.Global
                                 foreach (var rule3 in drop2.rules)
                                 {
                                     if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
+                                    {
                                         drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
+                                    }
                                 }
                             }
                         }
@@ -181,13 +196,19 @@ namespace ReducedGrinding.Global
             };
 
                 if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
+                {
                     itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
+                }
 
                 if (item.type == ItemID.IronCrate && item.type == ItemID.IronCrateHard)
+                {
                     itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
+                }
 
                 if (item.type == ItemID.WoodenCrate && item.type == ItemID.WoodenCrateHard)
+                {
                     itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
+                }
             }
 
             if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
@@ -226,15 +247,21 @@ namespace ReducedGrinding.Global
                                     foreach (var rule3 in drop3.rules)
                                     {
                                         if (rule3 is CommonDropNotScalingWithLuck drop4 && drop4.itemId == ItemID.LifeCrystal)
+                                        {
                                             drop4.chanceDenominator = 8;
+                                        }
                                     }
                                 }
                                 if (rule2 is CommonDropNotScalingWithLuck drop5 && drop5.itemId == ItemID.EnchantedSword)
                                 {
                                     if (item.type == ItemID.GoldenCrate)
+                                    {
                                         drop5.chanceDenominator = 30;
+                                    }
                                     else
+                                    {
                                         drop5.chanceDenominator = 15;
+                                    }
                                 }
                             }
                         }

@@ -47,7 +47,10 @@ namespace ReducedGrinding.Items.BuffPotions
                 recipe.AddIngredient(ItemType<MultiBobberPotion>());
                 recipe.AddIngredient(ItemID.GelBalloon);
                 if (ReducedGrindingSave.usingCalamity)
+                {
                     recipe.AddIngredient(ItemID.VialofVenom);
+                }
+
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }

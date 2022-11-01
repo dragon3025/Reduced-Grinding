@@ -1214,9 +1214,14 @@ namespace ReducedGrinding.GlobalRecipes
                     recipe.AddIngredient(ItemID.SoulofSight);
                 }
                 if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 1)
+                {
                     recipe.AddTile(TileID.CrystalBall);
+                }
                 else
+                {
                     recipe.AddTile(TileID.TinkerersWorkbench);
+                }
+
                 recipe.Register();
             }
             #endregion

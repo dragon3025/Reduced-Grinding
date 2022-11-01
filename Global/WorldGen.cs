@@ -52,7 +52,10 @@ namespace ReducedGrinding.Global.WorldGeneration
                         int y = WorldGen.genRand.Next(biomePosition.Y - 100, biomePosition.Y + 100);
                         int yDirection = 1;
                         if (y > biomePosition.Y)
+                        {
                             yDirection = -1;
+                        }
+
                         for (; (yDirection == 1 && y < biomePosition.Y + 100) || (yDirection == -1 && y > biomePosition.Y - 100); y += yDirection)
                         {
                             if (Framing.GetTileSafely(x, y).TileType == TileID.MushroomPlants)
@@ -532,7 +535,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                 for (int i = 0; i < WorldGen.mushroomBiomesPosition.Length; i++)
                 {
                     if (WorldGen.mushroomBiomesPosition[i].X != 0 && WorldGen.mushroomBiomesPosition[i].Y != 0)
+                    {
                         mushroomBiomes.Add(i);
+                    }
                 }
 
                 for (int i = 0; i < mushroomBiomes.Count; i++)
@@ -549,7 +554,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     Chest chest = Main.chest[chestIndex];
 
                     if (chest == null)
+                    {
                         continue;
+                    }
 
                     int tileSubID;
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
@@ -559,7 +566,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     {
                         tileSubID = 0; //Regular Chest
                         if (!(chestType1 && tileFrameX == tileSubID * 36))
+                        {
                             terragrimChests.Add(chestIndex);
+                        }
                     }
 
                     //TO-DO Remove when 1.4.4+ comes out
@@ -605,7 +614,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 adjustedRareItem = true;
                             }
                             if (adjustedRareItem && emptySlot[1] > -1)
+                            {
                                 break;
+                            }
                         }
                         eSlot = 0;
                         if (adjustedRareItem && emptySlot[eSlot] > -1)
@@ -647,10 +658,12 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     missingMushroomItemsOld.AddRange(missingMushroomItems);
 
                                     foreach (int itemType in missingMushroomItemsOld)
+                                    {
                                         if (chest.item[slot].type == itemType)
                                         {
                                             missingMushroomItems.Remove(itemType);
                                         }
+                                    }
                                 }
                             }
                         }
@@ -662,7 +675,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                             {
                                 int type = chest.item[slot].type;
                                 if (emptySlot == -1 && type == ItemID.None)
+                                {
                                     emptySlot = slot;
+                                }
                                 else if (type == ItemID.SharkBait)
                                 {
                                     if (WorldGen.genRand.NextBool(10))
@@ -696,12 +711,19 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     needToFixRareItem = false;
                                 }
                                 else if (type == ItemID.WaterWalkingBoots || type == ItemID.BreathingReed || type == ItemID.Flipper || type == ItemID.Trident || type == ItemID.FloatingTube)
+                                {
                                     needToFixRareItem = false;
+                                }
+
                                 if (emptySlot > -1 && !needToFixRareItem)
+                                {
                                     break;
+                                }
                             }
                             if (emptySlot > -1 && WorldGen.genRand.NextBool(2))
+                            {
                                 chest.item[emptySlot].SetDefaults(ItemID.SharkBait);
+                            }
                         }
                         else if (tileFrameX == woodChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
                         {
@@ -754,7 +776,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     fixedRareLoot = true;
                                 }
                                 if (fixedRareLoot && emptySlot[1] > -1)
+                                {
                                     break;
+                                }
                             }
                             eSlot = 0;
                             if (WorldGen.genRand.NextBool(6))
@@ -776,7 +800,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                             {
                                 int type = chest.item[slot].type;
                                 if (emptySlot == -1 && type == ItemID.None)
+                                {
                                     emptySlot = slot;
+                                }
                                 else if (type == ItemID.SunflowerMinecart || type == ItemID.LadybugMinecart)
                                 {
                                     emptySlot = -1;
@@ -786,9 +812,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                             if (emptySlot > -1 && WorldGen.genRand.NextBool(15))
                             {
                                 if (WorldGen.genRand.NextBool(2))
+                                {
                                     chest.item[emptySlot].SetDefaults(ItemID.SunflowerMinecart);
+                                }
                                 else
+                                {
                                     chest.item[emptySlot].SetDefaults(ItemID.LadybugMinecart);
+                                }
                             }
                         }
                         else if (tileFrameX == lockedShadowChestSubID * 36) //TO-DO Remove when 1.4.4+ comes out
@@ -798,7 +828,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                             for (int slot = 0; slot < 40; slot++)
                             {
                                 if (emptySlot == -1 && chest.item[slot].type == ItemID.None)
+                                {
                                     emptySlot = slot;
+                                }
                                 else if (chest.item[slot].type == ItemID.TreasureMagnet)
                                 {
                                     switch (WorldGen.genRand.Next(5))
@@ -827,7 +859,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     fixedRareItem = true;
                                 }
                                 if (emptySlot > -1 && fixedRareItem)
+                                {
                                     break;
+                                }
                             }
                             if (emptySlot > -1 && WorldGen.genRand.NextBool(5))
                             {
@@ -858,9 +892,14 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     }
                                 }
                                 else if (chest.item[slot].type == ItemID.PharaohsRobe)
+                                {
                                     pharoahsRobeSlot = slot;
+                                }
+
                                 if (changedItem && pharoahsRobeSlot > -1)
+                                {
                                     break;
+                                }
                             }
                             if (changedItem && pharoahsRobeSlot > -1)
                             {
@@ -1011,7 +1050,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     tryToPlaceMushroomChest(WorldGen.genRand.Next(0, mushroomBiomes.Count), missingMushroomItems[0]);
                     mushroomChestAttempts++;
                     if (mushroomChestAttempts >= 5)
+                    {
                         break;
+                    }
                 }
 
                 foreach (int chestIndex in terragrimChests)

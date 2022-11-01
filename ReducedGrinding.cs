@@ -84,7 +84,9 @@ namespace ReducedGrinding
                     break;
             }
             if (Main.netMode == NetmodeID.Server)
+            {
                 NetMessage.SendData(MessageID.WorldData);
+            }
         }
     }
 
@@ -120,16 +122,24 @@ namespace ReducedGrinding
         public override void LoadWorldData(TagCompound tag)
         {
             if (!tag.TryGet("noMoreAnglerResetsToday", out Global.Update.noMoreAnglerResetsToday))
+            {
                 Global.Update.noMoreAnglerResetsToday = false;
+            }
 
             if (!tag.TryGet("dayTime", out Global.Update.dayTime))
+            {
                 Global.Update.dayTime = true;
+            }
 
             if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
+            {
                 Global.Update.seasonalDay = 1;
+            }
 
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
+            {
                 Global.Update.travelingMerchantDiceRolls = 0;
+            }
         }
 
         public override void OnModLoad()
@@ -138,10 +148,14 @@ namespace ReducedGrinding
             NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 100;
 
             if (ModLoader.TryGetMod("CalamityMod", out _))
+            {
                 usingCalamity = true;
+            }
 
             if (ModLoader.TryGetMod("Fargowiltas", out _))
+            {
                 usingFargowiltas = true;
+            }
         }
     }
 }

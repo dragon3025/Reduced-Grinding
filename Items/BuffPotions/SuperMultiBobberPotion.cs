@@ -48,7 +48,10 @@ namespace ReducedGrinding.Items.BuffPotions
                 recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
                 recipe.AddIngredient(ItemID.Ectoplasm);
                 if (ReducedGrindingSave.usingCalamity)
+                {
                     recipe.AddIngredient(ItemID.LunarOre);
+                }
+
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }

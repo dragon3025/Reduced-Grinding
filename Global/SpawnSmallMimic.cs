@@ -97,7 +97,10 @@ namespace ReducedGrinding.Global
                 var source = Player.GetSource_FromThis();
                 int mimicType = NPCID.Mimic;
                 if (Player.ZoneSnow)
+                {
                     mimicType = NPCID.IceMimic;
+                }
+
                 int newMimic = NPC.NewNPC(source, x * 16 + 16, y * 16 + 32, mimicType);
                 Main.npc[newMimic].whoAmI = newMimic;
                 NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, newMimic);

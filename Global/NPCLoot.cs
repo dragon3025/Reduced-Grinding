@@ -23,7 +23,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.FishronWings)
+                    {
                         drop.chanceDenominator = (int)(lootConfig.EmpressAndFishronWings * 3f / 2f);
+                    }
                 }
             }
             if (npc.type == NPCID.HallowBoss)
@@ -37,13 +39,19 @@ namespace ReducedGrinding.Global
                             if (chainedRule.RuleToChain is CommonDrop commonDrop)
                             {
                                 if (commonDrop.itemId == ItemID.RainbowWings && lootConfig.EmpressAndFishronWings > 0)
+                                {
                                     commonDrop.chanceDenominator = (int)(lootConfig.EmpressAndFishronWings * 3f / 2f);
+                                }
 
                                 if (commonDrop.itemId == ItemID.SparkleGuitar && lootConfig.StellarTune > 0)
+                                {
                                     commonDrop.chanceDenominator = (int)(lootConfig.StellarTune * 5f / 2f);
+                                }
 
                                 if (commonDrop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
+                                {
                                     commonDrop.chanceDenominator = lootConfig.RainbowCursor;
+                                }
 
                                 if (commonDrop.itemId == ItemID.HallowBossDye)
                                 {
@@ -60,7 +68,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.Binoculars)
+                    {
                         drop.chanceDenominator = (int)(lootConfig.Binoculars * 4f / 3f);
+                    }
                 }
             }
             #endregion
@@ -98,7 +108,9 @@ namespace ReducedGrinding.Global
                         foreach (var rule in npcLoot.Get())
                         {
                             if (rule is CommonDrop drop) //The all drop only 1 item, so we don't need to test the itemID.
+                            {
                                 drop.chanceDenominator = lootConfig.TownNPCWeapons;
+                            }
                         }
                     }
                 }
@@ -111,7 +123,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is CommonDrop drop && drop.itemId == ItemID.Marrow)
+                    {
                         drop.chanceDenominator = lootConfig.Marrow;
+                    }
                 }
             }
             if (npc.type == NPCID.ArmoredSkeleton && lootConfig.BeamSword > 0)
@@ -119,7 +133,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is CommonDrop drop && drop.itemId == ItemID.BeamSword)
+                    {
                         drop.chanceDenominator = lootConfig.BeamSword;
+                    }
                 }
             }
             if (npc.type == NPCID.FireImp && lootConfig.PlumbersHat > 0)
@@ -127,7 +143,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is CommonDrop drop && drop.itemId == ItemID.PlumbersHat)
+                    {
                         drop.chanceDenominator = lootConfig.PlumbersHat;
+                    }
                 }
             }
 
@@ -144,7 +162,9 @@ namespace ReducedGrinding.Global
                                 if (chainedRule.RuleToChain is CommonDrop commonDrop)
                                 {
                                     if (commonDrop.itemId == ItemID.RodofDiscord)
+                                    {
                                         commonDrop.chanceDenominator = Math.Max(1, (int)(lootConfig.RodofDiscord / 4f));
+                                    }
                                 }
                             }
                         }
@@ -155,9 +175,14 @@ namespace ReducedGrinding.Global
                                 if (chainedRule.RuleToChain is DropBasedOnExpertMode dropBasedOnExpertMode)
                                 {
                                     if (dropBasedOnExpertMode.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.RodofDiscord)
+                                    {
                                         expertDrop.chanceDenominator = lootConfig.RodofDiscord;
+                                    }
+
                                     if (dropBasedOnExpertMode.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.RodofDiscord)
+                                    {
                                         normalDrop.chanceDenominator = (int)(lootConfig.RodofDiscord * 5f / 4f);
+                                    }
                                 }
                             }
                         }
@@ -169,7 +194,9 @@ namespace ReducedGrinding.Global
                 foreach (var rule in npcLoot.Get())
                 {
                     if (rule is CommonDrop drop && drop.itemId == ItemID.LizardEgg)
+                    {
                         drop.chanceDenominator = lootConfig.LizardEgg;
+                    }
                 }
             }
             //Negative IDs is used for slimes because weird duplicate loot issues involving their variants (negative IDs) happen. Looking at Terraria source code, slime drops is the only time they use coding to remove duplicate drops.
@@ -180,9 +207,14 @@ namespace ReducedGrinding.Global
                     if (rule is DropBasedOnExpertMode drop)
                     {
                         if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                        {
                             expertDrop.chanceDenominator = lootConfig.SlimeStaffFromPinky;
+                        }
+
                         if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                        {
                             normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromPinky * 10f / 7f);
+                        }
                     }
                 }
             }
@@ -193,9 +225,14 @@ namespace ReducedGrinding.Global
                     if (rule is DropBasedOnExpertMode drop)
                     {
                         if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                        {
                             expertDrop.chanceDenominator = lootConfig.SlimeStaffFromSandSlime;
+                        }
+
                         if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                        {
                             normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromSandSlime * 10f / 7f);
+                        }
                     }
                 }
             }
@@ -234,9 +271,14 @@ namespace ReducedGrinding.Global
                             if (rule is DropBasedOnExpertMode drop)
                             {
                                 if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                                {
                                     expertDrop.chanceDenominator = lootConfig.SlimeStaffFromOtherSlimes;
+                                }
+
                                 if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                                {
                                     normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromOtherSlimes * 10f / 7f);
+                                }
                             }
                         }
                     }
@@ -371,7 +413,9 @@ namespace ReducedGrinding.Global
                                     if (chainedRule.RuleToChain is CommonDrop drop2)
                                     {
                                         if (drop2.itemId == ItemID.Lens)
+                                        {
                                             drop2.chanceDenominator = lootConfig.Lens;
+                                        }
                                     }
                                 }
                             }
@@ -472,9 +516,13 @@ namespace ReducedGrinding.Global
                         if (commonDrop.itemId == ItemID.CoinGun)
                         {
                             if (lootConfig.CoinGun > 0)
+                            {
                                 commonDrop.chanceDenominator = lootConfig.CoinGun;
+                            }
                             else
+                            {
                                 commonDrop.chanceDenominator = 50;
+                            }
                         }
                         if (commonDrop.itemId == ItemID.LuckyCoin)
                         {
@@ -794,22 +842,32 @@ namespace ReducedGrinding.Global
             #region Drops That Don't Happen in Vanilla
             #region Boss Drops
             if (npc.type == NPCID.DukeFishron && nonVanillaLootConfig.TrufflewormFromDukeFishron > 0)
+            {
                 npcLoot.Add(new CommonDrop(ItemID.TruffleWorm, nonVanillaLootConfig.TrufflewormFromDukeFishron));
+            }
 
             if (npc.type == NPCID.Plantera && GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera > 0)
+            {
                 npcLoot.Add(new CommonDrop(ItemType<Items.PlanteraSap>(), GetInstance<HOtherModdedItemsConfig>().PlanteraSapFromPlantera));
+            }
 
             if (npc.type == NPCID.KingSlime && nonVanillaLootConfig.SlimeStaffFromSlimeKing > 0)
+            {
                 npcLoot.Add(new DropBasedOnExpertMode(new CommonDrop(ItemID.SlimeStaff, nonVanillaLootConfig.SlimeStaffFromSlimeKing), new DropNothing()));
+            }
             #endregion
 
             #region Non-Boss Drops
             //TO-DO in 1.4.4+ Flinx spawn easier. Test this out (both pre-hardmode and hardmode).
             if (npc.type == NPCID.SpikedIceSlime && nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime > 0)
+            {
                 npcLoot.Add(new CommonDrop(ItemID.SnowballLauncher, nonVanillaLootConfig.SnowballLauncherFromSpikedIceSlime));
+            }
 
             if (nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Max() > 0 && (npc.type == NPCID.GreekSkeleton || npc.type == NPCID.Medusa))
+            {
                 npcLoot.Add(new CommonDrop(ItemID.Marble, 1, nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Min(), nonVanillaLootConfig.MarbleFromMarbleCaveEnemies.Max()));
+            }
             #endregion
             #endregion
         }
@@ -825,13 +883,19 @@ namespace ReducedGrinding.Global
                 if (rule is ItemDropWithConditionRule drop)
                 {
                     if (drop.itemId == ItemID.GoodieBag && lootConfig.GoodieBag > 0)
+                    {
                         drop.chanceDenominator = lootConfig.GoodieBag;
+                    }
 
                     if (drop.itemId == ItemID.Present && lootConfig.Present > 0)
+                    {
                         drop.chanceDenominator = lootConfig.Present;
+                    }
 
                     if (drop.itemId == ItemID.KOCannon && lootConfig.KOCannon > 0)
+                    {
                         drop.chanceDenominator = lootConfig.KOCannon;
+                    }
 
                     if (lootConfig.BiomeKey > 0)
                     {
@@ -847,12 +911,16 @@ namespace ReducedGrinding.Global
                         foreach (int i in biomeKeys)
                         {
                             if (drop.itemId == i)
+                            {
                                 drop.chanceDenominator = lootConfig.BiomeKey;
+                            }
                         }
                     }
 
                     if (lootConfig.SoulOfLightAndNight > 0 && (drop.itemId == ItemID.SoulofLight || drop.itemId == ItemID.SoulofNight))
+                    {
                         drop.chanceDenominator = lootConfig.SoulOfLightAndNight;
+                    }
                 }
             }
         }
