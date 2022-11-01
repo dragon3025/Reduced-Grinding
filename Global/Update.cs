@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
+using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -30,25 +31,38 @@ namespace ReducedGrinding.Global
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
             if (CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled)
+            {
                 return;
+            }
+
             if (!(Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount && Main.CurrentFrameFlags.SleepingPlayersCount > 0))
+            {
                 return;
+            }
 
             int increase;
 
             if (NPC.downedPlantBoss)
+            {
                 increase = GetInstance<IOtherConfig>().SleepRateIncreasePostPlantera;
+            }
             else if (Main.hardMode)
+            {
                 increase = GetInstance<IOtherConfig>().SleepRateIncreaseHardmode;
+            }
             else
+            {
                 increase = GetInstance<IOtherConfig>().SleepRateIncreasePreHardmode;
+            }
 
             if (increase > 0)
             {
                 for (int i = 0; i < 255; i++)
                 {
                     if (!Main.player[i].active)
+                    {
                         continue;
+                    }
 
                     Main.player[i].taxTimer -= increase;
                 }
@@ -68,11 +82,17 @@ namespace ReducedGrinding.Global
 
             int anglerResetChance;
             if (NPC.downedPlantBoss)
+            {
                 anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceAfterPlantera;
+            }
             else if (Main.hardMode)
+            {
                 anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceHardmode;
+            }
             else
+            {
                 anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceBeforeHardmode;
+            }
 
             int fishermenCount = 0;
             List<int> activePlayers = new() { };
@@ -90,28 +110,43 @@ namespace ReducedGrinding.Global
             if (time % 60 == 0)
             {
                 if (NPC.downedMoonlord)
+                {
                     NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 50; //Remove when 1.4.4+ comes out
+                }
 
                 if (GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
                 {
                     if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
+                    {
                         allPlayersHiddenFromInvasion = true;
+                    }
                 }
             }
 
             #region For Each Player
 
+            bool skipDD2Wave = false;
+
             for (int i = 0; i < 255; i++)
             {
                 if (!Main.player[i].active)
+                {
                     continue;
+                }
+
+                if (!skipDD2Wave && Main.player[i].HeldItem.type == ItemID.DD2ElderCrystal)
+                {
+                    skipDD2Wave = true;
+                }
 
                 activePlayers.Add(i);
 
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
                 if (allPlayersHiddenFromInvasion && playerPosition.Y <= Main.worldSurface + 67.5f)
+                {
                     allPlayersHiddenFromInvasion = false;
+                }
 
                 if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
                 {
@@ -148,33 +183,63 @@ namespace ReducedGrinding.Global
                             int itemType = Main.player[i].inventory[j].type;
 
                             if (itemType == ItemID.ArmorBracing || itemType == ItemID.Vitamins)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Weak);
+                            }
 
                             if (itemType == ItemID.ArmorBracing || itemType == ItemID.ArmorPolish)
+                            {
                                 Main.player[i].ClearBuff(BuffID.BrokenArmor);
+                            }
 
                             if (itemType == ItemID.MedicatedBandage || itemType == ItemID.AdhesiveBandage)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Bleeding);
+                            }
+
                             if (itemType == ItemID.MedicatedBandage || itemType == ItemID.Bezoar)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Poisoned);
+                            }
 
                             if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Nazar)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Cursed);
+                            }
+
                             if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Megaphone)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Silenced);
+                            }
 
                             if (itemType == ItemID.ThePlan || itemType == ItemID.FastClock)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Slow);
+                            }
+
                             if (itemType == ItemID.ThePlan || itemType == ItemID.TrifoldMap)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Confused);
+                            }
 
                             if (itemType == ItemID.Blindfold)
+                            {
                                 Main.player[i].ClearBuff(BuffID.Darkness);
+                            }
                         }
                     }
                 }
             }
             #endregion
+
+            if (DD2Event.Ongoing)
+            {
+                Main.NewText("DD2Event.TimeLeftBetweenWaves: " + DD2Event.TimeLeftBetweenWaves.ToString());
+                if (skipDD2Wave && DD2Event.TimeLeftBetweenWaves > 60)
+                {
+                    DD2Event.TimeLeftBetweenWaves = 60;
+                }
+            }
 
             #region InvasionModifing
             if (time % 60 == 0)
@@ -184,9 +249,13 @@ namespace ReducedGrinding.Global
                     if (timeHiddenFromInvasion == 0)
                     {
                         if (Main.netMode == NetmodeID.Server)
+                        {
                             ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0));
+                        }
                         else if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
                             Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0));
+                        }
                     }
                     timeHiddenFromInvasion++;
                     updatePacket = true;
@@ -202,9 +271,14 @@ namespace ReducedGrinding.Global
             {
                 Main.invasionType = InvasionID.None;
                 if (Main.netMode == NetmodeID.Server)
+                {
                     ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
+                }
                 else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
                     Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
+                }
+
                 timeHiddenFromInvasion = 0;
                 updatePacket = true;
             }
@@ -219,7 +293,9 @@ namespace ReducedGrinding.Global
                     {
                         Main.AnglerQuestSwap();
                         if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
                             Main.NewText("The Angler decided to give you another job.", 0, 255, 255);
+                        }
                         else if (Main.netMode == NetmodeID.Server)
                         {
                             ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
@@ -265,34 +341,52 @@ namespace ReducedGrinding.Global
                         {
                             Main.halloween = halloween = true;
                             if (Main.netMode == NetmodeID.Server)
+                            {
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                            }
                             else
+                            {
                                 Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                            }
                         }
                         else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
                         {
                             if (Main.netMode == NetmodeID.Server)
+                            {
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                            }
                             else
+                            {
                                 Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
+                            }
                         }
                         else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
                         {
                             Main.xMas = xMas = true;
                             if (Main.netMode == NetmodeID.Server)
+                            {
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                            }
                             else
+                            {
                                 Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                            }
                         }
                         else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
                         {
                             if (Main.netMode == NetmodeID.Server)
+                            {
                                 ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                            }
                             else
+                            {
                                 Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
+                            }
                         }
                         if (seasonalDay >= yearLength + 1)
+                        {
                             seasonalDay = 1;
+                        }
                     }
                 }
                 #endregion
@@ -301,7 +395,10 @@ namespace ReducedGrinding.Global
             if (celestialSigil) //TO-DO Remove once 1.4.4+ comes out
             {
                 if (NPC.MoonLordCountdown > 720)
+                {
                     NPC.MoonLordCountdown = 720;
+                }
+
                 celestialSigil = false;
                 updatePacket = true;
             }
@@ -338,7 +435,9 @@ namespace ReducedGrinding.Global
             }
 
             if (sendNetMessageData && Main.netMode == NetmodeID.Server)
+            {
                 NetMessage.SendData(MessageID.WorldData);
+            }
             #endregion
         }
 
@@ -348,9 +447,14 @@ namespace ReducedGrinding.Global
             {
                 //This mod will undo the period timeline feature, so this is here to undo the undo.
                 if (!Main.xMas && xMas)
+                {
                     Main.xMas = xMas;
+                }
+
                 if (!Main.halloween && halloween)
+                {
                     Main.halloween = halloween;
+                }
             }
 
             if (advanceMoonPhase)
@@ -363,7 +467,9 @@ namespace ReducedGrinding.Global
                 }
 
                 if (Main.bloodMoon && Main.moonPhase == 4)
+                {
                     Main.bloodMoon = false;
+                }
 
                 if (Main.netMode == NetmodeID.Server)
                 {

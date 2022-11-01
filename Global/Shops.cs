@@ -28,21 +28,31 @@ namespace ReducedGrinding.Global
                             break;
                         }
                         if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler)
+                        {
                             anglerNPC = i;
+                        }
                     }
                     if (spawnFishMerchant)
                     {
                         if (Main.netMode != NetmodeID.MultiplayerClient)
+                        {
                             NPC.SpawnOnPlayer(player.whoAmI, fishMerchantID);
+                        }
                         else
+                        {
                             NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: fishMerchantID);
+                        }
+
                         for (int i = 0; i < Main.npc.Length; i++)
                         {
                             if (Main.npc[i].type == fishMerchantID)
                             {
                                 Main.npc[i].position = Main.npc[anglerNPC].position;
                                 if (Main.netMode == NetmodeID.MultiplayerClient)
+                                {
                                     NetMessage.SendData(MessageID.WorldData);
+                                }
+
                                 break;
                             }
                         }
@@ -55,6 +65,147 @@ namespace ReducedGrinding.Global
         {
             switch (type)
             {
+                case NPCID.DD2Bartender: //TO-DO Remove in 1.4.4+
+                    for (int i = 0; i < 40; i++)
+                    {
+                        if (shop.item[i].type == ItemID.MonkBrows)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.MonkShirt)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.MonkPants)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.SquireGreatHelm)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.SquirePlating)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.SquireGreaves)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressWig)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressJerkin)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressPants)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeHat)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeRobe)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeTrousers)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.SquireAltHead)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.SquireAltShirt)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.SquireAltPants)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeAltHead)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeAltShirt)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.ApprenticeAltPants)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressAltHead)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressAltShirt)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressAltPants)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.HuntressAltHead)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.MonkAltHead)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.MonkAltShirt)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2BallistraTowerT2Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2ExplosiveTrapT2Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2FlameburstTowerT2Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2LightningAuraT2Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 15;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2BallistraTowerT3Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 60;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2ExplosiveTrapT3Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 60;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2FlameburstTowerT3Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 60;
+                        }
+                        else if (shop.item[i].type == ItemID.DD2LightningAuraT3Popper)
+                        {
+                            shop.item[i].shopCustomPrice = 60;
+                        }
+                        else if (shop.item[i].type == ItemID.MonkAltPants)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                        else if (shop.item[i].type == ItemID.DefendersForge)
+                        {
+                            shop.item[i].shopCustomPrice = 50;
+                        }
+                    }
+                    break;
                 case NPCID.Mechanic:
                     shop.item[nextSlot].SetDefaults(ItemID.Teleporter); //Remove when 1.4.4+ Comes out
                     nextSlot++;
@@ -98,7 +249,9 @@ namespace ReducedGrinding.Global
                             shopItems.Add(ItemID.FormatC);
                             shopItems.Add(ItemID.YoYoGlove);
                             if (Main.bloodMoon)
+                            {
                                 shopItems.Add(ItemID.SlapHand);
+                            }
                         }
 
                         foreach (int i in shopItems)
@@ -129,11 +282,19 @@ namespace ReducedGrinding.Global
                         for (int i = 0; i <= 40; i++)
                         {
                             if (shop.item[i].type == ItemID.TeleportationPylonVictory)
+                            {
                                 sellingUniversalPylon = true;
+                            }
+
                             if (shop.item[i].type == ItemID.DiggingMoleMinecart)
+                            {
                                 sellingDiggingMoleMinecart = true;
+                            }
+
                             if (sellingUniversalPylon && sellingDiggingMoleMinecart)
+                            {
                                 break;
+                            }
                         }
                         if (!sellingUniversalPylon && bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
                         {
@@ -170,13 +331,19 @@ namespace ReducedGrinding.Global
                 if (NPC.downedPlantBoss)
                 {
                     if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera > 0)
+                    {
                         sellMerchantDice = true;
+                    }
                 }
                 else if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode > 0)
+                {
                     sellMerchantDice = true;
+                }
             }
             else if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode > 0)
+            {
                 sellMerchantDice = true;
+            }
 
             if (sellMerchantDice)
             {
