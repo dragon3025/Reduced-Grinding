@@ -277,7 +277,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 item.value = Item.sellPrice(0, 0, 60);
             }
 
-            if (item.type == ItemID.MummyMask || item.type == ItemID.MummyShirt || item.type == ItemID.MummyPants || item.type == ItemID.PharaohsMask || item.type == ItemID.PharaohsRobe)
+            if (item.type == ItemID.MummyMask || item.type == ItemID.MummyShirt || item.type == ItemID.MummyPants || item.type == ItemID.PharaohsMask || item.type == ItemID.PharaohsRobe || item.type == ItemID.FroggleBunwich)
             {
                 item.value = Item.sellPrice(0, 0, 40);
             }
@@ -336,6 +336,16 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution|| item.type == ItemID.RedSolution)
             {
                 item.value = Item.sellPrice(0, 0, 15);
+            }
+
+            if (item.type == ItemID.Frog)
+            {
+                item.value = Item.sellPrice(0, 0, 10);
+            }
+
+            if (item.type == ItemID.SauteedFrogLegs)
+            {
+                item.value = Item.sellPrice(0, 0, 20);
             }
             #endregion
         }
