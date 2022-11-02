@@ -207,6 +207,7 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
 
             //TO-DO Remove when 1.4.4+ adds these
+            #region Future Stuff
             recipe = Recipe.Create(ItemID.SandstorminaBottle);
             recipe.AddIngredient(ItemID.CloudinaBottle);
             recipe.AddIngredient(ItemID.AncientBattleArmorMaterial);
@@ -232,6 +233,46 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.Diamond, 3);
             recipe.AddTile(TileID.Furnaces);
             recipe.Register();
+
+            recipe = Recipe.Create(ItemID.UnholyArrow, 5);
+            recipe.AddIngredient(ItemID.WoodenArrow, 5);
+            recipe.AddIngredient(ItemID.Vertebrae);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.CrawdadBanner);
+            recipe.AddIngredient(ItemID.SalamanderBanner);
+            recipe.AddIngredient(ItemID.GiantShellyBanner);
+            recipe.AddTile(TileID.Loom);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.SalamanderBanner);
+            recipe.AddIngredient(ItemID.CrawdadBanner);
+            recipe.AddIngredient(ItemID.GiantShellyBanner);
+            recipe.AddTile(TileID.Loom);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GiantShellyBanner);
+            recipe.AddIngredient(ItemID.SalamanderBanner);
+            recipe.AddIngredient(ItemID.CrawdadBanner);
+            recipe.AddTile(TileID.Loom);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.HardenedSand);
+            recipe.AddIngredient(ItemID.SandBlock);
+            recipe.AddIngredient(ItemID.DirtBlock);
+            recipe.AddTile(TileID.Solidifier);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.Sandstone);
+            recipe.AddIngredient(ItemID.SandBlock);
+            recipe.AddIngredient(ItemID.StoneBlock);
+            recipe.AddTile(TileID.Solidifier);
+            recipe.Register();
+            #endregion
 
             //Crystal Ball as Shimmer (Remove these when 1.4.4+ comes out)
             #region Shimmer-Like Recipes
@@ -1379,7 +1420,9 @@ namespace ReducedGrinding.GlobalRecipes
             {
                 Recipe recipe = Main.recipe[i];
 
-                if (recipe.HasResult(ItemID.CelestialSigil)) //Easier Celestial Sigil TO-DO (Remove once 1.4.4+ comes out).
+                //Remove when 1.4.4+ comes out
+                #region Future Stuff
+                if (recipe.HasResult(ItemID.CelestialSigil))
                 {
                     int[] fragments = new int[4]
                     {
@@ -1394,6 +1437,105 @@ namespace ReducedGrinding.GlobalRecipes
                         recipe.AddIngredient(j, 12);
                     }
                 }
+
+                if (recipe.HasResult(ItemID.MolotovCocktail))
+                {
+                    recipe.RemoveIngredient(ItemID.PinkGel);
+                    recipe.AddIngredient(ItemID.Gel);
+                }
+
+                if (recipe.HasResult(ItemID.ThornsPotion))
+                {
+                    recipe.RemoveIngredient(ItemID.WormTooth);
+                    recipe.RemoveIngredient(ItemID.Stinger);
+                }
+
+                if (recipe.HasResult(ItemID.AngelWings))
+                {
+                    recipe.RemoveIngredient(ItemID.SoulofLight);
+                    recipe.AddIngredient(ItemID.SoulofLight, 15);
+                }
+
+                if (recipe.HasResult(ItemID.DemonWings))
+                {
+                    recipe.RemoveIngredient(ItemID.SoulofNight);
+                    recipe.AddIngredient(ItemID.SoulofNight, 15);
+                }
+
+                //Remove after 1.4.4+ This failed, for some reason it isn't removing the recipe group before adding 2 of Iron or Lead.
+                /*if (recipe.HasResult(ItemID.EmptyBucket))
+                {
+                    recipe.RemoveRecipeGroup(RecipeGroupID.IronBar);
+                    recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);
+                }*/
+
+                int[] ores = new int[]
+                {
+                    141,
+                    143,
+                    145,
+                    192,
+                    214,
+                    415,
+                    416,
+                    577,
+                    604,
+                    717,
+                    718,
+                    719,
+                    1589,
+                    1591,
+                    1593,
+                    2792,
+                    2793,
+                    3100,
+                    3461,
+                    3951,
+                    3953,
+                };
+                foreach (int j in ores)
+                {
+                    if (recipe.HasResult(j) && recipe.HasIngredient(ItemID.StoneBlock))
+                    {
+                        recipe.RemoveIngredient(ItemID.StoneBlock);
+                        recipe.AddIngredient(ItemID.StoneBlock, 5);
+                        recipe.ReplaceResult(j, 5);
+                    }
+                }
+
+                if (recipe.HasResult(ItemID.ShroomitePlating) && recipe.HasIngredient(ItemID.StoneBlock))
+                {
+                    recipe.RemoveIngredient(ItemID.StoneBlock);
+                    recipe.AddIngredient(ItemID.StoneBlock, 25);
+                    recipe.ReplaceResult(ItemID.ShroomitePlating, 25);
+                }
+
+                if (recipe.HasResult(ItemID.PearlstoneBrick) && recipe.HasIngredient(ItemID.PearlsandBlock))
+                {
+                    recipe.RemoveIngredient(ItemID.PearlsandBlock);
+                    recipe.RemoveIngredient(ItemID.PearlstoneBlock);
+                    recipe.AddIngredient(ItemID.PearlstoneBlock, 2);
+                }
+
+                if (recipe.HasResult(ItemID.CoralTorch))
+                {
+                    recipe.RemoveIngredient(ItemID.Torch);
+                    recipe.AddIngredient(ItemID.Torch, 3);
+                    recipe.ReplaceResult(ItemID.CoralTorch, 3);
+                }
+
+                if (recipe.HasResult(ItemID.Chain))
+                {
+                    recipe.ReplaceResult(ItemID.Chain, 15);
+                }
+
+                if (recipe.HasResult(ItemID.WormholePotion))
+                {
+                    recipe.RemoveIngredient(ItemID.BottledWater);
+                    recipe.AddIngredient(ItemID.BottledWater, 3);
+                    recipe.ReplaceResult(ItemID.WormholePotion, 3);
+                }
+                #endregion
             }
         }
     }

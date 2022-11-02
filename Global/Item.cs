@@ -29,7 +29,7 @@ namespace ReducedGrinding.Global
             //TO-DO Remove when 1.4.4+ comes out
             if (item.type == ItemID.DD2ElderCrystal)
             {
-                tooltips.Add(new TooltipLine(Mod, "HoldCrystalToSkipDD2Wave", "Hold this to skip the wait between the next Old One's Army Wave"));
+                tooltips.Add(new TooltipLine(Mod, "HoldCrystalToSkipDD2Wave", "Hold this to skip the wait time for the next Old One's Army Wave"));
             }
             //TO-DO Remove when 1.4.4 comes out. This is disabled because I couldn't get it to work in modplayer (I used AnglerRewards.cs for this).
             /*if (item.type == ItemID.MiningShirt || item.type == ItemID.MiningPants)

@@ -269,6 +269,75 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 
                 item.value = (int)(item.value * chanceChange);
             }
+
+            //TO-DO Remove after 1.4.4+
+            #region Future Stuff
+            if (item.type == ItemID.SailorHat || item.type == ItemID.SailorShirt || item.type == ItemID.SailorPants || item.type == ItemID.EyePatch)
+            {
+                item.value = Item.sellPrice(0, 0, 60);
+            }
+
+            if (item.type == ItemID.MummyMask || item.type == ItemID.MummyShirt || item.type == ItemID.MummyPants || item.type == ItemID.PharaohsMask || item.type == ItemID.PharaohsRobe)
+            {
+                item.value = Item.sellPrice(0, 0, 40);
+            }
+
+            if (item.type == ItemID.BabyGrinchMischiefWhistle)
+            {
+                item.value = Item.sellPrice(0, 2);
+            }
+
+            if (item.type == ItemID.ManaCrystal)
+            {
+                item.value = Item.sellPrice(0, 0, 25);
+            }
+
+            if (item.type == ItemID.LunarCraftingStation)
+            {
+                item.value = Item.sellPrice(0, 5);
+            }
+
+            if (item.type == ItemID.ShellPileBlock)
+            {
+                item.value = Item.sellPrice(0, 0, 1);
+            }
+
+            int[] wallpapers = new int[]
+            {
+                1948,
+                1949,
+                1950,
+                1951,
+                1952,
+                1953,
+                1954,
+                1955,
+                1956,
+                1957,
+                2008,
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2058,
+                2059,
+                2060
+            };
+            foreach (int i in wallpapers)
+            {
+                if (item.type == i)
+                {
+                    item.value = Item.buyPrice(0, 0, 0, 75);
+                }
+            }
+
+            if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution|| item.type == ItemID.RedSolution)
+            {
+                item.value = Item.sellPrice(0, 0, 15);
+            }
+            #endregion
         }
     }
 }
