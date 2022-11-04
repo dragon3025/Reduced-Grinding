@@ -7,76 +7,6 @@ namespace ReducedGrinding.GlobalRecipes
 {
     class Recipes : ModSystem
     {
-        public static RecipeGroup baitCritterLow;
-        public static RecipeGroup baitCritterMed;
-        public static RecipeGroup baitCritterHigh;
-
-        public override void Unload()
-        {
-            baitCritterLow = null;
-            baitCritterMed = null;
-            baitCritterHigh = null;
-        }
-
-        public override void AddRecipeGroups()
-        {
-            baitCritterLow = new RecipeGroup(() => "Any bait critter with less than 20 Power", new int[]
-            {
-                ItemID.MonarchButterfly,
-                ItemID.SulphurButterfly,
-                ItemID.Grasshopper,
-                ItemID.Scorpion,
-                ItemID.Snail,
-                ItemID.BlackScorpion,
-                ItemID.HellButterfly,
-                ItemID.ZebraSwallowtailButterfly,
-                ItemID.GlowingSnail,
-                ItemID.Grubby,
-                ItemID.LadyBug,
-                ItemID.WaterStrider
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterLow", baitCritterLow);
-
-            baitCritterMed = new RecipeGroup(() => "Any bait critter with at least 20 Power and less than 25 Power", new int[]
-            {
-                ItemID.UlyssesButterfly,
-                ItemID.BlackDragonfly,
-                ItemID.BlueDragonfly,
-                ItemID.GreenDragonfly,
-                ItemID.OrangeDragonfly,
-                ItemID.RedDragonfly,
-                ItemID.YellowDragonfly,
-                ItemID.Firefly,
-                ItemID.BlueJellyfish,
-                ItemID.GreenJellyfish,
-                ItemID.PinkJellyfish,
-                ItemID.Maggot
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterMed", baitCritterMed);
-
-            baitCritterHigh = new RecipeGroup(() => "Any bait critter with at least 25 Power", new int[]
-            {
-                ItemID.JuliaButterfly,
-                ItemID.Lavafly,
-                ItemID.Sluggy,
-                ItemID.Worm,
-                ItemID.RedAdmiralButterfly,
-                ItemID.PurpleEmperorButterfly,
-                ItemID.EnchantedNightcrawler,
-                ItemID.LightningBug,
-                ItemID.MagmaSnail,
-                ItemID.Buggy,
-                ItemID.TreeNymphButterfly,
-                ItemID.GoldButterfly,
-                ItemID.GoldDragonfly,
-                ItemID.GoldGrasshopper,
-                ItemID.GoldLadyBug,
-                ItemID.GoldWaterStrider,
-                ItemID.GoldWorm
-            });
-            RecipeGroup.RegisterGroup("ReducedGrinding:baitCritterHigh", baitCritterHigh);
-        }
-
         public override void AddRecipes()
         {
             #region Infection Key Switching
@@ -1221,18 +1151,6 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
-            if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
-            {
-                recipe = Recipe.Create(ItemType<Items.BuffPotions.MultiBobberPotion>());
-                recipe.AddIngredient(ItemID.BottledWater);
-                recipe.AddIngredient(ItemID.Waterleaf);
-                recipe.AddRecipeGroup("ReducedGrinding:baitCritterLow");
-                recipe.AddRecipeGroup("ReducedGrinding:baitCritterMed");
-                recipe.AddRecipeGroup("ReducedGrinding:baitCritterHigh");
-                recipe.AddTile(TileID.Bottles);
-                recipe.Register();
-            }
-
             #region Other
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)
             {
@@ -1412,7 +1330,6 @@ namespace ReducedGrinding.GlobalRecipes
             #endregion
             #endregion
         }
-
 
         public override void PostAddRecipes()
         {

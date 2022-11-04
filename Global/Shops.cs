@@ -223,9 +223,15 @@ namespace ReducedGrinding.Global
                         shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.Calendar>());
                         nextSlot++;
                     }
+                    if (Main.hardMode) //Remove when 1.4.4+ Comes out
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.HealingPotion);
+                        nextSlot++;
+                    }
                     break;
                 case NPCID.SkeletonMerchant:
-                    if (GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases)
+                    bool ignoreMoonPhase = GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases;
+                    if (ignoreMoonPhase)
                     {
                         List<int> shopItems = new() {
                             ItemID.StrangeBrew,
@@ -272,6 +278,54 @@ namespace ReducedGrinding.Global
                             }
                         }
                     }
+                    if (Main.hardMode) //Remove when 1.4.4+ Comes out
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.HealingPotion);
+                        nextSlot++;
+                    }
+                    //TO-DO Remove when 1.4.4+ comes out
+                    #region Surface Loot
+                    if (Main.moonPhase == 0 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.WoodenBoomerang);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 1 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Umbrella);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 2 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.WandofSparking);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 3 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.PortableStool);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 4 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Aglet);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 5 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.ClimbingClaws);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 6 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.CordageGuide);
+                        nextSlot++;
+                    }
+                    if (Main.moonPhase == 7 || ignoreMoonPhase)
+                    {
+                        shop.item[nextSlot].SetDefaults(ItemID.Radar);
+                        nextSlot++;
+                    }
+                    #endregion
                     break;
                 case NPCID.BestiaryGirl:
                     if (GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate < 1f)

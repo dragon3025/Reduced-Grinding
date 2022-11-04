@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Items.BuffPotions
 {
@@ -12,8 +13,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Multi-Bobber Potion");
-            Tooltip.SetDefault("Adds more bobbers when fishing");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().MultiBobberPotionBonus.ToString() + " bobbers when fishing");
         }
 
         public override void SetDefaults()
@@ -32,6 +32,17 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.buffTime = 10800; //3 minutes
         }
 
-        //Recipe uses groups so I added it in Recipes.
+        public override void AddRecipes()
+        {
+            if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+            {
+                Recipe recipe = Recipe.Create(Type);
+                recipe.AddIngredient(ItemID.BottledWater);
+                recipe.AddIngredient(ItemID.Waterleaf);
+                recipe.AddIngredient(ItemID.MasterBait);
+                recipe.AddTile(TileID.Bottles);
+                recipe.Register();
+            }
+        }
     }
 }

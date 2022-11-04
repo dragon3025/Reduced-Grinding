@@ -13,8 +13,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Greater Multi-Bobber Potion");
-            Tooltip.SetDefault("Adds even more bobbers when fishing");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus.ToString() + " bobbers when fishing");
         }
 
         public override void SetDefaults()
@@ -43,14 +42,22 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
             {
-                Recipe recipe = Recipe.Create(ItemType<GreaterMultiBobberPotion>());
-                recipe.AddIngredient(ItemType<MultiBobberPotion>());
+                Recipe recipe = Recipe.Create(Type);
+                if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+                {
+                    recipe.AddIngredient(ItemType<MultiBobberPotion>());
+                }
+                else
+                {
+                    recipe.AddIngredient(ItemID.BottledWater);
+                    recipe.AddIngredient(ItemID.Waterleaf);
+                    recipe.AddIngredient(ItemID.MasterBait);
+                }
                 recipe.AddIngredient(ItemID.GelBalloon);
                 if (ReducedGrindingSave.usingCalamity)
                 {
                     recipe.AddIngredient(ItemID.VialofVenom);
                 }
-
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }

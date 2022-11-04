@@ -13,13 +13,11 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault("Super Multi-Bobber Potion");
-            Tooltip.SetDefault("Adds a lot of bobbers when fishing");
-            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+            Tooltip.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus.ToString() + " bobbers when fishing");
         }
 
         public override void SetDefaults()
         {
-            Item.width = 20;
             Item.height = 30;
             Item.maxStack = 300;
             Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Red : ItemRarityID.Yellow;
@@ -44,14 +42,34 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
             {
-                Recipe recipe = Recipe.Create(ItemType<SuperMultiBobberPotion>());
-                recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
+                Recipe recipe = Recipe.Create(Type);
+                if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
+                {
+                    recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
+                }
+                else
+                {
+                    if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+                    {
+                        recipe.AddIngredient(ItemType<MultiBobberPotion>());
+                    }
+                    else
+                    {
+                        recipe.AddIngredient(ItemID.BottledWater);
+                        recipe.AddIngredient(ItemID.Waterleaf);
+                        recipe.AddIngredient(ItemID.MasterBait);
+                    }
+                    recipe.AddIngredient(ItemID.GelBalloon);
+                    if (ReducedGrindingSave.usingCalamity)
+                    {
+                        recipe.AddIngredient(ItemID.VialofVenom);
+                    }
+                }
                 recipe.AddIngredient(ItemID.Ectoplasm);
                 if (ReducedGrindingSave.usingCalamity)
                 {
                     recipe.AddIngredient(ItemID.LunarOre);
                 }
-
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }

@@ -347,6 +347,11 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 item.value = Item.sellPrice(0, 0, 20);
             }
+
+            if (item.type == ItemID.GlassKiln)
+            {
+                item.value = Item.sellPrice(0, 0, 54);
+            }
             #endregion
         }
     }

@@ -243,17 +243,17 @@ namespace ReducedGrinding
 
         [Label("[i:ReducedGrinding/MultiBobberPotion]Multi-Bobber Potion")]
         [Range(0, 100)]
-        [DefaultValue(1)]
+        [DefaultValue(0)]
         public int MultiBobberPotionBonus;
 
         [Label("[i:ReducedGrinding/GreaterMultiBobberPotion] Greater Multi-Bobber Potion")]
         [Range(0, 100)]
-        [DefaultValue(2)]
+        [DefaultValue(0)]
         public int GreaterMultiBobberPotionBonus;
 
         [Label("[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion")]
         [Range(0, 100)]
-        [DefaultValue(3)]
+        [DefaultValue(2)]
         public int SuperMultiBobberPotionBonus;
         #endregion
 

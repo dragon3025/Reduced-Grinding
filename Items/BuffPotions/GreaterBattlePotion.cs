@@ -41,13 +41,13 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             if (GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier > 1)
             {
-                Recipe recipe = Recipe.Create(ItemType<GreaterBattlePotion>());
+                Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BattlePotion);
                 recipe.AddIngredient(ItemID.VileMushroom);
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
 
-                recipe = Recipe.Create(ItemType<GreaterBattlePotion>());
+                recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BattlePotion);
                 recipe.AddIngredient(ItemID.ViciousMushroom);
                 recipe.AddTile(TileID.Bottles);

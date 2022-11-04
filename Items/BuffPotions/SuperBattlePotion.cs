@@ -43,13 +43,13 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             if (GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionSpawnrateMultiplier > 1)
             {
-                Recipe recipe = Recipe.Create(ItemType<SuperBattlePotion>());
+                Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemType<GreaterBattlePotion>());
                 recipe.AddIngredient(ItemID.DemoniteOre);
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
 
-                recipe = Recipe.Create(ItemType<SuperBattlePotion>());
+                recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemType<GreaterBattlePotion>());
                 recipe.AddIngredient(ItemID.CrimtaneOre);
                 recipe.AddTile(TileID.Bottles);
