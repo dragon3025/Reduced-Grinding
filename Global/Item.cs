@@ -185,32 +185,6 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (lootOtherConfig.CrateStatue > 0)
-            {
-                IItemDropRule[] statues = new IItemDropRule[] {
-                ItemDropRule.Common(ItemID.KingStatue),
-                ItemDropRule.Common(ItemID.QueenStatue),
-                ItemDropRule.Common(ItemID.HeartStatue),
-                ItemDropRule.Common(ItemID.StarStatue),
-                ItemDropRule.Common(ItemID.BombStatue)
-            };
-
-                if (item.type == ItemID.GoldenCrate && item.type == ItemID.GoldenCrateHard)
-                {
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue, statues));
-                }
-
-                if (item.type == ItemID.IronCrate && item.type == ItemID.IronCrateHard)
-                {
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 3, statues));
-                }
-
-                if (item.type == ItemID.WoodenCrate && item.type == ItemID.WoodenCrateHard)
-                {
-                    itemLoot.Add(new OneFromRulesRule(lootOtherConfig.CrateStatue * 10, statues));
-                }
-            }
-
             if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
             {
                 itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SandstorminaBottle, 35, 1, 1)); //TO-DO Remove when 1.4.4+ adds this

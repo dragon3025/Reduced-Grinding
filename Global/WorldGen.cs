@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -17,7 +18,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
             if (FinalCleanupIndex != -1)
             {
-                tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Increasing Mushroom Chests and rolling for Terragrims", 10f));
+                tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Loot", 10f));
             }
         }
 
@@ -29,7 +30,7 @@ namespace ReducedGrinding.Global.WorldGeneration
             {
                 //TO-DO 1.4.4+ will contain secret seeds that flip progression upsidedown and the vanilla worldgen adjust to this. This mod will also have to adjsut to it.
 
-                progress.Message = "Adding Non-Existing Rare Chest Loot";
+                progress.Message = "Adding Non-Existing Loot";
 
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 //TO-DO Remove changes to Skyware Chests when 1.4.4+ comes out
@@ -548,6 +549,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
+                int kingStatueDenominator = 5;
+                int queenStatueDenominator = 5;
+
                 #region Scan For Missing Mushroom Items and Add Terragrim
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
@@ -869,8 +873,10 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 chest.item[emptySlot].Prefix(-1);
                             }
                         }
-                        else if (tileFrameX == goldChestSubID * 36) //Remove when 1.4.4+ comes out
+                        else if (tileFrameX == goldChestSubID * 36)
                         {
+                            //Remove when 1.4.4+ comes out
+                            #region Pyramid Items
                             bool changedItem = false;
                             int pharoahsRobeSlot = -1;
                             for (int slot = 0; slot < 40; slot++)
@@ -908,6 +914,36 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     chest.item[slot] = chest.item[slot + 1];
                                 }
                                 chest.item[39].SetDefaults(ItemID.None);
+                            }
+                            #endregion
+                            if (chest.y > WorldGen.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
+                            {
+                                if (WorldGen.genRand.NextBool(kingStatueDenominator))
+                                {
+                                    for (int slot = 0; slot < 40; slot++)
+                                    {
+                                        if (chest.item[slot].type == ItemID.None)
+                                        {
+                                            chest.item[slot].SetDefaults(ItemID.KingStatue);
+                                            kingStatueDenominator += 5;
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (WorldGen.genRand.NextBool(queenStatueDenominator))
+                                {
+                                    for (int slot = 0; slot < 40; slot++)
+                                    {
+                                        if (chest.item[slot].type == ItemID.None)
+                                        {
+                                            chest.item[slot].SetDefaults(ItemID.QueenStatue);
+                                            queenStatueDenominator += 5;
+                                            break;
+                                        }
+                                    }
+                                }
+                                kingStatueDenominator = Math.Max(1, kingStatueDenominator - 1);
+                                queenStatueDenominator = Math.Max(1, queenStatueDenominator - 1);
                             }
                         }
                     }

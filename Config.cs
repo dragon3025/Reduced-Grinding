@@ -535,16 +535,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
-
-        [Header("[i:3981] Titanium / Mythril / Pearlwood and Their Pre-Hardmode Variants")]
-
-        [Label("[i:438] King, Queen, Heart, Star, and Bomb Statue")]
-        [Tooltip("" +
-            "Randomly selects 1 of the 5 statues. Denominator is multiplied by 3 for Mythril\n" +
-            "and 10 for Pearlwood")]
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int CrateStatue;
         #endregion
 
         #region Traveling Merchant
