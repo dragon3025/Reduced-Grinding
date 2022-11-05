@@ -515,27 +515,14 @@ namespace ReducedGrinding
         [DefaultValue(75)]
         public int TerragrimChestChance;
 
-        #region Crates
-        [Header("" +
-            "Crates\n\n" +
-            "All configurations in this section will add a (1 / configuration_setting) to drop. Set to 0 to disable.\n\n" +
-            "[i: 3205] Dungeon / Stockade Crate")]
-
-        [Label("[i:1408] Dungeon Color Furniture Piece (Random Color)")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int DungeonCrateDungeonFurniture;
-
-        [Header("[i:3981] Titanium / Mythril / Pearlwood")]
-
-        [Label("[i:3064] Enchanted Sundial")]
+        [Label("[i:3064] Enchanted Sundial Drop Chance")]
         [Tooltip("" +
-            "Changes the chance of Enchanted Sundial drop unless it's set to 0. Denominator\n" +
+            "Changes the chance of Enchanted Sundial drop from Crates that drop it.\n" +
+            "Chance = 1 / configuration_setting. Set to 0 to use vanilla chance. Denominator\n" +
             "is multiplied by 3 for Mythril and 10 for Pearlwood")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
-        #endregion
 
         #region Traveling Merchant
         [Header("Traveling Merchant\n\n" +

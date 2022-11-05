@@ -104,62 +104,6 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Crates
-
-            if (lootOtherConfig.DungeonCrateDungeonFurniture > 0 && (item.type == ItemID.DungeonFishingCrate || item.type == ItemID.DungeonFishingCrateHard))
-            {
-                IItemDropRule[] dungeonFurniture = new IItemDropRule[] {
-                    ItemDropRule.Common(1396),
-                    ItemDropRule.Common(1397),
-                    ItemDropRule.Common(1398),
-                    ItemDropRule.Common(1399),
-                    ItemDropRule.Common(1400),
-                    ItemDropRule.Common(1401),
-                    ItemDropRule.Common(1402),
-                    ItemDropRule.Common(1403),
-                    ItemDropRule.Common(1404),
-                    ItemDropRule.Common(1405),
-                    ItemDropRule.Common(1406),
-                    ItemDropRule.Common(1407),
-                    ItemDropRule.Common(1408),
-                    ItemDropRule.Common(1409),
-                    ItemDropRule.Common(1410),
-                    ItemDropRule.Common(1411),
-                    ItemDropRule.Common(1412),
-                    ItemDropRule.Common(1413),
-                    ItemDropRule.Common(1414),
-                    ItemDropRule.Common(1415),
-                    ItemDropRule.Common(1416),
-                    ItemDropRule.Common(1470),
-                    ItemDropRule.Common(1471),
-                    ItemDropRule.Common(1472),
-                    ItemDropRule.Common(2376),
-                    ItemDropRule.Common(2377),
-                    ItemDropRule.Common(2378),
-                    ItemDropRule.Common(2386),
-                    ItemDropRule.Common(2387),
-                    ItemDropRule.Common(2388),
-                    ItemDropRule.Common(2402),
-                    ItemDropRule.Common(2403),
-                    ItemDropRule.Common(2404),
-                    ItemDropRule.Common(2645),
-                    ItemDropRule.Common(2646),
-                    ItemDropRule.Common(2647),
-                    ItemDropRule.Common(2652),
-                    ItemDropRule.Common(2653),
-                    ItemDropRule.Common(2654),
-                    ItemDropRule.Common(2658),
-                    ItemDropRule.Common(2659),
-                    ItemDropRule.Common(2660),
-                    ItemDropRule.Common(2664),
-                    ItemDropRule.Common(2665),
-                    ItemDropRule.Common(2666),
-                    ItemDropRule.Common(3900),
-                    ItemDropRule.Common(3901),
-                    ItemDropRule.Common(3902)
-                };
-                itemLoot.Add(new OneFromRulesRule(lootOtherConfig.DungeonCrateDungeonFurniture, dungeonFurniture));
-            }
-
             if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
             {
                 int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;

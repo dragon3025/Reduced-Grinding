@@ -32,6 +32,115 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 progress.Message = "Adding Non-Existing Loot";
 
+                int dungeonColor = 0;
+                if (WorldGen.dungeonSide == -1)
+                {
+                    for (int x = 0; x < Main.maxTilesX; x++)
+                    {
+                        for (int y = (int)WorldGen.worldSurfaceHigh; y < Main.maxTilesY; y++)
+                        {
+                            int type = Main.tile[x, y].TileType;
+                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
+                            {
+                                dungeonColor = TileID.BlueDungeonBrick;
+                                break;
+                            }
+                        }
+                        if (dungeonColor != 0)
+                        {
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int x = Main.maxTilesX; x < 0; x++)
+                    {
+                        for (int y = (int)WorldGen.worldSurfaceHigh; y < Main.maxTilesY; y++)
+                        {
+                            int type = Main.tile[x, y].TileType;
+                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
+                            {
+                                dungeonColor = type;
+                                break;
+                            }
+                        }
+                        if (dungeonColor != 0)
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                List<int> dungeonFurniture = new();
+
+                switch (dungeonColor)
+                {
+                    case TileID.BlueDungeonBrick:
+                        dungeonFurniture = new()
+                        {
+                            ItemID.BlueDungeonBathtub,
+                            ItemID.BlueDungeonBed,
+                            ItemID.BlueDungeonBookcase,
+                            ItemID.BlueDungeonCandelabra,
+                            ItemID.BlueDungeonCandle,
+                            ItemID.BlueDungeonChair,
+                            ItemID.BlueDungeonChandelier,
+                            ItemID.DungeonClockBlue,
+                            ItemID.BlueDungeonDoor,
+                            ItemID.BlueDungeonDresser,
+                            ItemID.BlueDungeonLamp,
+                            ItemID.BlueDungeonPiano,
+                            ItemID.BlueDungeonSofa,
+                            ItemID.BlueDungeonTable,
+                            ItemID.BlueDungeonVase,
+                            ItemID.BlueDungeonWorkBench
+                        };
+                        break;
+                    case TileID.GreenDungeonBrick:
+                        dungeonFurniture = new()
+                        {
+                            ItemID.GreenDungeonBathtub,
+                            ItemID.GreenDungeonBed,
+                            ItemID.GreenDungeonBookcase,
+                            ItemID.GreenDungeonCandelabra,
+                            ItemID.GreenDungeonCandle,
+                            ItemID.GreenDungeonChair,
+                            ItemID.GreenDungeonChandelier,
+                            ItemID.DungeonClockGreen,
+                            ItemID.GreenDungeonDoor,
+                            ItemID.GreenDungeonDresser,
+                            ItemID.GreenDungeonLamp,
+                            ItemID.GreenDungeonPiano,
+                            ItemID.GreenDungeonSofa,
+                            ItemID.GreenDungeonTable,
+                            ItemID.GreenDungeonVase,
+                            ItemID.GreenDungeonWorkBench
+                        };
+                        break;
+                    default:
+                        dungeonFurniture = new()
+                        {
+                            ItemID.PinkDungeonBathtub,
+                            ItemID.PinkDungeonBed,
+                            ItemID.PinkDungeonBookcase,
+                            ItemID.PinkDungeonCandelabra,
+                            ItemID.PinkDungeonCandle,
+                            ItemID.PinkDungeonChair,
+                            ItemID.PinkDungeonChandelier,
+                            ItemID.DungeonClockPink,
+                            ItemID.PinkDungeonDoor,
+                            ItemID.PinkDungeonDresser,
+                            ItemID.PinkDungeonLamp,
+                            ItemID.PinkDungeonPiano,
+                            ItemID.PinkDungeonSofa,
+                            ItemID.PinkDungeonTable,
+                            ItemID.PinkDungeonVase,
+                            ItemID.PinkDungeonWorkBench
+                        };
+                        break;
+                }
+
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 //TO-DO Remove changes to Skyware Chests when 1.4.4+ comes out
                 List<int> missingSkywareItems = new() {
@@ -42,6 +151,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }; //Vanilla Skyware items will generate making sure to add rare items that haven't been added yet by going down the list, then it will be random.
                 List<int> terragrimChests = new();
                 List<int> nonSkywareChests = new(); //TO-DO Remove when 1.4.4+ comes out
+                List<int> lockedGoldChest = new();
 
                 void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
                 {
@@ -652,6 +762,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                         int livingWoodChestSubID = 12; //Remove when 1.4.4+ comes out
                         int lockedShadowChestSubID = 4; //Remove when 1.4.4+ comes out
                         int goldChestSubID = 1; //Remove when 1.4.4+ comes out
+                        int goldLockedChestSubID = 2;
                         if (tileFrameX == tileSubID * 36)
                         {
                             if (missingMushroomItems.Count > 0)
@@ -946,6 +1057,10 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 queenStatueDenominator = Math.Max(1, queenStatueDenominator - 1);
                             }
                         }
+                        else if (tileFrameX == goldLockedChestSubID * 36)
+                        {
+                            lockedGoldChest.Add(chestIndex);
+                        }
                     }
                 }
                 #endregion
@@ -1088,6 +1203,27 @@ namespace ReducedGrinding.Global.WorldGeneration
                     if (mushroomChestAttempts >= 5)
                     {
                         break;
+                    }
+                }
+
+                while (dungeonFurniture.Count > 0)
+                {
+                    foreach (int chestIndex in lockedGoldChest)
+                    {
+                        if (dungeonFurniture.Count > 0)
+                        {
+                            Chest chest = Main.chest[chestIndex];
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                if (chest.item[slot].type == ItemID.None)
+                                {
+                                    chest.item[slot].SetDefaults(dungeonFurniture[0]);
+                                    chest.item[slot].stack = WorldGen.genRand.Next(2, 5);
+                                    break;
+                                }
+                            }
+                            dungeonFurniture.RemoveAt(0);
+                        }
                     }
                 }
 

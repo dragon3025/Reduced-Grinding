@@ -39,7 +39,7 @@ namespace ReducedGrinding.Tiles
                 }
                 else if (Main.dungeonX > (Main.maxTilesX / 2) && i > WorldGen.beachDistance)
                 {
-                    failText = "Must be placed in the Caverns under the Eastern Beach.";
+                    failText = "Must be placed in the Caverns under the Western Beach.";
                 }
                 else if (j < Main.rockLayer || j > Main.UnderworldLayer)
                 {

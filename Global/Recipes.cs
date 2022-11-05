@@ -73,69 +73,6 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.Register();
             #endregion
 
-            //Remove when 1.4.4+ Adds these
-            #region Dungeon Bricks and Platforms
-            recipe = Recipe.Create(ItemID.BlueBrick);
-            recipe.AddIngredient(ItemID.GreenBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.BlueBrick);
-            recipe.AddIngredient(ItemID.PinkBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.GreenBrick);
-            recipe.AddIngredient(ItemID.BlueBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.GreenBrick);
-            recipe.AddIngredient(ItemID.PinkBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PinkBrick);
-            recipe.AddIngredient(ItemID.BlueBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PinkBrick);
-            recipe.AddIngredient(ItemID.GreenBrick);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.BlueBrick);
-            recipe.AddIngredient(ItemID.BlueBrickPlatform, 2);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.GreenBrick);
-            recipe.AddIngredient(ItemID.GreenBrickPlatform, 2);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PinkBrick);
-            recipe.AddIngredient(ItemID.PinkBrickPlatform, 2);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.BlueBrickPlatform, 2);
-            recipe.AddIngredient(ItemID.BlueBrick);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.GreenBrickPlatform, 2);
-            recipe.AddIngredient(ItemID.GreenBrick);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.PinkBrickPlatform, 2);
-            recipe.AddIngredient(ItemID.PinkBrick);
-            recipe.AddTile(TileID.WorkBenches);
-            recipe.Register();
-            #endregion
-
             //TO-DO Remove when 1.4.4+ adds these
             #region Future Stuff
             recipe = Recipe.Create(ItemID.SandstorminaBottle);
@@ -201,6 +138,90 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.SandBlock);
             recipe.AddIngredient(ItemID.StoneBlock);
             recipe.AddTile(TileID.Solidifier);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueBrick);
+            recipe.AddIngredient(ItemID.GreenBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueBrick);
+            recipe.AddIngredient(ItemID.PinkBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenBrick);
+            recipe.AddIngredient(ItemID.BlueBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenBrick);
+            recipe.AddIngredient(ItemID.PinkBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkBrick);
+            recipe.AddIngredient(ItemID.BlueBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkBrick);
+            recipe.AddIngredient(ItemID.GreenBrick);
+            recipe.AddTile(TileID.CrystalBall);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueBrick);
+            recipe.AddIngredient(ItemID.BlueBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenBrick);
+            recipe.AddIngredient(ItemID.GreenBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkBrick);
+            recipe.AddIngredient(ItemID.PinkBrickPlatform, 2);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.BlueBrick);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.GreenBrick);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkBrickPlatform, 2);
+            recipe.AddIngredient(ItemID.PinkBrick);
+            recipe.AddTile(TileID.WorkBenches);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BrassShelf, 2);
+            recipe.AddIngredient(ItemID.CopperBrick);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.DungeonShelf, 2);
+            recipe.AddIngredient(ItemID.Wood);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.MetalShelf, 2);
+            recipe.AddIngredient(ItemID.TinBrick);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.WoodShelf, 2);
+            recipe.AddIngredient(ItemID.Wood);
+            recipe.AddTile(TileID.BoneWelder);
+            recipe.AddCondition(Recipe.Condition.InGraveyardBiome);
             recipe.Register();
             #endregion
 
@@ -1149,6 +1170,257 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.LadybugMinecart);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
+
+            #region Dungeon Furniture
+
+            #region Blue to Green
+            recipe = Recipe.Create(ItemID.BlueDungeonBathtub);
+            recipe.AddIngredient(ItemID.GreenDungeonBathtub);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonBed);
+            recipe.AddIngredient(ItemID.GreenDungeonBed);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonBookcase);
+            recipe.AddIngredient(ItemID.GreenDungeonBookcase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonCandelabra);
+            recipe.AddIngredient(ItemID.GreenDungeonCandelabra);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonCandle);
+            recipe.AddIngredient(ItemID.GreenDungeonCandle);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonChair);
+            recipe.AddIngredient(ItemID.GreenDungeonChair);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonChandelier);
+            recipe.AddIngredient(ItemID.GreenDungeonChandelier);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.DungeonClockBlue);
+            recipe.AddIngredient(ItemID.DungeonClockGreen);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonDoor);
+            recipe.AddIngredient(ItemID.GreenDungeonDoor);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonDresser);
+            recipe.AddIngredient(ItemID.GreenDungeonDresser);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonLamp);
+            recipe.AddIngredient(ItemID.GreenDungeonLamp);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonPiano);
+            recipe.AddIngredient(ItemID.GreenDungeonPiano);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonSofa);
+            recipe.AddIngredient(ItemID.GreenDungeonSofa);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonTable);
+            recipe.AddIngredient(ItemID.GreenDungeonTable);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonVase);
+            recipe.AddIngredient(ItemID.GreenDungeonVase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.BlueDungeonWorkBench);
+            recipe.AddIngredient(ItemID.GreenDungeonWorkBench);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+            #endregion
+
+            #region Green to Pink
+            recipe = Recipe.Create(ItemID.GreenDungeonBathtub);
+            recipe.AddIngredient(ItemID.PinkDungeonBathtub);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonBed);
+            recipe.AddIngredient(ItemID.PinkDungeonBed);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonBookcase);
+            recipe.AddIngredient(ItemID.PinkDungeonBookcase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonCandelabra);
+            recipe.AddIngredient(ItemID.PinkDungeonCandelabra);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonCandle);
+            recipe.AddIngredient(ItemID.PinkDungeonCandle);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonChair);
+            recipe.AddIngredient(ItemID.PinkDungeonChair);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonChandelier);
+            recipe.AddIngredient(ItemID.PinkDungeonChandelier);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.DungeonClockGreen);
+            recipe.AddIngredient(ItemID.DungeonClockPink);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonDoor);
+            recipe.AddIngredient(ItemID.PinkDungeonDoor);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonDresser);
+            recipe.AddIngredient(ItemID.PinkDungeonDresser);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonLamp);
+            recipe.AddIngredient(ItemID.PinkDungeonLamp);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonPiano);
+            recipe.AddIngredient(ItemID.PinkDungeonPiano);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonSofa);
+            recipe.AddIngredient(ItemID.PinkDungeonSofa);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonTable);
+            recipe.AddIngredient(ItemID.PinkDungeonTable);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonVase);
+            recipe.AddIngredient(ItemID.PinkDungeonVase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.GreenDungeonWorkBench);
+            recipe.AddIngredient(ItemID.PinkDungeonWorkBench);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+            #endregion
+
+            #region Pink to Blue
+            recipe = Recipe.Create(ItemID.PinkDungeonBathtub);
+            recipe.AddIngredient(ItemID.BlueDungeonBathtub);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonBed);
+            recipe.AddIngredient(ItemID.BlueDungeonBed);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonBookcase);
+            recipe.AddIngredient(ItemID.BlueDungeonBookcase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonCandelabra);
+            recipe.AddIngredient(ItemID.BlueDungeonCandelabra);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonCandle);
+            recipe.AddIngredient(ItemID.BlueDungeonCandle);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonChair);
+            recipe.AddIngredient(ItemID.BlueDungeonChair);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonChandelier);
+            recipe.AddIngredient(ItemID.BlueDungeonChandelier);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.DungeonClockPink);
+            recipe.AddIngredient(ItemID.DungeonClockBlue);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonDoor);
+            recipe.AddIngredient(ItemID.BlueDungeonDoor);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonDresser);
+            recipe.AddIngredient(ItemID.BlueDungeonDresser);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonLamp);
+            recipe.AddIngredient(ItemID.BlueDungeonLamp);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonPiano);
+            recipe.AddIngredient(ItemID.BlueDungeonPiano);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonSofa);
+            recipe.AddIngredient(ItemID.BlueDungeonSofa);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonTable);
+            recipe.AddIngredient(ItemID.BlueDungeonTable);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonVase);
+            recipe.AddIngredient(ItemID.BlueDungeonVase);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+
+            recipe = Recipe.Create(ItemID.PinkDungeonWorkBench);
+            recipe.AddIngredient(ItemID.BlueDungeonWorkBench);
+            recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+            recipe.Register();
+            #endregion
+
+            #endregion
+
             #endregion
 
             #region Other
