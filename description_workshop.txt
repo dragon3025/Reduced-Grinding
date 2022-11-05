@@ -6,8 +6,8 @@ Open Source at GitHub. Report issues there or at home page (Note Steam Workshop 
 
 This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info).
 
-- Item chances for certain enemy drops. Item values scale to new drop rates by default.
-- Potions for using more bobbers (3-tiers).
+- Increased item chances for certain enemy drops. Item values scale to new drop rates by default.
+- Potion for increasing fishing bobber amount.
 - Angler Quest resets when all Angler Armor wearing players have finished their quest.
 - Fishing Tokens when finishing Quests, to purchase items from the Fish Merchant.
 - Moonball to advance Moon Phase or skip the Blood Moon.
@@ -15,11 +15,6 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Holiday timeline for periodic Halloween and Christmas days.
 - Cancel Invasions when all players go underground.
 - Helpful recipes including Universal Plyon; Universal Pylon recipe has 3 difficulty settings.
-
-====TEMPORARY UNTIL 1.4.4+:====
-
-- Celestial Sigil is crafted with 12 of each fragment and summons the Moon Lord in 12 seconds.
-- Pirate drops are twice as likely. Pirate Ships will always drop 1 Golden Furniture item.
 
 ====OFF BY DEFAULT====
 
