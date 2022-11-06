@@ -6,11 +6,13 @@ using Terraria.ModLoader;
 //Remove when 1.4.4+ comes out unless there isn't a way to add shimmer features
 namespace ReducedGrinding.Items.Placeable
 {
-    public class LumaniteShimmeringStar : ModItem
+    [LegacyName("LumaniteShimmeringStar")]
+
+    public class LuminiteShimmeringStar : ModItem
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Lumanite Shimmering Star");
+            DisplayName.SetDefault("Luminite Shimmering Star");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

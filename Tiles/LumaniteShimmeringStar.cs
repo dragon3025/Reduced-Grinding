@@ -8,6 +8,7 @@ using Terraria.ObjectData;
 //Remove when 1.4.4+ comes out unless there isn't a way to add shimmer features
 namespace ReducedGrinding.Tiles
 {
+    //Typo name is actually "Luminite" not "Lumanite". I'm keeping the typo in the class name so it doesn't cause invalid tiles for players, but the map name for this is fixed.
     public class LumaniteShimmeringStar : ModTile
     {
         public override void SetStaticDefaults()
@@ -27,7 +28,7 @@ namespace ReducedGrinding.Tiles
             AnimationFrameHeight = 36;
 
             ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Shimmering Star");
+            name.SetDefault("Luminite Shimmering Star");
             AddMapEntry(new Color(154, 131, 202), name);
         }
 
@@ -44,7 +45,7 @@ namespace ReducedGrinding.Tiles
 
         public override void KillMultiTile(int x, int y, int frameX, int frameY)
         {
-            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Placeable.LumaniteShimmeringStar>());
+            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Placeable.LuminiteShimmeringStar>());
         }
     }
 }
