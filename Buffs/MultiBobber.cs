@@ -10,7 +10,7 @@ namespace ReducedGrinding.Buffs
         {
             Main.buffNoTimeDisplay[Type] = false;
             DisplayName.SetDefault("Multi-Bobber Potion");
-            Description.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().MultiBobberPotionBonus.ToString() + " bobbers when fishing");
+            Description.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().MultiBobberPotionBonus.ToString() + " when fishing");
         }
     }
 }
