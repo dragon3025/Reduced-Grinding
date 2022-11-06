@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Buffs
 {
@@ -9,7 +10,7 @@ namespace ReducedGrinding.Buffs
         {
             Main.buffNoTimeDisplay[Type] = false;
             DisplayName.SetDefault("Multi-Bobber Potion");
-            Description.SetDefault("Adds more bobbers while fishing");
+            Description.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().MultiBobberPotionBonus.ToString() + " bobbers when fishing");
         }
     }
 }

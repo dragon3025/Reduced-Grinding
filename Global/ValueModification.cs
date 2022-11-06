@@ -333,7 +333,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 }
             }
 
-            if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution|| item.type == ItemID.RedSolution)
+            if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution || item.type == ItemID.RedSolution)
             {
                 item.value = Item.sellPrice(0, 0, 15);
             }
