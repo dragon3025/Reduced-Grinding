@@ -234,7 +234,6 @@ namespace ReducedGrinding.Global
 
             if (DD2Event.Ongoing)
             {
-                Main.NewText("DD2Event.TimeLeftBetweenWaves: " + DD2Event.TimeLeftBetweenWaves.ToString());
                 if (skipDD2Wave && DD2Event.TimeLeftBetweenWaves > 60)
                 {
                     DD2Event.TimeLeftBetweenWaves = 60;
