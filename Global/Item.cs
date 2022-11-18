@@ -197,8 +197,11 @@ namespace ReducedGrinding.Global
                             if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Starfury))
                             {
                                 List<int> newDropOptions = drop2.dropIds.ToList();
-
-                                newDropOptions.Remove(ItemID.CreativeWings);
+								
+								if (lootOtherConfig.FutureFledglingChestChance)
+                                {
+									newDropOptions.Remove(ItemID.CreativeWings);
+								}
                                 newDropOptions.Add(ItemID.LuckyHorseshoe);
                                 newDropOptions.Add(ItemID.CelestialMagnet);
 
@@ -207,7 +210,10 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
-                itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
+                if (lootOtherConfig.FutureFledglingChestChance)
+				{
+					itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
+				}
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.Cloud, 2, 50, 100));
             }
             if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)

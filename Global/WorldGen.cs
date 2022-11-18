@@ -149,6 +149,12 @@ namespace ReducedGrinding.Global.WorldGeneration
                     ItemID.LuckyHorseshoe,
                     ItemID.CelestialMagnet
                 }; //Vanilla Skyware items will generate making sure to add rare items that haven't been added yet by going down the list, then it will be random.
+				
+				if (!GetInstance<IOtherConfig>().FutureFledglingChestChance)
+				{
+					missingSkywareItems.Add(ItemID.CreativeWings);
+				}
+				
                 List<int> terragrimChests = new();
                 List<int> nonSkywareChests = new(); //TO-DO Remove when 1.4.4+ comes out
                 List<int> lockedGoldChest = new();
@@ -709,7 +715,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                                 else
                                 {
-                                    switch (WorldGen.genRand.Next(4))
+									int chance = GetInstance<IOtherConfig>().FutureFledglingChestChance ? 4 : 5;
+                                    switch (WorldGen.genRand.Next(chance))
                                     {
                                         case 0:
                                             chest.item[slot].SetDefaults(ItemID.Starfury);
@@ -723,6 +730,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         case 3:
                                             chest.item[slot].SetDefaults(ItemID.CelestialMagnet);
                                             break;
+                                        case 4:
+                                            chest.item[slot].SetDefaults(ItemID.CreativeWings);
+                                            break;
                                     }
                                 }
                                 adjustedRareItem = true;
@@ -733,7 +743,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                             }
                         }
                         eSlot = 0;
-                        if (adjustedRareItem && emptySlot[eSlot] > -1)
+                        if (adjustedRareItem && emptySlot[eSlot] > -1 && GetInstance<IOtherConfig>().FutureFledglingChestChance)
                         {
                             if (WorldGen.genRand.NextBool(40))
                             {
