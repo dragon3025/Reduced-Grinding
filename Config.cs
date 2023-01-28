@@ -238,6 +238,10 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
+        [Label("Angler Tells Quest Completed")]
+        [DefaultValue(true)]
+        public bool AnglerTellsQuestCompleted;
+
         #region Multi-Bobber Potions
         [Header("Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.")]
 

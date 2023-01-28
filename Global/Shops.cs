@@ -11,10 +11,13 @@ namespace ReducedGrinding.Global
     {
         public override void GetChat(NPC npc, ref string chat)
         {
-            Player player = Main.player[Main.myPlayer];
+            //NPCID.Sets.MPAllowedEnemies[fishMerchantID] = true;
+            Player player = Main.LocalPlayer;
             if (npc.type == NPCID.Angler)
             {
-                Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255);
+                if (GetInstance<CFishingConfig>().AnglerTellsQuestCompleted)
+                    Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255);
+
                 if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
                 {
                     bool spawnFishMerchant = true;
@@ -32,29 +35,29 @@ namespace ReducedGrinding.Global
                             anglerNPC = i;
                         }
                     }
+
                     if (spawnFishMerchant)
                     {
-                        if (Main.netMode != NetmodeID.MultiplayerClient)
-                        {
-                            NPC.SpawnOnPlayer(player.whoAmI, fishMerchantID);
-                        }
-                        else
-                        {
-                            NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: fishMerchantID);
-                        }
+                        int newFishMerchant = NPC.NewNPC(Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, fishMerchantID, 1);
+                        NPC fishMerchant = Main.npc[newFishMerchant];
+                        fishMerchant.homeless = true;
+                        fishMerchant.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
+                        fishMerchant.netUpdate = true;
+                    }
 
-                        for (int i = 0; i < Main.npc.Length; i++)
+                    for (int i = 0; i < Main.npc.Length; i++)
+                    {
+                        if (Main.npc[i].type == fishMerchantID)
                         {
-                            if (Main.npc[i].type == fishMerchantID)
+                            if (Main.npc[i].Distance(Main.npc[anglerNPC].position) > 500)
                             {
                                 Main.npc[i].position = Main.npc[anglerNPC].position;
                                 if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
                                     NetMessage.SendData(MessageID.WorldData);
                                 }
-
-                                break;
                             }
+                            break;
                         }
                     }
                 }
