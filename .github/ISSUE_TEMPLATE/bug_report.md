@@ -9,6 +9,7 @@ assignees: ''
 
 Terraria Version:
 TModLoader Version:
+Reduced Grinding Version:
 
 **Mods Installed**
 - Reduced Grinding
