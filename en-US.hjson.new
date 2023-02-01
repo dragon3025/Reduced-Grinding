@@ -1,0 +1,122 @@
+
+Mods: {
+	ReducedGrinding: {
+		Buffs: {
+			GreaterBattle: {
+				DisplayName: Greater Battle
+				Description: Enemy spawn rate greatly increased
+			}
+
+			GreaterMultiBobber: {
+				DisplayName: Greater Multi-Bobber Potion
+				Description: Increases bobber amount by 0 when fishing
+			}
+
+			MultiBobber: {
+				DisplayName: Multi-Bobber Potion
+				Description: Increases bobber amount by 1 when fishing
+			}
+
+			SuperBattle: {
+				DisplayName: Super Battle
+				Description: Enemy spawn rate massively increased
+			}
+
+			SuperMultiBobber: {
+				DisplayName: Super Multi-Bobber Potion
+				Description: Increases bobber amount by 2 when fishing
+			}
+		}
+
+		Items: {
+			GreaterBattlePotion: {
+				DisplayName: Greater Battle Potion
+				Tooltip: Greatly increases enemy spawn rate
+			}
+
+			GreaterMultiBobberPotion: {
+				DisplayName: Greater Multi-Bobber Potion
+				Tooltip: Increases bobber amount by 0 when fishing
+			}
+
+			MultiBobberPotion: {
+				DisplayName: Multi-Bobber Potion
+				Tooltip: Increases bobber amount by 1 when fishing
+			}
+
+			SuperBattlePotion: {
+				DisplayName: Super Battle Potion
+				Tooltip: Massively increases enemy spawn rate
+			}
+
+			SuperMultiBobberPotion: {
+				DisplayName: Super Multi-Bobber Potion
+				Tooltip: Increases bobber amount by 2 when fishing
+			}
+
+			FishCoin: {
+				DisplayName: Fish Coin
+				Tooltip: Currency for trading with the Fish Merchant
+			}
+
+			FishCostumeBag: {
+				DisplayName: Fish Costume Bag
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					Gives entire Fish Vanity set
+					'''
+			}
+
+			MerchantDice: {
+				DisplayName: Merchant Dice
+				Tooltip: Use to reroll the Traveling Merchant shop (with limited uses per day)
+			}
+
+			MermaidCostumeBag: {
+				DisplayName: Mermaid Costume Bag
+				Tooltip:
+					'''
+					{$CommonItemTooltip.RightClickToOpen}
+					Gives entire Mermaid Vanity set
+					'''
+			}
+
+			BestiaryTrophy.DisplayName: Bestiary Trophy
+
+			Calendar: {
+				DisplayName: Calendar
+				Tooltip: Shows the current date
+			}
+
+			LuminiteShimmeringStar.DisplayName: Luminite Shimmering Star
+
+			MoonBall: {
+				DisplayName: Moon Ball
+				Tooltip: Advances the Moon Phase
+			}
+
+			ShimmeringStar.DisplayName: Shimmering Star
+			SlimeTrophy.DisplayName: Slime Trophy
+
+			PlanteraSap: {
+				DisplayName: Plantera Sap
+				Tooltip: Use in the Jungle to summon Plantera
+			}
+
+			StaffOfDifficulty: {
+				DisplayName: Staff of Difficulty
+				Tooltip: A creative tool that switches the difficulty modes
+			}
+		}
+
+		NPCs.FishMerchant.DisplayName: Fish Merchant
+
+		Tiles: {
+			Calendar.MapEntry: Calendar
+			LumaniteShimmeringStar.MapEntry: Luminite Shimmering Star
+			MoonBall.MapEntry: Moon Ball
+			ShimmeringStar.MapEntry: Shimmering Star
+		}
+	}
+}

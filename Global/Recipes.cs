@@ -569,7 +569,7 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.IceChest);
+            recipe = Recipe.Create(ItemID.FrozenChest);
             recipe.AddIngredient(ItemID.FrozenKey);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
@@ -1561,42 +1561,6 @@ namespace ReducedGrinding.GlobalRecipes
                 recipe.AddIngredient(ItemID.Cobweb, 5);
                 recipe.AddIngredient(ItemID.Chest);
                 recipe.AddTile(TileID.WorkBenches);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.CrimsonChest, 2);
-                recipe.AddIngredient(ItemID.CrimsonChest);
-                recipe.AddIngredient(ItemID.CrimsonKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.CorruptionChest, 2);
-                recipe.AddIngredient(ItemID.CorruptionChest);
-                recipe.AddIngredient(ItemID.CorruptionKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.HallowedChest, 2);
-                recipe.AddIngredient(ItemID.HallowedChest);
-                recipe.AddIngredient(ItemID.HallowedKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.IceChest, 2);
-                recipe.AddIngredient(ItemID.IceChest);
-                recipe.AddIngredient(ItemID.FrozenKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.JungleChest, 2);
-                recipe.AddIngredient(ItemID.JungleChest);
-                recipe.AddIngredient(ItemID.JungleKey);
-                recipe.AddTile(TileID.CrystalBall);
-                recipe.Register();
-
-                recipe = Recipe.Create(ItemID.DesertChest, 2);
-                recipe.AddIngredient(ItemID.DesertChest);
-                recipe.AddIngredient(ItemID.DungeonDesertKey);
-                recipe.AddTile(TileID.CrystalBall);
                 recipe.Register();
             }
             #endregion

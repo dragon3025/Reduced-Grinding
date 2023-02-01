@@ -365,7 +365,7 @@ namespace ReducedGrinding
         [DefaultValue(7)]
         public int FinWings;
 
-        [Label("[i:3021] Bottomless Water Bucket")]
+        [Label("[i:3031] Bottomless Water Bucket")]
         [Range(1, 9999)]
         [DefaultValue(7)]
         public int BottomlessWaterBucket;
@@ -599,6 +599,9 @@ namespace ReducedGrinding
         public bool CraftableGoldCritters;
 
         [Label("Craftable Rare Chests")]
+        [Tooltip("" +
+            "This excludes Dungeon Biome Chest which will always be craftable\n" +
+            "with a Shimmering Star.")]
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
