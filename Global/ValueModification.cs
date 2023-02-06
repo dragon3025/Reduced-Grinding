@@ -352,6 +352,46 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 item.value = Item.sellPrice(0, 0, 54);
             }
+
+            if (item.type == ItemID.ImpStaff)
+            {
+                item.value = Item.sellPrice(0, 0, 54);
+            }
+
+            if (item.type == ItemID.BeeWax)
+            {
+                item.value = Item.sellPrice(0, 0, 5);
+            }
+
+            if (item.type == ItemID.BeeHeadgear)
+            {
+                item.value = Item.sellPrice(0, 0, 40);
+            }
+
+            if (item.type == ItemID.BeeBreastplate)
+            {
+                item.value = Item.sellPrice(0, 0, 60);
+            }
+
+            if (item.type == ItemID.BeeGreaves)
+            {
+                item.value = Item.sellPrice(0, 0, 50);
+            }
+
+            if (item.type == ItemID.Beenade)
+            {
+                item.value = Item.sellPrice(0, 0, 5);
+            }
+
+            if (item.type == 5294) //Hive-Five
+            {
+                item.value = Item.sellPrice(0, 0, 70);
+            }
+
+            if (item.type == ItemID.HornetStaff)
+            {
+                item.value = Item.sellPrice(0, 0, 70);
+            }
             #endregion
         }
     }

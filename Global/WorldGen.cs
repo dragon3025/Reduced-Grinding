@@ -149,12 +149,12 @@ namespace ReducedGrinding.Global.WorldGeneration
                     ItemID.LuckyHorseshoe,
                     ItemID.CelestialMagnet
                 }; //Vanilla Skyware items will generate making sure to add rare items that haven't been added yet by going down the list, then it will be random.
-				
-				if (!GetInstance<IOtherConfig>().FutureFledglingChestChance)
-				{
-					missingSkywareItems.Add(ItemID.CreativeWings);
-				}
-				
+
+                if (!GetInstance<IOtherConfig>().FutureFledglingChestChance)
+                {
+                    missingSkywareItems.Add(ItemID.CreativeWings);
+                }
+
                 List<int> terragrimChests = new();
                 List<int> nonSkywareChests = new(); //TO-DO Remove when 1.4.4+ comes out
                 List<int> lockedGoldChest = new();
@@ -715,7 +715,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                                 else
                                 {
-									int chance = GetInstance<IOtherConfig>().FutureFledglingChestChance ? 4 : 5;
+                                    int chance = GetInstance<IOtherConfig>().FutureFledglingChestChance ? 4 : 5;
                                     switch (WorldGen.genRand.Next(chance))
                                     {
                                         case 0:

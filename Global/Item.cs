@@ -21,6 +21,7 @@ namespace ReducedGrinding.Global
                 return;
             }
 
+            //TO-DO Shimmering makes it easier to get missing items, so this might not be necessary anymore.
             if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
             {
                 tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material\n" +
@@ -197,11 +198,11 @@ namespace ReducedGrinding.Global
                             if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Starfury))
                             {
                                 List<int> newDropOptions = drop2.dropIds.ToList();
-								
-								if (lootOtherConfig.FutureFledglingChestChance)
+
+                                if (lootOtherConfig.FutureFledglingChestChance)
                                 {
-									newDropOptions.Remove(ItemID.CreativeWings);
-								}
+                                    newDropOptions.Remove(ItemID.CreativeWings);
+                                }
                                 newDropOptions.Add(ItemID.LuckyHorseshoe);
                                 newDropOptions.Add(ItemID.CelestialMagnet);
 
@@ -211,9 +212,9 @@ namespace ReducedGrinding.Global
                     }
                 }
                 if (lootOtherConfig.FutureFledglingChestChance)
-				{
-					itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
-				}
+                {
+                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
+                }
                 itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.Cloud, 2, 50, 100));
             }
             if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)

@@ -482,62 +482,62 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedMask);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.HallowedMask);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedHelmet);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.HallowedHelmet);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedHeadgear);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.HallowedHeadgear);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedHood);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.HallowedHood);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedPlateMail);
+            recipe = Recipe.Create(ItemID.HallowedBar, 24);
             recipe.AddIngredient(ItemID.HallowedPlateMail);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.AncientHallowedGreaves);
+            recipe = Recipe.Create(ItemID.HallowedBar, 18);
             recipe.AddIngredient(ItemID.HallowedGreaves);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedMask);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.AncientHallowedMask);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedHelmet);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.AncientHallowedHelmet);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedHeadgear);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.AncientHallowedHeadgear);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedHood);
+            recipe = Recipe.Create(ItemID.HallowedBar, 12);
             recipe.AddIngredient(ItemID.AncientHallowedHood);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedPlateMail);
+            recipe = Recipe.Create(ItemID.HallowedBar, 24);
             recipe.AddIngredient(ItemID.AncientHallowedPlateMail);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
-            recipe = Recipe.Create(ItemID.HallowedGreaves);
+            recipe = Recipe.Create(ItemID.HallowedBar, 18);
             recipe.AddIngredient(ItemID.AncientHallowedGreaves);
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
@@ -1171,6 +1171,19 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddTile(TileType<Tiles.ShimmeringStar>());
             recipe.Register();
 
+            if (GetInstance<IOtherConfig>().CraftableRareChests)
+            {
+                recipe = Recipe.Create(ItemID.ShadowChest);
+                recipe.AddIngredient(ItemID.ShadowKey);
+                recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+                recipe.Register();
+
+                recipe = Recipe.Create(ItemID.ShadowKey);
+                recipe.AddIngredient(ItemID.ShadowChest);
+                recipe.AddTile(TileType<Tiles.ShimmeringStar>());
+                recipe.Register();
+            }
+
             #region Dungeon Furniture
 
             #region Blue to Green
@@ -1545,6 +1558,8 @@ namespace ReducedGrinding.GlobalRecipes
             #region Craftable Rare Chests
             if (GetInstance<IOtherConfig>().CraftableRareChests)
             {
+                //Shadow Chest also requires this condition, but is crafted using shimmering, so it's in the shimmering section above.
+
                 recipe = Recipe.Create(ItemID.IvyChest);
                 recipe.AddIngredient(ItemID.RichMahogany, 8);
                 recipe.AddRecipeGroup(RecipeGroupID.IronBar, 2);

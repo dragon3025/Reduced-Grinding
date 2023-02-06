@@ -518,8 +518,8 @@ namespace ReducedGrinding
             "Regular Wooden Chests. Chance = 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(75)]
         public int TerragrimChestChance;
-		
-		//TO-DO Remove after 1.4.4
+
+        //TO-DO Remove after 1.4.4
         [Label("Use 1.4.4 [i:4978] Fledgling Wings Chance")]
         [DefaultValue(true)]
         public bool FutureFledglingChestChance;
