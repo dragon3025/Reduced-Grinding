@@ -14,7 +14,7 @@ Mods: {
 
 			MultiBobber: {
 				DisplayName: Multi-Bobber Potion
-				Description: Increases bobber amount by 1 when fishing
+				Description: Increases bobber amount by 0 when fishing
 			}
 
 			SuperBattle: {
@@ -41,7 +41,7 @@ Mods: {
 
 			MultiBobberPotion: {
 				DisplayName: Multi-Bobber Potion
-				Tooltip: Increases bobber amount by 1 when fishing
+				Tooltip: Increases bobber amount by 0 when fishing
 			}
 
 			SuperBattlePotion: {

@@ -88,29 +88,29 @@ namespace ReducedGrinding.Global
                 npcLoot.RemoveWhere(rule => rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.IvyGuitar);
                 npcLoot.Add(ItemDropRule.Common(ItemID.IvyGuitar, 1));
             }
+            //TO-DO 1.4.4+ Will need to add Jim's Cap here
 
             if (lootConfig.TownNPCWeapons > 0)
             {
-                int[] otherTownNPCs = new int[]
+                int[] townWeapons = new int[]
                 {
-                    NPCID.DyeTrader,
-                    NPCID.Painter,
-                    NPCID.DD2Bartender,
-                    NPCID.Stylist,
-                    NPCID.Mechanic,
-                    NPCID.TaxCollector,
-                    NPCID.Princess
-                }; //Excluding Party Girl
-                foreach (int i in otherTownNPCs)
+                    ItemID.DyeTradersScimitar,
+                    ItemID.PainterPaintballGun,
+                    ItemID.AleThrowingGlove,
+                    ItemID.StylistKilLaKillScissorsIWish,
+                    ItemID.CombatWrench,
+                    ItemID.PartyGirlGrenade,
+                    ItemID.TaxCollectorsStickOfDoom,
+                    ItemID.PrincessWeapon
+                };
+
+                foreach (int i in townWeapons)
                 {
-                    if (npc.type == i)
+                    foreach (var rule in npcLoot.Get())
                     {
-                        foreach (var rule in npcLoot.Get())
+                        if (rule is CommonDrop drop && drop.itemId == i)
                         {
-                            if (rule is CommonDrop drop) //The all drop only 1 item, so we don't need to test the itemID.
-                            {
-                                drop.chanceDenominator = lootConfig.TownNPCWeapons;
-                            }
+                            drop.chanceDenominator = lootConfig.TownNPCWeapons;
                         }
                     }
                 }

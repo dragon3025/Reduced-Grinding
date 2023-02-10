@@ -65,6 +65,11 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(0.1f, lootConfig.TownNPCWeapons);
             }
 
+            if (item.type == ItemID.PartyGirlGrenade)
+            {
+                FindNewValue(0.25f, lootConfig.TownNPCWeapons);
+            }
+
             if (item.type == ItemID.PiranhaGun || item.type == ItemID.ScourgeoftheCorruptor || item.type == ItemID.VampireKnives || item.type == ItemID.RainbowGun || item.type == ItemID.StaffoftheFrostHydra || item.type == ItemID.StormTigerStaff)
             {
                 FindNewValue(0.0004f, lootConfig.BiomeKey);
@@ -268,6 +273,16 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 float chanceChange = Math.Min(chanceChangePinky, Math.Min(chanceChangeSand, chanceChangeOther));
 
                 item.value = (int)(item.value * chanceChange);
+            }
+
+            if (item.type == ItemID.GreenCap)
+            {
+                FindNewValue(1f / 36f, 1);
+            }
+
+            if (item.type == ItemID.IvyGuitar)
+            {
+                FindNewValue(1f / 20f, 1);
             }
 
             //TO-DO Remove after 1.4.4+
