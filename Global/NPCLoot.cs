@@ -92,8 +92,21 @@ namespace ReducedGrinding.Global
 
             if (lootConfig.TownNPCWeapons > 0)
             {
-                int[] townWeapons = new int[]
+                int[] townNPCs = new int[]
                 {
+                    NPCID.DyeTrader,
+                    NPCID.Painter,
+                    NPCID.DD2Bartender,
+                    NPCID.Stylist,
+                    NPCID.Mechanic,
+                    NPCID.PartyGirl,
+                    NPCID.TaxCollector,
+                    NPCID.Princess
+                };
+                if (townNPCs.Contains(npc.type))
+                {
+                    int[] townWeapons = new int[]
+                    {
                     ItemID.DyeTradersScimitar,
                     ItemID.PainterPaintballGun,
                     ItemID.AleThrowingGlove,
@@ -102,13 +115,10 @@ namespace ReducedGrinding.Global
                     ItemID.PartyGirlGrenade,
                     ItemID.TaxCollectorsStickOfDoom,
                     ItemID.PrincessWeapon
-                };
-
-                foreach (int i in townWeapons)
-                {
+                    };
                     foreach (var rule in npcLoot.Get())
                     {
-                        if (rule is CommonDrop drop && drop.itemId == i)
+                        if (rule is CommonDrop drop && townWeapons.Contains(drop.itemId))
                         {
                             drop.chanceDenominator = lootConfig.TownNPCWeapons;
                         }
@@ -262,23 +272,21 @@ namespace ReducedGrinding.Global
                 659,
                 660
             };
-                foreach (int i in otherSlimeStaffSlimes)
-                {
-                    if (npc.netID == i)
-                    {
-                        foreach (var rule in npcLoot.Get())
-                        {
-                            if (rule is DropBasedOnExpertMode drop)
-                            {
-                                if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
-                                {
-                                    expertDrop.chanceDenominator = lootConfig.SlimeStaffFromOtherSlimes;
-                                }
 
-                                if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
-                                {
-                                    normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromOtherSlimes * 10f / 7f);
-                                }
+                if (otherSlimeStaffSlimes.Contains(npc.netID))
+                {
+                    foreach (var rule in npcLoot.Get())
+                    {
+                        if (rule is DropBasedOnExpertMode drop)
+                        {
+                            if (drop.ruleForExpertMode is CommonDrop expertDrop && expertDrop.itemId == ItemID.SlimeStaff)
+                            {
+                                expertDrop.chanceDenominator = lootConfig.SlimeStaffFromOtherSlimes;
+                            }
+
+                            if (drop.ruleForNormalMode is CommonDrop normalDrop && normalDrop.itemId == ItemID.SlimeStaff)
+                            {
+                                normalDrop.chanceDenominator = (int)(lootConfig.SlimeStaffFromOtherSlimes * 10f / 7f);
                             }
                         }
                     }
@@ -351,16 +359,13 @@ namespace ReducedGrinding.Global
                     9,
                     94
                 };
-                foreach (int i in rottenChunkNPCs)
+                if (rottenChunkNPCs.Contains(npc.type))
                 {
-                    if (npc.type == i)
+                    foreach (var rule in npcLoot.Get())
                     {
-                        foreach (var rule in npcLoot.Get())
+                        if (rule is CommonDrop drop && drop.itemId == ItemID.RottenChunk)
                         {
-                            if (rule is CommonDrop drop && drop.itemId == ItemID.RottenChunk)
-                            {
-                                drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
-                            }
+                            drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
                         }
                     }
                 }
@@ -369,23 +374,19 @@ namespace ReducedGrinding.Global
                 {
                 181, 173, 239, 182, 240
                 };
-                foreach (int i in vertebraNPCs)
+
+                if (vertebraNPCs.Contains(npc.type))
                 {
-                    if (npc.type == i)
+                    foreach (var rule in npcLoot.Get())
                     {
-                        if (npc.type == i)
+                        if (rule is CommonDrop drop && drop.itemId == ItemID.Vertebrae)
                         {
-                            foreach (var rule in npcLoot.Get())
-                            {
-                                if (rule is CommonDrop drop && drop.itemId == ItemID.Vertebrae)
-                                {
-                                    drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
-                                }
-                            }
+                            drop.chanceDenominator = lootConfig.RottenChunkAndVertebra;
                         }
                     }
                 }
             }
+
             if (lootConfig.Lens > 0)
             {
                 int[] demonEyes = new int[]
@@ -400,22 +401,20 @@ namespace ReducedGrinding.Global
                     317,
                     318
                 };
-                foreach (int i in demonEyes)
+
+                if (demonEyes.Contains(npc.type))
                 {
-                    if (npc.type == NPCID.WanderingEye)
+                    foreach (var rule in npcLoot.Get())
                     {
-                        foreach (var rule in npcLoot.Get())
+                        if (rule is CommonDrop drop)
                         {
-                            if (rule is CommonDrop drop)
+                            foreach (var chainedRule in drop.ChainedRules)
                             {
-                                foreach (var chainedRule in drop.ChainedRules)
+                                if (chainedRule.RuleToChain is CommonDrop drop2)
                                 {
-                                    if (chainedRule.RuleToChain is CommonDrop drop2)
+                                    if (drop2.itemId == ItemID.Lens)
                                     {
-                                        if (drop2.itemId == ItemID.Lens)
-                                        {
-                                            drop2.chanceDenominator = lootConfig.Lens;
-                                        }
+                                        drop2.chanceDenominator = lootConfig.Lens;
                                     }
                                 }
                             }
@@ -433,43 +432,40 @@ namespace ReducedGrinding.Global
                 214,
                 215
             };
-            foreach (int i in piratesGrunts)
+            if (piratesGrunts.Contains(npc.type))
             {
-                if (npc.type == i)
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
+                    if (rule is CommonDrop commonDrop)
                     {
-                        if (rule is CommonDrop commonDrop)
+                        if (commonDrop.itemId == ItemID.CoinGun)
                         {
-                            if (commonDrop.itemId == ItemID.CoinGun)
-                            {
-                                commonDrop.chanceDenominator = 4000;
-                            }
-                            if (commonDrop.itemId == ItemID.LuckyCoin)
-                            {
-                                commonDrop.chanceDenominator = 2000;
-                            }
-                            if (commonDrop.itemId == ItemID.DiscountCard)
-                            {
-                                commonDrop.chanceDenominator = 1000;
-                            }
-                            if (commonDrop.itemId == ItemID.PirateStaff)
-                            {
-                                commonDrop.chanceDenominator = 1000;
-                            }
-                            if (commonDrop.itemId == ItemID.GoldRing)
-                            {
-                                commonDrop.chanceDenominator = 500;
-                            }
-                            if (commonDrop.itemId == ItemID.Cutlass)
-                            {
-                                commonDrop.chanceDenominator = 200;
-                            }
-                            if (commonDrop.itemId == ItemID.GoldenPlatform)
-                            {
-                                commonDrop.amountDroppedMinimum = 90;
-                                commonDrop.amountDroppedMaximum = 130;
-                            }
+                            commonDrop.chanceDenominator = 4000;
+                        }
+                        if (commonDrop.itemId == ItemID.LuckyCoin)
+                        {
+                            commonDrop.chanceDenominator = 2000;
+                        }
+                        if (commonDrop.itemId == ItemID.DiscountCard)
+                        {
+                            commonDrop.chanceDenominator = 1000;
+                        }
+                        if (commonDrop.itemId == ItemID.PirateStaff)
+                        {
+                            commonDrop.chanceDenominator = 1000;
+                        }
+                        if (commonDrop.itemId == ItemID.GoldRing)
+                        {
+                            commonDrop.chanceDenominator = 500;
+                        }
+                        if (commonDrop.itemId == ItemID.Cutlass)
+                        {
+                            commonDrop.chanceDenominator = 200;
+                        }
+                        if (commonDrop.itemId == ItemID.GoldenPlatform)
+                        {
+                            commonDrop.amountDroppedMinimum = 90;
+                            commonDrop.amountDroppedMaximum = 130;
                         }
                     }
                 }
@@ -636,17 +632,28 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
-            int[] boneFeatherDroppers = new int[] { 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280 };
-            foreach (int i in boneFeatherDroppers)
+            int[] boneFeatherDroppers = new int[]
             {
-                if (npc.type == i)
+                269,
+                270,
+                271,
+                272,
+                273,
+                274,
+                275,
+                276,
+                277,
+                278,
+                279,
+                280
+            };
+            if (boneFeatherDroppers.Contains(npc.type))
+            {
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.BoneFeather)
                     {
-                        if (rule is CommonDrop drop && drop.itemId == ItemID.BoneFeather)
-                        {
-                            drop.chanceDenominator = 300;
-                        }
+                        drop.chanceDenominator = 300;
                     }
                 }
             }
@@ -691,36 +698,30 @@ namespace ReducedGrinding.Global
                 }
             }
             int[] iceSickleDroppers = new int[] { 197, 206, 169, 154 };
-            foreach (int i in iceSickleDroppers)
+            if (iceSickleDroppers.Contains(npc.type))
             {
-                if (npc.type == i)
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.IceSickle)
                     {
-                        if (rule is CommonDrop drop && drop.itemId == ItemID.IceSickle)
-                        {
-                            drop.chanceDenominator = 100;
-                        }
+                        drop.chanceDenominator = 100;
                     }
                 }
             }
             int[] monsterMeatDroppers = new int[] { 6, 7, 8, 9, 94, 81, 121, 101, 173, 181, 239, 240, 174, 183, 242, 241, 268, 182, 98, 99, 100 };
-            foreach (int i in monsterMeatDroppers)
+            if (monsterMeatDroppers.Contains(npc.type))
             {
-                if (npc.type == i)
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
+                    if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.PigPetItem)
                     {
-                        if (rule is ItemDropWithConditionRule drop && drop.itemId == ItemID.PigPetItem)
+                        if (drop.condition is Conditions.DontStarveIsNotUp)
                         {
-                            if (drop.condition is Conditions.DontStarveIsNotUp)
-                            {
-                                drop.chanceDenominator = 1500;
-                            }
-                            else if (drop.condition is Conditions.DontStarveIsUp)
-                            {
-                                drop.chanceDenominator = 1500;
-                            }
+                            drop.chanceDenominator = 1500;
+                        }
+                        else if (drop.condition is Conditions.DontStarveIsUp)
+                        {
+                            drop.chanceDenominator = 1500;
                         }
                     }
                 }
@@ -769,19 +770,16 @@ namespace ReducedGrinding.Global
                 npcLoot.Add(new DropBasedOnMasterMode(new DropBasedOnExpertMode(new CommonDrop(880, 3, 5, 12, 2), new CommonDrop(880, 3, 5, 7, 2)), new CommonDrop(880, 3, 2, 4, 2)));
             }
             int[] eaterOfWorldsParts = new int[] { 13, 14, 15 };
-            foreach (int i in eaterOfWorldsParts)
+            if (eaterOfWorldsParts.Contains(npc.type))
             {
-                if (npc.type == i)
+                foreach (var rule in npcLoot.Get())
                 {
-                    foreach (var rule in npcLoot.Get())
+                    if (rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDrop drop2 && drop2.itemId == ItemID.ShadowScale)
                     {
-                        if (rule is DropBasedOnExpertMode drop && drop.ruleForExpertMode is CommonDrop drop2 && drop2.itemId == ItemID.ShadowScale)
-                        {
-                            npcLoot.Remove(rule);
-                        }
+                        npcLoot.Remove(rule);
                     }
-                    npcLoot.Add(new DropBasedOnMasterMode(new DropBasedOnExpertMode(ItemDropRule.Common(86, 2, 1, 2), ItemDropRule.Common(86, 5, 1, 2)), ItemDropRule.Common(86, 10, 1, 2)));
                 }
+                npcLoot.Add(new DropBasedOnMasterMode(new DropBasedOnExpertMode(ItemDropRule.Common(86, 2, 1, 2), ItemDropRule.Common(86, 5, 1, 2)), ItemDropRule.Common(86, 10, 1, 2)));
             }
             if (npc.type == NPCID.IceQueen)
             {
@@ -908,12 +906,9 @@ namespace ReducedGrinding.Global
                             1537,
                             4714
                         };
-                        foreach (int i in biomeKeys)
+                        if (biomeKeys.Contains(drop.itemId))
                         {
-                            if (drop.itemId == i)
-                            {
-                                drop.chanceDenominator = lootConfig.BiomeKey;
-                            }
+                            drop.chanceDenominator = lootConfig.BiomeKey;
                         }
                     }
 
