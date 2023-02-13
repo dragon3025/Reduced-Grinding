@@ -9,6 +9,7 @@ assignees: ''
 
 Terraria Version:
 TModLoader Version:
+Beta: (None if not using Beta):
 Reduced Grinding Version:
 
 **Mods Installed**
