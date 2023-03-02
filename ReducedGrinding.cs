@@ -40,7 +40,7 @@ namespace ReducedGrinding
         internal enum MessageType : byte
         {
             advanceMoonPhase,
-            noMoreAnglerResetsToday,
+            anglerQuests,
             dayTime,
             seasonalDay,
             instantInvasion,
@@ -58,8 +58,8 @@ namespace ReducedGrinding
                 case MessageType.advanceMoonPhase:
                     Global.Update.advanceMoonPhase = reader.ReadBoolean();
                     break;
-                case MessageType.noMoreAnglerResetsToday:
-                    Global.Update.noMoreAnglerResetsToday = reader.ReadBoolean();
+                case MessageType.anglerQuests:
+                    Global.Update.anglerQuests = reader.ReadInt32();
                     break;
                 case MessageType.dayTime:
                     Global.Update.dayTime = reader.ReadBoolean();
@@ -97,7 +97,7 @@ namespace ReducedGrinding
 
         public override void OnWorldUnload()
         {
-            Global.Update.noMoreAnglerResetsToday = false;
+            Global.Update.anglerQuests = 1;
             Global.Update.dayTime = true;
             Global.Update.seasonalDay = 1;
             Global.Update.travelingMerchantDiceRolls = 0;
@@ -105,7 +105,7 @@ namespace ReducedGrinding
 
         public override void OnWorldLoad()
         {
-            Global.Update.noMoreAnglerResetsToday = false;
+            Global.Update.anglerQuests = 1;
             Global.Update.dayTime = true;
             Global.Update.seasonalDay = 1;
             Global.Update.travelingMerchantDiceRolls = 0;
@@ -113,7 +113,7 @@ namespace ReducedGrinding
 
         public override void SaveWorldData(TagCompound tag)
         {
-            tag["noMoreAnglerResetsToday"] = Global.Update.noMoreAnglerResetsToday;
+            tag["anglerQuests"] = Global.Update.anglerQuests;
             tag["dayTime"] = Global.Update.dayTime;
             tag["seasonalDay"] = Math.Max(1, Global.Update.seasonalDay);
             tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
@@ -121,21 +121,18 @@ namespace ReducedGrinding
 
         public override void LoadWorldData(TagCompound tag)
         {
-            if (!tag.TryGet("noMoreAnglerResetsToday", out Global.Update.noMoreAnglerResetsToday))
+            if (!tag.TryGet("anglerQuests", out Global.Update.anglerQuests))
             {
-                Global.Update.noMoreAnglerResetsToday = false;
+                Global.Update.anglerQuests = 1;
             }
-
             if (!tag.TryGet("dayTime", out Global.Update.dayTime))
             {
                 Global.Update.dayTime = true;
             }
-
             if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
             {
                 Global.Update.seasonalDay = 1;
             }
-
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
             {
                 Global.Update.travelingMerchantDiceRolls = 0;

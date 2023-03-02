@@ -11,7 +11,6 @@ namespace ReducedGrinding.Global
     {
         public override void GetChat(NPC npc, ref string chat)
         {
-            //NPCID.Sets.MPAllowedEnemies[fishMerchantID] = true;
             Player player = Main.LocalPlayer;
             if (npc.type == NPCID.Angler)
             {
@@ -22,23 +21,33 @@ namespace ReducedGrinding.Global
 
                 if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
                 {
-                    bool spawnFishMerchant = true;
                     int fishMerchantID = NPCType<NPCs.FishMerchant>();
+                    int spawnFishMerchant = 0;
                     int anglerNPC = -1;
                     for (int i = 0; i < Main.npc.Length; i++)
                     {
-                        if (spawnFishMerchant && Main.npc[i].type == fishMerchantID)
+                        if (spawnFishMerchant == 0 && Main.npc[i].type == fishMerchantID)
                         {
-                            spawnFishMerchant = false;
-                            break;
+                            if (Main.npc[i].active)
+                            {
+                                spawnFishMerchant = -1;
+                            }
+                            else
+                            {
+                                spawnFishMerchant = 1;
+                            }
                         }
-                        if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler)
+                        if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler && Main.npc[i].active)
                         {
                             anglerNPC = i;
                         }
+                        if (spawnFishMerchant != 0 && anglerNPC > -1)
+                        {
+                            break;
+                        }
                     }
 
-                    if (spawnFishMerchant)
+                    if (spawnFishMerchant == 1)
                     {
                         int newFishMerchant = NPC.NewNPC(Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, fishMerchantID, 1);
                         NPC fishMerchant = Main.npc[newFishMerchant];

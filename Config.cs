@@ -262,25 +262,24 @@ namespace ReducedGrinding
         #endregion
 
         #region Reward Modifying
-
         [Header("Quest Completion Requirements For Guaranteed Rewards")]
 
         [Label("Fuzzy Carrot")]
         [Tooltip("Vanilla default: 5")]
         [Range(1, 150)]
-        [DefaultValue(3)]
+        [DefaultValue(5)]
         public int FuzzyCarrotQuestRewarded;
 
         [Label("Angler Hat")]
         [Tooltip("Vanilla default: 10")]
         [Range(1, 150)]
-        [DefaultValue(5)]
+        [DefaultValue(10)]
         public int AnglerHatQuestRewarded;
 
         [Label("Angler Vest")]
         [Tooltip("Vanilla default: 15")]
         [Range(1, 150)]
-        [DefaultValue(10)]
+        [DefaultValue(15)]
         public int AnglerVestQuestRewarded;
 
         [Label("Angler Pants")]
@@ -288,6 +287,15 @@ namespace ReducedGrinding
         [Range(1, 150)]
         [DefaultValue(20)]
         public int AnglerPantsQuestRewarded;
+
+        //To-Do 1.4.4+
+        [Label("Bottomless Water Bucket")]
+        [Tooltip("" +
+            "Vanilla default: In 1.4.4+, 25; in pre-1.4.4,\n" +
+            "not a guaranteed item. Set to 0 to disable.")]
+        [Range(0, 150)]
+        [DefaultValue(25)]
+        public int BottomlessWaterBucketQuestRewarded;
 
         [Label("Golden Fishing Rod")]
         [Tooltip("Vanilla default: 30")]
@@ -297,24 +305,38 @@ namespace ReducedGrinding
 
         #endregion
 
-        #region Angler Reset Chance
-        [Header("Angler Reset Chance\n\n" +
-            "The configurations below will give a (1 / configuration_setting) chance at resetting the Angler Quest when finishing it. The chance to reset wont happen if a player wearing any piece of Angler Armor hasn't finished their Quest. Set to 0 to disable.")]
+        #region Angler Quest Amount Each Day
+        [Header("Angler Quest Amount Each Day\n\nIf the Angler has more quest for the current day and at least 1 player has finished their quest, he'll give another quest unless there's a player wearing at least one piece of Angler Armor who hasn't finished their quest.")]
 
-        [Label("Before Hardmode")]
-        [Range(0, 10000)]
+        [Label("Before Eye of Cthulhu")]
+        [Range(1, 10000)]
         [DefaultValue(1)]
-        public int AnglerRecentChanceBeforeHardmode;
+        public int QuestCountBeforeEye;
 
-        [Label("Hardmode")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int AnglerRecentChanceHardmode;
+        [Label("After Eye of Cthulhu")]
+        [Range(1, 10000)]
+        [DefaultValue(2)]
+        public int QuestCountAfterEye;
 
-        [Label("After Plantera")]
-        [Range(0, 10000)]
-        [DefaultValue(1)]
-        public int AnglerRecentChanceAfterPlantera;
+        [Label("After Eye Corruption/Crimson Boss")]
+        [Range(1, 10000)]
+        [DefaultValue(3)]
+        public int QuestCountAfterInfectionBoss;
+
+        [Label("After Eye Skeletron")]
+        [Range(1, 10000)]
+        [DefaultValue(6)]
+        public int QuestCountAfterSkeletron;
+
+        [Label("Hardmode Before Plantera")]
+        [Range(1, 10000)]
+        [DefaultValue(10)]
+        public int QuestCountHardmode;
+
+        [Label("Hardmode After Plantera")]
+        [Range(1, 10000)]
+        [DefaultValue(10)]
+        public int QuestCountAfterPlantera;
         #endregion
 
         #region Fish Merchant
@@ -322,14 +344,13 @@ namespace ReducedGrinding
             "You can set it so the Angler rewards the player with an amount of Fish Coins when completing a quest. These are used to buy Angler Quest rewards from a new Fish Merchant, who appears when talking to the Angler.")]
 
         [Label("[i:ReducedGrinding/FishCoin] Fish Coins Rewarded")]
-        [Tooltip("Set both to 0, to disable the Fish Merchant from spawning")]
-        [Range(1, 999)]
-        [DefaultValue(1)]
+        [Tooltip("Set to 0, to disable the Fish Merchant from spawning")]
+        [Range(0, 999)]
+        [DefaultValue(0)]
         public int FishCoinsRewardedForQuest;
 
         [Header("Fish Merchant Shop Prices\n\n" +
             "Set the Fish Coin prices here for the Fish Merchant. Setting to 0 will disable the item from appearing in the shop. Some items wont appear in the shop until their vanilla requirement is met (for example: Hardmode items).")]
-
         [Label("[i:2428] Fuzzy Carrot")]
         [Range(1, 9999)]
         [DefaultValue(3)]

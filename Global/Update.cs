@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -14,11 +13,14 @@ namespace ReducedGrinding.Global
 {
     public class Update : ModSystem
     {
+        readonly static IOtherConfig otherConfig = GetInstance<IOtherConfig>();
+        readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
+
         //Gets recorded into world save
-        public static bool noMoreAnglerResetsToday = false;
+        public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
         public static bool dayTime = true;
         public static int seasonalDay = 1;
-        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
+        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -44,15 +46,15 @@ namespace ReducedGrinding.Global
 
             if (NPC.downedPlantBoss)
             {
-                increase = GetInstance<IOtherConfig>().SleepRateIncreasePostPlantera;
+                increase = otherConfig.SleepRateIncreasePostPlantera;
             }
             else if (Main.hardMode)
             {
-                increase = GetInstance<IOtherConfig>().SleepRateIncreaseHardmode;
+                increase = otherConfig.SleepRateIncreaseHardmode;
             }
             else
             {
-                increase = GetInstance<IOtherConfig>().SleepRateIncreasePreHardmode;
+                increase = otherConfig.SleepRateIncreasePreHardmode;
             }
 
             if (increase > 0)
@@ -80,22 +82,7 @@ namespace ReducedGrinding.Global
 
             int time = (int)Main.time;
 
-            int anglerResetChance;
-            if (NPC.downedPlantBoss)
-            {
-                anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceAfterPlantera;
-            }
-            else if (Main.hardMode)
-            {
-                anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceHardmode;
-            }
-            else
-            {
-                anglerResetChance = GetInstance<CFishingConfig>().AnglerRecentChanceBeforeHardmode;
-            }
-
-            int fishermenCount = 0;
-            List<int> activePlayers = new() { };
+            bool stillQuesting = false;
 
             bool allPlayersHiddenFromInvasion = false;
             int invasionType = Main.invasionType;
@@ -114,7 +101,7 @@ namespace ReducedGrinding.Global
                     NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 50; //Remove when 1.4.4+ comes out
                 }
 
-                if (GetInstance<IOtherConfig>().CancelInvasionsIfAllPlayersAreUnderground)
+                if (otherConfig.CancelInvasionsIfAllPlayersAreUnderground)
                 {
                     if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
                     {
@@ -127,7 +114,7 @@ namespace ReducedGrinding.Global
 
             bool skipDD2Wave = false;
 
-            for (int i = 0; i < 255; i++)
+            for (int i = 0; i < Main.player.Length; i++)
             {
                 if (!Main.player[i].active)
                 {
@@ -139,8 +126,6 @@ namespace ReducedGrinding.Global
                     skipDD2Wave = true;
                 }
 
-                activePlayers.Add(i);
-
                 Point playerPosition = Main.player[i].Center.ToTileCoordinates();
 
                 if (allPlayersHiddenFromInvasion && playerPosition.Y <= Main.worldSurface + 67.5f)
@@ -148,21 +133,21 @@ namespace ReducedGrinding.Global
                     allPlayersHiddenFromInvasion = false;
                 }
 
-                if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
+                if (!Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
                 {
                     for (int j = 0; j <= 2; j++)
                     {
                         int armorType = Main.player[i].armor[j].type;
                         if (armorType == ItemID.AnglerHat || armorType == ItemID.AnglerVest || armorType == ItemID.AnglerPants)
                         {
-                            fishermenCount++;
+                            stillQuesting = true;
                             break;
                         }
                     }
                 }
 
                 //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
-                if (GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
+                if (otherConfig.AnkhMaterialUseFromInventory)
                 {
                     bool equipped_to_ankh_material = false;
                     for (int j = 3; j <= 9; j++)
@@ -284,31 +269,24 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Angler
-            if (anglerResetChance > 0 && !noMoreAnglerResetsToday && Main.anglerWhoFinishedToday.Count > 0)
+            if (anglerQuests > 0 && Main.anglerWhoFinishedToday.Count > 0 && !stillQuesting)
             {
-                if (fishermenCount <= Main.anglerWhoFinishedToday.Count)
+                anglerQuests--;
+                if (anglerQuests > 0)
                 {
-                    if (Main.rand.NextBool(anglerResetChance))
+                    Main.AnglerQuestSwap();
+                    if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.AnglerQuestSwap();
-                        if (Main.netMode == NetmodeID.SinglePlayer)
-                        {
-                            Main.NewText("The Angler decided to give you another job.", 0, 255, 255);
-                        }
-                        else if (Main.netMode == NetmodeID.Server)
-                        {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
-                        }
+                        Main.NewText("The Angler decided to give you another job.", 0, 255, 255);
                     }
-                    else
+                    else if (Main.netMode == NetmodeID.Server)
                     {
-                        noMoreAnglerResetsToday = true;
-                        updatePacket = true;
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
                     }
+                    updatePacket = true;
                 }
             }
             #endregion
-
 
             if (dayTime != Main.dayTime)
             {
@@ -324,12 +302,13 @@ namespace ReducedGrinding.Global
                 #region New Morning
                 if (Main.dayTime)
                 {
-                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode : GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode;
-                    noMoreAnglerResetsToday = false;
+                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
 
-                    if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
+                    anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+
+                    if (otherConfig.HolidayTimelineDaysPerMonth > 0)
                     {
-                        int yearLength = GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth * 12;
+                        int yearLength = otherConfig.HolidayTimelineDaysPerMonth * 12;
                         float halloweenDay = 304f / 365f;
                         float xMasDay = 359f / 365f;
 
@@ -407,8 +386,8 @@ namespace ReducedGrinding.Global
             {
                 ModPacket packet = Mod.GetPacket();
 
-                packet.Write((byte)ReducedGrinding.MessageType.noMoreAnglerResetsToday);
-                packet.Write(noMoreAnglerResetsToday);
+                packet.Write((byte)ReducedGrinding.MessageType.anglerQuests);
+                packet.Write(anglerQuests);
 
                 packet.Write((byte)ReducedGrinding.MessageType.dayTime);
                 packet.Write(dayTime);
