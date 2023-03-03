@@ -15,28 +15,11 @@ namespace ReducedGrinding.Global
 
         public override void ModifyTooltips(Terraria.Item item, List<TooltipLine> tooltips)
         {
-            //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
-            if (!GetInstance<IOtherConfig>().AnkhMaterialUseFromInventory)
-            {
-                return;
-            }
-
-            //TO-DO Shimmering makes it easier to get missing items, so this might not be necessary anymore.
-            if (item.type == ItemID.Vitamins || item.type == ItemID.ArmorPolish || item.type == ItemID.AdhesiveBandage || item.type == ItemID.Bezoar || item.type == ItemID.Nazar || item.type == ItemID.Megaphone || item.type == ItemID.TrifoldMap || item.type == ItemID.FastClock || item.type == ItemID.Blindfold || item.type == ItemID.ArmorBracing || item.type == ItemID.MedicatedBandage || item.type == ItemID.CountercurseMantra || item.type == ItemID.ThePlan)
-            {
-                tooltips.Add(new TooltipLine(Mod, "AnkhMaterialUseFromInventory", "Ankh Material\n" +
-                    "Equip to allow 'Ankh Material' accessories to work from your inventory"));
-            }
             //TO-DO Remove when 1.4.4+ comes out
             if (item.type == ItemID.DD2ElderCrystal)
             {
                 tooltips.Add(new TooltipLine(Mod, "HoldCrystalToSkipDD2Wave", "Hold this to skip the wait time for the next Old One's Army Wave"));
             }
-            //TO-DO Remove when 1.4.4 comes out. This is disabled because I couldn't get it to work in modplayer (I used AnglerRewards.cs for this).
-            /*if (item.type == ItemID.MiningShirt || item.type == ItemID.MiningPants)
-            {
-                tooltips.Add(new TooltipLine(Mod, "MiningGearNew", "10% increased mining speed"));
-            }*/
         }
 
         public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)

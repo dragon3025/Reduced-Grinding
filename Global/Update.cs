@@ -42,37 +42,26 @@ namespace ReducedGrinding.Global
                 return;
             }
 
-            int increase;
+            int timeIncrease = NPC.downedPlantBoss ? otherConfig.SleepRateIncreasePostPlantera : Main.hardMode ? otherConfig.SleepRateIncreaseHardmode : otherConfig.SleepRateIncreasePreHardmode;
 
-            if (NPC.downedPlantBoss)
+            if (timeIncrease < 1)
             {
-                increase = otherConfig.SleepRateIncreasePostPlantera;
-            }
-            else if (Main.hardMode)
-            {
-                increase = otherConfig.SleepRateIncreaseHardmode;
-            }
-            else
-            {
-                increase = otherConfig.SleepRateIncreasePreHardmode;
+                return;
             }
 
-            if (increase > 0)
+            for (int i = 0; i < 255; i++)
             {
-                for (int i = 0; i < 255; i++)
+                if (!Main.player[i].active)
                 {
-                    if (!Main.player[i].active)
-                    {
-                        continue;
-                    }
-
-                    Main.player[i].taxTimer -= increase;
+                    continue;
                 }
 
-                timeRate += increase;
-                tileUpdateRate += increase;
-                eventUpdateRate += increase;
+                Main.player[i].taxTimer -= timeIncrease;
             }
+
+            timeRate += timeIncrease;
+            tileUpdateRate += timeIncrease;
+            eventUpdateRate += timeIncrease;
         }
 
         public override void PostUpdateTime()
@@ -82,17 +71,15 @@ namespace ReducedGrinding.Global
 
             int time = (int)Main.time;
 
-            bool stillQuesting = false;
-
-            bool allPlayersHiddenFromInvasion = false;
-            int invasionType = Main.invasionType;
-
             if (instantInvasion)
             {
                 Main.invasionX = Main.spawnTileX;
                 instantInvasion = false;
                 updatePacket = true;
             }
+
+            bool allPlayersHiddenFromInvasion = false;
+            int invasionType = Main.invasionType;
 
             if (time % 60 == 0)
             {
@@ -113,6 +100,7 @@ namespace ReducedGrinding.Global
             #region For Each Player
 
             bool skipDD2Wave = false;
+            bool stillQuesting = false;
 
             for (int i = 0; i < Main.player.Length; i++)
             {
@@ -123,17 +111,21 @@ namespace ReducedGrinding.Global
 
                 if (!skipDD2Wave && Main.player[i].HeldItem.type == ItemID.DD2ElderCrystal)
                 {
+                    //To-do Remove in 1.4.4+
                     skipDD2Wave = true;
                 }
 
-                Point playerPosition = Main.player[i].Center.ToTileCoordinates();
-
-                if (allPlayersHiddenFromInvasion && playerPosition.Y <= Main.worldSurface + 67.5f)
+                if (allPlayersHiddenFromInvasion)
                 {
-                    allPlayersHiddenFromInvasion = false;
+                    Point playerPosition = Main.player[i].Center.ToTileCoordinates();
+
+                    if (playerPosition.Y <= Main.worldSurface + 67.5f)
+                    {
+                        allPlayersHiddenFromInvasion = false;
+                    }
                 }
 
-                if (!Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
+                if (!stillQuesting && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
                 {
                     for (int j = 0; j <= 2; j++)
                     {
@@ -145,78 +137,10 @@ namespace ReducedGrinding.Global
                         }
                     }
                 }
-
-                //TO-DO When 1.4.4 comes out, the Pocket Mirror will become an Ankh Material. (With the Shimmer, will this feature even be necessary?).
-                if (otherConfig.AnkhMaterialUseFromInventory)
-                {
-                    bool equipped_to_ankh_material = false;
-                    for (int j = 3; j <= 9; j++)
-                    {
-                        int accessoryType = Main.player[i].armor[j].type;
-
-                        if (accessoryType == ItemID.Vitamins || accessoryType == ItemID.ArmorPolish || accessoryType == ItemID.AdhesiveBandage || accessoryType == ItemID.Bezoar || accessoryType == ItemID.Nazar || accessoryType == ItemID.Megaphone || accessoryType == ItemID.TrifoldMap || accessoryType == ItemID.FastClock || accessoryType == ItemID.Blindfold || accessoryType == ItemID.ArmorBracing || accessoryType == ItemID.MedicatedBandage || accessoryType == ItemID.CountercurseMantra || accessoryType == ItemID.ThePlan)
-                        {
-                            equipped_to_ankh_material = true;
-                            break;
-                        }
-                    }
-
-                    if (equipped_to_ankh_material)
-                    {
-                        for (int j = 0; j < Main.player[i].inventory.Length; j++)
-                        {
-                            int itemType = Main.player[i].inventory[j].type;
-
-                            if (itemType == ItemID.ArmorBracing || itemType == ItemID.Vitamins)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Weak);
-                            }
-
-                            if (itemType == ItemID.ArmorBracing || itemType == ItemID.ArmorPolish)
-                            {
-                                Main.player[i].ClearBuff(BuffID.BrokenArmor);
-                            }
-
-                            if (itemType == ItemID.MedicatedBandage || itemType == ItemID.AdhesiveBandage)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Bleeding);
-                            }
-
-                            if (itemType == ItemID.MedicatedBandage || itemType == ItemID.Bezoar)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Poisoned);
-                            }
-
-                            if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Nazar)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Cursed);
-                            }
-
-                            if (itemType == ItemID.CountercurseMantra || itemType == ItemID.Megaphone)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Silenced);
-                            }
-
-                            if (itemType == ItemID.ThePlan || itemType == ItemID.FastClock)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Slow);
-                            }
-
-                            if (itemType == ItemID.ThePlan || itemType == ItemID.TrifoldMap)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Confused);
-                            }
-
-                            if (itemType == ItemID.Blindfold)
-                            {
-                                Main.player[i].ClearBuff(BuffID.Darkness);
-                            }
-                        }
-                    }
-                }
             }
             #endregion
 
+            //To-Do Remove in 1.4.4+
             if (DD2Event.Ongoing)
             {
                 if (skipDD2Wave && DD2Event.TimeLeftBetweenWaves > 60)
@@ -225,7 +149,7 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            #region InvasionModifing
+            #region InvasionModifying
             if (time % 60 == 0)
             {
                 if (allPlayersHiddenFromInvasion)
@@ -249,23 +173,24 @@ namespace ReducedGrinding.Global
                     timeHiddenFromInvasion--;
                     updatePacket = true;
                 }
+
+                if (timeHiddenFromInvasion >= 20 && Main.invasionX == Main.spawnTileX)
+                {
+                    Main.invasionType = InvasionID.None;
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
+                    }
+                    else if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
+                    }
+
+                    timeHiddenFromInvasion = 0;
+                    updatePacket = true;
+                }
             }
 
-            if (timeHiddenFromInvasion >= 20 && Main.invasionX == Main.spawnTileX)
-            {
-                Main.invasionType = InvasionID.None;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
-                }
-
-                timeHiddenFromInvasion = 0;
-                updatePacket = true;
-            }
             #endregion
 
             #region Angler

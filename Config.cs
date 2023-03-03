@@ -662,14 +662,6 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
-        [Label("Equipping [i:1612] Ankh Charm Material Allows Use From Inventory")]
-        [Tooltip("" +
-            "If enabled, equipping any accessory in the Ankh Charm crafting\n" +
-            "tree will allow all other accessories in the Ankh Charm\n" +
-            "crafting tree to work from your inventory.")]
-        [DefaultValue(true)]
-        public bool AnkhMaterialUseFromInventory;
-
         [Label("Cancel Invasions When All Players Are Underground")]
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreUnderground;
