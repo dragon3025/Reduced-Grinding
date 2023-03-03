@@ -104,7 +104,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int PaladinsShield;
 
-        [Label("[i:244] Plumber’s Hat")]
+        [Label("[i:244] Plumber's Hat")]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PlumbersHat;
@@ -318,12 +318,12 @@ namespace ReducedGrinding
         [DefaultValue(2)]
         public int QuestCountAfterEye;
 
-        [Label("After Eye Corruption/Crimson Boss")]
+        [Label("After Corruption/Crimson Boss")]
         [Range(1, 10000)]
         [DefaultValue(3)]
         public int QuestCountAfterInfectionBoss;
 
-        [Label("After Eye Skeletron")]
+        [Label("After Skeletron")]
         [Range(1, 10000)]
         [DefaultValue(6)]
         public int QuestCountAfterSkeletron;
@@ -353,22 +353,22 @@ namespace ReducedGrinding
             "Set the Fish Coin prices here for the Fish Merchant. Setting to 0 will disable the item from appearing in the shop. Some items wont appear in the shop until their vanilla requirement is met (for example: Hardmode items).")]
         [Label("[i:2428] Fuzzy Carrot")]
         [Range(1, 9999)]
-        [DefaultValue(3)]
+        [DefaultValue(5)]
         public int FuzzyCarrotPrice;
 
         [Label("[i:2367] Angler Hat")]
         [Range(1, 9999)]
-        [DefaultValue(5)]
+        [DefaultValue(10)]
         public int AnglerHatPrice;
 
         [Label("[i:2368] Angler Vest")]
         [Range(1, 9999)]
-        [DefaultValue(5)]
+        [DefaultValue(10)]
         public int AnglerVestPrice;
 
         [Label("[i:2369] Angler Pants")]
         [Range(1, 9999)]
-        [DefaultValue(5)]
+        [DefaultValue(10)]
         public int AnglerPantsPrice;
 
         [Label("[i:2294] Golden Fishing Rod")]
