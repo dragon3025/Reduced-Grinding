@@ -198,7 +198,6 @@ namespace ReducedGrinding
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        #region Boss Loot
         [Header("These drop chances don't exist in vanilla. Chance = 1 / configuration_setting. Set to 0 to disable.\n\n" +
             "Boss Loot")]
 
@@ -211,20 +210,6 @@ namespace ReducedGrinding
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TrufflewormFromDukeFishron;
-        #endregion
-
-        #region Non-Boss Loot
-        [Header("Non-Boss Loot")]
-
-        [Label("[i:3081] Marble from Marble Cave Enemies (Min and Max in any order)")]
-        [Range(0, 999)]
-        public int[] MarbleFromMarbleCaveEnemies = new int[] { 5, 10 };
-
-        [Label("[i:951] Snowball Launcher from Spiked Ice Slime")]
-        [Range(0, 10000)]
-        [DefaultValue(60)]
-        public int SnowballLauncherFromSpikedIceSlime; //TO-DO This might not be needed it 1.4.4+
-        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
@@ -288,11 +273,8 @@ namespace ReducedGrinding
         [DefaultValue(20)]
         public int AnglerPantsQuestRewarded;
 
-        //To-Do 1.4.4+
         [Label("Bottomless Water Bucket")]
-        [Tooltip("" +
-            "Vanilla default: In 1.4.4+, 25; in pre-1.4.4,\n" +
-            "not a guaranteed item. Set to 0 to disable.")]
+        [Tooltip("Vanilla default: 25")]
         [Range(0, 150)]
         [DefaultValue(25)]
         public int BottomlessWaterBucketQuestRewarded;
@@ -540,11 +522,6 @@ namespace ReducedGrinding
         [DefaultValue(75)]
         public int TerragrimChestChance;
 
-        //TO-DO Remove after 1.4.4
-        [Label("Use 1.4.4 [i:4978] Fledgling Wings Chance")]
-        [DefaultValue(true)]
-        public bool FutureFledglingChestChance;
-
         [Label("[i:3064] Enchanted Sundial Drop Chance")]
         [Tooltip("" +
             "Changes the chance of Enchanted Sundial drop from Crates that drop it.\n" +
@@ -573,6 +550,7 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int TravelingMerchantDiceUsesAfterPlantera;
 
+        //To-Do 1.4.4+ adds more paintings
         [Header("Extra item rolls (chance = 1 / configuration setting)")]
 
         [Label("[i:3059] Christmas Paintings Extra Chance (for each)")]

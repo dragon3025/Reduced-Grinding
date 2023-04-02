@@ -9,7 +9,6 @@
  * Main.NewText(string);
  */
 
-
 using System;
 using System.IO;
 using Terraria;
@@ -17,7 +16,6 @@ using Terraria.GameContent.UI;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
@@ -44,14 +42,12 @@ namespace ReducedGrinding
             dayTime,
             seasonalDay,
             instantInvasion,
-            celestialSigil,
             travelingMerchantDiceRolls,
             timeHiddenFromInvasion
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
-            GetInstance<ReducedGrinding>().Logger.Debug("");
             MessageType msgType = (MessageType)reader.ReadByte();
             switch (msgType)
             {
@@ -69,9 +65,6 @@ namespace ReducedGrinding
                     break;
                 case MessageType.instantInvasion:
                     Global.Update.instantInvasion = reader.ReadBoolean();
-                    break;
-                case MessageType.celestialSigil:
-                    Global.Update.celestialSigil = reader.ReadBoolean();
                     break;
                 case MessageType.travelingMerchantDiceRolls:
                     Global.Update.travelingMerchantDiceRolls = reader.ReadInt32();
@@ -141,9 +134,6 @@ namespace ReducedGrinding
 
         public override void OnModLoad()
         {
-            //Remove when 1.4.4+ comes out
-            NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 100;
-
             if (ModLoader.TryGetMod("CalamityMod", out _))
             {
                 usingCalamity = true;

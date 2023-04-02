@@ -230,7 +230,7 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(35f / 324, lootConfig.RocketLauncher);
             }
 
-            if (item.type == ItemID.RodofDiscord) //TO-DO When 1.4.4 comes out, adjsut Rod of Harmony's value with it.
+            if (item.type == ItemID.RodofDiscord || item.type == ItemID.RodOfHarmony)
             {
                 FindNewValue(0.0025f, lootConfig.RodofDiscord);
             }
@@ -284,130 +284,6 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 FindNewValue(1f / 20f, 1);
             }
-
-            //TO-DO Remove after 1.4.4+
-            #region Future Stuff
-            if (item.type == ItemID.SailorHat || item.type == ItemID.SailorShirt || item.type == ItemID.SailorPants || item.type == ItemID.EyePatch)
-            {
-                item.value = Item.sellPrice(0, 0, 60);
-            }
-
-            if (item.type == ItemID.MummyMask || item.type == ItemID.MummyShirt || item.type == ItemID.MummyPants || item.type == ItemID.PharaohsMask || item.type == ItemID.PharaohsRobe || item.type == ItemID.FroggleBunwich)
-            {
-                item.value = Item.sellPrice(0, 0, 40);
-            }
-
-            if (item.type == ItemID.BabyGrinchMischiefWhistle)
-            {
-                item.value = Item.sellPrice(0, 2);
-            }
-
-            if (item.type == ItemID.ManaCrystal)
-            {
-                item.value = Item.sellPrice(0, 0, 25);
-            }
-
-            if (item.type == ItemID.LunarCraftingStation)
-            {
-                item.value = Item.sellPrice(0, 5);
-            }
-
-            if (item.type == ItemID.ShellPileBlock)
-            {
-                item.value = Item.sellPrice(0, 0, 1);
-            }
-
-            int[] wallpapers = new int[]
-            {
-                1948,
-                1949,
-                1950,
-                1951,
-                1952,
-                1953,
-                1954,
-                1955,
-                1956,
-                1957,
-                2008,
-                2009,
-                2010,
-                2011,
-                2012,
-                2013,
-                2014,
-                2058,
-                2059,
-                2060
-            };
-            foreach (int i in wallpapers)
-            {
-                if (item.type == i)
-                {
-                    item.value = Item.buyPrice(0, 0, 0, 75);
-                }
-            }
-
-            if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution || item.type == ItemID.RedSolution)
-            {
-                item.value = Item.sellPrice(0, 0, 15);
-            }
-
-            if (item.type == ItemID.Frog)
-            {
-                item.value = Item.sellPrice(0, 0, 10);
-            }
-
-            if (item.type == ItemID.SauteedFrogLegs)
-            {
-                item.value = Item.sellPrice(0, 0, 20);
-            }
-
-            if (item.type == ItemID.GlassKiln)
-            {
-                item.value = Item.sellPrice(0, 0, 54);
-            }
-
-            if (item.type == ItemID.ImpStaff)
-            {
-                item.value = Item.sellPrice(0, 0, 54);
-            }
-
-            if (item.type == ItemID.BeeWax)
-            {
-                item.value = Item.sellPrice(0, 0, 5);
-            }
-
-            if (item.type == ItemID.BeeHeadgear)
-            {
-                item.value = Item.sellPrice(0, 0, 40);
-            }
-
-            if (item.type == ItemID.BeeBreastplate)
-            {
-                item.value = Item.sellPrice(0, 0, 60);
-            }
-
-            if (item.type == ItemID.BeeGreaves)
-            {
-                item.value = Item.sellPrice(0, 0, 50);
-            }
-
-            if (item.type == ItemID.Beenade)
-            {
-                item.value = Item.sellPrice(0, 0, 5);
-            }
-
-            if (item.type == 5294) //Hive-Five
-            {
-                item.value = Item.sellPrice(0, 0, 70);
-            }
-
-            if (item.type == ItemID.HornetStaff)
-            {
-                item.value = Item.sellPrice(0, 0, 70);
-            }
-            #endregion
         }
     }
 }

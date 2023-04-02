@@ -25,7 +25,6 @@ namespace ReducedGrinding.Global
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
-        public static bool celestialSigil = false;
         public static bool xMas = false;
         public static bool halloween = false;
         public static int timeHiddenFromInvasion = 0;
@@ -83,11 +82,6 @@ namespace ReducedGrinding.Global
 
             if (time % 60 == 0)
             {
-                if (NPC.downedMoonlord)
-                {
-                    NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 50; //Remove when 1.4.4+ comes out
-                }
-
                 if (otherConfig.CancelInvasionsIfAllPlayersAreUnderground)
                 {
                     if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
@@ -99,7 +93,6 @@ namespace ReducedGrinding.Global
 
             #region For Each Player
 
-            bool skipDD2Wave = false;
             bool stillQuesting = false;
 
             for (int i = 0; i < Main.player.Length; i++)
@@ -107,12 +100,6 @@ namespace ReducedGrinding.Global
                 if (!Main.player[i].active)
                 {
                     continue;
-                }
-
-                if (!skipDD2Wave && Main.player[i].HeldItem.type == ItemID.DD2ElderCrystal)
-                {
-                    //To-do Remove in 1.4.4+
-                    skipDD2Wave = true;
                 }
 
                 if (allPlayersHiddenFromInvasion)
@@ -139,15 +126,6 @@ namespace ReducedGrinding.Global
                 }
             }
             #endregion
-
-            //To-Do Remove in 1.4.4+
-            if (DD2Event.Ongoing)
-            {
-                if (skipDD2Wave && DD2Event.TimeLeftBetweenWaves > 60)
-                {
-                    DD2Event.TimeLeftBetweenWaves = 60;
-                }
-            }
 
             #region InvasionModifying
             if (time % 60 == 0)
@@ -295,17 +273,6 @@ namespace ReducedGrinding.Global
                 #endregion
             }
 
-            if (celestialSigil) //TO-DO Remove once 1.4.4+ comes out
-            {
-                if (NPC.MoonLordCountdown > 720)
-                {
-                    NPC.MoonLordCountdown = 720;
-                }
-
-                celestialSigil = false;
-                updatePacket = true;
-            }
-
             #region ClientToServerData
             if (updatePacket && Main.netMode == NetmodeID.Server)
             {
@@ -322,9 +289,6 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
                 packet.Write(instantInvasion);
-
-                packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
-                packet.Write(celestialSigil);
 
                 packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                 packet.Write(travelingMerchantDiceRolls);

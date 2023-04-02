@@ -79,151 +79,6 @@ namespace ReducedGrinding.Global
         {
             switch (type)
             {
-                case NPCID.DD2Bartender: //TO-DO Remove in 1.4.4+
-                    for (int i = 0; i < 40; i++)
-                    {
-                        if (shop.item[i].type == ItemID.MonkBrows)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.MonkShirt)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.MonkPants)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.SquireGreatHelm)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.SquirePlating)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.SquireGreaves)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressWig)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressJerkin)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressPants)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeHat)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeRobe)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeTrousers)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.SquireAltHead)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.SquireAltShirt)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.SquireAltPants)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeAltHead)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeAltShirt)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.ApprenticeAltPants)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressAltHead)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressAltShirt)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressAltPants)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.HuntressAltHead)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.MonkAltHead)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.MonkAltShirt)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2BallistraTowerT2Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2ExplosiveTrapT2Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2FlameburstTowerT2Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2LightningAuraT2Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 15;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2BallistraTowerT3Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 60;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2ExplosiveTrapT3Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 60;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2FlameburstTowerT3Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 60;
-                        }
-                        else if (shop.item[i].type == ItemID.DD2LightningAuraT3Popper)
-                        {
-                            shop.item[i].shopCustomPrice = 60;
-                        }
-                        else if (shop.item[i].type == ItemID.MonkAltPants)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                        else if (shop.item[i].type == ItemID.DefendersForge)
-                        {
-                            shop.item[i].shopCustomPrice = 50;
-                        }
-                    }
-                    break;
-                case NPCID.Mechanic:
-                    shop.item[nextSlot].SetDefaults(ItemID.Teleporter); //Remove when 1.4.4+ Comes out
-                    nextSlot++;
-                    break;
                 case NPCID.Merchant:
                     if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
                     {
@@ -235,11 +90,6 @@ namespace ReducedGrinding.Global
                     if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
                     {
                         shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.Calendar>());
-                        nextSlot++;
-                    }
-                    if (Main.hardMode) //Remove when 1.4.4+ Comes out
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HealingPotion);
                         nextSlot++;
                     }
                     break;
@@ -292,74 +142,19 @@ namespace ReducedGrinding.Global
                             }
                         }
                     }
-                    if (Main.hardMode) //Remove when 1.4.4+ Comes out
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.HealingPotion);
-                        nextSlot++;
-                    }
-                    //TO-DO Remove when 1.4.4+ comes out
-                    #region Surface Loot
-                    if (Main.moonPhase == 0 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WoodenBoomerang);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 1 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Umbrella);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 2 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.WandofSparking);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 3 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.PortableStool);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 4 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Aglet);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 5 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.ClimbingClaws);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 6 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.CordageGuide);
-                        nextSlot++;
-                    }
-                    if (Main.moonPhase == 7 || ignoreMoonPhase)
-                    {
-                        shop.item[nextSlot].SetDefaults(ItemID.Radar);
-                        nextSlot++;
-                    }
-                    #endregion
                     break;
                 case NPCID.BestiaryGirl:
                     if (GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate < 1f)
                     {
                         BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
                         bool sellingUniversalPylon = false;
-                        bool sellingDiggingMoleMinecart = false; //TO-DO Remove when 1.4.4+ comes out
                         for (int i = 0; i <= 40; i++)
                         {
                             if (shop.item[i].type == ItemID.TeleportationPylonVictory)
                             {
                                 sellingUniversalPylon = true;
                             }
-
-                            if (shop.item[i].type == ItemID.DiggingMoleMinecart)
-                            {
-                                sellingDiggingMoleMinecart = true;
-                            }
-
-                            if (sellingUniversalPylon && sellingDiggingMoleMinecart)
+                            if (sellingUniversalPylon)
                             {
                                 break;
                             }
@@ -367,11 +162,6 @@ namespace ReducedGrinding.Global
                         if (!sellingUniversalPylon && bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
                         {
                             shop.item[nextSlot].SetDefaults(ItemID.TeleportationPylonVictory);
-                            nextSlot++;
-                        }
-                        if (!sellingDiggingMoleMinecart && bestiaryProgressReport.CompletionPercent >= 0.35f)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.DiggingMoleMinecart);
                             nextSlot++;
                         }
                         if (GetInstance<HOtherModdedItemsConfig>().BestiaryTrophy && bestiaryProgressReport.CompletionPercent >= 1f)
