@@ -3,7 +3,6 @@ using System;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
-using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;

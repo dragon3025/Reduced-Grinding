@@ -89,14 +89,11 @@ Mods: {
 				Tooltip: Shows the current date
 			}
 
-			LuminiteShimmeringStar.DisplayName: Luminite Shimmering Star
-
 			MoonBall: {
 				DisplayName: Moon Ball
 				Tooltip: Advances the Moon Phase
 			}
 
-			ShimmeringStar.DisplayName: Shimmering Star
 			SlimeTrophy.DisplayName: Slime Trophy
 
 			PlanteraSap: {
@@ -114,9 +111,7 @@ Mods: {
 
 		Tiles: {
 			Calendar.MapEntry: Calendar
-			LumaniteShimmeringStar.MapEntry: Luminite Shimmering Star
 			MoonBall.MapEntry: Moon Ball
-			ShimmeringStar.MapEntry: Shimmering Star
 		}
 	}
 }

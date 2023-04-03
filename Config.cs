@@ -599,8 +599,7 @@ namespace ReducedGrinding
 
         [Label("Craftable Rare Chests")]
         [Tooltip("" +
-            "This excludes Dungeon Biome Chest which will always be craftable\n" +
-            "with a Shimmering Star.")]
+            "This excludes Dungeon Biome Chest which can be obtained through Shimmering.")]
         [DefaultValue(false)]
         public bool CraftableRareChests;
 

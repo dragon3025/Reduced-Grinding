@@ -12,18 +12,6 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 
         public override void SetDefaults(Item item)
         {
-            //TO-DO Test this shimmer effect. If successful, this should be it's own class.
-
-            if (item.type == ItemID.LadybugMinecart)
-            {
-                ItemID.Sets.ShimmerTransformToItem[item.type] = ItemID.SunflowerMinecart;
-            }
-
-            if (item.type == ItemID.SunflowerMinecart)
-            {
-                ItemID.Sets.ShimmerTransformToItem[item.type] = ItemID.LadybugMinecart;
-            }
-
             if (!GetInstance<IOtherConfig>().AdjustItemValuesForDropIncreases)
             {
                 return;
