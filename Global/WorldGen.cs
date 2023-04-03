@@ -12,7 +12,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 {
     public class ReducedGrindingWorldGen : ModSystem
     {
-        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+        public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
             int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
@@ -33,11 +33,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                 progress.Message = "Adding Non-Existing Loot";
 
                 int dungeonColor = 0;
-                if (WorldGen.dungeonSide == -1)
+                if (GenVars.dungeonSide == -1)
                 {
                     for (int x = 0; x < Main.maxTilesX; x++)
                     {
-                        for (int y = (int)WorldGen.worldSurfaceHigh; y < Main.maxTilesY; y++)
+                        for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                         {
                             int type = Main.tile[x, y].TileType;
                             if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
@@ -56,7 +56,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 {
                     for (int x = Main.maxTilesX; x < 0; x++)
                     {
-                        for (int y = (int)WorldGen.worldSurfaceHigh; y < Main.maxTilesY; y++)
+                        for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                         {
                             int type = Main.tile[x, y].TileType;
                             if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
@@ -147,7 +147,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
                 {
-                    Point biomePosition = WorldGen.mushroomBiomesPosition[mushroomBiome].ToPoint();
+                    Point biomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
 
                     for (int i = 0; i < 5; i++)
                     {
@@ -192,7 +192,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
 
                                         #region Common Loot Based on World Layer (no Primary or Secondary Loot)
-                                        if (y < WorldGen.rockLayer)
+                                        if (y < GenVars.rockLayer)
                                         {
                                             if (WorldGen.genRand.NextBool(3))
                                             {
@@ -218,11 +218,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                                                 int stack10 = WorldGen.genRand.Next(10) + 5;
                                                 if (itemChance == 0)
                                                 {
-                                                    chest.item[slot].SetDefaults(WorldGen.ironBar);
+                                                    chest.item[slot].SetDefaults(GenVars.ironBar);
                                                 }
                                                 if (itemChance == 1)
                                                 {
-                                                    chest.item[slot].SetDefaults(WorldGen.silverBar);
+                                                    chest.item[slot].SetDefaults(GenVars.silverBar);
                                                 }
                                                 chest.item[slot].stack = stack10;
                                                 slot++;
@@ -337,11 +337,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                                                 int stack16 = WorldGen.genRand.Next(8) + 3;
                                                 if (itemChance == 0)
                                                 {
-                                                    chest.item[slot].SetDefaults(WorldGen.goldBar);
+                                                    chest.item[slot].SetDefaults(GenVars.goldBar);
                                                 }
                                                 if (itemChance == 1)
                                                 {
-                                                    chest.item[slot].SetDefaults(WorldGen.silverBar);
+                                                    chest.item[slot].SetDefaults(GenVars.silverBar);
                                                 }
                                                 chest.item[slot].stack = stack16;
                                                 slot++;
@@ -476,7 +476,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                                 }
                                                 if (itemChance == 1)
                                                 {
-                                                    chest.item[slot].SetDefaults(WorldGen.goldBar);
+                                                    chest.item[slot].SetDefaults(GenVars.goldBar);
                                                 }
                                                 chest.item[slot].stack = stack23;
                                                 slot++;
@@ -635,9 +635,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
 
                 List<int> mushroomBiomes = new();
-                for (int i = 0; i < WorldGen.mushroomBiomesPosition.Length; i++)
+                for (int i = 0; i < GenVars.mushroomBiomesPosition.Length; i++)
                 {
-                    if (WorldGen.mushroomBiomesPosition[i].X != 0 && WorldGen.mushroomBiomesPosition[i].Y != 0)
+                    if (GenVars.mushroomBiomesPosition[i].X != 0 && GenVars.mushroomBiomesPosition[i].Y != 0)
                     {
                         mushroomBiomes.Add(i);
                     }
@@ -677,7 +677,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                     }
 
-                    int waterChestItem = 0;
                     if (chestType1)
                     {
                         tileSubID = 32; //Mushroom Chest
@@ -704,7 +703,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                         else if (tileFrameX == goldChestSubID * 36)
                         {
-                            if (chest.y > WorldGen.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
+                            if (chest.y > GenVars.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
                             {
                                 if (WorldGen.genRand.NextBool(kingStatueDenominator))
                                 {

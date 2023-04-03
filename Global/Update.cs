@@ -27,7 +27,7 @@ namespace ReducedGrinding.Global
         public static bool instantInvasion = false;
         public static bool xMas = false;
         public static bool halloween = false;
-        public static int timeHiddenFromInvasion = 0;
+        public static int timeHiddenFromInvasion = 0; //How would this work in an upside down world?
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {

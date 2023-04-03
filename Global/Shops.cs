@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Bestiary;
@@ -75,35 +76,39 @@ namespace ReducedGrinding.Global
             }
         }
 
-        public override void SetupShop(int type, Chest shop, ref int nextSlot)
+        public override void ModifyShop(NPCShop shop)
         {
-            switch (type)
+            switch (shop.NpcType)
             {
                 case NPCID.Merchant:
                     if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemID.MiningShirt);
-                        nextSlot++;
-                        shop.item[nextSlot].SetDefaults(ItemID.MiningPants);
-                        nextSlot++;
+                        shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningPants);
+                        shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningShirt);
                     }
                     if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.Calendar>());
-                        nextSlot++;
+                        shop.Add(ItemType<Items.Placeable.Calendar>());
                     }
                     break;
                 case NPCID.SkeletonMerchant:
+
+                    shop.InsertBefore(ItemID.Torch, ItemID.BoneTorch);
+                    if (!shop.TryGetEntry(ItemID.Torch, out _))
+                    {
+                        shop.InsertAfter(ItemID.BoneTorch, ItemID.Torch);
+                    }
+
                     bool ignoreMoonPhase = GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases;
                     if (ignoreMoonPhase)
                     {
                         List<int> shopItems = new() {
+                            ItemID.WoodenBoomerang,
+                            ItemID.Umbrella,
+                            ItemID.WandofSparking,
+                            ItemID.PortableStool,
                             ItemID.StrangeBrew,
-                            ItemID.LesserHealingPotion,
                             ItemID.SpelunkerGlowstick,
-                            ItemID.Glowstick,
-                            ItemID.BoneTorch,
-                            ItemID.WoodenArrow,
                             ItemID.BlueCounterweight,
                             ItemID.RedCounterweight,
                             ItemID.PurpleCounterweight,
@@ -113,8 +118,14 @@ namespace ReducedGrinding.Global
                             ItemID.MagicLantern
                         };
 
+                        if (Main.player[Main.myPlayer].HasItem(ItemID.FlareGun))
+                        {
+                            shopItems.Add(ItemID.SpelunkerFlare);
+                        }
+
                         if (Main.hardMode)
                         {
+                            shopItems.Add(ItemID.HealingPotion);
                             shopItems.Add(ItemID.Gradient);
                             shopItems.Add(ItemID.FormatC);
                             shopItems.Add(ItemID.YoYoGlove);
@@ -126,19 +137,9 @@ namespace ReducedGrinding.Global
 
                         foreach (int i in shopItems)
                         {
-                            bool addItem = true;
-                            for (int j = 0; j < 40; j++)
+                            if (!shop.TryGetEntry(i, out _))
                             {
-                                if (shop.item[j].type == i)
-                                {
-                                    addItem = false;
-                                    break;
-                                }
-                            }
-                            if (addItem)
-                            {
-                                shop.item[nextSlot].SetDefaults(i);
-                                nextSlot++;
+                                shop.Add(i);
                             }
                         }
                     }
@@ -147,35 +148,25 @@ namespace ReducedGrinding.Global
                     if (GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate < 1f)
                     {
                         BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
-                        bool sellingUniversalPylon = false;
-                        for (int i = 0; i <= 40; i++)
+
+                        if (bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
                         {
-                            if (shop.item[i].type == ItemID.TeleportationPylonVictory)
+                            if (!shop.TryGetEntry(ItemID.TeleportationPylonVictory, out _))
                             {
-                                sellingUniversalPylon = true;
-                            }
-                            if (sellingUniversalPylon)
-                            {
-                                break;
+                                shop.Add(ItemID.TeleportationPylonVictory);
                             }
                         }
-                        if (!sellingUniversalPylon && bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
-                        {
-                            shop.item[nextSlot].SetDefaults(ItemID.TeleportationPylonVictory);
-                            nextSlot++;
-                        }
+
                         if (GetInstance<HOtherModdedItemsConfig>().BestiaryTrophy && bestiaryProgressReport.CompletionPercent >= 1f)
                         {
-                            shop.item[nextSlot].SetDefaults(ItemType<Items.Placeable.BestiaryTrophy>());
-                            nextSlot++;
+                            shop.Add(ItemType<Items.Placeable.BestiaryTrophy>());
                         }
                     }
                     break;
                 case NPCID.WitchDoctor:
-                    if (Main.player[Main.myPlayer].ZoneJungle && NPC.downedPlantBoss && GetInstance<IOtherConfig>().WitchDoctorSellsChlorophyteOre)
+                    if (GetInstance<IOtherConfig>().WitchDoctorSellsChlorophyteOre)
                     {
-                        shop.item[nextSlot].SetDefaults(ItemID.ChlorophyteOre);
-                        nextSlot++;
+                        shop.Add(ItemID.ChlorophyteOre, Condition.InJungle, Condition.DownedPlantera);
                     }
                     break;
             }

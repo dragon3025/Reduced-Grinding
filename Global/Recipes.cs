@@ -38,7 +38,7 @@ namespace ReducedGrinding.GlobalRecipes
             recipe.AddIngredient(ItemID.WaterBucket);
             recipe.AddIngredient(ItemID.LivingFireBlock);
             recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.AddCondition(Recipe.Condition.InUnderworldHeight);
+            recipe.AddCondition(Condition.InUnderworldHeight);
             recipe.Register();
 
             recipe = Recipe.Create(ItemID.WoodenSpike);

@@ -649,6 +649,7 @@ namespace ReducedGrinding
         public bool MerchantSellsMinersShirtAndPants;
 
         [Label("Skeleton Merchant Ignores Moonphases")]
+        [Tooltip("This doesn't include items that can be obtained through other methods")]
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
 
