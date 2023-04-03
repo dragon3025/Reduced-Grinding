@@ -27,26 +27,4 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             return base.UseItem(item, player);
         }
     }
-    public class FasterCelestialSigil : GlobalItem
-    {
-        public override bool AppliesToEntity(Item item, bool lateInstatiation)
-        {
-            return item.type == ItemID.CelestialSigil;
-        }
-
-        public override bool? UseItem(Item item, Player player)
-        {
-            Global.Update.celestialSigil = true;
-            if (Main.netMode == NetmodeID.Server)
-            {
-                ModPacket packet = Mod.GetPacket();
-
-                packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
-                packet.Write(Global.Update.celestialSigil);
-
-                packet.Send();
-            }
-            return base.UseItem(item, player);
-        }
-    }
 }

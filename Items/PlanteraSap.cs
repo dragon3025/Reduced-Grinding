@@ -47,7 +47,8 @@ namespace ReducedGrinding.Items
                 }
                 else
                 {
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: NPCID.Plantera);
+                    //TO-DO Test this
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: NPCID.Plantera);
                 }
             }
 
