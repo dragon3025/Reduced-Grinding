@@ -9,8 +9,6 @@ namespace ReducedGrinding.Buffs
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
-            DisplayName.SetDefault("Multi-Bobber Potion");
-            Description.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().MultiBobberPotionBonus.ToString() + " when fishing");
         }
     }
 }

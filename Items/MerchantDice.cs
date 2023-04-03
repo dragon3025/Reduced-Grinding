@@ -12,8 +12,6 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Merchant Dice");
-            Tooltip.SetDefault("Use to reroll the Traveling Merchant shop (with limited uses per day)");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

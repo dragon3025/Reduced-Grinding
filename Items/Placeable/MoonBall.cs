@@ -10,8 +10,6 @@ namespace ReducedGrinding.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Moon Ball");
-            Tooltip.SetDefault("Advances the Moon Phase");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

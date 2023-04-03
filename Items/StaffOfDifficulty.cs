@@ -15,8 +15,6 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Staff of Difficulty");
-            Tooltip.SetDefault("A creative tool that switches the difficulty modes");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             Main.RegisterItemAnimation(Item.type, new DrawAnimationVertical(20, 4));
             ItemID.Sets.AnimatesAsSoul[Item.type] = true;

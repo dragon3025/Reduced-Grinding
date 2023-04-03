@@ -8,8 +8,6 @@ namespace ReducedGrinding.Buffs
         public override void SetStaticDefaults()
         {
             Main.buffNoTimeDisplay[Type] = false;
-            DisplayName.SetDefault("Super Battle");
-            Description.SetDefault("Enemy spawn rate massively increased");
         }
     }
 }

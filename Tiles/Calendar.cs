@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using static Terraria.ModLoader.ModContent;
@@ -24,8 +25,7 @@ namespace ReducedGrinding.Tiles
 
             AnimationFrameHeight = 54;
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Calendar");
+            LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(255, 255, 255), name);
         }
 

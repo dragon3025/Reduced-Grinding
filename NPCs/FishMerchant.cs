@@ -13,6 +13,7 @@ namespace ReducedGrinding.NPCs
     {
         public const string ShopName = "Shop";
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
+
         public override void SetStaticDefaults()
         {
             Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.GoldfishWalker];

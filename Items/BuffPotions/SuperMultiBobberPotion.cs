@@ -1,5 +1,6 @@
 using ReducedGrinding.Global;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -8,11 +9,9 @@ namespace ReducedGrinding.Items.BuffPotions
 {
     public class SuperMultiBobberPotion : ModItem
     {
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Super Multi-Bobber Potion");
-            Tooltip.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus.ToString() + " when fishing");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()

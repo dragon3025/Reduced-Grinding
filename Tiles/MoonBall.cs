@@ -4,6 +4,7 @@ using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -24,8 +25,7 @@ namespace ReducedGrinding.Tiles
             TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
             TileObjectData.addTile(Type);
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Moon Ball");
+            LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(191, 191, 255), name);
 
             DustType = DustID.Marble;

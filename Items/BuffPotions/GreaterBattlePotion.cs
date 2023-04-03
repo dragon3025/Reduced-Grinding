@@ -10,8 +10,6 @@ namespace ReducedGrinding.Items.BuffPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Greater Battle Potion");
-            Tooltip.SetDefault("Greatly increases enemy spawn rate");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

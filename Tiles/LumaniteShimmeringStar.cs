@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.Enums;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -27,8 +28,7 @@ namespace ReducedGrinding.Tiles
 
             AnimationFrameHeight = 36;
 
-            ModTranslation name = CreateMapEntryName();
-            name.SetDefault("Luminite Shimmering Star");
+            LocalizedText name = CreateMapEntryName();
             AddMapEntry(new Color(154, 131, 202), name);
         }
 
