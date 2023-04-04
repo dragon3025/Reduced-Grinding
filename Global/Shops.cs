@@ -85,10 +85,6 @@ namespace ReducedGrinding.Global
                         shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningPants);
                         shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningShirt);
                     }
-                    if (GetInstance<IOtherConfig>().HolidayTimelineDaysPerMonth > 0)
-                    {
-                        shop.Add(ItemType<Items.Placeable.Calendar>());
-                    }
                     break;
                 case NPCID.SkeletonMerchant:
 
@@ -198,117 +194,6 @@ namespace ReducedGrinding.Global
                 Main.travelShop[nextSlot] = ItemType<Items.MerchantDice>();
                 nextSlot++;
             }
-
-            Player player = null;
-            for (int j = 0; j < 255; j++)
-            {
-                Player player2 = Main.player[j];
-                if (player2.active && (player == null || player.luck < player2.luck))
-                {
-                    player = player2;
-                }
-            }
-            if (player == null)
-            {
-                player = new Player();
-            }
-
-            #region Extra Item Rolls
-            if (NPC.downedMartians && GetInstance<IOtherConfig>().TravelingMerchantMartianChance > 0)
-            {
-                int[] items = new int[] {
-                        2865,
-                        2866,
-                        2867
-                    };
-                foreach (int i in items)
-                {
-                    bool addItem = true;
-                    for (int k = 0; k < 40; k++)
-                    {
-                        if (Main.travelShop[k] == i)
-                        {
-                            addItem = false;
-                            break;
-                        }
-                    }
-                    if (addItem && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantMartianChance) == 0)
-                    {
-                        Main.travelShop[nextSlot] = i;
-                        nextSlot++;
-                    }
-                }
-            }
-
-            if (Main.xMas && GetInstance<IOtherConfig>().TravelingMerchantChristmasChance > 0)
-            {
-                int[] items = new int[] {
-                        3055,
-                        3056,
-                        3057,
-                        3058
-                    };
-                foreach (int i in items)
-                {
-                    bool addItem = true;
-                    for (int k = 0; k < 40; k++)
-                    {
-                        if (Main.travelShop[k] == i)
-                        {
-                            addItem = false;
-                            break;
-                        }
-                    }
-                    if (addItem && player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantChristmasChance) == 0)
-                    {
-                        Main.travelShop[nextSlot] = i;
-                        nextSlot++;
-                    }
-                }
-            }
-
-            if (NPC.downedMoonlord && GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance > 0)
-            {
-                if (player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantNotAKidNorASquidChance) == 0)
-                {
-                    bool addItem = true;
-                    for (int k = 0; k < 40; k++)
-                    {
-                        if (Main.travelShop[k] == 3596)
-                        {
-                            addItem = false;
-                            break;
-                        }
-                    }
-                    if (addItem)
-                    {
-                        Main.travelShop[nextSlot] = 3596;
-                        nextSlot++;
-                    }
-                }
-            }
-
-            if (NPC.downedPlantBoss && GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance > 0)
-            {
-                if (player.RollLuck(GetInstance<IOtherConfig>().TravelingMerchantPulseBowChance) == 0)
-                {
-                    bool addItem = true;
-                    for (int k = 0; k < 40; k++)
-                    {
-                        if (Main.travelShop[k] == ItemID.PulseBow)
-                        {
-                            addItem = false;
-                            break;
-                        }
-                    }
-                    if (addItem)
-                    {
-                        Main.travelShop[nextSlot] = ItemID.PulseBow;
-                        nextSlot++;
-                    }
-                }
-            }
-            #endregion
         }
     }
 }

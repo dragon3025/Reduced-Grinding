@@ -242,7 +242,7 @@ namespace ReducedGrinding
 
         [Label("[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion")]
         [Range(0, 100)]
-        [DefaultValue(2)]
+        [DefaultValue(0)]
         public int SuperMultiBobberPotionBonus;
         #endregion
 
@@ -449,6 +449,11 @@ namespace ReducedGrinding
         [Tooltip("Summons Plantera. Chance = 1 / configuration_setting. Set to 0 to disable.")]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
+
+        [Label("[i:ReducedGrinding/NicePresent] Nice Present + [i:ReducedGrinding/PumpkinPieMedallion] Pumpkin Pie Medallion")]
+        [Tooltip("Activates Christmas / Halloween, but can only be crafted during their season.")]
+        [DefaultValue(true)]
+        public bool HolidaySummons;
         #endregion
 
         #region Battle Potions
@@ -549,44 +554,6 @@ namespace ReducedGrinding
         [Range(0, 100)]
         [DefaultValue(0)]
         public int TravelingMerchantDiceUsesAfterPlantera;
-
-        //To-Do 1.4.4+ adds more paintings
-        [Header("Extra item rolls (chance = 1 / configuration setting)")]
-
-        [Label("[i:3059] Christmas Paintings Extra Chance (for each)")]
-        [Tooltip("Chance = 1 / configuration_setting")]
-        [Range(0, 600)]
-        [DefaultValue(5)]
-        public int TravelingMerchantChristmasChance;
-
-        [Label("[i:2867] Martian Paintings Extra Chance (for each)")]
-        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
-        [Range(0, 600)]
-        [DefaultValue(0)]
-        public int TravelingMerchantMartianChance;
-
-        [Label("[i:3596] Not a Kid, nor a Squid Extra Chance")]
-        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
-        [Range(0, 600)]
-        [DefaultValue(0)]
-        public int TravelingMerchantNotAKidNorASquidChance;
-
-        [Label("[i:2223] Pulse Bow Extra Chance")]
-        [Tooltip("$Mods.ReducedGrinding.Config.IOtherConfig.Tooltip.TravelingMerchantItemExtraChance")]
-        [Range(0, 600)]
-        [DefaultValue(10)]
-        public int TravelingMerchantPulseBowChance;
-        #endregion
-
-        #region Holiday Timeline
-        [Header("" +
-            "Periodic Holiday Timeline.\n\n" +
-            "This mod will run a looping timeline for periodically triggering Halloween and Christmas events.A[i: ReducedGrinding / Calendar] Calendar item can also be purchased from the Merchant to see the current date.Halloween will happen on the last day of October and Christmas will happen around the end of December. Set to 0 to disable.")]
-
-        [Label("Days Per Month (12 Months per year)")]
-        [Range(0, 30)]
-        [DefaultValue(2)]
-        public int HolidayTimelineDaysPerMonth;
         #endregion
 
         #region Crafting
@@ -599,7 +566,8 @@ namespace ReducedGrinding
 
         [Label("Craftable Rare Chests")]
         [Tooltip("" +
-            "This excludes Dungeon Biome Chest which can be obtained through Shimmering.")]
+            "This excludes Dungeon Biome Chest which can be obtained through Shimmering.\n" +
+            "Shadow Chest are crafted by Shimmering a Shadow Key.")]
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
@@ -635,7 +603,7 @@ namespace ReducedGrinding
 
         [Label("Adjust Values")]
         [Tooltip("" +
-            "If enabled, this mod will adjust some item values depending on their configuration")]
+            "If enabled, this mod will adjust item values if their loot rates have been changed")]
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
@@ -662,7 +630,7 @@ namespace ReducedGrinding
 
         [Label("Allow spawning Regular and Ice Mimics")]
         [Tooltip("" +
-            "If enable, placing nothing but 1 Key of Light and 1 Key of Night in a chest will\n" +
+            "If enabled, placing nothing but 1 Key of Light and 1 Key of Night in a chest will\n" +
             "spawn a regular Mimic.Doing this in a Snow Biome will spawn an Ice Mimic.")]
         [DefaultValue(false)]
         public bool AllSpawningRegularMimics;

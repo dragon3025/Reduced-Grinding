@@ -40,7 +40,6 @@ namespace ReducedGrinding
             advanceMoonPhase,
             anglerQuests,
             dayTime,
-            seasonalDay,
             instantInvasion,
             travelingMerchantDiceRolls,
             timeHiddenFromInvasion
@@ -59,9 +58,6 @@ namespace ReducedGrinding
                     break;
                 case MessageType.dayTime:
                     Global.Update.dayTime = reader.ReadBoolean();
-                    break;
-                case MessageType.seasonalDay:
-                    Global.Update.seasonalDay = reader.ReadInt32();
                     break;
                 case MessageType.instantInvasion:
                     Global.Update.instantInvasion = reader.ReadBoolean();
@@ -86,13 +82,11 @@ namespace ReducedGrinding
     class ReducedGrindingSave : ModSystem
     {
         public static bool usingCalamity = false;
-        public static bool usingFargowiltas = false;
 
         public override void OnWorldUnload()
         {
             Global.Update.anglerQuests = 1;
             Global.Update.dayTime = true;
-            Global.Update.seasonalDay = 1;
             Global.Update.travelingMerchantDiceRolls = 0;
         }
 
@@ -100,7 +94,6 @@ namespace ReducedGrinding
         {
             Global.Update.anglerQuests = 1;
             Global.Update.dayTime = true;
-            Global.Update.seasonalDay = 1;
             Global.Update.travelingMerchantDiceRolls = 0;
         }
 
@@ -108,7 +101,6 @@ namespace ReducedGrinding
         {
             tag["anglerQuests"] = Global.Update.anglerQuests;
             tag["dayTime"] = Global.Update.dayTime;
-            tag["seasonalDay"] = Math.Max(1, Global.Update.seasonalDay);
             tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
         }
 
@@ -122,10 +114,6 @@ namespace ReducedGrinding
             {
                 Global.Update.dayTime = true;
             }
-            if (!tag.TryGet("seasonalDay", out Global.Update.seasonalDay))
-            {
-                Global.Update.seasonalDay = 1;
-            }
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
             {
                 Global.Update.travelingMerchantDiceRolls = 0;
@@ -137,11 +125,6 @@ namespace ReducedGrinding
             if (ModLoader.TryGetMod("CalamityMod", out _))
             {
                 usingCalamity = true;
-            }
-
-            if (ModLoader.TryGetMod("Fargowiltas", out _))
-            {
-                usingFargowiltas = true;
             }
         }
     }

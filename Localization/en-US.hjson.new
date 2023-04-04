@@ -84,11 +84,6 @@ Mods: {
 
 			BestiaryTrophy.DisplayName: Bestiary Trophy
 
-			Calendar: {
-				DisplayName: Calendar
-				Tooltip: Shows the current date
-			}
-
 			MoonBall: {
 				DisplayName: Moon Ball
 				Tooltip: Advances the Moon Phase
@@ -101,6 +96,16 @@ Mods: {
 				Tooltip: Use in the Jungle to summon Plantera
 			}
 
+			PumpkinPieMedallion: {
+				DisplayName: Pumpkin Pie Medallion
+				Tooltip: Activates Halloween time.
+			}
+
+			NicePresent: {
+				DisplayName: Nice Present
+				Tooltip: Activates Christmas time.
+			}
+
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
 				Tooltip: A creative tool that switches the difficulty modes
@@ -110,7 +115,6 @@ Mods: {
 		NPCs.FishMerchant.DisplayName: Fish Merchant
 
 		Tiles: {
-			Calendar.MapEntry: Calendar
 			MoonBall.MapEntry: Moon Ball
 		}
 	}

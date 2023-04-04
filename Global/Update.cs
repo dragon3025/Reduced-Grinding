@@ -18,15 +18,12 @@ namespace ReducedGrinding.Global
         //Gets recorded into world save
         public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
         public static bool dayTime = true;
-        public static int seasonalDay = 1;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
-        public static bool xMas = false;
-        public static bool halloween = false;
-        public static int timeHiddenFromInvasion = 0; //How would this work in an upside down world?
+        public static int timeHiddenFromInvasion = 0; //To-Do How would this work in an upside down world?
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -195,79 +192,12 @@ namespace ReducedGrinding.Global
                 dayTime = Main.dayTime;
                 updatePacket = true;
 
-                if ((Main.bloodMoon || Main.eclipse) && Main.sundialCooldown > 0)
-                {
-                    Main.sundialCooldown = 0;
-                    sendNetMessageData = true;
-                }
-
                 #region New Morning
                 if (Main.dayTime)
                 {
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
 
                     anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
-
-                    if (otherConfig.HolidayTimelineDaysPerMonth > 0)
-                    {
-                        int yearLength = otherConfig.HolidayTimelineDaysPerMonth * 12;
-                        float halloweenDay = 304f / 365f;
-                        float xMasDay = 359f / 365f;
-
-                        halloween = xMas = false;
-
-                        seasonalDay++;
-                        if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
-                        {
-                            Main.halloween = halloween = true;
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                        }
-                        else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
-                        {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                        }
-                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
-                        {
-                            Main.xMas = xMas = true;
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                        }
-                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
-                        {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                        }
-                        if (seasonalDay >= yearLength + 1)
-                        {
-                            seasonalDay = 1;
-                        }
-                    }
                 }
                 #endregion
             }
@@ -282,9 +212,6 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.dayTime);
                 packet.Write(dayTime);
-
-                packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
-                packet.Write(seasonalDay);
 
                 packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
                 packet.Write(instantInvasion);
@@ -309,20 +236,6 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateWorld()
         {
-            if (ReducedGrindingSave.usingFargowiltas)
-            {
-                //This mod will undo the period timeline feature, so this is here to undo the undo.
-                if (!Main.xMas && xMas)
-                {
-                    Main.xMas = xMas;
-                }
-
-                if (!Main.halloween && halloween)
-                {
-                    Main.halloween = halloween;
-                }
-            }
-
             if (advanceMoonPhase)
             {
                 advanceMoonPhase = false;
