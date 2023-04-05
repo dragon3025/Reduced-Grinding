@@ -17,7 +17,7 @@ namespace ReducedGrinding.Items.BuffPotions
         public override void SetDefaults()
         {
             Item.height = 30;
-            Item.maxStack = 300;
+            Item.maxStack = 9999;
             Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Red : ItemRarityID.Yellow;
             Item.useAnimation = 45;
             Item.useTime = 45;

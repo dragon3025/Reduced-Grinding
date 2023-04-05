@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -78,7 +77,7 @@ namespace ReducedGrinding.Global
 
             if (time % 60 == 0)
             {
-                if (otherConfig.CancelInvasionsIfAllPlayersAreUnderground)
+                if (otherConfig.CancelInvasionsIfAllPlayersAreHidden)
                 {
                     if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
                     {
@@ -102,14 +101,17 @@ namespace ReducedGrinding.Global
                 {
                     if (!Main.player[i].HasBuff(BuffID.Invisibility))
                     {
-                        allPlayersHiddenFromInvasion = false;
-                    }
-                    else
-                    {
-                        Point playerPosition = Main.player[i].Center.ToTileCoordinates();
-                        if (!Main.remixWorld && playerPosition.Y <= Main.worldSurface + 67.5f)
+                        if (Main.remixWorld)
                         {
                             allPlayersHiddenFromInvasion = false;
+                        }
+                        else
+                        {
+                            Point playerPosition = Main.player[i].Center.ToTileCoordinates();
+                            if (playerPosition.Y <= Main.worldSurface + 67.5f)
+                            {
+                                allPlayersHiddenFromInvasion = false;
+                            }
                         }
                     }
                 }
@@ -138,11 +140,11 @@ namespace ReducedGrinding.Global
                     {
                         if (Main.netMode == NetmodeID.Server)
                         {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0));
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone, and will soon leave."), new Color(255, 255, 0));
                         }
                         else if (Main.netMode == NetmodeID.SinglePlayer)
                         {
-                            Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0));
+                            Main.NewText("The invasion can't find anyone, and will soon leave.", new Color(255, 255, 0));
                         }
                     }
                     timeHiddenFromInvasion++;

@@ -607,13 +607,12 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
-        [Label("Cancel Invasions When All Players Are Underground")]
+        [Label("Cancel Invasions When All Players Are Hidden")]
+        [Tooltip("" +
+            "This can be done by using Potion of Invisiblity. It can also be done by going" +
+            "underground, except in \"Don't Dig Up\" and \"Get Fixed Boi\" worlds.")]
         [DefaultValue(true)]
-        public bool CancelInvasionsIfAllPlayersAreUnderground;
-
-        [Label("Merchant Sells [i:410] Miner's Shirt and [i:411] Miner's Pants")]
-        [DefaultValue(false)]
-        public bool MerchantSellsMinersShirtAndPants;
+        public bool CancelInvasionsIfAllPlayersAreHidden;
 
         [Label("Skeleton Merchant Ignores Moonphases")]
         [Tooltip("This doesn't include items that can be obtained through other methods")]

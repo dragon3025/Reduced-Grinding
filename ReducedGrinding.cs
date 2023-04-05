@@ -9,7 +9,6 @@
  * Main.NewText(string);
  */
 
-using System;
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI;

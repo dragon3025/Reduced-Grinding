@@ -79,15 +79,7 @@ namespace ReducedGrinding.Global
         {
             switch (shop.NpcType)
             {
-                case NPCID.Merchant:
-                    if (GetInstance<IOtherConfig>().MerchantSellsMinersShirtAndPants)
-                    {
-                        shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningPants);
-                        shop.InsertAfter(ItemID.MiningHelmet, ItemID.MiningShirt);
-                    }
-                    break;
                 case NPCID.SkeletonMerchant:
-
                     shop.InsertBefore(ItemID.Torch, ItemID.BoneTorch);
                     if (!shop.TryGetEntry(ItemID.Torch, out _))
                     {
