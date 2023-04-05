@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
@@ -28,10 +29,9 @@ namespace ReducedGrinding.Global.WorldGeneration
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                //TO-DO 1.4.4+ will contain secret seeds that flip progression upsidedown and the vanilla worldgen adjust to this. This mod will also have to adjsut to it.
-
                 progress.Message = "Adding Non-Existing Loot";
 
+                #region Decide Dungeon Furniture Color
                 int dungeonColor = 0;
                 if (GenVars.dungeonSide == -1)
                 {
@@ -72,7 +72,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                List<int> dungeonFurniture = new();
+                List<int> dungeonFurniture;
 
                 switch (dungeonColor)
                 {
@@ -140,10 +140,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                         };
                         break;
                 }
+                #endregion
 
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 List<int> terragrimChests = new();
-                List<int> lockedGoldChest = new();
+                List<int> lockedGoldChests = new();
 
                 void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
                 {
@@ -171,7 +172,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         Chest chest = Main.chest[chestIndex];
 
                                         int slot = 0;
-                                        if (item == ItemID.MushroomHat || (item != ItemID.ShroomMinecart && WorldGen.genRand.NextBool(2)))
+                                        if (item == ItemID.MushroomHat || (item == -1 && WorldGen.genRand.NextBool(2)))
                                         {
                                             chest.item[slot].SetDefaults(ItemID.MushroomHat);
                                             slot++;
@@ -654,7 +655,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                 int kingStatueDenominator = 5;
                 int queenStatueDenominator = 5;
 
-                #region Scan For Missing Mushroom Items and Add Terragrim
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
                     Chest chest = Main.chest[chestIndex];
@@ -664,14 +664,26 @@ namespace ReducedGrinding.Global.WorldGeneration
                         continue;
                     }
 
-                    int tileSubID;
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+                    bool chestType2 = Main.tile[chest.x, chest.y].TileType == TileID.Containers2;
+
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                    int chestHeight = 36;
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
-                        tileSubID = 0; //Regular Chest
-                        if (!(chestType1 && tileFrameX == tileSubID * 36))
+                        int[] biomeChestSubIDs =
+                        {
+                        23 * chestHeight,
+                        24 * chestHeight,
+                        25 * chestHeight,
+                        26 * chestHeight,
+                        27 * chestHeight
+                        };
+                        bool regularChest = chestType1 && tileFrameX == 0;
+                        bool lockedBiomeChest = chestType1 && biomeChestSubIDs.Contains(tileFrameX) || (chestType2 && tileFrameX == 13 * chestHeight);
+
+                        if (!regularChest && !lockedBiomeChest)
                         {
                             terragrimChests.Add(chestIndex);
                         }
@@ -679,10 +691,11 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     if (chestType1)
                     {
-                        tileSubID = 32; //Mushroom Chest
-                        int goldChestSubID = 1;
-                        int goldLockedChestSubID = 2;
-                        if (tileFrameX == tileSubID * 36)
+                        bool mushroomChest = tileFrameX == 32 * chestHeight;
+                        bool goldChest = tileFrameX == 1 * chestHeight;
+                        bool lockedGoldChest = tileFrameX == 2 * chestHeight;
+
+                        if (mushroomChest)
                         {
                             if (missingMushroomItems.Count > 0)
                             {
@@ -701,7 +714,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                             }
                         }
-                        else if (tileFrameX == goldChestSubID * 36)
+                        else if (goldChest)
                         {
                             if (chest.y > GenVars.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
                             {
@@ -733,15 +746,13 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 queenStatueDenominator = Math.Max(1, queenStatueDenominator - 1);
                             }
                         }
-                        else if (tileFrameX == goldLockedChestSubID * 36)
+                        else if (lockedGoldChest)
                         {
-                            lockedGoldChest.Add(chestIndex);
+                            lockedGoldChests.Add(chestIndex);
                         }
                     }
                 }
-                #endregion
 
-                #region Final Chest Tweaks
                 int mushroomChestAttempts = 0;
                 while (missingMushroomItems.Count > 0)
                 {
@@ -755,7 +766,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 while (dungeonFurniture.Count > 0)
                 {
-                    foreach (int chestIndex in lockedGoldChest)
+                    foreach (int chestIndex in lockedGoldChests)
                     {
                         if (dungeonFurniture.Count > 0)
                         {
@@ -789,7 +800,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                     }
                 }
-                #endregion
             }
         }
     }

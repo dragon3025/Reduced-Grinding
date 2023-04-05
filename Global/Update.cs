@@ -23,7 +23,7 @@ namespace ReducedGrinding.Global
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
-        public static int timeHiddenFromInvasion = 0; //To-Do How would this work in an upside down world?
+        public static int timeHiddenFromInvasion = 0;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -100,11 +100,17 @@ namespace ReducedGrinding.Global
 
                 if (allPlayersHiddenFromInvasion)
                 {
-                    Point playerPosition = Main.player[i].Center.ToTileCoordinates();
-
-                    if (playerPosition.Y <= Main.worldSurface + 67.5f)
+                    if (!Main.player[i].HasBuff(BuffID.Invisibility))
                     {
                         allPlayersHiddenFromInvasion = false;
+                    }
+                    else
+                    {
+                        Point playerPosition = Main.player[i].Center.ToTileCoordinates();
+                        if (!Main.remixWorld && playerPosition.Y <= Main.worldSurface + 67.5f)
+                        {
+                            allPlayersHiddenFromInvasion = false;
+                        }
                     }
                 }
 
