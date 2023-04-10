@@ -471,8 +471,23 @@ namespace ReducedGrinding
 
         #region Battle Potions
         [Header("Spawn Increasing Potions\n" +
-            "If you experience lag, try turning down max spawns first. For each Potion, setting both max spawns and spawn rate will disable their recipe.\n\n" +
-            "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion")]
+            "If you experience lag, try turning down max spawns first. For Greater and Super Battle Potions, setting both max spawns and spawn rate to 1 will disable their recipe.\n\n" +
+            "[i:300] Battle Potion (Vanilla)")]
+
+        [Label("Max Spawns Multiplier")]
+        [Tooltip("Vanilla default: 2")]
+        [Increment(.1f)]
+        [Range(2f, 10f)]
+        [DefaultValue(2f)]
+        public float BattlePotionMaxSpawnsMultiplier;
+
+        [Label("Spawn Rate Multiplier")]
+        [Tooltip("Vanilla default: 2")]
+        [Increment(.1f)]
+        [Range(2f, 10f)]
+        [DefaultValue(2f)]
+        public float BattlePotionSpawnrateMultiplier;
+        [Header("[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion")]
 
         [Label("Max Spawns Multiplier")]
         [Increment(.1f)]
