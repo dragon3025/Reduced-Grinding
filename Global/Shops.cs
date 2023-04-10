@@ -22,32 +22,32 @@ namespace ReducedGrinding.Global
                 if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
                 {
                     int fishMerchantID = NPCType<NPCs.FishMerchant>();
-                    int spawnFishMerchant = 0;
+                    bool? fishMerchantExist = null;
                     int anglerNPC = -1;
                     for (int i = 0; i < Main.npc.Length; i++)
                     {
-                        if (spawnFishMerchant == 0 && Main.npc[i].type == fishMerchantID)
+                        if (fishMerchantExist == null && Main.npc[i].type == fishMerchantID)
                         {
                             if (Main.npc[i].active)
                             {
-                                spawnFishMerchant = -1;
+                                fishMerchantExist = true;
                             }
                             else
                             {
-                                spawnFishMerchant = 1;
+                                fishMerchantExist = false;
                             }
                         }
                         if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler && Main.npc[i].active)
                         {
                             anglerNPC = i;
                         }
-                        if (spawnFishMerchant != 0 && anglerNPC > -1)
+                        if (fishMerchantExist != null && anglerNPC > -1)
                         {
                             break;
                         }
                     }
 
-                    if (spawnFishMerchant == 1)
+                    if (fishMerchantExist != true)
                     {
                         int newFishMerchant = NPC.NewNPC(Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, fishMerchantID, 1);
                         NPC fishMerchant = Main.npc[newFishMerchant];
