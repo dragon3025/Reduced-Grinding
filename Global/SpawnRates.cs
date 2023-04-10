@@ -1,5 +1,6 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -30,6 +31,17 @@ namespace ReducedGrinding.Global
                 {
                     spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier));
                     maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier);
+                }
+                if (player.FindBuffIndex(BuffID.Battle) != -1)
+                {
+                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotionSpawnrateMultiplier > 2)
+                    {
+                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotionSpawnrateMultiplier));
+                    }
+                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotionMaxSpawnsMultiplier > 2)
+                    {
+                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotionMaxSpawnsMultiplier);
+                    }
                 }
             }
         }
