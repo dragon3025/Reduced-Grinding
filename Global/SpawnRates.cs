@@ -16,44 +16,20 @@ namespace ReducedGrinding.Global
                     return;
                 }
 
-                int invasionType = Main.invasionType;
-
-                bool awayFromInvasion = true;
-                if (invasionType > 0 && Main.invasionDelay == 0 && Main.invasionSize > 0 && player.position.Y < Main.worldSurface * 16.0 + NPC.sHeight)
+                if (Main.invasionType > 0 || NPC.waveNumber > 0)
                 {
-                    int xExtends = 3000;
-                    if (player.position.X > Main.invasionX * 16.0 - xExtends && player.position.X < Main.invasionX * 16.0 + xExtends)
-                    {
-                        awayFromInvasion = false;
-                    }
-                    else if (Main.invasionX >= Main.maxTilesX / 2 - 5 && Main.invasionX <= Main.maxTilesX / 2 + 5)
-                    {
-                        for (int k = 0; k < 200; k++)
-                        {
-                            if (Main.npc[k].townNPC && Math.Abs(player.position.X - Main.npc[k].Center.X) < xExtends)
-                            {
-                                if (!Main.rand.NextBool(3))
-                                {
-                                    awayFromInvasion = false;
-                                }
-                                break;
-                            }
-                        }
-                    }
+                    return;
                 }
 
-                if (awayFromInvasion)
+                if (player.FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
                 {
-                    if (player.FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
-                    {
-                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionSpawnrateMultiplier));
-                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier);
-                    }
-                    if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
-                    {
-                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier));
-                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier);
-                    }
+                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionSpawnrateMultiplier));
+                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().SuperBattlePotionMaxSpawnsMultiplier);
+                }
+                if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
+                {
+                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier));
+                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier);
                 }
             }
         }
