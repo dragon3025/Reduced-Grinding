@@ -34,11 +34,6 @@ namespace ReducedGrinding.Tiles
             TileID.Sets.HasOutlines[Type] = true;
         }
 
-        public override void KillMultiTile(int x, int y, int frameX, int frameY)
-        {
-            Item.NewItem(new EntitySource_TileBreak(x, y), x * 16, y * 16, 32, 32, ModContent.ItemType<Items.Placeable.MoonBall>());
-        }
-
         public override bool HasSmartInteract(int x, int y, SmartInteractScanSettings settings)
         {
             return true;
