@@ -218,17 +218,14 @@ Mods: {
 						'''
 						Extra Bobber Potions
 
-						Set the amount of extra bobbers each potion gives. Set to
-						0 to disable recipe.
+						Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.
 						'''
 					RewardModifying: Quest Completion Requirements For Guaranteed Rewards
 					AnglerQuestAmountEachDay:
 						'''
-						Angler Quest Amount Each Day\n\nIf the Angler has more
-						quest for the current day and at least 1 player has
-						finished their quest, he'll give another quest unless
-						there's a player wearing at least one piece of Angler
-						Armor who hasn't finished their quest.
+						Angler Quest Amount Each Day
+
+						If the Angler has more quest for the current day, he'll give another quest when all players who are wearing at least 1 piece of Angler Armor have finished their quest.
 						'''
 					FishCoin:
 						'''
@@ -526,10 +523,9 @@ Mods: {
 				DisplayName: Other
 
 				Headers: {
-					TravelingMerchant:
+					TravelingMerchant: Traveling Merchant
+					MerchantDice:
 						'''
-						Traveling Merchant
-
 						[i:ReducedGrinding/MerchantDice] Merchant Dice.
 
 						For a limited amount of times per day, you can use this to re-roll the Traveling Merchant shop. The Traveling Merchant will only sell it if it's set higher than 0.
@@ -562,6 +558,16 @@ Mods: {
 						that drop it. Chance = 1 / configuration_setting. Set to 0
 						to use vanilla chance. Denominator is multiplied by 3 for
 						Mythril and 10 for Pearlwood
+						'''
+				}
+
+				TravelingMerchantChatsItems: {
+					Label: Traveling Merchant Announces Items on Arrival
+					Tooltip:
+						'''
+						The chat will display icons for all items in the
+						shop (similar to when a player Alt-Clicks an inventory
+						item when the chat is open)
 						'''
 				}
 
@@ -662,7 +668,7 @@ Mods: {
 					Tooltip:
 						'''
 						If enabled, placing nothing but 1 Key of Light and 1 Key
-						of Night in a chest will spawn a regular Mimic.Doing this
+						of Night in a chest will spawn a regular Mimic. Doing this
 						in a Snow Biome will spawn an Ice Mimic.
 						'''
 				}

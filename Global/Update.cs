@@ -18,6 +18,7 @@ namespace ReducedGrinding.Global
         public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
         public static bool dayTime = true;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
+        public static bool chatMerchantItems = false;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -263,6 +264,41 @@ namespace ReducedGrinding.Global
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);
                     packet.Write(advanceMoonPhase);
+                    packet.Send();
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
+            if (chatMerchantItems)
+            {
+                string itemList = "";
+
+                for (int i = 0; i < Main.travelShop.Length; i++)
+                {
+                    if (Main.travelShop[i] != ItemID.None)
+                    {
+                        itemList += "[i:" + Main.travelShop[i].ToString() + "]";
+                    }
+                }
+
+                if (itemList != "")
+                {
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(itemList, 50, 125);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(itemList), new Color(50, 125, 255));
+                    }
+                }
+
+                chatMerchantItems = false;
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
+                    packet.Write(chatMerchantItems);
                     packet.Send();
                     NetMessage.SendData(MessageID.WorldData);
                 }

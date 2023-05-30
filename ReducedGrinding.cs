@@ -41,7 +41,8 @@ namespace ReducedGrinding
             dayTime,
             instantInvasion,
             travelingMerchantDiceRolls,
-            timeHiddenFromInvasion
+            timeHiddenFromInvasion,
+            chatMerchantItems
         }
 
         public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -66,6 +67,9 @@ namespace ReducedGrinding
                     break;
                 case MessageType.timeHiddenFromInvasion:
                     Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
+                    break;
+                case MessageType.chatMerchantItems:
+                    Global.Update.chatMerchantItems = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);

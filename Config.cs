@@ -1,6 +1,5 @@
 using System;
 using System.ComponentModel;
-using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding
@@ -12,6 +11,7 @@ namespace ReducedGrinding
         [Header("Main")]
 
         #region Boss Loot
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int Binoculars;
@@ -34,79 +34,98 @@ namespace ReducedGrinding
         #region Regular
         [Header("NonBossLoot")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TownNPCWeapons;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BiomeKey;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int BeamSword;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int GoodieBag;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int KOCannon;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int Lens;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int LizardEgg;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int Marrow;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsHammer;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PaladinsShield;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int PlumbersHat;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int Present;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RifleScopeAndSniperRifle;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RocketLauncher;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RodofDiscord;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int RottenChunkAndVertebra;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SoulOfLightAndNight;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SWATHelmetAndTacticalShotgun;
         #endregion
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CoinGun;
@@ -141,10 +160,12 @@ namespace ReducedGrinding
 
         [Header("Main")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int SlimeStaffFromSlimeKing;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TrufflewormFromDukeFishron;
@@ -166,14 +187,17 @@ namespace ReducedGrinding
         #region Multi-Bobber Potions
         [Header("MultiBobberPotions")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int MultiBobberPotionBonus;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int GreaterMultiBobberPotionBonus;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int SuperMultiBobberPotionBonus;
@@ -182,26 +206,32 @@ namespace ReducedGrinding
         #region Reward Modifying
         [Header("RewardModifying")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 150)]
         [DefaultValue(5)]
         public int FuzzyCarrotQuestRewarded;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 150)]
         [DefaultValue(10)]
         public int AnglerHatQuestRewarded;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 150)]
         [DefaultValue(15)]
         public int AnglerVestQuestRewarded;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 150)]
         [DefaultValue(20)]
         public int AnglerPantsQuestRewarded;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 150)]
         [DefaultValue(25)]
         public int BottomlessWaterBucketQuestRewarded;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 150)]
         [DefaultValue(30)]
         public int GoldenFishingRodQuestRewarded;
@@ -211,6 +241,7 @@ namespace ReducedGrinding
         #region Angler Quest Amount Each Day
         [Header("AnglerQuestAmountEachDay")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 10000)]
         [DefaultValue(1)]
         public int QuestCountBeforeEye;
@@ -239,67 +270,84 @@ namespace ReducedGrinding
         #region Fish Merchant
         [Header("FishCoin")]
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 999)]
         [DefaultValue(0)]
         public int FishCoinsRewardedForQuest;
 
         [Header("FishMerchantShopPrices")]
+
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(5)]
         public int FuzzyCarrotPrice;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(10)]
         public int AnglerHatPrice;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(10)]
         public int AnglerVestPrice;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(10)]
         public int AnglerPantsPrice;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(25)]
         public int GoldenFishingRod;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(10)]
         public int HotlineFishingHook;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(7)]
         public int FinWings;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(7)]
         public int BottomlessWaterBucket;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(7)]
         public int SuperAbsorbantSponge;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(8)]
         public int GoldenBugNet;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(6)]
         public int FishHook;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(6)]
         public int Minecarp;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(8)]
         public int AnglerTackleBagIngredients;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(6)]
         public int FishFinderIngredients;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(1, 9999)]
         [DefaultValue(8)]
         public int VanitySets;
@@ -326,6 +374,7 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool BestiaryTrophy;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
@@ -336,11 +385,13 @@ namespace ReducedGrinding
         #region Battle Potions
         [Header("SpawnIncreasingPotions")]
 
+        [BackgroundColor(128, 128, 128)]
         [Increment(.1f)]
         [Range(2f, 10f)]
         [DefaultValue(2f)]
         public float BattlePotionMaxSpawnsMultiplier;
 
+        [BackgroundColor(128, 128, 128)]
         [Increment(.1f)]
         [Range(2f, 10f)]
         [DefaultValue(2f)]
@@ -373,15 +424,19 @@ namespace ReducedGrinding
         #region Staff of Difficulty
         [Header("StaffOfDifficulty")]
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool StaffOfDifficultyJourney;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool StaffOfDifficultyNormal;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool StaffOfDifficultyExpert;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool StaffOfDifficultyMaster;
         #endregion
@@ -400,6 +455,7 @@ namespace ReducedGrinding
         [DefaultValue(75)]
         public int TerragrimChestChance;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
@@ -407,14 +463,22 @@ namespace ReducedGrinding
         #region Traveling Merchant
         [Header("TravelingMerchant")]
 
+        [DefaultValue(true)]
+        public bool TravelingMerchantChatsItems;
+
+        [Header("MerchantDice")]
+
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int TravelingMerchantDiceUsesBeforeHardmode;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int TravelingMerchantDiceUsesHardmode;
 
+        [BackgroundColor(128, 128, 128)]
         [Range(0, 100)]
         [DefaultValue(0)]
         public int TravelingMerchantDiceUsesAfterPlantera;
@@ -423,9 +487,11 @@ namespace ReducedGrinding
         #region Crafting
         [Header("Crafting")]
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool CraftableGoldCritters;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
@@ -437,12 +503,15 @@ namespace ReducedGrinding
         #region Sleep Time Rate
         [Header("SleepTimeRate")]
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
         public int SleepRateIncreasePreHardmode;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
         public int SleepRateIncreaseHardmode;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
         public int SleepRateIncreasePostPlantera;
         #endregion
@@ -456,16 +525,20 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool CancelInvasionsIfAllPlayersAreHidden;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
 
+        [BackgroundColor(128, 128, 128)]
         [Increment(0.01f)]
         [DefaultValue(1f)]
         public float UniversalPylonBestiaryCompletionRate;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool AllSpawningRegularMimics;
 
+        [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool WitchDoctorSellsChlorophyteOre;
         #endregion

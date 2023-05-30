@@ -186,6 +186,21 @@ namespace ReducedGrinding.Global
                 Main.travelShop[nextSlot] = ItemType<Items.MerchantDice>();
                 nextSlot++;
             }
+
+            if (!GetInstance<IOtherConfig>().TravelingMerchantChatsItems)
+            {
+                return;
+            }
+
+            Update.chatMerchantItems = true;
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
+                packet.Write(Update.chatMerchantItems);
+                packet.Send();
+            }
         }
     }
 }
