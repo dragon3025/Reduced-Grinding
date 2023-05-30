@@ -544,11 +544,7 @@ Mods: {
 
 				UniversalPylonBestiaryCompletionRate: {
 					Label: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
-					Tooltip:
-						'''
-						In vanilla, there are 523 entries. 51% can be achieved
-						before Hardmode.Set to 100 % to disable
-						'''
+					Tooltip: ""
 				}
 
 				AllSpawningRegularMimics: {
