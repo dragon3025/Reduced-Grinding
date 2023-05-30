@@ -233,12 +233,6 @@ Mods: {
 
 						Used to purchase Quest Rewards at the Fish Merchant who is summoned when talking to the Angler. Set to 0 to disable the Fish Merchant from spawning.
 						'''
-					FishMerchantShopPrices:
-						'''
-						Fish Merchant Shop Prices
-
-						Set the Fish Coin prices here for the Fish Merchant. Setting to 0 will disable the item from appearing in the shop. Some items wont appear in the shop until their vanilla requirement is met (for example: Hardmode items).
-						'''
 				}
 
 				AnglerTellsQuestCompleted: {
