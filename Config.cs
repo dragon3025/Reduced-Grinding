@@ -203,41 +203,6 @@ namespace ReducedGrinding
         public int SuperMultiBobberPotionBonus;
         #endregion
 
-        #region Reward Modifying
-        [Header("RewardModifying")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 150)]
-        [DefaultValue(5)]
-        public int FuzzyCarrotQuestRewarded;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 150)]
-        [DefaultValue(10)]
-        public int AnglerHatQuestRewarded;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 150)]
-        [DefaultValue(15)]
-        public int AnglerVestQuestRewarded;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 150)]
-        [DefaultValue(20)]
-        public int AnglerPantsQuestRewarded;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 150)]
-        [DefaultValue(25)]
-        public int BottomlessWaterBucketQuestRewarded;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 150)]
-        [DefaultValue(30)]
-        public int GoldenFishingRodQuestRewarded;
-
-        #endregion
-
         #region Angler Quest Amount Each Day
         [Header("AnglerQuestAmountEachDay")]
 

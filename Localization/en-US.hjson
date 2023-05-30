@@ -220,7 +220,6 @@ Mods: {
 
 						Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.
 						'''
-					RewardModifying: Quest Completion Requirements For Guaranteed Rewards
 					AnglerQuestAmountEachDay:
 						'''
 						Angler Quest Amount Each Day
@@ -231,7 +230,7 @@ Mods: {
 						'''
 						Fish Coin
 
-						Used to purchase Quest Rewards at the Fish Merchant who is summoned when talking to the Angler. Set to 0 to disable the Fish Merchant from spawning.
+						Rewarded when finishing a Quest. Used to purchase Quest rewards at the Fish Merchant who is summoned when talking to the Angler. Set to 0 to disable the Fish Merchant from spawning.
 						'''
 				}
 
@@ -253,36 +252,6 @@ Mods: {
 				SuperMultiBobberPotionBonus: {
 					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi-Bobber Potion"
 					Tooltip: ""
-				}
-
-				FuzzyCarrotQuestRewarded: {
-					Label: "[i:2428] Fuzzy Carrot"
-					Tooltip: Vanilla default: 5
-				}
-
-				AnglerHatQuestRewarded: {
-					Label: "[i:2367] Angler Hat"
-					Tooltip: Vanilla default: 10
-				}
-
-				AnglerVestQuestRewarded: {
-					Label: "[i:2368] Angler Vest"
-					Tooltip: Vanilla default: 15
-				}
-
-				AnglerPantsQuestRewarded: {
-					Label: "[i:2369] Angler Pants"
-					Tooltip: Vanilla default: 20
-				}
-
-				BottomlessWaterBucketQuestRewarded: {
-					Label: "[i:3031] Bottomless Water Bucket"
-					Tooltip: Vanilla default: 25
-				}
-
-				GoldenFishingRodQuestRewarded: {
-					Label: "[i:2294] Golden Fishing Rod"
-					Tooltip: Vanilla default: 30
 				}
 
 				QuestCountBeforeEye: {
@@ -317,7 +286,7 @@ Mods: {
 
 				FishCoinsRewardedForQuest: {
 					Label: "[i:ReducedGrinding/FishCoin] Fish Coins Rewarded"
-					Tooltip: Set to 0, to disable the Fish Merchant from spawning
+					Tooltip: ""
 				}
 			}
 
