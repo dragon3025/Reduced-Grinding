@@ -88,60 +88,50 @@ namespace ReducedGrinding.NPCs
         {
             var npcShop = new NPCShop(Type, ShopName);
 
-            Player player = Main.LocalPlayer;
-            void addShopItem(int price, int itemID, int questRequirement = 0)
+            void addShopItem(int price, int itemID)
             {
                 if (price > 0)
                 {
-                    if (player.anglerQuestsFinished >= questRequirement)
-                    {
 
-                        npcShop.Add(new Item(itemID)
-                        {
-                            shopCustomPrice = price,
-                            shopSpecialCurrency = ReducedGrinding.FishCoin
-                        });
-                    }
+                    npcShop.Add(new Item(itemID)
+                    {
+                        shopCustomPrice = price,
+                        shopSpecialCurrency = ReducedGrinding.FishCoin
+                    });
                 }
             }
 
             #region Guaranteed Items
-            addShopItem(fishingConfig.FuzzyCarrotPrice, ItemID.FuzzyCarrot, fishingConfig.FuzzyCarrotQuestRewarded);
-            addShopItem(fishingConfig.AnglerHatPrice, ItemID.AnglerHat, fishingConfig.AnglerHatQuestRewarded);
-            addShopItem(fishingConfig.AnglerVestPrice, ItemID.AnglerVest, fishingConfig.AnglerVestQuestRewarded);
-            addShopItem(fishingConfig.AnglerPantsPrice, ItemID.AnglerPants, fishingConfig.AnglerPantsQuestRewarded);
-            addShopItem(fishingConfig.AnglerPantsPrice, ItemID.GoldenFishingRod, fishingConfig.GoldenFishingRod);
-            if (fishingConfig.BottomlessWaterBucket > 0)
-            {
-                addShopItem(fishingConfig.AnglerPantsPrice, ItemID.GoldenFishingRod, fishingConfig.BottomlessWaterBucket);
-            }
+            addShopItem(5, ItemID.FuzzyCarrot);
+            addShopItem(10, ItemID.AnglerHat);
+            addShopItem(10, ItemID.AnglerVest);
+            addShopItem(10, ItemID.AnglerPants);
+            addShopItem(25, ItemID.BottomlessBucket);
+            addShopItem(30, ItemID.GoldenFishingRod);
             #endregion
 
             #region Hardmode Items
             if (Main.hardMode)
             {
-                addShopItem(fishingConfig.HotlineFishingHook, ItemID.HotlineFishingHook, 25);
-                addShopItem(fishingConfig.FinWings, ItemID.FinWings, 11);
-                addShopItem(fishingConfig.SuperAbsorbantSponge, ItemID.SuperAbsorbantSponge, 10);
-                if (fishingConfig.BottomlessWaterBucket == 0)
-                {
-                    addShopItem(fishingConfig.BottomlessWaterBucket, ItemID.BottomlessBucket, 10);
-                }
+                addShopItem(100, ItemID.HotlineFishingHook);
+                addShopItem(70, ItemID.FinWings);
+                addShopItem(70, ItemID.SuperAbsorbantSponge);
             }
             #endregion
 
             #region Items Always Available
-            addShopItem(fishingConfig.GoldenBugNet, ItemID.GoldenBugNet);
-            addShopItem(fishingConfig.FishHook, ItemID.FishHook);
-            addShopItem(fishingConfig.Minecarp, ItemID.FishMinecart);
-            addShopItem(fishingConfig.AnglerTackleBagIngredients, ItemID.HighTestFishingLine);
-            addShopItem(fishingConfig.AnglerTackleBagIngredients, ItemID.AnglerEarring);
-            addShopItem(fishingConfig.AnglerTackleBagIngredients, ItemID.TackleBox);
-            addShopItem(fishingConfig.FishFinderIngredients, ItemID.FishermansGuide);
-            addShopItem(fishingConfig.FishFinderIngredients, ItemID.WeatherRadio);
-            addShopItem(fishingConfig.FishFinderIngredients, ItemID.Sextant);
-            addShopItem(fishingConfig.VanitySets, ItemType<Items.MermaidCostumeBag>());
-            addShopItem(fishingConfig.VanitySets, ItemType<Items.FishCostumeBag>());
+            addShopItem(80, ItemID.GoldenBugNet);
+            addShopItem(60, ItemID.FishHook);
+            addShopItem(60, ItemID.FishMinecart);
+            addShopItem(80, ItemID.HighTestFishingLine);
+            addShopItem(80, ItemID.AnglerEarring);
+            addShopItem(80, ItemID.TackleBox);
+            addShopItem(60, ItemID.FishermansGuide);
+            addShopItem(60, ItemID.WeatherRadio);
+            addShopItem(60, ItemID.Sextant);
+            addShopItem(80, ItemType<Items.MermaidCostumeBag>());
+            addShopItem(80, ItemType<Items.FishCostumeBag>());
+            addShopItem(25, ItemID.FishingBobber);
             #endregion
         }
 

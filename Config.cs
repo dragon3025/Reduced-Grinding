@@ -267,91 +267,12 @@ namespace ReducedGrinding
         public int QuestCountAfterPlantera;
         #endregion
 
-        #region Fish Merchant
         [Header("FishCoin")]
 
         [BackgroundColor(128, 128, 128)]
         [Range(0, 999)]
         [DefaultValue(0)]
         public int FishCoinsRewardedForQuest;
-
-        [Header("FishMerchantShopPrices")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(5)]
-        public int FuzzyCarrotPrice;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(10)]
-        public int AnglerHatPrice;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(10)]
-        public int AnglerVestPrice;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(10)]
-        public int AnglerPantsPrice;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(25)]
-        public int GoldenFishingRod;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(10)]
-        public int HotlineFishingHook;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(7)]
-        public int FinWings;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(7)]
-        public int BottomlessWaterBucket;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(7)]
-        public int SuperAbsorbantSponge;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(8)]
-        public int GoldenBugNet;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(6)]
-        public int FishHook;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(6)]
-        public int Minecarp;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(8)]
-        public int AnglerTackleBagIngredients;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(6)]
-        public int FishFinderIngredients;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 9999)]
-        [DefaultValue(8)]
-        public int VanitySets;
-        #endregion
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
