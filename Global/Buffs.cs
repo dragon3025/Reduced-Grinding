@@ -11,6 +11,7 @@ namespace ReducedGrinding.Global.GlobalBuffs
             if (type == BuffID.SugarRush)
             {
                 player.buffTime[buffIndex] = 2;
+                Main.buffNoSave[type] = true;
             }
         }
     }

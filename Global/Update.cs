@@ -89,7 +89,7 @@ namespace ReducedGrinding.Global
 
             #region For Each Player
 
-            bool stillQuesting = false;
+            bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
 
             for (int i = 0; i < Main.player.Length; i++)
             {
