@@ -42,9 +42,11 @@ namespace ReducedGrinding
             instantInvasion,
             travelingMerchantDiceRolls,
             timeHiddenFromInvasion,
-            chatMerchantItems
+            chatMerchantItems,
+            anglerResetTimer
         }
 
+        //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             MessageType msgType = (MessageType)reader.ReadByte();
@@ -70,6 +72,9 @@ namespace ReducedGrinding
                     break;
                 case MessageType.chatMerchantItems:
                     Global.Update.chatMerchantItems = reader.ReadBoolean();
+                    break;
+                case MessageType.anglerResetTimer:
+                    Global.Update.anglerResetTimer = reader.ReadInt32();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);

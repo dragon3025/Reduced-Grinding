@@ -20,6 +20,15 @@ namespace ReducedGrinding.Global
                 rewardItems.Add(coin);
             }
             #endregion
+
+            Global.Update.anglerResetTimer = 3600;
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                ModPacket packet = Mod.GetPacket();
+                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
+                packet.Write(Global.Update.anglerResetTimer);
+                packet.Send();
+            }
         }
     }
 }

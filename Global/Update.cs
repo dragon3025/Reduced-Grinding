@@ -24,6 +24,7 @@ namespace ReducedGrinding.Global
         public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
         public static int timeHiddenFromInvasion = 0;
+        public static int anglerResetTimer = 0;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -117,17 +118,9 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                if (!stillQuesting && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
+                if (!stillQuesting && anglerResetTimer > 0 && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
                 {
-                    for (int j = 0; j <= 2; j++)
-                    {
-                        int armorType = Main.player[i].armor[j].type;
-                        if (armorType == ItemID.AnglerHat || armorType == ItemID.AnglerVest || armorType == ItemID.AnglerPants)
-                        {
-                            stillQuesting = true;
-                            break;
-                        }
-                    }
+                    stillQuesting = true;
                 }
             }
             #endregion
@@ -191,8 +184,15 @@ namespace ReducedGrinding.Global
                     {
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
                     }
-                    updatePacket = true;
                 }
+                anglerResetTimer = 0;
+                updatePacket = true;
+            }
+
+            if (anglerResetTimer > 0)
+            {
+                anglerResetTimer--;
+                updatePacket = true;
             }
             #endregion
 
@@ -207,6 +207,8 @@ namespace ReducedGrinding.Global
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
 
                     anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+
+                    anglerResetTimer = 0;
                 }
                 #endregion
             }
@@ -230,6 +232,9 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
                 packet.Write(timeHiddenFromInvasion);
+
+                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
+                packet.Write(anglerResetTimer);
 
                 sendNetMessageData = true;
 

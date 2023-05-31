@@ -225,6 +225,8 @@ Mods: {
 						Angler Quest Amount Each Day
 
 						If the Angler has more quest for the current day, he'll give another quest when all players who are wearing at least 1 piece of Angler Armor have finished their quest.
+
+						You can allow for more Angler Quest each day. Note, if there is a player that hasn't finished their quest, the Angler will wait a minute to allow for more players to finish their quest.
 						'''
 					FishCoin:
 						'''
