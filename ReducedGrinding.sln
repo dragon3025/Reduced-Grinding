@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReducedGrinding", "ReducedGrinding.csproj", "{7B1FC60F-30DC-4B1F-AEE7-90D9CBB7F8CA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "..\ExampleMod\ExampleMod.csproj", "{AA25E041-F19D-47B7-883C-8B9DBE434BCA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7B1FC60F-30DC-4B1F-AEE7-90D9CBB7F8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B1FC60F-30DC-4B1F-AEE7-90D9CBB7F8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B1FC60F-30DC-4B1F-AEE7-90D9CBB7F8CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA25E041-F19D-47B7-883C-8B9DBE434BCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA25E041-F19D-47B7-883C-8B9DBE434BCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA25E041-F19D-47B7-883C-8B9DBE434BCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA25E041-F19D-47B7-883C-8B9DBE434BCA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

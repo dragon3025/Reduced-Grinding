@@ -271,6 +271,7 @@ namespace ReducedGrinding
         #region Battle Potions
         [Header("SpawnIncreasingPotions")]
 
+        //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
         [BackgroundColor(128, 128, 128)]
         [Increment(.1f)]
         [Range(2f, 10f)]
