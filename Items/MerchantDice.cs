@@ -38,7 +38,6 @@ namespace ReducedGrinding.Items
                 if (Main.netMode == NetmodeID.Server)
                 {
                     ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString()), new Color(255, 255, 0));
-                    NetMessage.SendData(MessageID.WorldData);
                 }
                 else if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
