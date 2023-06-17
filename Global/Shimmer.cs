@@ -50,6 +50,11 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 SetTwoItemsToShimmerIntoEachOther(ItemID.ShadowChest, ItemID.ShadowKey);
             }
 
+            ItemID.Sets.ShimmerTransformToItem[ItemID.FlameTrap] = ItemID.SpearTrap;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.SpearTrap] = ItemID.SpikyBallTrap;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.SpikyBallTrap] = ItemID.SuperDartTrap;
+            ItemID.Sets.ShimmerTransformToItem[ItemID.SuperDartTrap] = ItemID.FlameTrap;
+
             SetThreeItemsToShimmerIntoEachOther(ItemID.BlueDungeonBathtub, ItemID.GreenDungeonBathtub, ItemID.PinkDungeonBathtub);
             SetThreeItemsToShimmerIntoEachOther(ItemID.BlueDungeonBed, ItemID.GreenDungeonBed, ItemID.PinkDungeonBed);
             SetThreeItemsToShimmerIntoEachOther(ItemID.BlueDungeonBookcase, ItemID.GreenDungeonBookcase, ItemID.PinkDungeonBookcase);

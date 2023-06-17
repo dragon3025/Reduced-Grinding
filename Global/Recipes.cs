@@ -9,69 +9,7 @@ namespace ReducedGrinding.GlobalRecipes
     {
         public override void AddRecipes()
         {
-            #region Infection Key Switching
-            Recipe recipe = Recipe.Create(ItemID.CrimsonKey);
-            recipe.AddIngredient(ItemID.CorruptionKey);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.CorruptionKey);
-            recipe.AddIngredient(ItemID.CrimsonKey);
-            recipe.AddTile(TileID.CrystalBall);
-            recipe.Register();
-            #endregion
-
-            #region Traps
-            recipe = Recipe.Create(ItemID.DartTrap);
-            recipe.AddIngredient(ItemID.StoneBlock);
-            recipe.AddIngredient(ItemID.PoisonDart);
-            recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.Spike);
-            recipe.AddRecipeGroup(RecipeGroupID.IronBar);
-            recipe.AddTile(TileID.BoneWelder);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.GeyserTrap);
-            recipe.AddIngredient(ItemID.StoneBlock, 50);
-            recipe.AddIngredient(ItemID.WaterBucket);
-            recipe.AddIngredient(ItemID.LivingFireBlock);
-            recipe.AddTile(TileID.HeavyWorkBench);
-            recipe.AddCondition(Condition.InUnderworldHeight);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.WoodenSpike);
-            recipe.AddIngredient(ItemID.RichMahogany);
-            recipe.AddTile(TileID.LihzahrdFurnace);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.FlameTrap);
-            recipe.AddIngredient(ItemID.LihzahrdBrick);
-            recipe.AddIngredient(ItemID.LivingFireBlock);
-            recipe.AddTile(TileID.LihzahrdFurnace);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.SpearTrap);
-            recipe.AddIngredient(ItemID.LihzahrdBrick);
-            recipe.AddIngredient(ItemID.WoodenSpike);
-            recipe.AddIngredient(ItemID.RichMahogany, 10);
-            recipe.AddTile(TileID.LihzahrdFurnace);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.SpikyBallTrap);
-            recipe.AddIngredient(ItemID.LihzahrdBrick);
-            recipe.AddIngredient(ItemID.WoodenSpike);
-            recipe.AddIngredient(ItemID.PinkGel);
-            recipe.AddTile(TileID.LihzahrdFurnace);
-            recipe.Register();
-
-            recipe = Recipe.Create(ItemID.SuperDartTrap);
-            recipe.AddIngredient(ItemID.LihzahrdBrick);
-            recipe.AddIngredient(ItemID.PoisonDart);
-            recipe.AddTile(TileID.LihzahrdAltar);
-            recipe.Register();
-            #endregion
+            Recipe recipe;
 
             #region Other
             if (GetInstance<IOtherConfig>().CraftableUniversalPylon > 0)

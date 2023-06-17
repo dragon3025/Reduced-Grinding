@@ -253,15 +253,14 @@ namespace ReducedGrinding.Global
             if (advanceMoonPhase)
             {
                 advanceMoonPhase = false;
-                Main.moonPhase++;
-                if (Main.moonPhase >= 8)
-                {
-                    Main.moonPhase = 0;
-                }
 
-                if (Main.bloodMoon && Main.moonPhase == 4)
+                if (!(Main.bloodMoon && Main.moonPhase == 3))
                 {
-                    Main.bloodMoon = false;
+                    Main.moonPhase++;
+                    if (Main.moonPhase >= 8)
+                    {
+                        Main.moonPhase = 0;
+                    }
                 }
 
                 if (Main.netMode == NetmodeID.Server)
