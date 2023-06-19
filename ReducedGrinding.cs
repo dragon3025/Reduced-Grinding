@@ -41,7 +41,6 @@ namespace ReducedGrinding
             dayTime,
             instantInvasion,
             travelingMerchantDiceRolls,
-            timeHiddenFromInvasion,
             chatMerchantItems,
             anglerResetTimer
         }
@@ -66,9 +65,6 @@ namespace ReducedGrinding
                     break;
                 case MessageType.travelingMerchantDiceRolls:
                     Global.Update.travelingMerchantDiceRolls = reader.ReadInt32();
-                    break;
-                case MessageType.timeHiddenFromInvasion:
-                    Global.Update.timeHiddenFromInvasion = reader.ReadInt32();
                     break;
                 case MessageType.chatMerchantItems:
                     Global.Update.chatMerchantItems = reader.ReadBoolean();

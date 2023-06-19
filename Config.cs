@@ -347,6 +347,12 @@ namespace ReducedGrinding
         [DefaultValue(0)]
         public int CrateEnchantedSundial;
 
+        [BackgroundColor(128, 128, 128)]
+        [Range(1f, 10f)]
+        [Increment(0.5f)]
+        [DefaultValue(1f)]
+        public float EnchantedDialMultiplier;
+
         #region Traveling Merchant
         [Header("TravelingMerchant")]
 
@@ -391,16 +397,22 @@ namespace ReducedGrinding
         [Header("SleepTimeRate")]
 
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(0)]
-        public int SleepRateIncreasePreHardmode;
+        [Range(1f, 10f)]
+        [Increment(0.5f)]
+        [DefaultValue(1f)]
+        public float SleepRateMultiplierPreHardmode;
 
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(0)]
-        public int SleepRateIncreaseHardmode;
+        [Range(1f, 10f)]
+        [Increment(0.5f)]
+        [DefaultValue(1f)]
+        public float SleepRateMultiplierHardmode;
 
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(0)]
-        public int SleepRateIncreasePostPlantera;
+        [Range(1f, 10f)]
+        [Increment(0.5f)]
+        [DefaultValue(1f)]
+        public float SleepRateMultiplierPostPlantera;
         #endregion
 
         #region Other

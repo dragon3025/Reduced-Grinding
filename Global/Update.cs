@@ -28,44 +28,36 @@ namespace ReducedGrinding.Global
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
-            if (CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled)
+            float rateMultiplier = 1f;
+            if (otherConfig.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
             {
-                return;
+                rateMultiplier *= otherConfig.EnchantedDialMultiplier;
             }
 
-            if (!(Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount && Main.CurrentFrameFlags.SleepingPlayersCount > 0))
+            if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled &&
+                Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount &&
+                Main.CurrentFrameFlags.SleepingPlayersCount > 0)
             {
-                return;
-            }
+                float sleepMultiplier = NPC.downedPlantBoss ? otherConfig.SleepRateMultiplierPostPlantera : Main.hardMode ? otherConfig.SleepRateMultiplierHardmode : otherConfig.SleepRateMultiplierPreHardmode;
 
-            int timeIncrease = NPC.downedPlantBoss ? otherConfig.SleepRateIncreasePostPlantera : Main.hardMode ? otherConfig.SleepRateIncreaseHardmode : otherConfig.SleepRateIncreasePreHardmode;
-
-            if (timeIncrease < 1)
-            {
-                return;
-            }
-
-            for (int i = 0; i < 255; i++)
-            {
-                if (!Main.player[i].active)
+                if (sleepMultiplier >= 1f)
                 {
-                    continue;
+                    rateMultiplier *= sleepMultiplier;
                 }
-
-                Main.player[i].taxTimer -= timeIncrease;
             }
 
-            timeRate += timeIncrease;
-            tileUpdateRate += timeIncrease;
-            eventUpdateRate += timeIncrease;
+            if (rateMultiplier > 1f)
+            {
+                timeRate *= rateMultiplier;
+                tileUpdateRate *= rateMultiplier;
+                eventUpdateRate *= rateMultiplier;
+            }
         }
 
         public override void PostUpdateTime()
         {
             bool updatePacket = false;
             bool sendNetMessageData = false;
-
-            int time = (int)Main.time;
 
             if (instantInvasion)
             {
@@ -77,14 +69,11 @@ namespace ReducedGrinding.Global
             bool allPlayersHiddenFromInvasion = false;
             int invasionType = Main.invasionType;
 
-            if (time % 60 == 0)
+            if (otherConfig.CancelInvasionsIfAllPlayersAreHidden)
             {
-                if (otherConfig.CancelInvasionsIfAllPlayersAreHidden)
+                if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
                 {
-                    if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                    {
-                        allPlayersHiddenFromInvasion = true;
-                    }
+                    allPlayersHiddenFromInvasion = true;
                 }
             }
 
@@ -101,20 +90,9 @@ namespace ReducedGrinding.Global
 
                 if (allPlayersHiddenFromInvasion)
                 {
-                    if (!Main.player[i].HasBuff(BuffID.Invisibility))
+                    if (!Main.player[i].ZoneUnderworldHeight)
                     {
-                        if (Main.remixWorld)
-                        {
-                            allPlayersHiddenFromInvasion = false;
-                        }
-                        else
-                        {
-                            Point playerPosition = Main.player[i].Center.ToTileCoordinates();
-                            if (playerPosition.Y <= Main.worldSurface + 67.5f)
-                            {
-                                allPlayersHiddenFromInvasion = false;
-                            }
-                        }
+                        allPlayersHiddenFromInvasion = false;
                     }
                 }
 
@@ -126,45 +104,42 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region InvasionModifying
-            if (time % 60 == 0)
+            if (allPlayersHiddenFromInvasion)
             {
-                if (allPlayersHiddenFromInvasion)
+                if (timeHiddenFromInvasion == 0)
                 {
-                    if (timeHiddenFromInvasion == 0)
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone, and will soon leave."), new Color(255, 255, 0));
-                        }
-                        else if (Main.netMode == NetmodeID.SinglePlayer)
-                        {
-                            Main.NewText("The invasion can't find anyone, and will soon leave.", new Color(255, 255, 0));
-                        }
-                    }
-                    timeHiddenFromInvasion++;
-                    updatePacket = true;
-                }
-                else if (timeHiddenFromInvasion > 0)
-                {
-                    timeHiddenFromInvasion--;
-                    updatePacket = true;
-                }
-
-                if (timeHiddenFromInvasion >= 20 && Main.invasionX == Main.spawnTileX)
-                {
-                    Main.invasionType = InvasionID.None;
                     if (Main.netMode == NetmodeID.Server)
                     {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone, and will soon leave."), new Color(255, 255, 0));
                     }
                     else if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
+                        Main.NewText("The invasion can't find anyone, and will soon leave.", new Color(255, 255, 0));
                     }
-
-                    timeHiddenFromInvasion = 0;
-                    updatePacket = true;
                 }
+                timeHiddenFromInvasion++;
+            }
+            else if (timeHiddenFromInvasion > 0)
+            {
+                timeHiddenFromInvasion--;
+            }
+
+            GetInstance<ReducedGrinding>().Logger.Debug("timeHiddenFromInvasion: " + timeHiddenFromInvasion.ToString());
+
+            if (timeHiddenFromInvasion >= 1200 && Main.invasionX == Main.spawnTileX)
+            {
+                GetInstance<ReducedGrinding>().Logger.Debug("Canceling invasion.");
+                Main.invasionType = InvasionID.None;
+                sendNetMessageData = true;
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
+                }
+                else if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
+                }
+                timeHiddenFromInvasion = 0;
             }
 
             #endregion
@@ -229,9 +204,6 @@ namespace ReducedGrinding.Global
 
                 packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                 packet.Write(travelingMerchantDiceRolls);
-
-                packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
-                packet.Write(timeHiddenFromInvasion);
 
                 packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
                 packet.Write(anglerResetTimer);
