@@ -419,12 +419,7 @@ Mods: {
 						For a limited amount of times per day, you can use this to re-roll the Traveling Merchant shop. The Traveling Merchant will only sell it if it's set higher than 0.
 						'''
 					Crafting: Crafting
-					SleepTimeRate:
-						'''
-						Sleeping Time Rate Multiplier
-
-						In vanilla, sleeping multiplies the time rate by 5; afterward it will be multiplied by this amount.
-						'''
+					EnchantedDialsAndSleep: Enchanted Dials and Sleeping
 					Other: Other
 				}
 
@@ -513,19 +508,13 @@ Mods: {
 						'''
 				}
 
-				SleepRateMultiplierPreHardmode: {
-					Label: Pre-Hardmode
-					Tooltip: ""
-				}
-
-				SleepRateMultiplierHardmode: {
-					Label: Hardmode
-					Tooltip: ""
-				}
-
-				SleepRateMultiplierPostPlantera: {
-					Label: Post-Plantera
-					Tooltip: ""
+				SleepRateMultiplier: {
+					Label: Sleep Time Rate Multiplier
+					Tooltip:
+						'''
+						In vanilla, sleeping multiplies the time rate by 5;
+						afterward it will be multiplied by this amount.
+						'''
 				}
 
 				AdjustItemValuesForDropIncreases: {

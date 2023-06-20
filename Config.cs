@@ -343,6 +343,8 @@ namespace ReducedGrinding
         [DefaultValue(75)]
         public int TerragrimChestChance;
 
+        [Header("EnchantedDialsAndSleep")]
+
         [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         [DefaultValue(0)]
@@ -358,6 +360,12 @@ namespace ReducedGrinding
         [Range(0, 7)]
         [DefaultValue(7)]
         public int EnchantedDialCooldown;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(1f, 20f)]
+        [Increment(0.5f)]
+        [DefaultValue(1f)]
+        public float SleepRateMultiplier;
 
         #region Traveling Merchant
         [Header("TravelingMerchant")]
@@ -397,28 +405,6 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
-        #endregion 
-
-        #region Sleep Time Rate
-        [Header("SleepTimeRate")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1f, 20f)]
-        [Increment(0.5f)]
-        [DefaultValue(1f)]
-        public float SleepRateMultiplierPreHardmode;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1f, 20f)]
-        [Increment(0.5f)]
-        [DefaultValue(1f)]
-        public float SleepRateMultiplierHardmode;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1f, 20f)]
-        [Increment(0.5f)]
-        [DefaultValue(1f)]
-        public float SleepRateMultiplierPostPlantera;
         #endregion
 
         #region Other

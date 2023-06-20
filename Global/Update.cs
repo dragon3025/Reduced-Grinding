@@ -38,11 +38,9 @@ namespace ReducedGrinding.Global
                 Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount &&
                 Main.CurrentFrameFlags.SleepingPlayersCount > 0)
             {
-                float sleepMultiplier = NPC.downedPlantBoss ? otherConfig.SleepRateMultiplierPostPlantera : Main.hardMode ? otherConfig.SleepRateMultiplierHardmode : otherConfig.SleepRateMultiplierPreHardmode;
-
-                if (sleepMultiplier >= 1f)
+                if (otherConfig.SleepRateMultiplier >= 1f)
                 {
-                    rateMultiplier *= sleepMultiplier;
+                    rateMultiplier *= otherConfig.SleepRateMultiplier;
                 }
             }
 
