@@ -251,7 +251,8 @@ namespace ReducedGrinding
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         #region Regular
-        [DefaultValue(true)]
+        [BackgroundColor(128, 128, 128)]
+        [DefaultValue(false)]
         public bool MoonBall;
 
         [DefaultValue(true)]
@@ -273,36 +274,36 @@ namespace ReducedGrinding
 
         //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
         [BackgroundColor(128, 128, 128)]
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(2f, 10f)]
         [DefaultValue(2f)]
         public float BattlePotionMaxSpawnsMultiplier;
 
         [BackgroundColor(128, 128, 128)]
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(2f, 10f)]
         [DefaultValue(2f)]
         public float BattlePotionSpawnrateMultiplier;
         [Header("GreaterBattlePotion")]
 
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(1f, 10f)]
         [DefaultValue(3f)]
         public float GreaterBattlePotionMaxSpawnsMultiplier;
 
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float GreaterBattlePotionSpawnrateMultiplier;
 
         [Header("SuperBattlePotion")]
 
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(1f, 10f)]
         [DefaultValue(4f)]
         public float SuperBattlePotionMaxSpawnsMultiplier;
 
-        [Increment(.1f)]
+        [Increment(.5f)]
         [Range(1f, 10f)]
         [DefaultValue(8f)]
         public float SuperBattlePotionSpawnrateMultiplier;
@@ -348,10 +349,15 @@ namespace ReducedGrinding
         public int CrateEnchantedSundial;
 
         [BackgroundColor(128, 128, 128)]
-        [Range(1f, 10f)]
+        [Range(1f, 20f)]
         [Increment(0.5f)]
         [DefaultValue(1f)]
         public float EnchantedDialMultiplier;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 7)]
+        [DefaultValue(7)]
+        public int EnchantedDialCooldown;
 
         #region Traveling Merchant
         [Header("TravelingMerchant")]
@@ -391,25 +397,25 @@ namespace ReducedGrinding
         [Range(0, 3)]
         [DefaultValue(1)]
         public int CraftableUniversalPylon;
-        #endregion
+        #endregion 
 
         #region Sleep Time Rate
         [Header("SleepTimeRate")]
 
         [BackgroundColor(128, 128, 128)]
-        [Range(1f, 10f)]
+        [Range(1f, 20f)]
         [Increment(0.5f)]
         [DefaultValue(1f)]
         public float SleepRateMultiplierPreHardmode;
 
         [BackgroundColor(128, 128, 128)]
-        [Range(1f, 10f)]
+        [Range(1f, 20f)]
         [Increment(0.5f)]
         [DefaultValue(1f)]
         public float SleepRateMultiplierHardmode;
 
         [BackgroundColor(128, 128, 128)]
-        [Range(1f, 10f)]
+        [Range(1f, 20f)]
         [Increment(0.5f)]
         [DefaultValue(1f)]
         public float SleepRateMultiplierPostPlantera;

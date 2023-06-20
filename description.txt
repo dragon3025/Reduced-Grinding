@@ -4,12 +4,11 @@ Reduced Grinding
 
 Open Source at GitHub. Report issues there or at home page.
 
-This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum or wiki page).
+This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the tModLoader Wiki):
 
 - Increased item chances for a few enemy drops.
 - Item values scale to new drop rates by default.
 - Angler Quest per day gradually increases from game progression. Has a short cooldown that may conditionally increase to give all anglers a chance.
-- Moonball to advance Moon Phase (requires Meteorite).
 - Greater + Super Battle Potion to increase enemy spawns.
 - Items that activate Christmas and Halloween for the current day (crafted during their matching season).
 - Cancel Invasions when all players are invisible. Also works when players are underground in a non-"Don't Dig Up" world.
@@ -18,8 +17,9 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 ====OFF BY DEFAULT====
 
 - Configurations for changing even more enemy drop chances.
+- Configurations for Bed + Enchanted Dial time rate and Enchanted Dial cooldown.
 - Potion for increasing fishing bobber amount.
 - Fishing Coins when finishing Quests, to purchase items from the Fish Merchant.
 - Reduce Bestiary requirement for Universal Pylon.
 - Staff of Difficulty. Changes difficulty settings.
-- Faster time flow while sleeping.
+- Moonball to advance Moon Phase.

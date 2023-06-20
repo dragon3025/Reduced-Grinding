@@ -450,12 +450,17 @@ Mods: {
 				}
 
 				EnchantedDialMultiplier: {
-					Label: "[i:5381] Enchanted Dial Multiplier"
+					Label: Enchanted Dial Time Rate Multiplier
 					Tooltip:
 						'''
-						An extra timerate multiplier when using the Enchanted
-						Sundial / Moondial. Set to 1 to disable.
+						In vanilla, enchanted dials multiplies the time rate by 60;
+						afterward it will be multiplied by this amount.
 						'''
+				}
+
+				EnchantedDialCooldown: {
+					Label: Enchanted Dial Cooldown
+					Tooltip: Vanilla default: 7.
 				}
 
 				TravelingMerchantChatsItems: {

@@ -59,6 +59,22 @@ namespace ReducedGrinding.Global
             bool updatePacket = false;
             bool sendNetMessageData = false;
 
+            int cooldownMax = otherConfig.EnchantedDialCooldown;
+            if (Main.IsFastForwardingTime())
+            {
+                cooldownMax++;
+            }
+            if (Main.sundialCooldown > cooldownMax)
+            {
+                Main.sundialCooldown = cooldownMax;
+                sendNetMessageData = true;
+            }
+            if (Main.moondialCooldown > cooldownMax)
+            {
+                Main.moondialCooldown = cooldownMax;
+                sendNetMessageData = true;
+            }
+
             if (instantInvasion)
             {
                 Main.invasionX = Main.spawnTileX;
@@ -124,11 +140,8 @@ namespace ReducedGrinding.Global
                 timeHiddenFromInvasion--;
             }
 
-            GetInstance<ReducedGrinding>().Logger.Debug("timeHiddenFromInvasion: " + timeHiddenFromInvasion.ToString());
-
             if (timeHiddenFromInvasion >= 1200 && Main.invasionX == Main.spawnTileX)
             {
-                GetInstance<ReducedGrinding>().Logger.Debug("Canceling invasion.");
                 Main.invasionType = InvasionID.None;
                 sendNetMessageData = true;
                 if (Main.netMode == NetmodeID.Server)
