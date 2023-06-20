@@ -261,6 +261,9 @@ namespace ReducedGrinding
         [DefaultValue(true)]
         public bool BestiaryTrophy;
 
+        [DefaultValue(true)]
+        public bool WorldPeaceStandard;
+
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;

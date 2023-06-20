@@ -23,7 +23,6 @@ namespace ReducedGrinding.Global
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
         public static bool instantInvasion = false;
-        public static int timeHiddenFromInvasion = 0;
         public static int anglerResetTimer = 0;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
@@ -80,34 +79,20 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
-            bool allPlayersHiddenFromInvasion = false;
-            int invasionType = Main.invasionType;
-
-            if (otherConfig.CancelInvasionsIfAllPlayersAreHidden)
-            {
-                if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                {
-                    allPlayersHiddenFromInvasion = true;
-                }
-            }
-
             #region For Each Player
 
             bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
 
             for (int i = 0; i < Main.player.Length; i++)
             {
+                if (stillQuesting)
+                {
+                    break;
+                }
+
                 if (!Main.player[i].active)
                 {
                     continue;
-                }
-
-                if (allPlayersHiddenFromInvasion)
-                {
-                    if (!Main.player[i].ZoneUnderworldHeight)
-                    {
-                        allPlayersHiddenFromInvasion = false;
-                    }
                 }
 
                 if (!stillQuesting && anglerResetTimer > 0 && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
@@ -115,44 +100,6 @@ namespace ReducedGrinding.Global
                     stillQuesting = true;
                 }
             }
-            #endregion
-
-            #region InvasionModifying
-            if (allPlayersHiddenFromInvasion)
-            {
-                if (timeHiddenFromInvasion == 0)
-                {
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone, and will soon leave."), new Color(255, 255, 0));
-                    }
-                    else if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        Main.NewText("The invasion can't find anyone, and will soon leave.", new Color(255, 255, 0));
-                    }
-                }
-                timeHiddenFromInvasion++;
-            }
-            else if (timeHiddenFromInvasion > 0)
-            {
-                timeHiddenFromInvasion--;
-            }
-
-            if (timeHiddenFromInvasion >= 1200 && Main.invasionX == Main.spawnTileX)
-            {
-                Main.invasionType = InvasionID.None;
-                sendNetMessageData = true;
-                if (Main.netMode == NetmodeID.Server)
-                {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
-                }
-                else if (Main.netMode == NetmodeID.SinglePlayer)
-                {
-                    Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
-                }
-                timeHiddenFromInvasion = 0;
-            }
-
             #endregion
 
             #region Angler

@@ -405,6 +405,11 @@ Mods: {
 					Label: "[i:ReducedGrinding/BestiaryTrophy] Bestiary Trophy"
 					Tooltip: ""
 				}
+
+				WorldPeaceStandard: {
+					Label: "[i:ReducedGrinding/WorldPeaceStandard] World Peace Standard"
+					Tooltip: Cancels invasions
+				}
 			}
 
 			IOtherConfig: {
@@ -681,6 +686,11 @@ Mods: {
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
 				Tooltip: A creative tool that switches the difficulty modes
+			}
+
+			WorldPeaceStandard: {
+				DisplayName: World Peace Standard
+				Tooltip: Cancels invasions.
 			}
 		}
 
