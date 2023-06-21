@@ -184,13 +184,10 @@ namespace ReducedGrinding.Global
             {
                 advanceMoonPhase = false;
 
-                if (!(Main.bloodMoon && Main.moonPhase == 3))
+                Main.moonPhase++;
+                if (Main.moonPhase >= 8)
                 {
-                    Main.moonPhase++;
-                    if (Main.moonPhase >= 8)
-                    {
-                        Main.moonPhase = 0;
-                    }
+                    Main.moonPhase = 0;
                 }
 
                 if (Main.netMode == NetmodeID.Server)
@@ -202,6 +199,7 @@ namespace ReducedGrinding.Global
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
+
             if (chatMerchantItems)
             {
                 string itemList = "";

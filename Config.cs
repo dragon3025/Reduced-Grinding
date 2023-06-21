@@ -253,7 +253,7 @@ namespace ReducedGrinding
         #region Regular
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
-        public bool MoonBall;
+        public bool MoonWatch;
 
         [DefaultValue(true)]
         public bool SlimeTrophy;

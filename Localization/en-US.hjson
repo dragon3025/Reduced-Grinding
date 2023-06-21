@@ -312,14 +312,9 @@ Mods: {
 						'''
 				}
 
-				MoonBall: {
-					Label: "[i:ReducedGrinding/MoonBall] Moon Ball"
-					Tooltip:
-						'''
-						Advances the moon phase and will stop the Blood Moon when
-						advancing to a new moon.Set to false to disable the recipe.
-						Available after a Meteor.
-						'''
+				MoonWatch: {
+					Label: "[i:ReducedGrinding/MoonWatch] Moon Watch"
+					Tooltip: Advances the Moon Phase. Set to false to disable the recipe.
 				}
 
 				SlimeTrophy: {
@@ -658,8 +653,8 @@ Mods: {
 				Tooltip: ""
 			}
 
-			MoonBall: {
-				DisplayName: Moon Ball
+			MoonWatch: {
+				DisplayName: Moon Watch
 				Tooltip: Advances the Moon Phase
 			}
 
