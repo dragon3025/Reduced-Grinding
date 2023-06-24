@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
@@ -35,86 +34,112 @@ namespace ReducedGrinding.Items
 
         public override bool? UseItem(Player player)
         {
-            string text;
-            int difficultyChanges = 0;
-            Color textColor = new();
-
-            changeDifficulty: { }
-
-            if (difficultyChanges < 4)
+            static void changeDifficulty()
             {
-                switch (Main.GameMode)
+                if (Main.GameMode == 3)
                 {
-                    case 0:
-                        Main.GameMode = 1;
-                        difficultyChanges++;
-                        if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
-                        {
-                            goto changeDifficulty;
-                        }
+                    Main.GameMode = 0;
+                }
+                else
+                {
+                    Main.GameMode++;
+                }
+                GetInstance<ReducedGrinding>().Logger.Debug("Changed Game Mode to: " + Main.GameMode.ToString());
+            }
 
-                        player.difficulty = 0;
-                        text = "Expert mode is now enabled!";
-                        textColor = new Color(255, 179, 0);
-                        break;
-                    case 1:
-                        Main.GameMode = 2;
-                        difficultyChanges++;
-                        if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
-                        {
-                            goto changeDifficulty;
-                        }
+            int startingDifficulty = Main.GameMode;
+            if (Main.netMode != NetmodeID.MultiplayerClient)
+            {
+                string text = "";
+                Color textColor = new();
+                bool finishedDifficultyChange = false;
 
-                        player.difficulty = 0;
-                        text = "Master mode is now enabled!";
-                        textColor = new Color(255, 0, 0);
-                        break;
-
-                    case 2:
-                        Main.GameMode = 3;
-                        difficultyChanges++;
-                        if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyJourney)
-                        {
-                            goto changeDifficulty;
-                        }
-
-                        player.difficulty = 3;
-                        text = "Journey mode is now enabled!";
-                        textColor = new Color(255, 127, 255);
-                        break;
-
-                    default:
-                        Main.GameMode = 0;
-                        difficultyChanges++;
-                        if (!GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
-                        {
-                            goto changeDifficulty;
-                        }
-
-                        player.difficulty = 0;
-                        text = "Normal mode is now enabled!";
-                        textColor = new Color(255, 255, 255);
-                        break;
+                while (!finishedDifficultyChange)
+                {
+                    switch (Main.GameMode)
+                    {
+                        case 0:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Expert mode is now enabled!";
+                                textColor = new Color(255, 179, 0);
+                                changeDifficulty();
+                            }
+                            break;
+                        case 1:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Master mode is now enabled!";
+                                textColor = new Color(255, 0, 0);
+                                changeDifficulty();
+                            }
+                            break;
+                        case 2:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyJourney)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Journey mode is now enabled!";
+                                textColor = new Color(255, 127, 255);
+                                changeDifficulty();
+                            }
+                            break;
+                        default:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Normal mode is now enabled!";
+                                textColor = new Color(255, 255, 255);
+                                changeDifficulty();
+                            }
+                            break;
+                    }
+                    if (Main.GameMode == startingDifficulty)
+                    {
+                        finishedDifficultyChange = true;
+                    }
                 }
 
-                SoundEngine.PlaySound(SoundID.Item4, player.Center);
-            }
-            else
-            {
-                text = "The configuration isn't allowing you to change to any difficulty mode.";
-                textColor = new Color(255, 0, 0);
+                if (Main.GameMode != startingDifficulty)
+                {
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(text, textColor);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), textColor);
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
+                }
             }
 
-            if (Main.netMode == NetmodeID.SinglePlayer)
+            if (Main.GameMode == startingDifficulty && player.whoAmI == Main.myPlayer)
             {
-                Main.NewText(text, textColor);
+                Main.NewText("Staff of Difficulty configurations aren't letting you change to any difficulty.", new Color(255, 128, 128));
             }
-            else if (Main.netMode == NetmodeID.Server)
+            else if (Main.GameMode != startingDifficulty && Main.netMode != NetmodeID.MultiplayerClient)
             {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), textColor);
-                if (difficultyChanges < 4)
+                for (int i = 0; i < Main.player.Length; i++)
                 {
-                    NetMessage.SendData(MessageID.WorldData);
+                    if (!Main.player[i].active)
+                    {
+                        continue;
+                    }
+
+                    if (Main.player[i].difficulty == PlayerDifficultyID.Creative && Main.GameMode != GameModeID.Creative)
+                    {
+                        Main.player[i].difficulty = PlayerDifficultyID.SoftCore;
+                    }
+                    else if (Main.player[i].difficulty != PlayerDifficultyID.Creative && Main.GameMode == GameModeID.Creative)
+                    {
+                        Main.player[i].difficulty = PlayerDifficultyID.Creative;
+                    }
+                }
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    NetMessage.SendData(MessageID.SyncPlayer);
                 }
             }
 

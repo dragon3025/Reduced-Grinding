@@ -38,7 +38,7 @@ namespace ReducedGrinding.Items
         {
             if (Main.bloodMoon)
             {
-                return false;
+                Main.NewText("The Moon Watch doesn't work during the Blood Moon.", 255, 127, 127);
             }
 
             if (player.whoAmI == Main.myPlayer)

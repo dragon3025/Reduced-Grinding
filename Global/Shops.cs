@@ -1,7 +1,10 @@
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Chat;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -11,6 +14,10 @@ namespace ReducedGrinding.Global
     {
         public override void GetChat(NPC npc, ref string chat)
         {
+            GetInstance<ReducedGrinding>().Logger.Debug("Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString());
+            Main.NewText("(NewText) Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString());
+            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("(Broadcast) Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString()), new Color());
+
             Player player = Main.LocalPlayer;
             if (npc.type == NPCID.Angler)
             {
@@ -50,22 +57,26 @@ namespace ReducedGrinding.Global
                     if (fishMerchantExist != true)
                     {
                         int newFishMerchant = NPC.NewNPC(Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, fishMerchantID, 1);
-                        NPC fishMerchant = Main.npc[newFishMerchant];
-                        fishMerchant.homeless = true;
-                        fishMerchant.direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
-                        fishMerchant.netUpdate = true;
+                        Main.npc[newFishMerchant].whoAmI = newFishMerchant;
+                        Main.npc[newFishMerchant].homeless = true;
+                        Main.npc[newFishMerchant].direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
+                        Main.npc[newFishMerchant].netUpdate = true;
+                        if (Main.netMode == NetmodeID.MultiplayerClient)
+                        {
+                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, newFishMerchant);
+                        }
                     }
 
                     for (int i = 0; i < Main.npc.Length; i++)
                     {
                         if (Main.npc[i].type == fishMerchantID)
                         {
-                            if (Main.npc[i].Distance(Main.npc[anglerNPC].position) > 500)
+                            if (Main.npc[i].Distance(Main.npc[anglerNPC].position) > 0) //500) TO-DO TEMPORARY
                             {
                                 Main.npc[i].position = Main.npc[anglerNPC].position;
                                 if (Main.netMode == NetmodeID.MultiplayerClient)
                                 {
-                                    NetMessage.SendData(MessageID.WorldData);
+                                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
                                 }
                             }
                             break;
@@ -161,24 +172,21 @@ namespace ReducedGrinding.Global
 
         public override void SetupTravelShop(int[] shop, ref int nextSlot)
         {
-            bool sellMerchantDice = false;
+            bool sellMerchantDice;
             if (Main.hardMode)
             {
                 if (NPC.downedPlantBoss)
                 {
-                    if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera > 0)
-                    {
-                        sellMerchantDice = true;
-                    }
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera > 0;
                 }
-                else if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode > 0)
+                else
                 {
-                    sellMerchantDice = true;
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode > 0;
                 }
             }
-            else if (GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode > 0)
+            else
             {
-                sellMerchantDice = true;
+                sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode > 0;
             }
 
             if (sellMerchantDice)
@@ -187,19 +195,22 @@ namespace ReducedGrinding.Global
                 nextSlot++;
             }
 
-            if (!GetInstance<IOtherConfig>().TravelingMerchantChatsItems)
+            if (Main.netMode == NetmodeID.Server)
             {
-                return;
+                NetMessage.SendData(MessageID.TravelMerchantItems);
             }
 
-            Update.chatMerchantItems = true;
-
-            if (Main.netMode == NetmodeID.MultiplayerClient)
+            if (GetInstance<IOtherConfig>().TravelingMerchantChatsItems)
             {
-                ModPacket packet = Mod.GetPacket();
-                packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
-                packet.Write(Update.chatMerchantItems);
-                packet.Send();
+                Update.chatMerchantItems = true;
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
+                    packet.Write(Update.chatMerchantItems);
+                    packet.Send();
+                }
             }
         }
     }

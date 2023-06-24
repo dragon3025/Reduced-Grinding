@@ -29,29 +29,49 @@ namespace ReducedGrinding.Items
             Item.consumable = false;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            for (int i = 0; i < Main.npc.Length; i++)
+            {
+                if (!Main.npc[i].active)
+                {
+                    continue;
+                }
+
+                if (Main.npc[i].type == NPCID.TravellingMerchant)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public override bool? UseItem(Player player)
         {
             if (Global.Update.travelingMerchantDiceRolls > 0)
             {
-                Chest.SetupTravelShop();
-                Global.Update.travelingMerchantDiceRolls--;
-                if (Main.netMode == NetmodeID.Server)
+                if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString()), new Color(255, 255, 0));
-                }
-                else if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    ModPacket packet = Mod.GetPacket();
-                    packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
-                    packet.Write(Global.Update.travelingMerchantDiceRolls);
-                    packet.Send();
-                }
-                else
-                {
-                    Main.NewText("Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString(), 255, 255, 0);
+                    Global.Update.travelingMerchantDiceRolls--;
+                    Chest.SetupTravelShop();
+                    string reRollsLeft = "Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString();
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(reRollsLeft, 255, 255, 0);
+                    }
+                    else
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(reRollsLeft), new Color(255, 255, 0));
+
+                        ModPacket packet = Mod.GetPacket();
+                        packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
+                        packet.Write(Global.Update.travelingMerchantDiceRolls);
+                        packet.Send();
+                    }
                 }
             }
-            else
+            else if (player.whoAmI == Main.myPlayer)
             {
                 Main.NewText("You have no more re-rolls left.", 255, 127, 127);
             }

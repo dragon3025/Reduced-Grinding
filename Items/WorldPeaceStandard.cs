@@ -37,16 +37,21 @@ namespace ReducedGrinding.Items
 
         public override bool? UseItem(Player player)
         {
-            Main.invasionType = InvasionID.None;
-            if (Main.netMode == NetmodeID.Server)
+            if (Main.netMode != NetmodeID.MultiplayerClient)
             {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion left."), new Color(255, 255, 0));
+                Main.invasionType = InvasionID.None;
+
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText("The invasion left.", new Color(255, 255, 0));
+                }
+                else
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion left."), new Color(255, 255, 0));
+                    NetMessage.SendData(MessageID.WorldData);
+                }
             }
-            else if (Main.netMode == NetmodeID.SinglePlayer)
-            {
-                Main.NewText("The invasion left.", new Color(255, 255, 0));
-            }
-            NetMessage.SendData(MessageID.WorldData);
+
             return true;
         }
 

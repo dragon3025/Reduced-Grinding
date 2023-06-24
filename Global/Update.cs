@@ -232,7 +232,6 @@ namespace ReducedGrinding.Global
                     packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
                     packet.Write(chatMerchantItems);
                     packet.Send();
-                    NetMessage.SendData(MessageID.WorldData);
                 }
             }
         }

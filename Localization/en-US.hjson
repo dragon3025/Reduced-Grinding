@@ -680,7 +680,7 @@ Mods: {
 
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
-				Tooltip: A creative tool that switches the difficulty modes
+				Tooltip: A creative tool that switches the difficulty modes. This may also change player difficulty to match the new world difficulty.
 			}
 
 			WorldPeaceStandard: {
