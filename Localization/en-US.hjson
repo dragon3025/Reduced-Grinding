@@ -376,11 +376,6 @@ Mods: {
 					Tooltip: ""
 				}
 
-				StaffOfDifficultyJourney: {
-					Label: Enable Switching to Journey
-					Tooltip: ""
-				}
-
 				StaffOfDifficultyNormal: {
 					Label: Enable Switching to Normal
 					Tooltip: ""
@@ -680,7 +675,7 @@ Mods: {
 
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
-				Tooltip: A creative tool that switches the difficulty modes. This may also change player difficulty to match the new world difficulty.
+				Tooltip: A creative tool that switches the difficulty modes. This will only switch to modes that are enabled in the configuration settings.
 			}
 
 			WorldPeaceStandard: {

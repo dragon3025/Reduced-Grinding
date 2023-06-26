@@ -20,8 +20,10 @@ namespace ReducedGrinding.Global
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
         public static bool chatMerchantItems = false;
 
+
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
+        public static bool advanceDifficulty = false;
         public static bool instantInvasion = false;
         public static int anglerResetTimer = 0;
 
@@ -195,6 +197,81 @@ namespace ReducedGrinding.Global
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.advanceMoonPhase);
                     packet.Write(advanceMoonPhase);
+                    packet.Send();
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
+
+            if (advanceDifficulty)
+            {
+                advanceDifficulty = false;
+
+                int difficultyOld = Main.GameMode;
+                int difficultyNew = difficultyOld;
+
+                string text = "";
+                Color textColor = new();
+                bool finishedDifficultyChange = false;
+
+                while (!finishedDifficultyChange)
+                {
+                    switch (Main.GameMode)
+                    {
+                        case 0:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Expert mode is now enabled!";
+                                textColor = new Color(255, 179, 0);
+                            }
+                            break;
+                        case 1:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Master mode is now enabled!";
+                                textColor = new Color(255, 0, 0);
+                            }
+                            break;
+                        default:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "Journey mode is now enabled!";
+                                textColor = new Color(255, 127, 255);
+                            }
+                            break;
+                    }
+                    difficultyNew++;
+                    if (difficultyNew > 2)
+                    {
+                        difficultyNew = 0;
+                    }
+                    if (difficultyNew == difficultyOld)
+                    {
+                        finishedDifficultyChange = true;
+                    }
+                }
+
+                if (difficultyNew != difficultyOld)
+                {
+                    Main.GameMode = difficultyNew;
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(text, textColor);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), textColor);
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
+                }
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.advanceDifficulty);
+                    packet.Write(advanceDifficulty);
                     packet.Send();
                     NetMessage.SendData(MessageID.WorldData);
                 }

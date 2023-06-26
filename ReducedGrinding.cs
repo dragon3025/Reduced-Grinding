@@ -37,6 +37,7 @@ namespace ReducedGrinding
         internal enum MessageType : byte
         {
             advanceMoonPhase,
+            advanceDifficulty,
             anglerQuests,
             dayTime,
             instantInvasion,
@@ -53,6 +54,9 @@ namespace ReducedGrinding
             {
                 case MessageType.advanceMoonPhase:
                     Global.Update.advanceMoonPhase = reader.ReadBoolean();
+                    break;
+                case MessageType.advanceDifficulty:
+                    Global.Update.advanceDifficulty = reader.ReadBoolean();
                     break;
                 case MessageType.anglerQuests:
                     Global.Update.anglerQuests = reader.ReadInt32();

@@ -317,10 +317,6 @@ namespace ReducedGrinding
 
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
-        public bool StaffOfDifficultyJourney;
-
-        [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
         public bool StaffOfDifficultyNormal;
 
         [BackgroundColor(128, 128, 128)]

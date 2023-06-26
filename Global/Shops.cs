@@ -1,87 +1,23 @@
-using Microsoft.Xna.Framework;
+using ReducedGrinding.Items;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Chat;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
-namespace ReducedGrinding.Global
+namespace ReducedGrinding.GlobalNPCs
 {
     public class Shops : GlobalNPC
     {
         public override void GetChat(NPC npc, ref string chat)
         {
-            GetInstance<ReducedGrinding>().Logger.Debug("Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString());
-            Main.NewText("(NewText) Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString());
-            ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral("(Broadcast) Main.myPlayer: " + Main.myPlayer.ToString() + " Main.netMode: " + Main.netMode.ToString()), new Color());
-
             Player player = Main.LocalPlayer;
             if (npc.type == NPCID.Angler)
             {
                 if (GetInstance<CFishingConfig>().AnglerTellsQuestCompleted)
                 {
                     Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255);
-                }
-
-                if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
-                {
-                    int fishMerchantID = NPCType<NPCs.FishMerchant>();
-                    bool? fishMerchantExist = null;
-                    int anglerNPC = -1;
-                    for (int i = 0; i < Main.npc.Length; i++)
-                    {
-                        if (fishMerchantExist == null && Main.npc[i].type == fishMerchantID)
-                        {
-                            if (Main.npc[i].active)
-                            {
-                                fishMerchantExist = true;
-                            }
-                            else
-                            {
-                                fishMerchantExist = false;
-                            }
-                        }
-                        if (anglerNPC == -1 && Main.npc[i].type == NPCID.Angler && Main.npc[i].active)
-                        {
-                            anglerNPC = i;
-                        }
-                        if (fishMerchantExist != null && anglerNPC > -1)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (fishMerchantExist != true)
-                    {
-                        int newFishMerchant = NPC.NewNPC(Entity.GetSource_TownSpawn(), Main.spawnTileX * 16, Main.spawnTileY * 16, fishMerchantID, 1);
-                        Main.npc[newFishMerchant].whoAmI = newFishMerchant;
-                        Main.npc[newFishMerchant].homeless = true;
-                        Main.npc[newFishMerchant].direction = Main.spawnTileX >= WorldGen.bestX ? -1 : 1;
-                        Main.npc[newFishMerchant].netUpdate = true;
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, newFishMerchant);
-                        }
-                    }
-
-                    for (int i = 0; i < Main.npc.Length; i++)
-                    {
-                        if (Main.npc[i].type == fishMerchantID)
-                        {
-                            if (Main.npc[i].Distance(Main.npc[anglerNPC].position) > 0) //500) TO-DO TEMPORARY
-                            {
-                                Main.npc[i].position = Main.npc[anglerNPC].position;
-                                if (Main.netMode == NetmodeID.MultiplayerClient)
-                                {
-                                    NetMessage.SendData(MessageID.SyncNPC, -1, -1, null, i);
-                                }
-                            }
-                            break;
-                        }
-                    }
                 }
             }
         }
@@ -90,6 +26,56 @@ namespace ReducedGrinding.Global
         {
             switch (shop.NpcType)
             {
+                case NPCID.Pirate:
+                    if (GetInstance<CFishingConfig>().FishCoinsRewardedForQuest > 0)
+                    {
+                        void addShopItem(int price, int itemID)
+                        {
+                            if (price > 0)
+                            {
+
+                                shop.Add(new Item(itemID)
+                                {
+                                    shopCustomPrice = price,
+                                    shopSpecialCurrency = ReducedGrinding.FishCoin
+                                });
+                            }
+                        }
+
+                        #region Guaranteed Items
+                        addShopItem(5, ItemID.FuzzyCarrot);
+                        addShopItem(10, ItemID.AnglerHat);
+                        addShopItem(10, ItemID.AnglerVest);
+                        addShopItem(10, ItemID.AnglerPants);
+                        addShopItem(25, ItemID.BottomlessBucket);
+                        addShopItem(30, ItemID.GoldenFishingRod);
+                        #endregion
+
+                        #region Hardmode Items
+                        if (Main.hardMode)
+                        {
+                            addShopItem(100, ItemID.HotlineFishingHook);
+                            addShopItem(70, ItemID.FinWings);
+                            addShopItem(70, ItemID.SuperAbsorbantSponge);
+                        }
+                        #endregion
+
+                        #region Items Always Available
+                        addShopItem(80, ItemID.GoldenBugNet);
+                        addShopItem(60, ItemID.FishHook);
+                        addShopItem(60, ItemID.FishMinecart);
+                        addShopItem(80, ItemID.HighTestFishingLine);
+                        addShopItem(80, ItemID.AnglerEarring);
+                        addShopItem(80, ItemID.TackleBox);
+                        addShopItem(60, ItemID.FishermansGuide);
+                        addShopItem(60, ItemID.WeatherRadio);
+                        addShopItem(60, ItemID.Sextant);
+                        addShopItem(80, ItemType<MermaidCostumeBag>());
+                        addShopItem(80, ItemType<FishCostumeBag>());
+                        addShopItem(25, ItemID.FishingBobber);
+                        #endregion
+                    }
+                    break;
                 case NPCID.SkeletonMerchant:
                     shop.InsertBefore(ItemID.Torch, ItemID.BoneTorch);
                     if (!shop.TryGetEntry(ItemID.Torch, out _))
@@ -202,13 +188,13 @@ namespace ReducedGrinding.Global
 
             if (GetInstance<IOtherConfig>().TravelingMerchantChatsItems)
             {
-                Update.chatMerchantItems = true;
+                Global.Update.chatMerchantItems = true;
 
                 if (Main.netMode == NetmodeID.Server)
                 {
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
-                    packet.Write(Update.chatMerchantItems);
+                    packet.Write(Global.Update.chatMerchantItems);
                     packet.Send();
                 }
             }
