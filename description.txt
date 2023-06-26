@@ -11,7 +11,7 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Angler Quest per day gradually increases from game progression. Has a short cooldown that may conditionally increase to give all anglers a chance.
 - Greater + Super Battle Potion to increase enemy spawns.
 - Items that activate Christmas and Halloween for the current day (crafted during their matching season).
-- Cancel Invasions when all players are invisible. Also works when players are underground in a non-"Don't Dig Up" world.
+- Item for canceling invasions.
 - Helpful recipes.
 
 ====OFF BY DEFAULT====
@@ -19,7 +19,7 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Configurations for changing even more enemy drop chances.
 - Configurations for Bed + Enchanted Dial time rate and Enchanted Dial cooldown.
 - Potion for increasing fishing bobber amount.
-- Fishing Coins when finishing Quests, to purchase items from the Fish Merchant.
+- Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
 - Reduce Bestiary requirement for Universal Pylon.
 - Staff of Difficulty. Changes difficulty settings.
-- Moonball to advance Moon Phase.
+- Moon Watch to advance Moon Phase.
