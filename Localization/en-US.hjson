@@ -562,7 +562,6 @@ Mods: {
 
 			StaffOfDifficultyConfig: {
 				Tooltip: ""
-
 				Headers.StaffOfDifficulty: A creative tool that switches the difficulty modes outside of Journey Mode. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe.
 
 				Normal: {
