@@ -293,19 +293,6 @@ Mods: {
 			HOtherModdedItemsConfig: {
 				DisplayName: Other Modded Items
 
-				Headers: {
-					SpawnIncreasingPotions:
-						'''
-						Spawn Increasing Potions
-
-						If you experience lag, try turning down max spawns first For Greater and Super Battle Potions, setting both spawns and spawn rate to 1 will disable their recipe.
-
-						[i:300] Battle Potion (Vanilla)
-						'''
-					GreaterBattlePotion: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
-					SuperBattlePotion: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
-				}
-
 				MoonWatch: {
 					Label: "[i:ReducedGrinding/MoonWatch] Moon Watch"
 					Tooltip: Advances the Moon Phase. Set to false to disable the recipe.
@@ -340,36 +327,6 @@ Mods: {
 						'''
 				}
 
-				BattlePotionMaxSpawnsMultiplier: {
-					Label: Max Spawns Multiplier
-					Tooltip: Vanilla default: 2
-				}
-
-				BattlePotionSpawnrateMultiplier: {
-					Label: Spawn Rate Multiplier
-					Tooltip: Vanilla default: 2
-				}
-
-				GreaterBattlePotionMaxSpawnsMultiplier: {
-					Label: Max Spawns Multiplier
-					Tooltip: ""
-				}
-
-				GreaterBattlePotionSpawnrateMultiplier: {
-					Label: Spawn Rate Multiplier
-					Tooltip: ""
-				}
-
-				SuperBattlePotionMaxSpawnsMultiplier: {
-					Label: Max Spawns Multiplier
-					Tooltip: ""
-				}
-
-				SuperBattlePotionSpawnrateMultiplier: {
-					Label: Spawn Rate Multiplier
-					Tooltip: ""
-				}
-
 				StaffOfDifficultyNormal: {
 					Label: Enable Switching to Normal
 					Tooltip: ""
@@ -397,6 +354,11 @@ Mods: {
 
 				StaffOfDifficultyConfig: {
 					Label: "[i:ReducedGrinding/StaffOfDifficulty] Staff Of Difficulty"
+					Tooltip: ""
+				}
+
+				BattlePotionConfig: {
+					Label: "[i:ReducedGrinding/SuperBattlePotion] Battle Potions"
 					Tooltip: ""
 				}
 			}
@@ -576,6 +538,41 @@ Mods: {
 
 				Master: {
 					Label: Master
+					Tooltip: ""
+				}
+			}
+
+			BattlePotionConfig: {
+				Tooltip: ""
+				Headers.BattlePotions: If you experience lag, try turning down max spawns first. For Greater and Super Battle Potions, setting both max spawns and spawn rate to 1 will disable their recipe.
+
+				VanillaMax: {
+					Label: "[i:300] Battle Potion Max Spawns Multiplier"
+					Tooltip: Vanilla default: 2
+				}
+
+				VanillaSpawnRate: {
+					Label: "[i:300] Battle Potion Spawn Rate Multiplier"
+					Tooltip: Vanilla default: 2
+				}
+
+				GreaterMax: {
+					Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion Max Spawns Multiplier"
+					Tooltip: ""
+				}
+
+				GreaterSpawnRate: {
+					Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion Spawn Rate Multiplier"
+					Tooltip: ""
+				}
+
+				SuperMax: {
+					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion Max Spawns Multiplier"
+					Tooltip: ""
+				}
+
+				SuperSpawnRate: {
+					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion Spawn Rate Multiplier"
 					Tooltip: ""
 				}
 			}

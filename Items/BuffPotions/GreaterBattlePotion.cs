@@ -37,7 +37,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier > 1)
+            if (GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.GreaterMax > 1 || GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.GreaterSpawnRate > 1)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BattlePotion);

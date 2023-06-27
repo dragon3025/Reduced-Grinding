@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding
@@ -275,6 +276,70 @@ namespace ReducedGrinding
         }
     }
 
+    public class BattlePotionConfig
+    {
+        //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
+        [Header("BattlePotions")]
+        [BackgroundColor(128, 128, 128)]
+        [Increment(.5f)]
+        [Range(2f, 10f)]
+        public float VanillaMax;
+
+        [BackgroundColor(128, 128, 128)]
+        [Increment(.5f)]
+        [Range(2f, 10f)]
+        public float VanillaSpawnRate;
+
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float GreaterMax;
+
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float GreaterSpawnRate;
+
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float SuperMax;
+
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float SuperSpawnRate;
+
+        public BattlePotionConfig()
+        {
+            VanillaMax = 2f;
+            VanillaSpawnRate = 2f;
+            GreaterMax = 3f;
+            GreaterSpawnRate = 4f;
+            SuperMax = 4f;
+            SuperSpawnRate = 8f;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is BattlePotionConfig other)
+                return VanillaMax == other.VanillaMax &&
+                    VanillaSpawnRate == other.VanillaSpawnRate &&
+                    GreaterMax == other.GreaterMax &&
+                    GreaterSpawnRate == other.GreaterSpawnRate &&
+                    SuperMax == other.SuperMax &&
+                    SuperSpawnRate == other.SuperSpawnRate;
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new {
+                VanillaMax,
+                VanillaSpawnRate,
+                GreaterMax,
+                GreaterSpawnRate,
+                SuperMax,
+                SuperSpawnRate
+            }.GetHashCode();
+        }
+    }
 
     public class HOtherModdedItemsConfig : ModConfig
     {
@@ -302,45 +367,8 @@ namespace ReducedGrinding
         public bool HolidaySummons;
         #endregion
 
-        #region Battle Potions
-        [Header("SpawnIncreasingPotions")]
-
-        //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
-        [BackgroundColor(128, 128, 128)]
-        [Increment(.5f)]
-        [Range(2f, 10f)]
-        [DefaultValue(2f)]
-        public float BattlePotionMaxSpawnsMultiplier;
-
-        [BackgroundColor(128, 128, 128)]
-        [Increment(.5f)]
-        [Range(2f, 10f)]
-        [DefaultValue(2f)]
-        public float BattlePotionSpawnrateMultiplier;
-        [Header("GreaterBattlePotion")]
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        [DefaultValue(3f)]
-        public float GreaterBattlePotionMaxSpawnsMultiplier;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        [DefaultValue(4f)]
-        public float GreaterBattlePotionSpawnrateMultiplier;
-
-        [Header("SuperBattlePotion")]
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        [DefaultValue(4f)]
-        public float SuperBattlePotionMaxSpawnsMultiplier;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        [DefaultValue(8f)]
-        public float SuperBattlePotionSpawnrateMultiplier;
-        #endregion
+        [Expand(false)]
+        public BattlePotionConfig BattlePotionConfig;
 
         [BackgroundColor(128, 128, 128)]
         [Expand(false)]
@@ -349,6 +377,7 @@ namespace ReducedGrinding
         public HOtherModdedItemsConfig()
         {
             StaffOfDifficultyConfig = new StaffOfDifficultyConfig() { };
+            BattlePotionConfig = new BattlePotionConfig() { };
         }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
