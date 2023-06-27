@@ -126,11 +126,11 @@ namespace ReducedGrinding.GlobalNPCs
                     }
                     break;
                 case NPCID.BestiaryGirl:
-                    if (GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate < 1f)
+                    if (GetInstance<IOtherConfig>().UniversalPylonConfig.UniversalPylonBestiaryCompletionRate < 1f)
                     {
                         BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
 
-                        if (bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonBestiaryCompletionRate)
+                        if (bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonConfig.UniversalPylonBestiaryCompletionRate)
                         {
                             if (!shop.TryGetEntry(ItemID.TeleportationPylonVictory, out _))
                             {

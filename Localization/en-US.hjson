@@ -396,16 +396,6 @@ Mods: {
 						'''
 				}
 
-				CraftableUniversalPylon: {
-					Label: Craftable [i:4951] Universal Pylon Difficulty
-					Tooltip:
-						'''
-						0: Disabled, 1: Crafted out of all other Pylons, 2: Same
-						as 1 + crafted at Crystal Ball instead of Tinker's
-						Workshop, 3: Same as 2 + crafted with all Souls
-						'''
-				}
-
 				SleepRateMultiplier: {
 					Label: Sleep Time Rate Multiplier
 					Tooltip:
@@ -443,11 +433,6 @@ Mods: {
 						'''
 				}
 
-				UniversalPylonBestiaryCompletionRate: {
-					Label: "[i:4951] Universal Pylon, Bestiary completion % to unlock"
-					Tooltip: ""
-				}
-
 				AllSpawningRegularMimics: {
 					Label: Allow spawning Regular and Ice Mimics
 					Tooltip:
@@ -470,6 +455,11 @@ Mods: {
 
 				EnchantedSundialConfig: {
 					Label: "[i:3064] Enchanted Sundial"
+					Tooltip: ""
+				}
+
+				UniversalPylonConfig: {
+					Label: "[i:4951] Universal Pylon"
 					Tooltip: ""
 				}
 			}
@@ -591,6 +581,42 @@ Mods: {
 				EnchantedDialCooldown: {
 					Label: Enchanted Dial Cooldown
 					Tooltip: Vanilla default: 7.
+				}
+			}
+
+			UniversalPylonConfig: {
+				Tooltip: ""
+
+				UniversalPylonBestiaryCompletionRate: {
+					Label: Completion Rate Required For Zoologist Shop
+					Tooltip: Vanilla Default: 1
+				}
+
+				Headers.CraftableUniversalPylon: Crafting. Recipe will be disabled if all ingredient configurations are disable.
+
+				CraftWithPylons: {
+					Label: "Craft With [i:4876] Pylons"
+					Tooltip: ""
+				}
+
+				CraftWithPreMechSouls: {
+					Label: "Craft With [i:575] Pre-Mech Boss Souls"
+					Tooltip: Soul of Light, Night, and Flight
+				}
+
+				CraftWithMechSouls: {
+					Label: "Craft With [i:547] Mech Boss Souls"
+					Tooltip: Soul of Might, Fight, and Sight
+				}
+
+				CraftWithFragments: {
+					Label: "Craft With [i:3457] Lunar Fragments"
+					Tooltip: ""
+				}
+
+				CraftAtCrystalBall: {
+					Label: "Craft At [i:487] Crystal Ball instead of [i:398] Tinker's Workshop"
+					Tooltip: ""
 				}
 			}
 		}

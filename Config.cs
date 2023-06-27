@@ -477,6 +477,63 @@ namespace ReducedGrinding
         }
     }
 
+    public class UniversalPylonConfig
+    {
+        [BackgroundColor(128, 128, 128)]
+        [Increment(0.01f)]
+        public float UniversalPylonBestiaryCompletionRate;
+
+        [Header("CraftableUniversalPylon")]
+
+        public bool CraftWithPylons;
+
+        [BackgroundColor(128, 128, 128)]
+        public bool CraftWithPreMechSouls;
+
+        [BackgroundColor(128, 128, 128)]
+        public bool CraftWithMechSouls;
+
+        [BackgroundColor(128, 128, 128)]
+        public bool CraftWithFragments;
+
+        public bool CraftAtCrystalBall;
+
+        public UniversalPylonConfig()
+        {
+            UniversalPylonBestiaryCompletionRate = 1f;
+            CraftWithPylons = true;
+            CraftWithPreMechSouls = false;
+            CraftWithMechSouls = false;
+            CraftWithFragments = false;
+            CraftAtCrystalBall = true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is UniversalPylonConfig other)
+                return UniversalPylonBestiaryCompletionRate == other.UniversalPylonBestiaryCompletionRate &&
+                    CraftWithPylons == other.CraftWithPylons &&
+                    CraftWithPreMechSouls == other.CraftWithPreMechSouls &&
+                    CraftWithMechSouls == other.CraftWithMechSouls &&
+                    CraftWithFragments == other.CraftWithFragments &&
+                    CraftAtCrystalBall == other.CraftAtCrystalBall;
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new
+            {
+                UniversalPylonBestiaryCompletionRate,
+                CraftWithPylons,
+                CraftWithPreMechSouls,
+                CraftWithMechSouls,
+                CraftWithFragments,
+                CraftAtCrystalBall
+            }.GetHashCode();
+        }
+    }
+
     public class IOtherConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -497,13 +554,6 @@ namespace ReducedGrinding
         [Expand(false)]
         public TravelingMerchantConfig TravelingMerchantConfig;
 
-        public IOtherConfig()
-        {
-            EnchantedSundialConfig = new EnchantedSundialConfig() { };
-            TravelingMerchantConfig = new TravelingMerchantConfig() { };
-        }
-
-        #region Crafting
         [Header("Crafting")]
 
         [BackgroundColor(128, 128, 128)]
@@ -513,11 +563,6 @@ namespace ReducedGrinding
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool CraftableRareChests;
-
-        [Range(0, 3)]
-        [DefaultValue(1)]
-        public int CraftableUniversalPylon;
-        #endregion
 
         #region Other
         [Header("Other")]
@@ -532,10 +577,8 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
 
-        [BackgroundColor(128, 128, 128)]
-        [Increment(0.01f)]
-        [DefaultValue(1f)]
-        public float UniversalPylonBestiaryCompletionRate;
+        [Expand(false)]
+        public UniversalPylonConfig UniversalPylonConfig;
 
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
@@ -545,6 +588,13 @@ namespace ReducedGrinding
         [DefaultValue(false)]
         public bool WitchDoctorSellsChlorophyteOre;
         #endregion
+
+        public IOtherConfig()
+        {
+            EnchantedSundialConfig = new EnchantedSundialConfig() { };
+            TravelingMerchantConfig = new TravelingMerchantConfig() { };
+            UniversalPylonConfig = new UniversalPylonConfig() { };
+        }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
