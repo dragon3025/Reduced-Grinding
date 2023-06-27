@@ -246,6 +246,36 @@ namespace ReducedGrinding
         }
     }
 
+    [BackgroundColor(128, 128, 128)]
+    public class StaffOfDifficultyConfig
+    {
+        [Header("StaffOfDifficulty")]
+
+        [BackgroundColor(128, 128, 128)]
+        public bool Normal;
+        [BackgroundColor(128, 128, 128)]
+        public bool Expert;
+        [BackgroundColor(128, 128, 128)]
+        public bool Master;
+
+        public StaffOfDifficultyConfig() { }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is StaffOfDifficultyConfig other)
+                return Normal == other.Normal &&
+                    Expert == other.Expert &&
+                    Master == other.Master;
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new { Normal, Expert, Master }.GetHashCode();
+        }
+    }
+
+
     public class HOtherModdedItemsConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -312,21 +342,14 @@ namespace ReducedGrinding
         public float SuperBattlePotionSpawnrateMultiplier;
         #endregion
 
-        #region Staff of Difficulty
-        [Header("StaffOfDifficulty")]
-
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
-        public bool StaffOfDifficultyNormal;
+        [Expand(false)]
+        public StaffOfDifficultyConfig StaffOfDifficultyConfig;
 
-        [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
-        public bool StaffOfDifficultyExpert;
-
-        [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
-        public bool StaffOfDifficultyMaster;
-        #endregion
+        public HOtherModdedItemsConfig()
+        {
+            StaffOfDifficultyConfig = new StaffOfDifficultyConfig() { };
+        }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {

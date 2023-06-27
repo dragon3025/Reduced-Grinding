@@ -218,27 +218,27 @@ namespace ReducedGrinding.Global
                     switch (Main.GameMode)
                     {
                         case 0:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert)
                             {
                                 finishedDifficultyChange = true;
-                                text = "Expert mode is now enabled!";
+                                text = "World difficulty mode is now Expert!";
                                 textColor = new Color(255, 179, 0);
                             }
                             break;
                         case 1:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master)
                             {
                                 finishedDifficultyChange = true;
-                                text = "Master mode is now enabled!";
+                                text = "World difficulty mode is now Master!";
                                 textColor = new Color(255, 0, 0);
                             }
                             break;
                         default:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert)
                             {
                                 finishedDifficultyChange = true;
-                                text = "Journey mode is now enabled!";
-                                textColor = new Color(255, 127, 255);
+                                text = "World difficulty mode is now Normal!";
+                                textColor = new Color(255, 255, 255);
                             }
                             break;
                     }

@@ -12,13 +12,10 @@ namespace ReducedGrinding.GlobalNPCs
     {
         public override void GetChat(NPC npc, ref string chat)
         {
-            Player player = Main.LocalPlayer;
             if (npc.type == NPCID.Angler)
             {
-                if (GetInstance<CFishingConfig>().AnglerTellsQuestCompleted)
-                {
-                    Main.NewText("Quests completed: " + player.anglerQuestsFinished.ToString(), 0, 255, 255);
-                }
+                Player player = Main.LocalPlayer;
+                chat += "\n\n You've given me " + player.anglerQuestsFinished.ToString() + " fish.";
             }
         }
 

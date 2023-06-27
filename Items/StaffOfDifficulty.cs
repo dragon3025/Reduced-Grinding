@@ -30,6 +30,14 @@ namespace ReducedGrinding.Items
             Item.useStyle = ItemUseStyleID.HoldUp;
         }
 
+        public override bool CanUseItem(Player player)
+        {
+            return Main.GameMode != GameModeID.Creative && (
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Normal ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master);
+        }
+
         public override bool? UseItem(Player player)
         {
             if (player.whoAmI == Main.myPlayer)
@@ -50,9 +58,9 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyNormal ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyExpert ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyMaster)
+            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Normal ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master)
             {
                 CreateRecipe()
                   .AddIngredient(ItemID.DirtBlock)

@@ -58,7 +58,7 @@ Mods: {
 				}
 
 				BiomeKey: {
-					Label: "[i:1533] Biome Key Increase"
+					Label: "[i:1533] Biome Key"
 					Tooltip: This sets the same drop rate for each
 				}
 
@@ -230,7 +230,7 @@ Mods: {
 						'''
 						Fish Coin
 
-						Rewarded when finishing a Quest. Used to purchase Quest rewards at the Fish Merchant who is summoned when talking to the Angler. Set to 0 to disable the Fish Merchant from spawning.
+						Rewarded when finishing a Quest. Used to purchase Quest rewards from the Pirate NPC. Set to 0 to disable Quest rewards from appearing in the Pirate's shop.
 						'''
 				}
 
@@ -304,12 +304,6 @@ Mods: {
 						'''
 					GreaterBattlePotion: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
 					SuperBattlePotion: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
-					StaffOfDifficulty:
-						'''
-						[i:ReducedGrinding/StaffOfDifficulty] Staff of Difficulty.
-
-						Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe.
-						'''
 				}
 
 				MoonWatch: {
@@ -399,6 +393,11 @@ Mods: {
 				WorldPeaceStandard: {
 					Label: "[i:ReducedGrinding/WorldPeaceStandard] World Peace Standard"
 					Tooltip: Cancels invasions
+				}
+
+				StaffOfDifficultyConfig: {
+					Label: "[i:ReducedGrinding/StaffOfDifficulty] Staff Of Difficulty"
+					Tooltip: ""
 				}
 			}
 
@@ -560,6 +559,27 @@ Mods: {
 					Tooltip: He will only sell it in the Jungle after beating Plantera
 				}
 			}
+
+			StaffOfDifficultyConfig: {
+				Tooltip: ""
+
+				Headers.StaffOfDifficulty: A creative tool that switches the difficulty modes outside of Journey Mode. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe.
+
+				Normal: {
+					Label: Normal
+					Tooltip: ""
+				}
+
+				Expert: {
+					Label: Expert
+					Tooltip: ""
+				}
+
+				Master: {
+					Label: Master
+					Tooltip: ""
+				}
+			}
 		}
 
 		Buffs: {
@@ -617,7 +637,7 @@ Mods: {
 
 			FishCoin: {
 				DisplayName: Fish Coin
-				Tooltip: Currency for trading with the Fish Merchant
+				Tooltip: A Pirate may be interested in this.
 			}
 
 			FishCostumeBag: {
@@ -675,7 +695,11 @@ Mods: {
 
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
-				Tooltip: A creative tool that switches the difficulty modes. This will only switch to modes that are enabled in the configuration settings.
+				Tooltip:
+					'''
+					A creative tool that switches the world difficulty mode outside of Journey Mode.
+					This will only switch to modes that are enabled in the configuration settings.
+					'''
 			}
 
 			WorldPeaceStandard: {
@@ -683,8 +707,5 @@ Mods: {
 				Tooltip: Cancels invasions.
 			}
 		}
-
-		NPCs.FishMerchant.DisplayName: Fish Merchant
-		Tiles.MoonBall.MapEntry: Moon Ball
 	}
 }
