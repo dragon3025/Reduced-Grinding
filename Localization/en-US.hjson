@@ -368,7 +368,6 @@ Mods: {
 
 				Headers: {
 					Crafting: Crafting
-					EnchantedDialsAndSleep: Enchanted Dials and Sleeping
 					Other: Other
 				}
 
@@ -380,31 +379,6 @@ Mods: {
 						inside. This excludes Regular Wooden Chests. Chance =
 						1 /configuration_setting. Set to 0 to disable.
 						'''
-				}
-
-				CrateEnchantedSundial: {
-					Label: "[i:3064] Enchanted Sundial Drop Chance"
-					Tooltip:
-						'''
-						Changes the chance of Enchanted Sundial drop from Crates
-						that drop it. Chance = 1 / configuration_setting. Set to 0
-						to use vanilla chance. Denominator is multiplied by 3 for
-						Mythril and 10 for Pearlwood
-						'''
-				}
-
-				EnchantedDialMultiplier: {
-					Label: Enchanted Dial Time Rate Multiplier
-					Tooltip:
-						'''
-						In vanilla, enchanted dials multiplies the time rate by 60;
-						afterward it will be multiplied by this amount.
-						'''
-				}
-
-				EnchantedDialCooldown: {
-					Label: Enchanted Dial Cooldown
-					Tooltip: Vanilla default: 7.
 				}
 
 				CraftableGoldCritters: {
@@ -491,6 +465,11 @@ Mods: {
 
 				TravelingMerchantConfig: {
 					Label: Traveling Merchant
+					Tooltip: ""
+				}
+
+				EnchantedSundialConfig: {
+					Label: "[i:3064] Enchanted Sundial"
 					Tooltip: ""
 				}
 			}
@@ -583,6 +562,35 @@ Mods: {
 				TravelingMerchantDiceUsesAfterPlantera: {
 					Label: Daily Uses After Plantera
 					Tooltip: ""
+				}
+			}
+
+			EnchantedSundialConfig: {
+				Tooltip: ""
+
+				CrateEnchantedSundial: {
+					Label: "[i:3064] Enchanted Sundial Drop Chance"
+					Tooltip:
+						'''
+						Changes the chance of Enchanted Sundial drop from Crates
+						that drop it. Chance = 1 / configuration_setting. Set to 0
+						to use vanilla chance. Denominator is multiplied by 3 for
+						Mythril and 10 for Pearlwood
+						'''
+				}
+
+				EnchantedDialMultiplier: {
+					Label: Enchanted Dial Time Rate Multiplier
+					Tooltip:
+						'''
+						In vanilla, enchanted dials multiplies the time rate by 60;
+						afterward it will be multiplied by this amount.
+						'''
+				}
+
+				EnchantedDialCooldown: {
+					Label: Enchanted Dial Cooldown
+					Tooltip: Vanilla default: 7.
 				}
 			}
 		}

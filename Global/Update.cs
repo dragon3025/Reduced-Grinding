@@ -30,9 +30,9 @@ namespace ReducedGrinding.Global
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
             float rateMultiplier = 1f;
-            if (otherConfig.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
+            if (otherConfig.EnchantedSundialConfig.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
             {
-                rateMultiplier *= otherConfig.EnchantedDialMultiplier;
+                rateMultiplier *= otherConfig.EnchantedSundialConfig.EnchantedDialMultiplier;
             }
 
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled &&
@@ -58,7 +58,7 @@ namespace ReducedGrinding.Global
             bool updatePacket = false;
             bool sendNetMessageData = false;
 
-            int cooldownMax = otherConfig.EnchantedDialCooldown;
+            int cooldownMax = otherConfig.EnchantedSundialConfig.EnchantedDialCooldown;
             if (Main.IsFastForwardingTime())
             {
                 cooldownMax++;

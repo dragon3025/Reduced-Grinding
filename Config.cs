@@ -387,9 +387,50 @@ namespace ReducedGrinding
         }
     }
 
+    public class EnchantedSundialConfig
+    {
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 10000)]
+        public int CrateEnchantedSundial;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(1f, 20f)]
+        [Increment(0.5f)]
+        public float EnchantedDialMultiplier;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 7)]
+        public int EnchantedDialCooldown;
+
+        public EnchantedSundialConfig()
+        {
+            CrateEnchantedSundial = 0;
+            EnchantedDialMultiplier = 1f;
+            EnchantedDialCooldown = 7;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is EnchantedSundialConfig other)
+                return CrateEnchantedSundial == other.CrateEnchantedSundial &&
+                    EnchantedDialMultiplier == other.EnchantedDialMultiplier &&
+                    EnchantedDialCooldown == other.EnchantedDialCooldown;
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new
+            {
+                CrateEnchantedSundial,
+                EnchantedDialMultiplier,
+                EnchantedDialCooldown
+            }.GetHashCode();
+        }
+    }
+
     public class TravelingMerchantConfig
     {
-        [DefaultValue(true)]
         public bool TravelingMerchantChatsItems;
 
         [Header("MerchantDice")]
@@ -426,7 +467,8 @@ namespace ReducedGrinding
 
         public override int GetHashCode()
         {
-            return new {
+            return new
+            {
                 TravelingMerchantChatsItems,
                 TravelingMerchantDiceUsesBeforeHardmode,
                 TravelingMerchantDiceUsesHardmode,
@@ -442,35 +484,22 @@ namespace ReducedGrinding
         [DefaultValue(75)]
         public int TerragrimChestChance;
 
-        [Header("EnchantedDialsAndSleep")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CrateEnchantedSundial;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1f, 20f)]
-        [Increment(0.5f)]
-        [DefaultValue(1f)]
-        public float EnchantedDialMultiplier;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 7)]
-        [DefaultValue(7)]
-        public int EnchantedDialCooldown;
-
         [BackgroundColor(128, 128, 128)]
         [Range(1f, 20f)]
         [Increment(0.5f)]
         [DefaultValue(1f)]
         public float SleepRateMultiplier;
 
+        [BackgroundColor(128, 128, 128)]
+        [Expand(false)]
+        public EnchantedSundialConfig EnchantedSundialConfig;
+
         [Expand(false)]
         public TravelingMerchantConfig TravelingMerchantConfig;
 
         public IOtherConfig()
         {
+            EnchantedSundialConfig = new EnchantedSundialConfig() { };
             TravelingMerchantConfig = new TravelingMerchantConfig() { };
         }
 

@@ -76,7 +76,7 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Crates
-            if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
+            if (lootOtherConfig.EnchantedSundialConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
             {
                 int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
 
@@ -92,7 +92,7 @@ namespace ReducedGrinding.Global
                                 {
                                     if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
                                     {
-                                        drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
+                                        drop3.chanceDenominator = lootOtherConfig.EnchantedSundialConfig.CrateEnchantedSundial * denominatorMultiplier;
                                     }
                                 }
                             }
