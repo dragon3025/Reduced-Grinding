@@ -387,6 +387,54 @@ namespace ReducedGrinding
         }
     }
 
+    public class TravelingMerchantConfig
+    {
+        [DefaultValue(true)]
+        public bool TravelingMerchantChatsItems;
+
+        [Header("MerchantDice")]
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 100)]
+        public int TravelingMerchantDiceUsesBeforeHardmode;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 100)]
+        public int TravelingMerchantDiceUsesHardmode;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 100)]
+        public int TravelingMerchantDiceUsesAfterPlantera;
+
+        public TravelingMerchantConfig()
+        {
+            TravelingMerchantChatsItems = true;
+            TravelingMerchantDiceUsesBeforeHardmode = 0;
+            TravelingMerchantDiceUsesHardmode = 0;
+            TravelingMerchantDiceUsesAfterPlantera = 0;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is TravelingMerchantConfig other)
+                return TravelingMerchantChatsItems == other.TravelingMerchantChatsItems &&
+                    TravelingMerchantDiceUsesBeforeHardmode == other.TravelingMerchantDiceUsesBeforeHardmode &&
+                    TravelingMerchantDiceUsesHardmode == other.TravelingMerchantDiceUsesHardmode &&
+                    TravelingMerchantDiceUsesAfterPlantera == other.TravelingMerchantDiceUsesAfterPlantera;
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return new {
+                TravelingMerchantChatsItems,
+                TravelingMerchantDiceUsesBeforeHardmode,
+                TravelingMerchantDiceUsesHardmode,
+                TravelingMerchantDiceUsesAfterPlantera
+            }.GetHashCode();
+        }
+    }
+
     public class IOtherConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
@@ -418,29 +466,13 @@ namespace ReducedGrinding
         [DefaultValue(1f)]
         public float SleepRateMultiplier;
 
-        #region Traveling Merchant
-        [Header("TravelingMerchant")]
+        [Expand(false)]
+        public TravelingMerchantConfig TravelingMerchantConfig;
 
-        [DefaultValue(true)]
-        public bool TravelingMerchantChatsItems;
-
-        [Header("MerchantDice")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDiceUsesBeforeHardmode;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDiceUsesHardmode;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int TravelingMerchantDiceUsesAfterPlantera;
-        #endregion
+        public IOtherConfig()
+        {
+            TravelingMerchantConfig = new TravelingMerchantConfig() { };
+        }
 
         #region Crafting
         [Header("Crafting")]

@@ -160,16 +160,16 @@ namespace ReducedGrinding.GlobalNPCs
             {
                 if (NPC.downedPlantBoss)
                 {
-                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesAfterPlantera > 0;
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesAfterPlantera > 0;
                 }
                 else
                 {
-                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesHardmode > 0;
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesHardmode > 0;
                 }
             }
             else
             {
-                sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantDiceUsesBeforeHardmode > 0;
+                sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesBeforeHardmode > 0;
             }
 
             if (sellMerchantDice)
@@ -183,7 +183,7 @@ namespace ReducedGrinding.GlobalNPCs
                 NetMessage.SendData(MessageID.TravelMerchantItems);
             }
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantChatsItems)
+            if (GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantChatsItems)
             {
                 Global.Update.chatMerchantItems = true;
 
