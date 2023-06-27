@@ -33,7 +33,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+            if (GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BottledWater);

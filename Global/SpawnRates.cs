@@ -25,23 +25,23 @@ namespace ReducedGrinding.Global
 
                 if (player.FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
                 {
-                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.SuperSpawnRate));
-                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.SuperMax);
+                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperSpawnRate));
+                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperMax);
                 }
                 if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
                 {
-                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.GreaterSpawnRate));
-                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.GreaterMax);
+                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterSpawnRate));
+                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterMax);
                 }
                 if (player.FindBuffIndex(BuffID.Battle) != -1)
                 {
-                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.VanillaSpawnRate > 2)
+                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaSpawnRate > 2)
                     {
-                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.VanillaSpawnRate));
+                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaSpawnRate));
                     }
-                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.VanillaMax > 2)
+                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaMax > 2)
                     {
-                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotionConfig.VanillaMax);
+                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaMax);
                     }
                 }
             }

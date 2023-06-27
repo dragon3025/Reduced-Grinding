@@ -39,16 +39,16 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
+            if (GetInstance<CFishingConfig>().BobberPotions.SuperMultiBobberPotionBonus > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
-                if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
+                if (GetInstance<CFishingConfig>().BobberPotions.GreaterMultiBobberPotionBonus > 0)
                 {
                     recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
                 }
                 else
                 {
-                    if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+                    if (GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus > 0)
                     {
                         recipe.AddIngredient(ItemType<MultiBobberPotion>());
                     }

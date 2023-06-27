@@ -184,24 +184,9 @@ namespace ReducedGrinding.Configuration
         [DefaultValue(true)]
         public bool AnglerTellsQuestCompleted;
 
-        #region Multi-Bobber Potions
-        [Header("MultiBobberPotions")]
-
+        [Expand(false)]
         [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int MultiBobberPotionBonus;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int GreaterMultiBobberPotionBonus;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 100)]
-        [DefaultValue(0)]
-        public int SuperMultiBobberPotionBonus;
-        #endregion
+        public DropDownBoxes.BobberPotions BobberPotions;
 
         #region Angler Quest Amount Each Day
         [Header("AnglerQuestAmountEachDay")]
@@ -239,76 +224,15 @@ namespace ReducedGrinding.Configuration
         [DefaultValue(0)]
         public int FishCoinsRewardedForQuest;
 
+        public CFishingConfig()
+        {
+            BobberPotions = new DropDownBoxes.BobberPotions() { };
+        }
+
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
             message = "Can't change settings in a server.";
             return false;
-        }
-    }
-
-    public class BattlePotionConfig
-    {
-        //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
-        [Header("BattlePotions")]
-        [BackgroundColor(128, 128, 128)]
-        [Increment(.5f)]
-        [Range(2f, 10f)]
-        public float VanillaMax;
-
-        [BackgroundColor(128, 128, 128)]
-        [Increment(.5f)]
-        [Range(2f, 10f)]
-        public float VanillaSpawnRate;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float GreaterMax;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float GreaterSpawnRate;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float SuperMax;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float SuperSpawnRate;
-
-        public BattlePotionConfig()
-        {
-            VanillaMax = 2f;
-            VanillaSpawnRate = 2f;
-            GreaterMax = 3f;
-            GreaterSpawnRate = 4f;
-            SuperMax = 4f;
-            SuperSpawnRate = 8f;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is BattlePotionConfig other)
-                return VanillaMax == other.VanillaMax &&
-                    VanillaSpawnRate == other.VanillaSpawnRate &&
-                    GreaterMax == other.GreaterMax &&
-                    GreaterSpawnRate == other.GreaterSpawnRate &&
-                    SuperMax == other.SuperMax &&
-                    SuperSpawnRate == other.SuperSpawnRate;
-            return base.Equals(obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return new
-            {
-                VanillaMax,
-                VanillaSpawnRate,
-                GreaterMax,
-                GreaterSpawnRate,
-                SuperMax,
-                SuperSpawnRate
-            }.GetHashCode();
         }
     }
 
@@ -339,7 +263,7 @@ namespace ReducedGrinding.Configuration
         #endregion
 
         [Expand(false)]
-        public BattlePotionConfig BattlePotionConfig;
+        public DropDownBoxes.BattlePotion BattlePotion;
 
         [BackgroundColor(128, 128, 128)]
         [Expand(false)]
@@ -348,7 +272,7 @@ namespace ReducedGrinding.Configuration
         public HOtherModdedItemsConfig()
         {
             StaffOfDifficulty = new DropDownBoxes.StaffOfDifficulty() { };
-            BattlePotionConfig = new BattlePotionConfig() { };
+            BattlePotion = new DropDownBoxes.BattlePotion() { };
         }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)

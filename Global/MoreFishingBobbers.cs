@@ -20,15 +20,15 @@ namespace ReducedGrinding.GlobalMoreFishingRobBobbers
 
             if (player.FindBuffIndex(BuffType<Buffs.SuperMultiBobber>()) != -1)
             {
-                bobbersToAdd = GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus;
             }
             else if (player.FindBuffIndex(BuffType<Buffs.GreaterMultiBobber>()) != -1)
             {
-                bobbersToAdd = GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().BobberPotions.GreaterMultiBobberPotionBonus;
             }
             else if (player.FindBuffIndex(BuffType<Buffs.MultiBobber>()) != -1)
             {
-                bobbersToAdd = GetInstance<CFishingConfig>().MultiBobberPotionBonus;
+                bobbersToAdd = GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus;
             }
 
             if (bobbersToAdd > 0)

@@ -288,6 +288,11 @@ Mods: {
 					Label: "[i:ReducedGrinding/FishCoin] Fish Coins Rewarded"
 					Tooltip: ""
 				}
+
+				BobberPotions: {
+					Tooltip: ""
+					Label: "[i:ReducedGrinding/MultiBobberPotion] Bobber Potions"
+				}
 			}
 
 			HOtherModdedItemsConfig: {
@@ -357,7 +362,7 @@ Mods: {
 					Tooltip: ""
 				}
 
-				BattlePotionConfig: {
+				BattlePotion: {
 					Label: "[i:ReducedGrinding/SuperBattlePotion] Battle Potions"
 					Tooltip: ""
 				}
@@ -484,7 +489,7 @@ Mods: {
 				}
 			}
 
-			BattlePotionConfig: {
+			BattlePotion: {
 				Tooltip: ""
 				Headers.BattlePotions: If you experience lag, try turning down max spawns first. For Greater and Super Battle Potions, setting both max spawns and spawn rate to 1 will disable their recipe.
 
@@ -618,6 +623,26 @@ Mods: {
 					Label: Craft At [i:487] Crystal Ball instead of [i:398] Tinker's Workshop
 					Tooltip: ""
 				}
+			}
+
+			BobberPotions: {
+				SuperMultiBobberPotionBonus: {
+					Tooltip: ""
+					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi Bobber Potion Bonus"
+				}
+
+				GreaterMultiBobberPotionBonus: {
+					Tooltip: ""
+					Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Greater Multi Bobber Potion Bonus"
+				}
+
+				MultiBobberPotionBonus: {
+					Tooltip: ""
+					Label: "[i:ReducedGrinding/MultiBobberPotion] Multi Bobber Potion Bonus"
+				}
+
+				Headers.MultiBobberPotions: These potions will add extra bobbers when fishing. Set the amount each potion gives. Set to 0 to disable their recipe.
+				Tooltip: ""
 			}
 		}
 
