@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;

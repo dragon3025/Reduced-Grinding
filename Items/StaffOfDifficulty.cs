@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -33,9 +34,9 @@ namespace ReducedGrinding.Items
         public override bool CanUseItem(Player player)
         {
             return Main.GameMode != GameModeID.Creative && (
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Normal ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master);
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Normal ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master);
         }
 
         public override bool? UseItem(Player player)
@@ -58,9 +59,9 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Normal ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert ||
-                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master)
+            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Normal ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert ||
+                GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master)
             {
                 CreateRecipe()
                   .AddIngredient(ItemID.DirtBlock)

@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -12,13 +13,13 @@ namespace ReducedGrinding.GlobalRecipes
             Recipe recipe;
 
             #region Other
-            if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithPylons ||
-                GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithPreMechSouls ||
-                GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithMechSouls ||
-                GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithFragments)
+            if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithPylons ||
+                GetInstance<IOtherConfig>().UniversalPylon.CraftWithPreMechSouls ||
+                GetInstance<IOtherConfig>().UniversalPylon.CraftWithMechSouls ||
+                GetInstance<IOtherConfig>().UniversalPylon.CraftWithFragments)
             {
                 recipe = Recipe.Create(ItemID.TeleportationPylonVictory);
-                if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithPylons)
+                if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithPylons)
                 {
                     recipe.AddIngredient(ItemID.TeleportationPylonDesert);
                     recipe.AddIngredient(ItemID.TeleportationPylonHallow);
@@ -29,26 +30,26 @@ namespace ReducedGrinding.GlobalRecipes
                     recipe.AddIngredient(ItemID.TeleportationPylonSnow);
                     recipe.AddIngredient(ItemID.TeleportationPylonUnderground);
                 }
-                if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithPreMechSouls)
+                if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithPreMechSouls)
                 {
                     recipe.AddIngredient(ItemID.SoulofLight);
                     recipe.AddIngredient(ItemID.SoulofNight);
                     recipe.AddIngredient(ItemID.SoulofFlight);
                 }
-                if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithMechSouls)
+                if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithMechSouls)
                 {
                     recipe.AddIngredient(ItemID.SoulofFright);
                     recipe.AddIngredient(ItemID.SoulofMight);
                     recipe.AddIngredient(ItemID.SoulofSight);
                 }
-                if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftWithFragments)
+                if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithFragments)
                 {
                     recipe.AddIngredient(ItemID.FragmentNebula);
                     recipe.AddIngredient(ItemID.FragmentSolar);
                     recipe.AddIngredient(ItemID.FragmentStardust);
                     recipe.AddIngredient(ItemID.FragmentVortex);
                 }
-                if (GetInstance<IOtherConfig>().UniversalPylonConfig.CraftAtCrystalBall)
+                if (GetInstance<IOtherConfig>().UniversalPylon.CraftAtCrystalBall)
                 {
                     recipe.AddTile(TileID.CrystalBall);
                 }

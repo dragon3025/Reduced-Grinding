@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using ReducedGrinding.Items;
 using System.Collections.Generic;
 using Terraria;
@@ -126,11 +127,11 @@ namespace ReducedGrinding.GlobalNPCs
                     }
                     break;
                 case NPCID.BestiaryGirl:
-                    if (GetInstance<IOtherConfig>().UniversalPylonConfig.UniversalPylonBestiaryCompletionRate < 1f)
+                    if (GetInstance<IOtherConfig>().UniversalPylon.UniversalPylonBestiaryCompletionRate < 1f)
                     {
                         BestiaryUnlockProgressReport bestiaryProgressReport = Main.GetBestiaryProgressReport();
 
-                        if (bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylonConfig.UniversalPylonBestiaryCompletionRate)
+                        if (bestiaryProgressReport.CompletionPercent >= GetInstance<IOtherConfig>().UniversalPylon.UniversalPylonBestiaryCompletionRate)
                         {
                             if (!shop.TryGetEntry(ItemID.TeleportationPylonVictory, out _))
                             {
@@ -160,16 +161,16 @@ namespace ReducedGrinding.GlobalNPCs
             {
                 if (NPC.downedPlantBoss)
                 {
-                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesAfterPlantera > 0;
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera > 0;
                 }
                 else
                 {
-                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesHardmode > 0;
+                    sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchant.TravelingMerchantDiceUsesHardmode > 0;
                 }
             }
             else
             {
-                sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantDiceUsesBeforeHardmode > 0;
+                sellMerchantDice = GetInstance<IOtherConfig>().TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode > 0;
             }
 
             if (sellMerchantDice)
@@ -183,7 +184,7 @@ namespace ReducedGrinding.GlobalNPCs
                 NetMessage.SendData(MessageID.TravelMerchantItems);
             }
 
-            if (GetInstance<IOtherConfig>().TravelingMerchantConfig.TravelingMerchantChatsItems)
+            if (GetInstance<IOtherConfig>().TravelingMerchant.TravelingMerchantChatsItems)
             {
                 Global.Update.chatMerchantItems = true;
 

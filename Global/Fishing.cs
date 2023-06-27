@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ReducedGrinding.Configuration;
 using System;
 using System.Collections.Generic;
 using Terraria;

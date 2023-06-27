@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -17,7 +18,7 @@ namespace ReducedGrinding.Global
         //Gets recorded into world save
         public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
         public static bool dayTime = true;
-        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesBeforeHardmode;
+        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
         public static bool chatMerchantItems = false;
 
 
@@ -30,9 +31,9 @@ namespace ReducedGrinding.Global
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
             float rateMultiplier = 1f;
-            if (otherConfig.EnchantedSundialConfig.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
+            if (otherConfig.EnchantedSundial.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
             {
-                rateMultiplier *= otherConfig.EnchantedSundialConfig.EnchantedDialMultiplier;
+                rateMultiplier *= otherConfig.EnchantedSundial.EnchantedDialMultiplier;
             }
 
             if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled &&
@@ -58,7 +59,7 @@ namespace ReducedGrinding.Global
             bool updatePacket = false;
             bool sendNetMessageData = false;
 
-            int cooldownMax = otherConfig.EnchantedSundialConfig.EnchantedDialCooldown;
+            int cooldownMax = otherConfig.EnchantedSundial.EnchantedDialCooldown;
             if (Main.IsFastForwardingTime())
             {
                 cooldownMax++;
@@ -139,7 +140,7 @@ namespace ReducedGrinding.Global
                 #region New Morning
                 if (Main.dayTime)
                 {
-                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantConfig.TravelingMerchantDiceUsesBeforeHardmode;
+                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
 
                     anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
 
@@ -218,7 +219,7 @@ namespace ReducedGrinding.Global
                     switch (Main.GameMode)
                     {
                         case 0:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
                             {
                                 finishedDifficultyChange = true;
                                 text = "World difficulty mode is now Expert!";
@@ -226,7 +227,7 @@ namespace ReducedGrinding.Global
                             }
                             break;
                         case 1:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Master)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master)
                             {
                                 finishedDifficultyChange = true;
                                 text = "World difficulty mode is now Master!";
@@ -234,7 +235,7 @@ namespace ReducedGrinding.Global
                             }
                             break;
                         default:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficultyConfig.Expert)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
                             {
                                 finishedDifficultyChange = true;
                                 text = "World difficulty mode is now Normal!";

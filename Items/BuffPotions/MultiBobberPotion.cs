@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using ReducedGrinding.Global;
 using Terraria;
 using Terraria.GameContent.Creative;

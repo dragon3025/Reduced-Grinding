@@ -352,7 +352,7 @@ Mods: {
 					Tooltip: Cancels invasions
 				}
 
-				StaffOfDifficultyConfig: {
+				StaffOfDifficulty: {
 					Label: "[i:ReducedGrinding/StaffOfDifficulty] Staff Of Difficulty"
 					Tooltip: ""
 				}
@@ -448,25 +448,25 @@ Mods: {
 					Tooltip: He will only sell it in the Jungle after beating Plantera
 				}
 
-				TravelingMerchantConfig: {
+				TravelingMerchant: {
 					Label: Traveling Merchant
 					Tooltip: ""
 				}
 
-				EnchantedSundialConfig: {
+				EnchantedSundial: {
 					Label: "[i:3064] Enchanted Sundial"
 					Tooltip: ""
 				}
 
-				UniversalPylonConfig: {
+				UniversalPylon: {
 					Label: "[i:4951] Universal Pylon"
 					Tooltip: ""
 				}
 			}
 
-			StaffOfDifficultyConfig: {
+			StaffOfDifficulty: {
 				Tooltip: ""
-				Headers.StaffOfDifficulty: A creative tool that switches the difficulty modes outside of Journey Mode. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe.
+				Headers.StaffOfDifficulty: A creative tool that switches the world difficulty mode outside of Journey Mode. Because it's a creative item, it is simply crafted with 1 dirt block for early and instant use. Disable all to disable the recipe.
 
 				Normal: {
 					Label: Normal
@@ -519,7 +519,7 @@ Mods: {
 				}
 			}
 
-			TravelingMerchantConfig: {
+			TravelingMerchant: {
 				Tooltip: ""
 
 				TravelingMerchantChatsItems: {
@@ -584,7 +584,7 @@ Mods: {
 				}
 			}
 
-			UniversalPylonConfig: {
+			UniversalPylon: {
 				Tooltip: ""
 
 				UniversalPylonBestiaryCompletionRate: {
@@ -595,27 +595,27 @@ Mods: {
 				Headers.CraftableUniversalPylon: Crafting. Recipe will be disabled if all ingredient configurations are disable.
 
 				CraftWithPylons: {
-					Label: "Craft With [i:4876] Pylons"
+					Label: Craft With [i:4876] Pylons
 					Tooltip: ""
 				}
 
 				CraftWithPreMechSouls: {
-					Label: "Craft With [i:575] Pre-Mech Boss Souls"
+					Label: Craft With [i:575] Pre-Mech Boss Souls
 					Tooltip: Soul of Light, Night, and Flight
 				}
 
 				CraftWithMechSouls: {
-					Label: "Craft With [i:547] Mech Boss Souls"
+					Label: Craft With [i:547] Mech Boss Souls
 					Tooltip: Soul of Might, Fight, and Sight
 				}
 
 				CraftWithFragments: {
-					Label: "Craft With [i:3457] Lunar Fragments"
+					Label: Craft With [i:3457] Lunar Fragments
 					Tooltip: ""
 				}
 
 				CraftAtCrystalBall: {
-					Label: "Craft At [i:487] Crystal Ball instead of [i:398] Tinker's Workshop"
+					Label: Craft At [i:487] Crystal Ball instead of [i:398] Tinker's Workshop
 					Tooltip: ""
 				}
 			}

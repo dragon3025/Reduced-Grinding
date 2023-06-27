@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;

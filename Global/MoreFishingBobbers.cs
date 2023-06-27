@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
