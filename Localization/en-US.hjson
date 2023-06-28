@@ -212,30 +212,20 @@ Mods: {
 
 			CFishingConfig: {
 				DisplayName: Fishing
+				Headers.FishCoin:
+					'''
+					Fish Coin
 
-				Headers: {
-					MultiBobberPotions:
-						'''
-						Extra Bobber Potions
-
-						Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.
-						'''
-					ExtraAnglerQuest:
-						'''
-						Angler Quest Amount Each Day
-
-						You can allow for more Angler Quest each day. Note, the Angler may wait for other players to finish their quest. The wait time is increased when a player catches a fish. The amount of wait time is larger when a player has the current Quest Fish.
-						'''
-					FishCoin:
-						'''
-						Fish Coin
-
-						Rewarded when finishing a Quest. Used to purchase Quest rewards from the Pirate NPC. Set to 0 to disable Quest rewards from appearing in the Pirate's shop.
-						'''
-				}
+					Rewarded when finishing a Quest. Used to purchase Quest rewards from the Pirate NPC. Set to 0 to disable Quest rewards from appearing in the Pirate's shop.
+					'''
 
 				AnglerTellsQuestCompleted: {
 					Label: Angler Tells Quest Completed
+					Tooltip: ""
+				}
+
+				Angler: {
+					Label: Angler
 					Tooltip: ""
 				}
 
@@ -643,6 +633,33 @@ Mods: {
 
 				Headers.MultiBobberPotions: These potions will add extra bobbers when fishing. Set the amount each potion gives. Set to 0 to disable their recipe.
 				Tooltip: ""
+			}
+
+			Angler: {
+				Tooltip: ""
+				Headers.QuestPerDay:
+					'''
+					Angler Quest Amount Each Day
+
+					You can allow for more Angler Quest each day. If an unfinished player has the current quest fish, the Angler will wait 10 seconds.
+
+					The amount of quest per day progresses twoard the end game amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
+					'''
+
+				AnglerTellsQuestCompleted: {
+					Label: Angler Tells Amount of Quest Completed
+					Tooltip: ""
+				}
+
+				StartingQuestPerDay: {
+					Label: Starting Quest Per Day
+					Tooltip: ""
+				}
+
+				EndGameQuestPerDay: {
+					Label: End Game Quest Per Day
+					Tooltip: ""
+				}
 			}
 		}
 

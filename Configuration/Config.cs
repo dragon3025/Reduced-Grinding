@@ -181,15 +181,12 @@ namespace ReducedGrinding.Configuration
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [DefaultValue(true)]
-        public bool AnglerTellsQuestCompleted;
+        [Expand(false)]
+        public DropDownBoxes.Angler Angler;
 
         [Expand(false)]
         [BackgroundColor(128, 128, 128)]
         public DropDownBoxes.BobberPotions BobberPotions;
-
-        [Expand(false)]
-        public DropDownBoxes.ExtraAnglerQuest ExtraAnglerQuest;
 
         [Header("FishCoin")]
 
@@ -200,8 +197,8 @@ namespace ReducedGrinding.Configuration
 
         public CFishingConfig()
         {
+            Angler = new DropDownBoxes.Angler() { };
             BobberPotions = new DropDownBoxes.BobberPotions() { };
-            ExtraAnglerQuest = new DropDownBoxes.ExtraAnglerQuest() { };
         }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
