@@ -181,41 +181,12 @@ namespace ReducedGrinding.Configuration
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [DefaultValue(true)]
-        public bool AnglerTellsQuestCompleted;
+        [Expand(false)]
+        public DropDownBoxes.Angler Angler;
 
         [Expand(false)]
         [BackgroundColor(128, 128, 128)]
         public DropDownBoxes.BobberPotions BobberPotions;
-
-        #region Angler Quest Amount Each Day
-        [Header("AnglerQuestAmountEachDay")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 10000)]
-        [DefaultValue(1)]
-        public int QuestCountBeforeEye;
-
-        [Range(1, 10000)]
-        [DefaultValue(2)]
-        public int QuestCountAfterEye;
-
-        [Range(1, 10000)]
-        [DefaultValue(3)]
-        public int QuestCountAfterInfectionBoss;
-
-        [Range(1, 10000)]
-        [DefaultValue(6)]
-        public int QuestCountAfterSkeletron;
-
-        [Range(1, 10000)]
-        [DefaultValue(10)]
-        public int QuestCountHardmode;
-
-        [Range(1, 10000)]
-        [DefaultValue(10)]
-        public int QuestCountAfterPlantera;
-        #endregion
 
         [Header("FishCoin")]
 
@@ -226,6 +197,7 @@ namespace ReducedGrinding.Configuration
 
         public CFishingConfig()
         {
+            Angler = new DropDownBoxes.Angler() { };
             BobberPotions = new DropDownBoxes.BobberPotions() { };
         }
 

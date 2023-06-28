@@ -16,7 +16,7 @@ namespace ReducedGrinding.Global
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
 
         //Gets recorded into world save
-        public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+        public static int anglerQuests = 1;
         public static bool dayTime = true;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
         public static bool chatMerchantItems = false;
@@ -142,7 +142,41 @@ namespace ReducedGrinding.Global
                 {
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
 
-                    anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+                    anglerQuests = fishingConfig.Angler.StartingQuestPerDay;
+
+                    int endGameQuestAmount = fishingConfig.Angler.EndGameQuestPerDay - anglerQuests;
+
+                    if (endGameQuestAmount > 0)
+                    {
+                        int questAmountConditionBonus = 0;
+
+                        bool[] extraQuestConditions = new bool[13]
+                        {
+                        NPC.downedBoss1,
+                        NPC.downedBoss2,
+                        NPC.downedBoss3,
+                        NPC.downedQueenBee,
+                        NPC.downedQueenSlime,
+                        NPC.downedMechBoss1,
+                        NPC.downedMechBoss2,
+                        NPC.downedMechBoss3,
+                        NPC.downedPlantBoss,
+                        NPC.downedGolemBoss,
+                        NPC.downedEmpressOfLight,
+                        NPC.downedAncientCultist,
+                        Main.hardMode
+                        };
+
+                        for (int i = 0; i < extraQuestConditions.Length; i++)
+                        {
+                            if (extraQuestConditions[i] == true)
+                            {
+                                questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
+                            }
+                        }
+
+                        anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80; 
+                    }
 
                     anglerResetTimer = 0;
                 }

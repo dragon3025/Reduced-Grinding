@@ -30,7 +30,7 @@ namespace ReducedGrinding.Global
                 return;
             }
 
-            Global.Update.anglerResetTimer = 600;
+            bool resetWait = false;
             for (int i = 0; i < Main.player.Length; i++)
             {
                 if (!Main.player[i].active)
@@ -47,44 +47,27 @@ namespace ReducedGrinding.Global
                 {
                     if (Main.player[i].inventory[j].type == Main.anglerQuestItemNetIDs[Main.anglerQuest])
                     {
-                        Global.Update.anglerResetTimer = 3600;
-                        goto finishedQuestFishCheck;
+                        resetWait = true;
+                        break;
                     }
                 }
-            }
-            finishedQuestFishCheck: { }
 
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                ModPacket packet = Mod.GetPacket();
-                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
-                packet.Write(Global.Update.anglerResetTimer);
-                packet.Send();
-            }
-        }
-
-        public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
-        {
-            if (Update.anglerQuests == 0 || Main.anglerWhoFinishedToday.Contains(Main.LocalPlayer.name))
-            {
-                return;
+                if (resetWait)
+                {
+                    break;
+                }
             }
 
-            if (itemDrop == Main.anglerQuestItemNetIDs[Main.anglerQuest])
+            if (resetWait)
             {
-                Global.Update.anglerResetTimer = 3600;
-            }
-            else
-            {
-                Global.Update.anglerResetTimer = Math.Min(3600, Global.Update.anglerResetTimer + 600);
-            }
-
-            if (Main.netMode == NetmodeID.MultiplayerClient)
-            {
-                ModPacket packet = Mod.GetPacket();
-                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
-                packet.Write(Global.Update.anglerResetTimer);
-                packet.Send();
+                Global.Update.anglerResetTimer = 600;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
+                    packet.Write(Global.Update.anglerResetTimer);
+                    packet.Send();
+                }
             }
         }
     }
