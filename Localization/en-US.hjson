@@ -220,7 +220,7 @@ Mods: {
 
 						Set the amount of extra bobbers each potion gives. Set to 0 to disable recipe.
 						'''
-					AnglerQuestAmountEachDay:
+					ExtraAnglerQuest:
 						'''
 						Angler Quest Amount Each Day
 
