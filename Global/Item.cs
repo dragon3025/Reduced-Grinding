@@ -14,24 +14,24 @@ namespace ReducedGrinding.Global
         public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)
         {
             #region Boss Bags
-            if (item.type == ItemID.FishronBossBag && lootConfig.EmpressAndFishronWings > 0)
+            if (item.type == ItemID.FishronBossBag && lootConfig.BossLoot.EmpressAndFishronWings > 0)
             {
                 foreach (var rule in itemLoot.Get())
                 {
                     if (rule is CommonDropNotScalingWithLuck drop && drop.itemId == ItemID.FishronWings)
                     {
-                        drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
+                        drop.chanceDenominator = lootConfig.BossLoot.EmpressAndFishronWings;
                     }
                 }
-                if (GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron > 0)
+                if (lootConfig.TrufflewormFromDukeFishron > 0)
                 {
-                    itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 1, 1));
+                    itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, lootConfig.TrufflewormFromDukeFishron, 1, 1));
                 }
             }
 
-            if (item.type == ItemID.KingSlimeBossBag && GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing > 0)
+            if (item.type == ItemID.KingSlimeBossBag && lootConfig.SlimeStaffFromSlimeKing > 0)
             {
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, 1, 1));
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, lootConfig.SlimeStaffFromSlimeKing, 1, 1));
             }
 
             if (item.type == ItemID.FairyQueenBossBag)
@@ -40,19 +40,19 @@ namespace ReducedGrinding.Global
                 {
                     if (rule is CommonDropNotScalingWithLuck drop)
                     {
-                        if (drop.itemId == ItemID.RainbowWings && lootConfig.EmpressAndFishronWings > 0)
+                        if (drop.itemId == ItemID.RainbowWings && lootConfig.BossLoot.EmpressAndFishronWings > 0)
                         {
-                            drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
+                            drop.chanceDenominator = lootConfig.BossLoot.EmpressAndFishronWings;
                         }
 
-                        if (drop.itemId == ItemID.SparkleGuitar && lootConfig.StellarTune > 0)
+                        if (drop.itemId == ItemID.SparkleGuitar && lootConfig.BossLoot.StellarTune > 0)
                         {
-                            drop.chanceDenominator = lootConfig.StellarTune;
+                            drop.chanceDenominator = lootConfig.BossLoot.StellarTune;
                         }
 
-                        if (drop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
+                        if (drop.itemId == ItemID.RainbowCursor && lootConfig.BossLoot.RainbowCursor > 0)
                         {
-                            drop.chanceDenominator = lootConfig.RainbowCursor;
+                            drop.chanceDenominator = lootConfig.BossLoot.RainbowCursor;
                         }
 
                         if (drop.itemId == ItemID.HallowBossDye)
@@ -64,13 +64,13 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (item.type == ItemID.EyeOfCthulhuBossBag && lootConfig.Binoculars > 0)
+            if (item.type == ItemID.EyeOfCthulhuBossBag && lootConfig.BossLoot.Binoculars > 0)
             {
                 foreach (var rule in itemLoot.Get())
                 {
                     if (rule is CommonDropNotScalingWithLuck drop && drop.itemId == ItemID.Binoculars)
                     {
-                        drop.chanceDenominator = lootConfig.Binoculars;
+                        drop.chanceDenominator = lootConfig.BossLoot.Binoculars;
                     }
                 }
             }

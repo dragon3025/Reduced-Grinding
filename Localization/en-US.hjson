@@ -17,187 +17,9 @@ Mods: {
 						'''
 						You can change item drop rates using the following configurations. Chance = 1 / configuration_setting. Set to 0 to use the vanilla drop rate.
 
-						Boss Loot
 						'''
-					SlimeStaff: "[i:1309] Slime Staff"
-					NonBossLoot: Non-Boss Loot
+					NonVanilla: Non-Vanilla
 				}
-
-				Binoculars: {
-					Label: "[i: 1299] Binoculars"
-					Tooltip: If world difficulty is normal, this is multiplied by (4/3)
-				}
-
-				EmpressAndFishronWings: {
-					Label: "[i:4823] Empress and [i:2609] Fishron Wings"
-					Tooltip:
-						'''
-						This sets the same drop rate for each. If the world
-						difficulty is normal, this is multiplied by (3 / 2)
-						'''
-				}
-
-				StellarTune: {
-					Label: "[i:4715] Stellar Tune"
-					Tooltip: If world difficulty is normal, this is multiplied by (5/2)
-				}
-
-				RainbowCursor: {
-					Label: "[i:5075] Rainbow Cursor"
-					Tooltip: ""
-				}
-
-				TownNPCWeapons: {
-					Label: "[i:3349] Town NPC Weapons"
-					Tooltip:
-						'''
-						This mod will remove the name requirement for the Guide
-						and Steampunker. This setting doesn't affect the Party
-						Girl.
-						'''
-				}
-
-				BiomeKey: {
-					Label: "[i:1533] Biome Key"
-					Tooltip: This sets the same drop rate for each
-				}
-
-				BeamSword: {
-					Label: "[i:723] Beam Sword"
-					Tooltip: ""
-				}
-
-				GoodieBag: {
-					Label: "[i:1774] Goodie Bag"
-					Tooltip: Only drops during Halloween
-				}
-
-				KOCannon: {
-					Label: "[i:1314] KO Cannon"
-					Tooltip: ""
-				}
-
-				Lens: {
-					Label: "[i:38] Lens"
-					Tooltip:
-						'''
-						Lens wont drop if Black Lens drops, so chance =
-						(99 / 100) * (1 / configuration_setting)
-						'''
-				}
-
-				LizardEgg: {
-					Label: "[i:1172] Lizard Egg"
-					Tooltip: ""
-				}
-
-				Marrow: {
-					Label: "[i:682] Marrow"
-					Tooltip: ""
-				}
-
-				PaladinsHammer: {
-					Label: "[i:1513] Paladin's Hammer"
-					Tooltip:
-						'''
-						If world difficulty is normal, this is multiplied by
-						146.67%
-						'''
-				}
-
-				PlumbersHat: {
-					Label: "[i:244] Plumber's Hat"
-					Tooltip: ""
-				}
-
-				Present: {
-					Label: "[i:1869] Present"
-					Tooltip: Only drops during Christmas
-				}
-
-				RifleScopeAndSniperRifle: {
-					Label: "[i:1300] Rifle Scope and [i:1254]Sniper Rifle"
-					Tooltip:
-						'''
-						This sets the same drop rate for each. If world difficulty
-						is normal, this is
-						multiplied by 183.33%
-						'''
-				}
-
-				RocketLauncher: {
-					Label: "[i:759] Rocket Launcher"
-					Tooltip:
-						'''
-						If world difficulty is normal, this is multiplied
-						194.44%
-						'''
-				}
-
-				RodofDiscord: {
-					Label: "[i:1326] Rod of Discord"
-					Tooltip:
-						'''
-						If world difficulty is normal, this is multiplied by
-						(5/4) (In a Celebrationmk10 world, it's divided by 4
-						round upwards if below 1).
-						'''
-				}
-
-				RottenChunkAndVertebra: {
-					Label: "[i:68] Rotten Chunk and [i:1330] Vertebra"
-					Tooltip: This sets the same drop rate for each
-				}
-
-				SoulOfLightAndNight: {
-					Label: "[i:520] Soul of Light and [i:521] Soul of Night"
-					Tooltip: This sets the same drop rate for each
-				}
-
-				SWATHelmetAndTacticalShotgun: {
-					Label: "[i:1514] SWAT Helmet and [i:679]Tactical Shotgun"
-					Tooltip:
-						'''
-						This sets the same drop rate for each. If world difficulty
-						is normal, this is multiplied by 191.66%
-						'''
-				}
-
-				CoinGun: {
-					Label: "[i:905] Coin Gun From Flying Dutchman"
-					Tooltip: ""
-				}
-
-				SlimeStaffFromPinky: {
-					Label: From Pinky
-					Tooltip: If world difficulty is normal, this multiplied by (10/7)
-				}
-
-				SlimeStaffFromSandSlime: {
-					Label: From Sand Slime
-					Tooltip: If world difficulty is normal, this multiplied by (10/7)
-				}
-
-				SlimeStaffFromOtherSlimes: {
-					Label: From Others
-					Tooltip: If world difficulty is normal, this multiplied by (10/7)
-				}
-
-				PaladinsShield: {
-					Label: "[i:938] Paladins Shield"
-					Tooltip: ""
-				}
-			}
-
-			BEnemyLootNonVanillaConfig: {
-				DisplayName: Enemy Loot Non-Vanilla
-				Headers.Main:
-					'''
-					These drop chances don't exist in vanilla.
-					Chance = 1 / configuration_setting. Set to 0 to disable.
-
-					Boss Loot
-					'''
 
 				SlimeStaffFromSlimeKing: {
 					Label: "[i:1309] Slime Staff From Slime King"
@@ -206,6 +28,16 @@ Mods: {
 
 				TrufflewormFromDukeFishron: {
 					Label: "[i:2673] Truffle Worm from Duke Fishron"
+					Tooltip: ""
+				}
+
+				NonBossLoot: {
+					Label: Non Boss Loot
+					Tooltip: ""
+				}
+
+				BossLoot: {
+					Label: Boss Loot
 					Tooltip: ""
 				}
 			}
@@ -648,6 +480,181 @@ Mods: {
 
 				EndGameQuestPerDay: {
 					Label: End Game Quest Per Day
+					Tooltip: ""
+				}
+			}
+
+			NonBossLoot: {
+				Tooltip: ""
+
+				TownNPCWeapons: {
+					Label: "[i:3349] Town NPC Weapons"
+					Tooltip:
+						'''
+						This mod will remove the name requirement for the Guide
+						and Steampunker. This setting doesn't affect the Party
+						Girl.
+						'''
+				}
+
+				BiomeKey: {
+					Label: "[i:1533] Biome Key"
+					Tooltip: This sets the same drop rate for each
+				}
+
+				BeamSword: {
+					Label: "[i:723] Beam Sword"
+					Tooltip: ""
+				}
+
+				GoodieBag: {
+					Label: "[i:1774] Goodie Bag"
+					Tooltip: Only drops during Halloween
+				}
+
+				KOCannon: {
+					Label: "[i:1314] KO Cannon"
+					Tooltip: ""
+				}
+
+				Lens: {
+					Label: "[i:38] Lens"
+					Tooltip:
+						'''
+						Lens wont drop if Black Lens drops, so chance =
+						(99 / 100) * (1 / configuration_setting)
+						'''
+				}
+
+				LizardEgg: {
+					Label: "[i:1172] Lizard Egg"
+					Tooltip: ""
+				}
+
+				Marrow: {
+					Label: "[i:682] Marrow"
+					Tooltip: ""
+				}
+
+				PaladinsHammer: {
+					Label: "[i:1513] Paladin's Hammer"
+					Tooltip:
+						'''
+						If world difficulty is normal, this is multiplied by
+						146.67%
+						'''
+				}
+
+				PlumbersHat: {
+					Label: "[i:244] Plumber's Hat"
+					Tooltip: ""
+				}
+
+				Present: {
+					Label: "[i:1869] Present"
+					Tooltip: Only drops during Christmas
+				}
+
+				RifleScopeAndSniperRifle: {
+					Label: "[i:1300] Rifle Scope and [i:1254]Sniper Rifle"
+					Tooltip:
+						'''
+						This sets the same drop rate for each. If world difficulty
+						is normal, this is
+						multiplied by 183.33%
+						'''
+				}
+
+				RocketLauncher: {
+					Label: "[i:759] Rocket Launcher"
+					Tooltip:
+						'''
+						If world difficulty is normal, this is multiplied
+						194.44%
+						'''
+				}
+
+				RodofDiscord: {
+					Label: "[i:1326] Rod of Discord"
+					Tooltip:
+						'''
+						If world difficulty is normal, this is multiplied by
+						(5/4) (In a Celebrationmk10 world, it's divided by 4
+						round upwards if below 1).
+						'''
+				}
+
+				RottenChunkAndVertebra: {
+					Label: "[i:68] Rotten Chunk and [i:1330] Vertebra"
+					Tooltip: This sets the same drop rate for each
+				}
+
+				SoulOfLightAndNight: {
+					Label: "[i:520] Soul of Light and [i:521] Soul of Night"
+					Tooltip: This sets the same drop rate for each
+				}
+
+				SWATHelmetAndTacticalShotgun: {
+					Label: "[i:1514] SWAT Helmet and [i:679]Tactical Shotgun"
+					Tooltip:
+						'''
+						This sets the same drop rate for each. If world difficulty
+						is normal, this is multiplied by 191.66%
+						'''
+				}
+
+				SlimeStaffFromPinky: {
+					Label: From Pinky
+					Tooltip: If world difficulty is normal, this multiplied by (10/7)
+				}
+
+				SlimeStaffFromSandSlime: {
+					Label: From Sand Slime
+					Tooltip: If world difficulty is normal, this multiplied by (10/7)
+				}
+
+				SlimeStaffFromOtherSlimes: {
+					Label: From Other Slime Staff Dropping Slimes
+					Tooltip: If world difficulty is normal, this multiplied by (10/7)
+				}
+
+				PaladinsShield: {
+					Label: "[i:938] Paladins Shield"
+					Tooltip: ""
+				}
+
+				Headers.SlimeStaff: "[i:1309] Slime Staff"
+			}
+
+			BossLoot: {
+				Tooltip: ""
+
+				Binoculars: {
+					Label: "[i: 1299] Binoculars"
+					Tooltip: If world difficulty is normal, this is multiplied by (4/3)
+				}
+
+				EmpressAndFishronWings: {
+					Label: "[i:4823] Empress and [i:2609] Fishron Wings"
+					Tooltip:
+						'''
+						This sets the same drop rate for each. If the world
+						difficulty is normal, this is multiplied by (3 / 2)
+						'''
+				}
+
+				StellarTune: {
+					Label: "[i:4715] Stellar Tune"
+					Tooltip: If world difficulty is normal, this is multiplied by (5/2)
+				}
+
+				RainbowCursor: {
+					Label: "[i:5075] Rainbow Cursor"
+					Tooltip: ""
+				}
+
+				CoinGun: {
+					Label: "[i:905] Coin Gun From Flying Dutchman"
 					Tooltip: ""
 				}
 			}

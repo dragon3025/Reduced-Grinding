@@ -10,155 +10,13 @@ namespace ReducedGrinding.Configuration
 
         [Header("Main")]
 
-        #region Boss Loot
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int Binoculars;
+        [Expand(false)]
+        public DropDownBoxes.BossLoot BossLoot;
 
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int EmpressAndFishronWings;
+        [Expand(false)]
+        public DropDownBoxes.NonBossLoot NonBossLoot;
 
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int StellarTune;
-
-        [Range(0, 10000)]
-        [DefaultValue(3)]
-        public int RainbowCursor;
-        #endregion
-
-        #region Non-Boss Loot
-
-        #region Regular
-        [Header("NonBossLoot")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int TownNPCWeapons;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int BiomeKey;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int BeamSword;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int GoodieBag;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int KOCannon;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int Lens;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int LizardEgg;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int Marrow;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PaladinsHammer;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PaladinsShield;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int PlumbersHat;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int Present;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int RifleScopeAndSniperRifle;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int RocketLauncher;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int RodofDiscord;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int RottenChunkAndVertebra;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int SoulOfLightAndNight;
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int SWATHelmetAndTacticalShotgun;
-        #endregion
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(0, 10000)]
-        [DefaultValue(0)]
-        public int CoinGun;
-
-        #region Slime Staff
-        [Header("SlimeStaff")]
-
-        [Range(0, 10000)]
-        [DefaultValue(5)]
-        public int SlimeStaffFromPinky;
-
-        [Range(0, 10000)]
-        [DefaultValue(75)]
-        public int SlimeStaffFromSandSlime;
-
-        [Range(0, 10000)]
-        [DefaultValue(100)]
-        public int SlimeStaffFromOtherSlimes;
-        #endregion
-        #endregion
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
-    }
-
-    public class BEnemyLootNonVanillaConfig : ModConfig
-    {
-        public override ConfigScope Mode => ConfigScope.ServerSide;
-
-        [Header("Main")]
+        [Header("NonVanilla")]
 
         [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
@@ -169,6 +27,12 @@ namespace ReducedGrinding.Configuration
         [Range(0, 10000)]
         [DefaultValue(0)]
         public int TrufflewormFromDukeFishron;
+
+        public AEnemyLootConfig()
+        {
+            NonBossLoot = new DropDownBoxes.NonBossLoot() { };
+            BossLoot = new DropDownBoxes.BossLoot() { };
+        }
 
         public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
         {
