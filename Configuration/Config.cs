@@ -274,6 +274,9 @@ namespace ReducedGrinding.Configuration
         [Expand(false)]
         public DropDownBoxes.TravelingMerchant TravelingMerchant;
 
+        [Expand(false)]
+        public DropDownBoxes.UniversalPylon UniversalPylon;
+
         [Header("Crafting")]
 
         [BackgroundColor(128, 128, 128)]
@@ -290,15 +293,9 @@ namespace ReducedGrinding.Configuration
         [DefaultValue(true)]
         public bool AdjustItemValuesForDropIncreases;
 
-        [DefaultValue(true)]
-        public bool CancelInvasionsIfAllPlayersAreHidden;
-
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
         public bool SkeletonMerchantIgnoresMoonphases;
-
-        [Expand(false)]
-        public DropDownBoxes.UniversalPylon UniversalPylon;
 
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]

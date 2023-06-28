@@ -409,16 +409,6 @@ Mods: {
 						'''
 				}
 
-				CancelInvasionsIfAllPlayersAreHidden: {
-					Label: Cancel Invasions When All Players Are Hidden
-					Tooltip:
-						'''
-						This can be done by using Potion of Invisiblity. It can
-						also be done by going underground, except in "Don't Dig
-						Up" and "Get Fixed Boi" worlds.
-						'''
-				}
-
 				SkeletonMerchantIgnoresMoonphases: {
 					Label: Skeleton Merchant Ignores Moonphases
 					Tooltip:
