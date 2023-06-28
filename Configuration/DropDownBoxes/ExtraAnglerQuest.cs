@@ -24,12 +24,6 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         [DefaultValue(6)]
         public int LateGameBossBonus;
 
-        https://docs.google.com/spreadsheets/d/1vtPzYSjFzGhmv1qJ6y_PYarkG0liGT9VIgeU5DDQgqI/edit#gid=0
-
-        https://docs.google.com/document/d/190-gwv4Jr29LnrFgj5MVObOoZuOARsY3RWt0IDRrVlE/edit
-
-        https://terraria.wiki.gg/wiki/NPCs#Stat_boosts
-
         [Range(1, 10000)]
         [DefaultValue(10)]
         public int QuestCountHardmode;
