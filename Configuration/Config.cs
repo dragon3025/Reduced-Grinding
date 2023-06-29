@@ -94,8 +94,9 @@ namespace ReducedGrinding.Configuration
         [DefaultValue(0)]
         public int PlanteraSapFromPlantera;
 
-        [DefaultValue(true)]
-        public bool HolidaySummons;
+        [DefaultValue(2)]
+        [Range(0, 2)]
+        public int HolidaySummons;
         #endregion
 
         [Expand(false)]

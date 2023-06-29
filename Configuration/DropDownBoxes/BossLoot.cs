@@ -7,24 +7,19 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
     {
         [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
-        [DefaultValue(0)]
         public int Binoculars;
 
         [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
-        [DefaultValue(0)]
         public int CoinGun;
 
         [Range(0, 10000)]
-        [DefaultValue(5)]
         public int EmpressAndFishronWings;
 
         [Range(0, 10000)]
-        [DefaultValue(5)]
         public int StellarTune;
 
         [Range(0, 10000)]
-        [DefaultValue(3)]
         public int RainbowCursor;
 
         public BossLoot()

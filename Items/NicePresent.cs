@@ -52,14 +52,17 @@ namespace ReducedGrinding.Items
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().HolidaySummons == true)
+            if (GetInstance<HOtherModdedItemsConfig>().HolidaySummons > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.NaughtyPresent);
                 recipe.AddIngredient(ItemID.PurificationPowder);
                 recipe.AddTile(TileID.CrystalBall);
-                recipe.AddCondition(Condition.Christmas);
-                recipe.Register();
+                if (GetInstance<HOtherModdedItemsConfig>().HolidaySummons == 2)
+                {
+                    recipe.AddCondition(Condition.Christmas);
+                    recipe.Register();
+                }
             }
         }
     }

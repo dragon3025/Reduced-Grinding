@@ -149,8 +149,10 @@ Mods: {
 					Label: "[i:ReducedGrinding/NicePresent] Nice Present and [i:ReducedGrinding/PumpkinPieMedallion] Pumpkin Pie Medallion"
 					Tooltip:
 						'''
-						Activates Christmas / Halloween, but can only be crafted
-						during their season.
+						Activates Christmas / Halloween.
+						0: Disable
+						1: Enabled
+						2: Enabled + Requires matching season to craft.
 						'''
 				}
 
