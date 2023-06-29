@@ -6,23 +6,28 @@ Open Source at GitHub. Report issues there or at home page.
 
 This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the tModLoader Wiki):
 
-- Increased item chances for a few enemy drops.
+- Increased item chances for a few enemy loot drops.
 - Item values scale to new drop rates by default.
-- Angler Quest per day gradually increases from game progression. Has a short cooldown that may conditionally increase to give all anglers a chance.
+- Angler Quest per day gradually increases from game progression. Has a short cooldown
+    if another unfinished player has the current quest fish.
 - Greater + Super Battle Potion to increase enemy spawns.
-- Items that activate Christmas and Halloween for the current day (crafted during their matching season).
+- Items that activate Christmas and Halloween for the current day. By default, crafting
+    requires their matching season.
 - Item for canceling invasions.
-- Helpful recipes.
+- Recipe for Universal Pylon. Disable or Customize.
+- 1/75 chance for chest to generate with Terragrim. Chance can be customized or
+    disabled.
 
 ====OFF BY DEFAULT====
 
-- Configurations for changing even more enemy drop chances.
-- Configurations for Bed + Enchanted Dial time rate and Enchanted Dial cooldown.
-- Potion for increasing fishing bobber amount.
+- Change Universal Pylon Bestiary requirement.
+- Configuraitons for changing enemy loot drop chances.
+- Adjust Bed + Enchanted Dial time rate and cooldown.
+- Potions for increasing fishing bobber amount.
 - Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
-- Reduce Bestiary requirement for Universal Pylon.
-- Staff of Difficulty. Changes difficulty settings.
+- Staff of Difficulty. Changes world difficulty mode.
 - Moon Watch to advance Moon Phase.
+- Witch Doctor sells Chlorophyte after Plantera.
 
 ====LINKS====
 Open Source on Github: https://github.com/dragon3025/Reduced-Grinding
