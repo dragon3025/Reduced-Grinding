@@ -122,7 +122,14 @@ Mods: {
 
 				MoonWatch: {
 					Label: "[i:ReducedGrinding/MoonWatch] Moon Watch"
-					Tooltip: Advances the Moon Phase. Set to false to disable the recipe.
+					Tooltip:
+						'''
+						Advances the Moon Phase.
+						0: Disable recipe
+						1: Requires Gold or Platinum Bar
+						2: Requires Demonite or Crimtane Bar
+						3: Requires Hellstone Bar
+						'''
 				}
 
 				SlimeTrophy: {

@@ -78,8 +78,8 @@ namespace ReducedGrinding.Configuration
 
         #region Regular
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
-        public bool MoonWatch;
+        [DefaultValue(0)]
+        public int MoonWatch;
 
         [DefaultValue(true)]
         public bool SlimeTrophy;
