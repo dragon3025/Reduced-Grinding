@@ -227,8 +227,8 @@ Mods: {
 					Tooltip:
 						'''
 						This excludes Dungeon Biome Chest which can be obtained
-						through Shimmering. Shadow Chest are crafted by Shimmering
-						a Shadow Key.
+						through Shimmering. When enabled, Shadow Chest are
+						crafted by Shimmering a Shadow Key.
 						'''
 				}
 
@@ -254,8 +254,8 @@ Mods: {
 					Label: Skeleton Merchant Ignores Moonphases
 					Tooltip:
 						'''
-						This doesn't include items that can be obtained through
-						other methods
+						This only includes items that are only obtained from the
+						Skeleton Merchant or Wooden Surface Chests.
 						'''
 				}
 

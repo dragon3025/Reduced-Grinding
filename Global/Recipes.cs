@@ -12,7 +12,7 @@ namespace ReducedGrinding.GlobalRecipes
         {
             Recipe recipe;
 
-            #region Other
+            #region Universal Pylon
             if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithPylons ||
                 GetInstance<IOtherConfig>().UniversalPylon.CraftWithPreMechSouls ||
                 GetInstance<IOtherConfig>().UniversalPylon.CraftWithMechSouls ||
@@ -32,22 +32,22 @@ namespace ReducedGrinding.GlobalRecipes
                 }
                 if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithPreMechSouls)
                 {
-                    recipe.AddIngredient(ItemID.SoulofLight);
-                    recipe.AddIngredient(ItemID.SoulofNight);
-                    recipe.AddIngredient(ItemID.SoulofFlight);
+                    recipe.AddIngredient(ItemID.SoulofLight, 5);
+                    recipe.AddIngredient(ItemID.SoulofNight, 5);
+                    recipe.AddIngredient(ItemID.SoulofFlight, 5);
                 }
                 if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithMechSouls)
                 {
-                    recipe.AddIngredient(ItemID.SoulofFright);
-                    recipe.AddIngredient(ItemID.SoulofMight);
-                    recipe.AddIngredient(ItemID.SoulofSight);
+                    recipe.AddIngredient(ItemID.SoulofFright, 5);
+                    recipe.AddIngredient(ItemID.SoulofMight, 5);
+                    recipe.AddIngredient(ItemID.SoulofSight, 5);
                 }
                 if (GetInstance<IOtherConfig>().UniversalPylon.CraftWithFragments)
                 {
-                    recipe.AddIngredient(ItemID.FragmentNebula);
-                    recipe.AddIngredient(ItemID.FragmentSolar);
-                    recipe.AddIngredient(ItemID.FragmentStardust);
-                    recipe.AddIngredient(ItemID.FragmentVortex);
+                    recipe.AddIngredient(ItemID.FragmentNebula, 5);
+                    recipe.AddIngredient(ItemID.FragmentSolar, 5);
+                    recipe.AddIngredient(ItemID.FragmentStardust, 5);
+                    recipe.AddIngredient(ItemID.FragmentVortex, 5);
                 }
                 if (GetInstance<IOtherConfig>().UniversalPylon.CraftAtCrystalBall)
                 {

@@ -79,6 +79,7 @@ namespace ReducedGrinding.Configuration
         #region Regular
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(0)]
+        [Range(0, 3)]
         public int MoonWatch;
 
         [DefaultValue(true)]

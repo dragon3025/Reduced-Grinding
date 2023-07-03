@@ -673,18 +673,9 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
-                        int[] biomeChestSubIDs =
-                        {
-                        23 * chestHeight,
-                        24 * chestHeight,
-                        25 * chestHeight,
-                        26 * chestHeight,
-                        27 * chestHeight
-                        };
                         bool regularChest = chestType1 && tileFrameX == 0;
-                        bool lockedBiomeChest = chestType1 && biomeChestSubIDs.Contains(tileFrameX) || (chestType2 && tileFrameX == 13 * chestHeight);
 
-                        if (!regularChest && !lockedBiomeChest)
+                        if (!regularChest)
                         {
                             terragrimChests.Add(chestIndex);
                         }
