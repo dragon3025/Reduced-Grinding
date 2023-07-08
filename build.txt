@@ -1,5 +1,5 @@
 author = Dragon3025
-version = 8.14.3.9
+version = 9.0
 displayName = Reduced Grinding
 homepage = http://forums.terraria.org/index.php?threads/reduced-grinding.51082/
 hideCode = false
