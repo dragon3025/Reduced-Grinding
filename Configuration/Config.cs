@@ -124,7 +124,8 @@ namespace ReducedGrinding.Configuration
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [DefaultValue(75)]
+        [DefaultValue(100)]
+        [Range(1, 1000)]
         public int TerragrimChestChance;
 
         [BackgroundColor(128, 128, 128)]

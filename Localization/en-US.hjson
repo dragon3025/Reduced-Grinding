@@ -211,9 +211,9 @@ Mods: {
 					Label: "[i:4144] Chest Terragrim Chance"
 					Tooltip:
 						'''
-						Chance for vanilla chests to generate with Terragrim
-						inside. This excludes Regular Wooden Chests. Chance =
-						1 /configuration_setting. Set to 0 to disable.
+						Each vanilla chest will have a chance of generating with
+						Terragrim inside (this excludes basic surface chests).
+						Chance = 1 /configuration_setting. Set to 0 to disable.
 						'''
 				}
 

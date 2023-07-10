@@ -15,8 +15,8 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
     requires their matching season.
 - Item for canceling invasions.
 - Recipe for Universal Pylon. Disable or Customize.
-- 1/75 chance for chest to generate with Terragrim. Chance can be customized or
-    disabled.
+- Each chest has a 1 / 100 chance to generate with Terragrim (except basic chest). Chance can be
+    customized or disabled.
 
 ====OFF BY DEFAULT====
 

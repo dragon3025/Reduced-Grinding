@@ -8,15 +8,12 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 
 - Increased item chances for a few enemy loot drops.
 - Item values scale to new drop rates by default.
-- Angler Quest per day gradually increases from game progression. Has a short cooldown
-    if another unfinished player has the current quest fish.
+- Angler Quest per day gradually increases from game progression. Has a short cooldown if another unfinished player has the current quest fish.
 - Greater + Super Battle Potion to increase enemy spawns.
-- Items that activate Christmas and Halloween for the current day. By default, crafting
-    requires their matching season.
+- Items that activate Christmas and Halloween for the current day. By default, crafting requires their matching season.
 - Item for canceling invasions.
 - Recipe for Universal Pylon. Disable or Customize.
-- 1/75 chance for chest to generate with Terragrim. Chance can be customized or
-    disabled.
+- Each chest has a 1 / 100 chance to generate with Terragrim (except basic chest). Chance can be customized or disabled.
 
 ====OFF BY DEFAULT====
 
