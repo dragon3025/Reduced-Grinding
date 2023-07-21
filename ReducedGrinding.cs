@@ -89,8 +89,6 @@ namespace ReducedGrinding
 
     class ReducedGrindingSave : ModSystem
     {
-        public static bool usingCalamity = false;
-
         public override void OnWorldUnload()
         {
             Global.Update.anglerQuests = 1;
@@ -125,14 +123,6 @@ namespace ReducedGrinding
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
             {
                 Global.Update.travelingMerchantDiceRolls = 0;
-            }
-        }
-
-        public override void OnModLoad()
-        {
-            if (ModLoader.TryGetMod("CalamityMod", out _))
-            {
-                usingCalamity = true;
             }
         }
     }
