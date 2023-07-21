@@ -677,12 +677,12 @@ Mods: {
 
 			GreaterMultiBobber: {
 				DisplayName: Greater Multi-Bobber Potion
-				Description: Increases bobber amount by 0 when fishing
+				Description: Greatly increases bobber amount when fishing
 			}
 
 			MultiBobber: {
 				DisplayName: Multi-Bobber Potion
-				Description: Increases bobber amount by 0 when fishing
+				Description: Increases bobber amount when fishing
 			}
 
 			SuperBattle: {
@@ -692,7 +692,7 @@ Mods: {
 
 			SuperMultiBobber: {
 				DisplayName: Super Multi-Bobber Potion
-				Description: Increases bobber amount by 2 when fishing
+				Description: Massively increases bobber amount when fishing
 			}
 		}
 
@@ -704,12 +704,12 @@ Mods: {
 
 			GreaterMultiBobberPotion: {
 				DisplayName: Greater Multi-Bobber Potion
-				Tooltip: Increases bobber amount by 0 when fishing
+				Tooltip: Greatly increases bobber amount when fishing
 			}
 
 			MultiBobberPotion: {
 				DisplayName: Multi-Bobber Potion
-				Tooltip: Increases bobber amount by 0 when fishing
+				Tooltip: Increases bobber amount when fishing
 			}
 
 			SuperBattlePotion: {
@@ -719,12 +719,12 @@ Mods: {
 
 			SuperMultiBobberPotion: {
 				DisplayName: Super Multi-Bobber Potion
-				Tooltip: Increases bobber amount by 2 when fishing
+				Tooltip: Massively increases bobber amount when fishing
 			}
 
 			FishCoin: {
 				DisplayName: Fish Coin
-				Tooltip: A Pirate may be interested in this.
+				Tooltip: A Pirate may be interested in this
 			}
 
 			FishCostumeBag: {
@@ -772,26 +772,26 @@ Mods: {
 
 			PumpkinPieMedallion: {
 				DisplayName: Pumpkin Pie Medallion
-				Tooltip: Activates Halloween time.
+				Tooltip: Activates Halloween time
 			}
 
 			NicePresent: {
 				DisplayName: Nice Present
-				Tooltip: Activates Christmas time.
+				Tooltip: Activates Christmas time
 			}
 
 			StaffOfDifficulty: {
 				DisplayName: Staff of Difficulty
 				Tooltip:
 					'''
-					A creative tool that switches the world difficulty mode outside of Journey Mode.
-					This will only switch to modes that are enabled in the configuration settings.
+					A creative tool that switches the world difficulty mode outside of Journey Mode
+					This will only switch to modes that are enabled in the configuration settings
 					'''
 			}
 
 			WorldPeaceStandard: {
 				DisplayName: World Peace Standard
-				Tooltip: Cancels invasions.
+				Tooltip: Cancels invasions
 			}
 		}
 	}

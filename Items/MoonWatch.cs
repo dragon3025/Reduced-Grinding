@@ -63,49 +63,33 @@ namespace ReducedGrinding.Items
             if (GetInstance<HOtherModdedItemsConfig>().MoonWatch > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
+                recipe.AddTile(TileID.Tables);
+                recipe.AddTile(TileID.Chairs);
                 if (GetInstance<HOtherModdedItemsConfig>().MoonWatch == 1)
                 {
                     recipe.AddIngredient(ItemID.GoldBar);
-                    recipe.AddIngredient(ItemID.FallenStar);
-                    recipe.AddIngredient(ItemID.Chain);
-                    recipe.AddTile(TileID.Tables);
-                    recipe.AddTile(TileID.Chairs);
                     recipe.Register();
 
                     recipe = Recipe.Create(Type);
                     recipe.AddIngredient(ItemID.PlatinumBar);
-                    recipe.AddIngredient(ItemID.FallenStar);
-                    recipe.AddIngredient(ItemID.Chain);
-                    recipe.AddTile(TileID.Tables);
-                    recipe.AddTile(TileID.Chairs);
                     recipe.Register();
                 }
                 else if (GetInstance<HOtherModdedItemsConfig>().MoonWatch == 2)
                 {
                     recipe.AddIngredient(ItemID.DemoniteBar);
-                    recipe.AddIngredient(ItemID.FallenStar);
-                    recipe.AddIngredient(ItemID.Chain);
-                    recipe.AddTile(TileID.Tables);
-                    recipe.AddTile(TileID.Chairs);
                     recipe.Register();
 
                     recipe = Recipe.Create(Type);
                     recipe.AddIngredient(ItemID.CrimtaneBar);
-                    recipe.AddIngredient(ItemID.FallenStar);
-                    recipe.AddIngredient(ItemID.Chain);
-                    recipe.AddTile(TileID.Tables);
-                    recipe.AddTile(TileID.Chairs);
                     recipe.Register();
                 }
                 else if (GetInstance<HOtherModdedItemsConfig>().MoonWatch == 3)
                 {
                     recipe.AddIngredient(ItemID.HellstoneBar);
-                    recipe.AddIngredient(ItemID.FallenStar);
-                    recipe.AddIngredient(ItemID.Chain);
-                    recipe.AddTile(TileID.Tables);
-                    recipe.AddTile(TileID.Chairs);
                     recipe.Register();
                 }
+                recipe.AddIngredient(ItemID.FallenStar);
+                recipe.AddIngredient(ItemID.Chain);
             }
         }
     }

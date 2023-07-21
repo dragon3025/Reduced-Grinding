@@ -20,7 +20,7 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.width = 28;
             Item.height = 30;
             Item.maxStack = 9999;
-            Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Lime : ItemRarityID.Pink;
+            Item.rare = ItemRarityID.Pink;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -53,10 +53,6 @@ namespace ReducedGrinding.Items.BuffPotions
                     recipe.AddIngredient(ItemID.MasterBait);
                 }
                 recipe.AddIngredient(ItemID.GelBalloon);
-                if (ReducedGrindingSave.usingCalamity)
-                {
-                    recipe.AddIngredient(ItemID.VialofVenom);
-                }
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }
