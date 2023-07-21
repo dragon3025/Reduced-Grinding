@@ -65,6 +65,8 @@ namespace ReducedGrinding.Items
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddTile(TileID.Tables);
                 recipe.AddTile(TileID.Chairs);
+                recipe.AddIngredient(ItemID.FallenStar);
+                recipe.AddIngredient(ItemID.Chain);
                 if (GetInstance<HOtherModdedItemsConfig>().MoonWatch == 1)
                 {
                     recipe.AddIngredient(ItemID.GoldBar);
@@ -88,8 +90,6 @@ namespace ReducedGrinding.Items
                     recipe.AddIngredient(ItemID.HellstoneBar);
                     recipe.Register();
                 }
-                recipe.AddIngredient(ItemID.FallenStar);
-                recipe.AddIngredient(ItemID.Chain);
             }
         }
     }
