@@ -51,6 +51,11 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 SetTwoItemsToShimmerIntoEachOther(ItemID.ShadowChest, ItemID.ShadowKey);
             }
 
+            if (GetInstance<IOtherConfig>().ShimmerRoyalStatues)
+            {
+                SetTwoItemsToShimmerIntoEachOther(ItemID.KingStatue, ItemID.QueenStatue);
+            }
+
             ItemID.Sets.ShimmerTransformToItem[ItemID.FlameTrap] = ItemID.SpearTrap;
             ItemID.Sets.ShimmerTransformToItem[ItemID.SpearTrap] = ItemID.SpikyBallTrap;
             ItemID.Sets.ShimmerTransformToItem[ItemID.SpikyBallTrap] = ItemID.SuperDartTrap;

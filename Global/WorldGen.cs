@@ -653,9 +653,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                int kingStatueDenominator = 5;
-                int queenStatueDenominator = 5;
-
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
                     Chest chest = Main.chest[chestIndex];
@@ -684,7 +681,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                     if (chestType1)
                     {
                         bool mushroomChest = tileFrameX == 32 * chestHeight;
-                        bool goldChest = tileFrameX == 1 * chestHeight;
                         bool lockedGoldChest = tileFrameX == 2 * chestHeight;
 
                         if (mushroomChest)
@@ -704,38 +700,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
                                     }
                                 }
-                            }
-                        }
-                        else if (goldChest)
-                        {
-                            if (chest.y > GenVars.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
-                            {
-                                if (WorldGen.genRand.NextBool(kingStatueDenominator))
-                                {
-                                    for (int slot = 0; slot < 40; slot++)
-                                    {
-                                        if (chest.item[slot].type == ItemID.None)
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.KingStatue);
-                                            kingStatueDenominator += 5;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (WorldGen.genRand.NextBool(queenStatueDenominator))
-                                {
-                                    for (int slot = 0; slot < 40; slot++)
-                                    {
-                                        if (chest.item[slot].type == ItemID.None)
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.QueenStatue);
-                                            queenStatueDenominator += 5;
-                                            break;
-                                        }
-                                    }
-                                }
-                                kingStatueDenominator = Math.Max(1, kingStatueDenominator - 1);
-                                queenStatueDenominator = Math.Max(1, queenStatueDenominator - 1);
                             }
                         }
                         else if (lockedGoldChest)
