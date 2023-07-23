@@ -31,7 +31,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
         public class MissingShroomLootGen : GenPass
         {
-            public MissingMiscLootGen(string name, float loadWeight) : base(name, loadWeight) { }
+            public MissingShroomLootGen(string name, float loadWeight) : base(name, loadWeight) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
@@ -117,27 +117,24 @@ namespace ReducedGrinding.Global.WorldGeneration
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
 
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
-                    int chestHeight = 36;
+                    int chestWidth = 36;
 
                     if (chestType1)
                     {
-                        bool mushroomChest = tileFrameX == 32 * chestHeight;
+                        bool mushroomChest = tileFrameX == 32 * chestWidth;
 
-                        if (mushroomChest)
+                        if (mushroomChest && missingMushroomItems.Count > 0)
                         {
-                            if (missingMushroomItems.Count > 0)
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                for (int slot = 0; slot < 40; slot++)
-                                {
-                                    List<int> missingMushroomItemsOld = new();
-                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
+                                List<int> missingMushroomItemsOld = new();
+                                missingMushroomItemsOld.AddRange(missingMushroomItems);
 
-                                    foreach (int itemType in missingMushroomItemsOld)
+                                foreach (int itemType in missingMushroomItemsOld)
+                                {
+                                    if (chest.item[slot].type == itemType)
                                     {
-                                        if (chest.item[slot].type == itemType)
-                                        {
-                                            missingMushroomItems.Remove(itemType);
-                                        }
+                                        missingMushroomItems.Remove(itemType);
                                     }
                                 }
                             }
@@ -273,73 +270,8 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 List<int> terragrimChests = new();
                 List<int> lockedGoldChests = new();
-
-                List<int> mushroomBiomes = new();
-
-                void tryToPlaceMushroomChest(int mushroomBiome, int item)
-                {
-                    Point selectedBiomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
-                    mushroomBiomes.Remove(mushroomBiome);
-
-	                int attempts = 0;
-                    bool success = false;
-                    int x;
-                    int y;
-
-                    int chestIndex = -1;
-                    while (!success) {
-                        attempts++;
-                        if (attempts > 10000) {
-                            break;
-                        }
-                        x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
-                        y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
-                        if (Framing.GetTileSafely(x, y+1).TileType == TileID.MushroomGrass)
-                        {
-                            chestIndex = WorldGen.PlaceChest(x, y);
-                            success = chestIndex != -1;
-                        }
-                    }
-                    if(success)
-                    {
-                        Main.NewText($"Placed chest at {x}, {y} after {attempts} attempts.");
-                    }
-                    else
-                    {
-                        Main.NewText($"Failed to place chest after {attempts} attempts.");
-                    }
-                    if (chestIndex != -1)
-                    {
-                        Chest chest = Main.chest[chestIndex];
-
-                        int slot = 0;
-                        if (item == ItemID.MushroomHat)
-                        {
-                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
-                            slot++;
-                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
-                            slot++;
-                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
-                            slot++;
-                        }
-                        else
-                        {
-                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
-                        }
-                        if (item != -1)
-                        {
-                            missingMushroomItems.Remove(item);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < GenVars.mushroomBiomesPosition.Length; i++)
-                {
-                    if (GenVars.mushroomBiomesPosition[i].X != 0 && GenVars.mushroomBiomesPosition[i].Y != 0)
-                    {
-                        mushroomBiomes.Add(i);
-                    }
-                }
+                List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
+                List<int> sandstoneChests = new();
 
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
@@ -351,27 +283,64 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
 
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+                    bool chestType2 = Main.tile[chest.x, chest.y].TileType == TileID.Containers2;
 
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
-                    int chestHeight = 36;
+                    int chestWidth = 36;
+
+                    bool goldChest = tileFrameX == 1 * chestWidth;
+
+                    if (goldChest && missingPyramidItems.Count > 0)
+                    {
+                        for (int slot = 0; slot < 40; slot++)
+                        {
+                            List<int> missingPyramidItemsOld = new();
+                            missingPyramidItemsOld.AddRange(missingPyramidItems);
+
+                            foreach (int itemType in missingPyramidItemsOld)
+                            {
+                                if (chest.item[slot].type == itemType)
+                                {
+                                    missingPyramidItems.Remove(itemType);
+                                }
+                            }
+                        }
+                    }
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
                         bool regularChest = chestType1 && tileFrameX == 0;
 
-                        if (!regularChest)
+                        if (!regularChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
                         {
-                            terragrimChests.Add(chestIndex);
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                if (chest.item[slot].type == ItemID.None)
+                                {
+                                    chest.item[slot].SetDefaults(ItemID.Terragrim);
+                                    break;
+                                }
+                            }
                         }
                     }
 
                     if (chestType1)
                     {
-                        bool lockedGoldChest = tileFrameX == 2 * chestHeight;
+                        bool lockedGoldChest = tileFrameX == 2 * chestWidth;
 
                         if (lockedGoldChest)
                         {
                             lockedGoldChests.Add(chestIndex);
+                        }
+                    }
+
+                    if (chestType2)
+                    {
+                        bool sandstoneChest = tileFrameX == 10 * chestWidth;
+
+                        if (sandstoneChest)
+                        {
+                            sandstoneChests.Add(chestIndex);
                         }
                     }
                 }
@@ -397,18 +366,34 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                foreach (int chestIndex in terragrimChests)
+                while (missingPyramidItems.Count > 0)
                 {
-                    if (WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                    Chest chest = Main.chest[sandstoneChests[sandstoneChests.Count]]
+                    for (int slot = 0; slot < 40; slot++)
                     {
-                        Chest chest = Main.chest[chestIndex];
-                        for (int slot = 0; slot < 40; slot++)
+                        if (chest.item[slot].type == ItemID.None)
                         {
-                            if (chest.item[slot].type == ItemID.None)
+                            chest.item[slot].SetDefaults(missingPyramidItems[0]);
+                            if (missingPyramidItems[0] == ItemID.PharaohsMask)
                             {
-                                chest.item[slot].SetDefaults(ItemID.Terragrim);
-                                break;
+                                if (slot == 39)
+                                {
+                                    chest.item[slot].SetDefaults(ItemID.PharaohsRobe);
+                                }
+                                else
+                                {
+                                    if (chest.item[slot+1].type == ItemID.None)
+                                    {
+                                        chest.item[slot+1].SetDefaults(ItemID.PharaohsRobe);
+                                    }
+                                    else
+                                    {
+                                        chest.item[slot].SetDefaults(ItemID.PharaohsRobe);
+                                    }
+                                }
                             }
+                            missingPyramidItems.RemoveAt(0);
+                            break;
                         }
                     }
                 }
