@@ -16,21 +16,149 @@ namespace ReducedGrinding.Global.WorldGeneration
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
+            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
             int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
+            if (BuriedChestsIndex != -1)
+            {
+                tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding Missing Shroom Loot", 10f));
+            }
             if (FinalCleanupIndex != -1)
             {
-                tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Loot", 10f));
+                tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding Other Missing Loot", 10f));
             }
         }
 
-        public class ReducedGrindingGen : GenPass
+        public class MissingShroomLootGen : GenPass
         {
-            public ReducedGrindingGen(string name, float loadWeight) : base(name, loadWeight) { }
+            public MissingMiscLootGen(string name, float loadWeight) : base(name, loadWeight) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = "Adding Non-Existing Loot";
+                progress.Message = "Adding Missing Shroom Loot";
+
+                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
+                List<int> mushroomBiomes = new();
+
+                void tryToPlaceMushroomChest(int mushroomBiome, int item)
+                {
+                    Point selectedBiomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
+                    mushroomBiomes.Remove(mushroomBiome);
+
+	                int attempts = 0;
+                    bool success = false;
+                    int x;
+                    int y;
+
+                    int chestIndex = -1;
+                    while (!success) {
+                        attempts++;
+                        if (attempts > 10000) {
+                            break;
+                        }
+                        x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
+                        y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
+                        if (Framing.GetTileSafely(x, y+1).TileType == TileID.MushroomGrass)
+                        {
+                            chestIndex = WorldGen.PlaceChest(x, y);
+                            success = chestIndex != -1;
+                        }
+                    }
+                    if(success)
+                    {
+                        Main.NewText($"Placed chest at {x}, {y} after {attempts} attempts.");
+                    }
+                    else
+                    {
+                        Main.NewText($"Failed to place chest after {attempts} attempts.");
+                    }
+                    if (chestIndex != -1)
+                    {
+                        Chest chest = Main.chest[chestIndex];
+
+                        int slot = 0;
+                        if (item == ItemID.MushroomHat)
+                        {
+                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
+                            slot++;
+                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
+                            slot++;
+                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
+                            slot++;
+                        }
+                        else
+                        {
+                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
+                        }
+                        if (item != -1)
+                        {
+                            missingMushroomItems.Remove(item);
+                        }
+                    }
+                }
+
+                for (int i = 0; i < GenVars.mushroomBiomesPosition.Length; i++)
+                {
+                    if (GenVars.mushroomBiomesPosition[i].X != 0 && GenVars.mushroomBiomesPosition[i].Y != 0)
+                    {
+                        mushroomBiomes.Add(i);
+                    }
+                }
+
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+                {
+                    Chest chest = Main.chest[chestIndex];
+
+                    if (chest == null)
+                    {
+                        continue;
+                    }
+
+                    bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+
+                    short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                    int chestHeight = 36;
+
+                    if (chestType1)
+                    {
+                        bool mushroomChest = tileFrameX == 32 * chestHeight;
+
+                        if (mushroomChest)
+                        {
+                            if (missingMushroomItems.Count > 0)
+                            {
+                                for (int slot = 0; slot < 40; slot++)
+                                {
+                                    List<int> missingMushroomItemsOld = new();
+                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
+
+                                    foreach (int itemType in missingMushroomItemsOld)
+                                    {
+                                        if (chest.item[slot].type == itemType)
+                                        {
+                                            missingMushroomItems.Remove(itemType);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                while (missingMushroomItems.Count > 0 && MushroomBiomes > 0)
+                {
+                    tryToPlaceMushroomChest(MushroomBiomes[WorldGen.genRand.Next(mushroomBiomes.Count)], missingMushroomItems[0]);
+                }
+            }
+        }
+
+        public class MissingMiscLootGen : GenPass
+        {
+            public MissingMiscLootGen(string name, float loadWeight) : base(name, loadWeight) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Adding Other Missing Loot";
 
                 #region Decide Dungeon Furniture Color
                 int dungeonColor = 0;
@@ -143,7 +271,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
                 #endregion
 
-                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 List<int> terragrimChests = new();
                 List<int> lockedGoldChests = new();
 
@@ -224,7 +351,6 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
 
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
-                    bool chestType2 = Main.tile[chest.x, chest.y].TileType == TileID.Containers2;
 
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
                     int chestHeight = 36;
@@ -241,38 +367,13 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     if (chestType1)
                     {
-                        bool mushroomChest = tileFrameX == 32 * chestHeight;
                         bool lockedGoldChest = tileFrameX == 2 * chestHeight;
 
-                        if (mushroomChest)
-                        {
-                            if (missingMushroomItems.Count > 0)
-                            {
-                                for (int slot = 0; slot < 40; slot++)
-                                {
-                                    List<int> missingMushroomItemsOld = new();
-                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
-
-                                    foreach (int itemType in missingMushroomItemsOld)
-                                    {
-                                        if (chest.item[slot].type == itemType)
-                                        {
-                                            missingMushroomItems.Remove(itemType);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else if (lockedGoldChest)
+                        if (lockedGoldChest)
                         {
                             lockedGoldChests.Add(chestIndex);
                         }
                     }
-                }
-
-                while (missingMushroomItems.Count > 0 && MushroomBiomes > 0)
-                {
-                    tryToPlaceMushroomChest(MushroomBiomes[WorldGen.genRand.Next(mushroomBiomes.Count)], missingMushroomItems[0]);
                 }
 
                 while (dungeonFurniture.Count > 0)
