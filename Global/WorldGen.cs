@@ -47,8 +47,8 @@ namespace ReducedGrinding.Global.WorldGeneration
 
 	                int attempts = 0;
                     bool success = false;
-                    int x;
-                    int y;
+                    int x = 0;
+                    int y = 0;
 
                     int chestIndex = -1;
                     while (!success) {
@@ -142,9 +142,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                while (missingMushroomItems.Count > 0 && MushroomBiomes > 0)
+                while (missingMushroomItems.Count > 0 && mushroomBiomes.Count > 0)
                 {
-                    tryToPlaceMushroomChest(MushroomBiomes[WorldGen.genRand.Next(mushroomBiomes.Count)], missingMushroomItems[0]);
+                    tryToPlaceMushroomChest(mushroomBiomes[WorldGen.genRand.Next(mushroomBiomes.Count)], missingMushroomItems[0]);
                 }
             }
         }
@@ -366,9 +366,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                while (missingPyramidItems.Count > 0)
+                while (missingPyramidItems.Count > 0 && sandstoneChests.Count > 0)
                 {
-                    Chest chest = Main.chest[sandstoneChests[sandstoneChests.Count]]
+                    Chest chest = Main.chest[sandstoneChests[WorldGen.genRand.Next(sandstoneChests.Count)]];
                     for (int slot = 0; slot < 40; slot++)
                     {
                         if (chest.item[slot].type == ItemID.None)
