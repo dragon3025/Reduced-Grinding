@@ -39,13 +39,6 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 }
             }
 
-            if (item.type == ItemID.LeafWand)
-            {
-                ItemID.Sets.ShimmerTransformToItem[item.type] = ItemID.SunflowerMinecart;
-            }
-
-            SetTwoItemsToShimmerIntoEachOther(ItemID.LadybugMinecart, ItemID.SunflowerMinecart);
-
             if (GetInstance<IOtherConfig>().CraftableRareChests)
             {
                 SetTwoItemsToShimmerIntoEachOther(ItemID.ShadowChest, ItemID.ShadowKey);

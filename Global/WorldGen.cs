@@ -9,6 +9,12 @@ using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
+using System;
+using ReducedGrinding.Configuration;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global.WorldGeneration
 {
@@ -16,9 +22,14 @@ namespace ReducedGrinding.Global.WorldGeneration
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
+            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
             int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
             int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
+            if (LivingTreesIndex != -1)
+            {
+                tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding Missing Tree Loot", 10f));
+            }
             if (BuriedChestsIndex != -1)
             {
                 tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding Missing Shroom Loot", 10f));
@@ -26,6 +37,215 @@ namespace ReducedGrinding.Global.WorldGeneration
             if (FinalCleanupIndex != -1)
             {
                 tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding Other Missing Loot", 10f));
+            }
+        }
+
+
+
+        public class MissingTreeLootGen : GenPass
+        {
+            public MissingTreeLootGen(string name, float loadWeight) : base(name, loadWeight) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Adding Missing Tree Loot";
+
+                List<int> missingTreeItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
+
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
+                {
+                    Chest chest = Main.chest[chestIndex];
+
+                    if (chest == null)
+                    {
+                        continue;
+                    }
+
+                    bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+
+                    short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                    int chestWidth = 36;
+
+                    bool treeChest = tileFrameX == 12 * chestWidth;
+
+                    if (treeChest && missingTreeItems.Count > 0)
+                    {
+                        for (int slot = 0; slot < 40; slot++)
+                        {
+                            List<int> missingTreeItemsOld = new();
+                            missingTreeItemsOld.AddRange(missingTreeItems);
+
+                            foreach (int itemType in missingTreeItemsOld)
+                            {
+                                if (chest.item[slot].type == itemType)
+                                {
+                                    missingTreeItems.Remove(itemType);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                int attempts = 0;
+                while (missingTreeItems.Count > 0 && attempts < 10000)
+                {
+                    attempts++;
+                    int posX = genRand.Next(beachDistance, Main.maxTilesX - beachDistance);
+                    if (tenthAnniversaryWorldGen && !remixWorldGen)
+                    {
+                        posX = genRand.Next((int)((double)Main.maxTilesX * 0.15), (int)((float)Main.maxTilesX * 0.85f));
+                    }
+                    if (posX <= Main.maxTilesX / 2 - spawnSafeDistance || posX >= Main.maxTilesX / 2 + spawnSafeDistance)
+                    {
+                        int posY;
+                        for (posY = 0; !Main.tile[posX, posY].active() && (double)posY < Main.worldSurface; posY++)
+                        {
+                        }
+                        if (Main.tile[posX, posY].type == TileID.Dirt)
+                        {
+                            if (posY > 150)
+                            {
+                                bool validPos = true;
+                                for (int tileCheckX = posX - 50; tileCheckX < posX + 50; tileCheckX++)
+                                {
+                                    for (int tileCheckY = posY - 50; tileCheckY < posY + 50; tileCheckY++)
+                                    {
+                                        if (Main.tile[tileCheckX, tileCheckY].active())
+                                        {
+                                            //Check for clouds and dungeon tiles.
+                                            switch (Main.tile[tileCheckX, tileCheckY].type)
+                                            {
+                                            case 41:
+                                            case 43:
+                                            case 44:
+                                            case 189:
+                                            case 196:
+                                            case 460:
+                                            case 481:
+                                            case 482:
+                                            case 483:
+                                                validPos = false;
+                                                goto finishedCloudCheck;
+                                            }
+                                        }
+                                    }
+                                }
+                                posXOriginal = posX;
+                                posYOriginal = posY;
+                                posX -= 3
+                                for (int tileCheckX = posX; tileCheckX < posX + 9; tileCheckX++)
+                                {
+                                    for (int tileCheckY = posY; tileCheckY < posY + 4; tileCheckY++)
+                                    {
+                                        if (Main.tile[tileCheckX, tileCheckY].active() && Main.tile[tileCheckX, tileCheckY].type != TileID.Dirt)
+                                        {
+                                                validPos = false;
+                                                goto finishedCloudCheck;
+                                        }
+                                    }
+                                }
+                                posX -= 5
+                                posY += 3
+                                int xAdjust;
+                                for (int tileCheckX = posX; tileCheckX < posX + 18; tileCheckX++)
+                                {
+                                    for (int tileCheckY = posY; tileCheckY < posY + 9; tileCheckY++)
+                                    {
+                                        xAdjust = Math.Max(0, tileCheckY - posY - 3);
+                                        if (tileCheckX < posX + 5 - xAdjust || tileCheckX > posX + 13 + xAdjust)
+                                        {
+                                            continue;
+                                        }
+                                        if (tileCheckY < posY + 6)
+                                        {
+                                            if (!Main.tile[tileCheckX, tileCheckY].active() || Main.tile[tileCheckX, tileCheckY].type != TileID.Dirt)
+                                            {
+                                                    validPos = false;
+                                                    goto finishedCloudCheck;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (Main.tile[tileCheckX, tileCheckY].active() && Main.tile[tileCheckX, tileCheckY].type != TileID.Dirt)
+                                            {
+                                                    validPos = false;
+                                                    goto finishedCloudCheck;
+                                            }
+                                        }
+                                    }
+                                }
+                                finishedTileCheck:
+                                if (validPos)
+                                {
+                                    posX = posXOriginal;
+                                    posY = posYOriginal + 2;
+                                    int xAdjust;
+                                    for (int tileCheckX = posX; tileCheckX < posX + 18; tileCheckX++)
+                                    {
+                                        for (int tileCheckY = posY; tileCheckY < posY + 10; tileCheckY++)
+                                        {
+                                            xAdjust = Math.Max(0, tileCheckY - posY - 4);
+                                            if (tileCheckX < posX + 5 - xAdjust || tileCheckX > posX + 13 + xAdjust)
+                                            {
+                                                continue;
+                                            }
+                                            if (tileCheckY == posY)
+                                            {
+                                                for (int i = -1; i < WorldGen.genRand.Next(4)-1; i++)
+                                                {
+                                                    if (i == -1)
+                                                    {
+                                                        continue;
+                                                    }
+                                                    if (tileCheckX > posX + 8 && tileCheckX < posX + 10)
+                                                    {
+                                                        PlaceWall(x, y-i, WallID.LivingWood)
+                                                    }
+                                                    else
+                                                    {
+                                                        PlaceTile(x, y-i, TileID.LivingWood);
+                                                    }
+                                                }
+                                            }
+                                            else if (tileCheckY < posY + 3)
+                                            {
+                                                if (tileCheckX > posX + 8 && tileCheckX < posX + 10)
+                                                {
+                                                    PlaceWall(x, y-i, WallID.LivingWood)
+                                                }
+                                                else
+                                                {
+                                                    PlaceTile(x, y-i, TileID.LivingWood);
+                                                }
+                                            }
+                                            else if (tileCheckY < posY + 7)
+                                            {
+                                                PlaceTile(x, y-i, TileID.LivingWood);
+                                            }
+                                            else
+                                            {
+                                                int placeChance = 10 - tileCheckY - posY;
+                                                if (WorldGen.genRand.NextBool(placeChance))
+                                                {
+                                                    PlaceTile(x, y-i, TileID.LivingWood);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    chestIndex = WorldGen.PlaceChest(posX+2, posY+8, style: 12);
+                                    success = chestIndex != -1;
+                                    if (success)
+                                    {
+                                        Chest chest = Main.chest[chestIndex];
+
+                                        chest.item[0].SetDefaults(missingTreeItems[0]);
+                                        missingTreeItems.RemoveAt(0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -60,19 +280,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                         y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
                         if (Framing.GetTileSafely(x, y+1).TileType == TileID.MushroomGrass)
                         {
-                            chestIndex = WorldGen.PlaceChest(x, y);
+                            chestIndex = WorldGen.PlaceChest(x, y, style: 32);
                             success = chestIndex != -1;
                         }
                     }
-                    if(success)
-                    {
-                        Main.NewText($"Placed chest at {x}, {y} after {attempts} attempts.");
-                    }
-                    else
-                    {
-                        Main.NewText($"Failed to place chest after {attempts} attempts.");
-                    }
-                    if (chestIndex != -1)
+                    if (success)
                     {
                         Chest chest = Main.chest[chestIndex];
 
@@ -90,10 +302,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                         {
                             chest.item[0].SetDefaults(ItemID.ShroomMinecart);
                         }
-                        if (item != -1)
-                        {
-                            missingMushroomItems.Remove(item);
-                        }
+                        missingMushroomItems.Remove(item);
                     }
                 }
 
