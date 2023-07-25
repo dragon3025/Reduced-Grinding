@@ -58,7 +58,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 {
                     for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                     {
-                        for (int x = WorldGeneration.beachDistance; x < (Main.maxTilesX / 4); x++)
+                        for (int x = GenVars.beachBordersWidth; x < (Main.maxTilesX / 4); x++)
                         {
                             int type = Main.tile[x, y].TileType;
                             if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
@@ -73,7 +73,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 {
                     for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                     {
-                        for (int x = Main.maxTilesX - WorldGeneration.beachDistance; x > (Main.maxTilesX * 3 / 4); x--)
+                        for (int x = Main.maxTilesX - GenVars.beachBordersWidth; x > (Main.maxTilesX * 3 / 4); x--)
                         {
                             int type = Main.tile[x, y].TileType;
                             if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
@@ -87,6 +87,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 FinishedDungeonColorCheck:
                 List<int> dungeonFurniture;
+                List<int> lockedGoldChests = new();
 
                 #region Make Furniture List
                 switch (dungeonColor)
@@ -109,7 +110,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                             ItemID.BlueDungeonSofa,
                             ItemID.BlueDungeonTable,
                             ItemID.BlueDungeonVase,
-                            ItemID.BlueDungeonWorkBench
+                            ItemID.BlueDungeonWorkBench,
+                            3900 //Grandfather Clock
                         };
                         break;
                     case TileID.GreenDungeonBrick:
@@ -130,7 +132,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                             ItemID.GreenDungeonSofa,
                             ItemID.GreenDungeonTable,
                             ItemID.GreenDungeonVase,
-                            ItemID.GreenDungeonWorkBench
+                            ItemID.GreenDungeonWorkBench,
+                            3901 //Grandfather Clock
                         };
                         break;
                     default:
@@ -151,7 +154,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                             ItemID.PinkDungeonSofa,
                             ItemID.PinkDungeonTable,
                             ItemID.PinkDungeonVase,
-                            ItemID.PinkDungeonWorkBench
+                            ItemID.PinkDungeonWorkBench,
+                            3902 //Grandfather Clock
                         };
                         break;
                 }
@@ -190,20 +194,20 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 if (GenVars.dungeonSide == -1)
                 {
-                    GetInstance<ReducedGrinding>().Logger.Debug("Furniture List Size: "+ MissingDungeonFurniture.Count.ToString());
+                    GetInstance<ReducedGrinding>().Logger.Debug("Furniture List Size: "+ dungeonFurniture.Count.ToString());
                     for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                     {
-                        for (int x = WorldGeneration.beachDistance; x < (Main.maxTilesX / 4); x++)
+                        for (int x = GenVars.beachBordersWidth; x < (Main.maxTilesX / 4); x++)
                         {
-                            int wall = Main.tile[x, y].TileWall;
+                            int wall = Main.tile[x, y].WallType;
                             bool dungeonWall = ((wall >= 7 && wall <= 9) || (wall >= 94 && wall <= 99));
                             if (!dungeonWall)
                             {
                                 continue;
                             }
                             
-                            short tileFrameX = Main.tile[x, y].TileFrameX / 18;
-                            short tileFrameY = Main.tile[x, y].TileFrameY / 18;
+                            int tileFrameX = Main.tile[x, y].TileFrameX / 18;
+                            int tileFrameY = Main.tile[x, y].TileFrameY / 18;
                             switch (Main.tile[x, y].TileType)
                             {
                                 case 41: //Dungeon Bricks
@@ -215,140 +219,140 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 case 483:
                                     break;
                                 case TileID.Bathtubs:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonBathtub);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonBathtub);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonBathtub);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonBathtub);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonBathtub);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonBathtub);
                                     break;
                                 case TileID.Beds:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonBed);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonBed);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonBed);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonBed);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonBed);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonBed);
                                     break;
                                 case TileID.Bookcases:
                                     if (tileFrameX >= 3 && tileFrameX <= 9 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonBookcase);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonBookcase);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonBookcase);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonBookcase);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonBookcase);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonBookcase);
                                     }
-                                    else if (tileFrameX == 15 && && tileFrameY == 0)
+                                    else if (tileFrameX == 15 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.GothicBookcase);
+                                        dungeonFurniture.Remove(ItemID.GothicBookcase);
                                     }
                                     break;
                                 case TileID.Candelabras:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonCandelabra);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonCandelabra);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonCandelabra);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonCandelabra);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonCandelabra);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonCandelabra);
                                     break;
                                 case TileID.Candles: //Water Candle has it's own Tile ID
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonCandle);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonCandle);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonCandle);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonCandle);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonCandle);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonCandle);
                                     break;
                                 case TileID.Chairs:
-                                    short tileFrameY = Main.tile[x, y].TileFrameY / 20;
-                                    if (tileFrameY >= 26 tileFrameY <= 30)
+                                    tileFrameY = Main.tile[x, y].TileFrameY / 20;
+                                    if (tileFrameY >= 26 && tileFrameY <= 30)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonChair);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonChair);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonChair);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonChair);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonChair);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonChair);
                                     }
                                     else if (tileFrameY == 34)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.GothicChair);
+                                        dungeonFurniture.Remove(ItemID.GothicChair);
                                     }
                                     break;
                                 case TileID.Chandeliers:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonChandelier);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonChandelier);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonChandelier);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonChandelier);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonChandelier);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonChandelier);
                                     break;
-                                case TileID.Clocks:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonClock);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonClock);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonClock);
+                                case TileID.GrandfatherClocks:
+                                    dungeonFurniture.Remove(3900);
+                                    dungeonFurniture.Remove(3901);
+                                    dungeonFurniture.Remove(3902);
                                     break;
                                 case TileID.OpenDoor:
-                                    if (tileFrameX < 4 && tileFrameY >= 48 tileFrameY <= 54)
+                                    if (tileFrameX < 4 && tileFrameY >= 48 && tileFrameY <= 54)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonDoor);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonDoor);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonDoor);
                                     }
                                     else if (tileFrameX < 4 && tileFrameY == 39)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.DungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.DungeonDoor);
                                     }
                                     break;
                                 case TileID.ClosedDoor:
-                                    if (tileFrameX < 3 && tileFrameY >= 48 tileFrameY <= 54)
+                                    if (tileFrameX < 3 && tileFrameY >= 48 && tileFrameY <= 54)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonDoor);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonDoor);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonDoor);
                                     }
                                     else if (tileFrameX < 3 && tileFrameY == 39)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.DungeonDoor);
+                                        dungeonFurniture.Remove(ItemID.DungeonDoor);
                                     }
                                     break;
                                 case TileID.Dressers:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonDresser);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonDresser);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonDresser);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonDresser);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonDresser);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonDresser);
                                     break;
                                 case TileID.Lamps:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonLamp);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonLamp);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonLamp);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonLamp);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonLamp);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonLamp);
                                     break;
                                 case TileID.Pianos:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonPianos);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonPianos);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonPianos);
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonPiano);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonPiano);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonPiano);
                                     break;
-                                case TileID.Sofas:
-                                    MissingDungeonFurniture.Remove(ItemID.BlueDungeonSofas);
-                                    MissingDungeonFurniture.Remove(ItemID.GreenDungeonSofas);
-                                    MissingDungeonFurniture.Remove(ItemID.PinkDungeonSofas);
+                                case 89: //Sofas
+                                    dungeonFurniture.Remove(ItemID.BlueDungeonSofa);
+                                    dungeonFurniture.Remove(ItemID.GreenDungeonSofa);
+                                    dungeonFurniture.Remove(ItemID.PinkDungeonSofa);
                                     break;
                                 case TileID.Tables:
                                     if (tileFrameX >= 30 && tileFrameX <= 36 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonTable);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonTable);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonTable);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonTable);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonTable);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonTable);
                                     }
                                     else if (tileFrameX == 42 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.GothicTable);
+                                        dungeonFurniture.Remove(ItemID.GothicTable);
                                     }
                                     break;
                                 case TileID.Statues:
                                     if (tileFrameX >= 92 && tileFrameX <= 96 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonVase);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonVase);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonVase);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonVase);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonVase);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonVase);
                                     }
                                     break;
                                 case TileID.WorkBenches:
                                     if (tileFrameX >= 22 && tileFrameX <= 26 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.BlueDungeonWorkBench);
-                                        MissingDungeonFurniture.Remove(ItemID.GreenDungeonWorkBench);
-                                        MissingDungeonFurniture.Remove(ItemID.PinkDungeonWorkBench);
+                                        dungeonFurniture.Remove(ItemID.BlueDungeonWorkBench);
+                                        dungeonFurniture.Remove(ItemID.GreenDungeonWorkBench);
+                                        dungeonFurniture.Remove(ItemID.PinkDungeonWorkBench);
                                     }
                                     else if (tileFrameX == 30 && tileFrameY == 0)
                                     {
-                                        MissingDungeonFurniture.Remove(ItemID.GothicWorkBench);
+                                        dungeonFurniture.Remove(ItemID.GothicWorkBench);
                                     }
                                     break;
                             }
                         }
                     }
-                    GetInstance<ReducedGrinding>().Logger.Debug("Furniture List Size (New): "+ MissingDungeonFurniture.Count.ToString());
+                    GetInstance<ReducedGrinding>().Logger.Debug("Furniture List Size (New): "+ dungeonFurniture.Count.ToString());
                 }
 
                 while (dungeonFurniture.Count > 0)
