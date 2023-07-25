@@ -205,7 +205,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                             {
                                 continue;
                             }
-                            
+
                             int tileFrameX = Main.tile[x, y].TileFrameX / 18;
                             int tileFrameY = Main.tile[x, y].TileFrameY / 18;
                             switch (Main.tile[x, y].TileType)
@@ -377,7 +377,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
             }
         }
-        
+
         public class MissingTreeLootGen : GenPass
         {
             public MissingTreeLootGen(string name, float loadWeight) : base(name, loadWeight) { }
@@ -442,14 +442,16 @@ namespace ReducedGrinding.Global.WorldGeneration
                         {
                             if (posY > 150)
                             {
-                                int posXOriginal = posX;
-                                int posYOriginal = posY;
+                                //int posXOriginal = posX; //Temporary
+                                //int posYOriginal = posY;
                                 int xAdjust;
                                 bool validPos = true;
 
                                 //Temporary====================================
                                 posX = 50 * missingTreeItems.Count;
                                 posY = 50;
+                                int posXOriginal = posX;
+                                int posYOriginal = posY;
                                 goto finishedTileCheck;
                                 //============================================
 
