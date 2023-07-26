@@ -424,7 +424,8 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                 int attempts = 0;
                 int spawnSafeDistance = 200;
-                while (missingTreeItems.Count > 0 && attempts < 10000)
+                int treePlacements = 0; //temporary
+                while (treePlacements < 3 && attempts < 10000) //(missingTreeItems.Count > 0 && attempts < 10000) temporary
                 {
                     attempts++;
                     int posX = WorldGen.genRand.Next(WorldGen.beachDistance, Main.maxTilesX - WorldGen.beachDistance);
@@ -448,7 +449,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 bool validPos = true;
 
                                 //Temporary====================================
-                                posX = 50 * missingTreeItems.Count;
+                                posX = 50 * treePlacements;
                                 posY = 50;
                                 int posXOriginal = posX;
                                 int posYOriginal = posY;
@@ -479,105 +480,37 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
                                     }
                                 }
-                                posX -= 3;
-                                for (int tileCheckX = posX; tileCheckX < posX + 9; tileCheckX++)
-                                {
-                                    for (int tileCheckY = posY; tileCheckY < posY + 4; tileCheckY++)
-                                    {
-                                        if (Main.tile[tileCheckX, tileCheckY].HasTile && Main.tile[tileCheckX, tileCheckY].TileType != TileID.Dirt)
-                                        {
-                                            validPos = false;
-                                            goto finishedTileCheck;
-                                        }
-                                    }
-                                }
-                                posX -= 5;
-                                posY += 3;
-                                for (int tileCheckX = posX; tileCheckX < posX + 18; tileCheckX++)
-                                {
-                                    for (int tileCheckY = posY; tileCheckY < posY + 9; tileCheckY++)
-                                    {
-                                        xAdjust = Math.Max(0, tileCheckY - posY - 3);
-                                        if (tileCheckX < posX + 5 - xAdjust || tileCheckX > posX + 13 + xAdjust)
-                                        {
-                                            continue;
-                                        }
-                                        if (tileCheckY < posY + 6)
-                                        {
-                                            if (!Main.tile[tileCheckX, tileCheckY].HasTile || Main.tile[tileCheckX, tileCheckY].TileType != TileID.Dirt)
-                                            {
-                                                validPos = false;
-                                                goto finishedTileCheck;
-                                            }
-                                        }
-                                        else
-                                        {
-                                            if (Main.tile[tileCheckX, tileCheckY].HasTile && Main.tile[tileCheckX, tileCheckY].TileType != TileID.Dirt)
-                                            {
-                                                validPos = false;
-                                                goto finishedTileCheck;
-                                            }
-                                        }
-                                    }
-                                }
                             finishedTileCheck:
                                 if (validPos)
                                 {
-                                    posX = posXOriginal;
-                                    posY = posYOriginal + 2;
-                                    for (int tileCheckX = posX; tileCheckX < posX + 18; tileCheckX++)
+                                    treePlacements++; //Temporary
+                                    posX = posXOriginal - 1;
+                                    posY = posYOriginal - 3;
+                                    int trunkLength = WorldGen.genRand.Next(17,26);
+                                    for (int tileCheckX = posX; tileCheckX < posX + 5; tileCheckX++)
                                     {
-                                        for (int tileCheckY = posY; tileCheckY < posY + 10; tileCheckY++)
+                                        for (int tileCheckY = posY; tileCheckY < posY + trunkLength; tileCheckY++)
                                         {
-                                            xAdjust = Math.Max(0, tileCheckY - posY - 4);
-                                            if (tileCheckX < posX + 5 - xAdjust || tileCheckX > posX + 13 + xAdjust)
+                                            if (
+                                                tileCheckY > posY &&
+                                                tileCheckY < (posY + trunkLength) &&
+                                                tileCheckX > posX &&
+                                                tileCheckX < (posX + 5))
                                             {
-                                                continue;
-                                            }
-                                            if (tileCheckY == posY)
-                                            {
-                                                for (int i = -1; i < WorldGen.genRand.Next(4) - 1; i++)
-                                                {
-                                                    if (i == -1)
-                                                    {
-                                                        continue;
-                                                    }
-                                                    if (tileCheckX > posX + 8 && tileCheckX < posX + 10)
-                                                    {
-                                                        WorldGen.PlaceWall(tileCheckX, tileCheckY - i, WallID.Granite); //, WallID.LivingWood); Temporary
-                                                    }
-                                                    else
-                                                    {
-                                                        WorldGen.PlaceTile(tileCheckX, tileCheckY - i, TileID.Granite); //, TileID.LivingWood);
-                                                    }
-                                                }
-                                            }
-                                            else if (tileCheckY < posY + 3)
-                                            {
-                                                if (tileCheckX > posX + 8 && tileCheckX < posX + 10)
-                                                {
-                                                    WorldGen.PlaceWall(tileCheckX, tileCheckY, WallID.Granite); //, WallID.LivingWood); Temporary
-                                                }
-                                                else
-                                                {
-                                                    WorldGen.PlaceTile(tileCheckX, tileCheckY, TileID.Granite); //, TileID.LivingWood);
-                                                }
-                                            }
-                                            else if (tileCheckY < posY + 7)
-                                            {
-                                                WorldGen.PlaceTile(tileCheckX, tileCheckY, TileID.Granite); //, TileID.LivingWood);
+                                                Main.tile[tileCheckX, tileCheckY].ClearTile()
+                                                WorldGen.PlaceWall(tileCheckX, tileCheckY, WallID.Granite); //, WallID.LivingWood); Temporary
                                             }
                                             else
                                             {
-                                                int placeChance = tileCheckY - posY - 6;
-                                                if (WorldGen.genRand.NextBool(placeChance))
-                                                {
-                                                    WorldGen.PlaceTile(tileCheckX, tileCheckY, TileID.Granite); //, TileID.LivingWood);
-                                                }
+                                                WorldGen.PlaceTile(tileCheckX, tileCheckY - i, TileID.Granite); //, TileID.LivingWood);
                                             }
                                         }
                                     }
-                                    int chestIndex = WorldGen.PlaceChest(posX + 2, posY + 8, style: 12);
+
+                                    WorldGen.PlaceTile(posX + 1, posY + 3, TileID.Platform, style: 23);
+                                    WorldGen.PlaceTile(posX + 2, posY + 3, TileID.Platform, style: 23);
+
+                                    int chestIndex = WorldGen.PlaceChest(posX + 1, posY + trunkLength - 2, style: 12);
                                     bool success = chestIndex != -1;
                                     if (success)
                                     {
@@ -585,6 +518,65 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                                         chest.item[0].SetDefaults(missingTreeItems[0]);
                                         missingTreeItems.RemoveAt(0);
+                                    }
+
+                                    trunkLength = WorldGen.genRand.Next(5,11);
+                                    posX += 1
+                                    posY -= trunkLength
+                                    for (int tileCheckX = posX; tileCheckX < posX + 3; tileCheckX++)
+                                    {
+                                        for (int tileCheckY = posY; tileCheckY < posY + trunkLength + 1; tileCheckY++)
+                                        {
+                                            WorldGen.PlaceTile(tileCheckX, tileCheckY, TileID.Granite); //, TileID.LivingWood);
+                                        }
+                                    }
+                                    int leftBranchX = posX;
+                                    int leftBranchY = posY;
+                                    int leftBranchLength = WorldGen.genRand.Next(5, 11);
+                                    int rightBranchX = posX+1;
+                                    int rightBranchX = posY;
+                                    int rightBranchLength = WorldGen.genRand.Next(5, 11);
+                                    while (leftBranchLength > 0)
+                                    {
+                                        leftBranchLength--
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            leftBranchX--;
+                                        }
+                                        else (WorldGen.genRand.NextBool(2))
+                                        {
+                                            leftBranchY--;
+                                        }
+                                        WorldGen.PlaceTile(leftBranchX, leftBranchY, TileID.Granite); //, TileID.LivingWood);
+                                        if (leftBranchLength == 0)
+                                        {
+                                            Point point = new Point(leftBranchX, leftBranchY);
+                                            WorldUtils.Gen(point, new Shapes.Circle(7 + WorldGen.genRand.Next(0, 2), 7 + WorldGen.genRand.Next(0, 2)), Actions.Chain(new GenAction[]
+                                            {
+                                                new Actions.SetTile(TileID.LeafBlock),
+                                            }));
+                                        }
+                                    }
+                                    while (rightBranchLength < 0)
+                                    {
+                                        rightBranchLength--
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            rightBranchX++;
+                                        }
+                                        else (WorldGen.genRand.NextBool(2))
+                                        {
+                                            rightBranchY--;
+                                        }
+                                        WorldGen.PlaceTile(rightBranchX, rightBranchY, TileID.Granite); //, TileID.LivingWood);
+                                        if (rightBranchLength == 0)
+                                        {
+                                            Point point = new Point(rightBranchX, rightBranchY);
+                                            WorldUtils.Gen(point, new Shapes.Circle(7 + WorldGen.genRand.Next(0, 2), 7 + WorldGen.genRand.Next(0, 2)), Actions.Chain(new GenAction[]
+                                            {
+                                                new Actions.SetTile(TileID.LeafBlock),
+                                            }));
+                                        }
                                     }
                                 }
                             }
