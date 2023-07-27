@@ -163,6 +163,14 @@ namespace ReducedGrinding.Global.WorldGeneration
                 dungeonFurniture.Add(ItemID.DungeonDoor);
                 #endregion
 
+                //Temporary==================================
+                List<int> dungeonFurnitureRemoved;
+                foreach (int i in dungeonFurniture)
+                {
+                    dungeonFurnitureRemoved.Add(i);
+                }
+                //=========================================
+
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
                     Chest chest = Main.chest[chestIndex];
@@ -342,6 +350,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                 }
 
                 //Temporary=====================
+                foreach (int i in dungeonFurniture)
+                {
+                    dungeonFurnitureRemoved.Remove(i);
+                }
+
                 int posX = 3;
                 int posY = 3;
                 WorldGen.PlaceTile(posX, posY + 1, TileID.Stone)
@@ -362,9 +375,30 @@ namespace ReducedGrinding.Global.WorldGeneration
                         dungeonFurniture.RemoveAt(0);
                     }
                 }
+
+                chestIndex = WorldGen.PlaceChest(posX + 6, posY, style: 1);
+                success = chestIndex != -1;
+                if (success)
+                {
+                    Chest chest = Main.chest[chestIndex];
+
+                    for (int slot = 0; slot < 40; slot++)
+                    {
+                        if (dungeonFurnitureRemoved.Count == 0)
+                        {
+                            chest.item[slot].SetDefaults(ItemID.Torch);
+                        }
+                        else
+                        {
+                            chest.item[slot].SetDefaults(dungeonFurnitureRemoved[0]);
+                            dungeonFurnitureRemoved.RemoveAt(0);
+                        }
+                    }
+                }
                 //================================
 
-                GetInstance<ReducedGrinding>().Logger.Debug("Furniture List Size: "+ dungeonFurniture.Count.ToString());
+                GetInstance<ReducedGrinding>().Loggeint  
+bool r.Debug("Furniture List Size: "+ dungeonFurniture.Count.ToString());
                 for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
                 {
                     if (GenVars.dungeonSide == -1)
