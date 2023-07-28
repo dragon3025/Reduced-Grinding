@@ -14,19 +14,20 @@ namespace ReducedGrinding.Global.WorldGeneration
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            int DungeonIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
-            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
-            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
-            int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
+            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
             if (LivingTreesIndex != -1)
             {
                 tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding missing tree loot", 10f));
             }
+
+            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
             if (BuriedChestsIndex != -1)
             {
                 tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding missing shroom loot", 10f));
             }
+
+            int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
             if (FinalCleanupIndex != -1)
             {
                 tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
@@ -430,7 +431,6 @@ namespace ReducedGrinding.Global.WorldGeneration
             {
                 progress.Message = "Adding other missing loot";
 
-                List<int> terragrimChests = new();
                 List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
                 List<int> sandstoneChests = new();
 
@@ -470,9 +470,9 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
-                        bool regularChest = chestType1 && tileFrameX == 0;
+                        bool deepChest = chest.y > Main.rockLayer;
 
-                        if (!regularChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                        if (deepChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
                         {
                             for (int slot = 0; slot < 40; slot++)
                             {
