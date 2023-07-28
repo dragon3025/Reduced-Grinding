@@ -232,6 +232,11 @@ Mods: {
 						'''
 				}
 
+				ShimmerRoyalStatues: {
+					Label: "[i:476] King Statue can swap with [i:477] Queen Statue"
+					Tooltip: By using the Shimmer.
+				}
+
 				SleepRateMultiplier: {
 					Label: Sleep Time Rate Multiplier
 					Tooltip:

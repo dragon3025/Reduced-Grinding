@@ -154,6 +154,10 @@ namespace ReducedGrinding.Configuration
         [DefaultValue(false)]
         public bool CraftableRareChests;
 
+        [BackgroundColor(128, 128, 128)]
+        [DefaultValue(false)]
+        public bool ShimmerRoyalStatues;
+
         #region Other
         [Header("Other")]
 

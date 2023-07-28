@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
@@ -16,627 +14,362 @@ namespace ReducedGrinding.Global.WorldGeneration
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
+            int DungeonIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
+            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
+            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
             int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
+            if (LivingTreesIndex != -1)
+            {
+                tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding missing tree loot", 10f));
+            }
+            if (BuriedChestsIndex != -1)
+            {
+                tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding missing shroom loot", 10f));
+            }
             if (FinalCleanupIndex != -1)
             {
-                tasks.Insert(FinalCleanupIndex + 1, new ReducedGrindingGen("Adding Non-Existing Loot", 10f));
+                tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
             }
         }
 
-        public class ReducedGrindingGen : GenPass
+        public class MissingTreeLootGen : GenPass
         {
-            public ReducedGrindingGen(string name, float loadWeight) : base(name, loadWeight) { }
+            public MissingTreeLootGen(string name, float loadWeight) : base(name, loadWeight) { }
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = "Adding Non-Existing Loot";
+                progress.Message = "Adding missing tree loot";
 
-                #region Decide Dungeon Furniture Color
-                int dungeonColor = 0;
-                if (GenVars.dungeonSide == -1)
+                List<int> missingTreeItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
+
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
-                    for (int x = 0; x < Main.maxTilesX; x++)
+                    Chest chest = Main.chest[chestIndex];
+
+                    if (chest == null)
                     {
-                        for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
-                        {
-                            int type = Main.tile[x, y].TileType;
-                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
-                            {
-                                dungeonColor = TileID.BlueDungeonBrick;
-                                break;
-                            }
-                        }
-                        if (dungeonColor != 0)
-                        {
-                            break;
-                        }
+                        continue;
                     }
-                }
-                else
-                {
-                    for (int x = Main.maxTilesX; x < 0; x++)
+
+                    bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+
+                    if (chestType1)
                     {
-                        for (int y = (int)GenVars.worldSurfaceHigh; y < Main.maxTilesY; y++)
+                        short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                        int chestWidth = 36;
+
+                        bool treeChest = tileFrameX == 12 * chestWidth;
+
+                        if (treeChest && missingTreeItems.Count > 0)
                         {
-                            int type = Main.tile[x, y].TileType;
-                            if (type == TileID.BlueDungeonBrick || type == TileID.GreenDungeonBrick || type == TileID.PinkDungeonBrick)
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                dungeonColor = type;
-                                break;
-                            }
-                        }
-                        if (dungeonColor != 0)
-                        {
-                            break;
-                        }
-                    }
-                }
+                                List<int> missingTreeItemsOld = new();
+                                missingTreeItemsOld.AddRange(missingTreeItems);
 
-                List<int> dungeonFurniture;
-
-                switch (dungeonColor)
-                {
-                    case TileID.BlueDungeonBrick:
-                        dungeonFurniture = new()
-                        {
-                            ItemID.BlueDungeonBathtub,
-                            ItemID.BlueDungeonBed,
-                            ItemID.BlueDungeonBookcase,
-                            ItemID.BlueDungeonCandelabra,
-                            ItemID.BlueDungeonCandle,
-                            ItemID.BlueDungeonChair,
-                            ItemID.BlueDungeonChandelier,
-                            ItemID.DungeonClockBlue,
-                            ItemID.BlueDungeonDoor,
-                            ItemID.BlueDungeonDresser,
-                            ItemID.BlueDungeonLamp,
-                            ItemID.BlueDungeonPiano,
-                            ItemID.BlueDungeonSofa,
-                            ItemID.BlueDungeonTable,
-                            ItemID.BlueDungeonVase,
-                            ItemID.BlueDungeonWorkBench
-                        };
-                        break;
-                    case TileID.GreenDungeonBrick:
-                        dungeonFurniture = new()
-                        {
-                            ItemID.GreenDungeonBathtub,
-                            ItemID.GreenDungeonBed,
-                            ItemID.GreenDungeonBookcase,
-                            ItemID.GreenDungeonCandelabra,
-                            ItemID.GreenDungeonCandle,
-                            ItemID.GreenDungeonChair,
-                            ItemID.GreenDungeonChandelier,
-                            ItemID.DungeonClockGreen,
-                            ItemID.GreenDungeonDoor,
-                            ItemID.GreenDungeonDresser,
-                            ItemID.GreenDungeonLamp,
-                            ItemID.GreenDungeonPiano,
-                            ItemID.GreenDungeonSofa,
-                            ItemID.GreenDungeonTable,
-                            ItemID.GreenDungeonVase,
-                            ItemID.GreenDungeonWorkBench
-                        };
-                        break;
-                    default:
-                        dungeonFurniture = new()
-                        {
-                            ItemID.PinkDungeonBathtub,
-                            ItemID.PinkDungeonBed,
-                            ItemID.PinkDungeonBookcase,
-                            ItemID.PinkDungeonCandelabra,
-                            ItemID.PinkDungeonCandle,
-                            ItemID.PinkDungeonChair,
-                            ItemID.PinkDungeonChandelier,
-                            ItemID.DungeonClockPink,
-                            ItemID.PinkDungeonDoor,
-                            ItemID.PinkDungeonDresser,
-                            ItemID.PinkDungeonLamp,
-                            ItemID.PinkDungeonPiano,
-                            ItemID.PinkDungeonSofa,
-                            ItemID.PinkDungeonTable,
-                            ItemID.PinkDungeonVase,
-                            ItemID.PinkDungeonWorkBench
-                        };
-                        break;
-                }
-                #endregion
-
-                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
-                List<int> terragrimChests = new();
-                List<int> lockedGoldChests = new();
-
-                void tryToPlaceMushroomChest(int mushroomBiome, int item = -1)
-                {
-                    Point biomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
-
-                    for (int i = 0; i < 5; i++)
-                    {
-                        int x = WorldGen.genRand.Next(biomePosition.X - 100, biomePosition.X + 100);
-                        int y = WorldGen.genRand.Next(biomePosition.Y - 100, biomePosition.Y + 100);
-                        int yDirection = 1;
-                        if (y > biomePosition.Y)
-                        {
-                            yDirection = -1;
-                        }
-
-                        for (; (yDirection == 1 && y < biomePosition.Y + 100) || (yDirection == -1 && y > biomePosition.Y - 100); y += yDirection)
-                        {
-                            if (Framing.GetTileSafely(x, y).TileType == TileID.MushroomPlants)
-                            {
-                                for (int chestX = x - 5; chestX < x + 5; chestX++)
+                                foreach (int itemType in missingTreeItemsOld)
                                 {
-                                    int chestIndex = WorldGen.PlaceChest(chestX, y, style: 32);
-                                    if (chestIndex != -1)
+                                    if (chest.item[slot].type == itemType)
                                     {
-                                        Chest chest = Main.chest[chestIndex];
-
-                                        int slot = 0;
-                                        if (item == ItemID.MushroomHat || (item == -1 && WorldGen.genRand.NextBool(2)))
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
-                                            slot++;
-                                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
-                                            slot++;
-                                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
-                                            slot++;
-                                        }
-                                        else
-                                        {
-                                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
-                                            slot++;
-                                        }
-                                        slot++;
-                                        if (item != -1)
-                                        {
-                                            missingMushroomItems.Remove(item);
-                                        }
-
-                                        #region Common Loot Based on World Layer (no Primary or Secondary Loot)
-                                        if (y < GenVars.rockLayer)
-                                        {
-                                            if (WorldGen.genRand.NextBool(3))
-                                            {
-                                                chest.item[slot].SetDefaults(166);
-                                                chest.item[slot].stack = WorldGen.genRand.Next(10, 20);
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(5))
-                                            {
-                                                chest.item[slot].SetDefaults(52);
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(3))
-                                            {
-                                                int stack9 = WorldGen.genRand.Next(50, 101);
-                                                chest.item[slot].SetDefaults(965);
-                                                chest.item[slot].stack = stack9;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack10 = WorldGen.genRand.Next(10) + 5;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(GenVars.ironBar);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(GenVars.silverBar);
-                                                }
-                                                chest.item[slot].stack = stack10;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack11 = WorldGen.genRand.Next(25) + 25;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(40);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(42);
-                                                }
-                                                chest.item[slot].stack = stack11;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int stack12 = WorldGen.genRand.Next(3) + 3;
-                                                chest.item[slot].SetDefaults(28);
-                                                chest.item[slot].stack = stack12;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.Next(3) > 0)
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(9);
-                                                int stack13 = WorldGen.genRand.Next(1, 3);
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(289);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(298);
-                                                }
-                                                if (itemChance == 2)
-                                                {
-                                                    chest.item[slot].SetDefaults(299);
-                                                }
-                                                if (itemChance == 3)
-                                                {
-                                                    chest.item[slot].SetDefaults(290);
-                                                }
-                                                if (itemChance == 4)
-                                                {
-                                                    chest.item[slot].SetDefaults(303);
-                                                }
-                                                if (itemChance == 5)
-                                                {
-                                                    chest.item[slot].SetDefaults(291);
-                                                }
-                                                if (itemChance == 6)
-                                                {
-                                                    chest.item[slot].SetDefaults(304);
-                                                }
-                                                if (itemChance == 7)
-                                                {
-                                                    chest.item[slot].SetDefaults(2322);
-                                                }
-                                                if (itemChance == 8)
-                                                {
-                                                    chest.item[slot].SetDefaults(2329);
-                                                }
-                                                chest.item[slot].stack = stack13;
-                                                slot++;
-                                            }
-                                            if (!WorldGen.genRand.NextBool(3))
-                                            {
-                                                int stack14 = WorldGen.genRand.Next(2, 5);
-                                                chest.item[slot].SetDefaults(2350);
-                                                chest.item[slot].stack = stack14;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int stack15 = WorldGen.genRand.Next(11) + 10;
-                                                chest.item[slot].SetDefaults(8);
-                                                chest.item[slot].stack = stack15;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                chest.item[slot].SetDefaults(72);
-                                                chest.item[slot].stack = WorldGen.genRand.Next(50, 90);
-                                                slot++;
-                                            }
-                                        }
-                                        else if (y < Main.maxTilesY - 250)
-                                        {
-                                            if (WorldGen.genRand.NextBool(5))
-                                            {
-                                                chest.item[slot].SetDefaults(43);
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(3))
-                                            {
-                                                chest.item[slot].SetDefaults(167);
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(4))
-                                            {
-                                                chest.item[slot].SetDefaults(51);
-                                                chest.item[slot].stack = WorldGen.genRand.Next(26) + 25;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack16 = WorldGen.genRand.Next(8) + 3;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(GenVars.goldBar);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(GenVars.silverBar);
-                                                }
-                                                chest.item[slot].stack = stack16;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack17 = WorldGen.genRand.Next(26) + 25;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(41);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(279);
-                                                }
-                                                chest.item[slot].stack = stack17;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int stack18 = WorldGen.genRand.Next(3) + 3;
-                                                chest.item[slot].SetDefaults(188);
-                                                chest.item[slot].stack = stack18;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.Next(3) > 0)
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(6);
-                                                int stack19 = WorldGen.genRand.Next(1, 3);
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(296);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(295);
-                                                }
-                                                if (itemChance == 2)
-                                                {
-                                                    chest.item[slot].SetDefaults(299);
-                                                }
-                                                if (itemChance == 3)
-                                                {
-                                                    chest.item[slot].SetDefaults(302);
-                                                }
-                                                if (itemChance == 4)
-                                                {
-                                                    chest.item[slot].SetDefaults(303);
-                                                }
-                                                if (itemChance == 5)
-                                                {
-                                                    chest.item[slot].SetDefaults(305);
-                                                }
-                                                chest.item[slot].stack = stack19;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.Next(3) > 1)
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(6);
-                                                int stack20 = WorldGen.genRand.Next(1, 3);
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(301);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(297);
-                                                }
-                                                if (itemChance == 2)
-                                                {
-                                                    chest.item[slot].SetDefaults(304);
-                                                }
-                                                if (itemChance == 3)
-                                                {
-                                                    chest.item[slot].SetDefaults(2329);
-                                                }
-                                                if (itemChance == 4)
-                                                {
-                                                    chest.item[slot].SetDefaults(2351);
-                                                }
-                                                if (itemChance == 5)
-                                                {
-                                                    chest.item[slot].SetDefaults(2326);
-                                                }
-                                                chest.item[slot].stack = stack20;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int stack21 = WorldGen.genRand.Next(2, 5);
-                                                chest.item[slot].SetDefaults(2350);
-                                                chest.item[slot].stack = stack21;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack22 = WorldGen.genRand.Next(15) + 15;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(8);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(282);
-                                                }
-                                                chest.item[slot].stack = stack22;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                chest.item[slot].SetDefaults(73);
-                                                chest.item[slot].stack = WorldGen.genRand.Next(1, 3);
-                                                slot++;
-                                            }
-                                        }
-                                        else //Mushroom Chest is near hell biome
-                                        {
-                                            if (WorldGen.genRand.NextBool(3))
-                                            {
-                                                chest.item[slot].SetDefaults(167);
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack23 = WorldGen.genRand.Next(15) + 15;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(117);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(GenVars.goldBar);
-                                                }
-                                                chest.item[slot].stack = stack23;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack24 = WorldGen.genRand.Next(25) + 50;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(265);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    if (WorldGen.SavedOreTiers.Silver == 168)
-                                                    {
-                                                        chest.item[slot].SetDefaults(4915);
-                                                    }
-                                                    else
-                                                    {
-                                                        chest.item[slot].SetDefaults(278);
-                                                    }
-                                                }
-                                                chest.item[slot].stack = stack24;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int stack25 = WorldGen.genRand.Next(6) + 15;
-                                                chest.item[slot].SetDefaults(227);
-                                                chest.item[slot].stack = stack25;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.Next(4) > 0)
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(8);
-                                                int stack26 = WorldGen.genRand.Next(1, 3);
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(296);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(295);
-                                                }
-                                                if (itemChance == 2)
-                                                {
-                                                    chest.item[slot].SetDefaults(293);
-                                                }
-                                                if (itemChance == 3)
-                                                {
-                                                    chest.item[slot].SetDefaults(288);
-                                                }
-                                                if (itemChance == 4)
-                                                {
-                                                    chest.item[slot].SetDefaults(294);
-                                                }
-                                                if (itemChance == 5)
-                                                {
-                                                    chest.item[slot].SetDefaults(297);
-                                                }
-                                                if (itemChance == 6)
-                                                {
-                                                    chest.item[slot].SetDefaults(304);
-                                                }
-                                                if (itemChance == 7)
-                                                {
-                                                    chest.item[slot].SetDefaults(2323);
-                                                }
-                                                chest.item[slot].stack = stack26;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.Next(3) > 0)
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(8);
-                                                int stack27 = WorldGen.genRand.Next(1, 3);
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(305);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(301);
-                                                }
-                                                if (itemChance == 2)
-                                                {
-                                                    chest.item[slot].SetDefaults(302);
-                                                }
-                                                if (itemChance == 3)
-                                                {
-                                                    chest.item[slot].SetDefaults(288);
-                                                }
-                                                if (itemChance == 4)
-                                                {
-                                                    chest.item[slot].SetDefaults(300);
-                                                }
-                                                if (itemChance == 5)
-                                                {
-                                                    chest.item[slot].SetDefaults(2351);
-                                                }
-                                                if (itemChance == 6)
-                                                {
-                                                    chest.item[slot].SetDefaults(2348);
-                                                }
-                                                if (itemChance == 7)
-                                                {
-                                                    chest.item[slot].SetDefaults(2345);
-                                                }
-                                                chest.item[slot].stack = stack27;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(3))
-                                            {
-                                                int stack28 = WorldGen.genRand.Next(1, 3);
-                                                if (WorldGen.genRand.NextBool(2))
-                                                {
-                                                    chest.item[slot].SetDefaults(2350);
-                                                }
-                                                else
-                                                {
-                                                    chest.item[slot].SetDefaults(4870);
-                                                }
-                                                chest.item[slot].stack = stack28;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                int itemChance = WorldGen.genRand.Next(2);
-                                                int stack29 = WorldGen.genRand.Next(15) + 15;
-                                                if (itemChance == 0)
-                                                {
-                                                    chest.item[slot].SetDefaults(8);
-                                                }
-                                                if (itemChance == 1)
-                                                {
-                                                    chest.item[slot].SetDefaults(282);
-                                                }
-                                                chest.item[slot].stack = stack29;
-                                                slot++;
-                                            }
-                                            if (WorldGen.genRand.NextBool(2))
-                                            {
-                                                chest.item[slot].SetDefaults(73);
-                                                chest.item[slot].stack = WorldGen.genRand.Next(2, 5);
-                                                slot++;
-                                            }
-                                        }
-                                        #endregion
-                                        goto placedMushroomChest;
+                                        missingTreeItems.Remove(itemType);
                                     }
                                 }
                             }
                         }
                     }
-                    placedMushroomChest: { };
                 }
 
+                int attempts = 0;
+                int spawnSafeDistance = 200;
+
+                while (missingTreeItems.Count > 0 && attempts < 10000)
+                {
+                    attempts++;
+                    int posX = WorldGen.genRand.Next(WorldGen.beachDistance, Main.maxTilesX - WorldGen.beachDistance);
+                    if (WorldGen.tenthAnniversaryWorldGen && !WorldGen.remixWorldGen)
+                    {
+                        posX = WorldGen.genRand.Next((int)((double)Main.maxTilesX * 0.15), (int)((float)Main.maxTilesX * 0.85f));
+                    }
+                    if (posX <= Main.maxTilesX / 2 - spawnSafeDistance || posX >= Main.maxTilesX / 2 + spawnSafeDistance)
+                    {
+                        int posY = 0;
+                        for (; !Main.tile[posX, posY].HasTile && (double)posY < Main.worldSurface; posY++)
+                        {
+                        }
+                        if (Main.tile[posX, posY].TileType == TileID.Dirt)
+                        {
+                            if (posY > 150)
+                            {
+                                bool validPos = true;
+
+                                for (int tileCheckX = posX - 50; tileCheckX < posX + 50; tileCheckX++)
+                                {
+                                    for (int tileCheckY = posY - 50; tileCheckY < posY + 50; tileCheckY++)
+                                    {
+                                        if (Main.tile[tileCheckX, tileCheckY].HasTile)
+                                        {
+                                            //Check for clouds and dungeon tiles.
+                                            switch (Main.tile[tileCheckX, tileCheckY].TileType)
+                                            {
+                                                case 41:
+                                                case 43:
+                                                case 44:
+                                                case 189:
+                                                case 196:
+                                                case 460:
+                                                case 481:
+                                                case 482:
+                                                case 483:
+                                                    validPos = false;
+                                                    goto finishedTileCheck;
+                                            }
+                                        }
+                                    }
+                                }
+                                finishedTileCheck:
+                                if (validPos)
+                                {
+                                    posY--;
+                                    int chestIndex = WorldGen.PlaceChest(posX, posY, style: 12);
+                                    bool success = chestIndex != -1;
+                                    if (success)
+                                    {
+                                        Chest chest = Main.chest[chestIndex];
+
+                                        chest.item[0].SetDefaults(missingTreeItems[0]);
+                                        missingTreeItems.RemoveAt(0);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                /*
+                // TO-DO My ability to test generation is very limited right now. When I can, try to make this the new
+                // Living Wood Chest generation. NOTE: I DISCOVERED BEACH GEN WILL WIPE OUT PLACED TILES AND CHEST!
+                int attempts = 0;
+                int spawnSafeDistance = 200;
+                int treePlacements = 0; //temporary
+
+                while (treePlacements < 3 && attempts < 10000) //(missingTreeItems.Count > 0 && attempts < 10000) temporary
+                {
+                    attempts++;
+                    int posX = WorldGen.genRand.Next(WorldGen.beachDistance, Main.maxTilesX - WorldGen.beachDistance);
+                    if (WorldGen.tenthAnniversaryWorldGen && !WorldGen.remixWorldGen)
+                    {
+                        posX = WorldGen.genRand.Next((int)((double)Main.maxTilesX * 0.15), (int)((float)Main.maxTilesX * 0.85f));
+                    }
+                    if (posX <= Main.maxTilesX / 2 - spawnSafeDistance || posX >= Main.maxTilesX / 2 + spawnSafeDistance)
+                    {
+                        int posY = 0;
+                        for (; !Main.tile[posX, posY].HasTile && (double)posY < Main.worldSurface; posY++)
+                        {
+                        }
+                        if (Main.tile[posX, posY].TileType == TileID.Dirt)
+                        {
+                            if (posY > 150)
+                            {
+                                //int posXOriginal = posX; //Temporary
+                                //int posYOriginal = posY;
+                                int xAdjust;
+                                bool validPos = true;
+
+                                //Temporary====================================
+                                posX = 50 * treePlacements;
+                                posY = 50;
+                                int posXOriginal = posX;
+                                int posYOriginal = posY;
+                                //============================================
+
+                                for (int tileCheckX = posX - 50; tileCheckX < posX + 50; tileCheckX++)
+                                {
+                                    for (int tileCheckY = posY - 50; tileCheckY < posY + 50; tileCheckY++)
+                                    {
+                                        if (Main.tile[tileCheckX, tileCheckY].HasTile)
+                                        {
+                                            //Check for clouds and dungeon tiles.
+                                            switch (Main.tile[tileCheckX, tileCheckY].TileType)
+                                            {
+                                                case 41:
+                                                case 43:
+                                                case 44:
+                                                case 189:
+                                                case 196:
+                                                case 460:
+                                                case 481:
+                                                case 482:
+                                                case 483:
+                                                    validPos = false;
+                                                    goto finishedTileCheck;
+                                            }
+                                        }
+                                    }
+                                }
+                            finishedTileCheck:
+                                if (validPos)
+                                {
+                                    treePlacements++; //Temporary
+                                    posX = posXOriginal - 1;
+                                    posY = posYOriginal - 3;
+                                    int trunkLength = WorldGen.genRand.Next(17,26);
+                                    for (int tileCheckX = posX; tileCheckX < posX + 5; tileCheckX++)
+                                    {
+                                        for (int tileCheckY = posY; tileCheckY < posY + trunkLength; tileCheckY++)
+                                        {
+                                            if (
+                                                tileCheckY > posY &&
+                                                tileCheckY < (posY + trunkLength) &&
+                                                tileCheckX > posX &&
+                                                tileCheckX < (posX + 5))
+                                            {
+                                                Main.tile[tileCheckX, tileCheckY].ClearTile()
+                                                WorldGen.PlaceWall(tileCheckX, tileCheckY, WallID.Granite); //, WallID.LivingWood); Temporary
+                                            }
+                                            else
+                                            {
+                                                WorldGen.PlaceTile(tileCheckX, tileCheckY - i, TileID.Granite); //, TileID.LivingWood);
+                                            }
+                                        }
+                                    }
+
+                                    WorldGen.PlaceTile(posX + 1, posY + 3, TileID.Platform, style: 23);
+                                    WorldGen.PlaceTile(posX + 2, posY + 3, TileID.Platform, style: 23);
+
+                                    int chestIndex = WorldGen.PlaceChest(posX + 1, posY + trunkLength - 2, style: 12);
+                                    bool success = chestIndex != -1;
+                                    if (success)
+                                    {
+                                        Chest chest = Main.chest[chestIndex];
+
+                                        chest.item[0].SetDefaults(missingTreeItems[0]);
+                                        missingTreeItems.RemoveAt(0);
+                                    }
+
+                                    trunkLength = WorldGen.genRand.Next(5,11);
+                                    posX += 1
+                                    posY -= trunkLength
+                                    for (int tileCheckX = posX; tileCheckX < posX + 3; tileCheckX++)
+                                    {
+                                        for (int tileCheckY = posY; tileCheckY < posY + trunkLength + 1; tileCheckY++)
+                                        {
+                                            WorldGen.PlaceTile(tileCheckX, tileCheckY, TileID.Granite); //, TileID.LivingWood);
+                                        }
+                                    }
+                                    int leftBranchX = posX;
+                                    int leftBranchY = posY;
+                                    int leftBranchLength = WorldGen.genRand.Next(5, 11);
+                                    int rightBranchX = posX+1;
+                                    int rightBranchX = posY;
+                                    int rightBranchLength = WorldGen.genRand.Next(5, 11);
+                                    while (leftBranchLength > 0)
+                                    {
+                                        leftBranchLength--
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            leftBranchX--;
+                                        }
+                                        else (WorldGen.genRand.NextBool(2))
+                                        {
+                                            leftBranchY--;
+                                        }
+                                        WorldGen.PlaceTile(leftBranchX, leftBranchY, TileID.Granite); //, TileID.LivingWood);
+                                        if (leftBranchLength == 0)
+                                        {
+                                            Point point = new Point(leftBranchX, leftBranchY);
+                                            WorldUtils.Gen(point, new Shapes.Circle(7 + WorldGen.genRand.Next(0, 2), 7 + WorldGen.genRand.Next(0, 2)), Actions.Chain(new GenAction[]
+                                            {
+                                                new Actions.SetTile(TileID.LeafBlock),
+                                            }));
+                                        }
+                                    }
+                                    while (rightBranchLength < 0)
+                                    {
+                                        rightBranchLength--
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            rightBranchX++;
+                                        }
+                                        else (WorldGen.genRand.NextBool(2))
+                                        {
+                                            rightBranchY--;
+                                        }
+                                        WorldGen.PlaceTile(rightBranchX, rightBranchY, TileID.Granite); //, TileID.LivingWood);
+                                        if (rightBranchLength == 0)
+                                        {
+                                            Point point = new Point(rightBranchX, rightBranchY);
+                                            WorldUtils.Gen(point, new Shapes.Circle(7 + WorldGen.genRand.Next(0, 2), 7 + WorldGen.genRand.Next(0, 2)), Actions.Chain(new GenAction[]
+                                            {
+                                                new Actions.SetTile(TileID.LeafBlock),
+                                            }));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                */
+            }
+        }
+
+        public class MissingShroomLootGen : GenPass
+        {
+            public MissingShroomLootGen(string name, float loadWeight) : base(name, loadWeight) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Adding missing shroom loot";
+
+                List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 List<int> mushroomBiomes = new();
+
+                void tryToPlaceMushroomChest(int mushroomBiome, int item)
+                {
+                    Point selectedBiomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
+                    mushroomBiomes.Remove(mushroomBiome);
+
+	                int attempts = 0;
+                    bool success = false;
+                    int x = 0;
+                    int y = 0;
+
+                    int chestIndex = -1;
+                    while (!success) {
+                        attempts++;
+                        if (attempts > 10000) {
+                            break;
+                        }
+                        x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
+                        y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
+                        if (Framing.GetTileSafely(x, y+1).TileType == TileID.MushroomGrass)
+                        {
+                            chestIndex = WorldGen.PlaceChest(x, y, style: 32);
+                            success = chestIndex != -1;
+                        }
+                    }
+                    if (success)
+                    {
+                        Chest chest = Main.chest[chestIndex];
+
+                        int slot = 0;
+                        if (item == ItemID.MushroomHat)
+                        {
+                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
+                            slot++;
+                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
+                            slot++;
+                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
+                            slot++;
+                        }
+                        else
+                        {
+                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
+                        }
+                        missingMushroomItems.Remove(item);
+                    }
+                }
+
                 for (int i = 0; i < GenVars.mushroomBiomesPosition.Length; i++)
                 {
                     if (GenVars.mushroomBiomesPosition[i].X != 0 && GenVars.mushroomBiomesPosition[i].Y != 0)
@@ -645,16 +378,61 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                for (int i = 0; i < mushroomBiomes.Count; i++)
+                for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
-                    if (WorldGen.genRand.NextBool(4))
+                    Chest chest = Main.chest[chestIndex];
+
+                    if (chest == null)
                     {
-                        tryToPlaceMushroomChest(i);
+                        continue;
+                    }
+
+                    bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
+
+                    short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                    int chestWidth = 36;
+
+                    if (chestType1)
+                    {
+                        bool mushroomChest = tileFrameX == 32 * chestWidth;
+
+                        if (mushroomChest && missingMushroomItems.Count > 0)
+                        {
+                            for (int slot = 0; slot < 40; slot++)
+                            {
+                                List<int> missingMushroomItemsOld = new();
+                                missingMushroomItemsOld.AddRange(missingMushroomItems);
+
+                                foreach (int itemType in missingMushroomItemsOld)
+                                {
+                                    if (chest.item[slot].type == itemType)
+                                    {
+                                        missingMushroomItems.Remove(itemType);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
-                int kingStatueDenominator = 5;
-                int queenStatueDenominator = 5;
+                while (missingMushroomItems.Count > 0 && mushroomBiomes.Count > 0)
+                {
+                    tryToPlaceMushroomChest(mushroomBiomes[WorldGen.genRand.Next(mushroomBiomes.Count)], missingMushroomItems[0]);
+                }
+            }
+        }
+
+        public class MissingMiscLootGen : GenPass
+        {
+            public MissingMiscLootGen(string name, float loadWeight) : base(name, loadWeight) { }
+
+            protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
+            {
+                progress.Message = "Adding other missing loot";
+
+                List<int> terragrimChests = new();
+                List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
+                List<int> sandstoneChests = new();
 
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
@@ -669,126 +447,83 @@ namespace ReducedGrinding.Global.WorldGeneration
                     bool chestType2 = Main.tile[chest.x, chest.y].TileType == TileID.Containers2;
 
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
-                    int chestHeight = 36;
+                    int chestWidth = 36;
+
+                    bool goldChest = tileFrameX == 1 * chestWidth;
+
+                    if (goldChest && missingPyramidItems.Count > 0)
+                    {
+                        for (int slot = 0; slot < 40; slot++)
+                        {
+                            List<int> missingPyramidItemsOld = new();
+                            missingPyramidItemsOld.AddRange(missingPyramidItems);
+
+                            foreach (int itemType in missingPyramidItemsOld)
+                            {
+                                if (chest.item[slot].type == itemType)
+                                {
+                                    missingPyramidItems.Remove(itemType);
+                                }
+                            }
+                        }
+                    }
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
                         bool regularChest = chestType1 && tileFrameX == 0;
 
-                        if (!regularChest)
+                        if (!regularChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
                         {
-                            terragrimChests.Add(chestIndex);
-                        }
-                    }
-
-                    if (chestType1)
-                    {
-                        bool mushroomChest = tileFrameX == 32 * chestHeight;
-                        bool goldChest = tileFrameX == 1 * chestHeight;
-                        bool lockedGoldChest = tileFrameX == 2 * chestHeight;
-
-                        if (mushroomChest)
-                        {
-                            if (missingMushroomItems.Count > 0)
-                            {
-                                for (int slot = 0; slot < 40; slot++)
-                                {
-                                    List<int> missingMushroomItemsOld = new();
-                                    missingMushroomItemsOld.AddRange(missingMushroomItems);
-
-                                    foreach (int itemType in missingMushroomItemsOld)
-                                    {
-                                        if (chest.item[slot].type == itemType)
-                                        {
-                                            missingMushroomItems.Remove(itemType);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        else if (goldChest)
-                        {
-                            if (chest.y > GenVars.lavaLine || Math.Abs(chest.x - Main.spawnTileX) > (Main.maxTilesX / 4))
-                            {
-                                if (WorldGen.genRand.NextBool(kingStatueDenominator))
-                                {
-                                    for (int slot = 0; slot < 40; slot++)
-                                    {
-                                        if (chest.item[slot].type == ItemID.None)
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.KingStatue);
-                                            kingStatueDenominator += 5;
-                                            break;
-                                        }
-                                    }
-                                }
-                                if (WorldGen.genRand.NextBool(queenStatueDenominator))
-                                {
-                                    for (int slot = 0; slot < 40; slot++)
-                                    {
-                                        if (chest.item[slot].type == ItemID.None)
-                                        {
-                                            chest.item[slot].SetDefaults(ItemID.QueenStatue);
-                                            queenStatueDenominator += 5;
-                                            break;
-                                        }
-                                    }
-                                }
-                                kingStatueDenominator = Math.Max(1, kingStatueDenominator - 1);
-                                queenStatueDenominator = Math.Max(1, queenStatueDenominator - 1);
-                            }
-                        }
-                        else if (lockedGoldChest)
-                        {
-                            lockedGoldChests.Add(chestIndex);
-                        }
-                    }
-                }
-
-                int mushroomChestAttempts = 0;
-                while (missingMushroomItems.Count > 0)
-                {
-                    tryToPlaceMushroomChest(WorldGen.genRand.Next(0, mushroomBiomes.Count), missingMushroomItems[0]);
-                    mushroomChestAttempts++;
-                    if (mushroomChestAttempts >= 5)
-                    {
-                        break;
-                    }
-                }
-
-                while (dungeonFurniture.Count > 0)
-                {
-                    foreach (int chestIndex in lockedGoldChests)
-                    {
-                        if (dungeonFurniture.Count > 0)
-                        {
-                            Chest chest = Main.chest[chestIndex];
                             for (int slot = 0; slot < 40; slot++)
                             {
                                 if (chest.item[slot].type == ItemID.None)
                                 {
-                                    chest.item[slot].SetDefaults(dungeonFurniture[0]);
-                                    chest.item[slot].stack = WorldGen.genRand.Next(2, 5);
+                                    chest.item[slot].SetDefaults(ItemID.Terragrim);
                                     break;
                                 }
                             }
-                            dungeonFurniture.RemoveAt(0);
+                        }
+                    }
+
+                    if (chestType2)
+                    {
+                        bool sandstoneChest = tileFrameX == 10 * chestWidth;
+
+                        if (sandstoneChest)
+                        {
+                            sandstoneChests.Add(chestIndex);
                         }
                     }
                 }
 
-                foreach (int chestIndex in terragrimChests)
+                while (missingPyramidItems.Count > 0 && sandstoneChests.Count > 0)
                 {
-                    if (WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                    Chest chest = Main.chest[sandstoneChests[WorldGen.genRand.Next(sandstoneChests.Count)]];
+                    for (int slot = 0; slot < 40; slot++)
                     {
-                        Chest chest = Main.chest[chestIndex];
-                        for (int slot = 0; slot < 40; slot++)
+                        if (chest.item[slot].type == ItemID.None)
                         {
-                            if (chest.item[slot].type == ItemID.None)
+                            chest.item[slot].SetDefaults(missingPyramidItems[0]);
+                            if (missingPyramidItems[0] == ItemID.PharaohsMask)
                             {
-                                chest.item[slot].SetDefaults(ItemID.Terragrim);
-                                break;
+                                if (slot == 39)
+                                {
+                                    chest.item[slot].SetDefaults(ItemID.PharaohsRobe);
+                                }
+                                else
+                                {
+                                    if (chest.item[slot+1].type == ItemID.None)
+                                    {
+                                        chest.item[slot+1].SetDefaults(ItemID.PharaohsRobe);
+                                    }
+                                    else
+                                    {
+                                        chest.item[slot].SetDefaults(ItemID.PharaohsRobe);
+                                    }
+                                }
                             }
+                            missingPyramidItems.RemoveAt(0);
+                            break;
                         }
                     }
                 }

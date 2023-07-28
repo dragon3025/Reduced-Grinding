@@ -101,11 +101,6 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
-
-            if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
-            {
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.FlyingCarpet, 35, 1, 1));
-            }
             #endregion
         }
     }
