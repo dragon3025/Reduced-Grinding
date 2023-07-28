@@ -54,23 +54,26 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     bool chestType1 = Main.tile[chest.x, chest.y].TileType == TileID.Containers;
 
-                    short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
-                    int chestWidth = 36;
-
-                    bool treeChest = tileFrameX == 12 * chestWidth;
-
-                    if (treeChest && missingTreeItems.Count > 0)
+                    if (chestType1)
                     {
-                        for (int slot = 0; slot < 40; slot++)
-                        {
-                            List<int> missingTreeItemsOld = new();
-                            missingTreeItemsOld.AddRange(missingTreeItems);
+                        short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
+                        int chestWidth = 36;
 
-                            foreach (int itemType in missingTreeItemsOld)
+                        bool treeChest = tileFrameX == 12 * chestWidth;
+
+                        if (treeChest && missingTreeItems.Count > 0)
+                        {
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                if (chest.item[slot].type == itemType)
+                                List<int> missingTreeItemsOld = new();
+                                missingTreeItemsOld.AddRange(missingTreeItems);
+
+                                foreach (int itemType in missingTreeItemsOld)
                                 {
-                                    missingTreeItems.Remove(itemType);
+                                    if (chest.item[slot].type == itemType)
+                                    {
+                                        missingTreeItems.Remove(itemType);
+                                    }
                                 }
                             }
                         }
@@ -142,10 +145,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                     }
                 }
-
                 /*
                 // TO-DO My ability to test generation is very limited right now. When I can, try to make this the new
-                // Living Wood Chest generation.
+                // Living Wood Chest generation. NOTE: I DISCOVERED BEACH GEN WILL WIPE OUT PLACED TILES AND CHEST!
                 int attempts = 0;
                 int spawnSafeDistance = 200;
                 int treePlacements = 0; //temporary
