@@ -14,19 +14,20 @@ namespace ReducedGrinding.Global.WorldGeneration
     {
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
-            int DungeonIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
-            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
-            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
-            int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 
+            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
             if (LivingTreesIndex != -1)
             {
                 tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding missing tree loot", 10f));
             }
+
+            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
             if (BuriedChestsIndex != -1)
             {
                 tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding missing shroom loot", 10f));
             }
+
+            int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
             if (FinalCleanupIndex != -1)
             {
                 tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
@@ -127,7 +128,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
                                     }
                                 }
-                                finishedTileCheck:
+                            finishedTileCheck:
                                 if (validPos)
                                 {
                                     posY--;
@@ -329,44 +330,67 @@ namespace ReducedGrinding.Global.WorldGeneration
                     Point selectedBiomePosition = GenVars.mushroomBiomesPosition[mushroomBiome];
                     mushroomBiomes.Remove(mushroomBiome);
 
-	                int attempts = 0;
+                    int attempts = 0;
                     bool success = false;
                     int x = 0;
                     int y = 0;
+                    bool validLocation = false;
 
-                    int chestIndex = -1;
-                    while (!success) {
+                    while (!success)
+                    {
                         attempts++;
-                        if (attempts > 10000) {
+                        if (attempts > 10000)
+                        {
                             break;
                         }
-                        x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
-                        y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
-                        if (Framing.GetTileSafely(x, y+1).TileType == TileID.MushroomGrass)
+                        if (!validLocation)
                         {
-                            chestIndex = WorldGen.PlaceChest(x, y, style: 32);
-                            success = chestIndex != -1;
+                            x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
+                            y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
                         }
-                    }
-                    if (success)
-                    {
-                        Chest chest = Main.chest[chestIndex];
-
-                        int slot = 0;
-                        if (item == ItemID.MushroomHat)
+                        if (
+                            !Framing.GetTileSafely(x, y).HasTile &&
+                            !Framing.GetTileSafely(x, y + 1).HasTile &&
+                            !Framing.GetTileSafely(x + 1, y).HasTile &&
+                            !Framing.GetTileSafely(x + 1, y + 1).HasTile &&
+                            Framing.GetTileSafely(x, y + 2).TileType == TileID.MushroomGrass &&
+                            Framing.GetTileSafely(x + 1, y + 2).TileType == TileID.MushroomGrass
+                            )
                         {
-                            chest.item[slot].SetDefaults(ItemID.MushroomHat);
-                            slot++;
-                            chest.item[slot].SetDefaults(ItemID.MushroomVest);
-                            slot++;
-                            chest.item[slot].SetDefaults(ItemID.MushroomPants);
-                            slot++;
+                            success = WorldGen.AddBuriedChest(x + 1, y + 1, Style: 32);
+                            int chestIndex = Chest.FindChest(x, y);
+                            if (chestIndex > -1)
+                            {
+                                Chest chest = Main.chest[chestIndex];
+                                bool correctItem = false;
+                                for (int i = 0; i < 40; i++)
+                                {
+                                    if (chest.item[i].type == item)
+                                    {
+                                        correctItem = true;
+                                        break;
+                                    }
+                                }
+                                if (!correctItem)
+                                {
+                                    if (!validLocation)
+                                    {
+                                        validLocation = true;
+                                        attempts = 0;
+                                    }
+                                    success = false;
+                                    Chest.DestroyChestDirect(x, y, chestIndex);
+                                    Main.tile[x, y].ClearTile();
+                                    Main.tile[x, y + 1].ClearTile();
+                                    Main.tile[x + 1, y].ClearTile();
+                                    Main.tile[x + 1, y + 1].ClearTile();
+                                }
+                                else
+                                {
+                                    missingMushroomItems.Remove(item);
+                                }
+                            }
                         }
-                        else
-                        {
-                            chest.item[0].SetDefaults(ItemID.ShroomMinecart);
-                        }
-                        missingMushroomItems.Remove(item);
                     }
                 }
 
@@ -430,7 +454,6 @@ namespace ReducedGrinding.Global.WorldGeneration
             {
                 progress.Message = "Adding other missing loot";
 
-                List<int> terragrimChests = new();
                 List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
                 List<int> sandstoneChests = new();
 
@@ -470,9 +493,9 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
                     {
-                        bool regularChest = chestType1 && tileFrameX == 0;
+                        bool deepChest = chest.y > Main.rockLayer;
 
-                        if (!regularChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                        if (deepChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
                         {
                             for (int slot = 0; slot < 40; slot++)
                             {
@@ -512,9 +535,9 @@ namespace ReducedGrinding.Global.WorldGeneration
                                 }
                                 else
                                 {
-                                    if (chest.item[slot+1].type == ItemID.None)
+                                    if (chest.item[slot + 1].type == ItemID.None)
                                     {
-                                        chest.item[slot+1].SetDefaults(ItemID.PharaohsRobe);
+                                        chest.item[slot + 1].SetDefaults(ItemID.PharaohsRobe);
                                     }
                                     else
                                     {
