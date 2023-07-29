@@ -332,8 +332,8 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                     int attempts = 0;
                     bool success = false;
-                    int x = 0;
-                    int y = 0;
+                    int posX = 0;
+                    int posY = 0;
                     bool validLocation = false;
 
                     while (!success)
@@ -345,20 +345,20 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                         if (!validLocation)
                         {
-                            x = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
-                            y = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
+                            posX = WorldGen.genRand.Next(selectedBiomePosition.X - 100, selectedBiomePosition.X + 100);
+                            posY = WorldGen.genRand.Next(selectedBiomePosition.Y - 100, selectedBiomePosition.Y + 100);
                         }
                         if (
-                            !Framing.GetTileSafely(x, y).HasTile &&
-                            !Framing.GetTileSafely(x, y + 1).HasTile &&
-                            !Framing.GetTileSafely(x + 1, y).HasTile &&
-                            !Framing.GetTileSafely(x + 1, y + 1).HasTile &&
-                            Framing.GetTileSafely(x, y + 2).TileType == TileID.MushroomGrass &&
-                            Framing.GetTileSafely(x + 1, y + 2).TileType == TileID.MushroomGrass
+                            !Framing.GetTileSafely(posX, posY).HasTile &&
+                            !Framing.GetTileSafely(posX, posY + 1).HasTile &&
+                            !Framing.GetTileSafely(posX + 1, posY).HasTile &&
+                            !Framing.GetTileSafely(posX + 1, posY + 1).HasTile &&
+                            Framing.GetTileSafely(posX, posY + 2).TileType == TileID.MushroomGrass &&
+                            Framing.GetTileSafely(posX + 1, posY + 2).TileType == TileID.MushroomGrass
                             )
                         {
-                            success = WorldGen.AddBuriedChest(x + 1, y + 1, Style: 32);
-                            int chestIndex = Chest.FindChest(x, y);
+                            success = WorldGen.AddBuriedChest(posX + 1, posY + 1, Style: 32);
+                            int chestIndex = Chest.FindChest(posX, posY);
                             if (chestIndex > -1)
                             {
                                 Chest chest = Main.chest[chestIndex];
@@ -379,11 +379,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         attempts = 0;
                                     }
                                     success = false;
-                                    Chest.DestroyChestDirect(x, y, chestIndex);
-                                    Main.tile[x, y].ClearTile();
-                                    Main.tile[x, y + 1].ClearTile();
-                                    Main.tile[x + 1, y].ClearTile();
-                                    Main.tile[x + 1, y + 1].ClearTile();
+                                    Chest.DestroyChestDirect(posX, posY, chestIndex);
+                                    Main.tile[posX, posY].ClearTile();
+                                    Main.tile[posX, posY + 1].ClearTile();
+                                    Main.tile[posX + 1, posY].ClearTile();
+                                    Main.tile[posX + 1, posY + 1].ClearTile();
                                 }
                                 else
                                 {
@@ -472,20 +472,23 @@ namespace ReducedGrinding.Global.WorldGeneration
                     short tileFrameX = Main.tile[chest.x, chest.y].TileFrameX;
                     int chestWidth = 36;
 
-                    bool goldChest = tileFrameX == 1 * chestWidth;
-
-                    if (goldChest && missingPyramidItems.Count > 0)
+                    if (chestType1)
                     {
-                        for (int slot = 0; slot < 40; slot++)
-                        {
-                            List<int> missingPyramidItemsOld = new();
-                            missingPyramidItemsOld.AddRange(missingPyramidItems);
+                        bool goldChest = tileFrameX == 1 * chestWidth;
 
-                            foreach (int itemType in missingPyramidItemsOld)
+                        if (goldChest && missingPyramidItems.Count > 0)
+                        {
+                            for (int slot = 0; slot < 40; slot++)
                             {
-                                if (chest.item[slot].type == itemType)
+                                List<int> missingPyramidItemsOld = new();
+                                missingPyramidItemsOld.AddRange(missingPyramidItems);
+
+                                foreach (int itemType in missingPyramidItemsOld)
                                 {
-                                    missingPyramidItems.Remove(itemType);
+                                    if (chest.item[slot].type == itemType)
+                                    {
+                                        missingPyramidItems.Remove(itemType);
+                                    }
                                 }
                             }
                         }
