@@ -1,5 +1,3 @@
-Reduced Grinding (Info below is for the 1.4.4+ version of tModLoader)
-
 ====INFO====
 
 Open Source at GitHub. Report issues there or at home page.
