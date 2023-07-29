@@ -128,7 +128,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
                                     }
                                 }
-                            finishedTileCheck:
+                                finishedTileCheck:
                                 if (validPos)
                                 {
                                     posY--;
@@ -137,9 +137,170 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     if (success)
                                     {
                                         Chest chest = Main.chest[chestIndex];
+                                        int slot = 0;
 
-                                        chest.item[0].SetDefaults(missingTreeItems[0]);
+                                        chest.item[slot].SetDefaults(missingTreeItems[0]);
                                         missingTreeItems.RemoveAt(0);
+                                        chest.item[slot].Prefix(-1);
+                                        slot++;
+
+                                        #region Common Surface Chest Loot
+                                        if (WorldGen.genRand.NextBool(6))
+                                        {
+                                            int stack = WorldGen.genRand.Next(40, 76);
+                                            chest.item[slot].SetDefaults(282);
+                                            chest.item[slot].stack = stack;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(6))
+                                        {
+                                            int stack2 = WorldGen.genRand.Next(150, 301);
+                                            chest.item[slot].SetDefaults(279);
+                                            chest.item[slot].stack = stack2;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(6))
+                                        {
+                                            chest.item[slot].SetDefaults(3093);
+                                            chest.item[slot].stack = 1;
+                                            if (WorldGen.genRand.NextBool(5))
+                                            {
+                                                chest.item[slot].stack += WorldGen.genRand.Next(2);
+                                            }
+                                            if (WorldGen.genRand.NextBool(10))
+                                            {
+                                                chest.item[slot].stack += WorldGen.genRand.Next(3);
+                                            }
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(6))
+                                        {
+                                            chest.item[slot].SetDefaults(4345);
+                                            chest.item[slot].stack = 1;
+                                            if (WorldGen.genRand.NextBool(5))
+                                            {
+                                                chest.item[slot].stack += WorldGen.genRand.Next(2);
+                                            }
+                                            if (WorldGen.genRand.NextBool(10))
+                                            {
+                                                chest.item[slot].stack += WorldGen.genRand.Next(3);
+                                            }
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(3))
+                                        {
+                                            chest.item[slot].SetDefaults(168);
+                                            chest.item[slot].stack = WorldGen.genRand.Next(3, 6);
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            int num15 = WorldGen.genRand.Next(2);
+                                            int stack3 = WorldGen.genRand.Next(8) + 3;
+                                            if (num15 == 0)
+                                            {
+                                                chest.item[slot].SetDefaults(GenVars.copperBar);
+                                            }
+                                            if (num15 == 1)
+                                            {
+                                                chest.item[slot].SetDefaults(GenVars.ironBar);
+                                            }
+                                            chest.item[slot].stack = stack3;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            int stack4 = WorldGen.genRand.Next(50, 101);
+                                            chest.item[slot].SetDefaults(965);
+                                            chest.item[slot].stack = stack4;
+                                            slot++;
+                                        }
+                                        if (!WorldGen.genRand.NextBool(3))
+                                        {
+                                            int num16 = WorldGen.genRand.Next(2);
+                                            int stack5 = WorldGen.genRand.Next(26) + 25;
+                                            if (num16 == 0)
+                                            {
+                                                chest.item[slot].SetDefaults(40);
+                                            }
+                                            if (num16 == 1)
+                                            {
+                                                chest.item[slot].SetDefaults(42);
+                                            }
+                                            chest.item[slot].stack = stack5;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            int stack6 = WorldGen.genRand.Next(3) + 3;
+                                            chest.item[slot].SetDefaults(28);
+                                            chest.item[slot].stack = stack6;
+                                            slot++;
+                                        }
+                                        if (!WorldGen.genRand.NextBool(3))
+                                        {
+                                            chest.item[slot].SetDefaults(2350);
+                                            chest.item[slot].stack = WorldGen.genRand.Next(3, 6);
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.Next(3) > 0)
+                                        {
+                                            int num17 = WorldGen.genRand.Next(6);
+                                            int stack7 = WorldGen.genRand.Next(1, 3);
+                                            if (num17 == 0)
+                                            {
+                                                chest.item[slot].SetDefaults(292);
+                                            }
+                                            if (num17 == 1)
+                                            {
+                                                chest.item[slot].SetDefaults(298);
+                                            }
+                                            if (num17 == 2)
+                                            {
+                                                chest.item[slot].SetDefaults(299);
+                                            }
+                                            if (num17 == 3)
+                                            {
+                                                chest.item[slot].SetDefaults(290);
+                                            }
+                                            if (num17 == 4)
+                                            {
+                                                chest.item[slot].SetDefaults(2322);
+                                            }
+                                            if (num17 == 5)
+                                            {
+                                                chest.item[slot].SetDefaults(2325);
+                                            }
+                                            chest.item[slot].stack = stack7;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            int num18 = WorldGen.genRand.Next(2);
+                                            int stack8 = WorldGen.genRand.Next(11) + 10;
+                                            if (num18 == 0)
+                                            {
+                                                chest.item[slot].SetDefaults(8);
+                                            }
+                                            if (num18 == 1)
+                                            {
+                                                chest.item[slot].SetDefaults(31);
+                                            }
+                                            chest.item[slot].stack = stack8;
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            chest.item[slot].SetDefaults(72);
+                                            chest.item[slot].stack = WorldGen.genRand.Next(10, 30);
+                                            slot++;
+                                        }
+                                        if (WorldGen.genRand.NextBool(2))
+                                        {
+                                            chest.item[slot].SetDefaults(9);
+                                            chest.item[slot].stack = WorldGen.genRand.Next(50, 100);
+                                        }
+                                        #endregion
                                     }
                                 }
                             }
@@ -457,6 +618,10 @@ namespace ReducedGrinding.Global.WorldGeneration
                 List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
                 List<int> sandstoneChests = new();
 
+                //Temporary
+                int failedTerragrims = 0;
+                int placedTerragrims = 0;
+
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
                 {
                     Chest chest = Main.chest[chestIndex];
@@ -500,6 +665,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
                         if (deepChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
                         {
+                            placedTerragrims++;
                             for (int slot = 0; slot < 40; slot++)
                             {
                                 if (chest.item[slot].type == ItemID.None)
@@ -508,6 +674,10 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     break;
                                 }
                             }
+                        }
+                        else
+                        {
+                            failedTerragrims++;
                         }
                     }
 
@@ -521,6 +691,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                     }
                 }
+                GetInstance<ReducedGrinding>().Logger.Debug("placedTerragrims: " + placedTerragrims.ToString());
+                GetInstance<ReducedGrinding>().Logger.Debug("failedTerragrims: " + failedTerragrims.ToString());
 
                 while (missingPyramidItems.Count > 0 && sandstoneChests.Count > 0)
                 {
