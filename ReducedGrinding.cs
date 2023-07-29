@@ -30,7 +30,7 @@ namespace ReducedGrinding
             ModLoader.TryGetMod("Wikithis", out Mod wikithis);
             if (wikithis != null && !Main.dedServ)
             {
-                wikithis.Call("AddModURL", this, "https://terrariamods.fandom.com/wiki/Reduced_Grinding/{}");
+                wikithis.Call("AddModURL", this, "https://terrariamods.wiki.gg/wiki/Reduced_Grinding/{}");
             }
         }
 
