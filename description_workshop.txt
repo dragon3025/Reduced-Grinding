@@ -1,5 +1,3 @@
-Reduced Grinding (Info below is for the 1.4.4+ version of tModLoader)
-
 ====INFO====
 
 Open Source at GitHub. Report issues there or at home page.
@@ -13,7 +11,7 @@ This mod will prevent having to spend huge amounts of time farming loot and adds
 - Items that activate Christmas and Halloween for the current day. By default, crafting requires their matching season.
 - Item for canceling invasions.
 - Recipe for Universal Pylon. Disable or Customize.
-- Each chest has a 1 / 100 chance to generate with Terragrim (except basic chest). Chance can be customized or disabled.
+- Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with Terragrim (chance can be customized or disabled).
 
 ====OFF BY DEFAULT====
 

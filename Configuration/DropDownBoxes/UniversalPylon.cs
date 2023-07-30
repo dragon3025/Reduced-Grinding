@@ -30,7 +30,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             CraftWithPreMechSouls = false;
             CraftWithMechSouls = false;
             CraftWithFragments = false;
-            CraftAtCrystalBall = true;
+            CraftAtCrystalBall = false;
         }
 
         public override bool Equals(object obj)
