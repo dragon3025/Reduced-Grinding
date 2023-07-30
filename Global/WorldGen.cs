@@ -81,7 +81,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                     }
                 }
 
-                void ClearAndPlaceWall(int x, int y, int wall_id)
+                static void ClearAndPlaceWall(int x, int y, int wall_id)
                 {
                     Main.tile[x, y].ClearEverything();
                     WorldGen.PlaceWall(x, y, wall_id, true);
