@@ -207,28 +207,22 @@ Mods: {
 					Other: Other
 				}
 
-				TerragrimChestChance: {
-					Label: "[i:4144] Chest Terragrim Chance"
-					Tooltip:
-						'''
-						Each vanilla chest will have a chance of generating with
-						Terragrim inside (this excludes basic surface chests).
-						Chance = 1 /configuration_setting. Set to 0 to disable.
-						'''
-				}
-
 				CraftableGoldCritters: {
 					Label: Allow crafting [i:2889] Gold Critters
-					Tooltip: Recipes use 10 Gold Coins to prevent exploiting the recipe for money
+					Tooltip:
+						'''
+						Recipes use 10 Gold Coins to prevent exploiting
+						the recipe for money
+						'''
 				}
 
 				CraftableRareChests: {
 					Label: Craftable Rare Chests
 					Tooltip:
 						'''
-						This excludes Dungeon Biome Chest which can be obtained
-						through Shimmering. When enabled, Shadow Chest are
-						crafted by Shimmering a Shadow Key.
+						This excludes Dungeon Biome Chest which can be
+						obtained through Shimmering. When enabled, Shadow
+						Chest are crafted by Shimmering a Shadow Key.
 						'''
 				}
 
@@ -292,6 +286,59 @@ Mods: {
 				UniversalPylon: {
 					Label: "[i:4951] Universal Pylon"
 					Tooltip: ""
+				}
+
+				WorldGeneration: {
+					Label: World Generation
+					Tooltip: ""
+				}
+			}
+
+			WorldGeneration: {
+				Tooltip: ""
+
+				TerragrimChestChance: {
+					Label: "[i:4144] Chest Terragrim Chance"
+					Tooltip:
+						'''
+						Every chest at or below the Cavern Layer will have a
+						chance of generating with Terragrim.
+						Chance = 1 / configuration_setting. Set to 0 to
+						disable.
+						'''
+				}
+
+				AddMissingTreeLoot: {
+					Label: "[i:831] Add Missing Living Wood Chest Loot"
+					Tooltip:
+						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Ladybug Minecart
+						- Sunflower Minecart
+						'''
+				}
+
+				AddMissingShroomLoot: {
+					Label: "[i:2544] Add Missing Mushroom Chest Loot"
+					Tooltip:
+						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Shroom Minecart
+						- Mushroom vanity set
+						'''
+				}
+
+				AddMissingPyramidLoot: {
+					Label: "[i:934] Add Missing Pyramid Chest Loot"
+					Tooltip:
+						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Flying Carpet
+						- Pharoah's vanity set
+						'''
 				}
 			}
 

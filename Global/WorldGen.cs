@@ -12,25 +12,36 @@ namespace ReducedGrinding.Global.WorldGeneration
 {
     public class ReducedGrindingWorldGen : ModSystem
     {
+        readonly static IOtherConfig otherConfig = GetInstance<IOtherConfig>();
+
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
         {
 
-            int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
-            if (LivingTreesIndex != -1)
+            if (otherConfig.WorldGeneration.AddMissingTreeLoot)
             {
-                tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding missing tree loot", 10f));
+                int LivingTreesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Living Trees"));
+                if (LivingTreesIndex != -1)
+                {
+                    tasks.Insert(LivingTreesIndex + 1, new MissingTreeLootGen("Adding missing tree loot", 10f));
+                }
             }
 
-            int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
-            if (BuriedChestsIndex != -1)
+            if (otherConfig.WorldGeneration.AddMissingShroomLoot)
             {
-                tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding missing shroom loot", 10f));
+                int BuriedChestsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Buried Chests"));
+                if (BuriedChestsIndex != -1)
+                {
+                    tasks.Insert(BuriedChestsIndex + 1, new MissingShroomLootGen("Adding missing shroom loot", 10f));
+                }
             }
 
-            int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
-            if (FinalCleanupIndex != -1)
+            if (otherConfig.WorldGeneration.AddMissingPyramidLoot || otherConfig.WorldGeneration.TerragrimChestChance > 0)
             {
-                tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
+                int FinalCleanupIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
+                if (FinalCleanupIndex != -1)
+                {
+                    tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
+                } 
             }
         }
 
@@ -153,7 +164,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                             finishedTileCheck:
                                 if (validPos)
                                 {
+                                    bool saplingFlip = WorldGen.genRand.NextBool(2);
+
                                     posY++;
+                                    posX += saplingFlip ? 0 : 1;
+
                                     WorldGen.PlaceTile(posX + 1, posY, TileID.LeafBlock, true, true);
                                     WorldGen.PlaceTile(posX, posY + 1, TileID.LeafBlock, true, true);
                                     WorldGen.PlaceTile(posX + 2, posY + 1, TileID.LeafBlock, true, true);
@@ -174,6 +189,8 @@ namespace ReducedGrinding.Global.WorldGeneration
                                     }
 
                                     posY += trunkLength;
+
+                                    posX -= saplingFlip ? 0 : 1;
 
                                     for (int i = 0; i < 2; i++)
                                     {
@@ -516,7 +533,7 @@ namespace ReducedGrinding.Global.WorldGeneration
             {
                 progress.Message = "Adding other missing loot";
 
-                List<int> missingPyramidItems = new() { ItemID.PharaohsMask, ItemID.FlyingCarpet };
+                List<int> missingPyramidItems = otherConfig.WorldGeneration.AddMissingPyramidLoot ? new() { ItemID.PharaohsMask, ItemID.FlyingCarpet } : new() { };
                 List<int> sandstoneChests = new();
 
                 for (int chestIndex = 0; chestIndex < Main.maxChests; chestIndex++)
@@ -556,11 +573,11 @@ namespace ReducedGrinding.Global.WorldGeneration
                         }
                     }
 
-                    if (GetInstance<IOtherConfig>().TerragrimChestChance > 0)
+                    if (otherConfig.WorldGeneration.TerragrimChestChance > 0)
                     {
                         bool deepChest = chest.y > Main.rockLayer;
 
-                        if (deepChest && WorldGen.genRand.NextBool(GetInstance<IOtherConfig>().TerragrimChestChance))
+                        if (deepChest && WorldGen.genRand.NextBool(otherConfig.WorldGeneration.TerragrimChestChance))
                         {
                             for (int slot = 0; slot < 40; slot++)
                             {
