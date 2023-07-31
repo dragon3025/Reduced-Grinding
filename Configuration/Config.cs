@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using Terraria.ID;
 using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding.Configuration
@@ -124,9 +125,8 @@ namespace ReducedGrinding.Configuration
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
-        [DefaultValue(100)]
-        [Range(1, 1000)]
-        public int TerragrimChestChance;
+        [Expand(false)]
+        public DropDownBoxes.WorldGeneration WorldGeneration;
 
         [BackgroundColor(128, 128, 128)]
         [Range(1f, 20f)]
@@ -179,6 +179,7 @@ namespace ReducedGrinding.Configuration
 
         public IOtherConfig()
         {
+            WorldGeneration = new DropDownBoxes.WorldGeneration() { };
             EnchantedSundial = new DropDownBoxes.EnchantedSundialConfig() { };
             TravelingMerchant = new DropDownBoxes.TravelingMerchant() { };
             UniversalPylon = new DropDownBoxes.UniversalPylon() { };
