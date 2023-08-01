@@ -10,9 +10,6 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Plantera Sap");
-            Tooltip.SetDefault("Use in the Jungle to summon Plantera");
-
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
             ItemID.Sets.SortingPriorityBossSpawns[Type] = 12;
 
@@ -50,7 +47,7 @@ namespace ReducedGrinding.Items
                 }
                 else
                 {
-                    NetMessage.SendData(MessageID.SpawnBoss, number: player.whoAmI, number2: NPCID.Plantera);
+                    NetMessage.SendData(MessageID.SpawnBossUseLicenseStartEvent, number: player.whoAmI, number2: NPCID.Plantera);
                 }
             }
 

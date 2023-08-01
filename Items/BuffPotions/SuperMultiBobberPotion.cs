@@ -1,5 +1,7 @@
+using ReducedGrinding.Configuration;
 using ReducedGrinding.Global;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -8,18 +10,16 @@ namespace ReducedGrinding.Items.BuffPotions
 {
     public class SuperMultiBobberPotion : ModItem
     {
-
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Super Multi-Bobber Potion");
-            Tooltip.SetDefault("Increases bobber amount by " + GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus.ToString() + " when fishing");
+            CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
         public override void SetDefaults()
         {
             Item.height = 30;
-            Item.maxStack = 300;
-            Item.rare = ReducedGrindingSave.usingCalamity ? ItemRarityID.Red : ItemRarityID.Yellow;
+            Item.maxStack = 9999;
+            Item.rare = ItemRarityID.Yellow;
             Item.useAnimation = 45;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.DrinkLiquid;
@@ -39,16 +39,16 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<CFishingConfig>().SuperMultiBobberPotionBonus > 0)
+            if (GetInstance<CFishingConfig>().BobberPotions.SuperMultiBobberPotionBonus > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
-                if (GetInstance<CFishingConfig>().GreaterMultiBobberPotionBonus > 0)
+                if (GetInstance<CFishingConfig>().BobberPotions.GreaterMultiBobberPotionBonus > 0)
                 {
                     recipe.AddIngredient(ItemType<GreaterMultiBobberPotion>());
                 }
                 else
                 {
-                    if (GetInstance<CFishingConfig>().MultiBobberPotionBonus > 0)
+                    if (GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus > 0)
                     {
                         recipe.AddIngredient(ItemType<MultiBobberPotion>());
                     }
@@ -59,16 +59,8 @@ namespace ReducedGrinding.Items.BuffPotions
                         recipe.AddIngredient(ItemID.MasterBait);
                     }
                     recipe.AddIngredient(ItemID.GelBalloon);
-                    if (ReducedGrindingSave.usingCalamity)
-                    {
-                        recipe.AddIngredient(ItemID.VialofVenom);
-                    }
                 }
                 recipe.AddIngredient(ItemID.Ectoplasm);
-                if (ReducedGrindingSave.usingCalamity)
-                {
-                    recipe.AddIngredient(ItemID.LunarOre);
-                }
                 recipe.AddTile(TileID.Bottles);
                 recipe.Register();
             }

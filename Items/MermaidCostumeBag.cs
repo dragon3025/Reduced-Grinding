@@ -10,8 +10,6 @@ namespace ReducedGrinding.Items
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Mermaid Costume Bag");
-            Tooltip.SetDefault("{$CommonItemTooltip.RightClickToOpen}\nGives entire Mermaid Vanity set");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

@@ -1,4 +1,5 @@
 using System;
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -27,22 +28,22 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 
             if (item.type == ItemID.Binoculars)
             {
-                FindNewValue(1f / 30, lootConfig.Binoculars);
+                FindNewValue(1f / 30, lootConfig.BossLoot.Binoculars);
             }
 
             if (item.type == ItemID.FishronWings || item.type == ItemID.RainbowWings)
             {
-                FindNewValue(0.1f, lootConfig.EmpressAndFishronWings);
+                FindNewValue(0.1f, lootConfig.BossLoot.EmpressAndFishronWings);
             }
 
             if (item.type == ItemID.SparkleGuitar)
             {
-                FindNewValue(0.05f, lootConfig.StellarTune);
+                FindNewValue(0.05f, lootConfig.BossLoot.StellarTune);
             }
 
             if (item.type == ItemID.RainbowCursor)
             {
-                FindNewValue(0.05f, lootConfig.RainbowCursor);
+                FindNewValue(0.05f, lootConfig.BossLoot.RainbowCursor);
             }
 
             if (item.type == ItemID.HallowBossDye)
@@ -52,32 +53,32 @@ namespace ReducedGrinding.GlobalFasterBossSummons
 
             if (item.type == ItemID.DyeTradersScimitar || item.type == ItemID.StylistKilLaKillScissorsIWish || item.type == ItemID.CombatWrench || item.type == ItemID.TaxCollectorsStickOfDoom || item.type == ItemID.PrincessWeapon)
             {
-                FindNewValue(0.125f, lootConfig.TownNPCWeapons);
+                FindNewValue(0.125f, lootConfig.NonBossLoot.TownNPCWeapons);
             }
 
             if (item.type == ItemID.AleThrowingGlove)
             {
-                FindNewValue(1f / 6, lootConfig.TownNPCWeapons);
+                FindNewValue(1f / 6, lootConfig.NonBossLoot.TownNPCWeapons);
             }
 
             if (item.type == ItemID.PainterPaintballGun)
             {
-                FindNewValue(0.1f, lootConfig.TownNPCWeapons);
+                FindNewValue(0.1f, lootConfig.NonBossLoot.TownNPCWeapons);
             }
 
             if (item.type == ItemID.PartyGirlGrenade)
             {
-                FindNewValue(0.25f, lootConfig.TownNPCWeapons);
+                FindNewValue(0.25f, lootConfig.NonBossLoot.TownNPCWeapons);
             }
 
             if (item.type == ItemID.PiranhaGun || item.type == ItemID.ScourgeoftheCorruptor || item.type == ItemID.VampireKnives || item.type == ItemID.RainbowGun || item.type == ItemID.StaffoftheFrostHydra || item.type == ItemID.StormTigerStaff)
             {
-                FindNewValue(0.0004f, lootConfig.BiomeKey);
+                FindNewValue(0.0004f, lootConfig.NonBossLoot.BiomeKey);
             }
 
             if (item.type == ItemID.BeamSword)
             {
-                FindNewValue(1f / 150, lootConfig.BeamSword);
+                FindNewValue(1f / 150, lootConfig.NonBossLoot.BeamSword);
             }
 
             int[] goodieBagItems = new int[]
@@ -144,38 +145,38 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 if (item.type == i)
                 {
-                    FindNewValue(0.0125f, lootConfig.GoodieBag);
+                    FindNewValue(0.0125f, lootConfig.NonBossLoot.GoodieBag);
                 }
             }
 
             if (item.type == ItemID.KOCannon)
             {
-                FindNewValue(0.001f, lootConfig.KOCannon);
+                FindNewValue(0.001f, lootConfig.NonBossLoot.KOCannon);
             }
 
             if (item.type == ItemID.LizardEgg)
             {
-                FindNewValue(0.001f, lootConfig.LizardEgg);
+                FindNewValue(0.001f, lootConfig.NonBossLoot.LizardEgg);
             }
 
             if (item.type == ItemID.Marrow)
             {
-                FindNewValue(0.005f, lootConfig.Marrow);
+                FindNewValue(0.005f, lootConfig.NonBossLoot.Marrow);
             }
 
             if (item.type == ItemID.PaladinsHammer)
             {
-                FindNewValue(22f / 225, lootConfig.PaladinsHammer);
+                FindNewValue(22f / 225, lootConfig.NonBossLoot.PaladinsHammer);
             }
 
             if (item.type == ItemID.PaladinsShield)
             {
-                FindNewValue(763f / 5625, lootConfig.PaladinsShield);
+                FindNewValue(763f / 5625, lootConfig.NonBossLoot.PaladinsShield);
             }
 
             if (item.type == ItemID.PlumbersHat)
             {
-                FindNewValue(0.004f, lootConfig.PlumbersHat);
+                FindNewValue(0.004f, lootConfig.NonBossLoot.PlumbersHat);
             }
 
             int[] presentItems = new int[]
@@ -216,33 +217,33 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 if (item.type == i)
                 {
-                    FindNewValue(1f / 13, lootConfig.Present);
+                    FindNewValue(1f / 13, lootConfig.NonBossLoot.Present);
                 }
             }
 
             if (item.type == ItemID.RifleScope || item.type == ItemID.SniperRifle)
             {
-                FindNewValue(23f / 144, lootConfig.RifleScopeAndSniperRifle);
+                FindNewValue(23f / 144, lootConfig.NonBossLoot.RifleScopeAndSniperRifle);
             }
 
             if (item.type == ItemID.RocketLauncher)
             {
-                FindNewValue(35f / 324, lootConfig.RocketLauncher);
+                FindNewValue(35f / 324, lootConfig.NonBossLoot.RocketLauncher);
             }
 
-            if (item.type == ItemID.RodofDiscord) //TO-DO When 1.4.4 comes out, adjsut Rod of Harmony's value with it.
+            if (item.type == ItemID.RodofDiscord || item.type == ItemID.RodOfHarmony)
             {
-                FindNewValue(0.0025f, lootConfig.RodofDiscord);
+                FindNewValue(0.0025f, lootConfig.NonBossLoot.RodofDiscord);
             }
 
             if (item.type == ItemID.SWATHelmet || item.type == ItemID.TacticalShotgun)
             {
-                FindNewValue(23f / 144, lootConfig.SWATHelmetAndTacticalShotgun);
+                FindNewValue(23f / 144, lootConfig.NonBossLoot.SWATHelmetAndTacticalShotgun);
             }
 
             if (item.type == ItemID.CoinGun)
             {
-                FindNewValue(0.0025f, lootConfig.CoinGun);
+                FindNewValue(0.0025f, lootConfig.BossLoot.CoinGun);
             }
 
             if (item.type == ItemID.SlimeStaff)
@@ -251,9 +252,9 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 float chanceChangeSand = 1f;
                 float chanceChangeOther = 1f;
 
-                float chancePinky = lootConfig.SlimeStaffFromPinky;
-                float chanceSand = lootConfig.SlimeStaffFromSandSlime;
-                float chanceOther = lootConfig.SlimeStaffFromOtherSlimes;
+                float chancePinky = lootConfig.NonBossLoot.SlimeStaffFromPinky;
+                float chanceSand = lootConfig.NonBossLoot.SlimeStaffFromSandSlime;
+                float chanceOther = lootConfig.NonBossLoot.SlimeStaffFromOtherSlimes;
 
                 if (chancePinky > 0)
                 {
@@ -284,130 +285,6 @@ namespace ReducedGrinding.GlobalFasterBossSummons
             {
                 FindNewValue(1f / 20f, 1);
             }
-
-            //TO-DO Remove after 1.4.4+
-            #region Future Stuff
-            if (item.type == ItemID.SailorHat || item.type == ItemID.SailorShirt || item.type == ItemID.SailorPants || item.type == ItemID.EyePatch)
-            {
-                item.value = Item.sellPrice(0, 0, 60);
-            }
-
-            if (item.type == ItemID.MummyMask || item.type == ItemID.MummyShirt || item.type == ItemID.MummyPants || item.type == ItemID.PharaohsMask || item.type == ItemID.PharaohsRobe || item.type == ItemID.FroggleBunwich)
-            {
-                item.value = Item.sellPrice(0, 0, 40);
-            }
-
-            if (item.type == ItemID.BabyGrinchMischiefWhistle)
-            {
-                item.value = Item.sellPrice(0, 2);
-            }
-
-            if (item.type == ItemID.ManaCrystal)
-            {
-                item.value = Item.sellPrice(0, 0, 25);
-            }
-
-            if (item.type == ItemID.LunarCraftingStation)
-            {
-                item.value = Item.sellPrice(0, 5);
-            }
-
-            if (item.type == ItemID.ShellPileBlock)
-            {
-                item.value = Item.sellPrice(0, 0, 1);
-            }
-
-            int[] wallpapers = new int[]
-            {
-                1948,
-                1949,
-                1950,
-                1951,
-                1952,
-                1953,
-                1954,
-                1955,
-                1956,
-                1957,
-                2008,
-                2009,
-                2010,
-                2011,
-                2012,
-                2013,
-                2014,
-                2058,
-                2059,
-                2060
-            };
-            foreach (int i in wallpapers)
-            {
-                if (item.type == i)
-                {
-                    item.value = Item.buyPrice(0, 0, 0, 75);
-                }
-            }
-
-            if (item.type == ItemID.BlueSolution || item.type == ItemID.DarkBlueSolution || item.type == ItemID.GreenSolution || item.type == ItemID.PurpleSolution || item.type == ItemID.RedSolution)
-            {
-                item.value = Item.sellPrice(0, 0, 15);
-            }
-
-            if (item.type == ItemID.Frog)
-            {
-                item.value = Item.sellPrice(0, 0, 10);
-            }
-
-            if (item.type == ItemID.SauteedFrogLegs)
-            {
-                item.value = Item.sellPrice(0, 0, 20);
-            }
-
-            if (item.type == ItemID.GlassKiln)
-            {
-                item.value = Item.sellPrice(0, 0, 54);
-            }
-
-            if (item.type == ItemID.ImpStaff)
-            {
-                item.value = Item.sellPrice(0, 0, 54);
-            }
-
-            if (item.type == ItemID.BeeWax)
-            {
-                item.value = Item.sellPrice(0, 0, 5);
-            }
-
-            if (item.type == ItemID.BeeHeadgear)
-            {
-                item.value = Item.sellPrice(0, 0, 40);
-            }
-
-            if (item.type == ItemID.BeeBreastplate)
-            {
-                item.value = Item.sellPrice(0, 0, 60);
-            }
-
-            if (item.type == ItemID.BeeGreaves)
-            {
-                item.value = Item.sellPrice(0, 0, 50);
-            }
-
-            if (item.type == ItemID.Beenade)
-            {
-                item.value = Item.sellPrice(0, 0, 5);
-            }
-
-            if (item.type == 5294) //Hive-Five
-            {
-                item.value = Item.sellPrice(0, 0, 70);
-            }
-
-            if (item.type == ItemID.HornetStaff)
-            {
-                item.value = Item.sellPrice(0, 0, 70);
-            }
-            #endregion
         }
     }
 }

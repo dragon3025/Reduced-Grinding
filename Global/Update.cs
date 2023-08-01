@@ -1,9 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
-using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -17,51 +16,42 @@ namespace ReducedGrinding.Global
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
 
         //Gets recorded into world save
-        public static int anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+        public static int anglerQuests = 1;
         public static bool dayTime = true;
-        public static int seasonalDay = 1;
-        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
+        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+        public static bool chatMerchantItems = false;
+
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
+        public static bool advanceDifficulty = false;
         public static bool instantInvasion = false;
-        public static bool celestialSigil = false;
-        public static bool xMas = false;
-        public static bool halloween = false;
-        public static int timeHiddenFromInvasion = 0;
+        public static int anglerResetTimer = 0;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
-            if (CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled)
+            float rateMultiplier = 1f;
+            if (otherConfig.EnchantedSundial.EnchantedDialMultiplier > 1f && Main.IsFastForwardingTime())
             {
-                return;
+                rateMultiplier *= otherConfig.EnchantedSundial.EnchantedDialMultiplier;
             }
 
-            if (!(Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount && Main.CurrentFrameFlags.SleepingPlayersCount > 0))
+            if (!CreativePowerManager.Instance.GetPower<CreativePowers.FreezeTime>().Enabled &&
+                Main.CurrentFrameFlags.SleepingPlayersCount == Main.CurrentFrameFlags.ActivePlayersCount &&
+                Main.CurrentFrameFlags.SleepingPlayersCount > 0)
             {
-                return;
-            }
-
-            int timeIncrease = NPC.downedPlantBoss ? otherConfig.SleepRateIncreasePostPlantera : Main.hardMode ? otherConfig.SleepRateIncreaseHardmode : otherConfig.SleepRateIncreasePreHardmode;
-
-            if (timeIncrease < 1)
-            {
-                return;
-            }
-
-            for (int i = 0; i < 255; i++)
-            {
-                if (!Main.player[i].active)
+                if (otherConfig.SleepRateMultiplier >= 1f)
                 {
-                    continue;
+                    rateMultiplier *= otherConfig.SleepRateMultiplier;
                 }
-
-                Main.player[i].taxTimer -= timeIncrease;
             }
 
-            timeRate += timeIncrease;
-            tileUpdateRate += timeIncrease;
-            eventUpdateRate += timeIncrease;
+            if (rateMultiplier > 1f)
+            {
+                timeRate *= rateMultiplier;
+                tileUpdateRate *= rateMultiplier;
+                eventUpdateRate *= rateMultiplier;
+            }
         }
 
         public override void PostUpdateTime()
@@ -69,7 +59,21 @@ namespace ReducedGrinding.Global
             bool updatePacket = false;
             bool sendNetMessageData = false;
 
-            int time = (int)Main.time;
+            int cooldownMax = otherConfig.EnchantedSundial.EnchantedDialCooldown;
+            if (Main.IsFastForwardingTime())
+            {
+                cooldownMax++;
+            }
+            if (Main.sundialCooldown > cooldownMax)
+            {
+                Main.sundialCooldown = cooldownMax;
+                sendNetMessageData = true;
+            }
+            if (Main.moondialCooldown > cooldownMax)
+            {
+                Main.moondialCooldown = cooldownMax;
+                sendNetMessageData = true;
+            }
 
             if (instantInvasion)
             {
@@ -78,119 +82,27 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
-            bool allPlayersHiddenFromInvasion = false;
-            int invasionType = Main.invasionType;
-
-            if (time % 60 == 0)
-            {
-                if (NPC.downedMoonlord)
-                {
-                    NPC.LunarShieldPowerExpert = NPC.LunarShieldPowerNormal = 50; //Remove when 1.4.4+ comes out
-                }
-
-                if (otherConfig.CancelInvasionsIfAllPlayersAreUnderground)
-                {
-                    if (invasionType == InvasionID.PirateInvasion || invasionType == InvasionID.GoblinArmy || invasionType == InvasionID.MartianMadness || invasionType == InvasionID.SnowLegion)
-                    {
-                        allPlayersHiddenFromInvasion = true;
-                    }
-                }
-            }
-
             #region For Each Player
 
-            bool skipDD2Wave = false;
-            bool stillQuesting = false;
+            bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
 
             for (int i = 0; i < Main.player.Length; i++)
             {
+                if (stillQuesting)
+                {
+                    break;
+                }
+
                 if (!Main.player[i].active)
                 {
                     continue;
                 }
 
-                if (!skipDD2Wave && Main.player[i].HeldItem.type == ItemID.DD2ElderCrystal)
+                if (!stillQuesting && anglerResetTimer > 0 && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
                 {
-                    //To-do Remove in 1.4.4+
-                    skipDD2Wave = true;
-                }
-
-                if (allPlayersHiddenFromInvasion)
-                {
-                    Point playerPosition = Main.player[i].Center.ToTileCoordinates();
-
-                    if (playerPosition.Y <= Main.worldSurface + 67.5f)
-                    {
-                        allPlayersHiddenFromInvasion = false;
-                    }
-                }
-
-                if (!stillQuesting && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
-                {
-                    for (int j = 0; j <= 2; j++)
-                    {
-                        int armorType = Main.player[i].armor[j].type;
-                        if (armorType == ItemID.AnglerHat || armorType == ItemID.AnglerVest || armorType == ItemID.AnglerPants)
-                        {
-                            stillQuesting = true;
-                            break;
-                        }
-                    }
+                    stillQuesting = true;
                 }
             }
-            #endregion
-
-            //To-Do Remove in 1.4.4+
-            if (DD2Event.Ongoing)
-            {
-                if (skipDD2Wave && DD2Event.TimeLeftBetweenWaves > 60)
-                {
-                    DD2Event.TimeLeftBetweenWaves = 60;
-                }
-            }
-
-            #region InvasionModifying
-            if (time % 60 == 0)
-            {
-                if (allPlayersHiddenFromInvasion)
-                {
-                    if (timeHiddenFromInvasion == 0)
-                    {
-                        if (Main.netMode == NetmodeID.Server)
-                        {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion can't find anyone on the surface, and will soon leave."), new Color(255, 255, 0));
-                        }
-                        else if (Main.netMode == NetmodeID.SinglePlayer)
-                        {
-                            Main.NewText("The invasion can't find anyone on the surface, and will soon leave.", new Color(255, 255, 0));
-                        }
-                    }
-                    timeHiddenFromInvasion++;
-                    updatePacket = true;
-                }
-                else if (timeHiddenFromInvasion > 0)
-                {
-                    timeHiddenFromInvasion--;
-                    updatePacket = true;
-                }
-
-                if (timeHiddenFromInvasion >= 20 && Main.invasionX == Main.spawnTileX)
-                {
-                    Main.invasionType = InvasionID.None;
-                    if (Main.netMode == NetmodeID.Server)
-                    {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion couldn't find anyone, so they left."), new Color(255, 255, 0));
-                    }
-                    else if (Main.netMode == NetmodeID.SinglePlayer)
-                    {
-                        Main.NewText("The invasion couldn't find anyone, so they left.", new Color(255, 255, 0));
-                    }
-
-                    timeHiddenFromInvasion = 0;
-                    updatePacket = true;
-                }
-            }
-
             #endregion
 
             #region Angler
@@ -208,8 +120,15 @@ namespace ReducedGrinding.Global
                     {
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
                     }
-                    updatePacket = true;
                 }
+                anglerResetTimer = 0;
+                updatePacket = true;
+            }
+
+            if (anglerResetTimer > 0)
+            {
+                anglerResetTimer--;
+                updatePacket = true;
             }
             #endregion
 
@@ -218,92 +137,50 @@ namespace ReducedGrinding.Global
                 dayTime = Main.dayTime;
                 updatePacket = true;
 
-                if ((Main.bloodMoon || Main.eclipse) && Main.sundialCooldown > 0)
-                {
-                    Main.sundialCooldown = 0;
-                    sendNetMessageData = true;
-                }
-
                 #region New Morning
                 if (Main.dayTime)
                 {
-                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchantDiceUsesBeforeHardmode;
+                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
 
-                    anglerQuests = NPC.downedPlantBoss ? fishingConfig.QuestCountAfterPlantera : Main.hardMode ? fishingConfig.QuestCountHardmode : NPC.downedBoss3 ? fishingConfig.QuestCountAfterSkeletron : NPC.downedBoss2 ? fishingConfig.QuestCountAfterInfectionBoss : NPC.downedBoss1 ? fishingConfig.QuestCountAfterEye : fishingConfig.QuestCountBeforeEye;
+                    anglerQuests = fishingConfig.Angler.StartingQuestPerDay;
 
-                    if (otherConfig.HolidayTimelineDaysPerMonth > 0)
+                    int endGameQuestAmount = fishingConfig.Angler.EndGameQuestPerDay - anglerQuests;
+
+                    if (endGameQuestAmount > 0)
                     {
-                        int yearLength = otherConfig.HolidayTimelineDaysPerMonth * 12;
-                        float halloweenDay = 304f / 365f;
-                        float xMasDay = 359f / 365f;
+                        int questAmountConditionBonus = 0;
 
-                        halloween = xMas = false;
+                        bool[] extraQuestConditions = new bool[13]
+                        {
+                        NPC.downedBoss1,
+                        NPC.downedBoss2,
+                        NPC.downedBoss3,
+                        NPC.downedQueenBee,
+                        NPC.downedQueenSlime,
+                        NPC.downedMechBoss1,
+                        NPC.downedMechBoss2,
+                        NPC.downedMechBoss3,
+                        NPC.downedPlantBoss,
+                        NPC.downedGolemBoss,
+                        NPC.downedEmpressOfLight,
+                        NPC.downedAncientCultist,
+                        Main.hardMode
+                        };
 
-                        seasonalDay++;
-                        if (seasonalDay == (int)Math.Round(yearLength * halloweenDay))
+                        for (int i = 0; i < extraQuestConditions.Length; i++)
                         {
-                            Main.halloween = halloween = true;
-                            if (Main.netMode == NetmodeID.Server)
+                            if (extraQuestConditions[i] == true)
                             {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryHalloween"), new Color(255, 255, 0));
+                                questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
                             }
                         }
-                        else if (seasonalDay == (int)Math.Round(yearLength * halloweenDay) + 1)
-                        {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryHalloween"), new Color(255, 255, 0));
-                            }
-                        }
-                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay))
-                        {
-                            Main.xMas = xMas = true;
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                        }
-                        else if (seasonalDay == (int)Math.Round(yearLength * xMasDay) + 1)
-                        {
-                            if (Main.netMode == NetmodeID.Server)
-                            {
-                                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                            else
-                            {
-                                Main.NewText(NetworkText.FromKey("Misc.EndedVictoryXmas"), new Color(255, 255, 0));
-                            }
-                        }
-                        if (seasonalDay >= yearLength + 1)
-                        {
-                            seasonalDay = 1;
-                        }
+
+                        anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80; 
                     }
+
+                    anglerResetTimer = 0;
                 }
                 #endregion
-            }
-
-            if (celestialSigil) //TO-DO Remove once 1.4.4+ comes out
-            {
-                if (NPC.MoonLordCountdown > 720)
-                {
-                    NPC.MoonLordCountdown = 720;
-                }
-
-                celestialSigil = false;
-                updatePacket = true;
             }
 
             #region ClientToServerData
@@ -317,20 +194,14 @@ namespace ReducedGrinding.Global
                 packet.Write((byte)ReducedGrinding.MessageType.dayTime);
                 packet.Write(dayTime);
 
-                packet.Write((byte)ReducedGrinding.MessageType.seasonalDay);
-                packet.Write(seasonalDay);
-
                 packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
                 packet.Write(instantInvasion);
-
-                packet.Write((byte)ReducedGrinding.MessageType.celestialSigil);
-                packet.Write(celestialSigil);
 
                 packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                 packet.Write(travelingMerchantDiceRolls);
 
-                packet.Write((byte)ReducedGrinding.MessageType.timeHiddenFromInvasion);
-                packet.Write(timeHiddenFromInvasion);
+                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
+                packet.Write(anglerResetTimer);
 
                 sendNetMessageData = true;
 
@@ -346,32 +217,14 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateWorld()
         {
-            if (ReducedGrindingSave.usingFargowiltas)
-            {
-                //This mod will undo the period timeline feature, so this is here to undo the undo.
-                if (!Main.xMas && xMas)
-                {
-                    Main.xMas = xMas;
-                }
-
-                if (!Main.halloween && halloween)
-                {
-                    Main.halloween = halloween;
-                }
-            }
-
             if (advanceMoonPhase)
             {
                 advanceMoonPhase = false;
+
                 Main.moonPhase++;
                 if (Main.moonPhase >= 8)
                 {
                     Main.moonPhase = 0;
-                }
-
-                if (Main.bloodMoon && Main.moonPhase == 4)
-                {
-                    Main.bloodMoon = false;
                 }
 
                 if (Main.netMode == NetmodeID.Server)
@@ -381,6 +234,116 @@ namespace ReducedGrinding.Global
                     packet.Write(advanceMoonPhase);
                     packet.Send();
                     NetMessage.SendData(MessageID.WorldData);
+                }
+            }
+
+            if (advanceDifficulty)
+            {
+                advanceDifficulty = false;
+
+                int difficultyOld = Main.GameMode;
+                int difficultyNew = difficultyOld;
+
+                string text = "";
+                Color textColor = new();
+                bool finishedDifficultyChange = false;
+
+                while (!finishedDifficultyChange)
+                {
+                    switch (Main.GameMode)
+                    {
+                        case 0:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "World difficulty mode is now Expert!";
+                                textColor = new Color(255, 179, 0);
+                            }
+                            break;
+                        case 1:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "World difficulty mode is now Master!";
+                                textColor = new Color(255, 0, 0);
+                            }
+                            break;
+                        default:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
+                            {
+                                finishedDifficultyChange = true;
+                                text = "World difficulty mode is now Normal!";
+                                textColor = new Color(255, 255, 255);
+                            }
+                            break;
+                    }
+                    difficultyNew++;
+                    if (difficultyNew > 2)
+                    {
+                        difficultyNew = 0;
+                    }
+                    if (difficultyNew == difficultyOld)
+                    {
+                        finishedDifficultyChange = true;
+                    }
+                }
+
+                if (difficultyNew != difficultyOld)
+                {
+                    Main.GameMode = difficultyNew;
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(text, textColor);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromLiteral(text), textColor);
+                        NetMessage.SendData(MessageID.WorldData);
+                    }
+                }
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.advanceDifficulty);
+                    packet.Write(advanceDifficulty);
+                    packet.Send();
+                    NetMessage.SendData(MessageID.WorldData);
+                }
+            }
+
+            if (chatMerchantItems)
+            {
+                string itemList = "";
+
+                for (int i = 0; i < Main.travelShop.Length; i++)
+                {
+                    if (Main.travelShop[i] != ItemID.None)
+                    {
+                        itemList += "[i:" + Main.travelShop[i].ToString() + "]";
+                    }
+                }
+
+                if (itemList != "")
+                {
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(itemList, 50, 125);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(itemList), new Color(50, 125, 255));
+                    }
+                }
+
+                chatMerchantItems = false;
+
+                if (Main.netMode == NetmodeID.Server)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
+                    packet.Write(chatMerchantItems);
+                    packet.Send();
                 }
             }
         }

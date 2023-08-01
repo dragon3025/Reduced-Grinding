@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ReducedGrinding.Configuration;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,36 +11,27 @@ namespace ReducedGrinding.Global
         readonly static AEnemyLootConfig lootConfig = GetInstance<AEnemyLootConfig>();
         readonly static IOtherConfig lootOtherConfig = GetInstance<IOtherConfig>();
 
-        public override void ModifyTooltips(Terraria.Item item, List<TooltipLine> tooltips)
-        {
-            //TO-DO Remove when 1.4.4+ comes out
-            if (item.type == ItemID.DD2ElderCrystal)
-            {
-                tooltips.Add(new TooltipLine(Mod, "HoldCrystalToSkipDD2Wave", "Hold this to skip the wait time for the next Old One's Army Wave"));
-            }
-        }
-
         public override void ModifyItemLoot(Terraria.Item item, ItemLoot itemLoot)
         {
             #region Boss Bags
-            if (item.type == ItemID.FishronBossBag && lootConfig.EmpressAndFishronWings > 0)
+            if (item.type == ItemID.FishronBossBag && lootConfig.BossLoot.EmpressAndFishronWings > 0)
             {
                 foreach (var rule in itemLoot.Get())
                 {
                     if (rule is CommonDropNotScalingWithLuck drop && drop.itemId == ItemID.FishronWings)
                     {
-                        drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
+                        drop.chanceDenominator = lootConfig.BossLoot.EmpressAndFishronWings;
                     }
                 }
-                if (GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron > 0)
+                if (lootConfig.TrufflewormFromDukeFishron > 0)
                 {
-                    itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, GetInstance<BEnemyLootNonVanillaConfig>().TrufflewormFromDukeFishron, 1, 1));
+                    itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TruffleWorm, lootConfig.TrufflewormFromDukeFishron, 1, 1));
                 }
             }
 
-            if (item.type == ItemID.KingSlimeBossBag && GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing > 0)
+            if (item.type == ItemID.KingSlimeBossBag && lootConfig.SlimeStaffFromSlimeKing > 0)
             {
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, GetInstance<BEnemyLootNonVanillaConfig>().SlimeStaffFromSlimeKing, 1, 1));
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SlimeStaff, lootConfig.SlimeStaffFromSlimeKing, 1, 1));
             }
 
             if (item.type == ItemID.FairyQueenBossBag)
@@ -51,19 +40,19 @@ namespace ReducedGrinding.Global
                 {
                     if (rule is CommonDropNotScalingWithLuck drop)
                     {
-                        if (drop.itemId == ItemID.RainbowWings && lootConfig.EmpressAndFishronWings > 0)
+                        if (drop.itemId == ItemID.RainbowWings && lootConfig.BossLoot.EmpressAndFishronWings > 0)
                         {
-                            drop.chanceDenominator = lootConfig.EmpressAndFishronWings;
+                            drop.chanceDenominator = lootConfig.BossLoot.EmpressAndFishronWings;
                         }
 
-                        if (drop.itemId == ItemID.SparkleGuitar && lootConfig.StellarTune > 0)
+                        if (drop.itemId == ItemID.SparkleGuitar && lootConfig.BossLoot.StellarTune > 0)
                         {
-                            drop.chanceDenominator = lootConfig.StellarTune;
+                            drop.chanceDenominator = lootConfig.BossLoot.StellarTune;
                         }
 
-                        if (drop.itemId == ItemID.RainbowCursor && lootConfig.RainbowCursor > 0)
+                        if (drop.itemId == ItemID.RainbowCursor && lootConfig.BossLoot.RainbowCursor > 0)
                         {
-                            drop.chanceDenominator = lootConfig.RainbowCursor;
+                            drop.chanceDenominator = lootConfig.BossLoot.RainbowCursor;
                         }
 
                         if (drop.itemId == ItemID.HallowBossDye)
@@ -75,20 +64,20 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (item.type == ItemID.EyeOfCthulhuBossBag && lootConfig.Binoculars > 0)
+            if (item.type == ItemID.EyeOfCthulhuBossBag && lootConfig.BossLoot.Binoculars > 0)
             {
                 foreach (var rule in itemLoot.Get())
                 {
                     if (rule is CommonDropNotScalingWithLuck drop && drop.itemId == ItemID.Binoculars)
                     {
-                        drop.chanceDenominator = lootConfig.Binoculars;
+                        drop.chanceDenominator = lootConfig.BossLoot.Binoculars;
                     }
                 }
             }
             #endregion
 
             #region Crates
-            if (lootOtherConfig.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
+            if (lootOtherConfig.EnchantedSundial.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
             {
                 int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
 
@@ -104,176 +93,13 @@ namespace ReducedGrinding.Global
                                 {
                                     if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
                                     {
-                                        drop3.chanceDenominator = lootOtherConfig.CrateEnchantedSundial * denominatorMultiplier;
+                                        drop3.chanceDenominator = lootOtherConfig.EnchantedSundial.CrateEnchantedSundial * denominatorMultiplier;
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-
-            if (item.type == ItemID.OasisCrate || item.type == ItemID.OasisCrateHard)
-            {
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.SandstorminaBottle, 35, 1, 1)); //TO-DO Remove when 1.4.4+ adds this
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.FlyingCarpet, 35, 1, 1));
-            }
-            #endregion
-
-            //TO-DO Remove when 1.4.4+ adds this
-            #region 1.4.4 Stuff
-            if (item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard || item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
-                    {
-                        foreach (var rule2 in drop.rules)
-                        {
-                            if ((item.type == ItemID.WoodenCrate || item.type == ItemID.WoodenCrateHard) && rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Aglet))
-                            {
-                                for (int i = 0; i < drop2.dropIds.Length; i++)
-                                {
-                                    if (drop2.dropIds[i] == ItemID.Umbrella)
-                                    {
-                                        drop2.dropIds[i] = ItemID.PortableStool;
-                                        break;
-                                    }
-                                }
-                                drop2.chanceDenominator = 20;
-                            }
-                            if (item.type == ItemID.GoldenCrate || item.type == ItemID.GoldenCrateHard)
-                            {
-                                if (rule2 is SequentialRulesNotScalingWithLuckRule drop3)
-                                {
-                                    foreach (var rule3 in drop3.rules)
-                                    {
-                                        if (rule3 is CommonDropNotScalingWithLuck drop4 && drop4.itemId == ItemID.LifeCrystal)
-                                        {
-                                            drop4.chanceDenominator = 8;
-                                        }
-                                    }
-                                }
-                                if (rule2 is CommonDropNotScalingWithLuck drop5 && drop5.itemId == ItemID.EnchantedSword)
-                                {
-                                    if (item.type == ItemID.GoldenCrate)
-                                    {
-                                        drop5.chanceDenominator = 30;
-                                    }
-                                    else
-                                    {
-                                        drop5.chanceDenominator = 15;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if (item.type == ItemID.FloatingIslandFishingCrate || item.type == ItemID.FloatingIslandFishingCrateHard)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
-                    {
-                        foreach (var rule2 in drop.rules)
-                        {
-                            if (rule2 is OneFromOptionsNotScaledWithLuckDropRule drop2 && drop2.dropIds.Contains(ItemID.Starfury))
-                            {
-                                List<int> newDropOptions = drop2.dropIds.ToList();
-
-                                if (lootOtherConfig.FutureFledglingChestChance)
-                                {
-                                    newDropOptions.Remove(ItemID.CreativeWings);
-                                }
-                                newDropOptions.Add(ItemID.LuckyHorseshoe);
-                                newDropOptions.Add(ItemID.CelestialMagnet);
-
-                                drop2.dropIds = newDropOptions.ToArray();
-                            }
-                        }
-                    }
-                }
-                if (lootOtherConfig.FutureFledglingChestChance)
-                {
-                    itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.CreativeWings, 40));
-                }
-                itemLoot.Add(ItemDropRule.NotScalingWithLuck(ItemID.Cloud, 2, 50, 100));
-            }
-            if (item.type == ItemID.LavaCrate || item.type == ItemID.LavaCrateHard)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
-                    {
-                        List<IItemDropRule> newDropRules = drop.rules.ToList();
-                        newDropRules.Add(ItemDropRule.NotScalingWithLuck(ItemID.HellMinecart, 20));
-                        drop.rules = newDropRules.ToArray();
-                    }
-                }
-            }
-            if (item.type == ItemID.OceanCrate || item.type == ItemID.OceanCrateHard)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is AlwaysAtleastOneSuccessDropRule drop)
-                    {
-                        foreach (var rule2 in drop.rules)
-                        {
-                            if (rule2 is SequentialRulesNotScalingWithLuckRule drop2)
-                            {
-                                foreach (var rule3 in drop2.rules)
-                                {
-                                    if (rule3 is CommonDropNotScalingWithLuck drop3 && drop3.itemId == ItemID.SharkBait)
-                                    {
-                                        List<IItemDropRule> newDropRules = drop2.rules.ToList();
-                                        newDropRules.Remove(rule3);
-                                        drop2.rules = newDropRules.ToArray();
-                                    }
-                                }
-                            }
-                        }
-                        List<IItemDropRule> newDropRules2 = drop.rules.ToList();
-                        newDropRules2.Add(ItemDropRule.NotScalingWithLuck(ItemID.SharkBait, 10));
-                        drop.rules = newDropRules2.ToArray();
-                    }
-                }
-            }
-            if (item.type == ItemID.ObsidianLockbox)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is OneFromOptionsNotScaledWithLuckDropRule drop)
-                    {
-                        List<int> newDrops = drop.dropIds.ToList();
-                        newDrops.Remove(ItemID.TreasureMagnet);
-                        drop.dropIds = newDrops.ToArray();
-                    }
-                }
-                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.TreasureMagnet, 5, 1, 1));
-            }
-            if (item.type == ItemID.BrainOfCthulhuBossBag)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is CommonDrop drop && (drop.itemId == ItemID.TissueSample || drop.itemId == ItemID.CrimtaneOre))
-                    {
-                        itemLoot.Remove(rule);
-                    }
-                }
-                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.TissueSample, 1, 20, 40), new CommonDrop(ItemID.TissueSample, 1, 30, 50)));
-                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.CrimtaneOre, 1, 80, 110), new CommonDrop(ItemID.CrimtaneOre, 1, 110, 135)));
-            }
-            if (item.type == ItemID.EaterOfWorldsBossBag)
-            {
-                foreach (var rule in itemLoot.Get())
-                {
-                    if (rule is CommonDrop drop && drop.itemId == ItemID.ShadowScale)
-                    {
-                        itemLoot.Remove(rule);
-                    }
-                }
-                itemLoot.Add(new DropBasedOnMasterMode(new CommonDrop(ItemID.ShadowScale, 1, 20, 40), new CommonDrop(ItemID.ShadowScale, 1, 30, 50)));
             }
             #endregion
         }

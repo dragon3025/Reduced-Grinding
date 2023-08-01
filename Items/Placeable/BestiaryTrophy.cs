@@ -9,7 +9,6 @@ namespace ReducedGrinding.Items.Placeable
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Bestiary Trophy");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 

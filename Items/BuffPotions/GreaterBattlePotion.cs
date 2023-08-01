@@ -1,3 +1,4 @@
+using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -10,8 +11,6 @@ namespace ReducedGrinding.Items.BuffPotions
     {
         public override void SetStaticDefaults()
         {
-            DisplayName.SetDefault("Greater Battle Potion");
-            Tooltip.SetDefault("Greatly increases enemy spawn rate");
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
         }
 
@@ -19,7 +18,7 @@ namespace ReducedGrinding.Items.BuffPotions
         {
             Item.width = 20;
             Item.height = 30;
-            Item.maxStack = 300;
+            Item.maxStack = 9999;
             Item.rare = ItemRarityID.Blue;
             Item.useAnimation = 45;
             Item.useTime = 45;
@@ -39,7 +38,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionMaxSpawnsMultiplier > 1 || GetInstance<HOtherModdedItemsConfig>().GreaterBattlePotionSpawnrateMultiplier > 1)
+            if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterMax > 1 || GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterSpawnRate > 1)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BattlePotion);

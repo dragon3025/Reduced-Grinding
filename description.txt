@@ -4,20 +4,27 @@ Reduced Grinding
 
 Open Source at GitHub. Report issues there or at home page.
 
-This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. It's highly configurable. Here's a summary of the features (see forum page for more info and for link to Wiki page).
+This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the tModLoader Wiki):
 
-- Increased item chances for certain enemy drops. Item values scale to new drop rates by default.
-- Potion for increasing fishing bobber amount.
-- Angler Quest resets when all Angler Armor wearing players have finished their quest.
-- Fishing Tokens when finishing Quests, to purchase items from the Fish Merchant.
-- Moonball to advance Moon Phase or skip the Blood Moon.
+- Increased item chances for a few enemy loot drops.
+- Item values scale to new drop rates by default.
+- Angler Quest per day gradually increases from game progression. Has a short cooldown
+    if another unfinished player has the current quest fish.
 - Greater + Super Battle Potion to increase enemy spawns.
-- Holiday timeline for periodic Halloween and Christmas days.
-- Cancel Invasions when all players go underground.
-- Helpful recipes including Universal Plyon; Universal Pylon recipe has 3 difficulty settings.
+- Items that activate Christmas and Halloween for the current day. By default, crafting
+    requires their matching season.
+- Item for canceling invasions.
+- Recipe for Universal Pylon. Disable or Customize.
+- Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with
+    Terragrim (chance can be customized or disabled).
 
 ====OFF BY DEFAULT====
 
-- Reduce Bestiary requirement for Universal Pylon.
-- Staff of Difficulty. Changes difficulty settings.
-- Faster time flow while sleeping.
+- Change Universal Pylon Bestiary requirement.
+- Configuraitons for changing enemy loot drop chances.
+- Adjust Bed + Enchanted Dial time rate and cooldown.
+- Potions for increasing fishing bobber amount.
+- Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
+- Staff of Difficulty. Changes world difficulty mode.
+- Moon Watch to advance Moon Phase.
+- Witch Doctor sells Chlorophyte after Plantera.
