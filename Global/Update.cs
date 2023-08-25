@@ -82,7 +82,7 @@ namespace ReducedGrinding.Global
                 updatePacket = true;
             }
 
-            #region For Each Player
+            #region For Each Player, Test if Still Questing
 
             bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
 
@@ -109,6 +109,7 @@ namespace ReducedGrinding.Global
             if (anglerQuests > 0 && Main.anglerWhoFinishedToday.Count > 0 && !stillQuesting)
             {
                 anglerQuests--;
+
                 if (anglerQuests > 0)
                 {
                     Main.AnglerQuestSwap();
@@ -142,41 +143,7 @@ namespace ReducedGrinding.Global
                 {
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
 
-                    anglerQuests = fishingConfig.Angler.StartingQuestPerDay;
-
-                    int endGameQuestAmount = fishingConfig.Angler.EndGameQuestPerDay - anglerQuests;
-
-                    if (endGameQuestAmount > 0)
-                    {
-                        int questAmountConditionBonus = 0;
-
-                        bool[] extraQuestConditions = new bool[13]
-                        {
-                        NPC.downedBoss1,
-                        NPC.downedBoss2,
-                        NPC.downedBoss3,
-                        NPC.downedQueenBee,
-                        NPC.downedQueenSlime,
-                        NPC.downedMechBoss1,
-                        NPC.downedMechBoss2,
-                        NPC.downedMechBoss3,
-                        NPC.downedPlantBoss,
-                        NPC.downedGolemBoss,
-                        NPC.downedEmpressOfLight,
-                        NPC.downedAncientCultist,
-                        Main.hardMode
-                        };
-
-                        for (int i = 0; i < extraQuestConditions.Length; i++)
-                        {
-                            if (extraQuestConditions[i] == true)
-                            {
-                                questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
-                            }
-                        }
-
-                        anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80; 
-                    }
+                    anglerQuests = -1;
 
                     anglerResetTimer = 0;
                 }

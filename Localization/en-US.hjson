@@ -526,7 +526,7 @@ Mods: {
 
 					You can allow for more Angler Quest each day. If an unfinished player has the current quest fish, the Angler will wait 10 seconds.
 
-					The amount of quest per day progresses twoard the end game amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
+					The amount of quest per day progresses towards the end game amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
 					'''
 
 				AnglerTellsQuestCompleted: {
@@ -541,7 +541,7 @@ Mods: {
 
 				EndGameQuestPerDay: {
 					Label: End Game Quest Per Day
-					Tooltip: ""
+					Tooltip: "This is modified by the Angler's Happiness"
 				}
 			}
 
