@@ -27,6 +27,11 @@ namespace ReducedGrinding.Global
                 return;
             }
 
+            if (Main.netMode == NetmodeID.SinglePlayer)
+            {
+                return;
+            }
+
             bool resetWait = false;
             for (int i = 0; i < Main.player.Length; i++)
             {

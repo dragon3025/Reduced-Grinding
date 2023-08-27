@@ -1,6 +1,5 @@
 ﻿/* To debug, use:
- * using static Terraria.ModLoader.ModContent;
- * GetInstance<ReducedGrinding>().Logger.Debug("");
+ * Terraria.ModLoader.ModContent.GetInstance<ReducedGrinding>().Logger.Debug("");
  * 
  * To turn into a string use:
  * $"text {variable}"
