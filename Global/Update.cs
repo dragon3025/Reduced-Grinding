@@ -19,7 +19,6 @@ namespace ReducedGrinding.Global
         public static int anglerQuests = 1;
         public static bool dayTime = true;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
-        public static bool chatMerchantItems = false;
 
 
         //Info sent to server, but not recorded into world save
@@ -27,6 +26,8 @@ namespace ReducedGrinding.Global
         public static bool advanceDifficulty = false;
         public static bool instantInvasion = false;
         public static int anglerResetTimer = 0;
+        public static bool chatMerchantItems = false;
+        public static bool chatQuestFish = false;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -113,13 +114,18 @@ namespace ReducedGrinding.Global
                 if (anglerQuests > 0)
                 {
                     Main.AnglerQuestSwap();
+                    string newQuestText = "The Angler decided to give you another quest";
+                    if (fishingConfig.Angler.AnglerChatsCurrentQuest)
+                    {
+                        newQuestText += fishingConfig.Angler.AnglerChatsCurrentQuest ? $": [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]." : ".";
+                    }
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText("The Angler decided to give you another job.", 0, 255, 255);
+                        Main.NewText(newQuestText, 128, 255, 255);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The Angler decided to give you another job."), new Color(0, 255, 255));
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(newQuestText), new Color(128, 255, 255));
                     }
                 }
                 anglerResetTimer = 0;
@@ -281,13 +287,15 @@ namespace ReducedGrinding.Global
 
             if (chatMerchantItems)
             {
+                chatMerchantItems = false;
+
                 string itemList = "";
 
                 for (int i = 0; i < Main.travelShop.Length; i++)
                 {
                     if (Main.travelShop[i] != ItemID.None)
                     {
-                        itemList += "[i:" + Main.travelShop[i].ToString() + "]";
+                        itemList += $"[i:{Main.travelShop[i]}]";
                     }
                 }
 
@@ -303,13 +311,30 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                chatMerchantItems = false;
-
                 if (Main.netMode == NetmodeID.Server)
                 {
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
                     packet.Write(chatMerchantItems);
+                    packet.Send();
+                }
+            }
+
+            if (chatQuestFish)
+            {
+                chatQuestFish = false;
+
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText($"Current Quest: [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]");
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey($"Current Quest: [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]"), new Color(255, 255, 255));
+
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
+                    packet.Write(chatQuestFish);
                     packet.Send();
                 }
             }

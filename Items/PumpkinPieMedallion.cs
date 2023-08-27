@@ -27,7 +27,7 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 20;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.UseSound = SoundID.ForceRoar;
+            Item.UseSound = SoundID.Item4;
             Item.consumable = true;
         }
 
@@ -60,7 +60,7 @@ namespace ReducedGrinding.Items
                 recipe.AddTile(TileID.CrystalBall);
                 if (GetInstance<HOtherModdedItemsConfig>().HolidaySummons == 2)
                 {
-                    recipe.AddCondition(Condition.Halloween); 
+                    recipe.AddCondition(Condition.Halloween);
                 }
                 recipe.Register();
             }

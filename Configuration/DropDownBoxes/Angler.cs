@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace ReducedGrinding.Configuration.DropDownBoxes
@@ -6,6 +5,8 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
     public class Angler
     {
         public bool AnglerTellsQuestCompleted;
+
+        public bool AnglerChatsCurrentQuest;
 
         [Header("QuestPerDay")]
 
@@ -19,6 +20,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         public Angler()
         {
             AnglerTellsQuestCompleted = true;
+            AnglerChatsCurrentQuest = true;
             StartingQuestPerDay = 1;
             EndGameQuestPerDay = 10;
         }
@@ -27,6 +29,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             if (obj is Angler other)
                 return AnglerTellsQuestCompleted == other.AnglerTellsQuestCompleted &&
+                    AnglerChatsCurrentQuest == other.AnglerChatsCurrentQuest &&
                     StartingQuestPerDay == other.StartingQuestPerDay &&
                     EndGameQuestPerDay == other.EndGameQuestPerDay;
             return base.Equals(obj);
@@ -37,6 +40,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             return new
             {
                 AnglerTellsQuestCompleted,
+                AnglerChatsCurrentQuest,
                 StartingQuestPerDay,
                 EndGameQuestPerDay
             }.GetHashCode();

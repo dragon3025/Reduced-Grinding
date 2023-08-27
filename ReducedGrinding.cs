@@ -3,7 +3,7 @@
  * GetInstance<ReducedGrinding>().Logger.Debug("");
  * 
  * To turn into a string use:
- * Value.ToString()
+ * $"text {variable}"
  * 
  * To show text in chat use:
  * Main.NewText(string);
@@ -43,7 +43,8 @@ namespace ReducedGrinding
             instantInvasion,
             travelingMerchantDiceRolls,
             chatMerchantItems,
-            anglerResetTimer
+            anglerResetTimer,
+            chatQuestFish
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
@@ -75,6 +76,9 @@ namespace ReducedGrinding
                     break;
                 case MessageType.anglerResetTimer:
                     Global.Update.anglerResetTimer = reader.ReadInt32();
+                    break;
+                case MessageType.chatQuestFish:
+                    Global.Update.chatQuestFish = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);

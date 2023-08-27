@@ -1,5 +1,4 @@
 using ReducedGrinding.Configuration;
-using ReducedGrinding.Configuration.DropDownBoxes;
 using ReducedGrinding.Items;
 using System.Collections.Generic;
 using Terraria;
@@ -14,12 +13,44 @@ namespace ReducedGrinding.GlobalNPCs
     {
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
 
+        public override void OnChatButtonClicked(NPC npc, bool firstButton)
+        {
+            if (!fishingConfig.Angler.AnglerChatsCurrentQuest)
+            {
+                return;
+            }
+
+            if (npc.type == NPCID.Angler && firstButton)
+            {
+                if (Main.LocalPlayer.HasItem(Main.anglerQuestItemNetIDs[Main.anglerQuest]))
+                {
+                    return;
+                }
+
+                if (Main.netMode != NetmodeID.Server)
+                {
+                    Global.Update.chatQuestFish = true;
+                }
+
+                if (Main.netMode == NetmodeID.MultiplayerClient)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
+                    packet.Write(Global.Update.chatQuestFish);
+                    packet.Send();
+                }
+            }
+        }
+
         public override void GetChat(NPC npc, ref string chat)
         {
             if (npc.type == NPCID.Angler)
             {
                 Player player = Main.LocalPlayer;
-                chat += "\n\nYou've given me " + player.anglerQuestsFinished.ToString() + " fish.";
+                if (fishingConfig.Angler.AnglerTellsQuestCompleted)
+                {
+                    chat += $"\n\nYou've given me {player.anglerQuestsFinished} fish.";
+                }
 
                 if (Global.Update.anglerQuests == -1)
                 {

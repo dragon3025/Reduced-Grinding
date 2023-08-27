@@ -27,7 +27,7 @@ namespace ReducedGrinding.Items
             Item.useAnimation = 20;
             Item.useTime = 45;
             Item.useStyle = ItemUseStyleID.HoldUp;
-            Item.UseSound = SoundID.ForceRoar;
+            Item.UseSound = SoundID.Item4;
             Item.consumable = true;
         }
 

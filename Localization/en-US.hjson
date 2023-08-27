@@ -541,7 +541,16 @@ Mods: {
 
 				EndGameQuestPerDay: {
 					Label: End Game Quest Per Day
-					Tooltip: "This is modified by the Angler's Happiness"
+					Tooltip: This is modified by the Angler's Happiness
+				}
+
+				AnglerChatsCurrentQuest: {
+					Label: Clicking Quest Announces Current Quest Item
+					Tooltip:
+						'''
+						This includes an icon, which displays the name and catch
+						location when you hover your mouse over it.
+						'''
 				}
 			}
 

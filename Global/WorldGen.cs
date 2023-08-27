@@ -41,7 +41,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                 if (FinalCleanupIndex != -1)
                 {
                     tasks.Insert(FinalCleanupIndex + 1, new MissingMiscLootGen("Adding other missing loot", 10f));
-                } 
+                }
             }
         }
 
@@ -161,7 +161,7 @@ namespace ReducedGrinding.Global.WorldGeneration
                                         }
                                     }
                                 }
-                            finishedTileCheck:
+                                finishedTileCheck:
                                 if (validPos)
                                 {
                                     bool saplingFlip = WorldGen.genRand.NextBool(2);

@@ -55,7 +55,7 @@ namespace ReducedGrinding.Items
                 {
                     Global.Update.travelingMerchantDiceRolls--;
                     Chest.SetupTravelShop();
-                    string reRollsLeft = "Traveling Merchant shop re-rolled. Re-rolls left: " + Global.Update.travelingMerchantDiceRolls.ToString();
+                    string reRollsLeft = $"Traveling Merchant shop re-rolled. Re-rolls left: {Global.Update.travelingMerchantDiceRolls}";
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
                         Main.NewText(reRollsLeft, 255, 255, 0);

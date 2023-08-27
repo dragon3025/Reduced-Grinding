@@ -1,9 +1,6 @@
-﻿using Microsoft.Xna.Framework;
-using ReducedGrinding.Configuration;
-using System;
+﻿using ReducedGrinding.Configuration;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
@@ -43,13 +40,10 @@ namespace ReducedGrinding.Global
                     continue;
                 }
 
-                for (int j = 0; j < Main.player[i].inventory.Length; j++)
+                if (Main.player[i].HasItem(Main.anglerQuestItemNetIDs[Main.anglerQuest]))
                 {
-                    if (Main.player[i].inventory[j].type == Main.anglerQuestItemNetIDs[Main.anglerQuest])
-                    {
-                        resetWait = true;
-                        break;
-                    }
+                    resetWait = true;
+                    break;
                 }
 
                 if (resetWait)
@@ -60,12 +54,12 @@ namespace ReducedGrinding.Global
 
             if (resetWait)
             {
-                Global.Update.anglerResetTimer = 600;
+                Update.anglerResetTimer = 600;
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
-                    packet.Write(Global.Update.anglerResetTimer);
+                    packet.Write(Update.anglerResetTimer);
                     packet.Send();
                 }
             }
