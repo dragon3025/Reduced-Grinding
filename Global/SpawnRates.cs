@@ -1,5 +1,5 @@
-﻿using System;
-using ReducedGrinding.Configuration;
+﻿using ReducedGrinding.Configuration;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
