@@ -524,9 +524,11 @@ Mods: {
 					'''
 					Angler Quest Amount Each Day
 
-					You can allow for more Angler Quest each day. If an unfinished player has the current quest fish, the Angler will wait 10 seconds.
+					You can allow for more Angler Quest each day.
+					
+					In multiplayer, all players that talk to the Angler will be given a Fishing Ticket which will disappear the next day or until the Angler has no more quest for the current day. Having the ticket in your inventory allows the Angler to see that your a "Questing Player". If the Angler has another quest for the current day, he will wait for all Questing Players to finish the current quest.
 
-					The amount of quest per day progresses towards the end game amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
+					The amount of quest per day progresses towards the max amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
 					'''
 
 				AnglerTellsQuestCompleted: {
@@ -535,12 +537,12 @@ Mods: {
 				}
 
 				StartingQuestPerDay: {
-					Label: Starting Quest Per Day
+					Label: Base Quest Per Day
 					Tooltip: ""
 				}
 
 				EndGameQuestPerDay: {
-					Label: End Game Quest Per Day
+					Label: Max Quest Per Day
 					Tooltip: This is modified by the Angler's Happiness
 				}
 
@@ -853,6 +855,16 @@ Mods: {
 			WorldPeaceStandard: {
 				DisplayName: World Peace Standard
 				Tooltip: Cancels invasions
+			}
+
+			FishingTicket: {
+				DisplayName: Fishing Ticket
+				Tooltip:
+					'''
+					Having this in your inventory, will make the Angler consider you a "Questing Player".
+					If the Angler has another quest for the current day, he will wait until all Questing Players have finished the current quest before giving the next quest.
+					This item will be removed on a new day or if the Angler has no more quest.
+					'''
 			}
 		}
 	}

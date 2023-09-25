@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -25,7 +26,6 @@ namespace ReducedGrinding.Global
         public static bool advanceMoonPhase = false;
         public static bool advanceDifficulty = false;
         public static bool instantInvasion = false;
-        public static int anglerResetTimer = 0;
         public static bool chatMerchantItems = false;
         public static bool chatQuestFish = false;
 
@@ -99,7 +99,7 @@ namespace ReducedGrinding.Global
                     continue;
                 }
 
-                if (!stillQuesting && anglerResetTimer > 0 && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
+                if (!stillQuesting && Main.player[i].HasItem(ItemType<Items.FishingTicket>()) && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
                 {
                     stillQuesting = true;
                 }
@@ -128,13 +128,18 @@ namespace ReducedGrinding.Global
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey(newQuestText), new Color(128, 255, 255));
                     }
                 }
-                anglerResetTimer = 0;
-                updatePacket = true;
-            }
+                else
+                {
+                    for (int i = 0; i < Main.player.Length; i++)
+                    {
+                        if (!Main.player[i].active)
+                        {
+                            continue;
+                        }
+                        while (Main.player[i].ConsumeItem(ItemType<Items.FishingTicket>())) { }
+                    }
+                }
 
-            if (anglerResetTimer > 0)
-            {
-                anglerResetTimer--;
                 updatePacket = true;
             }
             #endregion
@@ -147,11 +152,17 @@ namespace ReducedGrinding.Global
                 #region New Morning
                 if (Main.dayTime)
                 {
+                    for (int i = 0; i < Main.player.Length; i++)
+                    {
+                        if (!Main.player[i].active)
+                        {
+                            continue;
+                        }
+                        while (Main.player[i].ConsumeItem(ItemType<Items.FishingTicket>())) { }
+                    }
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
 
                     anglerQuests = -1;
-
-                    anglerResetTimer = 0;
                 }
                 #endregion
             }
@@ -173,9 +184,6 @@ namespace ReducedGrinding.Global
                 packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                 packet.Write(travelingMerchantDiceRolls);
 
-                packet.Write((byte)ReducedGrinding.MessageType.anglerResetTimer);
-                packet.Write(anglerResetTimer);
-
                 sendNetMessageData = true;
 
                 packet.Send();
@@ -184,6 +192,7 @@ namespace ReducedGrinding.Global
             if (sendNetMessageData && Main.netMode == NetmodeID.Server)
             {
                 NetMessage.SendData(MessageID.WorldData);
+                NetMessage.SendData(MessageID.SyncItem);
             }
             #endregion
         }

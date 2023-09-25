@@ -42,8 +42,8 @@ namespace ReducedGrinding
             instantInvasion,
             travelingMerchantDiceRolls,
             chatMerchantItems,
-            anglerResetTimer,
-            chatQuestFish
+            chatQuestFish,
+            questingPlayers
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
@@ -73,9 +73,6 @@ namespace ReducedGrinding
                 case MessageType.chatMerchantItems:
                     Global.Update.chatMerchantItems = reader.ReadBoolean();
                     break;
-                case MessageType.anglerResetTimer:
-                    Global.Update.anglerResetTimer = reader.ReadInt32();
-                    break;
                 case MessageType.chatQuestFish:
                     Global.Update.chatQuestFish = reader.ReadBoolean();
                     break;
@@ -92,18 +89,13 @@ namespace ReducedGrinding
 
     class ReducedGrindingSave : ModSystem
     {
-        public override void OnWorldUnload()
-        {
-            Global.Update.anglerQuests = 1;
-            Global.Update.dayTime = true;
-            Global.Update.travelingMerchantDiceRolls = 0;
-        }
-
         public override void OnWorldLoad()
         {
-            Global.Update.anglerQuests = 1;
-            Global.Update.dayTime = true;
-            Global.Update.travelingMerchantDiceRolls = 0;
+            Global.Update.advanceMoonPhase = false;
+            Global.Update.advanceDifficulty = false;
+            Global.Update.instantInvasion = false;
+            Global.Update.chatMerchantItems = false;
+            Global.Update.chatQuestFish = false;
         }
 
         public override void SaveWorldData(TagCompound tag)

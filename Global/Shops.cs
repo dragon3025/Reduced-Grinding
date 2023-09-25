@@ -2,6 +2,7 @@ using ReducedGrinding.Configuration;
 using ReducedGrinding.Items;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,29 +16,25 @@ namespace ReducedGrinding.GlobalNPCs
 
         public override void OnChatButtonClicked(NPC npc, bool firstButton)
         {
-            if (!fishingConfig.Angler.AnglerChatsCurrentQuest)
-            {
-                return;
-            }
-
             if (npc.type == NPCID.Angler && firstButton)
             {
-                if (Main.LocalPlayer.HasItem(Main.anglerQuestItemNetIDs[Main.anglerQuest]))
+                if (Main.netMode == NetmodeID.MultiplayerClient && Global.Update.anglerQuests > 0 && !Main.LocalPlayer.HasItem(ItemType<FishingTicket>()))
                 {
-                    return;
+                    EntitySource_Gift source = new(npc);
+                    Main.LocalPlayer.QuickSpawnItem(source, ItemType<FishingTicket>());
                 }
 
-                if (Main.netMode != NetmodeID.Server)
+                if (Main.netMode != NetmodeID.Server && fishingConfig.Angler.AnglerChatsCurrentQuest)
                 {
                     Global.Update.chatQuestFish = true;
-                }
 
-                if (Main.netMode == NetmodeID.MultiplayerClient)
-                {
-                    ModPacket packet = Mod.GetPacket();
-                    packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
-                    packet.Write(Global.Update.chatQuestFish);
-                    packet.Send();
+                    if (Main.netMode == NetmodeID.MultiplayerClient)
+                    {
+                        ModPacket packet = Mod.GetPacket();
+                        packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
+                        packet.Write(Global.Update.chatQuestFish);
+                        packet.Send();
+                    }
                 }
             }
         }
