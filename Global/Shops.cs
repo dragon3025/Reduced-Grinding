@@ -24,9 +24,9 @@ namespace ReducedGrinding.GlobalNPCs
                     Main.LocalPlayer.QuickSpawnItem(source, ItemType<FishingTicket>());
                 }
 
-                if (Main.netMode != NetmodeID.Server && fishingConfig.Angler.AnglerChatsCurrentQuest)
+                if (Global.Update.chatQuestFish == 0 && Main.netMode != NetmodeID.Server && fishingConfig.Angler.AnglerChatsCurrentQuest)
                 {
-                    Global.Update.chatQuestFish = true;
+                    Global.Update.chatQuestFish = 1;
 
                     if (Main.netMode == NetmodeID.MultiplayerClient)
                     {

@@ -26,7 +26,7 @@ namespace ReducedGrinding.Global
         public static bool advanceDifficulty = false;
         public static bool instantInvasion = false;
         public static bool chatMerchantItems = false;
-        public static bool chatQuestFish = false;
+        public static int chatQuestFish = 0;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -136,6 +136,8 @@ namespace ReducedGrinding.Global
             #region Day / Night Changed
             bool sendDayTimePacket = false;
             bool sendTravelingMerchantDiceRollsPacket = false;
+            bool sendChatQuestFishPacket = false;
+
             if (dayTime != Main.dayTime)
             {
                 dayTime = Main.dayTime;
@@ -148,7 +150,9 @@ namespace ReducedGrinding.Global
                     sendTravelingMerchantDiceRollsPacket = true;
 
                     anglerQuests = -1;
+                    chatQuestFish = 0;
                     sendAnglerQuestsPacket = true;
+                    sendChatQuestFishPacket = true;
                 }
                 #endregion
             }
@@ -187,6 +191,14 @@ namespace ReducedGrinding.Global
                     travelingMerchantDiceRollsPacket.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
                     travelingMerchantDiceRollsPacket.Write(travelingMerchantDiceRolls);
                     travelingMerchantDiceRollsPacket.Send();
+                }
+
+                if (sendChatQuestFishPacket)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
+                    packet.Write(chatQuestFish);
+                    packet.Send();
                 }
 
                 if (sendNetMessageWorldData)
@@ -329,9 +341,9 @@ namespace ReducedGrinding.Global
                 }
             }
 
-            if (chatQuestFish)
+            if (chatQuestFish == 1)
             {
-                chatQuestFish = false;
+                chatQuestFish = 2;
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {

@@ -73,7 +73,7 @@ namespace ReducedGrinding
                     Global.Update.chatMerchantItems = reader.ReadBoolean();
                     break;
                 case MessageType.chatQuestFish:
-                    Global.Update.chatQuestFish = reader.ReadBoolean();
+                    Global.Update.chatQuestFish = reader.ReadInt32();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
@@ -90,7 +90,7 @@ namespace ReducedGrinding
             Global.Update.advanceDifficulty = false;
             Global.Update.instantInvasion = false;
             Global.Update.chatMerchantItems = false;
-            Global.Update.chatQuestFish = false;
+            Global.Update.chatQuestFish = 0;
         }
 
         public override void SaveWorldData(TagCompound tag)
