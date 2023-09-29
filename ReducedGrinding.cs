@@ -42,8 +42,7 @@ namespace ReducedGrinding
             instantInvasion,
             travelingMerchantDiceRolls,
             chatMerchantItems,
-            chatQuestFish,
-            questingPlayers
+            chatQuestFish
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
@@ -79,10 +78,6 @@ namespace ReducedGrinding
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
-            }
-            if (Main.netMode == NetmodeID.Server)
-            {
-                NetMessage.SendData(MessageID.WorldData);
             }
         }
     }

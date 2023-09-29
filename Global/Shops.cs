@@ -18,7 +18,7 @@ namespace ReducedGrinding.GlobalNPCs
         {
             if (npc.type == NPCID.Angler && firstButton)
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient && Global.Update.anglerQuests > 0 && !Main.LocalPlayer.HasItem(ItemType<FishingTicket>()))
+                if (Main.netMode == NetmodeID.MultiplayerClient && Global.Update.anglerQuests > 1 && !Main.LocalPlayer.HasItem(ItemType<FishingTicket>()))
                 {
                     EntitySource_Gift source = new(npc);
                     Main.LocalPlayer.QuickSpawnItem(source, ItemType<FishingTicket>());
@@ -187,7 +187,7 @@ namespace ReducedGrinding.GlobalNPCs
                             ItemID.MagicLantern
                         };
 
-                        if (Main.player[Main.myPlayer].HasItem(ItemID.FlareGun))
+                        if (Main.LocalPlayer.HasItem(ItemID.FlareGun))
                         {
                             shopItems.Add(ItemID.SpelunkerFlare);
                         }

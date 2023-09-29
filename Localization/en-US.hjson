@@ -525,7 +525,7 @@ Mods: {
 					Angler Quest Amount Each Day
 
 					You can allow for more Angler Quest each day.
-					
+
 					In multiplayer, all players that talk to the Angler will be given a Fishing Ticket which will disappear the next day or until the Angler has no more quest for the current day. Having the ticket in your inventory allows the Angler to see that your a "Questing Player". If the Angler has another quest for the current day, he will wait for all Questing Players to finish the current quest.
 
 					The amount of quest per day progresses towards the max amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
@@ -863,7 +863,7 @@ Mods: {
 					'''
 					Having this in your inventory, will make the Angler consider you a "Questing Player".
 					If the Angler has another quest for the current day, he will wait until all Questing Players have finished the current quest before giving the next quest.
-					This item will be removed on a new day or if the Angler has no more quest.
+					This item will be removed on a new day or if the Angler has no more quest after the current one.
 					'''
 			}
 		}

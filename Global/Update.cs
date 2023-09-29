@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -57,8 +56,7 @@ namespace ReducedGrinding.Global
 
         public override void PostUpdateTime()
         {
-            bool updatePacket = false;
-            bool sendNetMessageData = false;
+            bool sendNetMessageWorldData = false;
 
             int cooldownMax = otherConfig.EnchantedSundial.EnchantedDialCooldown;
             if (Main.IsFastForwardingTime())
@@ -68,26 +66,28 @@ namespace ReducedGrinding.Global
             if (Main.sundialCooldown > cooldownMax)
             {
                 Main.sundialCooldown = cooldownMax;
-                sendNetMessageData = true;
+                sendNetMessageWorldData = true;
             }
             if (Main.moondialCooldown > cooldownMax)
             {
                 Main.moondialCooldown = cooldownMax;
-                sendNetMessageData = true;
+                sendNetMessageWorldData = true;
             }
 
+            bool sendInstantInvasionPacket = false;
             if (instantInvasion)
             {
                 Main.invasionX = Main.spawnTileX;
                 instantInvasion = false;
-                updatePacket = true;
+                sendInstantInvasionPacket = true;
+                sendNetMessageWorldData = true;
             }
 
             #region For Each Player, Test if Still Questing
 
             bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
 
-            for (int i = 0; i < Main.player.Length; i++)
+            for (int i = 0; i < Main.maxPlayers; i++)
             {
                 if (stillQuesting)
                 {
@@ -107,9 +107,11 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Angler
+            bool sendAnglerQuestsPacket = false;
             if (anglerQuests > 0 && Main.anglerWhoFinishedToday.Count > 0 && !stillQuesting)
             {
                 anglerQuests--;
+                sendAnglerQuestsPacket = true;
 
                 if (anglerQuests > 0)
                 {
@@ -128,71 +130,69 @@ namespace ReducedGrinding.Global
                         ChatHelper.BroadcastChatMessage(NetworkText.FromKey(newQuestText), new Color(128, 255, 255));
                     }
                 }
-                else
-                {
-                    for (int i = 0; i < Main.player.Length; i++)
-                    {
-                        if (!Main.player[i].active)
-                        {
-                            continue;
-                        }
-                        while (Main.player[i].ConsumeItem(ItemType<Items.FishingTicket>())) { }
-                    }
-                }
-
-                updatePacket = true;
             }
             #endregion
 
+            #region Day / Night Changed
+            bool sendDayTimePacket = false;
+            bool sendTravelingMerchantDiceRollsPacket = false;
             if (dayTime != Main.dayTime)
             {
                 dayTime = Main.dayTime;
-                updatePacket = true;
+                sendDayTimePacket = true;
 
                 #region New Morning
                 if (Main.dayTime)
                 {
-                    for (int i = 0; i < Main.player.Length; i++)
-                    {
-                        if (!Main.player[i].active)
-                        {
-                            continue;
-                        }
-                        while (Main.player[i].ConsumeItem(ItemType<Items.FishingTicket>())) { }
-                    }
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+                    sendTravelingMerchantDiceRollsPacket = true;
 
                     anglerQuests = -1;
+                    sendAnglerQuestsPacket = true;
                 }
                 #endregion
             }
+            #endregion
 
             #region ClientToServerData
-            if (updatePacket && Main.netMode == NetmodeID.Server)
+            if (Main.netMode == NetmodeID.Server)
             {
-                ModPacket packet = Mod.GetPacket();
+                if (sendAnglerQuestsPacket)
+                {
+                    ModPacket packetAnglerQuest = Mod.GetPacket();
+                    packetAnglerQuest.Write((byte)ReducedGrinding.MessageType.anglerQuests);
+                    packetAnglerQuest.Write(anglerQuests);
+                    packetAnglerQuest.Send();
+                }
 
-                packet.Write((byte)ReducedGrinding.MessageType.anglerQuests);
-                packet.Write(anglerQuests);
+                if (sendDayTimePacket)
+                {
+                    ModPacket dayTimePacket = Mod.GetPacket();
+                    dayTimePacket.Write((byte)ReducedGrinding.MessageType.dayTime);
+                    dayTimePacket.Write(dayTime);
+                    dayTimePacket.Send();
+                }
 
-                packet.Write((byte)ReducedGrinding.MessageType.dayTime);
-                packet.Write(dayTime);
+                if (sendInstantInvasionPacket)
+                {
+                    ModPacket instantInvasionPacket = Mod.GetPacket();
+                    instantInvasionPacket.Write((byte)ReducedGrinding.MessageType.instantInvasion);
+                    instantInvasionPacket.Write(instantInvasion);
+                    instantInvasionPacket.Send();
+                }
 
-                packet.Write((byte)ReducedGrinding.MessageType.instantInvasion);
-                packet.Write(instantInvasion);
+                if (sendTravelingMerchantDiceRollsPacket)
+                {
+                    ModPacket travelingMerchantDiceRollsPacket = Mod.GetPacket();
+                    travelingMerchantDiceRollsPacket.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
+                    travelingMerchantDiceRollsPacket.Write(travelingMerchantDiceRolls);
+                    travelingMerchantDiceRollsPacket.Send();
+                }
 
-                packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
-                packet.Write(travelingMerchantDiceRolls);
-
-                sendNetMessageData = true;
-
-                packet.Send();
-            }
-
-            if (sendNetMessageData && Main.netMode == NetmodeID.Server)
-            {
-                NetMessage.SendData(MessageID.WorldData);
-                NetMessage.SendData(MessageID.SyncItem);
+                if (sendNetMessageWorldData)
+                {
+                    NetMessage.SendData(MessageID.WorldData);
+                }
             }
             #endregion
         }
