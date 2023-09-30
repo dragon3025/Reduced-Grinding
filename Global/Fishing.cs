@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.Item;
@@ -15,6 +16,7 @@ namespace ReducedGrinding.Global
 
         public override void AnglerQuestReward(float rareMultiplier, List<Terraria.Item> rewardItems)
         {
+            #region Fish Coin
             int fishCoinAmount = fishingConfig.FishCoinsRewardedForQuest;
             if (fishCoinAmount > 0)
             {
@@ -23,21 +25,22 @@ namespace ReducedGrinding.Global
                 coin.stack = fishCoinAmount;
                 rewardItems.Add(coin);
             }
+            #endregion
 
-            float coinMultiplier = fishingConfig.Angler.ExtraQuestRewardValueMultiplier;
-            if (coinMultiplier < 1f)
+            #region Extra Quest Reward Chance
+            float rewardChance = fishingConfig.Angler.ExtraQuestRewardChance;
+            if (rewardChance < 1f)
             {
-                int coinConversion = 0;
-                void convertToCoins(int itemID, int coinValue)
+                void rollForRemoval(int itemID)
                 {
                     foreach (Terraria.Item item in rewardItems.Reverse<Terraria.Item>())
                     {
                         if (item.type == itemID)
                         {
-                            int stackSize = item.stack;
-                            string name = item.Name;
-                            rewardItems.Remove(item);
-                            coinConversion += (int)(stackSize * coinValue * coinMultiplier);
+                            if (Main.rand.NextFloat() > rewardChance)
+                            {
+                                rewardItems.Remove(item);
+                            }
                         }
                     }
                 }
@@ -63,48 +66,24 @@ namespace ReducedGrinding.Global
 
                 foreach (int i in fiftySilverItems)
                 {
-                    convertToCoins(i, buyPrice(0, 0, 50));
+                    rollForRemoval(i);
                 }
 
-                convertToCoins(ItemID.FishingPotion, buyPrice(0, 0, 2));
-                convertToCoins(ItemID.SonarPotion, buyPrice(0, 0, 2));
-                convertToCoins(ItemID.CratePotion, buyPrice(0, 0, 2));
-
-                convertToCoins(ItemID.TreasureMap, buyPrice(0, 1));
-                convertToCoins(ItemID.SeaweedPlanter, buyPrice(0, 1));
-                convertToCoins(ItemID.ShipInABottle, buyPrice(0, 3));
-
-                convertToCoins(ItemID.ApprenticeBait, buyPrice(0, 0, 1));
-                convertToCoins(ItemID.JourneymanBait, buyPrice(0, 0, 3));
-                convertToCoins(ItemID.MasterBait, buyPrice(0, 0, 10));
-
-                convertToCoins(ItemID.PlatinumCoin, buyPrice(1));
-                convertToCoins(ItemID.GoldCoin, buyPrice(0, 1));
-                convertToCoins(ItemID.SilverCoin, buyPrice(0, 0, 1));
-                convertToCoins(ItemID.CopperCoin, buyPrice(0, 0, 0, 1));
-
-                void addCoins(int coinID, int value)
-                {
-                    Terraria.Item coin = new();
-                    coin.SetDefaults(coinID);
-                    int stack = 0;
-                    while (coinConversion >= value)
-                    {
-                        stack++;
-                        coinConversion -= value;
-                        if (coinConversion < value)
-                        {
-                            coin.stack = stack;
-                            rewardItems.Add(coin);
-                        }
-                    }
-                }
-
-                addCoins(ItemID.PlatinumCoin, buyPrice(1));
-                addCoins(ItemID.GoldCoin, buyPrice(0, 1));
-                addCoins(ItemID.SilverCoin, buyPrice(0, 0, 1));
-                addCoins(ItemID.CopperCoin, buyPrice(0, 0, 0, 1));
+                rollForRemoval(ItemID.FishingPotion);
+                rollForRemoval(ItemID.SonarPotion);
+                rollForRemoval(ItemID.CratePotion);
+                rollForRemoval(ItemID.TreasureMap);
+                rollForRemoval(ItemID.SeaweedPlanter);
+                rollForRemoval(ItemID.ShipInABottle);
+                rollForRemoval(ItemID.ApprenticeBait);
+                rollForRemoval(ItemID.JourneymanBait);
+                rollForRemoval(ItemID.MasterBait);
+                rollForRemoval(ItemID.PlatinumCoin);
+                rollForRemoval(ItemID.GoldCoin);
+                rollForRemoval(ItemID.SilverCoin);
+                rollForRemoval(ItemID.CopperCoin);
             }
+            #endregion
         }
     }
 }

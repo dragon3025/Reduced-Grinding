@@ -18,7 +18,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         public int EndGameQuestPerDay;
 
         [Increment(0.1f)]
-        public float ExtraQuestRewardValueMultiplier;
+        public float ExtraQuestRewardChance;
 
         public Angler()
         {
@@ -26,7 +26,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             AnglerChatsCurrentQuest = true;
             StartingQuestPerDay = 1;
             EndGameQuestPerDay = 10;
-            ExtraQuestRewardValueMultiplier = 0.1f;
+            ExtraQuestRewardChance = 0.1f;
         }
 
         public override bool Equals(object obj)
@@ -36,7 +36,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                     AnglerChatsCurrentQuest == other.AnglerChatsCurrentQuest &&
                     StartingQuestPerDay == other.StartingQuestPerDay &&
                     EndGameQuestPerDay == other.EndGameQuestPerDay &&
-                    ExtraQuestRewardValueMultiplier == other.ExtraQuestRewardValueMultiplier;
+                    ExtraQuestRewardChance == other.ExtraQuestRewardChance;
             return base.Equals(obj);
         }
 
@@ -48,7 +48,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                 AnglerChatsCurrentQuest,
                 StartingQuestPerDay,
                 EndGameQuestPerDay,
-                ExtraQuestRewardValueMultiplier
+                ExtraQuestRewardChance
             }.GetHashCode();
         }
     }
