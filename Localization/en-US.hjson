@@ -554,6 +554,17 @@ Mods: {
 						location when you hover your mouse over it.
 						'''
 				}
+
+				ExtraQuestRewardValueMultiplier: {
+					Label: Minor Extra Quest Reward Value Multiplier
+					Tooltip:
+						'''
+						Set to 1 to disable. This doesn't apply to rewards from
+						the first quest of each day. All Potion, Furniture, Bait,
+						and Coin items rewarded will be converted into Coins,
+						then multiplied by this setting.
+						'''
+				}
 			}
 
 			NonBossLoot: {
