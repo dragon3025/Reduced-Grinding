@@ -217,7 +217,7 @@ Mods: {
 				}
 
 				CraftableRareChests: {
-					Label: "Craftable [i:328] Rare Chests"
+					Label: Craftable [i:328] Rare Chests
 					Tooltip:
 						'''
 						This excludes Dungeon Biome Chest which can be
@@ -259,7 +259,7 @@ Mods: {
 				}
 
 				AllSpawningRegularMimics: {
-					Label: "Allow spawning [i:306] Regular and [i:681] Ice Mimics"
+					Label: Allow spawning [i:306] Regular and [i:681] Ice Mimics
 					Tooltip:
 						'''
 						If enabled, placing nothing but 1 Key of Light and 1 Key
