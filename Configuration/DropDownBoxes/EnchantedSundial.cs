@@ -9,6 +9,9 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         public int CrateEnchantedSundial;
 
         [BackgroundColor(128, 128, 128)]
+        public bool PreHardmodeSundials;
+
+        [BackgroundColor(128, 128, 128)]
         [Range(1f, 20f)]
         [Increment(0.5f)]
         public float EnchantedDialMultiplier;
@@ -20,6 +23,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         public EnchantedSundialConfig()
         {
             CrateEnchantedSundial = 0;
+            PreHardmodeSundials = false;
             EnchantedDialMultiplier = 1f;
             EnchantedDialCooldown = 7;
         }
@@ -28,6 +32,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             if (obj is EnchantedSundialConfig other)
                 return CrateEnchantedSundial == other.CrateEnchantedSundial &&
+                    PreHardmodeSundials == other.PreHardmodeSundials &&
                     EnchantedDialMultiplier == other.EnchantedDialMultiplier &&
                     EnchantedDialCooldown == other.EnchantedDialCooldown;
             return base.Equals(obj);
@@ -38,6 +43,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             return new
             {
                 CrateEnchantedSundial,
+                PreHardmodeSundials,
                 EnchantedDialMultiplier,
                 EnchantedDialCooldown
             }.GetHashCode();

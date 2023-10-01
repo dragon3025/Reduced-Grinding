@@ -77,7 +77,8 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Crates
-            if (lootOtherConfig.EnchantedSundial.CrateEnchantedSundial > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
+            int enchantedSundialDenominator = lootOtherConfig.EnchantedSundial.CrateEnchantedSundial;
+            if (enchantedSundialDenominator > 0 && (item.type == ItemID.GoldenCrateHard || item.type == ItemID.IronCrateHard || item.type == ItemID.WoodenCrateHard))
             {
                 int denominatorMultiplier = item.type == ItemID.GoldenCrateHard ? 1 : item.type == ItemID.IronCrateHard ? 3 : 10;
 
@@ -93,7 +94,7 @@ namespace ReducedGrinding.Global
                                 {
                                     if (rule3 is ItemDropWithConditionRule drop3 && drop3.itemId == ItemID.Sundial)
                                     {
-                                        drop3.chanceDenominator = lootOtherConfig.EnchantedSundial.CrateEnchantedSundial * denominatorMultiplier;
+                                        drop3.chanceDenominator = enchantedSundialDenominator * denominatorMultiplier;
                                     }
                                 }
                             }
@@ -101,6 +102,15 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+
+            if (lootOtherConfig.EnchantedSundial.PreHardmodeSundials && (item.type == ItemID.GoldenCrate || item.type == ItemID.IronCrate || item.type == ItemID.WoodenCrate))
+            {
+                int denominator = enchantedSundialDenominator > 0 ? enchantedSundialDenominator : 20;
+                denominator *= item.type == ItemID.GoldenCrate ? 1 : item.type == ItemID.IronCrate ? 3 : 10;
+
+                itemLoot.Add(new CommonDropNotScalingWithLuck(ItemID.Sundial, denominator, 1, 1));
+            }
+
             #endregion
         }
     }

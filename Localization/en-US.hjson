@@ -57,7 +57,7 @@ Mods: {
 				}
 
 				Angler: {
-					Label: Angler
+					Label: "[i:2367] Angler"
 					Tooltip: ""
 				}
 
@@ -217,7 +217,7 @@ Mods: {
 				}
 
 				CraftableRareChests: {
-					Label: Craftable Rare Chests
+					Label: "Craftable [i:328] Rare Chests"
 					Tooltip:
 						'''
 						This excludes Dungeon Biome Chest which can be
@@ -232,7 +232,7 @@ Mods: {
 				}
 
 				SleepRateMultiplier: {
-					Label: Sleep Time Rate Multiplier
+					Label: "[i:224] Sleep Time Rate Multiplier"
 					Tooltip:
 						'''
 						In vanilla, sleeping multiplies the time rate by 5;
@@ -250,7 +250,7 @@ Mods: {
 				}
 
 				SkeletonMerchantIgnoresMoonphases: {
-					Label: Skeleton Merchant Ignores Moonphases
+					Label: "[i:1274] Skeleton Merchant Ignores Moonphases"
 					Tooltip:
 						'''
 						This only includes items that are only obtained from the
@@ -259,7 +259,7 @@ Mods: {
 				}
 
 				AllSpawningRegularMimics: {
-					Label: Allow spawning Regular and Ice Mimics
+					Label: "Allow spawning [i:306] Regular and [i:681] Ice Mimics"
 					Tooltip:
 						'''
 						If enabled, placing nothing but 1 Key of Light and 1 Key
@@ -274,7 +274,7 @@ Mods: {
 				}
 
 				TravelingMerchant: {
-					Label: Traveling Merchant
+					Label: "[i:2222]Traveling Merchant"
 					Tooltip: ""
 				}
 
@@ -289,7 +289,7 @@ Mods: {
 				}
 
 				WorldGeneration: {
-					Label: World Generation
+					Label: "[i:4766] World Generation"
 					Tooltip: ""
 				}
 			}
@@ -437,7 +437,7 @@ Mods: {
 				Tooltip: ""
 
 				CrateEnchantedSundial: {
-					Label: "[i:3064] Enchanted Sundial Drop Chance"
+					Label: "[i:3981] Enchanted Sundial Drop Chance"
 					Tooltip:
 						'''
 						Changes the chance of Enchanted Sundial drop from Crates
@@ -452,13 +452,23 @@ Mods: {
 					Tooltip:
 						'''
 						In vanilla, enchanted dials multiplies the time rate by 60;
-						afterward it will be multiplied by this amount.
+						afterward it will be multiplied by this amount
 						'''
 				}
 
 				EnchantedDialCooldown: {
 					Label: Enchanted Dial Cooldown
 					Tooltip: Vanilla default: 7.
+				}
+
+				PreHardmodeSundials: {
+					Label: "[i:2336] Pre-Hardmode Sundials"
+					Tooltip:
+						'''
+						If enabled, all Vanilla pre-Hardmode Crates will have the
+						same chance of dropping Enchanted Sundial that their
+						Hardmode variant has
+						'''
 				}
 			}
 
