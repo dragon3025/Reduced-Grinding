@@ -161,58 +161,6 @@ namespace ReducedGrinding.GlobalNPCs
                         #endregion
                     }
                     break;
-                case NPCID.SkeletonMerchant:
-                    shop.InsertBefore(ItemID.Torch, ItemID.BoneTorch);
-                    if (!shop.TryGetEntry(ItemID.Torch, out _))
-                    {
-                        shop.InsertAfter(ItemID.BoneTorch, ItemID.Torch);
-                    }
-
-                    bool ignoreMoonPhase = GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases;
-                    if (ignoreMoonPhase)
-                    {
-                        List<int> shopItems = new() {
-                            ItemID.WoodenBoomerang,
-                            ItemID.Umbrella,
-                            ItemID.WandofSparking,
-                            ItemID.PortableStool,
-                            ItemID.StrangeBrew,
-                            ItemID.SpelunkerGlowstick,
-                            ItemID.BlueCounterweight,
-                            ItemID.RedCounterweight,
-                            ItemID.PurpleCounterweight,
-                            ItemID.GreenCounterweight,
-                            ItemID.Bomb,
-                            ItemID.Rope,
-                            ItemID.MagicLantern
-                        };
-
-                        if (Main.LocalPlayer.HasItem(ItemID.FlareGun))
-                        {
-                            shopItems.Add(ItemID.SpelunkerFlare);
-                        }
-
-                        if (Main.hardMode)
-                        {
-                            shopItems.Add(ItemID.HealingPotion);
-                            shopItems.Add(ItemID.Gradient);
-                            shopItems.Add(ItemID.FormatC);
-                            shopItems.Add(ItemID.YoYoGlove);
-                            if (Main.bloodMoon)
-                            {
-                                shopItems.Add(ItemID.SlapHand);
-                            }
-                        }
-
-                        foreach (int i in shopItems)
-                        {
-                            if (!shop.TryGetEntry(i, out _))
-                            {
-                                shop.Add(i);
-                            }
-                        }
-                    }
-                    break;
                 case NPCID.BestiaryGirl:
                     if (GetInstance<IOtherConfig>().UniversalPylon.UniversalPylonBestiaryCompletionRate < 1f)
                     {
@@ -281,6 +229,99 @@ namespace ReducedGrinding.GlobalNPCs
                     packet.Write((byte)ReducedGrinding.MessageType.chatMerchantItems);
                     packet.Write(Global.Update.chatMerchantItems);
                     packet.Send();
+                }
+            }
+        }
+
+        public override void ModifyActiveShop(NPC npc, string shopName, Item[] items)
+        {
+            if (npc.type == NPCID.SkeletonMerchant)
+            {
+
+                List<int> itemsToAdd = new()
+                {
+                    ItemID.Torch,
+                    ItemID.BoneTorch
+                };
+
+                int ignoreMoonPhase = GetInstance<IOtherConfig>().SkeletonMerchantIgnoresMoonphases;
+                if (ignoreMoonPhase > 0)
+                {
+                    itemsToAdd.Add(ItemID.StrangeBrew);
+                    itemsToAdd.Add(ItemID.SpelunkerGlowstick);
+                    itemsToAdd.Add(ItemID.BoneArrow);
+                    itemsToAdd.Add(ItemID.BlueCounterweight);
+                    itemsToAdd.Add(ItemID.RedCounterweight);
+                    itemsToAdd.Add(ItemID.PurpleCounterweight);
+                    itemsToAdd.Add(ItemID.GreenCounterweight);
+                    itemsToAdd.Add(ItemID.MagicLantern);
+
+                    if (Main.LocalPlayer.HasItem(ItemID.FlareGun))
+                    {
+                        itemsToAdd.Add(ItemID.SpelunkerFlare);
+                    }
+
+                    if (Main.hardMode)
+                    {
+                        itemsToAdd.Add(ItemID.Gradient);
+                        itemsToAdd.Add(ItemID.FormatC);
+                    }
+
+                    if (!Main.LocalPlayer.ateArtisanBread)
+                    {
+                        itemsToAdd.Add(ItemID.ArtisanLoaf);
+                    }
+                }
+
+                if (ignoreMoonPhase == 2)
+                {
+                    itemsToAdd.Add(ItemID.WoodenBoomerang);
+                    itemsToAdd.Add(ItemID.Umbrella);
+                    itemsToAdd.Add(ItemID.WandofSparking);
+                    if (Main.remixWorld)
+                    {
+                        itemsToAdd.Add(ItemID.MagicDagger);
+                    }
+                    itemsToAdd.Add(ItemID.PortableStool);
+                    itemsToAdd.Add(ItemID.Aglet);
+                    itemsToAdd.Add(ItemID.ClimbingClaws);
+                    itemsToAdd.Add(ItemID.CordageGuide);
+                    itemsToAdd.Add(ItemID.Radar);
+                    itemsToAdd.Add(ItemID.LesserHealingPotion);
+                    if (Main.hardMode)
+                    {
+                        itemsToAdd.Add(ItemID.HealingPotion);
+                    }
+                    itemsToAdd.Add(ItemID.Glowstick);
+                    itemsToAdd.Add(ItemID.WoodenArrow);
+                }
+
+                foreach (Item item in items)
+                {
+                    if (item == null || item.type == ItemID.None)
+                    {
+                        continue;
+                    }
+
+                    itemsToAdd.Remove(item.type);
+                }
+
+                foreach (int itemToAdd in itemsToAdd)
+                {
+
+                    for (int i = 0; i < items.Length; i++)
+                    {
+                        if (items[i] == null)
+                        {
+                            items[i] = new Item();
+                        }
+
+                        if (items[i].type == ItemID.None)
+                        {
+                            items[i].SetDefaults(itemToAdd);
+                            break;
+                        }
+                    }
                 }
             }
         }

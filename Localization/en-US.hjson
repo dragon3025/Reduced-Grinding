@@ -253,8 +253,9 @@ Mods: {
 					Label: "[i:1274] Skeleton Merchant Ignores Moonphases"
 					Tooltip:
 						'''
-						This only includes items that are only obtained from the
-						Skeleton Merchant or Wooden Surface Chests.
+						0: Disabled
+						1: Skeleton Merchant will always have vanilla items that are exclusive to his shop
+						2: Skeleton Merchant will always have vanilla items that are possible for his shop
 						'''
 				}
 

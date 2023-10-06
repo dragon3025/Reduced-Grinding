@@ -164,8 +164,9 @@ namespace ReducedGrinding.Configuration
         public bool AdjustItemValuesForDropIncreases;
 
         [BackgroundColor(128, 128, 128)]
-        [DefaultValue(false)]
-        public bool SkeletonMerchantIgnoresMoonphases;
+        [DefaultValue(0)]
+        [Range(0, 2)]
+        public int SkeletonMerchantIgnoresMoonphases;
 
         [BackgroundColor(128, 128, 128)]
         [DefaultValue(false)]
