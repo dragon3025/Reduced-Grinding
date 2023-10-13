@@ -7,6 +7,7 @@ using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
+using System;
 
 namespace ReducedGrinding.GlobalNPCs
 {
@@ -52,21 +53,23 @@ namespace ReducedGrinding.GlobalNPCs
                 if (Global.Update.anglerQuests == -1)
                 {
                     int StartingQuestPerDay = fishingConfig.Angler.StartingQuestPerDay;
-                    int EndGameQuestPerDay = fishingConfig.Angler.EndGameQuestPerDay;
+                    int EndGameQuestPerDay = Math.Max(StartingQuestPerDay, fishingConfig.Angler.EndGameQuestPerDay);
 
-                    if (EndGameQuestPerDay > 1 && EndGameQuestPerDay > StartingQuestPerDay)
+                    if (EndGameQuestPerDay > 1)
                     {
                         Global.Update.anglerQuests = StartingQuestPerDay;
 
-                        float happiness = (float)(2.0 - player.currentShoppingSettings.PriceAdjustment);
-                        int endGameQuestAmount = (int)(EndGameQuestPerDay * happiness - Global.Update.anglerQuests);
-
-                        if (endGameQuestAmount > 0)
+                        if (EndGameQuestPerDay > StartingQuestPerDay)
                         {
-                            int questAmountConditionBonus = 0;
+                            float happiness = (float)(2.0 - player.currentShoppingSettings.PriceAdjustment);
+                            int endGameQuestAmount = (int)(EndGameQuestPerDay * happiness - Global.Update.anglerQuests);
 
-                            bool[] extraQuestConditions = new bool[13]
+                            if (endGameQuestAmount > 0)
                             {
+                                int questAmountConditionBonus = 0;
+
+                                bool[] extraQuestConditions = new bool[13]
+                                {
                         NPC.downedBoss1,
                         NPC.downedBoss2,
                         NPC.downedBoss3,
@@ -80,17 +83,18 @@ namespace ReducedGrinding.GlobalNPCs
                         NPC.downedEmpressOfLight,
                         NPC.downedAncientCultist,
                         Main.hardMode
-                            };
+                                };
 
-                            for (int i = 0; i < extraQuestConditions.Length; i++)
-                            {
-                                if (extraQuestConditions[i] == true)
+                                for (int i = 0; i < extraQuestConditions.Length; i++)
                                 {
-                                    questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
+                                    if (extraQuestConditions[i] == true)
+                                    {
+                                        questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
+                                    }
                                 }
-                            }
 
-                            Global.Update.anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80;
+                                Global.Update.anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80;
+                            }
                         }
 
                         if (Main.netMode == NetmodeID.MultiplayerClient)
@@ -277,10 +281,13 @@ namespace ReducedGrinding.GlobalNPCs
                 {
                     itemsToAdd.Add(ItemID.WoodenBoomerang);
                     itemsToAdd.Add(ItemID.Umbrella);
-                    itemsToAdd.Add(ItemID.WandofSparking);
                     if (Main.remixWorld)
                     {
                         itemsToAdd.Add(ItemID.MagicDagger);
+                    }
+                    else
+                    {
+                        itemsToAdd.Add(ItemID.WandofSparking);
                     }
                     itemsToAdd.Add(ItemID.PortableStool);
                     itemsToAdd.Add(ItemID.Aglet);

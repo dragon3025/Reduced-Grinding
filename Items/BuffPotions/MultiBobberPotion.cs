@@ -10,6 +10,9 @@ namespace ReducedGrinding.Items.BuffPotions
 {
     public class MultiBobberPotion : ModItem
     {
+
+        readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
+
         public override void SetStaticDefaults()
         {
             CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -33,7 +36,7 @@ namespace ReducedGrinding.Items.BuffPotions
 
         public override void AddRecipes()
         {
-            if (GetInstance<CFishingConfig>().BobberPotions.MultiBobberPotionBonus > 0)
+            if (fishingConfig.BobberPotions.MultiBobberPotionBonus > 0)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BottledWater);
