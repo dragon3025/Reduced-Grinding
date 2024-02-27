@@ -446,6 +446,16 @@ Mods: {
 					Label: Recarga do encantamento diário
 					Tooltip: Padrão do Jogo: 7
 				}
+
+				PreHardmodeSundials: {
+					// Label: "[i:2336] Pre-Hardmode Sundials"
+					/* Tooltip:
+						'''
+						If enabled, all Vanilla pre-Hardmode Crates will have the
+						same chance of dropping Enchanted Sundial that their
+						Hardmode variant has
+						''' */
+				}
 			}
 
 			UniversalPylon: {
@@ -529,6 +539,26 @@ Mods: {
 				EndGameQuestPerDay: {
 					Label: Missões por dia no final do jogo
 					Tooltip: ""
+				}
+
+				AnglerChatsCurrentQuest: {
+					// Label: Clicking Quest Will Announce The Current Quest Item
+					/* Tooltip:
+						'''
+						This includes an icon, which displays the name and catch
+						location when you hover your mouse over it.
+						''' */
+				}
+
+				ExtraQuestRewardChance: {
+					// Label: Extra Quest Minor Reward Chance
+					/* Tooltip:
+						'''
+						Set to 1 to disable. This doesn't apply to rewards from
+						the first quest of each day. Each Vanilla Potion,
+						Furniture, Bait, and Coin items will be removed unless
+						they pass this chance.
+						''' */
 				}
 			}
 
@@ -816,6 +846,16 @@ Mods: {
 			WorldPeaceStandard: {
 				DisplayName: Peça da Paz Mundial
 				Tooltip: Cancela invasões
+			}
+
+			FishingTicket: {
+				// DisplayName: Fishing Ticket
+				/* Tooltip:
+					'''
+					Having this in your inventory, will make the Angler consider you a "Questing Player".
+					If the Angler has another quest for the current day, he will wait until all Questing Players have finished the current quest before giving the next quest.
+					This item will be removed on a new day or if the Angler has no more quest after the current one.
+					''' */
 			}
 		}
 	}
