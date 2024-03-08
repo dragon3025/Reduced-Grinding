@@ -70,19 +70,19 @@ namespace ReducedGrinding.GlobalNPCs
 
                                 bool[] extraQuestConditions = new bool[13]
                                 {
-                        NPC.downedBoss1,
-                        NPC.downedBoss2,
-                        NPC.downedBoss3,
-                        NPC.downedQueenBee,
-                        NPC.downedQueenSlime,
-                        NPC.downedMechBoss1,
-                        NPC.downedMechBoss2,
-                        NPC.downedMechBoss3,
-                        NPC.downedPlantBoss,
-                        NPC.downedGolemBoss,
-                        NPC.downedEmpressOfLight,
-                        NPC.downedAncientCultist,
-                        Main.hardMode
+                                    NPC.downedBoss1,
+                                    NPC.downedBoss2,
+                                    NPC.downedBoss3,
+                                    NPC.downedQueenBee,
+                                    NPC.downedQueenSlime,
+                                    NPC.downedMechBoss1,
+                                    NPC.downedMechBoss2,
+                                    NPC.downedMechBoss3,
+                                    NPC.downedPlantBoss,
+                                    NPC.downedGolemBoss,
+                                    NPC.downedEmpressOfLight,
+                                    NPC.downedAncientCultist,
+                                    Main.hardMode
                                 };
 
                                 for (int i = 0; i < extraQuestConditions.Length; i++)

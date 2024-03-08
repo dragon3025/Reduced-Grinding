@@ -883,9 +883,9 @@ Mods: {
 				DisplayName: Fishing Ticket
 				Tooltip:
 					'''
-					Having this in your inventory, will make the Angler consider you a "Questing Player".
-					If the Angler has another quest for the current day, he will wait until all Questing Players have finished the current quest before giving the next quest.
-					This item will be removed on a new day or if the Angler has no more quest after the current one.
+					Having this in your inventory will make the Angler consider you a "Questing Player".
+					The Angler will wait for all Questing Players to finish before deciding if he wants to give another quest.
+					This item will be removed on a new day or if the Angler decides not to give any more quest.
 					'''
 			}
 		}

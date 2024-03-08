@@ -28,25 +28,27 @@ namespace ReducedGrinding.Global
             #endregion
 
             #region Extra Quest Reward Chance
-            float rewardChance = fishingConfig.Angler.ExtraQuestRewardChance;
-            if (rewardChance < 1f)
+            if (!Update.firstQuest)
             {
-                void rollForRemoval(int itemID)
+                float rewardChance = fishingConfig.Angler.ExtraQuestRewardChance;
+                if (Main.rand.Next() > rewardChance)
                 {
-                    foreach (Terraria.Item item in rewardItems.Reverse<Terraria.Item>())
+                    void rollForRemoval(int itemID)
                     {
-                        if (item.type == itemID)
+                        foreach (Terraria.Item item in rewardItems.Reverse<Terraria.Item>())
                         {
-                            if (Main.rand.NextFloat() > rewardChance)
+                            if (item.type == itemID)
                             {
-                                rewardItems.Remove(item);
+                                if (Main.rand.NextFloat() > rewardChance)
+                                {
+                                    rewardItems.Remove(item);
+                                }
                             }
                         }
                     }
-                }
 
-                int[] fiftySilverItems = new int[]
-                {
+                    int[] fiftySilverItems = new int[]
+                    {
                     ItemID.LifePreserver,
                     ItemID.CompassRose,
                     ItemID.WallAnchor,
@@ -62,26 +64,27 @@ namespace ReducedGrinding.Global
                     ItemID.CouchGag,
                     ItemID.SilentFish,
                     ItemID.TheDuke
-                };
+                    };
 
-                foreach (int i in fiftySilverItems)
-                {
-                    rollForRemoval(i);
+                    foreach (int i in fiftySilverItems)
+                    {
+                        rollForRemoval(i);
+                    }
+
+                    rollForRemoval(ItemID.FishingPotion);
+                    rollForRemoval(ItemID.SonarPotion);
+                    rollForRemoval(ItemID.CratePotion);
+                    rollForRemoval(ItemID.TreasureMap);
+                    rollForRemoval(ItemID.SeaweedPlanter);
+                    rollForRemoval(ItemID.ShipInABottle);
+                    rollForRemoval(ItemID.ApprenticeBait);
+                    rollForRemoval(ItemID.JourneymanBait);
+                    rollForRemoval(ItemID.MasterBait);
+                    rollForRemoval(ItemID.PlatinumCoin);
+                    rollForRemoval(ItemID.GoldCoin);
+                    rollForRemoval(ItemID.SilverCoin);
+                    rollForRemoval(ItemID.CopperCoin);
                 }
-
-                rollForRemoval(ItemID.FishingPotion);
-                rollForRemoval(ItemID.SonarPotion);
-                rollForRemoval(ItemID.CratePotion);
-                rollForRemoval(ItemID.TreasureMap);
-                rollForRemoval(ItemID.SeaweedPlanter);
-                rollForRemoval(ItemID.ShipInABottle);
-                rollForRemoval(ItemID.ApprenticeBait);
-                rollForRemoval(ItemID.JourneymanBait);
-                rollForRemoval(ItemID.MasterBait);
-                rollForRemoval(ItemID.PlatinumCoin);
-                rollForRemoval(ItemID.GoldCoin);
-                rollForRemoval(ItemID.SilverCoin);
-                rollForRemoval(ItemID.CopperCoin);
             }
             #endregion
         }

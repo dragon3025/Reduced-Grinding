@@ -17,9 +17,9 @@ namespace ReducedGrinding.Global
 
         //Gets recorded into world save
         public static int anglerQuests = 1;
+        public static bool firstQuest = true;
         public static bool dayTime = true;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
-
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -111,6 +111,7 @@ namespace ReducedGrinding.Global
             if (anglerQuests > 0 && Main.anglerWhoFinishedToday.Count > 0 && !stillQuesting)
             {
                 anglerQuests--;
+                firstQuest = false;
                 sendAnglerQuestsPacket = true;
 
                 if (anglerQuests > 0)
@@ -150,8 +151,10 @@ namespace ReducedGrinding.Global
                     sendTravelingMerchantDiceRollsPacket = true;
 
                     anglerQuests = -1;
-                    chatQuestFish = 0;
+                    firstQuest = true;
                     sendAnglerQuestsPacket = true;
+
+                    chatQuestFish = 0;
                     sendChatQuestFishPacket = true;
                 }
                 #endregion
@@ -166,6 +169,7 @@ namespace ReducedGrinding.Global
                     ModPacket packetAnglerQuest = Mod.GetPacket();
                     packetAnglerQuest.Write((byte)ReducedGrinding.MessageType.anglerQuests);
                     packetAnglerQuest.Write(anglerQuests);
+                    packetAnglerQuest.Write(firstQuest);
                     packetAnglerQuest.Send();
                 }
 
