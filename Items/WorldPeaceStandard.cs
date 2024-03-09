@@ -44,11 +44,11 @@ namespace ReducedGrinding.Items
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText("The invasion left.", new Color(255, 255, 0));
+                    Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.WorldPeaceStandard"), new Color(255, 255, 0));
                 }
                 else
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey("The invasion left."), new Color(255, 255, 0));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(Language.GetTextValue("Mods.ReducedGrinding.Misc.WorldPeaceStandard")), new Color(255, 255, 0));
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }

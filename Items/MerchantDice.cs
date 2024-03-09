@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Humanizer;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -55,7 +56,7 @@ namespace ReducedGrinding.Items
                 {
                     Global.Update.travelingMerchantDiceRolls--;
                     Chest.SetupTravelShop();
-                    string reRollsLeft = $"Traveling Merchant shop re-rolled. Re-rolls left: {Global.Update.travelingMerchantDiceRolls}";
+                    string reRollsLeft = Language.GetTextValue("Mods.ReducedGrinding.Misc.MerchantDice.ReRollsLeft").FormatWith(Global.Update.travelingMerchantDiceRolls);
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
                         Main.NewText(reRollsLeft, 255, 255, 0);
@@ -73,7 +74,7 @@ namespace ReducedGrinding.Items
             }
             else if (player.whoAmI == Main.myPlayer)
             {
-                Main.NewText("You have no more re-rolls left.", 255, 127, 127);
+                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MerchantDice.NoMoreReRolls"), 255, 127, 127);
             }
 
             return true;

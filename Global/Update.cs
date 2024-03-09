@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Humanizer;
+using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
 using Terraria;
 using Terraria.Chat;
@@ -117,10 +118,10 @@ namespace ReducedGrinding.Global
                 if (anglerQuests > 0)
                 {
                     Main.AnglerQuestSwap();
-                    string newQuestText = "The Angler decided to give you another quest";
-                    if (fishingConfig.Angler.AnglerChatsCurrentQuest)
+                    string newQuestText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.NewQuestTextWithIcon").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+                    if (!fishingConfig.Angler.AnglerChatsCurrentQuest)
                     {
-                        newQuestText += fishingConfig.Angler.AnglerChatsCurrentQuest ? $": [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]." : ".";
+                        newQuestText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.NewQuestText");
                     }
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
@@ -225,6 +226,29 @@ namespace ReducedGrinding.Global
                     Main.moonPhase = 0;
                 }
 
+                string moonPhaseName = Main.moonPhase switch
+                {
+                    0 => Language.GetTextValue("GameUI.FullMoon"),
+                    1 => Language.GetTextValue("GameUI.WaningGibbous"),
+                    2 => Language.GetTextValue("GameUI.ThirdQuarter"),
+                    3 => Language.GetTextValue("GameUI.WaningCrescent"),
+                    4 => Language.GetTextValue("GameUI.NewMoon"),
+                    5 => Language.GetTextValue("GameUI.WaxingCrescent"),
+                    6 => Language.GetTextValue("GameUI.FirstQuarter"),
+                    _ => Language.GetTextValue("GameUI.WaxingGibbous"),
+                };
+
+                string moonPhaseText = Language.GetTextValue("Mods.ReducedGrinding.Misc.MoonWatch.MoonPhase").FormatWith(moonPhaseName);
+
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(moonPhaseText, 255, 255, 0);
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(moonPhaseText), new Color(255, 255, 0));
+                }
+
                 if (Main.netMode == NetmodeID.Server)
                 {
                     ModPacket packet = Mod.GetPacket();
@@ -250,27 +274,27 @@ namespace ReducedGrinding.Global
                 {
                     switch (Main.GameMode)
                     {
-                        case 0:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
+                        case GameModeID.Normal:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Normal)
                             {
                                 finishedDifficultyChange = true;
-                                text = "World difficulty mode is now Expert!";
+                                text = Language.GetTextValue("Mods.ReducedGrinding.Misc.StaffOfDifficulty.Expert");
                                 textColor = new Color(255, 179, 0);
                             }
                             break;
-                        case 1:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master)
+                        case GameModeID.Expert:
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
                             {
                                 finishedDifficultyChange = true;
-                                text = "World difficulty mode is now Master!";
+                                text = Language.GetTextValue("Mods.ReducedGrinding.Misc.StaffOfDifficulty.Master");
                                 textColor = new Color(255, 0, 0);
                             }
                             break;
                         default:
-                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Expert)
+                            if (GetInstance<HOtherModdedItemsConfig>().StaffOfDifficulty.Master)
                             {
                                 finishedDifficultyChange = true;
-                                text = "World difficulty mode is now Normal!";
+                                text = Language.GetTextValue("Mods.ReducedGrinding.Misc.StaffOfDifficulty.Normal");
                                 textColor = new Color(255, 255, 255);
                             }
                             break;
@@ -349,13 +373,15 @@ namespace ReducedGrinding.Global
             {
                 chatQuestFish = 2;
 
+                string chatFishText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.CurrentQuest").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText($"Current Quest: [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]");
+                    Main.NewText(chatFishText);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey($"Current Quest: [i:{Main.anglerQuestItemNetIDs[Main.anglerQuest]}]"), new Color(255, 255, 255));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(chatFishText), new Color(255, 255, 255));
 
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);

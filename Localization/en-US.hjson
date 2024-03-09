@@ -8,6 +8,39 @@
 
 Mods: {
 	ReducedGrinding: {
+		Misc: {
+			Fishing: {
+				QuestFinishedText: You've given me {0} fish.
+				CurrentQuest: Current Quest: [i:{0}].
+				NewQuestText: The Angler decided to give you another quest!
+				NewQuestTextWithIcon: The Angler decided to give you another quest: [i:{0}]!
+			}
+
+			StaffOfDifficulty: {
+				Expert: World difficulty mode is now Expert!
+				Master: World difficulty mode is now Master!
+				Normal: World difficulty mode is now Normal!
+			}
+
+			MerchantDice: {
+				ReRollsLeft: Traveling Merchant shop re-rolled! Re-rolls left: {0}.
+				NoMoreReRolls: You have no more re-rolls left.
+			}
+
+			MoonWatch: {
+				BloodMoon: The Moon Watch doesn't work during the Blood Moon.
+				MoonPhase: Moon phase is now {0}
+			}
+
+			WorldPeaceStandard: The invasion left!
+
+			WorldGeneration: {
+				MissingTreeLoot: Adding missing tree loot
+				MissingShroomLoot: Adding missing shroom loot
+				MissingMiscLoot: Adding other missing loot
+			}
+		}
+
 		Configs: {
 			AEnemyLootConfig: {
 				DisplayName: Enemy Loot
@@ -108,7 +141,17 @@ Mods: {
 
 				FishCoinsRewardedForQuest: {
 					Label: "[i:ReducedGrinding/FishCoin] Fish Coins Rewarded"
-					Tooltip: ""
+					Tooltip:
+						'''
+						Price of items are equal to the average amount of quest needed to receive.
+						For example: Fuzzy Carrot is rewarded for the 5th quest, so it cost 5;
+						and Fin Wings has a 1/70 chance of being rewarded so it cost 70.
+
+						Angler Gear all cost 10 and honey rewards cost 70.
+
+						To appear in shop, Hardmode rewards require Hardmode and honey rewards
+						require defeating the Queen Bee.
+						'''
 				}
 
 				BobberPotions: {

@@ -1,19 +1,24 @@
+using Humanizer;
 using ReducedGrinding.Configuration;
 using ReducedGrinding.Items;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace ReducedGrinding.GlobalNPCs
 {
     public class Shops : GlobalNPC
     {
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
+
+        public static LocalizedText QuestFinishedText { get; private set; }
+
 
         public override void OnChatButtonClicked(NPC npc, bool firstButton)
         {
@@ -47,7 +52,7 @@ namespace ReducedGrinding.GlobalNPCs
                 Player player = Main.LocalPlayer;
                 if (fishingConfig.Angler.AnglerTellsQuestCompleted)
                 {
-                    chat += $"\n\nYou've given me {player.anglerQuestsFinished} fish.";
+                    chat += $"\n\n" + Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.QuestFinishedText").FormatWith(player.anglerQuestsFinished);
                 }
 
                 if (Global.Update.anglerQuests == -1)
@@ -131,38 +136,39 @@ namespace ReducedGrinding.GlobalNPCs
                             }
                         }
 
-                        #region Guaranteed Items
                         addShopItem(5, ItemID.FuzzyCarrot);
                         addShopItem(10, ItemID.AnglerHat);
                         addShopItem(10, ItemID.AnglerVest);
                         addShopItem(10, ItemID.AnglerPants);
-                        addShopItem(25, ItemID.BottomlessBucket);
-                        addShopItem(30, ItemID.GoldenFishingRod);
-                        #endregion
 
-                        #region Hardmode Items
+                        if (NPC.downedQueenBee)
+                        {
+                            addShopItem(70, ItemID.HoneyAbsorbantSponge);
+                            addShopItem(70, ItemID.BottomlessHoneyBucket);
+                        }
+
+                        addShopItem(30, ItemID.GoldenFishingRod);
+
                         if (Main.hardMode)
                         {
                             addShopItem(100, ItemID.HotlineFishingHook);
                             addShopItem(70, ItemID.FinWings);
-                            addShopItem(70, ItemID.SuperAbsorbantSponge);
                         }
-                        #endregion
 
-                        #region Items Always Available
+                        addShopItem(25, ItemID.BottomlessBucket);
+                        addShopItem(70, ItemID.SuperAbsorbantSponge);
                         addShopItem(80, ItemID.GoldenBugNet);
                         addShopItem(60, ItemID.FishHook);
                         addShopItem(60, ItemID.FishMinecart);
+                        addShopItem(80, ItemType<MermaidCostumeBag>());
+                        addShopItem(80, ItemType<FishCostumeBag>());
                         addShopItem(80, ItemID.HighTestFishingLine);
                         addShopItem(80, ItemID.AnglerEarring);
                         addShopItem(80, ItemID.TackleBox);
                         addShopItem(60, ItemID.FishermansGuide);
                         addShopItem(60, ItemID.WeatherRadio);
                         addShopItem(60, ItemID.Sextant);
-                        addShopItem(80, ItemType<MermaidCostumeBag>());
-                        addShopItem(80, ItemType<FishCostumeBag>());
                         addShopItem(25, ItemID.FishingBobber);
-                        #endregion
                     }
                     break;
                 case NPCID.BestiaryGirl:

@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
@@ -39,7 +40,7 @@ namespace ReducedGrinding.Items
         {
             if (Main.bloodMoon)
             {
-                Main.NewText("The Moon Watch doesn't work during the Blood Moon.", 255, 127, 127);
+                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MoonWatch.BloodMoon"), 255, 127, 127);
             }
 
             if (player.whoAmI == Main.myPlayer)

@@ -8,6 +8,39 @@
 
 Mods: {
 	ReducedGrinding: {
+		Misc: {
+			Fishing: {
+				// QuestFinishedText: You've given me {0} fish.
+				// CurrentQuest: Current Quest: [i:{0}].
+				// NewQuestText: The Angler decided to give you another quest!
+				// NewQuestTextWithIcon: The Angler decided to give you another quest: [i:{0}]!
+			}
+
+			StaffOfDifficulty: {
+				// Expert: World difficulty mode is now Expert!
+				// Master: World difficulty mode is now Master!
+				// Normal: World difficulty mode is now Normal!
+			}
+
+			MerchantDice: {
+				// ReRollsLeft: Traveling Merchant shop re-rolled! Re-rolls left: {0}.
+				// NoMoreReRolls: You have no more re-rolls left.
+			}
+
+			MoonWatch: {
+				// BloodMoon: The Moon Watch doesn't work during the Blood Moon.
+				// MoonPhase: Moon phase is now {0}
+			}
+
+			// WorldPeaceStandard: The invasion left!
+
+			WorldGeneration: {
+				// MissingTreeLoot: Adding missing tree loot
+				// MissingShroomLoot: Adding missing shroom loot
+				// MissingMiscLoot: Adding other missing loot
+			}
+		}
+
 		Configs: {
 			AEnemyLootConfig: {
 				DisplayName: Coletáveis dos Inimigos
@@ -852,9 +885,9 @@ Mods: {
 				// DisplayName: Fishing Ticket
 				/* Tooltip:
 					'''
-					Having this in your inventory, will make the Angler consider you a "Questing Player".
-					If the Angler has another quest for the current day, he will wait until all Questing Players have finished the current quest before giving the next quest.
-					This item will be removed on a new day or if the Angler has no more quest after the current one.
+					Having this in your inventory will make the Angler consider you a "Questing Player".
+					The Angler will wait for all Questing Players to finish before deciding if he wants to give another quest.
+					This item will be removed on a new day or if the Angler decides not to give any more quest.
 					''' */
 			}
 		}

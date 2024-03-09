@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.IO;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
 using static Terraria.ModLoader.ModContent;
@@ -51,7 +52,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = "Adding missing tree loot";
+                progress.Message = Language.GetTextValue("Mods.ReducedGrinding.Misc.WorldGeneration.MissingTreeLoot");
 
                 List<int> missingTreeItems = new() { ItemID.SunflowerMinecart, ItemID.LadybugMinecart };
 
@@ -399,7 +400,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = "Adding missing shroom loot";
+                progress.Message = Language.GetTextValue("Mods.ReducedGrinding.Misc.WorldGeneration.MissingShroomLoot");
 
                 List<int> missingMushroomItems = new() { ItemID.ShroomMinecart, ItemID.MushroomHat };
                 List<int> mushroomBiomes = new();
@@ -531,7 +532,7 @@ namespace ReducedGrinding.Global.WorldGeneration
 
             protected override void ApplyPass(GenerationProgress progress, GameConfiguration configuration)
             {
-                progress.Message = "Adding other missing loot";
+                progress.Message = Language.GetTextValue("Mods.ReducedGrinding.Misc.WorldGeneration.MissingMiscLoot");
 
                 List<int> missingPyramidItems = otherConfig.WorldGeneration.AddMissingPyramidLoot ? new() { ItemID.PharaohsMask, ItemID.FlyingCarpet } : new() { };
                 List<int> sandstoneChests = new();
