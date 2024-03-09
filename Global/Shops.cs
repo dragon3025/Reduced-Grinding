@@ -73,30 +73,30 @@ namespace ReducedGrinding.GlobalNPCs
                             {
                                 int questAmountConditionBonus = 0;
 
-                                bool[] extraQuestConditions = new bool[13]
+                                void addQuestBonus(bool condition, int bonusAmount)
                                 {
-                                    NPC.downedBoss1,
-                                    NPC.downedBoss2,
-                                    NPC.downedBoss3,
-                                    NPC.downedQueenBee,
-                                    NPC.downedQueenSlime,
-                                    NPC.downedMechBoss1,
-                                    NPC.downedMechBoss2,
-                                    NPC.downedMechBoss3,
-                                    NPC.downedPlantBoss,
-                                    NPC.downedGolemBoss,
-                                    NPC.downedEmpressOfLight,
-                                    NPC.downedAncientCultist,
-                                    Main.hardMode
-                                };
-
-                                for (int i = 0; i < extraQuestConditions.Length; i++)
-                                {
-                                    if (extraQuestConditions[i] == true)
+                                    if (condition)
                                     {
-                                        questAmountConditionBonus += i < 4 ? 3 : i < 8 ? 6 : i < 12 ? 8 : 12;
+                                        questAmountConditionBonus += bonusAmount;
                                     }
                                 }
+
+                                addQuestBonus(NPC.downedBoss1, 3);
+                                addQuestBonus(NPC.downedBoss2, 3);
+                                addQuestBonus(NPC.downedBoss3, 3);
+                                addQuestBonus(NPC.downedQueenBee, 3);
+
+                                addQuestBonus(Main.hardMode, 12);
+
+                                addQuestBonus(NPC.downedQueenSlime, 6);
+                                addQuestBonus(NPC.downedMechBoss1, 6);
+                                addQuestBonus(NPC.downedMechBoss2, 6);
+                                addQuestBonus(NPC.downedMechBoss3, 6);
+
+                                addQuestBonus(NPC.downedPlantBoss, 8);
+                                addQuestBonus(NPC.downedGolemBoss, 8);
+                                addQuestBonus(NPC.downedEmpressOfLight, 8);
+                                addQuestBonus(NPC.downedAncientCultist, 8);
 
                                 Global.Update.anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80;
                             }

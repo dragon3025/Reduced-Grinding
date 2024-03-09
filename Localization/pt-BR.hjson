@@ -587,10 +587,9 @@ Mods: {
 					// Label: Extra Quest Minor Reward Chance
 					/* Tooltip:
 						'''
-						Set to 1 to disable. This doesn't apply to rewards from
-						the first quest of each day. Each Vanilla Potion,
-						Furniture, Bait, and Coin items will be removed unless
-						they pass this chance.
+						Set to 1 to disable. Excluding the 1st quest for each
+						day: each vanilla potion, furniture, bait, and coin
+						items will be removed unless they pass this chance.
 						''' */
 				}
 			}

@@ -5,7 +5,6 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using static Terraria.Item;
 using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
@@ -33,57 +32,55 @@ namespace ReducedGrinding.Global
                 float rewardChance = fishingConfig.Angler.ExtraQuestRewardChance;
                 if (Main.rand.Next() > rewardChance)
                 {
-                    void rollForRemoval(int itemID)
+                    void removeReward(int itemID)
                     {
                         foreach (Terraria.Item item in rewardItems.Reverse<Terraria.Item>())
                         {
                             if (item.type == itemID)
                             {
-                                if (Main.rand.NextFloat() > rewardChance)
-                                {
-                                    rewardItems.Remove(item);
-                                }
+                                rewardItems.Remove(item);
                             }
                         }
                     }
 
-                    int[] fiftySilverItems = new int[]
-                    {
-                    ItemID.LifePreserver,
-                    ItemID.CompassRose,
-                    ItemID.WallAnchor,
-                    ItemID.PillaginMePixels,
-                    ItemID.GoldfishTrophy,
-                    ItemID.BunnyfishTrophy,
-                    ItemID.SwordfishTrophy,
-                    ItemID.SharkteethTrophy,
-                    ItemID.NotSoLostInParadise,
-                    ItemID.Crustography,
-                    ItemID.WhatLurksBelow,
-                    ItemID.Fangs,
-                    ItemID.CouchGag,
-                    ItemID.SilentFish,
-                    ItemID.TheDuke
-                    };
+                    removeReward(ItemID.FishingPotion);
+                    removeReward(ItemID.SonarPotion);
+                    removeReward(ItemID.CratePotion);
 
-                    foreach (int i in fiftySilverItems)
+                    removeReward(ItemID.ApprenticeBait);
+                    removeReward(ItemID.JourneymanBait);
+                    removeReward(ItemID.MasterBait);
+
+                    removeReward(ItemID.PlatinumCoin);
+                    removeReward(ItemID.GoldCoin);
+                    removeReward(ItemID.SilverCoin);
+                    removeReward(ItemID.CopperCoin);
+
+                    removeReward(ItemID.BunnyfishTrophy);
+                    removeReward(ItemID.CompassRose);
+                    removeReward(ItemID.CouchGag);
+                    removeReward(ItemID.Crustography);
+                    removeReward(ItemID.Fangs);
+                    removeReward(ItemID.GoldfishTrophy);
+                    removeReward(ItemID.LifePreserver);
+                    removeReward(ItemID.NotSoLostInParadise);
+                    removeReward(ItemID.PillaginMePixels);
+                    removeReward(ItemID.SeaweedPlanter);
+                    removeReward(ItemID.SharkteethTrophy);
+                    removeReward(ItemID.ShipInABottle);
+                    removeReward(ItemID.SilentFish);
+                    removeReward(ItemID.SwordfishTrophy);
+                    removeReward(ItemID.TheDuke);
+                    removeReward(ItemID.TreasureMap);
+                    removeReward(ItemID.WallAnchor);
+                    removeReward(ItemID.WhatLurksBelow);
+
+                    if (rewardItems.Count == 0)
                     {
-                        rollForRemoval(i);
+                        Terraria.Item item = new();
+                        item.SetDefaults(ItemID.CopperCoin);
+                        rewardItems.Add(item);
                     }
-
-                    rollForRemoval(ItemID.FishingPotion);
-                    rollForRemoval(ItemID.SonarPotion);
-                    rollForRemoval(ItemID.CratePotion);
-                    rollForRemoval(ItemID.TreasureMap);
-                    rollForRemoval(ItemID.SeaweedPlanter);
-                    rollForRemoval(ItemID.ShipInABottle);
-                    rollForRemoval(ItemID.ApprenticeBait);
-                    rollForRemoval(ItemID.JourneymanBait);
-                    rollForRemoval(ItemID.MasterBait);
-                    rollForRemoval(ItemID.PlatinumCoin);
-                    rollForRemoval(ItemID.GoldCoin);
-                    rollForRemoval(ItemID.SilverCoin);
-                    rollForRemoval(ItemID.CopperCoin);
                 }
             }
             #endregion
