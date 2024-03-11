@@ -1,8 +1,11 @@
 using Humanizer;
+using Mono.Cecil;
 using ReducedGrinding.Configuration;
+using ReducedGrinding.Configuration.DropDownBoxes;
 using ReducedGrinding.Items;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
@@ -53,65 +56,6 @@ namespace ReducedGrinding.GlobalNPCs
                 if (fishingConfig.Angler.AnglerTellsQuestCompleted)
                 {
                     chat += $"\n\n" + Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.QuestFinishedText").FormatWith(player.anglerQuestsFinished);
-                }
-
-                if (Global.Update.anglerQuests == -1)
-                {
-                    int StartingQuestPerDay = fishingConfig.Angler.StartingQuestPerDay;
-                    int EndGameQuestPerDay = Math.Max(StartingQuestPerDay, fishingConfig.Angler.EndGameQuestPerDay);
-
-                    if (EndGameQuestPerDay > 1)
-                    {
-                        Global.Update.anglerQuests = StartingQuestPerDay;
-
-                        if (EndGameQuestPerDay > StartingQuestPerDay)
-                        {
-                            float happiness = (float)(2.0 - player.currentShoppingSettings.PriceAdjustment);
-                            int endGameQuestAmount = (int)(EndGameQuestPerDay * happiness - Global.Update.anglerQuests);
-
-                            if (endGameQuestAmount > 0)
-                            {
-                                int questAmountConditionBonus = 0;
-
-                                void addQuestBonus(bool condition, int bonusAmount)
-                                {
-                                    if (condition)
-                                    {
-                                        questAmountConditionBonus += bonusAmount;
-                                    }
-                                }
-
-                                addQuestBonus(NPC.downedBoss1, 3);
-                                addQuestBonus(NPC.downedBoss2, 3);
-                                addQuestBonus(NPC.downedBoss3, 3);
-                                addQuestBonus(NPC.downedQueenBee, 3);
-
-                                addQuestBonus(Main.hardMode, 12);
-
-                                addQuestBonus(NPC.downedQueenSlime, 6);
-                                addQuestBonus(NPC.downedMechBoss1, 6);
-                                addQuestBonus(NPC.downedMechBoss2, 6);
-                                addQuestBonus(NPC.downedMechBoss3, 6);
-
-                                addQuestBonus(NPC.downedPlantBoss, 8);
-                                addQuestBonus(NPC.downedGolemBoss, 8);
-                                addQuestBonus(NPC.downedEmpressOfLight, 8);
-                                addQuestBonus(NPC.downedAncientCultist, 8);
-
-                                Global.Update.anglerQuests += endGameQuestAmount * questAmountConditionBonus / 80;
-                            }
-                        }
-
-                        if (Main.netMode == NetmodeID.MultiplayerClient)
-                        {
-                            ModPacket packet = Mod.GetPacket();
-
-                            packet.Write((byte)ReducedGrinding.MessageType.anglerQuests);
-                            packet.Write(Global.Update.anglerQuests);
-
-                            packet.Send();
-                        }
-                    }
                 }
             }
         }

@@ -4,39 +4,35 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 {
     public class Angler
     {
+        public bool UnlimitedAnglerQuest;
+        
         public bool AnglerTellsQuestCompleted;
 
         public bool AnglerChatsCurrentQuest;
 
-        [Header("QuestPerDay")]
-
-        [BackgroundColor(128, 128, 128)]
-        [Range(1, 1000)]
-        public int StartingQuestPerDay;
-
-        [Range(1, 1000)]
-        public int EndGameQuestPerDay;
-
         [Increment(0.1f)]
         public float ExtraQuestRewardChance;
 
+        [Increment(0.01f)]
+        public float BumblebeeTunaSwapChance;
+
         public Angler()
         {
+            UnlimitedAnglerQuest = true;
             AnglerTellsQuestCompleted = true;
             AnglerChatsCurrentQuest = true;
-            StartingQuestPerDay = 1;
-            EndGameQuestPerDay = 10;
-            ExtraQuestRewardChance = 0.1f;
+            ExtraQuestRewardChance = 0.5f;
+            BumblebeeTunaSwapChance = 0.1f;
         }
 
         public override bool Equals(object obj)
         {
             if (obj is Angler other)
-                return AnglerTellsQuestCompleted == other.AnglerTellsQuestCompleted &&
+                return UnlimitedAnglerQuest == other.UnlimitedAnglerQuest &&
+                    AnglerTellsQuestCompleted == other.AnglerTellsQuestCompleted &&
                     AnglerChatsCurrentQuest == other.AnglerChatsCurrentQuest &&
-                    StartingQuestPerDay == other.StartingQuestPerDay &&
-                    EndGameQuestPerDay == other.EndGameQuestPerDay &&
-                    ExtraQuestRewardChance == other.ExtraQuestRewardChance;
+                    ExtraQuestRewardChance == other.ExtraQuestRewardChance &&
+                    BumblebeeTunaSwapChance == other.BumblebeeTunaSwapChance;
             return base.Equals(obj);
         }
 
@@ -44,11 +40,11 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             return new
             {
+                UnlimitedAnglerQuest,
                 AnglerTellsQuestCompleted,
                 AnglerChatsCurrentQuest,
-                StartingQuestPerDay,
-                EndGameQuestPerDay,
-                ExtraQuestRewardChance
+                ExtraQuestRewardChance,
+                BumblebeeTunaSwapChance
             }.GetHashCode();
         }
     }

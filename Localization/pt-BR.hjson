@@ -548,29 +548,8 @@ Mods: {
 			}
 
 			Angler: {
-				Tooltip: Configure a quantidade de missões de pescaria que podem ser feitas por dia.
-				Headers.QuestPerDay:
-					'''
-					Quantas missões o pescador pode pedir por dia
-
-					Você pode permitir que o pescador pessa mais missões por dia. Se em uma missão não concluida o jogador possuir o peixe da missão atual,
-					o pescador vai aguardar 10 segundos.
-
-					A quantidade de missões por dia progride em direção ao valor final do jogo definido abaixo. Isso depende de quantos chefes vanilla foram derrotados (usando NPCs da cidade e bônus de defesa)
-					'''
-
 				AnglerTellsQuestCompleted: {
 					Label: O Pescador diz a quantidade de missões concluídas
-					Tooltip: ""
-				}
-
-				StartingQuestPerDay: {
-					Label: Missões por dia no comeco do jogo
-					Tooltip: ""
-				}
-
-				EndGameQuestPerDay: {
-					Label: Missões por dia no final do jogo
 					Tooltip: ""
 				}
 
@@ -591,6 +570,24 @@ Mods: {
 						day: each vanilla potion, furniture, bait, and coin
 						items will be removed unless they pass this chance.
 						''' */
+				}
+
+				BumblebeeTunaSwapChance: {
+					// Label: "[i:2451] Bumblebee Tuna Swap Chance"
+					/* Tooltip:
+						'''
+						After defeating the Corruption/Crimson boss, each vanilla Quest fish will have
+						this chance of being changed to Bumblebee Tuna, but only if a player needs it
+						(for the first quest of the day, all player inventories are checked; for all
+						quest after the first, only questing player inventories are checked).
+						''' */
+				}
+
+				// Tooltip: ""
+
+				UnlimitedAnglerQuest: {
+					// Label: Infinite Angler Quest
+					// Tooltip: ""
 				}
 			}
 

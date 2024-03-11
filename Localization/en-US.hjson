@@ -143,14 +143,11 @@ Mods: {
 					Label: "[i:ReducedGrinding/FishCoin] Fish Coins Rewarded"
 					Tooltip:
 						'''
-						Price of items are equal to the average amount of quest needed to receive.
-						For example: Fuzzy Carrot is rewarded for the 5th quest, so it cost 5;
-						and Fin Wings has a 1/70 chance of being rewarded so it cost 70.
-
-						Angler Gear all cost 10 and honey rewards cost 70.
-
-						To appear in shop, Hardmode rewards require Hardmode and honey rewards
-						require defeating the Queen Bee.
+						Price of items are equal to the average amount of quest needed to receive. For
+						example: Fuzzy Carrot is rewarded for the 5th quest, so it cost 5; and Fin Wings
+						has a 1/70 chance of being rewarded so it cost 70. Angler Gear all cost 10 and
+						honey rewards cost 70. To appear in shop, Hardmode rewards require Hardmode and
+						honey rewards require defeating the Queen Bee.
 						'''
 				}
 
@@ -573,50 +570,46 @@ Mods: {
 			}
 
 			Angler: {
-				Tooltip: ""
-				Headers.QuestPerDay:
-					'''
-					Angler Quest Amount Each Day
-
-					You can allow for more Angler Quest each day.
-
-					In multiplayer, all players that talk to the Angler will be given a Fishing Ticket which will disappear the next day or until the Angler has no more quest after the current one. Having the ticket in your inventory allows the Angler to see that your a "Questing Player". If the Angler has another quest for the current day, he will wait for all Questing Players to finish the current quest.
-
-					The amount of quest per day progresses towards the max amount set below. This depends on how many vanilla bosses have been defeated (using Town NPC Defense Bonus).
-					'''
-
 				AnglerTellsQuestCompleted: {
 					Label: Angler Tells Amount of Quest Completed
 					Tooltip: ""
 				}
 
-				StartingQuestPerDay: {
-					Label: Base Quest Per Day
-					Tooltip: ""
-				}
-
-				EndGameQuestPerDay: {
-					Label: Max Quest Per Day
-					Tooltip: This is modified by the Angler's Happiness
-				}
-
 				AnglerChatsCurrentQuest: {
-					Label: Clicking Quest Will Announce The Current Quest Item
+					Label: "Clicking Quest Will Announce The Current Quest Item"
 					Tooltip:
 						'''
 						This includes an icon, which displays the name and catch
 						location when you hover your mouse over it.
 						'''
 				}
-
+				UnlimitedAnglerQuest
 				ExtraQuestRewardChance: {
-					Label: Extra Quest Minor Reward Chance
+					Label: (UNFINISHED) Extra Quest Minor Reward Chance
 					Tooltip:
 						'''
 						Set to 1 to disable. Excluding the 1st quest for each
 						day: each vanilla potion, furniture, bait, and coin
 						items will be removed unless they pass this chance.
 						'''
+				}
+
+				BumblebeeTunaSwapChance: {
+					Label: "[i:2451] Bumblebee Tuna Swap Chance"
+					Tooltip:
+						'''
+						After defeating the Corruption/Crimson boss, each vanilla Quest fish will have
+						this chance of being changed to Bumblebee Tuna, but only if a player needs it
+						(for the first quest of the day, all player inventories are checked; for all
+						quest after the first, only questing player inventories are checked).
+						'''
+				}
+
+				Tooltip: ""
+
+				UnlimitedAnglerQuest: {
+					Label: Unlimited Angler Quests
+					Tooltip: "The angler will always have another quest instead of once per day"
 				}
 			}
 
