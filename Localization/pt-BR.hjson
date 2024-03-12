@@ -549,8 +549,8 @@ Mods: {
 						'''
 						This feature is activated every time the Queen Bee is defeated while the Angler
 						exists. While this feature is active, every vanilla Quest fish will have this
-						chance of being changed to Bumblebee Tuna. This feature is deactivated when a
-						Bumblebee Tuna Quest is given.
+						chance of being changed to Bumblebee Tuna. This feature is deactivated at the
+						end of a Bumblebee Tuna Quest.
 
 						Set to 0 to disable.
 						''' */
