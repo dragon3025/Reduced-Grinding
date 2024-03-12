@@ -10,36 +10,34 @@ Mods: {
 	ReducedGrinding: {
 		Misc: {
 			Fishing: {
-				// QuestFinishedText: You've given me {0} fish.
-				// CurrentQuest: Current Quest: [i:{0}].
-				// NewQuestText: The Angler decided to give you another quest!
-				// NewQuestTextWithIcon: The Angler decided to give you another quest: [i:{0}]!
-				// BumblebeeTunaIncrease: There is an outbreak of Bumblebee Tuna; the Angler will be more likely to ask for it!
-				// BumblebeeTunaDecrease: There rate Bumblebee Tuna has returned to normal.
+				QuestFinishedText: Você me deu {0} Peixes.
+				CurrentQuest: Missão Atual: [i:{0}].
+				NewQuestText: O pescador decidiu dar outra missão de busca à você!
+				NewQuestTextWithIcon: O pescador decidiu dar outra missão de busca à você: [i:{0}]!
 			}
 
 			StaffOfDifficulty: {
-				// Expert: World difficulty mode is now Expert!
-				// Master: World difficulty mode is now Master!
-				// Normal: World difficulty mode is now Normal!
+				Expert: A dificuldade do mundo agora é Perito!
+				Master: A dificuldade do mundo agora é Mestre!
+				Normal: A dificuldade do mundo agora é Clássico!
 			}
 
 			MerchantDice: {
-				// ReRollsLeft: Traveling Merchant shop re-rolled! Re-rolls left: {0}.
-				// NoMoreReRolls: You have no more re-rolls left.
+				ReRollsLeft: Revoção da loja do Caixeiro Viajante! Renovação restante!: {0}.
+				NoMoreReRolls: Você não tem mais renovações restantes.
 			}
 
 			MoonWatch: {
-				// BloodMoon: The Moon Watch doesn't work during the Blood Moon.
-				// MoonPhase: Moon phase is now {0}
+				BloodMoon: O Relógio da Lua não ira funcionar durante a Lua de Sangue.
+				MoonPhase: A faze da Lua agora é {0}
 			}
 
-			// WorldPeaceStandard: The invasion left!
+			WorldPeaceStandard: A invasão restante!
 
 			WorldGeneration: {
-				// MissingTreeLoot: Adding missing tree loot
-				// MissingShroomLoot: Adding missing shroom loot
-				// MissingMiscLoot: Adding other missing loot
+				MissingTreeLoot: Adicionar itens perdidos nas árvores
+				MissingShroomLoot: Adicionar itens perdidos do bioma de cogumelo
+				MissingMiscLoot: Adicionar outros itens perdidos
 			}
 		}
 
@@ -453,13 +451,13 @@ Mods: {
 				}
 
 				PreHardmodeSundials: {
-					// Label: "[i:2336] Pre-Hardmode Sundials"
-					/* Tooltip:
+					Label: "[i:2336] Obter o Relógio Solar Encantado no Pré-Modo Difícil"
+					Tooltip:
 						'''
-						If enabled, all Vanilla pre-Hardmode Crates will have the
-						same chance of dropping Enchanted Sundial that their
-						Hardmode variant has
-						''' */
+						Se for ativado todos os caixotes do pré-modo difícil terão
+						a mesma chance de darem o relógio solar encantado que
+						os caixotes do modo difícil tem.
+						'''
 				}
 			}
 
@@ -526,52 +524,62 @@ Mods: {
 				}
 
 				AnglerChatsCurrentQuest: {
-					// Label: Clicking Quest Will Announce The Current Quest Item
-					/* Tooltip:
+					Label: Auninciar o item da missão de busca atual
+					Tooltip:
 						'''
-						This includes an icon, which displays the name and catch
-						location when you hover your mouse over it.
-						''' */
+						Quando você iniciar a missão de pescaria clique no peixe ao lado
+						para anunciar no chat para os outros jogadores o peixe da missão
+						atual e o local onde ele deve ser pescado.
+						'''
 				}
 
 				LowQualityRemovalChance: {
-					// Label: "[i:2354] Minor Reward Removal Chance"
-					/* Tooltip:
+					Label: "[i:2354] Chance de remoção para uma recompensa menor"
+					Tooltip:
 						'''
-						This excludes the player's first quest of the current day. If this chance
-						passes, vanilla potions and bait will be removed. Set to 0 to disable.
-						''' */
+						Isso exclui a primeira missão que o jogador estiver fazendo no dia atual.
+						Se essa chance passar as poções e peixes vanilla serão removidos.
+
+						Defina 0 para desativar.
+						'''
 				}
 
 				BumblebeeTunaSwapChance: {
-					// Label: "[i:2451] Bumblebee Tuna Swap Chance"
-					/* Tooltip:
+					Label: "[i:2451] Chance de troca para o Atum Abelha"
+					Tooltip:
 						'''
-						This feature is activated every time the Queen Bee is defeated while the Angler
-						exists. While this feature is active, every vanilla Quest fish will have this
-						chance of being changed to Bumblebee Tuna. This feature is deactivated when a
-						Bumblebee Tuna Quest is given.
+						Este recurso só estara ativo depois que você derrotar um chefe da
+						Corrupção ou Carmim, Esqueletron, Abelha Rainha ou Parede de Carne
 
-						Set to 0 to disable.
-						''' */
+						Cada missão de pescaria normal do jogo (Vanilla) tera uma chance de
+						ser alterada para o Atum Abelha, mas apenas se o jogador precisar disto
+						para a primeira missão de busca de peixes do dia, o inventário de todos
+						os jogadores são verificados, para todas as missões depois do primeiro dia
+						apenas o inventário de jogadores com missões de busca em andamento
+						será verificado.
+
+						Defina 0 para desativar.
+						'''
 				}
 
 				// Tooltip: ""
 
 				UnlimitedAnglerQuest: {
-					// Label: Unlimited Angler Quests
-					// Tooltip: The angler will always have another quest instead of once per day
+					Label: Missões do Pescador Ilimitadas
+					Tooltip: O Pescador sempre terá outra missão disponível em vez de pedir uma por dia
 				}
 
-				// Headers.ExtraQuestRewardModifying: Extra Quest Reward Modifying
+				Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
 
 				CoinMultiplier: {
-					// Label: "[i:73] Coin Reward Multiplier"
-					/* Tooltip:
+					Label: "[i:73] Multiplicador da recompensa de Moédas"
+					Tooltip:
 						'''
-						This excludes the player's first quest of the current day. Coins rewarded will
-						be multiplied by this amount (using the total value). Set to 1 to disable.
-						''' */
+						Isso exclui a primeira missão que o jogador estiver fazendo no dia atual
+						As recompensadas de moédas serão multiplicadas por este valor (usando o toal do valor).
+
+						Defina 1 para desativar
+						'''
 				}
 			}
 
@@ -862,13 +870,21 @@ Mods: {
 			}
 
 			FishingTicket: {
-				// DisplayName: Fishing Ticket
-				/* Tooltip:
+				DisplayName: Bilhete de Pesca
+				Tooltip:
 					'''
-					Having this in your inventory will make the Angler consider you a "Questing Player".
-					The Angler will wait for all Questing Players to finish before deciding if he wants to give another quest.
-					This item will be removed on a new day or if the Angler decides not to give any more quest.
-					''' */
+					O Bilhete de Pesca é um item que ajuda todos os jogadores que estão tentando
+					terminar a missão atual a ter uma chance de terminar a missão.
+					O pescador vai aguardar todos os jogadores terminarem a busca até que ele decida
+					se vai enviar uma nova missão de busca.
+					O bilhete será removido em um novo dia ou se o pescador decidir não dar mais nenhuma missão.
+					Quando um jogador iniciar uma missão ao falar com o pescador se houver outra missão
+					disponível após a atual, o pescador ira dar um bilhete de pesca.
+					O pescador não ira dar próxima missão até que todos os jogadores
+					com um bilhete de pesca terminem a missão de busca atual.
+					O bilhete de pesca desaparecera do seu inventário após um novo dia 
+					ou se não houver alguma missão disponível após a missão atual.
+					'''
 			}
 		}
 	}
