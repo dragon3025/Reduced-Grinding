@@ -4,15 +4,14 @@ Reduced Grinding
 
 Open Source at GitHub. Report issues there or at home page.
 
-This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the tModLoader Wiki):
+This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the terrariamods.wiki.gg):
 
 - Increased item chances for a few enemy loot drops.
 - Item values scale to new drop rates by default.
-- Angler Quest per day gradually increases from game progression. Has a short cooldown
-    if another unfinished player has the current quest fish.
+- Unlimited Angler Quest per day.
 - Greater + Super Battle Potion to increase enemy spawns.
-- Items that activate Christmas and Halloween for the current day. By default, crafting
-    requires their matching season.
+- Items that activate Christmas and Halloween for the current day. By default,
+    crafting requires their matching season.
 - Item for canceling invasions.
 - Recipe for Universal Pylon. Disable or Customize.
 - Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with
