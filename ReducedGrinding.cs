@@ -11,7 +11,6 @@
 using System.IO;
 using Terraria;
 using Terraria.GameContent.UI;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
@@ -42,7 +41,8 @@ namespace ReducedGrinding
             instantInvasion,
             travelingMerchantDiceRolls,
             chatMerchantItems,
-            chatQuestFish
+            chatQuestFish,
+            tryBumblebeeTunaSwap
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
@@ -75,6 +75,9 @@ namespace ReducedGrinding
                 case MessageType.chatQuestFish:
                     Global.Update.chatQuestFish = reader.ReadInt32();
                     break;
+                case MessageType.tryBumblebeeTunaSwap:
+                    Global.Update.tryBumblebeeTunaSwap = reader.ReadInt32();
+                    break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
@@ -98,6 +101,7 @@ namespace ReducedGrinding
             tag["anglerQuests"] = Global.Update.anglerQuests;
             tag["dayTime"] = Global.Update.dayTime;
             tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
+            tag["tryBumblebeeTunaSwap"] = Global.Update.tryBumblebeeTunaSwap;
         }
 
         public override void LoadWorldData(TagCompound tag)
@@ -113,6 +117,10 @@ namespace ReducedGrinding
             if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
             {
                 Global.Update.travelingMerchantDiceRolls = 0;
+            }
+            if (!tag.TryGet("tryBumblebeeTunaSwap", out Global.Update.tryBumblebeeTunaSwap))
+            {
+                Global.Update.tryBumblebeeTunaSwap = 0;
             }
         }
     }

@@ -5,7 +5,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
     public class Angler
     {
         public bool UnlimitedAnglerQuest;
-        
+
         public bool AnglerTellsQuestCompleted;
 
         public bool AnglerChatsCurrentQuest;

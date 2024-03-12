@@ -1,11 +1,7 @@
 using Humanizer;
-using Mono.Cecil;
 using ReducedGrinding.Configuration;
-using ReducedGrinding.Configuration.DropDownBoxes;
 using ReducedGrinding.Items;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;

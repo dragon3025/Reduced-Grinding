@@ -1,7 +1,7 @@
 ﻿using Humanizer;
 using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
-using System.Linq;
+using System;
 using Terraria;
 using Terraria.Chat;
 using Terraria.GameContent.Creative;
@@ -9,7 +9,6 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
-using System;
 
 namespace ReducedGrinding.Global
 {
@@ -22,6 +21,7 @@ namespace ReducedGrinding.Global
         public static int anglerQuests = 0;
         public static bool dayTime = true;
         public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+        public static int tryBumblebeeTunaSwap = 0;
 
         //Info sent to server, but not recorded into world save
         public static bool advanceMoonPhase = false;
@@ -108,46 +108,25 @@ namespace ReducedGrinding.Global
             }
             #endregion
 
-            bool playerNeedsBumblebeeTuna (bool skipNonAnglers)
-            {
-                if (!(NPC.downedBoss2 || NPC.downedBoss3 || NPC.downedQueenBee || Main.hardMode))
-                {
-                    return false;
-                }
-                if (Main.rand.NextFloat() < fishingConfig.Angler.BumblebeeTunaSwapChance)
-                {
-                    for (int i = 0; i < Main.player.Length; i++)
-                    {
-                        Player player = Main.player[i];
-                        if (!player.active)
-                        {
-                            continue;
-                        }
-                        if (skipNonAnglers && !Main.anglerWhoFinishedToday.Contains(player.name))
-                        {
-                            continue;
-                        }
-
-                        if (!player.HasItemInAnyInventory(ItemID.BottomlessHoneyBucket))
-                        {
-                            return true;
-                        }
-                        if (!player.HasItemInAnyInventory(ItemID.HoneyAbsorbantSponge) && !player.HasItemInAnyInventory(ItemID.UltraAbsorbantSponge))
-                        {
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }
-
+            bool sendTryBumblebeeTunaSwapPacket = false;
             void tryToSwapToBumblebeeTuna()
             {
-                int questItem = Main.anglerQuestItemNetIDs[Main.anglerQuest];
-                if (questItem <= ItemID.ScorpioFish)
+                if (tryBumblebeeTunaSwap == 1)
                 {
-                    Main.anglerQuest = Array.IndexOf(Main.anglerQuestItemNetIDs, ItemID.BumblebeeTuna);
-                    NetMessage.SendAnglerQuest(-1);
+                    if (Main.rand.NextFloat() < fishingConfig.Angler.BumblebeeTunaSwapChance)
+                    {
+                        int questItem = Main.anglerQuestItemNetIDs[Main.anglerQuest];
+                        if (questItem <= ItemID.ScorpioFish)
+                        {
+                            Main.anglerQuest = Array.IndexOf(Main.anglerQuestItemNetIDs, ItemID.BumblebeeTuna);
+                            NetMessage.SendAnglerQuest(-1);
+                        }
+                    }
+                    if (Main.anglerQuestItemNetIDs[Main.anglerQuest] == ItemID.BumblebeeTuna)
+                    {
+                        tryBumblebeeTunaSwap = 2;
+                        sendTryBumblebeeTunaSwapPacket = true;
+                    }
                 }
             }
 
@@ -158,9 +137,24 @@ namespace ReducedGrinding.Global
                 anglerQuests++;
                 sendAnglerQuestsPacket = true;
 
-                bool needBumblebeeTunaSwap = playerNeedsBumblebeeTuna(true);
                 Main.AnglerQuestSwap();
-                if (needBumblebeeTunaSwap)
+
+                if (tryBumblebeeTunaSwap == 2)
+                {
+                    tryBumblebeeTunaSwap = 0;
+                    sendTryBumblebeeTunaSwapPacket = true;
+
+                    string textBumblebeeTunaDecrease = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaDecrease").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+                    if (Main.netMode == NetmodeID.SinglePlayer)
+                    {
+                        Main.NewText(textBumblebeeTunaDecrease, 128, 255, 255);
+                    }
+                    else if (Main.netMode == NetmodeID.Server)
+                    {
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(128, 255, 255));
+                    }
+                }
+                else
                 {
                     tryToSwapToBumblebeeTuna();
                 }
@@ -198,9 +192,22 @@ namespace ReducedGrinding.Global
                     travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
                     sendTravelingMerchantDiceRollsPacket = true;
 
-                    bool needBumblebeeTunaSwap = playerNeedsBumblebeeTuna(false);
-                    //Main.AnglerQuestSwap();
-                    if (needBumblebeeTunaSwap)
+                    if (tryBumblebeeTunaSwap == 2)
+                    {
+                        tryBumblebeeTunaSwap = 0;
+                        sendTryBumblebeeTunaSwapPacket = true;
+
+                        string textBumblebeeTunaDecrease = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaDecrease").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+                        if (Main.netMode == NetmodeID.SinglePlayer)
+                        {
+                            Main.NewText(textBumblebeeTunaDecrease, 128, 255, 255);
+                        }
+                        else if (Main.netMode == NetmodeID.Server)
+                        {
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(128, 255, 255));
+                        }
+                    }
+                    else
                     {
                         tryToSwapToBumblebeeTuna();
                     }
@@ -255,6 +262,14 @@ namespace ReducedGrinding.Global
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
                     packet.Write(chatQuestFish);
+                    packet.Send();
+                }
+
+                if (sendTryBumblebeeTunaSwapPacket)
+                {
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.tryBumblebeeTunaSwap);
+                    packet.Write(tryBumblebeeTunaSwap);
                     packet.Send();
                 }
 

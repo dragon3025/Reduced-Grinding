@@ -14,6 +14,8 @@ Mods: {
 				CurrentQuest: Current Quest: [i:{0}].
 				NewQuestText: The Angler decided to give you another quest!
 				NewQuestTextWithIcon: The Angler decided to give you another quest: [i:{0}]!
+				BumblebeeTunaIncrease: There is an outbreak of Bumblebee Tuna; the Angler will be more likely to ask for it!
+				BumblebeeTunaDecrease: There rate Bumblebee Tuna has returned to normal.
 			}
 
 			StaffOfDifficulty: {
@@ -115,9 +117,12 @@ Mods: {
 						'''
 						Price of items are equal to the average amount of quest needed to receive. For
 						example: Fuzzy Carrot is rewarded for the 5th quest, so it cost 5; and Fin Wings
-						has a 1/70 chance of being rewarded so it cost 70. Angler Gear all cost 10 and
-						honey rewards cost 70. To appear in shop, Hardmode rewards require Hardmode and
-						honey rewards require defeating the Queen Bee.
+						has a 1/70 chance of being rewarded, so it cost 70.
+
+						Angler Gear all cost 10 and honey rewards cost 70.
+
+						To appear in shop, Hardmode rewards require Hardmode and honey rewards require
+						defeating the Queen Bee.
 						'''
 				}
 
@@ -567,13 +572,10 @@ Mods: {
 					Label: "[i:2451] Bumblebee Tuna Swap Chance"
 					Tooltip:
 						'''
-						This feature is only active after defeating the Corruption/Crimson Boss,
-						Skeletron, Queen Bee, or Wall of Flesh
-
-						Each vanilla Quest fish will have this chance of being changed to Bumblebee
-						Tuna, but only if a player needs it (for the 1st quest of each day, all player
-						inventories are checked; for all quest after the 1st, only questing player
-						inventories are checked).
+						This feature is activated every time the Queen Bee is defeated while the Angler
+						exists. While this feature is active, every vanilla Quest fish will have this
+						chance of being changed to Bumblebee Tuna. This feature is deactivated at the
+						end of a Bumblebee Tuna Quest.
 
 						Set to 0 to disable.
 						'''
