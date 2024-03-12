@@ -569,12 +569,12 @@ Mods: {
 						'''
 						This feature is only active after defeating the Corruption/Crimson Boss,
 						Skeletron, Queen Bee, or Wall of Flesh
-						
+
 						Each vanilla Quest fish will have this chance of being changed to Bumblebee
 						Tuna, but only if a player needs it (for the 1st quest of each day, all player
 						inventories are checked; for all quest after the 1st, only questing player
 						inventories are checked).
-						
+
 						Set to 0 to disable.
 						'''
 				}
