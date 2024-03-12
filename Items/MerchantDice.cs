@@ -59,11 +59,11 @@ namespace ReducedGrinding.Items
                     string reRollsLeft = Language.GetTextValue("Mods.ReducedGrinding.Misc.MerchantDice.ReRollsLeft").FormatWith(Global.Update.travelingMerchantDiceRolls);
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText(reRollsLeft, 255, 255, 0);
+                        Main.NewText(reRollsLeft, 255, 240, 20);
                     }
                     else
                     {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(reRollsLeft), new Color(255, 255, 0));
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(reRollsLeft), new Color(255, 240, 20));
 
                         ModPacket packet = Mod.GetPacket();
                         packet.Write((byte)ReducedGrinding.MessageType.travelingMerchantDiceRolls);
@@ -74,7 +74,7 @@ namespace ReducedGrinding.Items
             }
             else if (player.whoAmI == Main.myPlayer)
             {
-                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MerchantDice.NoMoreReRolls"), 255, 127, 127);
+                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MerchantDice.NoMoreReRolls"), 255, 240, 20);
             }
 
             return true;

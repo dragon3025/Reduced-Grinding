@@ -147,11 +147,11 @@ namespace ReducedGrinding.Global
                     string textBumblebeeTunaDecrease = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaDecrease").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText(textBumblebeeTunaDecrease, 128, 255, 255);
+                        Main.NewText(textBumblebeeTunaDecrease, 50, 255, 130);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(128, 255, 255));
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(50, 255, 130));
                     }
                 }
                 else
@@ -167,11 +167,11 @@ namespace ReducedGrinding.Global
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText(newQuestText, 128, 255, 255);
+                    Main.NewText(newQuestText, 50, 255, 130);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(newQuestText), new Color(128, 255, 255));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(newQuestText), new Color(50, 255, 130));
                 }
             }
             #endregion
@@ -200,11 +200,11 @@ namespace ReducedGrinding.Global
                         string textBumblebeeTunaDecrease = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaDecrease").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
                         if (Main.netMode == NetmodeID.SinglePlayer)
                         {
-                            Main.NewText(textBumblebeeTunaDecrease, 128, 255, 255);
+                            Main.NewText(textBumblebeeTunaDecrease, 50, 255, 130);
                         }
                         else if (Main.netMode == NetmodeID.Server)
                         {
-                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(128, 255, 255));
+                            ChatHelper.BroadcastChatMessage(NetworkText.FromKey(textBumblebeeTunaDecrease), new Color(50, 255, 130));
                         }
                     }
                     else
@@ -309,11 +309,11 @@ namespace ReducedGrinding.Global
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText(moonPhaseText, 255, 255, 0);
+                    Main.NewText(moonPhaseText, 255, 240, 20);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(moonPhaseText), new Color(255, 255, 0));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(moonPhaseText), new Color(255, 240, 20));
                 }
 
                 if (Main.netMode == NetmodeID.Server)
@@ -419,11 +419,11 @@ namespace ReducedGrinding.Global
                 {
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText(itemList, 50, 125);
+                        Main.NewText(itemList);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(itemList), new Color(50, 125, 255));
+                        ChatHelper.BroadcastChatMessage(NetworkText.FromKey(itemList), new Color(0, 0, 0));
                     }
                 }
 
@@ -444,11 +444,11 @@ namespace ReducedGrinding.Global
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText(chatFishText);
+                    Main.NewText(chatFishText, 255, 240, 20);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(chatFishText), new Color(255, 255, 255));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(chatFishText), new Color(255, 240, 20));
 
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
