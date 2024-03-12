@@ -562,13 +562,12 @@ Mods: {
 						''' */
 				}
 
-				ExtraQuestRewardChance: {
-					// Label: Extra Quest Minor Reward Chance
+				LowQualityRemovalChance: {
+					// Label: "[i:2354] Minor Reward Removal Chance"
 					/* Tooltip:
 						'''
-						Set to 1 to disable. Excluding the 1st quest for each
-						day: each vanilla potion, furniture, bait, and coin
-						items will be removed unless they pass this chance.
+						This excludes the player's first quest of the current day. If this chance
+						passes, vanilla potions and bait will be removed. Set to 0 to disable.
 						''' */
 				}
 
@@ -579,15 +578,27 @@ Mods: {
 						After defeating the Corruption/Crimson boss, each vanilla Quest fish will have
 						this chance of being changed to Bumblebee Tuna, but only if a player needs it
 						(for the first quest of the day, all player inventories are checked; for all
-						quest after the first, only questing player inventories are checked).
+						quest after the first, only questing player inventories are checked). Set to 0
+						to disable.
 						''' */
 				}
 
 				// Tooltip: ""
 
 				UnlimitedAnglerQuest: {
-					// Label: Infinite Angler Quest
-					// Tooltip: ""
+					// Label: Unlimited Angler Quests
+					// Tooltip: The angler will always have another quest instead of once per day
+				}
+
+				// Headers.ExtraQuestRewardModifying: Extra Quest Reward Modifying
+
+				CoinMultiplier: {
+					// Label: "[i:73] Coin Reward Multiplier"
+					/* Tooltip:
+						'''
+						This excludes the player's first quest of the current day. Coins rewarded will
+						be multiplied by this amount (using the total value). Set to 1 to disable.
+						''' */
 				}
 			}
 

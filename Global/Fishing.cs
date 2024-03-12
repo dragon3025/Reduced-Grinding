@@ -58,8 +58,7 @@ namespace ReducedGrinding.Global
                     }
                 }
 
-                float rewardChance = (float)Math.Pow(fishingConfig.Angler.ExtraQuestRewardChance, Update.anglerQuests);
-                if (Main.rand.Next() > rewardChance) INCORRECT + POSSIBLY CHANGE HOW IT WORKS
+                if (Main.rand.NextFloat() < fishingConfig.Angler.LowQualityRemovalChance)
                 {
                     removeReward(ItemID.FishingPotion);
                     removeReward(ItemID.SonarPotion);
@@ -68,25 +67,6 @@ namespace ReducedGrinding.Global
                     removeReward(ItemID.ApprenticeBait);
                     removeReward(ItemID.JourneymanBait);
                     removeReward(ItemID.MasterBait);
-
-                    removeReward(ItemID.BunnyfishTrophy);
-                    removeReward(ItemID.CompassRose);
-                    removeReward(ItemID.CouchGag);
-                    removeReward(ItemID.Crustography);
-                    removeReward(ItemID.Fangs);
-                    removeReward(ItemID.GoldfishTrophy);
-                    removeReward(ItemID.LifePreserver);
-                    removeReward(ItemID.NotSoLostInParadise);
-                    removeReward(ItemID.PillaginMePixels);
-                    removeReward(ItemID.SeaweedPlanter);
-                    removeReward(ItemID.SharkteethTrophy);
-                    removeReward(ItemID.ShipInABottle);
-                    removeReward(ItemID.SilentFish);
-                    removeReward(ItemID.SwordfishTrophy);
-                    removeReward(ItemID.TheDuke);
-                    removeReward(ItemID.TreasureMap);
-                    removeReward(ItemID.WallAnchor);
-                    removeReward(ItemID.WhatLurksBelow);
                 }
 
                 removeReward(ItemID.PlatinumCoin);
@@ -94,7 +74,7 @@ namespace ReducedGrinding.Global
                 removeReward(ItemID.SilverCoin);
                 removeReward(ItemID.CopperCoin);
 
-                coinRewardAmount /= (int)Math.Pow(2, Update.anglerQuests);
+                coinRewardAmount = (int)(coinRewardAmount * fishingConfig.Angler.CoinMultiplier);
 
                 if (coinRewardAmount > 1000000)
                 {

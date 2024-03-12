@@ -33,12 +33,6 @@ namespace ReducedGrinding.Configuration
             NonBossLoot = new DropDownBoxes.NonBossLoot() { };
             BossLoot = new DropDownBoxes.BossLoot() { };
         }
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
-        }
     }
 
     public class CFishingConfig : ModConfig
@@ -63,12 +57,6 @@ namespace ReducedGrinding.Configuration
         {
             Angler = new DropDownBoxes.Angler() { };
             BobberPotions = new DropDownBoxes.BobberPotions() { };
-        }
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
         }
     }
 
@@ -111,12 +99,6 @@ namespace ReducedGrinding.Configuration
         {
             StaffOfDifficulty = new DropDownBoxes.StaffOfDifficulty() { };
             BattlePotion = new DropDownBoxes.BattlePotion() { };
-        }
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
         }
     }
 
@@ -183,12 +165,6 @@ namespace ReducedGrinding.Configuration
             EnchantedSundial = new DropDownBoxes.EnchantedSundialConfig() { };
             TravelingMerchant = new DropDownBoxes.TravelingMerchant() { };
             UniversalPylon = new DropDownBoxes.UniversalPylon() { };
-        }
-
-        public override bool AcceptClientChanges(ModConfig pendingConfig, int whoAmI, ref string message)
-        {
-            message = "Can't change settings in a server.";
-            return false;
         }
     }
 }

@@ -10,19 +10,25 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 
         public bool AnglerChatsCurrentQuest;
 
-        [Increment(0.1f)]
-        public float ExtraQuestRewardChance;
-
         [Increment(0.01f)]
         public float BumblebeeTunaSwapChance;
+
+        [Header("ExtraQuestRewardModifying")]
+
+        [Increment(0.01f)]
+        public float LowQualityRemovalChance;
+
+        [Increment(0.01f)]
+        public float CoinMultiplier;
 
         public Angler()
         {
             UnlimitedAnglerQuest = true;
             AnglerTellsQuestCompleted = true;
             AnglerChatsCurrentQuest = true;
-            ExtraQuestRewardChance = 0.5f;
             BumblebeeTunaSwapChance = 0.1f;
+            LowQualityRemovalChance = 0.9f;
+            CoinMultiplier = 0.1f;
         }
 
         public override bool Equals(object obj)
@@ -31,8 +37,9 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                 return UnlimitedAnglerQuest == other.UnlimitedAnglerQuest &&
                     AnglerTellsQuestCompleted == other.AnglerTellsQuestCompleted &&
                     AnglerChatsCurrentQuest == other.AnglerChatsCurrentQuest &&
-                    ExtraQuestRewardChance == other.ExtraQuestRewardChance &&
-                    BumblebeeTunaSwapChance == other.BumblebeeTunaSwapChance;
+                    BumblebeeTunaSwapChance == other.BumblebeeTunaSwapChance &&
+                    LowQualityRemovalChance == other.LowQualityRemovalChance &&
+                    CoinMultiplier == other.CoinMultiplier;
             return base.Equals(obj);
         }
 
@@ -43,8 +50,9 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                 UnlimitedAnglerQuest,
                 AnglerTellsQuestCompleted,
                 AnglerChatsCurrentQuest,
-                ExtraQuestRewardChance,
-                BumblebeeTunaSwapChance
+                BumblebeeTunaSwapChance,
+                LowQualityRemovalChance,
+                CoinMultiplier
             }.GetHashCode();
         }
     }
