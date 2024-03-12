@@ -4,25 +4,25 @@ Open Source at GitHub. Report issues there or at home page.
 
 This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at terrariamods.wiki.gg):
 
-- Increased item chances for a few enemy loot drops.
-- Item values scale to new drop rates by default.
-- Unlimited Angler Quest per day.
-- Greater + Super Battle Potion to increase enemy spawns.
-- Items that activate Christmas and Halloween for the current day. By default, crafting requires their matching season.
-- Item for canceling invasions.
-- Recipe for Universal Pylon. Disable or Customize.
-- Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with Terragrim (chance can be customized or disabled).
+[*]Increased item chances for a few enemy loot drops.
+[*]Item values scale to new drop rates by default.
+[*]Unlimited Angler Quest per day.
+[*]Greater + Super Battle Potion to increase enemy spawns.
+[*]Items that activate Christmas and Halloween for the current day. By default, crafting requires their matching season.
+[*]Item for canceling invasions.
+[*]Recipe for Universal Pylon. Disable or Customize.
+[*]Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with Terragrim (chance can be customized or disabled).
 
 [h1]OFF BY DEFAULT[/h1]
 
-- Change Universal Pylon Bestiary requirement.
-- Configuraitons for changing enemy loot drop chances.
-- Adjust Bed + Enchanted Dial time rate and cooldown.
-- Potions for increasing fishing bobber amount.
-- Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
-- Staff of Difficulty. Changes world difficulty mode.
-- Moon Watch to advance Moon Phase.
-- Witch Doctor sells Chlorophyte after Plantera.
+[*]Change Universal Pylon Bestiary requirement.
+[*]Configuraitons for changing enemy loot drop chances.
+[*]Adjust Bed + Enchanted Dial time rate and cooldown.
+[*]Potions for increasing fishing bobber amount.
+[*]Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
+[*]Staff of Difficulty. Changes world difficulty mode.
+[*]Moon Watch to advance Moon Phase.
+[*]Witch Doctor sells Chlorophyte after Plantera.
 
 [h1]LINKS[/h1]
 [url=https://github.com/dragon3025/Reduced-Grinding]Open Source Code on Github[/url]
