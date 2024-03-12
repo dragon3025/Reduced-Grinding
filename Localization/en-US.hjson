@@ -109,36 +109,6 @@ Mods: {
 					Tooltip: ""
 				}
 
-				QuestCountBeforeEye: {
-					Label: Before Eye of Cthulhu
-					Tooltip: ""
-				}
-
-				QuestCountAfterEye: {
-					Label: After Eye of Cthulhu
-					Tooltip: ""
-				}
-
-				QuestCountAfterInfectionBoss: {
-					Label: After Corruption/Crimson Boss
-					Tooltip: ""
-				}
-
-				QuestCountAfterSkeletron: {
-					Label: After Skeletron
-					Tooltip: ""
-				}
-
-				QuestCountHardmode: {
-					Label: Hardmode Before Plantera
-					Tooltip: ""
-				}
-
-				QuestCountAfterPlantera: {
-					Label: Hardmode After Plantera
-					Tooltip: ""
-				}
-
 				FishCoinsRewardedForQuest: {
 					Label: "[i:ReducedGrinding/FishCoin] Fish Coins Rewarded"
 					Tooltip:
@@ -597,11 +567,15 @@ Mods: {
 					Label: "[i:2451] Bumblebee Tuna Swap Chance"
 					Tooltip:
 						'''
-						After defeating the Corruption/Crimson boss, each vanilla Quest fish will have
-						this chance of being changed to Bumblebee Tuna, but only if a player needs it
-						(for the first quest of the day, all player inventories are checked; for all
-						quest after the first, only questing player inventories are checked). Set to 0
-						to disable.
+						This feature is only active after defeating the Corruption/Crimson Boss,
+						Skeletron, Queen Bee, or Wall of Flesh
+						
+						Each vanilla Quest fish will have this chance of being changed to Bumblebee
+						Tuna, but only if a player needs it (for the 1st quest of each day, all player
+						inventories are checked; for all quest after the 1st, only questing player
+						inventories are checked).
+						
+						Set to 0 to disable.
 						'''
 				}
 

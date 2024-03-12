@@ -111,36 +111,6 @@ Mods: {
 					Tooltip: ""
 				}
 
-				QuestCountBeforeEye: {
-					Label: Antes do Olho de Cthulhu
-					Tooltip: ""
-				}
-
-				QuestCountAfterEye: {
-					Label: Depois do Olho de Cthulhu
-					Tooltip: ""
-				}
-
-				QuestCountAfterInfectionBoss: {
-					Label: Depois dos chefes da corrupção e do carmim
-					Tooltip: ""
-				}
-
-				QuestCountAfterSkeletron: {
-					Label: Depois do Esqueletron
-					Tooltip: ""
-				}
-
-				QuestCountHardmode: {
-					Label: Hardmode antes da Plantera
-					Tooltip: ""
-				}
-
-				QuestCountAfterPlantera: {
-					Label: Hardmode depois da Plantera
-					Tooltip: ""
-				}
-
 				FishCoinsRewardedForQuest: {
 					Label: "[i:ReducedGrinding/FishCoin] Recompensa da Moéda de Peixe"
 					Tooltip: ""
