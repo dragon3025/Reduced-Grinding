@@ -89,23 +89,23 @@ namespace ReducedGrinding.Global
             bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (!Main.player[i].active)
+                Player player = Main.player[i];
+
+                if (!player.active)
                 {
                     continue;
                 }
 
-                if (Main.player[i].HasItem(Main.anglerQuestItemNetIDs[Main.anglerQuest]))
+                if (Main.anglerWhoFinishedToday.Contains(player.name))
+                {
+                    continue;
+                }
+
+                if (player.GetModPlayer<GlobalPlayer>().hasQuestFish > 0)
                 {
                     stillQuesting = true;
                     break;
                 }
-
-                // For some reason testing if player is holding the quest item isn't working in a server.
-                //if (Main.player[i].inventory[58].type == Main.anglerQuestItemNetIDs[Main.anglerQuest])
-                //{
-                //    stillQuesting = true;
-                //    break;
-                //}
             }
 
             bool sendTryBumblebeeTunaSwapPacket = false;
