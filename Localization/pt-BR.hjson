@@ -15,7 +15,7 @@ Mods: {
 				NewQuestText: O pescador decidiu dar outra missão de busca à você!
 				NewQuestTextWithIcon: O pescador decidiu dar outra missão de busca à você: [i:{0}]!
 				BumblebeeTunaIncrease: Parece que há um surto de Atum Abelha aqui, provavelmente o pescador ira pedir por isso!
-				BumblebeeTunaDecrease: A taxa de Atum Abelha voltou ao normal!
+				BumblebeeTu
 			}
 
 			StaffOfDifficulty: {
@@ -555,7 +555,6 @@ Mods: {
 						Quando este recurso estiver ativado cada missão de busca tera uma
 						chance de serem alterados para o Atum Abelha.
 						Este recurso é desativado no final de uma missão do Atum Abelha.
-
 						Defina 0 para desativar.
 						'''
 				}
