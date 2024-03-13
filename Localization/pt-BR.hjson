@@ -7,543 +7,546 @@
 # For more info on localization, see https://github.com/tModLoader/tModLoader/wiki/Localization
 
 Mods: {
-	ReducedGrinding: {
-		Misc: {
-			Fishing: {
-				// QuestFinishedText: You've given me {0} fish.
-				// CurrentQuest: Current Quest: [i:{0}].
-				// NewQuestText: The Angler decided to give you another quest!
-				// NewQuestTextWithIcon: The Angler decided to give you another quest: [i:{0}]!
+    ReducedGrinding: {
+        Misc: {
+            Fishing: {
+                QuestFinishedText: Você me deu {0} Peixes.
+                CurrentQuest: Missão Atual: [i:{0}].
+                NewQuestText: O pescador decidiu dar outra missão de busca à você!
+                NewQuestTextWithIcon: O pescador decidiu dar outra missão de busca à você: [i:{0}]!
 				// BumblebeeTunaIncrease: There is an outbreak of Bumblebee Tuna; the Angler will be more likely to ask for it!
 				// BumblebeeTunaDecrease: There rate Bumblebee Tuna has returned to normal.
-			}
-
-			StaffOfDifficulty: {
-				// Expert: World difficulty mode is now Expert!
-				// Master: World difficulty mode is now Master!
-				// Normal: World difficulty mode is now Normal!
-			}
-
-			MerchantDice: {
-				// ReRollsLeft: Traveling Merchant shop re-rolled! Re-rolls left: {0}.
-				// NoMoreReRolls: You have no more re-rolls left.
-			}
-
-			MoonWatch: {
-				// BloodMoon: The Moon Watch doesn't work during the Blood Moon.
-				// MoonPhase: Moon phase is now {0}
-			}
-
-			// WorldPeaceStandard: The invasion left!
-
-			WorldGeneration: {
-				// MissingTreeLoot: Adding missing tree loot
-				// MissingShroomLoot: Adding missing shroom loot
-				// MissingMiscLoot: Adding other missing loot
-			}
-		}
-
-		Configs: {
-			AEnemyLootConfig: {
-				DisplayName: Coletáveis dos Inimigos
-
-				Headers: {
-					Main:
-						'''
-						Você pode mudar a taxa de queda dos itens usando a seguinte configuração. Chance = 1 / configuration_setting.
-						Mude para 0 para usar o valor padrão do jogo da taxa de queda vanilla.
-						'''
-					NonVanilla: Não Vanilla
-				}
-
-				SlimeStaffFromSlimeKing: {
-					Label: "[i:1309] Cajado da Geleia do Rei Geleia"
-					Tooltip: ""
-				}
-
-				TrufflewormFromDukeFishron: {
-					Label: "[i:2673] Verme da Trufa do Peixe Dragão"
-					Tooltip: ""
-				}
-
-				NonBossLoot: {
-					Label: Coletáveis que não são dos Chefes
-					Tooltip: ""
-				}
-
-				BossLoot: {
-					Label: Coletáveis dos Chefes
-					Tooltip: ""
-				}
-			}
-
-			CFishingConfig: {
-				DisplayName: Pescaria
-				Headers.FishCoin:
-					'''
-					Moéda do Peixe
-
-					Recompensa quando terminar uma missão do pescador. 
-					Usado para comprar recompensas da missão do NPC pirata.
-					Mude para 0 para desativar as recompensas da missão aparecendo na loja do pirata.
-					'''
-
-				AnglerTellsQuestCompleted: {
-					Label: Quando o Pescador falar missão completada
-					Tooltip: ""
-				}
-
-				Angler: {
-					Label: Pescador
-					Tooltip: ""
-				}
-
-				MultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				GreaterMultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Grande Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				SuperMultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				FishCoinsRewardedForQuest: {
-					Label: "[i:ReducedGrinding/FishCoin] Recompensa da Moéda de Peixe"
-					Tooltip: ""
-				}
-
-				BobberPotions: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Poções do Anzol"
-				}
-			}
-
-			HOtherModdedItemsConfig: {
-				DisplayName: Outros itens modificados
-
-				MoonWatch: {
-					Label: "[i:ReducedGrinding/MoonWatch] Relógio da Lua"
-					Tooltip:
-						'''
-						Avanços das fazes da Lua.
-						0: Desativa receitas
-						1: Requer uma Barra de Ouro ou Platina
-						2: Requer uma Barra de Demonita ou Carminita
-						3: Requer uma Barra da Pedra Infernal
-						'''
-				}
-
-				SlimeTrophy: {
-					Label: "[i:ReducedGrinding/SlimeTrophy] Troféu da Geleia"
-					Tooltip:
-						'''
-						A chance de você obter esse troféu é a mesma do cajado da geleia no jogo padrão.
-						O cajado da geleia às vezes é visto como um item de troféu, então este é um item alternativo ao troféu
-						caso você defina as taxas de queda mais baixas para o cajado da geleia.
-						'''
-				}
-
-				PlanteraSapFromPlantera: {
-					Label: "[i:ReducedGrinding/PlanteraSap] Drop do Invocador da Plantera pela Plantera"
-					Tooltip: Item de Invocação da Plantera. Chance = 1 / configuration_setting. Definir 0 para desativar.
-				}
-
-				HolidaySummons: {
-					Label: "[i:ReducedGrinding/NicePresent] Belo Presente e [i:ReducedGrinding/PumpkinPieMedallion] Medalhão da Torta de Abóbora"
-					Tooltip:
-						'''
-						Ativa os eventos, Natalinos / Dia das Bruxas.
-						0: Desativa
-						1: Ativa
-						2: Ativa + requer a temporada correspondente para criar.
-						'''
-				}
-
-				StaffOfDifficultyNormal: {
-					Label: Ativado muda para o Clássico
-					Tooltip: ""
-				}
-
-				StaffOfDifficultyExpert: {
-					Label: Ativado muda para o Perito
-					Tooltip: ""
-				}
-
-				StaffOfDifficultyMaster: {
-					Label: Ativado muda para o Mestre
-					Tooltip: ""
-				}
-
-				BestiaryTrophy: {
-					Label: "[i:ReducedGrinding/BestiaryTrophy] Troféu do Bestiário"
-					Tooltip: ""
-				}
-
-				WorldPeaceStandard: {
-					Label: "[i:ReducedGrinding/WorldPeaceStandard] Peça da Paz Mundial"
-					Tooltip: Cancela os eventos de invasões
-				}
-
-				StaffOfDifficulty: {
-					Label: "[i:ReducedGrinding/StaffOfDifficulty] Cajado da Dificuldade"
-					Tooltip: Muda a dificuldade do mundo
-				}
-
-				BattlePotion: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Poções da Batalha"
-					Tooltip: ""
-				}
-			}
-
-			IOtherConfig: {
-				DisplayName: Outros
-
-				Headers: {
-					Crafting: Criação
-					Other: Outros
-				}
-
-				CraftableGoldCritters: {
-					Label: Permitir a criação de [i:2889] Criaturas Douradas
-					Tooltip: As receitas usam 10 moedas de ouro para prevenir a exploração da receita por dinheiro.
-				}
-
-				CraftableRareChests: {
-					Label: Fabricação de baús raros
-					Tooltip:
-						'''
-						Isto exclui o baú do bioma do calabouço que pode ser obtido através do bioma cintilante.
-						Quando ativado o baú das sombras será criado jogando uma chave das sombras no bioma cintilante.
-						'''
-				}
-
-				ShimmerRoyalStatues: {
-					Label: "[i:476] Estátua do rei pode ser trocada pela [i:477] Estátua da Rainha"
-					Tooltip: Se for jogada no bioma brilhante.
-				}
-
-				SleepRateMultiplier: {
-					Label: Multiplicador da taxa de tempo do sono
-					Tooltip:
-						'''
-						No vanilla dormir mutiplica a taxa do tempo por 5 
-						posteriormente isto vai ser mutiplicado por esta quantidade.
-						'''
-				}
-
-				AdjustItemValuesForDropIncreases: {
-					Label: Ajuste de Valores
-					Tooltip: Se ativado, este mod vai ajustar os valores dos itens se sua taxa de loot for alterada.
-				}
-
-				SkeletonMerchantIgnoresMoonphases: {
-					Label: O Comerciante Esqueleto ignora as fazes da Lua
-					Tooltip:
-						'''
-						Isto inclui itens que são obtidos apenas pelo Comerciante Esqueleto
-						ou em baús de madeira na superfície.
-						'''
-				}
-
-				AllSpawningRegularMimics: {
-					Label: Permitir a desova regular dos mímicos
-					Tooltip:
-						'''
-						Se isso for ativado, colocara nada além de uma chave da luz e da noite em um baú para desovar um mímico regular.
-						Fazer isso em um bioma de neve ira desovar um mímico de gelo.
-						'''
-				}
-
-				WitchDoctorSellsChlorophyteOre: {
-					Label: Médico Bruxo pode vender [i:947] Barras de Clorófita
-					Tooltip: Ele apenas vendera na selva depois que a Plantera for derrotada.
-				}
-
-				TravelingMerchant: {
-					Label: Caixeiro Viajante
-					Tooltip: ""
-				}
-
-				EnchantedSundial: {
-					Label: "[i:3064] Relógio Solar Encantado"
-					Tooltip: ""
-				}
-
-				UniversalPylon: {
-					Label: "[i:4951] Pilar Universal"
-					Tooltip: ""
-				}
-
-				WorldGeneration: {
-					Label: Geração de Mundo
-					Tooltip: ""
-				}
-			}
-
-			WorldGeneration: {
-				Tooltip: ""
-
-				TerragrimChestChance: {
-					Label: "[i:4144] Chance de obter a Terragrim em um baú"
-					Tooltip:
-						'''
-						Os baús na camada da caverna terão uma chance de serem gerados com uma Terragrim.
-						Chance = 1 / configuration_setting. Defina 0 para desativar.
-						'''
-				}
-
-				AddMissingTreeLoot: {
-					Label: "[i:831] Adiciona coletáveis perdidos em baús de madeira viva"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Vagoneta da Joaninha
-						- Vagoneta de Girassol
-						'''
-				}
-
-				AddMissingShroomLoot: {
-					Label: "[i:2544] Adiciona coletáveis perdidos em baús de cogumelo"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Vagoneta de Cogumelo
-						- Roupa de Cogumelo conjunto decorativo
-						'''
-				}
-
-				AddMissingPyramidLoot: {
-					Label: "[i:934] Adiciona coletáveis perdidos no baú da pirâmide"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Tapete Mágico
-						- Roupa do Faraó conjunto decorativo
-						'''
-				}
-			}
-
-			StaffOfDifficulty: {
-				Tooltip: ""
-				Headers.StaffOfDifficulty:
-					'''
-					Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
-					Por ser um item criativo, isto é simplesmente criado usando um bloco de terra para acesso e uso instantâneo.
-					Desative tudo para desativar a receita de criação deste item.
-					'''
-
-				Normal: {
-					Label: Clássico
-					Tooltip: ""
-				}
-
-				Expert: {
-					Label: Perito
-					Tooltip: ""
-				}
-
-				Master: {
-					Label: Mestre
-					Tooltip: ""
-				}
-			}
-
-			BattlePotion: {
-				Tooltip: ""
-				Headers.BattlePotions: Se você presenciar lag, tente diminuir o máximo de spawn primeiro para a grande e a super poção da batalha, definir o máximo de geradores e a taxa de spawn para 1 vai desativar sua receita..
-
-				VanillaMax: {
-					Label: "[i:300] Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: Vanilla padrão: 2
-				}
-
-				VanillaSpawnRate: {
-					Label: "[i:300] Poção da batalha multiplica a taxa de desova"
-					Tooltip: Vanilla padrão: 2
-				}
-
-				GreaterMax: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: ""
-				}
-
-				GreaterSpawnRate: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica a taxa de desovas"
-					Tooltip: ""
-				}
-
-				SuperMax: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: ""
-				}
-
-				SuperSpawnRate: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica a taxa de desovas"
-					Tooltip: ""
-				}
-			}
-
-			TravelingMerchant: {
-				Tooltip: ""
-
-				TravelingMerchantChatsItems: {
-					Label: Caixeiro Viajante anunciando itens na chegada
-					Tooltip:
-						'''
-						O chat ira mostrar todos os itens da loja 
-						(semelhante a quando um jogador clica em um item no inventário quando o chat está aberto)
-						'''
-				}
-
-				Headers.MerchantDice:
-					'''
-					[i:ReducedGrinding/MerchantDice] Dados do Caixeiro.
-
-					Por uma quantidade limitada de vezes por dia, você pode usá-lo para renovar a loja do Caixeiro Viajante.
-					O Caixeiro Viajante só venderá se isto for definido como maior do que 0.
-					'''
-
-				TravelingMerchantDiceUsesBeforeHardmode: {
-					Label: Usos diários antes do hardmode
-					Tooltip: ""
-				}
-
-				TravelingMerchantDiceUsesHardmode: {
-					Label: Usos diários no hardmode
-					Tooltip: ""
-				}
-
-				TravelingMerchantDiceUsesAfterPlantera: {
-					Label: Usos diários depois da Plantera
-					Tooltip: ""
-				}
-			}
-
-			EnchantedSundialConfig: {
-				Tooltip: ""
-
-				CrateEnchantedSundial: {
-					Label: "[i:3064] Chance de dropar o Relógio Solar Encantado"
-					Tooltip:
-						'''
-						Mude a chance de obter o Relógio Solar Encantado na caixa que dropa ele.
-						Chance = 1 / configuration_setting. Mude para 0 para usar a chance padrão.
-						O denominador é multiplicado por 3 para Mithril e 10 para Madeira de Pérola
-						'''
-				}
-
-				EnchantedDialMultiplier: {
-					Label: O tempo da taxa do multiplicador do encantamento diário
-					Tooltip:
-						'''
-						No jogo normal o encantamento diário multiplica a taxa do tempo por 60
-						depois isto será multiplicado por esta quantidade.
-						'''
-				}
-
-				EnchantedDialCooldown: {
-					Label: Recarga do encantamento diário
-					Tooltip: Padrão do Jogo: 7
-				}
-
-				PreHardmodeSundials: {
-					// Label: "[i:2336] Pre-Hardmode Sundials"
-					/* Tooltip:
-						'''
-						If enabled, all Vanilla pre-Hardmode Crates will have the
-						same chance of dropping Enchanted Sundial that their
-						Hardmode variant has
-						''' */
-				}
-			}
-
-			UniversalPylon: {
-				Tooltip: ""
-
-				UniversalPylonBestiaryCompletionRate: {
-					Label: Taxa de conclusão requerida pela Zoologista em sua loja
-					Tooltip: Padrão do Jogo: 1
-				}
-
-				Headers.CraftableUniversalPylon: Criação. A receita será desativada se todas as configurações de ingredientes estiverem desativadas.
-
-				CraftWithPylons: {
-					Label: Criar com [i:4876] Pilões
-					Tooltip: ""
-				}
-
-				CraftWithPreMechSouls: {
-					Label: Criar com [i:575] pre-mecânicos alma dos chefes
-					Tooltip: Alma da Luz, Noite e Voo
-				}
-
-				CraftWithMechSouls: {
-					Label: Criar com [i:547] alma dos chefes mecânicos
-					Tooltip: Alma da Força, Medo e Visão
-				}
-
-				CraftWithFragments: {
-					Label: Criar com [i:3457] Fragmentos Lunares
-					Tooltip: ""
-				}
-
-				CraftAtCrystalBall: {
-					Label: Criar na [i:487] Bola de Cristal em vez da [i:398] Oficina do Inventor
-					Tooltip: ""
-				}
-			}
-
-			BobberPotions: {
-				SuperMultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Bônus da Super Multi Poção do Anzol"
-				}
-
-				GreaterMultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Bônus da Grande Multi Poção do Anzol"
-				}
-
-				MultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Bônus da Multi Poção do Anzol"
-				}
-
-				Headers.MultiBobberPotions: Essas poções expandem a sua capacidade de pescaria. Defina a quantidade que cada poção pode fornecer. Defina como 0 para desativar sua receita.
-				Tooltip: Use essas poções para aumentar a coleta de itens durante a pescaria.
-			}
-
-			Angler: {
-				AnglerTellsQuestCompleted: {
-					Label: O Pescador diz a quantidade de missões concluídas
-					Tooltip: ""
-				}
-
-				AnglerChatsCurrentQuest: {
-					// Label: Clicking Quest Will Announce The Current Quest Item
-					/* Tooltip:
-						'''
-						This includes an icon, which displays the name and catch
-						location when you hover your mouse over it.
-						''' */
-				}
-
-				LowQualityRemovalChance: {
-					// Label: "[i:2354] Minor Reward Removal Chance"
-					/* Tooltip:
-						'''
-						This excludes the player's first quest of the current day. If this chance
-						passes, vanilla potions and bait will be removed. Set to 0 to disable.
-						''' */
-				}
-
-				BumblebeeTunaSwapChance: {
+            }
+
+            StaffOfDifficulty: {
+                Expert: A dificuldade do mundo agora é Perito!
+                Master: A dificuldade do mundo agora é Mestre!
+                Normal: A dificuldade do mundo agora é Clássico!
+            }
+
+            MerchantDice: {
+                ReRollsLeft: Revoção da loja do Caixeiro Viajante! Renovação restante!: {0}.
+                NoMoreReRolls: Você não tem mais renovações restantes.
+            }
+
+            MoonWatch: {
+                BloodMoon: O Relógio da Lua não ira funcionar durante a Lua de Sangue.
+                MoonPhase: A faze da Lua agora é {0}
+            }
+
+            WorldPeaceStandard: A invasão restante!
+
+            WorldGeneration: {
+                MissingTreeLoot: Adicionar itens perdidos nas árvores
+                MissingShroomLoot: Adicionar itens perdidos do bioma de cogumelo
+                MissingMiscLoot: Adicionar outros itens perdidos
+            }
+        }
+
+        Configs: {
+            AEnemyLootConfig: {
+                DisplayName: Coletáveis dos Inimigos
+
+                Headers: {
+                    Main:
+                        '''
+                        Você pode mudar a taxa de queda dos itens usando a seguinte configuração. Chance = 1 / configuration_setting.
+                        Mude para 0 para usar o valor padrão do jogo da taxa de queda vanilla.
+                        '''
+                    NonVanilla: Não Vanilla
+                }
+
+                SlimeStaffFromSlimeKing: {
+                    Label: "[i:1309] Cajado da Geleia do Rei Geleia"
+                    Tooltip: ""
+                }
+
+                TrufflewormFromDukeFishron: {
+                    Label: "[i:2673] Verme da Trufa do Peixe Dragão"
+                    Tooltip: ""
+                }
+
+                NonBossLoot: {
+                    Label: Coletáveis que não são dos Chefes
+                    Tooltip: ""
+                }
+
+                BossLoot: {
+                    Label: Coletáveis dos Chefes
+                    Tooltip: ""
+                }
+            }
+
+            CFishingConfig: {
+                DisplayName: Pescaria
+                Headers.FishCoin:
+                    '''
+                    Moéda do Peixe
+
+                    Recompensa quando terminar uma missão do pescador.
+                    Usado para comprar recompensas da missão do NPC pirata.
+                    Mude para 0 para desativar as recompensas da missão aparecendo na loja do pirata.
+                    '''
+
+                AnglerTellsQuestCompleted: {
+                    Label: Quando o Pescador falar missão completada
+                    Tooltip: ""
+                }
+
+                Angler: {
+                    Label: Pescador
+                    Tooltip: ""
+                }
+
+                MultiBobberPotionBonus: {
+                    Label: "[i:ReducedGrinding/MultiBobberPotion] Multi Poção do Anzol"
+                    Tooltip: ""
+                }
+
+                GreaterMultiBobberPotionBonus: {
+                    Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Grande Multi Poção do Anzol"
+                    Tooltip: ""
+                }
+
+                SuperMultiBobberPotionBonus: {
+                    Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi Poção do Anzol"
+                    Tooltip: ""
+                }
+
+                FishCoinsRewardedForQuest: {
+                    Label: "[i:ReducedGrinding/FishCoin] Recompensa da Moéda de Peixe"
+                    Tooltip: ""
+                }
+
+                BobberPotions: {
+                    Tooltip: ""
+                    Label: "[i:ReducedGrinding/MultiBobberPotion] Poções do Anzol"
+                }
+            }
+
+            HOtherModdedItemsConfig: {
+                DisplayName: Outros itens modificados
+
+                MoonWatch: {
+                    Label: "[i:ReducedGrinding/MoonWatch] Relógio da Lua"
+                    Tooltip:
+                        '''
+                        Avanços das fazes da Lua.
+                        0: Desativa receitas
+                        1: Requer uma Barra de Ouro ou Platina
+                        2: Requer uma Barra de Demonita ou Carminita
+                        3: Requer uma Barra da Pedra Infernal
+                        '''
+                }
+
+                SlimeTrophy: {
+                    Label: "[i:ReducedGrinding/SlimeTrophy] Troféu da Geleia"
+                    Tooltip:
+                        '''
+                        A chance de você obter esse troféu é a mesma do cajado da geleia no jogo padrão.
+                        O cajado da geleia às vezes é visto como um item de troféu, então este é um item alternativo ao troféu
+                        caso você defina as taxas de queda mais baixas para o cajado da geleia.
+                        '''
+                }
+
+                PlanteraSapFromPlantera: {
+                    Label: "[i:ReducedGrinding/PlanteraSap] Drop do Invocador da Plantera pela Plantera"
+                    Tooltip: Item de Invocação da Plantera. Chance = 1 / configuration_setting. Definir 0 para desativar.
+                }
+
+                HolidaySummons: {
+                    Label: "[i:ReducedGrinding/NicePresent] Belo Presente e [i:ReducedGrinding/PumpkinPieMedallion] Medalhão da Torta de Abóbora"
+                    Tooltip:
+                        '''
+                        Ativa os eventos, Natalinos / Dia das Bruxas.
+                        0: Desativa
+                        1: Ativa
+                        2: Ativa + requer a temporada correspondente para criar.
+                        '''
+                }
+
+                StaffOfDifficultyNormal: {
+                    Label: Ativado muda para o Clássico
+                    Tooltip: ""
+                }
+
+                StaffOfDifficultyExpert: {
+                    Label: Ativado muda para o Perito
+                    Tooltip: ""
+                }
+
+                StaffOfDifficultyMaster: {
+                    Label: Ativado muda para o Mestre
+                    Tooltip: ""
+                }
+
+                BestiaryTrophy: {
+                    Label: "[i:ReducedGrinding/BestiaryTrophy] Troféu do Bestiário"
+                    Tooltip: ""
+                }
+
+                WorldPeaceStandard: {
+                    Label: "[i:ReducedGrinding/WorldPeaceStandard] Peça da Paz Mundial"
+                    Tooltip: Cancela os eventos de invasões
+                }
+
+                StaffOfDifficulty: {
+                    Label: "[i:ReducedGrinding/StaffOfDifficulty] Cajado da Dificuldade"
+                    Tooltip: Muda a dificuldade do mundo
+                }
+
+                BattlePotion: {
+                    Label: "[i:ReducedGrinding/SuperBattlePotion] Poções da Batalha"
+                    Tooltip: ""
+                }
+            }
+
+            IOtherConfig: {
+                DisplayName: Outros
+
+                Headers: {
+                    Crafting: Criação
+                    Other: Outros
+                }
+
+                CraftableGoldCritters: {
+                    Label: Permitir a criação de [i:2889] Criaturas Douradas
+                    Tooltip: As receitas usam 10 moedas de ouro para prevenir a exploração da receita por dinheiro.
+                }
+
+                CraftableRareChests: {
+                    Label: Fabricação de baús raros
+                    Tooltip:
+                        '''
+                        Isto exclui o baú do bioma do calabouço que pode ser obtido através do bioma cintilante.
+                        Quando ativado o baú das sombras será criado jogando uma chave das sombras no bioma cintilante.
+                        '''
+                }
+
+                ShimmerRoyalStatues: {
+                    Label: "[i:476] Estátua do rei pode ser trocada pela [i:477] Estátua da Rainha"
+                    Tooltip: Se for jogada no bioma brilhante.
+                }
+
+                SleepRateMultiplier: {
+                    Label: Multiplicador da taxa de tempo do sono
+                    Tooltip:
+                        '''
+                        No vanilla dormir mutiplica a taxa do tempo por 5
+                        posteriormente isto vai ser mutiplicado por esta quantidade.
+                        '''
+                }
+
+                AdjustItemValuesForDropIncreases: {
+                    Label: Ajuste de Valores
+                    Tooltip: Se ativado, este mod vai ajustar os valores dos itens se sua taxa de loot for alterada.
+                }
+
+                SkeletonMerchantIgnoresMoonphases: {
+                    Label: O Comerciante Esqueleto ignora as fazes da Lua
+                    Tooltip:
+                        '''
+                        Isto inclui itens que são obtidos apenas pelo Comerciante Esqueleto
+                        ou em baús de madeira na superfície.
+                        '''
+                }
+
+                AllSpawningRegularMimics: {
+                    Label: Permitir a desova regular dos mímicos
+                    Tooltip:
+                        '''
+                        Se isso for ativado, colocara nada além de uma chave da luz e da noite em um baú para desovar um mímico regular.
+                        Fazer isso em um bioma de neve ira desovar um mímico de gelo.
+                        '''
+                }
+
+                WitchDoctorSellsChlorophyteOre: {
+                    Label: Médico Bruxo pode vender [i:947] Barras de Clorófita
+                    Tooltip: Ele apenas vendera na selva depois que a Plantera for derrotada.
+                }
+
+                TravelingMerchant: {
+                    Label: Caixeiro Viajante
+                    Tooltip: ""
+                }
+
+                EnchantedSundial: {
+                    Label: "[i:3064] Relógio Solar Encantado"
+                    Tooltip: ""
+                }
+
+                UniversalPylon: {
+                    Label: "[i:4951] Pilar Universal"
+                    Tooltip: ""
+                }
+
+                WorldGeneration: {
+                    Label: Geração de Mundo
+                    Tooltip: ""
+                }
+            }
+
+            WorldGeneration: {
+                Tooltip: ""
+
+                TerragrimChestChance: {
+                    Label: "[i:4144] Chance de obter a Terragrim em um baú"
+                    Tooltip:
+                        '''
+                        Os baús na camada da caverna terão uma chance de serem gerados com uma Terragrim.
+                        Chance = 1 / configuration_setting. Defina 0 para desativar.
+                        '''
+                }
+
+                AddMissingTreeLoot: {
+                    Label: "[i:831] Adiciona coletáveis perdidos em baús de madeira viva"
+                    Tooltip:
+                        '''
+                        Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
+                        - Vagoneta da Joaninha
+                        - Vagoneta de Girassol
+                        '''
+                }
+
+                AddMissingShroomLoot: {
+                    Label: "[i:2544] Adiciona coletáveis perdidos em baús de cogumelo"
+                    Tooltip:
+                        '''
+                        Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
+                        - Vagoneta de Cogumelo
+                        - Roupa de Cogumelo conjunto decorativo
+                        '''
+                }
+
+                AddMissingPyramidLoot: {
+                    Label: "[i:934] Adiciona coletáveis perdidos no baú da pirâmide"
+                    Tooltip:
+                        '''
+                        Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
+                        - Tapete Mágico
+                        - Roupa do Faraó conjunto decorativo
+                        '''
+                }
+            }
+
+            StaffOfDifficulty: {
+                Tooltip: ""
+                Headers.StaffOfDifficulty:
+                    '''
+                    Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
+                    Por ser um item criativo, isto é simplesmente criado usando um bloco de terra para acesso e uso instantâneo.
+                    Desative tudo para desativar a receita de criação deste item.
+                    '''
+
+                Normal: {
+                    Label: Clássico
+                    Tooltip: ""
+                }
+
+                Expert: {
+                    Label: Perito
+                    Tooltip: ""
+                }
+
+                Master: {
+                    Label: Mestre
+                    Tooltip: ""
+                }
+            }
+
+            BattlePotion: {
+                Tooltip: ""
+                Headers.BattlePotions: Se você presenciar lag, tente diminuir o máximo de spawn primeiro para a grande e a super poção da batalha, definir o máximo de geradores e a taxa de spawn para 1 vai desativar sua receita..
+
+                VanillaMax: {
+                    Label: "[i:300] Poção da Batalha multiplica o máximo de desovas"
+                    Tooltip: Vanilla padrão: 2
+                }
+
+                VanillaSpawnRate: {
+                    Label: "[i:300] Poção da batalha multiplica a taxa de desova"
+                    Tooltip: Vanilla padrão: 2
+                }
+
+                GreaterMax: {
+                    Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica o máximo de desovas"
+                    Tooltip: ""
+                }
+
+                GreaterSpawnRate: {
+                    Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica a taxa de desovas"
+                    Tooltip: ""
+                }
+
+                SuperMax: {
+                    Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica o máximo de desovas"
+                    Tooltip: ""
+                }
+
+                SuperSpawnRate: {
+                    Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica a taxa de desovas"
+                    Tooltip: ""
+                }
+            }
+
+            TravelingMerchant: {
+                Tooltip: ""
+
+                TravelingMerchantChatsItems: {
+                    Label: Caixeiro Viajante anunciando itens na chegada
+                    Tooltip:
+                        '''
+                        O chat ira mostrar todos os itens da loja
+                        (semelhante a quando um jogador clica em um item no inventário quando o chat está aberto)
+                        '''
+                }
+
+                Headers.MerchantDice:
+                    '''
+                    [i:ReducedGrinding/MerchantDice] Dados do Caixeiro.
+
+                    Por uma quantidade limitada de vezes por dia, você pode usá-lo para renovar a loja do Caixeiro Viajante.
+                    O Caixeiro Viajante só venderá se isto for definido como maior do que 0.
+                    '''
+
+                TravelingMerchantDiceUsesBeforeHardmode: {
+                    Label: Usos diários antes do hardmode
+                    Tooltip: ""
+                }
+
+                TravelingMerchantDiceUsesHardmode: {
+                    Label: Usos diários no hardmode
+                    Tooltip: ""
+                }
+
+                TravelingMerchantDiceUsesAfterPlantera: {
+                    Label: Usos diários depois da Plantera
+                    Tooltip: ""
+                }
+            }
+
+            EnchantedSundialConfig: {
+                Tooltip: ""
+
+                CrateEnchantedSundial: {
+                    Label: "[i:3064] Chance de dropar o Relógio Solar Encantado"
+                    Tooltip:
+                        '''
+                        Mude a chance de obter o Relógio Solar Encantado na caixa que dropa ele.
+                        Chance = 1 / configuration_setting. Mude para 0 para usar a chance padrão.
+                        O denominador é multiplicado por 3 para Mithril e 10 para Madeira de Pérola
+                        '''
+                }
+
+                EnchantedDialMultiplier: {
+                    Label: O tempo da taxa do multiplicador do encantamento diário
+                    Tooltip:
+                        '''
+                        No jogo normal o encantamento diário multiplica a taxa do tempo por 60
+                        depois isto será multiplicado por esta quantidade.
+                        '''
+                }
+
+                EnchantedDialCooldown: {
+                    Label: Recarga do encantamento diário
+                    Tooltip: Padrão do Jogo: 7
+                }
+
+                PreHardmodeSundials: {
+                    Label: "[i:2336] Obter o Relógio Solar Encantado no Pré-Modo Difícil"
+                    Tooltip:
+                        '''
+                        Se for ativado todos os caixotes do pré-modo difícil terão
+                        a mesma chance de darem o relógio solar encantado que
+                        os caixotes do modo difícil tem.
+                        '''
+                }
+            }
+
+            UniversalPylon: {
+                Tooltip: ""
+
+                UniversalPylonBestiaryCompletionRate: {
+                    Label: Taxa de conclusão requerida pela Zoologista em sua loja
+                    Tooltip: Padrão do Jogo: 1
+                }
+
+                Headers.CraftableUniversalPylon: Criação. A receita será desativada se todas as configurações de ingredientes estiverem desativadas.
+
+                CraftWithPylons: {
+                    Label: Criar com [i:4876] Pilões
+                    Tooltip: ""
+                }
+
+                CraftWithPreMechSouls: {
+                    Label: Criar com [i:575] pre-mecânicos alma dos chefes
+                    Tooltip: Alma da Luz, Noite e Voo
+                }
+
+                CraftWithMechSouls: {
+                    Label: Criar com [i:547] alma dos chefes mecânicos
+                    Tooltip: Alma da Força, Medo e Visão
+                }
+
+                CraftWithFragments: {
+                    Label: Criar com [i:3457] Fragmentos Lunares
+                    Tooltip: ""
+                }
+
+                CraftAtCrystalBall: {
+                    Label: Criar na [i:487] Bola de Cristal em vez da [i:398] Oficina do Inventor
+                    Tooltip: ""
+                }
+            }
+
+            BobberPotions: {
+                SuperMultiBobberPotionBonus: {
+                    Tooltip: ""
+                    Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Bônus da Super Multi Poção do Anzol"
+                }
+
+                GreaterMultiBobberPotionBonus: {
+                    Tooltip: ""
+                    Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Bônus da Grande Multi Poção do Anzol"
+                }
+
+                MultiBobberPotionBonus: {
+                    Tooltip: ""
+                    Label: "[i:ReducedGrinding/MultiBobberPotion] Bônus da Multi Poção do Anzol"
+                }
+
+                Headers.MultiBobberPotions: Essas poções expandem a sua capacidade de pescaria. Defina a quantidade que cada poção pode fornecer. Defina como 0 para desativar sua receita.
+                Tooltip: Use essas poções para aumentar a coleta de itens durante a pescaria.
+            }
+
+            Angler: {
+                AnglerTellsQuestCompleted: {
+                    Label: O Pescador diz a quantidade de missões concluídas
+                    Tooltip: ""
+                }
+
+                AnglerChatsCurrentQuest: {
+                    Label: Auninciar o item da missão de busca atual
+                    Tooltip:
+                        '''
+                        Quando você iniciar a missão de pescaria clique no peixe ao lado
+                        para anunciar no chat para os outros jogadores o peixe da missão
+                        atual e o local onde ele deve ser pescado.
+                        '''
+                }
+
+                LowQualityRemovalChance: {
+                    Label: "[i:2354] Chance de remoção para uma recompensa menor"
+                    Tooltip:
+                        '''
+                        Isso exclui a primeira missão que o jogador estiver fazendo no dia atual.
+                        Se essa chance passar as poções e peixes vanilla serão removidos.
+
+                        Defina 0 para desativar.
+                        '''
+                }
+
+                BumblebeeTunaSwapChance: {
 					// Label: "[i:2451] Bumblebee Tuna Swap Chance"
 					/* Tooltip:
 						'''
@@ -556,320 +559,330 @@ Mods: {
 						''' */
 				}
 
-				// Tooltip: ""
+                // Tooltip: ""
 
-				UnlimitedAnglerQuest: {
-					// Label: Unlimited Angler Quests
-					// Tooltip: The angler will always have another quest instead of once per day
-				}
+                UnlimitedAnglerQuest: {
+                    Label: Missões do Pescador Ilimitadas
+                    Tooltip: O Pescador sempre terá outra missão disponível em vez de pedir uma por dia
+                }
 
-				// Headers.ExtraQuestRewardModifying: Extra Quest Reward Modifying
+                Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
 
-				CoinMultiplier: {
-					// Label: "[i:73] Coin Reward Multiplier"
-					/* Tooltip:
-						'''
-						This excludes the player's first quest of the current day. Coins rewarded will
-						be multiplied by this amount (using the total value). Set to 1 to disable.
-						''' */
-				}
-			}
+                CoinMultiplier: {
+                    Label: "[i:73] Multiplicador da recompensa de Moédas"
+                    Tooltip:
+                        '''
+                        Isso exclui a primeira missão que o jogador estiver fazendo no dia atual
+                        As recompensadas de moédas serão multiplicadas por este valor (usando o toal do valor).
 
-			NonBossLoot: {
-				Tooltip: ""
+                        Defina 1 para desativar
+                        '''
+                }
+            }
 
-				TownNPCWeapons: {
-					Label: "[i:3349] Armas dos NPCs das Cidades"
-					Tooltip:
-						'''
-						Este mod ira remover o requisito de nome para o Guia e a Steampunker.
-						Essa configuração não afeta a Garota da Festa.
-						'''
-				}
+            NonBossLoot: {
+                Tooltip: ""
 
-				BiomeKey: {
-					Label: "[i:1533] Chave de Bioma"
-					Tooltip: Isso define a mesma taxa de drop para cada.
-				}
+                TownNPCWeapons: {
+                    Label: "[i:3349] Armas dos NPCs das Cidades"
+                    Tooltip:
+                        '''
+                        Este mod ira remover o requisito de nome para o Guia e a Steampunker.
+                        Essa configuração não afeta a Garota da Festa.
+                        '''
+                }
 
-				BeamSword: {
-					Label: "[i:723] Espada de Feixes"
-					Tooltip: ""
-				}
+                BiomeKey: {
+                    Label: "[i:1533] Chave de Bioma"
+                    Tooltip: Isso define a mesma taxa de drop para cada.
+                }
 
-				GoodieBag: {
-					Label: "[i:1774] Saco de Guloseimas"
-					Tooltip: Só dropa durante o Dia das Bruxas.
-				}
+                BeamSword: {
+                    Label: "[i:723] Espada de Feixes"
+                    Tooltip: ""
+                }
 
-				KOCannon: {
-					Label: "[i:1314] Canhão do Nocaute"
-					Tooltip: ""
-				}
+                GoodieBag: {
+                    Label: "[i:1774] Saco de Guloseimas"
+                    Tooltip: Só dropa durante o Dia das Bruxas.
+                }
 
-				Lens: {
-					Label: "[i:38] Lentes"
-					Tooltip: Lentes não dropão se as lentes negras droparem, provável chance = (99 / 100) * (1 / configuration_setting)
-				}
+                KOCannon: {
+                    Label: "[i:1314] Canhão do Nocaute"
+                    Tooltip: ""
+                }
 
-				LizardEgg: {
-					Label: "[i:1172] Ovo de Lagarto"
-					Tooltip: ""
-				}
+                Lens: {
+                    Label: "[i:38] Lentes"
+                    Tooltip: Lentes não dropão se as lentes negras droparem, provável chance = (99 / 100) * (1 / configuration_setting)
+                }
 
-				Marrow: {
-					Label: "[i:682] Tutano"
-					Tooltip: ""
-				}
+                LizardEgg: {
+                    Label: "[i:1172] Ovo de Lagarto"
+                    Tooltip: ""
+                }
 
-				PaladinsHammer: {
-					Label: "[i:1513] Martelo do Paladino"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 146.67%
-				}
+                Marrow: {
+                    Label: "[i:682] Tutano"
+                    Tooltip: ""
+                }
 
-				PlumbersHat: {
-					Label: "[i:244] Chapéu de Encanador"
-					Tooltip: ""
-				}
+                PaladinsHammer: {
+                    Label: "[i:1513] Martelo do Paladino"
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 146.67%
+                }
 
-				Present: {
-					Label: "[i:1869] Presente"
-					Tooltip: Só dropa no mês de dezembro durante o natal.
-				}
+                PlumbersHat: {
+                    Label: "[i:244] Chapéu de Encanador"
+                    Tooltip: ""
+                }
 
-				RifleScopeAndSniperRifle: {
-					Label: "[i:1300] Luneta do Fuzil e o [i:1254] Fuzil de Longo Alcance"
-					Tooltip:
-						'''
-						Isso define a mesma taxa de drop para os dois.
-						Se a dificuldade do mundo for normal, isto é multiplicado por 183.33%
-						'''
-				}
+                Present: {
+                    Label: "[i:1869] Presente"
+                    Tooltip: Só dropa no mês de dezembro durante o natal.
+                }
 
-				RocketLauncher: {
-					Label: "[i:759] Lança Foguetes"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 194.44%
-				}
+                RifleScopeAndSniperRifle: {
+                    Label: "[i:1300] Luneta do Fuzil e o [i:1254] Fuzil de Longo Alcance"
+                    Tooltip:
+                        '''
+                        Isso define a mesma taxa de drop para os dois.
+                        Se a dificuldade do mundo for normal, isto é multiplicado por 183.33%
+                        '''
+                }
 
-				RodofDiscord: {
-					Label: "[i:1326] Cajado da Discórdia"
-					Tooltip:
-						'''
-						Se a dificuldade do mundo for normal, isto é multiplicado por (5/4)
-						Se você estiver no mundo Celebrationmk10, isto é dividido por 4 arredondado para cima se abaixo de 1.
-						'''
-				}
+                RocketLauncher: {
+                    Label: "[i:759] Lança Foguetes"
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 194.44%
+                }
 
-				RottenChunkAndVertebra: {
-					Label: "[i:68] Pedaço Podre e [i:1330] Vértebra"
-					Tooltip: Isto define a mesma taxa de drop para cada.
-				}
+                RodofDiscord: {
+                    Label: "[i:1326] Cajado da Discórdia"
+                    Tooltip:
+                        '''
+                        Se a dificuldade do mundo for normal, isto é multiplicado por (5/4)
+                        Se você estiver no mundo Celebrationmk10, isto é dividido por 4 arredondado para cima se abaixo de 1.
+                        '''
+                }
 
-				SoulOfLightAndNight: {
-					Label: "[i:520] Alma da Luz e [i:521] Alma da Noite"
-					Tooltip: Isto define a mesma taxa de drop para cada.
-				}
+                RottenChunkAndVertebra: {
+                    Label: "[i:68] Pedaço Podre e [i:1330] Vértebra"
+                    Tooltip: Isto define a mesma taxa de drop para cada.
+                }
 
-				SWATHelmetAndTacticalShotgun: {
-					Label: "[i:1514] Capacete da SWAT e [i:679] Espingarda Tática"
-					Tooltip:
-						'''
-						Isto define a mesma taxa de drop para cada.
-						Se a dificuldade do mundo for normal, isto é multiplicado por 191.66%
-						'''
-				}
+                SoulOfLightAndNight: {
+                    Label: "[i:520] Alma da Luz e [i:521] Alma da Noite"
+                    Tooltip: Isto define a mesma taxa de drop para cada.
+                }
 
-				SlimeStaffFromPinky: {
-					Label: Do Rosado
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
-				}
+                SWATHelmetAndTacticalShotgun: {
+                    Label: "[i:1514] Capacete da SWAT e [i:679] Espingarda Tática"
+                    Tooltip:
+                        '''
+                        Isto define a mesma taxa de drop para cada.
+                        Se a dificuldade do mundo for normal, isto é multiplicado por 191.66%
+                        '''
+                }
 
-				SlimeStaffFromSandSlime: {
-					Label: Da Geleia de Areia
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
-				}
+                SlimeStaffFromPinky: {
+                    Label: Do Rosado
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
+                }
 
-				SlimeStaffFromOtherSlimes: {
-					Label: Cajado da Geleia sendo dropado por outras geleias
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
-				}
+                SlimeStaffFromSandSlime: {
+                    Label: Da Geleia de Areia
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
+                }
 
-				PaladinsShield: {
-					Label: "[i:938] Escudo do Paladino"
-					Tooltip: ""
-				}
+                SlimeStaffFromOtherSlimes: {
+                    Label: Cajado da Geleia sendo dropado por outras geleias
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
+                }
 
-				Headers.SlimeStaff: "[i:1309] Cajado da Geleia"
-			}
+                PaladinsShield: {
+                    Label: "[i:938] Escudo do Paladino"
+                    Tooltip: ""
+                }
 
-			BossLoot: {
-				Tooltip: ""
+                Headers.SlimeStaff: "[i:1309] Cajado da Geleia"
+            }
 
-				Binoculars: {
-					Label: "[i: 1299] Binóculos"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (4/3)
-				}
+            BossLoot: {
+                Tooltip: ""
 
-				EmpressAndFishronWings: {
-					Label: "[i:4823] Emperatriz e [i:2609] Asas do Peixe Dragão"
-					Tooltip:
-						'''
-						Isto define a mesma taxa de drop para cada.
-						Se a dificuldade do mundo for normal, isto é multiplicado por (3/2)
-						'''
-				}
+                Binoculars: {
+                    Label: "[i: 1299] Binóculos"
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (4/3)
+                }
 
-				StellarTune: {
-					Label: "[i:4715] Tom Estelar"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (5/2)
-				}
+                EmpressAndFishronWings: {
+                    Label: "[i:4823] Emperatriz e [i:2609] Asas do Peixe Dragão"
+                    Tooltip:
+                        '''
+                        Isto define a mesma taxa de drop para cada.
+                        Se a dificuldade do mundo for normal, isto é multiplicado por (3/2)
+                        '''
+                }
 
-				RainbowCursor: {
-					Label: "[i:5075] Cursor de Arco-Íris"
-					Tooltip: ""
-				}
+                StellarTune: {
+                    Label: "[i:4715] Tom Estelar"
+                    Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (5/2)
+                }
 
-				CoinGun: {
-					Label: "[i:905] Pistola de Moedas do Holandês Voador"
-					Tooltip: ""
-				}
-			}
-		}
+                RainbowCursor: {
+                    Label: "[i:5075] Cursor de Arco-Íris"
+                    Tooltip: ""
+                }
 
-		Buffs: {
-			GreaterBattle: {
-				DisplayName: Grande Batalha Expandida
-				Description: Taxa de desova de inimigos muito maior do que antes
-			}
+                CoinGun: {
+                    Label: "[i:905] Pistola de Moedas do Holandês Voador"
+                    Tooltip: ""
+                }
+            }
+        }
 
-			GreaterMultiBobber: {
-				DisplayName: Grande Multi Poção do Anzol
-				Description: Grande aumento na expensão da sua capacidade de pescaria
-			}
+        Buffs: {
+            GreaterBattle: {
+                DisplayName: Grande Batalha Expandida
+                Description: Taxa de desova de inimigos muito maior do que antes
+            }
 
-			MultiBobber: {
-				DisplayName: Multi Poção do Anzol
-				Description: Expande a sua capacidade de pescaria aumentando a coleta de itens
-			}
+            GreaterMultiBobber: {
+                DisplayName: Grande Multi Poção do Anzol
+                Description: Grande aumento na expensão da sua capacidade de pescaria
+            }
 
-			SuperBattle: {
-				DisplayName: Super Batalha
-				Description: A taxa de desova de inimigos será massivamente aumentada
-			}
+            MultiBobber: {
+                DisplayName: Multi Poção do Anzol
+                Description: Expande a sua capacidade de pescaria aumentando a coleta de itens
+            }
 
-			SuperMultiBobber: {
-				DisplayName: Super Multi Poção do Anzol
-				Description: Massivamente expande a sua capacidade de pescaria
-			}
-		}
+            SuperBattle: {
+                DisplayName: Super Batalha
+                Description: A taxa de desova de inimigos será massivamente aumentada
+            }
 
-		Items: {
-			GreaterBattlePotion: {
-				DisplayName: Grande Poção da Batalha Expandida
-				Tooltip: Expande ainda mais a taxa de spawn dos inimigos.
-			}
+            SuperMultiBobber: {
+                DisplayName: Super Multi Poção do Anzol
+                Description: Massivamente expande a sua capacidade de pescaria
+            }
+        }
 
-			GreaterMultiBobberPotion: {
-				DisplayName: Grande Multi Poção do Anzol
-				Tooltip: Grande aumento na sua capacidade de pescaria.
-			}
+        Items: {
+            GreaterBattlePotion: {
+                DisplayName: Grande Poção da Batalha Expandida
+                Tooltip: Expande ainda mais a taxa de spawn dos inimigos.
+            }
 
-			MultiBobberPotion: {
-				DisplayName: Multi Poção do Anzol
-				Tooltip: Expande a sua capacidade de pescaria aumentando a coleta de itens.
-			}
+            GreaterMultiBobberPotion: {
+                DisplayName: Grande Multi Poção do Anzol
+                Tooltip: Grande aumento na sua capacidade de pescaria.
+            }
 
-			SuperBattlePotion: {
-				DisplayName: Super Poção da Batalha
-				Tooltip: Massivamente aumenta a taxa de desova dos inimigos.
-			}
+            MultiBobberPotion: {
+                DisplayName: Multi Poção do Anzol
+                Tooltip: Expande a sua capacidade de pescaria aumentando a coleta de itens.
+            }
 
-			SuperMultiBobberPotion: {
-				DisplayName: Super Multi Poção do Anzol
-				Tooltip: Massivamente aumenta a sua capacidade de pescaria.
-			}
+            SuperBattlePotion: {
+                DisplayName: Super Poção da Batalha
+                Tooltip: Massivamente aumenta a taxa de desova dos inimigos.
+            }
 
-			FishCoin: {
-				DisplayName: Moéda de Peixe
-				Tooltip: Um Pirata pode se interessar por isso.
-			}
+            SuperMultiBobberPotion: {
+                DisplayName: Super Multi Poção do Anzol
+                Tooltip: Massivamente aumenta a sua capacidade de pescaria.
+            }
 
-			FishCostumeBag: {
-				DisplayName: Bolsa da Fantasia de Peixe
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					Obtem o conjunto decorativo da roupa de peixe
-					'''
-			}
+            FishCoin: {
+                DisplayName: Moéda de Peixe
+                Tooltip: Um Pirata pode se interessar por isso.
+            }
 
-			MerchantDice: {
-				DisplayName: Dados do Caixeiro
-				Tooltip: Use para renovar a loja do Caixeiro Viajante (com usos limitados por dia)
-			}
+            FishCostumeBag: {
+                DisplayName: Bolsa da Fantasia de Peixe
+                Tooltip:
+                    '''
+                    {$CommonItemTooltip.RightClickToOpen}
+                    Obtem o conjunto decorativo da roupa de peixe
+                    '''
+            }
 
-			MermaidCostumeBag: {
-				DisplayName: Bolsa da Fantasia da Sereia
-				Tooltip:
-					'''
-					{$CommonItemTooltip.RightClickToOpen}
-					Obtem o conjunto decorativo da roupa da sereira
-					'''
-			}
+            MerchantDice: {
+                DisplayName: Dados do Caixeiro
+                Tooltip: Use para renovar a loja do Caixeiro Viajante (com usos limitados por dia)
+            }
 
-			BestiaryTrophy: {
-				DisplayName: Troféu do Bestiário
-				Tooltip: ""
-			}
+            MermaidCostumeBag: {
+                DisplayName: Bolsa da Fantasia da Sereia
+                Tooltip:
+                    '''
+                    {$CommonItemTooltip.RightClickToOpen}
+                    Obtem o conjunto decorativo da roupa da sereira
+                    '''
+            }
 
-			MoonWatch: {
-				DisplayName: Relógio da Lua
-				Tooltip: Avança as fazes da lua.
-			}
+            BestiaryTrophy: {
+                DisplayName: Troféu do Bestiário
+                Tooltip: ""
+            }
 
-			SlimeTrophy: {
-				DisplayName: Troféu da Geleia
-				Tooltip: ""
-			}
+            MoonWatch: {
+                DisplayName: Relógio da Lua
+                Tooltip: Avança as fazes da lua.
+            }
 
-			PlanteraSap: {
-				DisplayName: Seiva da Plantera
-				Tooltip: Use na selva para invocar a Plantera.
-			}
+            SlimeTrophy: {
+                DisplayName: Troféu da Geleia
+                Tooltip: ""
+            }
 
-			PumpkinPieMedallion: {
-				DisplayName: Medalhão da Torta de Abóbora
-				Tooltip: Ativa o evento do Dia das Bruxas.
-			}
+            PlanteraSap: {
+                DisplayName: Seiva da Plantera
+                Tooltip: Use na selva para invocar a Plantera.
+            }
 
-			NicePresent: {
-				DisplayName: Belo Presente
-				Tooltip: Ativa o evento natalino.
-			}
+            PumpkinPieMedallion: {
+                DisplayName: Medalhão da Torta de Abóbora
+                Tooltip: Ativa o evento do Dia das Bruxas.
+            }
 
-			StaffOfDifficulty: {
-				DisplayName: Cajado da Dificuldade
-				Tooltip:
-					'''
-					Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
-					Isso mudará apenas para modos que são ativados nas configurações.
-					'''
-			}
+            NicePresent: {
+                DisplayName: Belo Presente
+                Tooltip: Ativa o evento natalino.
+            }
 
-			WorldPeaceStandard: {
-				DisplayName: Peça da Paz Mundial
-				Tooltip: Cancela invasões
-			}
+            StaffOfDifficulty: {
+                DisplayName: Cajado da Dificuldade
+                Tooltip:
+                    '''
+                    Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
+                    Isso mudará apenas para modos que são ativados nas configurações.
+                    '''
+            }
 
-			FishingTicket: {
-				// DisplayName: Fishing Ticket
-				/* Tooltip:
-					'''
-					Having this in your inventory will make the Angler consider you a "Questing Player".
-					The Angler will wait for all Questing Players to finish before deciding if he wants to give another quest.
-					This item will be removed on a new day or if the Angler decides not to give any more quest.
-					''' */
-			}
-		}
-	}
+            WorldPeaceStandard: {
+                DisplayName: Peça da Paz Mundial
+                Tooltip: Cancela invasões
+            }
+
+            FishingTicket: {
+                DisplayName: Bilhete de Pesca
+                Tooltip:
+                    '''
+                    O Bilhete de Pesca é um item que ajuda todos os jogadores que estão tentando
+                    terminar a missão atual a ter uma chance de terminar a missão.
+                    O pescador vai aguardar todos os jogadores terminarem a busca até que ele decida
+                    se vai enviar uma nova missão de busca.
+                    O bilhete será removido em um novo dia ou se o pescador decidir não dar mais nenhuma missão.
+                    Quando um jogador iniciar uma missão ao falar com o pescador se houver outra missão
+                    disponível após a atual, o pescador ira dar um bilhete de pesca.
+                    O pescador não ira dar próxima missão até que todos os jogadores
+                    com um bilhete de pesca terminem a missão de busca atual.
+                    O bilhete de pesca desaparecera do seu inventário após um novo dia
+                    ou se não houver alguma missão disponível após a missão atual.
+                    '''
+            }
+        }
+    }
 }
