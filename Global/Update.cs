@@ -20,7 +20,7 @@ namespace ReducedGrinding.Global
         //Gets recorded into world save
         public static int anglerQuests = 0;
         public static bool dayTime = true;
-        public static int travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+        public static int travelingMerchantDiceRolls = 0;
         public static int tryBumblebeeTunaSwap = 0;
 
         //Info sent to server, but not recorded into world save
@@ -86,28 +86,27 @@ namespace ReducedGrinding.Global
                 sendNetMessageWorldData = true;
             }
 
-            #region For Each Player, Test if Still Questing
-
             bool stillQuesting = Main.anglerWhoFinishedToday.Count == 0;
-
             for (int i = 0; i < Main.maxPlayers; i++)
             {
-                if (stillQuesting)
-                {
-                    break;
-                }
-
                 if (!Main.player[i].active)
                 {
                     continue;
                 }
 
-                if (!stillQuesting && Main.player[i].HasItem(ItemType<Items.FishingTicket>()) && !Main.anglerWhoFinishedToday.Contains(Main.player[i].name))
+                if (Main.player[i].HasItem(Main.anglerQuestItemNetIDs[Main.anglerQuest]))
                 {
                     stillQuesting = true;
+                    break;
                 }
+
+                // For some reason testing if player is holding the quest item isn't working in a server.
+                //if (Main.player[i].inventory[58].type == Main.anglerQuestItemNetIDs[Main.anglerQuest])
+                //{
+                //    stillQuesting = true;
+                //    break;
+                //}
             }
-            #endregion
 
             bool sendTryBumblebeeTunaSwapPacket = false;
             void tryToSwapToBumblebeeTuna()
@@ -133,7 +132,7 @@ namespace ReducedGrinding.Global
 
             #region Angler Reset
             bool sendAnglerQuestsPacket = false;
-            if (Main.anglerWhoFinishedToday.Count > 0 && !stillQuesting && fishingConfig.Angler.UnlimitedAnglerQuest)
+            if (!stillQuesting && fishingConfig.Angler.UnlimitedAnglerQuest)
             {
                 anglerQuests++;
                 sendAnglerQuestsPacket = true;
@@ -190,7 +189,19 @@ namespace ReducedGrinding.Global
                 #region New Morning
                 if (Main.dayTime)
                 {
-                    travelingMerchantDiceRolls = NPC.downedPlantBoss ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera : Main.hardMode ? otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode : otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+                    if (NPC.downedPlantBoss)
+                    {
+                        travelingMerchantDiceRolls = otherConfig.TravelingMerchant.TravelingMerchantDiceUsesAfterPlantera;
+                    }
+                    else if (Main.hardMode)
+                    {
+                        travelingMerchantDiceRolls = otherConfig.TravelingMerchant.TravelingMerchantDiceUsesHardmode;
+                    }
+                    else
+                    {
+                        travelingMerchantDiceRolls = otherConfig.TravelingMerchant.TravelingMerchantDiceUsesBeforeHardmode;
+                    }
+
                     sendTravelingMerchantDiceRollsPacket = true;
 
                     if (tryBumblebeeTunaSwap == 2)

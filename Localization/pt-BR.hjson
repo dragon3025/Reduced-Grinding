@@ -562,8 +562,13 @@ Mods: {
 				// Tooltip: ""
 
 				UnlimitedAnglerQuest: {
-					Label: Missões do Pescador Ilimitadas
-					Tooltip: O Pescador sempre terá outra missão disponível em vez de pedir uma por dia
+					// Label: Unlimited Angler Quests
+					/* Tooltip:
+						'''
+						The angler will always have another quest instead of once per day. If a player
+						finished their Quest, the Angler will wait until no player has the current Quest
+						Fish in their inventory before giving the next Quest of the current day.
+						''' */
 				}
 
 				Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
@@ -864,24 +869,6 @@ Mods: {
 			WorldPeaceStandard: {
 				DisplayName: Peça da Paz Mundial
 				Tooltip: Cancela invasões
-			}
-
-			FishingTicket: {
-				DisplayName: Bilhete de Pesca
-				Tooltip:
-					'''
-					O Bilhete de Pesca é um item que ajuda todos os jogadores que estão tentando
-					terminar a missão atual a ter uma chance de terminar a missão.
-					O pescador vai aguardar todos os jogadores terminarem a busca até que ele decida
-					se vai enviar uma nova missão de busca.
-					O bilhete será removido em um novo dia ou se o pescador decidir não dar mais nenhuma missão.
-					Quando um jogador iniciar uma missão ao falar com o pescador se houver outra missão
-					disponível após a atual, o pescador ira dar um bilhete de pesca.
-					O pescador não ira dar próxima missão até que todos os jogadores
-					com um bilhete de pesca terminem a missão de busca atual.
-					O bilhete de pesca desaparecera do seu inventário após um novo dia
-					ou se não houver alguma missão disponível após a missão atual.
-					'''
 			}
 		}
 	}

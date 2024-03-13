@@ -23,12 +23,6 @@ namespace ReducedGrinding.GlobalNPCs
         {
             if (npc.type == NPCID.Angler && firstButton)
             {
-                if (Main.netMode == NetmodeID.MultiplayerClient && Global.Update.anglerQuests > 1 && !Main.LocalPlayer.HasItem(ItemType<FishingTicket>()))
-                {
-                    EntitySource_Gift source = new(npc);
-                    Main.LocalPlayer.QuickSpawnItem(source, ItemType<FishingTicket>());
-                }
-
                 if (Global.Update.chatQuestFish == 0 && Main.netMode != NetmodeID.Server && fishingConfig.Angler.AnglerChatsCurrentQuest)
                 {
                     Global.Update.chatQuestFish = 1;

@@ -585,7 +585,12 @@ Mods: {
 
 				UnlimitedAnglerQuest: {
 					Label: Unlimited Angler Quests
-					Tooltip: The angler will always have another quest instead of once per day
+					Tooltip:
+						'''
+						The angler will always have another quest instead of once per day. If a player
+						finished their Quest, the Angler will wait until no player has the current Quest
+						Fish in their inventory before giving the next Quest of the current day.
+						'''
 				}
 
 				Headers.ExtraQuestRewardModifying: Extra Quest Reward Modifying
@@ -899,16 +904,6 @@ Mods: {
 			WorldPeaceStandard: {
 				DisplayName: World Peace Standard
 				Tooltip: Cancels invasions
-			}
-
-			FishingTicket: {
-				DisplayName: Fishing Ticket
-				Tooltip:
-					'''
-					Having this in your inventory will make the Angler consider you a "Questing Player".
-					The Angler will wait for all Questing Players to finish before deciding if he wants to give another quest.
-					This item will be removed on a new day or if the Angler decides not to give any more quest.
-					'''
 			}
 		}
 	}
