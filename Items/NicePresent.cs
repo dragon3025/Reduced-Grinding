@@ -41,11 +41,11 @@ namespace ReducedGrinding.Items
             Main.xMas = true;
             if (Main.netMode == NetmodeID.Server)
             {
-                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                ChatHelper.BroadcastChatMessage(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(50, 255, 130));
             }
             else
             {
-                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(255, 255, 0));
+                Main.NewText(NetworkText.FromKey("Misc.StartedVictoryXmas"), new Color(50, 255, 130));
             }
             return true;
         }

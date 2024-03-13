@@ -14,6 +14,8 @@ Mods: {
 				CurrentQuest: Missão Atual: [i:{0}].
 				NewQuestText: O pescador decidiu dar outra missão de busca à você!
 				NewQuestTextWithIcon: O pescador decidiu dar outra missão de busca à você: [i:{0}]!
+				BumblebeeTunaIncrease: Parece que há um surto de Atum Abelha aqui, provavelmente o pescador ira pedir por isso!
+				BumblebeeTu
 			}
 
 			StaffOfDifficulty: {
@@ -81,7 +83,7 @@ Mods: {
 					'''
 					Moéda do Peixe
 
-					Recompensa quando terminar uma missão do pescador. 
+					Recompensa quando terminar uma missão do pescador.
 					Usado para comprar recompensas da missão do NPC pirata.
 					Mude para 0 para desativar as recompensas da missão aparecendo na loja do pirata.
 					'''
@@ -230,7 +232,7 @@ Mods: {
 					Label: Multiplicador da taxa de tempo do sono
 					Tooltip:
 						'''
-						No vanilla dormir mutiplica a taxa do tempo por 5 
+						No vanilla dormir mutiplica a taxa do tempo por 5
 						posteriormente isto vai ser mutiplicado por esta quantidade.
 						'''
 				}
@@ -394,7 +396,7 @@ Mods: {
 					Label: Caixeiro Viajante anunciando itens na chegada
 					Tooltip:
 						'''
-						O chat ira mostrar todos os itens da loja 
+						O chat ira mostrar todos os itens da loja
 						(semelhante a quando um jogador clica em um item no inventário quando o chat está aberto)
 						'''
 				}
@@ -545,19 +547,14 @@ Mods: {
 				}
 
 				BumblebeeTunaSwapChance: {
-					Label: "[i:2451] Chance de troca para o Atum Abelha"
+					Label: "[i:2451] Chance de troca do Atum Abelha"
 					Tooltip:
 						'''
-						Este recurso só estara ativo depois que você derrotar um chefe da
-						Corrupção ou Carmim, Esqueletron, Abelha Rainha ou Parede de Carne
-
-						Cada missão de pescaria normal do jogo (Vanilla) tera uma chance de
-						ser alterada para o Atum Abelha, mas apenas se o jogador precisar disto
-						para a primeira missão de busca de peixes do dia, o inventário de todos
-						os jogadores são verificados, para todas as missões depois do primeiro dia
-						apenas o inventário de jogadores com missões de busca em andamento
-						será verificado.
-
+						Este recurso é ativado toda vez que a Abelha Rainha é derrotada
+						enquanto o pescador estiver vivo.
+						Quando este recurso estiver ativado cada missão de busca tera uma
+						chance de serem alterados para o Atum Abelha.
+						Este recurso é desativado no final de uma missão do Atum Abelha.
 						Defina 0 para desativar.
 						'''
 				}
@@ -565,8 +562,13 @@ Mods: {
 				// Tooltip: ""
 
 				UnlimitedAnglerQuest: {
-					Label: Missões do Pescador Ilimitadas
-					Tooltip: O Pescador sempre terá outra missão disponível em vez de pedir uma por dia
+					// Label: Unlimited Angler Quests
+					/* Tooltip:
+						'''
+						The angler will always have another quest instead of once per day. If a player
+						finished their Quest, the Angler will wait until no player has the current Quest
+						Fish in their inventory before giving the next Quest of the current day.
+						''' */
 				}
 
 				Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
@@ -867,24 +869,6 @@ Mods: {
 			WorldPeaceStandard: {
 				DisplayName: Peça da Paz Mundial
 				Tooltip: Cancela invasões
-			}
-
-			FishingTicket: {
-				DisplayName: Bilhete de Pesca
-				Tooltip:
-					'''
-					O Bilhete de Pesca é um item que ajuda todos os jogadores que estão tentando
-					terminar a missão atual a ter uma chance de terminar a missão.
-					O pescador vai aguardar todos os jogadores terminarem a busca até que ele decida
-					se vai enviar uma nova missão de busca.
-					O bilhete será removido em um novo dia ou se o pescador decidir não dar mais nenhuma missão.
-					Quando um jogador iniciar uma missão ao falar com o pescador se houver outra missão
-					disponível após a atual, o pescador ira dar um bilhete de pesca.
-					O pescador não ira dar próxima missão até que todos os jogadores
-					com um bilhete de pesca terminem a missão de busca atual.
-					O bilhete de pesca desaparecera do seu inventário após um novo dia 
-					ou se não houver alguma missão disponível após a missão atual.
-					'''
 			}
 		}
 	}

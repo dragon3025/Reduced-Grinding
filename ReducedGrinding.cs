@@ -42,7 +42,8 @@ namespace ReducedGrinding
             travelingMerchantDiceRolls,
             chatMerchantItems,
             chatQuestFish,
-            tryBumblebeeTunaSwap
+            tryBumblebeeTunaSwap,
+            chatBumblebeeTunaIncrease
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
@@ -78,6 +79,9 @@ namespace ReducedGrinding
                 case MessageType.tryBumblebeeTunaSwap:
                     Global.Update.tryBumblebeeTunaSwap = reader.ReadInt32();
                     break;
+                case MessageType.chatBumblebeeTunaIncrease:
+                    Global.Update.chatBumblebeeTunaIncrease = reader.ReadBoolean();
+                    break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
@@ -94,6 +98,7 @@ namespace ReducedGrinding
             Global.Update.instantInvasion = false;
             Global.Update.chatMerchantItems = false;
             Global.Update.chatQuestFish = 0;
+            Global.Update.chatBumblebeeTunaIncrease = false;
         }
 
         public override void SaveWorldData(TagCompound tag)

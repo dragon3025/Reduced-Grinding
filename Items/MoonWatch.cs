@@ -40,7 +40,7 @@ namespace ReducedGrinding.Items
         {
             if (Main.bloodMoon)
             {
-                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MoonWatch.BloodMoon"), 255, 127, 127);
+                Main.NewText(Language.GetTextValue("Mods.ReducedGrinding.Misc.MoonWatch.BloodMoon"), 255, 240, 20);
             }
 
             if (player.whoAmI == Main.myPlayer)
