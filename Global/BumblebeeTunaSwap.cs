@@ -55,15 +55,13 @@ namespace ReducedGrinding.Global
                     packet.Send();
                 }
 
-                string text = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaIncrease");
-
-                if (Main.netMode == NetmodeID.SinglePlayer)
+                Global.Update.chatBumblebeeTunaIncrease = true;
+                if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
-                    Main.NewText(text, new Color(50, 255, 130));
-                }
-                else if (Main.netMode == NetmodeID.Server)
-                {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(text), new Color(50, 255, 130));
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
+                    packet.Write(Global.Update.chatQuestFish);
+                    packet.Send();
                 }
             }
         }

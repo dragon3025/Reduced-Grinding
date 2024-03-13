@@ -29,6 +29,7 @@ namespace ReducedGrinding.Global
         public static bool instantInvasion = false;
         public static bool chatMerchantItems = false;
         public static int chatQuestFish = 0;
+        public static bool chatBumblebeeTunaIncrease = false;
 
         public override void ModifyTimeRate(ref double timeRate, ref double tileUpdateRate, ref double eventUpdateRate)
         {
@@ -440,19 +441,40 @@ namespace ReducedGrinding.Global
             {
                 chatQuestFish = 2;
 
-                string chatFishText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.CurrentQuest").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
+                string messageText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.CurrentQuest").FormatWith(Main.anglerQuestItemNetIDs[Main.anglerQuest]);
 
                 if (Main.netMode == NetmodeID.SinglePlayer)
                 {
-                    Main.NewText(chatFishText, 255, 240, 20);
+                    Main.NewText(messageText, 255, 240, 20);
                 }
                 else if (Main.netMode == NetmodeID.Server)
                 {
-                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(chatFishText), new Color(255, 240, 20));
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(messageText), new Color(255, 240, 20));
 
                     ModPacket packet = Mod.GetPacket();
                     packet.Write((byte)ReducedGrinding.MessageType.chatQuestFish);
                     packet.Write(chatQuestFish);
+                    packet.Send();
+                }
+            }
+
+            if (chatBumblebeeTunaIncrease)
+            {
+                chatBumblebeeTunaIncrease = false;
+
+                string messageText = Language.GetTextValue("Mods.ReducedGrinding.Misc.Fishing.BumblebeeTunaIncrease");
+
+                if (Main.netMode == NetmodeID.SinglePlayer)
+                {
+                    Main.NewText(messageText, 50, 255, 130);
+                }
+                else if (Main.netMode == NetmodeID.Server)
+                {
+                    ChatHelper.BroadcastChatMessage(NetworkText.FromKey(messageText), new Color(50, 255, 130));
+
+                    ModPacket packet = Mod.GetPacket();
+                    packet.Write((byte)ReducedGrinding.MessageType.chatBumblebeeTunaIncrease);
+                    packet.Write(chatBumblebeeTunaIncrease);
                     packet.Send();
                 }
             }
