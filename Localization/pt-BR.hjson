@@ -562,13 +562,14 @@ Mods: {
 				// Tooltip: ""
 
 				UnlimitedAnglerQuest: {
-					// Label: Unlimited Angler Quests
-					/* Tooltip:
+					Label: Missões do Pescador Ilimitadas
+					Tooltip:
 						'''
-						The angler will always have another quest instead of once per day. If a player
-						finished their Quest, the Angler will wait until no player has the current Quest
-						Fish in their inventory before giving the next Quest of the current day.
-						''' */
+						O Pescador sempre terá outra missão disponível em vez de pedir uma por dia.
+						Se o jogador terminou sua missão o pescador vai esperar até que nenhum jogador 
+						tenha o peixe da missão atual em seu inventário antes de dar a próxima missão
+						do dia seguinte.
+						'''
 				}
 
 				Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
