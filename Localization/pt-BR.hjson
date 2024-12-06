@@ -8,6 +8,8 @@
 
 Mods: {
 	ReducedGrinding: {
+		// ConfigFail: Can't change settings in a server.
+
 		Misc: {
 			Fishing: {
 				QuestFinishedText: Você me deu {0} Peixes.
@@ -711,6 +713,11 @@ Mods: {
 				}
 
 				Headers.SlimeStaff: "[i:1309] Cajado da Geleia"
+
+				ObsidianRose: {
+					// Label: "[i:1323] Obsidian Rose"
+					// Tooltip: ""
+				}
 			}
 
 			BossLoot: {

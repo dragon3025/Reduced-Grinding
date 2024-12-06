@@ -155,6 +155,16 @@ namespace ReducedGrinding.Global
                     }
                 }
             }
+            if (npc.type == NPCID.FireImp && lootConfig.NonBossLoot.ObsidianRose > 0)
+            {
+                foreach (var rule in npcLoot.Get())
+                {
+                    if (rule is CommonDrop drop && drop.itemId == ItemID.ObsidianRose)
+                    {
+                        drop.chanceDenominator = lootConfig.NonBossLoot.ObsidianRose;
+                    }
+                }
+            }
             if (npc.type == NPCID.ArmoredSkeleton && lootConfig.NonBossLoot.BeamSword > 0)
             {
                 foreach (var rule in npcLoot.Get())

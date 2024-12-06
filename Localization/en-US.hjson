@@ -8,6 +8,8 @@
 
 Mods: {
 	ReducedGrinding: {
+		ConfigFail: Can't change settings in a server.
+
 		Misc: {
 			Fishing: {
 				QuestFinishedText: You've given me {0} fish.
@@ -745,6 +747,11 @@ Mods: {
 				}
 
 				Headers.SlimeStaff: "[i:1309] Slime Staff"
+
+				ObsidianRose: {
+					Label: "[i:1323] Obsidian Rose"
+					Tooltip: ""
+				}
 			}
 
 			BossLoot: {

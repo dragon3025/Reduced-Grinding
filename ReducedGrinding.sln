@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReducedGrinding", "ReducedG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragonsDecorativeMod", "..\DragonsDecorativeMod\DragonsDecorativeMod.csproj", "{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "..\ExampleMod\ExampleMod.csproj", "{4A5FC49A-5BC9-424D-9622-FF2FA35C2575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "..\ExampleMod\ExampleMod.csproj", "{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,9 +23,10 @@ Global
 		{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A5FC49A-5BC9-424D-9622-FF2FA35C2575}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A5FC49A-5BC9-424D-9622-FF2FA35C2575}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A5FC49A-5BC9-424D-9622-FF2FA35C2575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -38,6 +38,10 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 
         [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
+        public int ObsidianRose;
+
+        [BackgroundColor(128, 128, 128)]
+        [Range(0, 10000)]
         public int PaladinsHammer;
 
         [BackgroundColor(128, 128, 128)]
@@ -105,6 +109,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                     Lens == other.Lens &&
                     LizardEgg == other.LizardEgg &&
                     Marrow == other.Marrow &&
+                    ObsidianRose == other.ObsidianRose &&
                     PaladinsHammer == other.PaladinsHammer &&
                     PaladinsShield == other.PaladinsShield &&
                     PlumbersHat == other.PlumbersHat &&
@@ -133,6 +138,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
                 Lens,
                 LizardEgg,
                 Marrow,
+                ObsidianRose,
                 PaladinsHammer,
                 PaladinsShield,
                 PlumbersHat,
