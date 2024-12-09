@@ -64,7 +64,6 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         [Range(0, 10000)]
         public int RocketLauncher;
 
-        [BackgroundColor(128, 128, 128)]
         [Range(0, 10000)]
         public int RodofDiscord;
 
@@ -93,6 +92,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 
         public NonBossLoot()
         {
+            RodofDiscord = 50;
             SlimeStaffFromPinky = 5;
             SlimeStaffFromSandSlime = 75;
             SlimeStaffFromOtherSlimes = 100;
