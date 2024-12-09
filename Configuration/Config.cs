@@ -125,6 +125,9 @@ namespace ReducedGrinding.Configuration
         [Expand(false)]
         public DropDownBoxes.UniversalPylon UniversalPylon;
 
+        [DefaultValue(true)]
+        public bool ClairvoyanceShowsLuck;
+
         [Header("Crafting")]
 
         [BackgroundColor(128, 128, 128)]

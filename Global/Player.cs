@@ -1,11 +1,16 @@
-﻿using Terraria;
+﻿using ReducedGrinding.Configuration;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Global
 {
     public class GlobalPlayer : ModPlayer
     {
         public int hasQuestFish = 0;
+
+        readonly static IOtherConfig otherConfig = GetInstance<IOtherConfig>();
 
         public override void PreUpdate()
         {
@@ -22,6 +27,30 @@ namespace ReducedGrinding.Global
             else if (hasQuestFish > 0)
             {
                 hasQuestFish--;
+            }
+        }
+
+        public bool showLuck;
+
+        public override void ResetInfoAccessories()
+        {
+            if (!otherConfig.ClairvoyanceShowsLuck)
+            {
+                return;
+            }
+
+            showLuck = false;
+            if (Main.LocalPlayer.HasBuff(BuffID.Clairvoyance))
+            {
+                showLuck = true;
+            }
+        }
+
+        public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
+        {
+            if (otherPlayer.GetModPlayer<GlobalPlayer>().showLuck)
+            {
+                showLuck = true;
             }
         }
     }

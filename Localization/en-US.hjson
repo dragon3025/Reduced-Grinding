@@ -8,9 +8,12 @@
 
 Mods: {
 	ReducedGrinding: {
-		ConfigFail: Can't change settings in a server.
+		InfoDisplays.LuckInfoDisplay.DisplayName: Luck Info
 
 		Misc: {
+			LuckInfoDisplay: Luck {0}%
+			ClairvoyanceLuckTooltip: Displays Luck
+
 			Fishing: {
 				QuestFinishedText: You've given me {0} fish.
 				CurrentQuest: Current Quest: [i:{0}].
@@ -309,6 +312,11 @@ Mods: {
 				WorldGeneration: {
 					Label: "[i:4766] World Generation"
 					Tooltip: ""
+				}
+
+				ClairvoyanceShowsLuck: {
+					Label: "[i:487] Clairvoyance Shows Luck"
+					Tooltip: The Clairvoyance Buff displays Luck
 				}
 			}
 
