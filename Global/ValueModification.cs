@@ -164,6 +164,11 @@ namespace ReducedGrinding.GlobalFasterBossSummons
                 FindNewValue(0.005f, lootConfig.NonBossLoot.Marrow);
             }
 
+            if (item.type == ItemID.ObsidianRose)
+            {
+                FindNewValue(0.005f, lootConfig.NonBossLoot.ObsidianRose);
+            }
+
             if (item.type == ItemID.PaladinsHammer)
             {
                 FindNewValue(22f / 225, lootConfig.NonBossLoot.PaladinsHammer);
