@@ -3,7 +3,6 @@ using ReducedGrinding.Configuration;
 using ReducedGrinding.Items;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameContent.Bestiary;
 using Terraria.ID;
 using Terraria.Localization;

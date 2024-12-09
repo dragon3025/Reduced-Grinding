@@ -1,9 +1,6 @@
-using Microsoft.Xna.Framework;
 using ReducedGrinding.Configuration;
 using Terraria;
-using Terraria.Chat;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent;
 
