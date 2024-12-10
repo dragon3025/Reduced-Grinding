@@ -6,6 +6,10 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
     {
         //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
         [Header("BattlePotions")]
+
+        [Range(1, 750)]
+        public int BattlePotionDistantEnemyDespawnTime;
+
         [BackgroundColor(128, 128, 128)]
         [Increment(.5f)]
         [Range(2f, 10f)]
@@ -34,6 +38,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 
         public BattlePotion()
         {
+            BattlePotionDistantEnemyDespawnTime = 180;
             VanillaMax = 2f;
             VanillaSpawnRate = 2f;
             GreaterMax = 3f;
@@ -45,7 +50,8 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         public override bool Equals(object obj)
         {
             if (obj is BattlePotion other)
-                return VanillaMax == other.VanillaMax &&
+                return BattlePotionDistantEnemyDespawnTime == other.BattlePotionDistantEnemyDespawnTime &&
+                    VanillaMax == other.VanillaMax &&
                     VanillaSpawnRate == other.VanillaSpawnRate &&
                     GreaterMax == other.GreaterMax &&
                     GreaterSpawnRate == other.GreaterSpawnRate &&
@@ -58,6 +64,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             return new
             {
+                BattlePotionDistantEnemyDespawnTime,
                 VanillaMax,
                 VanillaSpawnRate,
                 GreaterMax,

@@ -15,6 +15,7 @@ namespace ReducedGrinding.Global
     public class Update : ModSystem
     {
         readonly static IOtherConfig otherConfig = GetInstance<IOtherConfig>();
+        readonly static HOtherModdedItemsConfig otherModdedItemsConfig = GetInstance<HOtherModdedItemsConfig>();
         readonly static CFishingConfig fishingConfig = GetInstance<CFishingConfig>();
 
         //Gets recorded into world save
@@ -60,6 +61,61 @@ namespace ReducedGrinding.Global
         public override void PostUpdateTime()
         {
             bool sendNetMessageWorldData = false;
+
+            if (otherModdedItemsConfig.BattlePotion.BattlePotionDistantEnemyDespawnTime == 750)
+            {
+                goto finisheddespawnDistantEnemies;
+            }
+
+            bool playerWithBattleBuff = false;
+
+            foreach (var player in Main.ActivePlayers)
+            {
+                if (player.HasBuff(BuffID.Battle) || player.HasBuff(BuffType<Buffs.GreaterBattle>()) || player.HasBuff(BuffType<Buffs.SuperBattle>()))
+                {
+                    playerWithBattleBuff = true;
+                    break;
+                }
+            }
+
+            if (!playerWithBattleBuff)
+            {
+                goto finisheddespawnDistantEnemies;
+            }
+
+            if (Main.invasionType > 0 || NPC.waveNumber > 0)
+            {
+                goto finisheddespawnDistantEnemies;
+            }
+
+            foreach (var npc in Main.ActiveNPCs)
+            {
+                if (npc.boss)
+                {
+                    goto finisheddespawnDistantEnemies;
+                }
+            }
+
+            foreach (var npc in Main.ActiveNPCs)
+            {
+                if (npc.noTileCollide)
+                {
+                    continue;
+                }
+                switch (npc.aiStyle)
+                {
+                    case NPCAIStyleID.Worm:
+                    case NPCAIStyleID.Mimic:
+                    case NPCAIStyleID.BiomeMimic:
+                        continue;
+                }
+                if (npc.timeLeft < 750 && npc.timeLeft >= otherModdedItemsConfig.BattlePotion.BattlePotionDistantEnemyDespawnTime)
+                {
+                    npc.timeLeft = otherModdedItemsConfig.BattlePotion.BattlePotionDistantEnemyDespawnTime;
+                }
+            }
+
+            finisheddespawnDistantEnemies:
 
             int cooldownMax = otherConfig.EnchantedSundial.EnchantedDialCooldown;
             if (Main.IsFastForwardingTime())

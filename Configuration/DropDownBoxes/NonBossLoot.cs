@@ -92,7 +92,7 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 
         public NonBossLoot()
         {
-            RodofDiscord = 50;
+            RodofDiscord = 200;
             SlimeStaffFromPinky = 5;
             SlimeStaffFromSandSlime = 75;
             SlimeStaffFromOtherSlimes = 100;
