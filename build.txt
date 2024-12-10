@@ -5,5 +5,5 @@ homepage = http://forums.terraria.org/index.php?threads/reduced-grinding.51082/
 hideCode = false
 hideResources = false
 includeSource = true
-buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, *.aseprite
 includePDB = true
