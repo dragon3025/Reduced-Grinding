@@ -9,6 +9,49 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         [Range(1, 750)]
         public int BattlePotionDistantEnemyDespawnTime;
 
+        public bool GreaterBattlePotion
+        {
+            get =>
+                (
+                    GreaterMax > 2f ||
+                    GreaterSpawnRate > 2f
+                );
+            set
+            {
+                if (value)
+                {
+                    GreaterSpawnRate = float.Max(2.5f, GreaterSpawnRate);
+                }
+                else
+                {
+                    GreaterMax = GreaterSpawnRate = 2f;
+                    SuperMax = SuperSpawnRate = 2f;
+                }
+            }
+        }
+
+        public bool SuperBattlePotion
+        {
+            get =>
+                GreaterBattlePotion &&
+                (
+                    SuperMax > 2f ||
+                    SuperSpawnRate > 2f
+                );
+            set
+            {
+                if (value)
+                {
+                    GreaterSpawnRate = float.Max(2.5f, GreaterSpawnRate);
+                    SuperSpawnRate = float.Max(3f, float.Max(3f, SuperSpawnRate));
+                }
+                else
+                {
+                    SuperMax = SuperSpawnRate = 2f;
+                }
+            }
+        }
+
         public bool PresetPerformance
         {
             get =>
@@ -89,6 +132,8 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             PresetPerformance = true;
             PresetHighMax = false;
+            GreaterBattlePotion = true;
+            SuperBattlePotion = true;
             BattlePotionDistantEnemyDespawnTime = 180;
         }
 
@@ -96,6 +141,10 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         {
             if (obj is BattlePotion other)
                 return BattlePotionDistantEnemyDespawnTime == other.BattlePotionDistantEnemyDespawnTime &&
+                    GreaterBattlePotion == other.GreaterBattlePotion &&
+                    SuperBattlePotion == other.SuperBattlePotion &&
+                    PresetPerformance == other.PresetPerformance &&
+                    PresetHighMax == other.PresetHighMax &&
                     VanillaMax == other.VanillaMax &&
                     VanillaSpawnRate == other.VanillaSpawnRate &&
                     GreaterMax == other.GreaterMax &&
@@ -110,6 +159,10 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             return new
             {
                 BattlePotionDistantEnemyDespawnTime,
+                GreaterBattlePotion,
+                SuperBattlePotion,
+                PresetPerformance,
+                PresetHighMax,
                 VanillaMax,
                 VanillaSpawnRate,
                 GreaterMax,

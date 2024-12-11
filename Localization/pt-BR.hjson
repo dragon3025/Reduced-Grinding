@@ -430,8 +430,18 @@ Mods: {
 				}
 
 				PresetHighMax: {
-					// Label: Preset, Higher Max Spawns
-					// Tooltip: Settings to cause a swarm of enemies when using Super Battle Potion.
+					// Label: Preset, High Max Spawns
+					// Tooltip: These settings will cause a swarm of enemies when using Super Battle Potion.
+				}
+
+				GreaterBattlePotion: {
+					// Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
+					// Tooltip: The recipe will only be available if this is on
+				}
+
+				SuperBattlePotion: {
+					// Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
+					// Tooltip: The recipe will only be available if this is on
 				}
 			}
 
