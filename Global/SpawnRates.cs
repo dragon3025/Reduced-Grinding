@@ -36,12 +36,12 @@ namespace ReducedGrinding.Global
 
                 spawnRate = spawnRate *= 2; //Undo Vanilla Rates before setting new rates.
 
-                if (player.buffTime[buffIndex] > 50400) //Greater than 14 minutes
+                if (player.buffTime[buffIndex] > 50400) //14 minutes
                 {
                     spawnRate = Math.Max(1, (int)(spawnRate / otherModdedItemsConfig.BattlePotion.SuperSpawnRate));
                     maxSpawns = (int)(maxSpawns * otherModdedItemsConfig.BattlePotion.SuperMax);
                 }
-                else if (player.buffTime[buffIndex] > 25200) //Greater than 7 minutes
+                else if (player.buffTime[buffIndex] > 25200) //7 minutes
                 {
                     spawnRate = Math.Max(1, (int)(spawnRate / otherModdedItemsConfig.BattlePotion.GreaterSpawnRate));
                     maxSpawns = (int)(maxSpawns * otherModdedItemsConfig.BattlePotion.GreaterMax);
@@ -53,9 +53,6 @@ namespace ReducedGrinding.Global
                 }
 
                 maxSpawns = Math.Max(1, (int)(maxSpawns / 2)); //Undo Vanilla Max
-
-                if (Main.time % 60 == 0)
-                    Main.NewText($"Max: {maxSpawns}, Rate: {spawnRate}, PreMax: {preMaxSpawns}, PreRate: {preSpawnRate}");
             }
         }
     }

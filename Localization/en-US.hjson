@@ -394,13 +394,13 @@ Mods: {
 				Headers: {
 					BattlePotions:
 						'''
-						For Greater and Super Battle Potions, setting both Max Spawns and Spawn Rate to 1 will disable their recipe.
+						For Greater and Super Battle Potions, setting both Max Spawns and Spawn Rate to 2 will disable their recipe.
 
-						Greater Battle Potion gives Battle and Greater Battle Buffs. Super Battle Potion gives Battle, Greater Battle, and Super Battle Buffs. All Buff effects are multiplicative.
+						Greater Battle Potion gives the Battle Buff for 14 Minutes. Super Battle Potion gives the Battle Buff for 21 Minutes. You can set the multiplier for Max Spawns and Spawn rate depending on the duration of the Buff remaining.
 						'''
-					VanillaBattlePotion: Vanilla Battle Buff
-					GreaterBattlePotion: Greater Battle Buff
-					SuperBattlePotion: Super Battle Buff
+					VanillaBattlePotion: Battle Buff duration is less than or equal to 7 minutes
+					GreaterBattlePotion: Battle Buff duration is greater than 7 minutes and less than or equal to 14 minutes.
+					SuperBattlePotion: Battle Buff duration is greater than 14 minutes.
 				}
 
 				VanillaMax: {
@@ -459,11 +459,8 @@ Mods: {
 				}
 
 				PresetHighMax: {
-					Label: Preset, Higher Max Spawns
-					Tooltip:
-						'''
-						Settings to cause a swarm of enemies when using Super Battle Potion.
-						'''
+					Label: Preset, High Max Spawns
+					Tooltip: These settings will cause a swarm of enemies when using Super Battle Potion.
 				}
 			}
 

@@ -4,7 +4,6 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
 {
     public class BattlePotion
     {
-        //Luiafk and possibly other mods make use of the Vanilla Battle Buff, so it's good to have configurations for the vanilla Battle Potion.
         [Header("BattlePotions")]
 
         [Range(1, 750)]

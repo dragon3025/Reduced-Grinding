@@ -369,9 +369,9 @@ Mods: {
 
 				Headers: {
 					BattlePotions: Se você presenciar lag, tente diminuir o máximo de spawn primeiro para a grande e a super poção da batalha, definir o máximo de geradores e a taxa de spawn para 1 vai desativar sua receita..
-					// VanillaBattlePotion: Vanilla Battle Buff
-					// GreaterBattlePotion: Greater Battle Buff
-					// SuperBattlePotion: Super Battle Buff
+					// VanillaBattlePotion: Battle Buff duration is less than or equal to 7 minutes
+					// GreaterBattlePotion: Battle Buff duration is greater than 7 minutes and less than or equal to 14 minutes.
+					// SuperBattlePotion: Battle Buff duration is greater than 14 minutes.
 				}
 
 				VanillaMax: {
@@ -410,7 +410,7 @@ Mods: {
 						'''
 						Set to 750 to disable. Set the amount of frames, (1/60th of a second),
 						distant enemies exist before despawning. This feature is only active
-						if a player has a Battle Buff variant except during Invasions or Boss
+						if a player has the Battle Buff except during Invasions or Boss
 						fights. Some enemies wont be affected by this (for example: Wyverns).
 
 						By clearing distant enemies, more enemies will be able to spawn near
@@ -425,17 +425,13 @@ Mods: {
 						With "Battle Potion Distant Enemy Despawn Time" set to 180, these
 						settings will still make a significant impact. With a high Spawn Rate
 						and distant enemies despawning, there will be plenty of enemies
-						around the player.
+						around the player when using Super Battle Potion.
 						''' */
 				}
 
 				PresetHighMax: {
 					// Label: Preset, Higher Max Spawns
-					/* Tooltip:
-						'''
-						This is the same as the Best Performance Preset, except with
-						increased Max Spawns.
-						''' */
+					// Tooltip: Settings to cause a swarm of enemies when using Super Battle Potion.
 				}
 			}
 
@@ -803,11 +799,6 @@ Mods: {
 		}
 
 		Buffs: {
-			GreaterBattle: {
-				DisplayName: Grande Batalha Expandida
-				Description: Taxa de desova de inimigos muito maior do que antes
-			}
-
 			GreaterMultiBobber: {
 				DisplayName: Grande Multi Poção do Anzol
 				Description: Grande aumento na expensão da sua capacidade de pescaria
@@ -816,11 +807,6 @@ Mods: {
 			MultiBobber: {
 				DisplayName: Multi Poção do Anzol
 				Description: Expande a sua capacidade de pescaria aumentando a coleta de itens
-			}
-
-			SuperBattle: {
-				DisplayName: Super Batalha
-				Description: A taxa de desova de inimigos será massivamente aumentada
 			}
 
 			SuperMultiBobber: {
