@@ -10,41 +10,87 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         [Range(1, 750)]
         public int BattlePotionDistantEnemyDespawnTime;
 
+        public bool PresetPerformance
+        {
+            get =>
+                VanillaMax == 2f &&
+                VanillaSpawnRate == 2f &&
+                GreaterMax == 1f &&
+                GreaterSpawnRate == 4f &&
+                SuperMax == 1f &&
+                SuperSpawnRate == 8f;
+            set
+            {
+                if (value)
+                {
+                    VanillaMax = 2f;
+                    VanillaSpawnRate = 2f;
+                    GreaterMax = 1f;
+                    GreaterSpawnRate = 4f;
+                    SuperMax = 1f;
+                    SuperSpawnRate = 8f;
+                }
+            }
+        }
+
+        public bool PresetHighMax
+        {
+            get =>
+                VanillaMax == 2f &&
+                VanillaSpawnRate == 2f &&
+                GreaterMax == 3f &&
+                GreaterSpawnRate == 4f &&
+                SuperMax == 4f &&
+                SuperSpawnRate == 8f;
+            set
+            {
+                if (value)
+                {
+                    VanillaMax = 2f;
+                    VanillaSpawnRate = 2f;
+                    GreaterMax = 3f;
+                    GreaterSpawnRate = 4f;
+                    SuperMax = 4f;
+                    SuperSpawnRate = 8f;
+                }
+            }
+        }
+
+
+        [Header("VanillaBattlePotion")]
         [BackgroundColor(128, 128, 128)]
         [Increment(.5f)]
         [Range(2f, 10f)]
-        public float VanillaMax;
+        public float VanillaMax { get; set; }
 
         [BackgroundColor(128, 128, 128)]
         [Increment(.5f)]
         [Range(2f, 10f)]
-        public float VanillaSpawnRate;
+        public float VanillaSpawnRate { get; set; }
+
+        [Header("GreaterBattlePotion")]
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float GreaterMax { get; set; }
 
         [Increment(.5f)]
         [Range(1f, 10f)]
-        public float GreaterMax;
+        public float GreaterSpawnRate { get; set; }
+
+        [Header("SuperBattlePotion")]
+        [Increment(.5f)]
+        [Range(1f, 10f)]
+        public float SuperMax { get; set; }
 
         [Increment(.5f)]
         [Range(1f, 10f)]
-        public float GreaterSpawnRate;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float SuperMax;
-
-        [Increment(.5f)]
-        [Range(1f, 10f)]
-        public float SuperSpawnRate;
+        public float SuperSpawnRate { get; set; }
 
         public BattlePotion()
         {
+            PresetPerformance = true;
+            PresetHighMax = false;
             BattlePotionDistantEnemyDespawnTime = 180;
-            VanillaMax = 2f;
-            VanillaSpawnRate = 2f;
-            GreaterMax = 3f;
-            GreaterSpawnRate = 4f;
-            SuperMax = 4f;
-            SuperSpawnRate = 8f;
         }
 
         public override bool Equals(object obj)

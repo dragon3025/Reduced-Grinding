@@ -390,36 +390,81 @@ Mods: {
 
 			BattlePotion: {
 				Tooltip: ""
-				Headers.BattlePotions: If you experience lag, try turning down max spawns first. For Greater and Super Battle Potions, setting both max spawns and spawn rate to 1 will disable their recipe.
+
+				Headers: {
+					BattlePotions:
+						'''
+						For Greater and Super Battle Potions, setting both Max Spawns and Spawn Rate to 1 will disable their recipe.
+						
+						Greater Battle Potion gives Battle and Greater Battle Buffs. Super Battle Potion gives Battle, Greater Battle, and Super Battle Buffs. All Buff effects are multiplicative.
+						'''
+					VanillaBattlePotion: Vanilla Battle Buff
+					GreaterBattlePotion: Greater Battle Buff
+					SuperBattlePotion: Super Battle Buff
+				}
 
 				VanillaMax: {
-					Label: "[i:300] Battle Potion Max Spawns Multiplier"
+					Label: "[i:300] Max Spawns Multiplier"
 					Tooltip: Vanilla default: 2
 				}
 
 				VanillaSpawnRate: {
-					Label: "[i:300] Battle Potion Spawn Rate Multiplier"
+					Label: "[i:300] Spawn Rate Multiplier"
 					Tooltip: Vanilla default: 2
 				}
 
 				GreaterMax: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion Max Spawns Multiplier"
+					Label: "[i:ReducedGrinding/GreaterBattlePotion] Max Spawns Multiplier"
 					Tooltip: ""
 				}
 
 				GreaterSpawnRate: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion Spawn Rate Multiplier"
+					Label: "[i:ReducedGrinding/GreaterBattlePotion] Spawn Rate Multiplier"
 					Tooltip: ""
 				}
 
 				SuperMax: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion Max Spawns Multiplier"
+					Label: "[i:ReducedGrinding/SuperBattlePotion] Max Spawns Multiplier"
 					Tooltip: ""
 				}
 
 				SuperSpawnRate: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion Spawn Rate Multiplier"
+					Label: "[i:ReducedGrinding/SuperBattlePotion] Spawn Rate Multiplier"
 					Tooltip: ""
+				}
+
+				BattlePotionDistantEnemyDespawnTime: {
+					Label: Battle Potion Distant Enemy Despawn Time
+					Tooltip:
+						'''
+						Set to 750 to disable. Set the amount of frames, (1/60th of a second),
+						distant enemies exist before despawning. This feature is only active
+						if a player has a Battle Buff variant except during Invasions or Boss
+						fights. Some enemies wont be affected by this (for example: Wyverns).
+
+						By clearing distant enemies, more enemies will be able to spawn near
+						the player.
+						'''
+				}
+
+				PresetPerformance: {
+					Label: Preset, Best Performance
+					Tooltip:
+						'''
+						With "Battle Potion Distant Enemy Despawn Time" set to 180, these
+						settings will still make a significant impact. With a high Spawn Rate
+						and distant enemies despawning, there will be plenty of enemies
+						around the player.
+						'''
+				}
+
+				PresetHighMax: {
+					Label: Preset, Higher Max Spawns
+					Tooltip:
+						'''
+						This is the same as the Best Performance Preset, except with
+						increased Max Spawns.
+						'''
 				}
 			}
 
