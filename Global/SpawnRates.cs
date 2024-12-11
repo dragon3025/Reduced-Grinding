@@ -9,6 +9,8 @@ namespace ReducedGrinding.Global
 {
     public class SpawnRates : GlobalNPC
     {
+        readonly static HOtherModdedItemsConfig otherModdedItemsConfig = GetInstance<HOtherModdedItemsConfig>();
+
         class SpawnRateMultiplierGlobalNPC : GlobalNPC
         {
             public override void EditSpawnRate(Player player, ref int spawnRate, ref int maxSpawns)
@@ -23,27 +25,37 @@ namespace ReducedGrinding.Global
                     return;
                 }
 
-                if (player.FindBuffIndex(BuffType<Buffs.SuperBattle>()) != -1)
+                int buffIndex = player.FindBuffIndex(BuffID.Battle);
+                if (buffIndex == -1)
                 {
-                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperSpawnRate));
-                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperMax);
+                    return;
                 }
-                if (player.FindBuffIndex(BuffType<Buffs.GreaterBattle>()) != -1)
+
+                int preSpawnRate = spawnRate;
+                int preMaxSpawns = maxSpawns;
+
+                spawnRate = spawnRate *= 2; //Undo Vanilla Rates before setting new rates.
+
+                if (player.buffTime[buffIndex] > 50400) //Greater than 14 minutes
                 {
-                    spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterSpawnRate));
-                    maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterMax);
+                    spawnRate = Math.Max(1, (int)(spawnRate / otherModdedItemsConfig.BattlePotion.SuperSpawnRate));
+                    maxSpawns = (int)(maxSpawns * otherModdedItemsConfig.BattlePotion.SuperMax);
                 }
-                if (player.FindBuffIndex(BuffID.Battle) != -1)
+                else if (player.buffTime[buffIndex] > 25200) //Greater than 7 minutes
                 {
-                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaSpawnRate > 2)
-                    {
-                        spawnRate = Math.Max(1, (int)(spawnRate / GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaSpawnRate));
-                    }
-                    if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaMax > 2)
-                    {
-                        maxSpawns = (int)(maxSpawns * GetInstance<HOtherModdedItemsConfig>().BattlePotion.VanillaMax);
-                    }
+                    spawnRate = Math.Max(1, (int)(spawnRate / otherModdedItemsConfig.BattlePotion.GreaterSpawnRate));
+                    maxSpawns = (int)(maxSpawns * otherModdedItemsConfig.BattlePotion.GreaterMax);
                 }
+                else
+                {
+                    spawnRate = Math.Max(1, (int)(spawnRate / otherModdedItemsConfig.BattlePotion.VanillaSpawnRate));
+                    maxSpawns = (int)(maxSpawns * otherModdedItemsConfig.BattlePotion.VanillaMax);
+                }
+
+                maxSpawns = Math.Max(1, (int)(maxSpawns / 2)); //Undo Vanilla Max
+
+                if (Main.time % 60 == 0)
+                    Main.NewText($"Max: {maxSpawns}, Rate: {spawnRate}, PreMax: {preMaxSpawns}, PreRate: {preSpawnRate}");
             }
         }
     }

@@ -369,9 +369,9 @@ Mods: {
 
 				Headers: {
 					BattlePotions: Se você presenciar lag, tente diminuir o máximo de spawn primeiro para a grande e a super poção da batalha, definir o máximo de geradores e a taxa de spawn para 1 vai desativar sua receita..
-					// VanillaBattlePotion: Vanilla Battle Potion Header
-					// GreaterBattlePotion: Greater Battle Potion Header
-					// SuperBattlePotion: Super Battle Potion Header
+					// VanillaBattlePotion: Vanilla Battle Buff
+					// GreaterBattlePotion: Greater Battle Buff
+					// SuperBattlePotion: Super Battle Buff
 				}
 
 				VanillaMax: {
@@ -413,19 +413,29 @@ Mods: {
 						if a player has a Battle Buff variant except during Invasions or Boss
 						fights. Some enemies wont be affected by this (for example: Wyverns).
 
-						By clearing distant enemies, (especially those trapped in
-						cave-pockets), more enemies will be able to spawn near the player.
+						By clearing distant enemies, more enemies will be able to spawn near
+						the player.
 						''' */
 				}
 
 				PresetPerformance: {
-					// Label: Preset Best Performance
-					// Tooltip: ""
+					// Label: Preset, Best Performance
+					/* Tooltip:
+						'''
+						With "Battle Potion Distant Enemy Despawn Time" set to 180, these
+						settings will still make a significant impact. With a high Spawn Rate
+						and distant enemies despawning, there will be plenty of enemies
+						around the player.
+						''' */
 				}
 
 				PresetHighMax: {
-					// Label: Preset Higher Max Spawns
-					// Tooltip: ""
+					// Label: Preset, Higher Max Spawns
+					/* Tooltip:
+						'''
+						This is the same as the Best Performance Preset, except with
+						increased Max Spawns.
+						''' */
 				}
 			}
 

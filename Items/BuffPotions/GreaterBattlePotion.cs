@@ -1,4 +1,5 @@
 using ReducedGrinding.Configuration;
+using System.Configuration;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -26,19 +27,13 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.value = Item.sellPrice(0, 0, 2, 10);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = ModContent.BuffType<Buffs.GreaterBattle>();
-            Item.buffTime = 25200; //7 Minutes
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            player.AddBuff(BuffID.Battle, 25200); //7 minutes
-            return true;
+            Item.buffType = BuffID.Battle;
+            Item.buffTime = 50400; //14 Minutes
         }
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterMax > 1 || GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterSpawnRate > 1)
+            if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterMax > 2 || GetInstance<HOtherModdedItemsConfig>().BattlePotion.GreaterSpawnRate > 2)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemID.BattlePotion);

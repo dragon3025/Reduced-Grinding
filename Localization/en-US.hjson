@@ -395,7 +395,7 @@ Mods: {
 					BattlePotions:
 						'''
 						For Greater and Super Battle Potions, setting both Max Spawns and Spawn Rate to 1 will disable their recipe.
-						
+
 						Greater Battle Potion gives Battle and Greater Battle Buffs. Super Battle Potion gives Battle, Greater Battle, and Super Battle Buffs. All Buff effects are multiplicative.
 						'''
 					VanillaBattlePotion: Vanilla Battle Buff
@@ -439,7 +439,7 @@ Mods: {
 						'''
 						Set to 750 to disable. Set the amount of frames, (1/60th of a second),
 						distant enemies exist before despawning. This feature is only active
-						if a player has a Battle Buff variant except during Invasions or Boss
+						if a player has the Battle Buff except during Invasions or Boss
 						fights. Some enemies wont be affected by this (for example: Wyverns).
 
 						By clearing distant enemies, more enemies will be able to spawn near
@@ -454,7 +454,7 @@ Mods: {
 						With "Battle Potion Distant Enemy Despawn Time" set to 180, these
 						settings will still make a significant impact. With a high Spawn Rate
 						and distant enemies despawning, there will be plenty of enemies
-						around the player.
+						around the player when using Super Battle Potion.
 						'''
 				}
 
@@ -462,8 +462,7 @@ Mods: {
 					Label: Preset, Higher Max Spawns
 					Tooltip:
 						'''
-						This is the same as the Best Performance Preset, except with
-						increased Max Spawns.
+						Settings to cause a swarm of enemies when using Super Battle Potion.
 						'''
 				}
 			}
@@ -842,11 +841,6 @@ Mods: {
 		}
 
 		Buffs: {
-			GreaterBattle: {
-				DisplayName: Greater Battle
-				Description: Enemy spawn rate greatly increased
-			}
-
 			GreaterMultiBobber: {
 				DisplayName: Greater Multi-Bobber Potion
 				Description: Greatly increases bobber amount when fishing
@@ -855,11 +849,6 @@ Mods: {
 			MultiBobber: {
 				DisplayName: Multi-Bobber Potion
 				Description: Increases bobber amount when fishing
-			}
-
-			SuperBattle: {
-				DisplayName: Super Battle
-				Description: Enemy spawn rate massively increased
 			}
 
 			SuperMultiBobber: {

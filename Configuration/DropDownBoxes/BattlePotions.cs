@@ -15,20 +15,20 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             get =>
                 VanillaMax == 2f &&
                 VanillaSpawnRate == 2f &&
-                GreaterMax == 1f &&
-                GreaterSpawnRate == 4f &&
-                SuperMax == 1f &&
-                SuperSpawnRate == 8f;
+                GreaterMax == 2f &&
+                GreaterSpawnRate == 8f &&
+                SuperMax == 2f &&
+                SuperSpawnRate == 16f;
             set
             {
                 if (value)
                 {
                     VanillaMax = 2f;
                     VanillaSpawnRate = 2f;
-                    GreaterMax = 1f;
-                    GreaterSpawnRate = 4f;
-                    SuperMax = 1f;
-                    SuperSpawnRate = 8f;
+                    GreaterMax = 2f;
+                    GreaterSpawnRate = 8f;
+                    SuperMax = 2f;
+                    SuperSpawnRate = 16f;
                 }
             }
         }
@@ -38,20 +38,20 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
             get =>
                 VanillaMax == 2f &&
                 VanillaSpawnRate == 2f &&
-                GreaterMax == 3f &&
-                GreaterSpawnRate == 4f &&
-                SuperMax == 4f &&
-                SuperSpawnRate == 8f;
+                GreaterMax == 13f &&
+                GreaterSpawnRate == 50f &&
+                SuperMax == 24f &&
+                SuperSpawnRate == 100f;
             set
             {
                 if (value)
                 {
                     VanillaMax = 2f;
                     VanillaSpawnRate = 2f;
-                    GreaterMax = 3f;
-                    GreaterSpawnRate = 4f;
-                    SuperMax = 4f;
-                    SuperSpawnRate = 8f;
+                    GreaterMax = 13f;
+                    GreaterSpawnRate = 50f;
+                    SuperMax = 24f;
+                    SuperSpawnRate = 100f;
                 }
             }
         }
@@ -60,30 +60,30 @@ namespace ReducedGrinding.Configuration.DropDownBoxes
         [Header("VanillaBattlePotion")]
         [BackgroundColor(128, 128, 128)]
         [Increment(.5f)]
-        [Range(2f, 10f)]
+        [Range(2f, 100f)]
         public float VanillaMax { get; set; }
 
         [BackgroundColor(128, 128, 128)]
         [Increment(.5f)]
-        [Range(2f, 10f)]
+        [Range(2f, 100f)]
         public float VanillaSpawnRate { get; set; }
 
         [Header("GreaterBattlePotion")]
         [Increment(.5f)]
-        [Range(1f, 10f)]
+        [Range(2f, 100f)]
         public float GreaterMax { get; set; }
 
         [Increment(.5f)]
-        [Range(1f, 10f)]
+        [Range(2f, 100f)]
         public float GreaterSpawnRate { get; set; }
 
         [Header("SuperBattlePotion")]
         [Increment(.5f)]
-        [Range(1f, 10f)]
+        [Range(2f, 100f)]
         public float SuperMax { get; set; }
 
         [Increment(.5f)]
-        [Range(1f, 10f)]
+        [Range(2f, 100f)]
         public float SuperSpawnRate { get; set; }
 
         public BattlePotion()

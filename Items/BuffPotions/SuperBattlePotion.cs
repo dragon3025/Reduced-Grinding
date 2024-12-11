@@ -27,20 +27,13 @@ namespace ReducedGrinding.Items.BuffPotions
             Item.value = Item.sellPrice(0, 0, 12, 10);
             Item.UseSound = SoundID.Item3;
             Item.consumable = true;
-            Item.buffType = BuffType<Buffs.SuperBattle>();
-            Item.buffTime = 25200; //7 Minutes
-        }
-
-        public override bool? UseItem(Player player)
-        {
-            player.AddBuff(BuffID.Battle, 25200); //7 minutes
-            player.AddBuff(BuffType<Buffs.GreaterBattle>(), 25200); //7 minutes
-            return true;
+            Item.buffType = BuffID.Battle;
+            Item.buffTime = 75600; //21 Minutes
         }
 
         public override void AddRecipes()
         {
-            if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperMax > 1 || GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperSpawnRate > 1)
+            if (GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperMax > 2 || GetInstance<HOtherModdedItemsConfig>().BattlePotion.SuperSpawnRate > 2)
             {
                 Recipe recipe = Recipe.Create(Type);
                 recipe.AddIngredient(ItemType<GreaterBattlePotion>());

@@ -71,7 +71,7 @@ namespace ReducedGrinding.Global
 
             foreach (var player in Main.ActivePlayers)
             {
-                if (player.HasBuff(BuffID.Battle) || player.HasBuff(BuffType<Buffs.GreaterBattle>()) || player.HasBuff(BuffType<Buffs.SuperBattle>()))
+                if (player.HasBuff(BuffID.Battle))
                 {
                     playerWithBattleBuff = true;
                     break;
