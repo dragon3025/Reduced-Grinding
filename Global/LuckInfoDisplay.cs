@@ -8,7 +8,7 @@ namespace ReducedGrinding.Global
 {
     public class LuckInfoDisplay : InfoDisplay
     {
-        public static Color RedInfoTextColor => new(255, 128, 128, Main.mouseTextColor);
+        public static Color RedInfoTextColor => new(255, 25, 25, Main.mouseTextColor);
 
         public override bool Active()
         {
@@ -19,13 +19,15 @@ namespace ReducedGrinding.Global
         {
             int luckDisplayed = (int)(Main.LocalPlayer.luck * 100f);
 
-            if (luckDisplayed == 0)
-            {
-                displayColor = InactiveInfoTextColor;
-            }
-            else if (luckDisplayed < 0)
+            int baseLuck = Main.LocalPlayer.usedGalaxyPearl ? 3 : 0;
+
+            if (luckDisplayed < (0 - baseLuck))
             {
                 displayColor = RedInfoTextColor;
+            }
+            else if (luckDisplayed <= baseLuck)
+            {
+                displayColor = InactiveInfoTextColor;
             }
 
             return Language.GetTextValue("Mods.ReducedGrinding.Misc.LuckInfoDisplay").FormatWith(luckDisplayed);

@@ -40,7 +40,8 @@ namespace ReducedGrinding.Global
             }
 
             showLuck = false;
-            if (Main.LocalPlayer.HasBuff(BuffID.Clairvoyance))
+
+            if (Player.HasBuff(BuffID.Clairvoyance))
             {
                 showLuck = true;
             }
