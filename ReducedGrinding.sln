@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DragonsDecorativeMod", "..\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleMod", "..\ExampleMod\ExampleMod.csproj", "{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terraroid", "..\Terraroid\Terraroid.csproj", "{A3DF40F5-3502-4A8D-84FD-AC4ECFBDA6F1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,12 +24,9 @@ Global
 		{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B71506B5-BEF2-4DC5-8C47-65E6B6E7333D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A011A8-60B9-4016-AFCE-85F3A80E6F9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3DF40F5-3502-4A8D-84FD-AC4ECFBDA6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3DF40F5-3502-4A8D-84FD-AC4ECFBDA6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3DF40F5-3502-4A8D-84FD-AC4ECFBDA6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3DF40F5-3502-4A8D-84FD-AC4ECFBDA6F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
