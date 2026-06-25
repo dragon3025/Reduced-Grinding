@@ -1,29 +1,22 @@
-Reduced Grinding
+=== INFO ===
+Open Source at GitHub. Report issues there or on the forum page.
 
-====INFO====
+This mod reduces the need for tedious grinding and adds other quality of life features. It's also very configurable:
 
-Open Source at GitHub. Report issues there or at home page.
-
-This mod will prevent having to spend huge amounts of time farming loot and adds other conveniences. Features can be configured or disabled. Here's a summary (it's also at the terrariamods.wiki.gg):
-
-- Increased item chances for a few enemy loot drops.
-- Item values scale to new drop rates by default.
-- Unlimited Angler Quest per day.
-- Greater + Super Battle Potion to increase enemy spawns.
-- Items that activate Christmas and Halloween for the current day. By default,
-    crafting requires their matching season.
-- Item for canceling invasions.
-- Recipe for Universal Pylon. Disable or Customize.
-- Each chest at or below the Cavern Layer has a 1 / 100 chance to generate with
-    Terragrim (chance can be customized or disabled).
-
-====OFF BY DEFAULT====
-
-- Change Universal Pylon Bestiary requirement.
-- Configuraitons for changing enemy loot drop chances.
-- Adjust Bed + Enchanted Dial time rate and cooldown.
-- Potions for increasing fishing bobber amount.
-- Fishing Coins when finishing Quests, to purchase Quest Items from the Pirate NPC.
-- Staff of Difficulty. Changes world difficulty mode.
-- Moon Watch to advance Moon Phase.
-- Witch Doctor sells Chlorophyte after Plantera.
+=== Feature Summary ===
+(See the wiki at terrariamods.wiki.gg for more info).
+- "WikiThis" mod support.
+- Increased item chances for rare enemy loot drops.
+- Custom battle potions that will push the spawn rate past vanilla.
+- Unlimited quests per day, new Bumblebee Tuna quests are announced, and Honey rewards can be shimmered into each other.
+- Bobber potions to increase the amount of fishing bobbers used.
+- Merchant Dice to re-roll the Traveling Merchant shop. Available after the 3 Mech bosses. Re-rolls before Moonlord: 3, re-rolls after: 10.
+- Merchant Dice to re-roll the Traveling Merchant shop. Its availability and uses per day depends on progression.
+- Items to stop or extend invasions. Post-game items to summon or remove Lunar Pillars.
+- Chaos Elementals will replace most spawns for 6 minutes after defeating Queen Slime.
+- Universal Pylon can be crafted out of all other Pylons. You can also set it to require Boss Souls or Fragments. To keep Potion of Return useful, the Pylon requires 2+ villagers while the Bestiary is incomplete; this can be disabled.
+- Custom generation to place chest loot, when the vanilla chance fails.
+- Shimmer Feathers or Clouds to control weather. Use Moon Watch to control the Moon phase.
+- Before reaching the Shimmer, Faelings will help you find them.
+- Item values are adjusted to match their new rate.
+- Plus more.

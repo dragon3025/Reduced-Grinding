@@ -14,6 +14,4 @@
   <ItemGroup>
     <AdditionalFiles Remove="Localization\en-US.hjson" />
   </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
 </Project>

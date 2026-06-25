@@ -19,19 +19,25 @@ Mods: {
 				CurrentQuest: Missão Atual: [i:{0}].
 				NewQuestText: O pescador decidiu dar outra missão de busca à você!
 				NewQuestTextWithIcon: O pescador decidiu dar outra missão de busca à você: [i:{0}]!
-				BumblebeeTunaIncrease: Parece que há um surto de Atum Abelha aqui, provavelmente o pescador ira pedir por isso!
-				BumblebeeTunaDecrease: A taxa de Atum Abelha voltou ao normal!
+				// BumblebeeTunaIncrease: There is an outbreak of [i:BumblebeeTuna] Bumblebee Tuna, the Angler wants it!
 			}
 
-			StaffOfDifficulty: {
-				Expert: A dificuldade do mundo agora é Perito!
-				Master: A dificuldade do mundo agora é Mestre!
-				Normal: A dificuldade do mundo agora é Clássico!
+			DifficultyStaves: {
+				// CantUseInJourneyMode: This can't be used in a Journey World. Use the Journey Power Menu.
+				// DifficultySwitched: "[c/{0}:The world's difficulty has been set to {1}!]"
+				// GetGoodModification: '''[c/{0}: The world's Special Seed, "For the Worthy", increases this to {1}!]'''
+				// VoteCount: "[c/{0}:{1}], difficulty requested. To vote to change the world difficulty, use the matching staff. Total votes to switch difficulty out of votes needed: {2}/{3}!"
+				// VotingTimeUp: The voting time is up. The world difficulty didn't change!
+				// DifficultyIsTheSame: The world is already using this difficulty.
+				// WaitForVotingTimeToEnd: Someone is already requesting another difficulty. Wait for the voting time to end.
+				// AlreadyVoted: You already voted for this difficulty.
+				// GetGoodWillModifyDifficulty: The world's Special Seed, "For the Worthy", will increase this to [c/{0}:{1}!]
 			}
 
 			MerchantDice: {
 				ReRollsLeft: Revoção da loja do Caixeiro Viajante! Renovação restante!: {0}.
 				NoMoreReRolls: Você não tem mais renovações restantes.
+				// MerchantMissing: The Traveling Merchant isn't around. Wait until he arrives.
 			}
 
 			MoonWatch: {
@@ -39,179 +45,854 @@ Mods: {
 				MoonPhase: A faze da Lua agora é {0}
 			}
 
-			WorldPeaceStandard: A invasão restante!
+			// WorldPeaceStandard: The invasion left!
 
 			WorldGeneration: {
 				MissingTreeLoot: Adicionar itens perdidos nas árvores
 				MissingShroomLoot: Adicionar itens perdidos do bioma de cogumelo
-				MissingMiscLoot: Adicionar outros itens perdidos
+				// MissingPyramidLoot: Adding missing pyramid loot
+				// PlacingTerragrims: Placing Terragrims
+				// OtherEvilChestGen: Placing the other Evil Chest
 			}
+
+			ArrivalMessage: {
+				// OldMan: The Old Man arrived at the Dungeon.
+				// Cultists: The Cultists arrived at the Dungeon.
+			}
+
+			// CantShimmerDoll: The doll speaks to you: "Not now."
+			// CantShimmerItem: This can't be shimmered right now.
+			// ClothierCursed: The Clothier has been cursed; he moved to the Dungeon!
+			// Epitaph.1: RIP
+			// HardmodeRemoved: The ancient spirits of light and dark have been sealed away.
+			// HardmodeReturned: The ancient spirits of light and dark have returned.
+
+			ChaosElementalSwarm: {
+				// Start: The Underground Hallow is chaotic!
+				// End: The Underground Hallow is calm!
+			}
+
+			// AverageKillsToGet: Average Kills to Drop
+
+			TriangularArrows: {
+				// Up: "⏶ "
+				// Down: "⏷ "
+				// Left: "⏴ "
+				// Right: "⏵ "
+			}
+
+			// WarStandardBattlePotionTooltip: Stronger Battle Potions will work during Invasions
+			/* WarStandardBattleBuffTooltip:
+				'''
+				{$Buffs.WarStandard.Description}
+				Stronger Battle Potions will work during invasions
+				''' */
+
+			ConfigurationTooltips: {
+				// MainIngredient: Setting to none will disable the 1st of 2 recipes for this item.
+				/* AlternateIngredient:
+					'''
+					This is useful if you're setting the main ingredient to a resource that has a
+					counterpart, for example: Iron and Lead. Setting to none will disable the 2nd of
+					2 recipes for this item.
+					''' */
+			}
+
+			// NameTag: "{0}'s name is now {1}!"
+
+			CelestialWard: {
+				// MoonLord: The Moon Lord is no longer approaching!
+				// Pillars: The Celestial creatures are gone!
+			}
+
+			UniversalPylonBestiaryFail: {
+				// Destination: "{$Net.CannotTeleportToPylonBecauseNotEnoughNPCs}. Complete the Bestiary to remove this limitation for the that Pylon."
+				// Nearby: "{$Net.CannotTeleportToPylonBecauseNotEnoughNPCsAtCurrentPylon}. Complete the Bestiary to remove this limitation for this Pylon."
+				/* Tooltip:
+					'''
+					This Pylon requires 2 nearby Town NPCs until the Bestiary is complete,
+					  this is an early U.Pylon nerf that can be disabled in the configurations
+					  (Mod Configuration > Reduced Grinding > Other).
+					''' */
+			}
+
+			// NotConsumedWhenCraftingJackStatue: Not consumed when crafting Jack Statue
 		}
 
 		Configs: {
-			AEnemyLootConfig: {
-				DisplayName: Coletáveis dos Inimigos
+			EnemyLootConfig: {
+				// DisplayName: 01 [i:RainbowCursor] Enemy Loot
 
 				Headers: {
-					Main:
+					/* Main:
 						'''
-						Você pode mudar a taxa de queda dos itens usando a seguinte configuração. Chance = 1 / configuration_setting.
-						Mude para 0 para usar o valor padrão do jogo da taxa de queda vanilla.
+						You can change item drop rates using the following configurations. [c/FF9900:The chance of the item dropping is 1 divided by n, where n equals the setting. Low = More Often, High = Less Often]. Set to the max amount to use the vanilla drop rate.
+
+						Bosses
+						''' */
+					// Hallow: Hallow
+					// Dungeon: Dungeon
+					// Underworld: Underworld
+					// JungleTemple: Jungle Temple
+					// Surface: Surface
+					// Cavern: Cavern
+					// CorruptionAndCrimson: Corruption And Crimson
+					// Holiday: Holiday
+					// OtherVanilla: Other Vanilla
+				}
+
+				Binoculars: {
+					// Label: "[i: 1299] Binoculars, {$Misc.AverageKillsToGet}"
+					// Tooltip: If world difficulty is normal, this is multiplied by (4/3)
+				}
+
+				StellarTune: {
+					// Label: "[i:4715] Stellar Tune, {$Misc.AverageKillsToGet}"
+					// Tooltip: If world difficulty is normal, this is multiplied by (5/2)
+				}
+
+				RainbowCursor: {
+					// Label: "[i:5075] Rainbow Cursor, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				CoinGun: {
+					// Label: "[i:905] Coin Gun From Flying Dutchman, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				PrismaticDye: {
+					// Label: "[i:HallowBossDye] Prismatic Dye, {$Misc.AverageKillsToGet}"
+					// Tooltip: Drops 3 at a time.
+				}
+
+				TownNPCWeapons: {
+					// Label: "[i:3349] Town NPC Weapons, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
 						'''
-					NonVanilla: Não Vanilla
+						With n equaling this setting: the average kills to drop Paintball Gun is
+						n / 8 * 10 floored, but at least 1; and the average kills to drop Happy Grenades
+						is n / 8 * 4 floored, but at least 1.
+						''' */
 				}
 
-				SlimeStaffFromSlimeKing: {
-					Label: "[i:1309] Cajado da Geleia do Rei Geleia"
-					Tooltip: ""
+				BiomeKey: {
+					// Label: "[i:1533] Biome Key, {$Misc.AverageKillsToGet}"
+					// Tooltip: This sets the same drop rate for each
 				}
 
-				TrufflewormFromDukeFishron: {
-					Label: "[i:2673] Verme da Trufa do Peixe Dragão"
-					Tooltip: ""
+				BeamSword: {
+					// Label: "[i:723] Beam Sword, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
 				}
 
-				NonBossLoot: {
-					Label: Coletáveis que não são dos Chefes
-					Tooltip: ""
+				GoodieBag: {
+					// Label: "[i:1774] Goodie Bag, {$Misc.AverageKillsToGet}"
+					// Tooltip: Only drops during Halloween
 				}
 
-				BossLoot: {
-					Label: Coletáveis dos Chefes
-					Tooltip: ""
+				Lens: {
+					// Label: "[i:38] Lens, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
+						'''
+						Lens wont drop if Black Lens drops, so chance =
+						(99 / 100) * (1 / setting)
+						''' */
+				}
+
+				LizardEgg: {
+					// Label: "[i:1172] Lizard Egg, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				Marrow: {
+					// Label: "[i:682] Marrow, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				PaladinsHammer: {
+					// Label: "[i:1513] Paladin's Hammer, {$Misc.AverageKillsToGet}"
+					// Tooltip: In Expert or harder worlds, the drop gets a 2nd roll if the first roll fails.
+				}
+
+				PlumbersHat: {
+					// Label: "[i:244] Plumber's Hat, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				Present: {
+					// Label: "[i:1869] Present, {$Misc.AverageKillsToGet}"
+					// Tooltip: Only drops during Christmas
+				}
+
+				RifleScopeAndSniperRifle: {
+					// Label: "[i:1300] Rifle Scope and [i:1254] Sniper Rifle, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
+						'''
+						This sets the same drop rate for each.
+
+						In Expert or harder worlds, the drop gets a 2nd roll if the first roll fails.
+						''' */
+				}
+
+				RocketLauncher: {
+					// Label: "[i:759] Rocket Launcher, {$Misc.AverageKillsToGet}"
+					// Tooltip: In Expert or harder worlds, the drop gets a 2nd roll if the first roll fails.
+				}
+
+				RodofDiscord: {
+					// Label: "[i:1326] Rod of Discord, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
+						'''
+						If world difficulty is normal, this is multiplied by (5/4) (In a Celebrationmk10
+						world, it's divided by 4, then rounded upwards if below 1).
+
+						Consider "NPCs and Enemies > Chaos Elemental Swarm" when setting this.
+						''' */
+				}
+
+				RottenChunkAndVertebra: {
+					// Label: "[i:68] Rotten Chunk and [i:1330] Vertebra, {$Misc.AverageKillsToGet}"
+					// Tooltip: This sets the same drop rate for each
+				}
+
+				SoulOfLightAndNight: {
+					// Label: "[i:520] Soul of Light and [i:521] Soul of Night, {$Misc.AverageKillsToGet}"
+					// Tooltip: This sets the same drop rate for each
+				}
+
+				SWATHelmetAndTacticalShotgun: {
+					// Label: "[i:1514] SWAT Helmet and [i:679]Tactical Shotgun, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
+						'''
+						This sets the same drop rate for each.
+
+						In Expert or harder worlds, the drop gets a 2nd roll if the first roll fails.
+						''' */
+				}
+
+				SlimeStaffFromPinky: {
+					// Label: "[i:SlimeStaff] Slime Staff, {$Misc.AverageKillsToGet}"
+					/* Tooltip:
+						'''
+						If world difficulty is normal, this multiplied by (10/7). This is multiplied
+						further by the Slime Type: Pinky, 1; Sand Slime, (5600/70); and Other:
+						(7000/70). King Slime uses a seperate configuration.
+						''' */
+				}
+
+				PaladinsShield: {
+					// Label: "[i:938] Paladins Shield, {$Misc.AverageKillsToGet}"
+					// Tooltip: In Expert or harder worlds, the drop gets a 2nd roll if the first roll fails.
+				}
+
+				ObsidianRose: {
+					// Label: "[i:1323] Obsidian Rose, {$Misc.AverageKillsToGet}"
+					// Tooltip: ""
+				}
+
+				PresentMultiplierAfterPlantera: {
+					// Label: "[i:Present] Present Multiplier After [i:2109] Plantera"
+					/* Tooltip:
+						'''
+						After Plantera, the amount of Presents dropped will be
+						multiplied by this. Set to 1 for Vanilla behavior.
+						''' */
+				}
+
+				GoodieBagMultiplierAfterPlantera: {
+					// Label: "[i:1774] Goodie Bag Multiplier After [i:2109] Plantera"
+					/* Tooltip:
+						'''
+						After Plantera, the amount of Goodie Bags dropped will
+						be multiplied by this. Set to 1 for Vanilla behavior.
+						''' */
+				}
+
+				GuaranteedBiomeKey: {
+					// Label: "[i:1534] Guaranteed Biome Key, Kills to Get"
+					/* Tooltip:
+						'''
+						A Biome Key will always drop after getting this many kills in a matching biome.
+						Set to 0 to disable. If disabled, the kill count for each Guaranteed Key will be
+						reset when the world is loaded.
+						''' */
+				}
+
+				GuaranteedBiomeKeyBehavior: {
+					// Label: "[i:1535] Guaranteed Biome Key Behavior"
+					// Tooltip: ""
+				}
+
+				SlimeStaffFromKingSlime: {
+					// Label: "[i:1309] Slime Staff From King Slime, {$Misc.AverageKillsToGet}"
+					// Tooltip: The default for this setting, uses the 1.4.5+ drop rate.
+				}
+
+				FishronWings: {
+					// Label: "[i:2609] Fishron Wings, {$Misc.AverageKillsToGet}"
+					// Tooltip: If the world difficulty is normal, this is multiplied by (3 / 2)
+				}
+
+				EmpressWings: {
+					// Label: "[i:4823] Empress Wings, {$Misc.AverageKillsToGet}"
+					// Tooltip: If the world difficulty is normal, this is multiplied by (3 / 2)
+				}
+
+				MaxBeetleHuskInNormal: {
+					// Label: "[i:BeetleHusk] Max Beetle Husk In Normal"
+					/* Tooltip:
+						'''
+						This setting doesn't affect Expert or harder. This will change the max amount of
+						Beetle Husk dropped by Golem. The min amount will be set to 4 plus 0-14
+						depending on this setting. Set to 8 to use the vanilla amounts. 23 sets it to
+						the Expert or harder amounts.
+						''' */
 				}
 			}
 
-			CFishingConfig: {
-				DisplayName: Pescaria
-				Headers.FishCoin:
-					'''
-					Moéda do Peixe
+			BobberPotionConfig: {
+				// DisplayName: 04 [i:ReducedGrinding/BobberPotion] Bobber Potions
 
-					Recompensa quando terminar uma missão do pescador.
-					Usado para comprar recompensas da missão do NPC pirata.
-					Mude para 0 para desativar as recompensas da missão aparecendo na loja do pirata.
-					'''
+				Headers: {
+					// BobberPotions: "[i:ReducedGrinding/BobberPotion] Bobber Potion"
+					// GreaterBobberPotion: "[i:ReducedGrinding/GreaterBobberPotion] Greater Bobber Potion"
+					// SuperBobberPotion: "[i:ReducedGrinding/SuperBobberPotion] Super Bobber Potion"
+				}
+
+				BobberPotionIngredient: {
+					// Label: "[i:AlchemyTable] Main Ingredient"
+					// Tooltip: "{$Misc.ConfigurationTooltips.MainIngredient}"
+				}
+
+				BobberPotionAlternateIngredient: {
+					// Label: "[i:AlchemyTable] Alternate Main Ingredient"
+					// Tooltip: "{$Misc.ConfigurationTooltips.AlternateIngredient}"
+				}
+
+				BobberPotionBonus: {
+					// Label: "[i:FishingBobber] Bobber Bonus"
+					// Tooltip: Adds this many bobbers when fishing.
+				}
+
+				GreaterBobberPotionIngredient: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionIngredient.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionIngredient.Tooltip}"
+				}
+
+				GreaterBobberPotionAlternateIngredient: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionAlternateIngredient.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionAlternateIngredient.Tooltip}"
+				}
+
+				GreaterBobberPotionBonus: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionBonus.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionBonus.Tooltip}"
+				}
+
+				SuperBobberPotionIngredient: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionIngredient.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionIngredient.Tooltip}"
+				}
+
+				SuperBobberPotionAlternateIngredient: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionAlternateIngredient.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionAlternateIngredient.Tooltip}"
+				}
+
+				SuperBobberPotionBonus: {
+					// Label: "{$Configs.BobberPotionConfig.BobberPotionBonus.Label}"
+					// Tooltip: "{$Configs.BobberPotionConfig.BobberPotionBonus.Tooltip}"
+				}
+			}
+
+			TimeAndWeatherConfig: {
+				// DisplayName: 10 [i:ReducedGrinding/MoonWatch] Time and Weather
+
+				MoonWatchMaterial: {
+					// Label: "[i:ReducedGrinding/MoonWatch] Moon Watch Material"
+					/* Tooltip:
+						'''
+						This item is consumed on use and will advance the moon phase to the next phase.
+						{$Misc.ConfigurationTooltips.MainIngredient}
+						''' */
+				}
+
+				MoonWatchMaterialAmount: {
+					// Label: "[i:ReducedGrinding/MoonWatch] Moon Watch Material Amount"
+					// Tooltip: Set the amount of "Moon Watch Material" required to craft.
+				}
+
+				MoonWatchAlternateMaterial: {
+					// Label: "[i:ReducedGrinding/MoonWatch] Moon Watch Alternate Material"
+					// Tooltip: "{$Misc.ConfigurationTooltips.AlternateIngredient}"
+				}
+
+				// Headers.EnchantedSundial: "[i:3064] Enchanted Sundial"
+
+				CrateEnchantedSundial: {
+					// Label: "[i:3981] Average Crates to Get"
+					/* Tooltip:
+						'''
+						Changes the chance of Enchanted Sundial drop from Crates that drop it. Chance =
+						1 / setting. This is multiplied by 3 for Mythril and 10 for Pearlwood. The
+						vanilla default is 20.
+
+						Consider "Bobber Potions" when setting this.
+						''' */
+				}
+
+				PreHardmodeSundials: {
+					// Label: "[i:2336] Pre-Hardmode Sundials"
+					/* Tooltip:
+						'''
+						If enabled, all Vanilla pre-Hardmode Crates will have the same chance
+						of dropping Enchanted Sundial that their Hardmode variant has
+
+						Consider "Bobber Potions" when setting this.
+						''' */
+				}
+
+				EnchantedDialCooldown: {
+					// Label: Enchanted Dial Cooldown
+					// Tooltip: The vanilla default is 7.
+				}
+
+				SleepRateMultiplier: {
+					// Label: "[i:224] Sleep Time Rate Multiplier"
+					/* Tooltip:
+						'''
+						In vanilla, sleeping multiplies the time rate by 5;
+						afterward it will be multiplied by this amount.
+						''' */
+				}
+
+				ItemShimmeredForWind: {
+					// Label: "[i:PinWheel] Item Shimmered For Wind"
+					/* Tooltip:
+						'''
+						When the item set here is Shimmered, it will be consumed, increase the
+						world's wind speed to the maximum amount (rain will increase this further), and
+						cause a sandstorm. Set to None, to disable.
+						[c/FFA600:Don't set this to an item that already transforms, decrafts, or does something]
+						[c/FFA600:else when shimmered; doing so could disable that affect].
+						''' */
+				}
+
+				ItemShimmeredForRain: {
+					// Label: "[i:RainHat] Item Shimmered For Rain"
+					/* Tooltip:
+						'''
+						When the item set here is Shimmered, it will be consumed and increase the worlds
+						rain to the maximum amount. Set to None, to disable.
+						[c/FFA600:Don't set this to an item that already transforms, decrafts, or does something]
+						[c/FFA600:else when shimmered; doing so could disable that affect].
+						''' */
+				}
+
+				EnchantedDialMultiplier: {
+					// Label: Enchanted Dial Time Rate Multiplier
+					/* Tooltip:
+						'''
+						In vanilla, enchanted dials multiplies the time rate by 60;
+						afterward it will be multiplied by this amount
+						''' */
+				}
+			}
+
+			OtherConfig: {
+				// DisplayName: 11 [i:Shimmerfly] Other
+
+				Headers: {
+					/* StaffOfDifficulty:
+						'''
+						Staff of Difficulty
+
+						There is a staff for [i:ReducedGrinding/ClassicStaff] [c/FFFFFF:{$UI.Normal}], [i:ReducedGrinding/ExpertStaff] [c/FF9900:{$UI.Expert}], [i:ReducedGrinding/MasterStaff] [c/FF2619:{$UI.Master}]. Using a staff will change the world difficulty to match the staff. In "For the Worthy" worlds, the difficulty will be increased by 1 level afterward. In multiplayer worlds, the staves will vote to change the world difficulty and the difficulty will only change it if enough players vote to change it.
+						''' */
+					/* FaelingHelper:
+						'''
+						[i:Shimmerfly] Faeling Helper
+
+						If the Aether hasn't been found, Faelings will replace critter spawns under the conditions configured below. These Faelings can't be caught. Once you're close enough, they will fly towards the Aether at an accelerating speed. Set either values to 0, to disable.
+						''' */
+				}
+
+				PlaceableLog: {
+					// Label: "[i:ReducedGrinding/PlaceableLog] Placeable Log"
+					// Tooltip: A log that you can place, which will turn into a working Fallen Log over time.
+				}
+
+				DifficultyStavesVoteTimeSeconds: {
+					// Tooltip: ""
+					// Label: Vote Time in Seconds
+				}
+
+				DifficultyStavesVotesRequired: {
+					/* Tooltip:
+						'''
+						In multiplayer worlds, the difficulty will only change if the percentage of
+						players that voted to change the difficulty is greater than or equal to this.
+						''' */
+					// Label: Votes Required
+				}
+
+				DifficultyStavesEnabled: {
+					// Tooltip: ""
+					// Label: Enabled
+				}
+
+				AdjustItemValuesForDropIncreases: {
+					Label: "[i:GoldCoin] Ajuste de Valores"
+					Tooltip: Se ativado, este mod vai ajustar os valores dos itens se sua taxa de loot for alterada.
+				}
+
+				ClairvoyanceShowsLuck: {
+					// Label: "[i:487] Clairvoyance Shows Luck"
+					// Tooltip: The Clairvoyance Buff displays Luck
+				}
+
+				LocatingInfoShowsDirection: {
+					// Label: "[i:LifeformAnalyzer] Locating Accessories Shows Direction [i:MetalDetector]"
+					/* Tooltip:
+						'''
+						Lifeform Analyzer and Metal Detector will display a triangular
+						arrow showing the direction of the object it's detecting.
+						''' */
+				}
+
+				ConvenientNPCRarity: {
+					// Label: "[i:LifeformAnalyzer] Convenient NPC Rarity"
+					/* Tooltip:
+						'''
+						If a player doesn't have Metal Detector or its upgrades, the Lost Girl and
+						Nymph's Lifeform Analyzer Rarity will be 6 instead of 2, which makes it take
+						priority over all other vanilla NPCs. If a player hasn't eaten an Artisan Loaf,
+						the Skeleton's Merchant's rarity will be 3 instead of 1.
+						''' */
+				}
+
+				AmberMosquitoChance: {
+					// Label: "[i:AmberMosquito] Amber Mosquito From [i:3347] Desert Fossil"
+					/* Tooltip:
+						'''
+						When using Desert Fossil at any type of Extractinator, if the item given isn't
+						Sturdy Fossil, the chance the item given will be replaced by Amber Mosquito is 1
+						divided by n, where n is this setting. The vanilla chance of Amber Mosquito
+						dropping is still there, so this is a bonus chance. Set to 0 to disable.
+						''' */
+				}
+
+				SliceOfCakeDuration: {
+					// Label: "[i:SliceOfCake] Slice Of Cake Duration"
+					/* Tooltip:
+						'''
+						Set the duration in minutes for Slice of Cake. Set to 2 to use
+						the vanilla duration. Set to 61 to make the duration infinite.
+						''' */
+				}
+
+				FaelingHelperLimit: {
+					// Label: Faeling Helper Limit
+					// Tooltip: The helping Faelings wont spawn if there's at least this many Faelings existing.
+				}
+
+				FaelingHelperRange: {
+					// Label: Faeling Helper Range
+					/* Tooltip:
+						'''
+						The helping Faelings wont spawn unless the critter they would replace is within
+						a certain distance of the Aether. The distance equals the width of the world
+						multiplied by this amount.
+						''' */
+				}
+
+				EarlyUniPylonNerf: {
+					// Label: "[i:4951] Early Universal Pylon Nerf"
+					/* Tooltip:
+						'''
+						This mod provides ways to get the Universal Pylon early, but that could also
+						make Potion of Return useless early. If enabled, the Universal Pylon will
+						require 2 nearby NPCs, until Bestiary is 100% complete.
+						''' */
+				}
+			}
+
+			BattlePotionConfig: {
+				// DisplayName: 02 [i:BattlePotion] Battle Potions
+
+				GreaterBattlePotion: {
+					// Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
+					// Tooltip: ""
+				}
+
+				SuperBattlePotion: {
+					// Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
+					// Tooltip: ""
+				}
+
+				Headers: {
+					// BatttleBuffDuration: Batttle Buff Duration
+					// BattlePotions: Spawn Rate Presets
+					// BattleBuffSpawnRates: Battle Buff Spawn Rate Multipliers
+				}
+
+				VanillaDuration: {
+					// Label: "[i:BattlePotion] Battle Potion Duration"
+					// Tooltip: ""
+				}
+
+				GreaterDuration: {
+					// Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion Duration"
+					// Tooltip: ""
+				}
+
+				SuperDuration: {
+					// Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion Duration"
+					// Tooltip: ""
+				}
+
+				SpawnRatePresetDefault: {
+					// Label: Spawn Rate Preset Default
+					// Tooltip: ""
+				}
+
+				SpawnRatePresetLowPerformance: {
+					// Label: Spawn Rate Preset Low Performance
+					// Tooltip: ""
+				}
+
+				VanillaSpawnRate: {
+					// Label: "[i:BattlePotion] Battle Potion"
+					// Tooltip: When remaining Battle Buff duration is <= {$VanillaDuration.Label}
+				}
+
+				GreaterSpawnRate: {
+					// Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
+					/* Tooltip:
+						'''
+						When remaining Battle Buff duration is > {$VanillaDuration.Label}
+						and <= {$GreaterDuration.Label}
+						''' */
+				}
+
+				SuperSpawnRate: {
+					// Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
+					// Tooltip: When remaining Battle Buff duration is > {$GreaterDuration.Label}
+				}
+
+				BuffIconTiers: {
+					// Label: Buff Icon Tiers
+					// Tooltip: If enabled, each tier of Battle Buff will have a diffferent icon.
+				}
+
+				TownsRequireAllVillagersUnlocked: {
+					// Label: "[i:WoodenDoor] Towns Require All Villagers Unlocked"
+					/* Tooltip:
+						'''
+						While in towns, Battle Buffs will use the vanilla rate of ×2 to prevent
+						overpowered Critter spawning. This effect is disabled when all vanilla Villagers
+						are unlocked. Set to 0 to disable.
+						''' */
+				}
+			}
+
+			ShimmerEvilMimicLootEnums: {
+				// Tooltip: ""
+
+				Disabled: {
+					// Label: Disabled
+					// Tooltip: ""
+				}
+
+				DisabledWithOtherMod: {
+					// Label: Using E.B.M.C.
+					// Tooltip: Enabled unless the "Evil Biome Mimic Counterpart" mod is installed.
+				}
+
+				Enabled: {
+					// Label: Enabled
+					// Tooltip: ""
+				}
+			}
+
+			ConfigInfo: {
+				// DisplayName: 00 Configuration Info
+
+				Headers: {
+					// ConfigInfo: Options with blue backgrounds have modded behavior by default. Options with gray backgrounds are disabled or use vanilla behavior by default.
+					/* ExtraBossMaterial:
+						'''
+						This mod comes with 3 boss material items for bosses that don't drop materials or don't unlock materials right after their defeat. These materials wont drop unless it's assigned to a setting in this mod's configurations. The custom drops are:
+						- [i:ReducedGrinding/DeerclopsFur] {$Items.DeerclopsFur.DisplayName} from [i:5109] Deerclops.
+						- [i:ReducedGrinding/FishronScale] {$Items.FishronScale.DisplayName} from [i:2588] Duke Fishron.
+						- [i:ReducedGrinding/EmpressDust] {$Items.EmpressDust.DisplayName} from [i:4784] Empress of Light.
+						''' */
+				}
+
+				ModdedBehaviorByDefault: {
+					// Label: Modded Behavior By Default
+					// Tooltip: ""
+				}
+
+				VanillaBehaviorByDefault: {
+					// Label: Disabled or Vanilla Behavior By Default
+					// Tooltip: ""
+				}
+
+				ExtraBossMaterial: {
+					// Label: __________________________________________
+					// Tooltip: ""
+				}
+			}
+
+			HolidaySummonsEnums: {
+				// Tooltip: ""
+
+				Disabled: {
+					// Label: Disabled
+					// Tooltip: ""
+				}
+
+				RequireSeason: {
+					// Label: Require Season
+					/* Tooltip:
+						'''
+						It's only craftable during the matching season. This happens while playing
+						during a specific real-world time or the morning after beating the matching Moon
+						event.
+						''' */
+				}
+
+				Enabled: {
+					// Label: Enabled
+					// Tooltip: ""
+				}
+			}
+
+			GuaranteedBiomeKeyBehaviorEnums: {
+				// Tooltip: ""
+
+				GiveOneTime: {
+					// Label: Give One Time
+					// Tooltip: Only drop each guaranteed Biome Key 1 time.
+				}
+
+				GiveMultipleTimes: {
+					// Label: Give Multiple Times
+					/* Tooltip:
+						'''
+						After dropping a guaranteed Biome Key, the kill count for
+						it will be reset, which will allow it to drop again.
+						''' */
+				}
+
+				GiveMultipleTimesDisableVanilla: {
+					// Label: Multiple, Disable Vanilla
+					/* Tooltip:
+						'''
+						After dropping a guaranteed Biome Key, the kill count for it will be reset,
+						which will allow it to drop again.
+
+						Removes the chance for Biome Keys to drop from enemies the vanilla way.
+						''' */
+				}
+			}
+
+			AnglerConfig: {
+				// DisplayName: 03 [i:AnglerHat] Angler
+
+				UnlimitedAnglerQuest: {
+					// Label: Unlimited Angler Quests
+					/* Tooltip:
+						'''
+						The angler will always have another quest instead of once per day. If a player
+						finished their Quest, the Angler will wait until no player has the current Quest
+						Fish in their inventory before giving the next Quest of the current day.
+						''' */
+				}
 
 				AnglerTellsQuestCompleted: {
-					Label: Quando o Pescador falar missão completada
-					Tooltip: ""
+					// Label: Angler Dialogue Tells Player the Amount of Quest Completed
+					// Tooltip: ""
 				}
 
-				Angler: {
-					Label: Pescador
-					Tooltip: ""
-				}
-
-				MultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				GreaterMultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Grande Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				SuperMultiBobberPotionBonus: {
-					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Super Multi Poção do Anzol"
-					Tooltip: ""
-				}
-
-				FishCoinsRewardedForQuest: {
-					Label: "[i:ReducedGrinding/FishCoin] Recompensa da Moéda de Peixe"
-					Tooltip: ""
-				}
-
-				BobberPotions: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Poções do Anzol"
-				}
-			}
-
-			HOtherModdedItemsConfig: {
-				DisplayName: Outros itens modificados
-
-				MoonWatch: {
-					Label: "[i:ReducedGrinding/MoonWatch] Relógio da Lua"
-					Tooltip:
+				AnglerChatsCurrentQuest: {
+					// Label: "[i:AnnouncementBox] Clicking Quest Will Announce The Current Quest Item"
+					/* Tooltip:
 						'''
-						Avanços das fazes da Lua.
-						0: Desativa receitas
-						1: Requer uma Barra de Ouro ou Platina
-						2: Requer uma Barra de Demonita ou Carminita
-						3: Requer uma Barra da Pedra Infernal
+						This includes an icon, which displays the name and catch
+						location when you hover your mouse over it.
+						''' */
+				}
+
+				ShimmerHoneyRewards: {
+					// Label: "[i:HoneyAbsorbantSponge] Honey Absorbant Sponge can swap with [i:BottomlessHoneyBucket] Bottomless Honey Bucket"
+					// Tooltip: By using the Shimmer.
+				}
+
+				BumblebeeTunaSwapChance: {
+					// Label: "[i:BeeMask][i:2451] Bumblebee Tuna Swap Chance"
+					/* Tooltip:
 						'''
-				}
+						If you kill the Queen Bee, the current Angler Quest will have this chance to
+						change to Bumblebee Tuna. This wont happen if any player has the current Quest
+						Fish or if all players have finished the current Quest.
 
-				SlimeTrophy: {
-					Label: "[i:ReducedGrinding/SlimeTrophy] Troféu da Geleia"
-					Tooltip:
-						'''
-						A chance de você obter esse troféu é a mesma do cajado da geleia no jogo padrão.
-						O cajado da geleia às vezes é visto como um item de troféu, então este é um item alternativo ao troféu
-						caso você defina as taxas de queda mais baixas para o cajado da geleia.
-						'''
+						Set to 0 to disable.
+						''' */
 				}
-
-				PlanteraSapFromPlantera: {
-					Label: "[i:ReducedGrinding/PlanteraSap] Drop do Invocador da Plantera pela Plantera"
-					Tooltip: Item de Invocação da Plantera. Chance = 1 / configuration_setting. Definir 0 para desativar.
-				}
-
-				HolidaySummons: {
-					Label: "[i:ReducedGrinding/NicePresent] Belo Presente e [i:ReducedGrinding/PumpkinPieMedallion] Medalhão da Torta de Abóbora"
-					Tooltip:
-						'''
-						Ativa os eventos, Natalinos / Dia das Bruxas.
-						0: Desativa
-						1: Ativa
-						2: Ativa + requer a temporada correspondente para criar.
-						'''
-				}
-
-				StaffOfDifficultyNormal: {
-					Label: Ativado muda para o Clássico
-					Tooltip: ""
-				}
-
-				StaffOfDifficultyExpert: {
-					Label: Ativado muda para o Perito
-					Tooltip: ""
-				}
-
-				StaffOfDifficultyMaster: {
-					Label: Ativado muda para o Mestre
-					Tooltip: ""
-				}
-
-				BestiaryTrophy: {
-					Label: "[i:ReducedGrinding/BestiaryTrophy] Troféu do Bestiário"
-					Tooltip: ""
-				}
-
-				WorldPeaceStandard: {
-					Label: "[i:ReducedGrinding/WorldPeaceStandard] Peça da Paz Mundial"
-					Tooltip: Cancela os eventos de invasões
-				}
-
-				StaffOfDifficulty: {
-					Label: "[i:ReducedGrinding/StaffOfDifficulty] Cajado da Dificuldade"
-					Tooltip: Muda a dificuldade do mundo
-				}
-
-				BattlePotion: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Poções da Batalha"
-					Tooltip: ""
-				}
-			}
-
-			IOtherConfig: {
-				DisplayName: Outros
 
 				Headers: {
-					Crafting: Criação
-					Other: Outros
+					// ExtraQuestRewardModifying: Extra Quest Reward Modifying
+					/* HoneyRewards:
+						'''
+						Honey Rewards
+
+						Getting honey quest rewards is different because the chance is high, but relies on the Quest being Bumblebee Tuna.
+						''' */
+				}
+
+				LowQualityRemovalChance: {
+					// Label: "[i:2354] Minor Reward Removal Chance"
+					/* Tooltip:
+						'''
+						This excludes the Anglers's first quest of the current day. If this chance
+						passes, vanilla potions and bait will be removed. Set to 0 to disable.
+						''' */
+				}
+
+				CoinMultiplier: {
+					// Label: "[i:73] Coin Reward Multiplier"
+					/* Tooltip:
+						'''
+						This excludes the Anglers's first quest of the current day. Coins rewarded will
+						be multiplied by this amount (using the total value). Set to 1 to disable.
+						''' */
+				}
+
+				AnglerChatsBumbleBeeTuna: {
+					// Label: "[i:AnnouncementBox][i:BumblebeeTuna] Angler Will Announce When The New Day Quest is Bumblebee Tuna"
+					// Tooltip: ""
+				}
+			}
+
+			CraftingConfig: {
+				// DisplayName: 09 [i:TinkerersWorkshop] Crafting
+
+				SturdyFossilsToDesertFossils: {
+					// Label: "[i:DesertFossil] Desert Fossils for every 13 [i:FossilOre] Sturdy Fossils"
+					/* Tooltip:
+						'''
+						Allow crafting Desert Fossil using 13 Sturdy Fossil. Sturdy Fossil yeild per 100
+						Desert Fossils is 13, so setting this to 100 will give a full refund on average.
+						Set to 0 to disable.
+						''' */
+				}
+
+				LeatherPerArchaeologistsPiece: {
+					// Label: "[i:Leather] Leather Per [i:ArchaeologistsJacket] Archaeologists Piece"
+					// Tooltip: The vanilla default is 15.
 				}
 
 				CraftableGoldCritters: {
@@ -219,609 +900,333 @@ Mods: {
 					Tooltip: As receitas usam 10 moedas de ouro para prevenir a exploração da receita por dinheiro.
 				}
 
-				CraftableRareChests: {
-					Label: Fabricação de baús raros
-					Tooltip:
-						'''
-						Isto exclui o baú do bioma do calabouço que pode ser obtido através do bioma cintilante.
-						Quando ativado o baú das sombras será criado jogando uma chave das sombras no bioma cintilante.
-						'''
-				}
-
 				ShimmerRoyalStatues: {
 					Label: "[i:476] Estátua do rei pode ser trocada pela [i:477] Estátua da Rainha"
 					Tooltip: Se for jogada no bioma brilhante.
 				}
 
-				SleepRateMultiplier: {
-					Label: Multiplicador da taxa de tempo do sono
-					Tooltip:
-						'''
-						No vanilla dormir mutiplica a taxa do tempo por 5
-						posteriormente isto vai ser mutiplicado por esta quantidade.
-						'''
-				}
-
-				AdjustItemValuesForDropIncreases: {
-					Label: Ajuste de Valores
-					Tooltip: Se ativado, este mod vai ajustar os valores dos itens se sua taxa de loot for alterada.
-				}
-
-				SkeletonMerchantIgnoresMoonphases: {
-					Label: O Comerciante Esqueleto ignora as fazes da Lua
-					Tooltip:
-						'''
-						Isto inclui itens que são obtidos apenas pelo Comerciante Esqueleto
-						ou em baús de madeira na superfície.
-						'''
-				}
-
-				AllSpawningRegularMimics: {
-					Label: Permitir a desova regular dos mímicos
-					Tooltip:
-						'''
-						Se isso for ativado, colocara nada além de uma chave da luz e da noite em um baú para desovar um mímico regular.
-						Fazer isso em um bioma de neve ira desovar um mímico de gelo.
-						'''
-				}
-
-				WitchDoctorSellsChlorophyteOre: {
-					Label: Médico Bruxo pode vender [i:947] Barras de Clorófita
-					Tooltip: Ele apenas vendera na selva depois que a Plantera for derrotada.
-				}
-
-				TravelingMerchant: {
-					Label: Caixeiro Viajante
-					Tooltip: ""
-				}
-
-				EnchantedSundial: {
-					Label: "[i:3064] Relógio Solar Encantado"
-					Tooltip: ""
-				}
-
-				UniversalPylon: {
-					Label: "[i:4951] Pilar Universal"
-					Tooltip: ""
-				}
-
-				WorldGeneration: {
-					Label: Geração de Mundo
-					Tooltip: ""
-				}
-
-				ClairvoyanceShowsLuck: {
-					// Label: "[i:487] Clairvoyance Shows Luck"
-					// Tooltip: The Clairvoyance Buff displays Luck
-				}
-			}
-
-			WorldGeneration: {
-				Tooltip: ""
-
-				TerragrimChestChance: {
-					Label: "[i:4144] Chance de obter a Terragrim em um baú"
-					Tooltip:
-						'''
-						Os baús na camada da caverna terão uma chance de serem gerados com uma Terragrim.
-						Chance = 1 / configuration_setting. Defina 0 para desativar.
-						'''
-				}
-
-				AddMissingTreeLoot: {
-					Label: "[i:831] Adiciona coletáveis perdidos em baús de madeira viva"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Vagoneta da Joaninha
-						- Vagoneta de Girassol
-						'''
-				}
-
-				AddMissingShroomLoot: {
-					Label: "[i:2544] Adiciona coletáveis perdidos em baús de cogumelo"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Vagoneta de Cogumelo
-						- Roupa de Cogumelo conjunto decorativo
-						'''
-				}
-
-				AddMissingPyramidLoot: {
-					Label: "[i:934] Adiciona coletáveis perdidos no baú da pirâmide"
-					Tooltip:
-						'''
-						Durante a geração do seu mundo este mod ira adicionar os seguintes itens caso eles faltem:
-						- Tapete Mágico
-						- Roupa do Faraó conjunto decorativo
-						'''
-				}
-			}
-
-			StaffOfDifficulty: {
-				Tooltip: ""
-				Headers.StaffOfDifficulty:
-					'''
-					Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
-					Por ser um item criativo, isto é simplesmente criado usando um bloco de terra para acesso e uso instantâneo.
-					Desative tudo para desativar a receita de criação deste item.
-					'''
-
-				Normal: {
-					Label: Clássico
-					Tooltip: ""
-				}
-
-				Expert: {
-					Label: Perito
-					Tooltip: ""
-				}
-
-				Master: {
-					Label: Mestre
-					Tooltip: ""
-				}
-			}
-
-			BattlePotion: {
-				Tooltip: ""
-
-				Headers: {
-					BattlePotions: Se você presenciar lag, tente diminuir o máximo de spawn primeiro para a grande e a super poção da batalha, definir o máximo de geradores e a taxa de spawn para 1 vai desativar sua receita..
-					// VanillaBattlePotion: Battle Buff duration is less than or equal to 7 minutes
-					// GreaterBattlePotion: Battle Buff duration is greater than 7 minutes and less than or equal to 14 minutes.
-					// SuperBattlePotion: Battle Buff duration is greater than 14 minutes.
-				}
-
-				VanillaMax: {
-					Label: "[i:300] Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: Vanilla padrão: 2
-				}
-
-				VanillaSpawnRate: {
-					Label: "[i:300] Poção da batalha multiplica a taxa de desova"
-					Tooltip: Vanilla padrão: 2
-				}
-
-				GreaterMax: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: ""
-				}
-
-				GreaterSpawnRate: {
-					Label: "[i:ReducedGrinding/GreaterBattlePotion] Grande Poção da Batalha multiplica a taxa de desovas"
-					Tooltip: ""
-				}
-
-				SuperMax: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica o máximo de desovas"
-					Tooltip: ""
-				}
-
-				SuperSpawnRate: {
-					Label: "[i:ReducedGrinding/SuperBattlePotion] Super Poção da Batalha multiplica a taxa de desovas"
-					Tooltip: ""
-				}
-
-				BattlePotionDistantEnemyDespawnTime: {
-					// Label: Battle Potion Distant Enemy Despawn Time
-					/* Tooltip:
-						'''
-						Set to 750 to disable. Set the amount of frames, (1/60th of a second),
-						distant enemies exist before despawning. This feature is only active
-						if a player has the Battle Buff except during Invasions or Boss
-						fights. Some enemies wont be affected by this (for example: Wyverns).
-
-						By clearing distant enemies, more enemies will be able to spawn near
-						the player.
-						''' */
-				}
-
-				PresetPerformance: {
-					// Label: Preset, Best Performance
-					/* Tooltip:
-						'''
-						With "Battle Potion Distant Enemy Despawn Time" set to 180, these
-						settings will still make a significant impact. With a high Spawn Rate
-						and distant enemies despawning, there will be plenty of enemies
-						around the player when using Super Battle Potion.
-						''' */
-				}
-
-				PresetHighMax: {
-					// Label: Preset, High Max Spawns
-					// Tooltip: These settings will cause a swarm of enemies when using Super Battle Potion.
-				}
-
-				GreaterBattlePotion: {
-					// Label: "[i:ReducedGrinding/GreaterBattlePotion] Greater Battle Potion"
-					// Tooltip: The recipe will only be available if this is on
-				}
-
-				SuperBattlePotion: {
-					// Label: "[i:ReducedGrinding/SuperBattlePotion] Super Battle Potion"
-					// Tooltip: The recipe will only be available if this is on
-				}
-			}
-
-			TravelingMerchant: {
-				Tooltip: ""
-
-				TravelingMerchantChatsItems: {
-					Label: Caixeiro Viajante anunciando itens na chegada
-					Tooltip:
-						'''
-						O chat ira mostrar todos os itens da loja
-						(semelhante a quando um jogador clica em um item no inventário quando o chat está aberto)
-						'''
-				}
-
-				Headers.MerchantDice:
-					'''
-					[i:ReducedGrinding/MerchantDice] Dados do Caixeiro.
-
-					Por uma quantidade limitada de vezes por dia, você pode usá-lo para renovar a loja do Caixeiro Viajante.
-					O Caixeiro Viajante só venderá se isto for definido como maior do que 0.
-					'''
-
-				TravelingMerchantDiceUsesBeforeHardmode: {
-					Label: Usos diários antes do hardmode
-					Tooltip: ""
-				}
-
-				TravelingMerchantDiceUsesHardmode: {
-					Label: Usos diários no hardmode
-					Tooltip: ""
-				}
-
-				TravelingMerchantDiceUsesAfterPlantera: {
-					Label: Usos diários depois da Plantera
-					Tooltip: ""
-				}
-			}
-
-			EnchantedSundialConfig: {
-				Tooltip: ""
-
-				CrateEnchantedSundial: {
-					Label: "[i:3064] Chance de dropar o Relógio Solar Encantado"
-					Tooltip:
-						'''
-						Mude a chance de obter o Relógio Solar Encantado na caixa que dropa ele.
-						Chance = 1 / configuration_setting. Mude para 0 para usar a chance padrão.
-						O denominador é multiplicado por 3 para Mithril e 10 para Madeira de Pérola
-						'''
-				}
-
-				EnchantedDialMultiplier: {
-					Label: O tempo da taxa do multiplicador do encantamento diário
-					Tooltip:
-						'''
-						No jogo normal o encantamento diário multiplica a taxa do tempo por 60
-						depois isto será multiplicado por esta quantidade.
-						'''
-				}
-
-				EnchantedDialCooldown: {
-					Label: Recarga do encantamento diário
-					Tooltip: Padrão do Jogo: 7
-				}
+				// Headers.CraftableUniversalPylon: "[i:4951] Craftable Universal Pylon. Recipe will be disabled if all ingredient configurations are disabled."
 
-				PreHardmodeSundials: {
-					Label: "[i:2336] Obter o Relógio Solar Encantado no Pré-Modo Difícil"
-					Tooltip:
-						'''
-						Se for ativado todos os caixotes do pré-modo difícil terão
-						a mesma chance de darem o relógio solar encantado que
-						os caixotes do modo difícil tem.
-						'''
+				UniPylonCraftWithPylons: {
+					// Label: Craft With [i:4876] Vanilla Pylons
+					// Tooltip: ""
 				}
-			}
 
-			UniversalPylon: {
-				Tooltip: ""
-
-				UniversalPylonBestiaryCompletionRate: {
-					Label: Taxa de conclusão requerida pela Zoologista em sua loja
-					Tooltip: Padrão do Jogo: 1
-				}
-
-				Headers.CraftableUniversalPylon: Criação. A receita será desativada se todas as configurações de ingredientes estiverem desativadas.
-
-				CraftWithPylons: {
-					Label: Criar com [i:4876] Pilões
-					Tooltip: ""
-				}
-
-				CraftWithPreMechSouls: {
-					Label: Criar com [i:575] pre-mecânicos alma dos chefes
-					Tooltip: Alma da Luz, Noite e Voo
-				}
-
-				CraftWithMechSouls: {
-					Label: Criar com [i:547] alma dos chefes mecânicos
-					Tooltip: Alma da Força, Medo e Visão
-				}
-
-				CraftWithFragments: {
-					Label: Criar com [i:3457] Fragmentos Lunares
-					Tooltip: ""
-				}
-
-				CraftAtCrystalBall: {
-					Label: Criar na [i:487] Bola de Cristal em vez da [i:398] Oficina do Inventor
-					Tooltip: ""
-				}
-			}
-
-			BobberPotions: {
-				SuperMultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/SuperMultiBobberPotion] Bônus da Super Multi Poção do Anzol"
-				}
-
-				GreaterMultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/GreaterMultiBobberPotion] Bônus da Grande Multi Poção do Anzol"
-				}
-
-				MultiBobberPotionBonus: {
-					Tooltip: ""
-					Label: "[i:ReducedGrinding/MultiBobberPotion] Bônus da Multi Poção do Anzol"
-				}
-
-				Headers.MultiBobberPotions: Essas poções expandem a sua capacidade de pescaria. Defina a quantidade que cada poção pode fornecer. Defina como 0 para desativar sua receita.
-				Tooltip: Use essas poções para aumentar a coleta de itens durante a pescaria.
-			}
-
-			Angler: {
-				AnglerTellsQuestCompleted: {
-					Label: O Pescador diz a quantidade de missões concluídas
-					Tooltip: ""
-				}
-
-				AnglerChatsCurrentQuest: {
-					Label: Auninciar o item da missão de busca atual
-					Tooltip:
-						'''
-						Quando você iniciar a missão de pescaria clique no peixe ao lado
-						para anunciar no chat para os outros jogadores o peixe da missão
-						atual e o local onde ele deve ser pescado.
-						'''
-				}
-
-				LowQualityRemovalChance: {
-					Label: "[i:2354] Chance de remoção para uma recompensa menor"
-					Tooltip:
-						'''
-						Isso exclui a primeira missão que o jogador estiver fazendo no dia atual.
-						Se essa chance passar as poções e peixes vanilla serão removidos.
-
-						Defina 0 para desativar.
-						'''
-				}
-
-				BumblebeeTunaSwapChance: {
-					Label: "[i:2451] Chance de troca do Atum Abelha"
-					Tooltip:
-						'''
-						Este recurso é ativado toda vez que a Abelha Rainha é derrotada
-						enquanto o pescador estiver vivo.
-						Quando este recurso estiver ativado cada missão de busca tera uma
-						chance de serem alterados para o Atum Abelha.
-						Este recurso é desativado no final de uma missão do Atum Abelha.
-						Defina 0 para desativar.
-						'''
-				}
-
-				// Tooltip: ""
-
-				UnlimitedAnglerQuest: {
-					Label: Missões do Pescador Ilimitadas
-					Tooltip:
-						'''
-						O Pescador sempre terá outra missão disponível em vez de pedir uma por dia.
-						Se o jogador terminou sua missão o pescador vai esperar até que nenhum jogador 
-						tenha o peixe da missão atual em seu inventário antes de dar a próxima missão
-						do dia seguinte.
-						'''
-				}
-
-				Headers.ExtraQuestRewardModifying: Modificação da recompensa de missões extras
-
-				CoinMultiplier: {
-					Label: "[i:73] Multiplicador da recompensa de Moédas"
-					Tooltip:
-						'''
-						Isso exclui a primeira missão que o jogador estiver fazendo no dia atual
-						As recompensadas de moédas serão multiplicadas por este valor (usando o toal do valor).
-
-						Defina 1 para desativar
-						'''
-				}
-			}
-
-			NonBossLoot: {
-				Tooltip: ""
-
-				TownNPCWeapons: {
-					Label: "[i:3349] Armas dos NPCs das Cidades"
-					Tooltip:
-						'''
-						Este mod ira remover o requisito de nome para o Guia e a Steampunker.
-						Essa configuração não afeta a Garota da Festa.
-						'''
-				}
-
-				BiomeKey: {
-					Label: "[i:1533] Chave de Bioma"
-					Tooltip: Isso define a mesma taxa de drop para cada.
-				}
-
-				BeamSword: {
-					Label: "[i:723] Espada de Feixes"
-					Tooltip: ""
-				}
-
-				GoodieBag: {
-					Label: "[i:1774] Saco de Guloseimas"
-					Tooltip: Só dropa durante o Dia das Bruxas.
-				}
-
-				KOCannon: {
-					Label: "[i:1314] Canhão do Nocaute"
-					Tooltip: ""
-				}
-
-				Lens: {
-					Label: "[i:38] Lentes"
-					Tooltip: Lentes não dropão se as lentes negras droparem, provável chance = (99 / 100) * (1 / configuration_setting)
-				}
-
-				LizardEgg: {
-					Label: "[i:1172] Ovo de Lagarto"
-					Tooltip: ""
-				}
-
-				Marrow: {
-					Label: "[i:682] Tutano"
-					Tooltip: ""
-				}
-
-				PaladinsHammer: {
-					Label: "[i:1513] Martelo do Paladino"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 146.67%
-				}
-
-				PlumbersHat: {
-					Label: "[i:244] Chapéu de Encanador"
-					Tooltip: ""
-				}
-
-				Present: {
-					Label: "[i:1869] Presente"
-					Tooltip: Só dropa no mês de dezembro durante o natal.
-				}
-
-				RifleScopeAndSniperRifle: {
-					Label: "[i:1300] Luneta do Fuzil e o [i:1254] Fuzil de Longo Alcance"
-					Tooltip:
-						'''
-						Isso define a mesma taxa de drop para os dois.
-						Se a dificuldade do mundo for normal, isto é multiplicado por 183.33%
-						'''
-				}
-
-				RocketLauncher: {
-					Label: "[i:759] Lança Foguetes"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por 194.44%
-				}
-
-				RodofDiscord: {
-					Label: "[i:1326] Cajado da Discórdia"
-					Tooltip:
-						'''
-						Se a dificuldade do mundo for normal, isto é multiplicado por (5/4)
-						Se você estiver no mundo Celebrationmk10, isto é dividido por 4 arredondado para cima se abaixo de 1.
-						'''
-				}
-
-				RottenChunkAndVertebra: {
-					Label: "[i:68] Pedaço Podre e [i:1330] Vértebra"
-					Tooltip: Isto define a mesma taxa de drop para cada.
-				}
-
-				SoulOfLightAndNight: {
-					Label: "[i:520] Alma da Luz e [i:521] Alma da Noite"
-					Tooltip: Isto define a mesma taxa de drop para cada.
-				}
-
-				SWATHelmetAndTacticalShotgun: {
-					Label: "[i:1514] Capacete da SWAT e [i:679] Espingarda Tática"
-					Tooltip:
-						'''
-						Isto define a mesma taxa de drop para cada.
-						Se a dificuldade do mundo for normal, isto é multiplicado por 191.66%
-						'''
-				}
-
-				SlimeStaffFromPinky: {
-					Label: Do Rosado
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
-				}
-
-				SlimeStaffFromSandSlime: {
-					Label: Da Geleia de Areia
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
+				UniPylonCraftWithMechSouls: {
+					// Label: Craft With [i:547] Mech Boss Souls
+					// Tooltip: Soul of Might, Fright, and Sight
 				}
-
-				SlimeStaffFromOtherSlimes: {
-					Label: Cajado da Geleia sendo dropado por outras geleias
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (10/7)
-				}
-
-				PaladinsShield: {
-					Label: "[i:938] Escudo do Paladino"
-					Tooltip: ""
-				}
-
-				Headers.SlimeStaff: "[i:1309] Cajado da Geleia"
 
-				ObsidianRose: {
-					// Label: "[i:1323] Obsidian Rose"
+				UniPylonCraftWithFragments: {
+					// Label: Craft With [i:3457] Lunar Fragments
 					// Tooltip: ""
 				}
 			}
 
-			BossLoot: {
-				Tooltip: ""
+			LimitedItemsConfig: {
+				// DisplayName: 08 [i:Terragrim] Limited Items
 
-				Binoculars: {
-					Label: "[i: 1299] Binóculos"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (4/3)
+				Headers: {
+					// WorldGeneration: "[i:WorldGlobe] World Generation"
+					// Other: Other
 				}
 
-				EmpressAndFishronWings: {
-					Label: "[i:4823] Emperatriz e [i:2609] Asas do Peixe Dragão"
-					Tooltip:
+				TerragrimChestChance: {
+					// Label: "[i:4144] Chest Terragrim Chance, Average Chests to Find"
+					/* Tooltip:
 						'''
-						Isto define a mesma taxa de drop para cada.
-						Se a dificuldade do mundo for normal, isto é multiplicado por (3/2)
+						Every chest will have a chance of generating with Terragrim, except for surface
+						chest and Living Wood chests. Chance = 1 / setting. Unless this feature is
+						disabled, this mod will try to force at least 1 non-Lihzahrd, non-locked chest
+						to generate with Terragrim. Set to 0 to disable.
+						''' */
+				}
+
+				AddMissingTreeLoot: {
+					// Label: "[i:831] Add Missing Living Wood Chest Loot"
+					/* Tooltip:
 						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Ladybug Minecart
+						- Sunflower Minecart
+						''' */
 				}
 
-				StellarTune: {
-					Label: "[i:4715] Tom Estelar"
-					Tooltip: Se a dificuldade do mundo for normal, isto é multiplicado por (5/2)
+				AddMissingShroomLoot: {
+					// Label: "[i:2544] Add Missing Mushroom Chest Loot"
+					/* Tooltip:
+						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Shroom Minecart
+						- Mushroom vanity set
+						''' */
 				}
 
-				RainbowCursor: {
-					Label: "[i:5075] Cursor de Arco-Íris"
-					Tooltip: ""
+				AddMissingPyramidLoot: {
+					// Label: "[i:934] Add Missing Pyramid Chest Loot"
+					/* Tooltip:
+						'''
+						During world generation, this mod will place the
+						following items that the world is missing:
+						- Flying Carpet
+						- Pharoah's vanity set
+						''' */
 				}
 
-				CoinGun: {
-					Label: "[i:905] Pistola de Moedas do Holandês Voador"
-					Tooltip: ""
+				TombstonesPerWorld: {
+					// Label: "[i:321] Tombstones To Generate Per World"
+					// Tooltip: This amount is multiplied by 16/21 for medium worlds and 1/2 for small worlds.
+				}
+
+				OtherEvilChest: {
+					// Label: "[i:CorruptionChest] Other Evil Chest [i:CrimsonChest]"
+					// Tooltip: World generation will place both Corrupt and Crimson Chests
+				}
+
+				CraftableRareChests: {
+					// Label: Craftable [i:328] Rare Chests
+					/* Tooltip:
+						'''
+						Allows Shimmering Shadow Key to and from Shadow Chests. Adds crafting recipes
+						for Gold Chest, Dead Man's Chest, Ivy Chest, and Web Covered Chest.
+						''' */
+				}
+
+				TombstonesDropFromNPCs: {
+					// Label: "[i:321] Tombstones Drop From Town NPCs without Hardcore Characters"
+					// Tooltip: ""
+				}
+
+				DryadSellsOppositeEvilPlanter: {
+					// Label: "[i:CorruptPlanterBox] Dryad Sells Opposite Evil Planter [i:CrimsonPlanterBox]"
+					// Tooltip: While in a Graveyard during Hardmode
+				}
+
+				DecorativeBannersFromCrates: {
+					// Label: "[i:789] Decorative Banners, Average Crates to Get [i:845]"
+					/* Tooltip:
+						'''
+						Each Decorative Banner will have a 1 out of n chance of dropping from a
+						matching Biome Crate, where n equals this setting. Set to 0 to disable.
+						''' */
 				}
 			}
-		}
 
-		Buffs: {
-			GreaterMultiBobber: {
-				DisplayName: Grande Multi Poção do Anzol
-				Description: Grande aumento na expensão da sua capacidade de pescaria
+			TravelingMerchantConfig: {
+				// DisplayName: 05 [i:2222] Traveling Merchant
+
+				TravelingMerchantChatsItems: {
+					// Label: Traveling Merchant Announces Items on Arrival
+					/* Tooltip:
+						'''
+						The chat will display icons for all items in the shop (similar to
+						when a player Alt-Clicks an inventory item when the chat is open)
+						''' */
+				}
+
+				/* Headers.MerchantDice:
+					'''
+					[i:ReducedGrinding/MerchantDice] Merchant Dice.
+
+					For a limited amount of times per day, you can use this to re-roll the Traveling Merchant shop. The Traveling Merchant will only sell this when the amount of uses during the time that he appears is greater than 0.
+					''' */
+
+				MerchantDiceUsesPreHardmode: {
+					// Label: Daily Uses Before [i:2105] Hardmode
+					// Tooltip: ""
+				}
+
+				MerchantDicePostHardmode: {
+					// Label: Daily Uses After [i:2105] Hardmode
+					// Tooltip: ""
+				}
+
+				MerchantDiceUsesPostPlantera: {
+					// Label: Daily Uses After [i:2109] Plantera
+					// Tooltip: ""
+				}
+
+				MerchantDiceUsesPostMoonlord: {
+					// Label: Daily Uses After [i:3373] Moonlord
+					// Tooltip: ""
+				}
+
+				MerchantDiceUsesPostMechBosses: {
+					// Label: Daily Uses After All 3 [i:2106][i:2113][i:2107] Mech Bosses
+					// Tooltip: ""
+				}
 			}
 
-			MultiBobber: {
-				DisplayName: Multi Poção do Anzol
-				Description: Expande a sua capacidade de pescaria aumentando a coleta de itens
+			EventAndBossConfig: {
+				// DisplayName: 06 [i:BossMaskCultist] Events And Bosses
+
+				OldManVoodooDoll: {
+					/* Tooltip:
+						'''
+						Keep in your inventory to allow the Dungeon Guardian to spawn after defeating
+						Skeletron.
+						''' */
+					// Label: "[i:ReducedGrinding/OldManVoodooDoll] Old Man Voodoo Doll"
+				}
+
+				WorldPeaceStandard: {
+					// Label: "[i:ReducedGrinding/WorldPeaceStandard] World Peace Standard"
+					// Tooltip: Cancels invasions
+				}
+
+				WarStandardDuration: {
+					// Label: "[i:ReducedGrinding/WarStandard] War Standard Duration in Minutes"
+					/* Tooltip:
+						'''
+						Adds a buff that freezes the progress of invasions. If Greater Battle Potion is
+						enabled, it will allow Greater or Super Battle Potion to work during an
+						invasion.
+						''' */
+				}
+
+				HolidaySummons: {
+					// Label: "[i:ReducedGrinding/NicePresent] Nice Present and [i:ReducedGrinding/PumpkinPieMedallion] Pumpkin Pie Medallion"
+					// Tooltip: Activates Christmas / Halloween.
+				}
+
+				LunarSigil: {
+					// Label: "[i:ReducedGrinding/LunarSigil] Lunar Sigil, Material Dropped by the Lunatic Cultist"
+					/* Tooltip:
+						'''
+						Summons the Lunar Events. After defeating Moon Lord, the Lunatic Cultist will
+						drop "[I:ReducedGrinding/LunarTablet] Lunar Tablet" which can be crafted into Lunar Sigil. Set the amount
+						of Lunar Tablet dropped. Set to 0 to disable.
+						''' */
+				}
+
+				CelestialWard: {
+					// Label: "[i:ReducedGrinding/CelestialWard] Celestial Ward"
+					// Tooltip: A post-Moon Lord item that removes Celestial Pillars and stops Moon Lord.
+				}
+
+				PlanteraSapFromPlantera: {
+					// Label: "[i:ReducedGrinding/PlanteraSap] Plantera Sap from Plantera, {$Misc.AverageKillsToGet}"
+					// Tooltip: Summons Plantera. Chance = 1 / setting. Set to 0 to disable.
+				}
+
+				NPCArrivalMessages: {
+					// Label: Respawn messages for [i:RedHat] Old Man and [i:BossMaskCultist] Cultists
+					/* Tooltip:
+						'''
+						Announcements in the chat that let you know
+						that the Old Man or the Cultists respawned.
+						''' */
+				}
 			}
 
-			SuperMultiBobber: {
-				DisplayName: Super Multi Poção do Anzol
-				Description: Massivamente expande a sua capacidade de pescaria
+			VillagersAndEnemiesConfig: {
+				// DisplayName: 07 [i:GreenCap] Villagers And Enemies
+
+				NameTag: {
+					// Label: "[i:ReducedGrinding/NameTag] Name Tag"
+					// Tooltip: Changes a nearby Town NPC's name. Sold by the Merchant.
+				}
+
+				CultMembershipCard: {
+					// Label: "[i:ReducedGrinding/CultMembershipCard] Cult Membership Card"
+					/* Tooltip:
+						'''
+						Prevents you from harming Cultist while active. Can be right clicked to toggle
+						whether its function is active or inactive. Dropped by the Lunatic Cultist.
+						''' */
+				}
+
+				/* Headers.ChaosElementalSwarm:
+					'''
+					[i:1326] Chaos Elemental Swarm
+
+					Defeating the Queen Slime will cause a Chaos Elemental Swarm Event in the Underground Hallow, which increases the rate of Chaos Elemental and Enchanted Sword Spawns. By default, Chaos Elementals will spawn more than Enchanted Swords.
+					''' */
+
+				CESwarmDuration: {
+					// Label: Duration
+					// Tooltip: Duration in minutes. Set to 0 to disable this feature.
+				}
+
+				CESwarmCElementalSpawnFailRate: {
+					// Label: "[i:1629] Chaos Elemental Spawn Fail Rate"
+					/* Tooltip:
+						'''
+						Chaos Elementals will try replace default spawns. The chance
+						that this fails is 1 / n, where n = this setting.
+						''' */
+				}
+
+				CESwarmESwordSpawnFailRate: {
+					// Label: "[i:1642] Enchanted Sword Spawn Fail Rate"
+					/* Tooltip:
+						'''
+						If a Chaos Elemental fails to replace a default spawn, an Enchanted Sword will
+						try to replace the default spawn instead. The chance that this fails is 1 / n,
+						where n = this setting.
+						''' */
+				}
+
+				CESKnockbackResist: {
+					// Label: Knockback Resist
+					/* Tooltip:
+						'''
+						During the event, Chaos Elementals will have this knockback resistance.
+						The vanilla default is 0.6. 1 = full resistance.
+						''' */
+				}
+
+				UniPylonBestiaryCompletionRate: {
+					// Label: "[i:4951] Bestiary Completion Rate For Universal Pylon"
+					// Tooltip: Vanilla Default: 1
+				}
+
+				AllowSpawningRegularMimics: {
+					// Label: Allow spawning [i:306] Regular and [i:681] Ice Mimics
+					/* Tooltip:
+						'''
+						If enabled, placing nothing but 1 Key of Light and 1 Key of Night in a chest
+						will spawn a regular Mimic. Doing this in a Snow Biome will spawn an Ice Mimic.
+						After the Mimic is spawned, it will refund 7 to 8 of each Soul of Light and Soul
+						of Night.
+						''' */
+				}
+
+				WitchDoctorSellsChlorophyteOre: {
+					// Label: Witch Doctor Sells [i:947] Chlorophyte Ore
+					// Tooltip: He will only sell it in the Jungle after beating Plantera
+				}
+
+				JackStatue: {
+					// Label: "[i:ReducedGrinding/JackStatue] Jack Statue"
+					/* Tooltip:
+						'''
+						Crafted with Stone and requires having King Statue and Queen Statue, but the
+						statues aren't consumed when crafting. Teleports all villagers back to their
+						homes.
+						''' */
+				}
+			}
+
+			UniPylonCraftWithPylonsEnums: {
+				// Tooltip: ""
+
+				Disabled: {
+					// Label: Disabled
+					// Tooltip: ""
+				}
+
+				PreHardmode: {
+					// Label: Pre-Hardmode
+					// Tooltip: Craft with all Vanilla Pylons except the Hallow Pylon.
+				}
+
+				All: {
+					// Label: All
+					// Tooltip: Craft with all Vanilla Pylons.
+				}
 			}
 		}
 
@@ -831,29 +1236,9 @@ Mods: {
 				Tooltip: Expande ainda mais a taxa de spawn dos inimigos.
 			}
 
-			GreaterMultiBobberPotion: {
-				DisplayName: Grande Multi Poção do Anzol
-				Tooltip: Grande aumento na sua capacidade de pescaria.
-			}
-
-			MultiBobberPotion: {
-				DisplayName: Multi Poção do Anzol
-				Tooltip: Expande a sua capacidade de pescaria aumentando a coleta de itens.
-			}
-
 			SuperBattlePotion: {
 				DisplayName: Super Poção da Batalha
 				Tooltip: Massivamente aumenta a taxa de desova dos inimigos.
-			}
-
-			SuperMultiBobberPotion: {
-				DisplayName: Super Multi Poção do Anzol
-				Tooltip: Massivamente aumenta a sua capacidade de pescaria.
-			}
-
-			FishCoin: {
-				DisplayName: Moéda de Peixe
-				Tooltip: Um Pirata pode se interessar por isso.
 			}
 
 			FishCostumeBag: {
@@ -879,19 +1264,9 @@ Mods: {
 					'''
 			}
 
-			BestiaryTrophy: {
-				DisplayName: Troféu do Bestiário
-				Tooltip: ""
-			}
-
 			MoonWatch: {
 				DisplayName: Relógio da Lua
 				Tooltip: Avança as fazes da lua.
-			}
-
-			SlimeTrophy: {
-				DisplayName: Troféu da Geleia
-				Tooltip: ""
 			}
 
 			PlanteraSap: {
@@ -909,19 +1284,157 @@ Mods: {
 				Tooltip: Ativa o evento natalino.
 			}
 
-			StaffOfDifficulty: {
-				DisplayName: Cajado da Dificuldade
-				Tooltip:
-					'''
-					Uma ferramenta criativa que muda o modo de dificuldade do mundo fora do modo de jornada.
-					Isso mudará apenas para modos que são ativados nas configurações.
-					'''
-			}
-
 			WorldPeaceStandard: {
 				DisplayName: Peça da Paz Mundial
 				Tooltip: Cancela invasões
 			}
+
+			OldManVoodooDoll: {
+				// DisplayName: Old Man Voodoo Doll
+				// Tooltip: Take the curse with you
+			}
+
+			MasterStaff: {
+				/* Tooltip:
+					'''
+					Changes difficulty to [c/FF2619:{$UI.Master}].
+					In multiplayer, it will vote to change the difficulty.
+					''' */
+				// DisplayName: Master Staff
+			}
+
+			ExpertStaff: {
+				/* Tooltip:
+					'''
+					Changes difficulty to [c/FF9900:{$UI.Expert}].
+					In multiplayer, it will vote to change the difficulty.
+					''' */
+				// DisplayName: Expert Staff
+			}
+
+			ClassicStaff: {
+				/* Tooltip:
+					'''
+					Changes difficulty to [c/FFFFFF:{$UI.Normal}].
+					In multiplayer, it will vote to change the difficulty.
+					''' */
+				// DisplayName: Classic Staff
+			}
+
+			PlaceableLog: {
+				// DisplayName: Placeable Log
+				/* Tooltip:
+					'''
+					A log that will become a Fallen Log over time
+					Fairies may use it in valid locations
+					''' */
+			}
+
+			WarStandard: {
+				// DisplayName: War Standard
+				// Tooltip: The current invasion will gain reinforcements for a while.
+			}
+
+			GreaterBobberPotion: {
+				// DisplayName: Greater Bobber Potion
+				// Tooltip: Increases bobber amount while fishing.
+			}
+
+			BobberPotion: {
+				// DisplayName: Bobber Potion
+				// Tooltip: Increases bobber amount while fishing.
+			}
+
+			SuperBobberPotion: {
+				// DisplayName: Super Bobber Potion
+				// Tooltip: Increases bobber amount while fishing.
+			}
+
+			NameTag: {
+				// DisplayName: Name Tag
+				// Tooltip: Changes a nearby town NPC's name
+			}
+
+			CelestialWard: {
+				// DisplayName: Celestial Ward
+				/* Tooltip:
+					'''
+					Stops the Lunar Invasion
+					Prevents Moon Lord from appearing
+					''' */
+			}
+
+			LunarSigil: {
+				// DisplayName: Lunar Sigil
+				// Tooltip: Summons the Lunar Invasion
+			}
+
+			LunarTablet: {
+				// DisplayName: Lunar Tablet
+				// Tooltip: ""
+			}
+
+			CultMembershipCard: {
+				// DisplayName: Cult Membership Card
+				/* Tooltip:
+					'''
+					Prevents you from hurting Cultists while in the inventory
+					Right click to deactivate effects
+
+					''' */
+			}
+
+			CultMembershipCardInactive: {
+				// DisplayName: Cult Membership Card (Inactive)
+				/* Tooltip:
+					'''
+					Prevents you from hurting Cultists while in the inventory
+					Effects are currently inactive, Right click to reactivate
+					''' */
+			}
+
+			EmpressDust: {
+				// DisplayName: Empress Dust
+				// Tooltip: ""
+			}
+
+			DeerclopsFur: {
+				// DisplayName: Deerclops Fur
+				// Tooltip: ""
+			}
+
+			FishronScale: {
+				// DisplayName: Fishron Scale
+				// Tooltip: ""
+			}
+
+			JackStatue: {
+				// DisplayName: Jack Statue
+				// Tooltip: ""
+			}
+		}
+
+		Tiles: {
+			// PlacedLog.MapEntry: Placed Log
+			// JackStatue.MapEntry: Statue
+		}
+
+		Buffs: {
+			Bobber: {
+				// DisplayName: Bobber
+				// Description: Increased bobber amount while fishing
+			}
+
+			WarStandard: {
+				// DisplayName: War Standard
+				// Description: Invasions will have reinforcements
+			}
+		}
+
+		Conditions: {
+			// CelestialWard: Refund Fragments at Shimmer
+			// DownedMoonLord: Drops after defeating the Moon Lord
+			// HasQueenAndKingStatue: Has King Statue and Queen Statue
 		}
 	}
 }

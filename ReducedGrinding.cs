@@ -8,23 +8,30 @@
  * Main.NewText(string);
  */
 
+using Humanizer;
+using Microsoft.Xna.Framework;
+using ReducedGrinding.Common.GlobalItems;
+using ReducedGrinding.Common.GlobalNPCs;
+using ReducedGrinding.Common.ModPlayers;
+using ReducedGrinding.Common.ModSystems;
+using ReducedGrinding.Configuration;
+using ReducedGrinding.Content.Items;
+using ReducedGrinding.Content.Items.Consumable;
+using ReducedGrinding.Content.Items.Consumable.Summoning;
 using System.IO;
 using Terraria;
-using Terraria.GameContent.UI;
+using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding
 {
-
-    class ReducedGrinding : Mod
+    public class ReducedGrinding : Mod
     {
-        public static int FishCoin;
-
         public override void Load()
         {
-            FishCoin = CustomCurrencyManager.RegisterCurrency(new Currencies.FishCoinCurrency(ModContent.ItemType<Items.FishCoin>(), 9999L, "Fish Coin"));
-
             ModLoader.TryGetMod("Wikithis", out Mod wikithis);
             if (wikithis != null && !Main.dedServ)
             {
@@ -32,101 +39,234 @@ namespace ReducedGrinding
             }
         }
 
-        internal enum MessageType : byte
+        public enum MessageType : byte
         {
-            advanceMoonPhase,
-            advanceDifficulty,
-            anglerQuests,
-            dayTime,
-            instantInvasion,
-            travelingMerchantDiceRolls,
-            chatMerchantItems,
-            chatQuestFish,
-            tryBumblebeeTunaSwap,
-            chatBumblebeeTunaIncrease
+            FirstQuestOfTheDay,
+            TravelingMerchantDiceRolls,
+            ChatQuestFish,
+            BattleBuffTier,
+            BobberBuffTier,
+            ChaosSwarmtime,
+            FaelingHelperDespawn,
+            LunarApocalypseIsUp,
+            MoonLordCountdownRunning,
         }
 
         //NOTE: You can test 2 players on 1 PC using the start-tModLoader.bat files.
         public override void HandlePacket(BinaryReader reader, int whoAmI)
         {
             MessageType msgType = (MessageType)reader.ReadByte();
+            byte playerNumber;
             switch (msgType)
             {
-                case MessageType.advanceMoonPhase:
-                    Global.Update.advanceMoonPhase = reader.ReadBoolean();
+                case MessageType.FirstQuestOfTheDay:
+                    UnlimitedAnglerQuests.firstQuestOfTheDay = reader.ReadBoolean();
                     break;
-                case MessageType.advanceDifficulty:
-                    Global.Update.advanceDifficulty = reader.ReadBoolean();
+                case MessageType.TravelingMerchantDiceRolls:
+                    MerchantDice.travelingMerchantDiceRolls = reader.ReadInt32();
                     break;
-                case MessageType.anglerQuests:
-                    Global.Update.anglerQuests = reader.ReadInt32();
+                case MessageType.ChatQuestFish:
+                    AnglerSystem.chatQuestFish = reader.ReadBoolean();
                     break;
-                case MessageType.dayTime:
-                    Global.Update.dayTime = reader.ReadBoolean();
+                case MessageType.BattleBuffTier:
+                    playerNumber = reader.ReadByte();
+                    BattleBuffTiers battleBuffTiers = Main.player[playerNumber].GetModPlayer<BattleBuffTiers>();
+                    battleBuffTiers.ReceivePlayerSync(reader);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        battleBuffTiers.SyncPlayer(-1, whoAmI, false);
+                    }
                     break;
-                case MessageType.instantInvasion:
-                    Global.Update.instantInvasion = reader.ReadBoolean();
+                case MessageType.BobberBuffTier:
+                    playerNumber = reader.ReadByte();
+                    BobberBuffTiers bobberBuffTiers = Main.player[playerNumber].GetModPlayer<BobberBuffTiers>();
+                    bobberBuffTiers.ReceivePlayerSync(reader);
+                    if (Main.netMode == NetmodeID.Server)
+                    {
+                        bobberBuffTiers.SyncPlayer(-1, whoAmI, false);
+                    }
                     break;
-                case MessageType.travelingMerchantDiceRolls:
-                    Global.Update.travelingMerchantDiceRolls = reader.ReadInt32();
+                case MessageType.ChaosSwarmtime:
+                    ChaosElementalSwarm.chaosSwarmtime = reader.ReadInt32();
                     break;
-                case MessageType.chatMerchantItems:
-                    Global.Update.chatMerchantItems = reader.ReadBoolean();
+                case MessageType.FaelingHelperDespawn:
+                    NPC npc = Main.npc[reader.ReadInt32()];
+                    FaelingHelper faelingHelper = npc.GetGlobalNPC<FaelingHelper>();
+                    faelingHelper.despawn = reader.ReadBoolean();
                     break;
-                case MessageType.chatQuestFish:
-                    Global.Update.chatQuestFish = reader.ReadInt32();
+                case MessageType.LunarApocalypseIsUp:
+                    LunarInvasion.lunarApocalypseIsUp = reader.ReadBoolean();
                     break;
-                case MessageType.tryBumblebeeTunaSwap:
-                    Global.Update.tryBumblebeeTunaSwap = reader.ReadInt32();
-                    break;
-                case MessageType.chatBumblebeeTunaIncrease:
-                    Global.Update.chatBumblebeeTunaIncrease = reader.ReadBoolean();
+                case MessageType.MoonLordCountdownRunning:
+                    LunarInvasion.moonLordCountdownRunning = reader.ReadBoolean();
                     break;
                 default:
                     Logger.WarnFormat("Reduced Grinding: Unknown Message type: {0}", msgType);
                     break;
             }
         }
+
+        public static Color DebugColor()
+        {
+            string name = Main.LocalPlayer.name.Titleize();
+            return name == "Mario" ? Color.Red : name == "Luigi" ? Color.Lime : Color.White;
+        }
+
+        public static string GetText(string key)
+        {
+            return Language.GetOrRegister("Mods.ReducedGrinding." + key).ToString();
+        }
     }
 
-    class ReducedGrindingSave : ModSystem
+    public class ReducedGrindingSave : ModSystem
     {
+        private static readonly EnemyLootConfig lootConfig = GetInstance<EnemyLootConfig>();
+
         public override void OnWorldLoad()
         {
-            Global.Update.advanceMoonPhase = false;
-            Global.Update.advanceDifficulty = false;
-            Global.Update.instantInvasion = false;
-            Global.Update.chatMerchantItems = false;
-            Global.Update.chatQuestFish = 0;
-            Global.Update.chatBumblebeeTunaIncrease = false;
+            FasterInvasionSummons.instantInvasion = false;
+            TravelingMerchant.chatMerchantItems = false;
+            AnglerSystem.chatQuestFish = false;
+            DifficultyStavesSystem.playersVotingForDifficultyChange.Clear();
+            DifficultyStavesSystem.difficultyVotingTimer = 0;
+            LunarSigilSystem.activated = 0;
+            LunarSigilSystem.npcsToRemove = [];
+            CelestialWardSystem.activated = 0;
+            CelestialWardSystem.npcsToRemove = [];
+            LunarInvasion.UpdateStatus();
+            NPCArrivalMessages.cultistsMessageCooldown = 600;
+
+            Rectangle shimmerSurface = new(-1, -1, 0, 1);
+            for (int j = (int)Main.rockLayer; j < Main.UnderworldLayer; j++)
+            {
+                for (int i = 0; i < Main.maxTilesX; i++)
+                {
+                    Tile tileSafely = Framing.GetTileSafely(i, j);
+
+                    if (tileSafely == null)
+                    {
+                        continue;
+                    }
+
+                    if (tileSafely.LiquidType == LiquidID.Shimmer && tileSafely.LiquidAmount > 0)
+                    {
+                        if (shimmerSurface.X == -1)
+                        {
+                            shimmerSurface.X = i;
+                            shimmerSurface.Y = j;
+                        }
+                        shimmerSurface.Width = 1 + (i - shimmerSurface.X);
+                    }
+                    else if (shimmerSurface.X != -1)
+                    {
+                        goto finishedShimmerSearch;
+                    }
+                }
+            }
+            finishedShimmerSearch:;
+            FaelingHelper.shimmerPosition = new(-1, -1);
+            if (shimmerSurface.Width > 0)
+            {
+                FaelingHelper.shimmerPosition.X = shimmerSurface.Center.X * 16;
+                FaelingHelper.shimmerPosition.Y = shimmerSurface.Y * 16;
+            }
         }
 
         public override void SaveWorldData(TagCompound tag)
         {
-            tag["anglerQuests"] = Global.Update.anglerQuests;
-            tag["dayTime"] = Global.Update.dayTime;
-            tag["travelingMerchantDiceRolls"] = Global.Update.travelingMerchantDiceRolls;
-            tag["tryBumblebeeTunaSwap"] = Global.Update.tryBumblebeeTunaSwap;
+            tag["firstQuestOfTheDay"] = UnlimitedAnglerQuests.firstQuestOfTheDay;
+            tag["travelingMerchantDiceRolls"] = MerchantDice.travelingMerchantDiceRolls;
+            tag["npcArrivalMessagesOldMan"] = NPCArrivalMessages.oldMan;
+            tag["npcArrivalMessagesCultists"] = NPCArrivalMessages.cultists;
+            tag["startSandstorm"] = ShimmerEffectsModSystem.startSandstorm;
+            tag["shimmerFound"] = FaelingHelper.shimmerFound;
+            tag["jungleHardmodeKills"] = BiomeKeyDrop.jungleHardmodeKills;
+            tag["corruptionHardmodeKills"] = BiomeKeyDrop.corruptionHardmodeKills;
+            tag["crimsonHardmodeKills"] = BiomeKeyDrop.crimsonHardmodeKills;
+            tag["hallowHardmodeKills"] = BiomeKeyDrop.hallowHardmodeKills;
+            tag["snowHardmodeKills"] = BiomeKeyDrop.snowHardmodeKills;
+            tag["desertHardmodeKills"] = BiomeKeyDrop.desertHardmodeKills;
+            tag["chaosSwarmtime"] = ChaosElementalSwarm.chaosSwarmtime;
         }
 
         public override void LoadWorldData(TagCompound tag)
         {
-            if (!tag.TryGet("anglerQuests", out Global.Update.anglerQuests))
+            if (!tag.TryGet("firstQuestOfTheDay", out UnlimitedAnglerQuests.firstQuestOfTheDay))
             {
-                Global.Update.anglerQuests = 0;
+                UnlimitedAnglerQuests.firstQuestOfTheDay = true;
             }
-            if (!tag.TryGet("dayTime", out Global.Update.dayTime))
+            if (!tag.TryGet("travelingMerchantDiceRolls", out MerchantDice.travelingMerchantDiceRolls))
             {
-                Global.Update.dayTime = true;
+                MerchantDice.travelingMerchantDiceRolls = 0;
             }
-            if (!tag.TryGet("travelingMerchantDiceRolls", out Global.Update.travelingMerchantDiceRolls))
+            if (!tag.TryGet("npcArrivalMessagesOldMan", out NPCArrivalMessages.oldMan))
             {
-                Global.Update.travelingMerchantDiceRolls = 0;
+                NPCArrivalMessages.oldMan = false;
             }
-            if (!tag.TryGet("tryBumblebeeTunaSwap", out Global.Update.tryBumblebeeTunaSwap))
+            if (!tag.TryGet("npcArrivalMessagesCultists", out NPCArrivalMessages.cultists))
             {
-                Global.Update.tryBumblebeeTunaSwap = 0;
+                NPCArrivalMessages.cultists = false;
+            }
+            if (!tag.TryGet("startSandstorm", out ShimmerEffectsModSystem.startSandstorm))
+            {
+                ShimmerEffectsModSystem.startSandstorm = false;
+            }
+            if (!tag.TryGet("shimmerFound", out FaelingHelper.shimmerFound))
+            {
+                FaelingHelper.shimmerFound = false;
+            }
+            if (lootConfig.GuaranteedBiomeKey == 0)
+            {
+                BiomeKeyDrop.jungleHardmodeKills = 0;
+                BiomeKeyDrop.corruptionHardmodeKills = 0;
+                BiomeKeyDrop.crimsonHardmodeKills = 0;
+                BiomeKeyDrop.hallowHardmodeKills = 0;
+                BiomeKeyDrop.snowHardmodeKills = 0;
+                BiomeKeyDrop.desertHardmodeKills = 0;
+            }
+            else
+            {
+                if (!tag.TryGet("jungleHardmodeKills", out BiomeKeyDrop.jungleHardmodeKills))
+                {
+                    BiomeKeyDrop.jungleHardmodeKills = 0;
+                }
+                if (!tag.TryGet("corruptionHardmodeKills", out BiomeKeyDrop.corruptionHardmodeKills))
+                {
+                    BiomeKeyDrop.corruptionHardmodeKills = 0;
+                }
+                if (!tag.TryGet("crimsonHardmodeKills", out BiomeKeyDrop.crimsonHardmodeKills))
+                {
+                    BiomeKeyDrop.crimsonHardmodeKills = 0;
+                }
+                if (!tag.TryGet("hallowHardmodeKills", out BiomeKeyDrop.hallowHardmodeKills))
+                {
+                    BiomeKeyDrop.hallowHardmodeKills = 0;
+                }
+                if (!tag.TryGet("snowHardmodeKills", out BiomeKeyDrop.snowHardmodeKills))
+                {
+                    BiomeKeyDrop.snowHardmodeKills = 0;
+                }
+                if (!tag.TryGet("desertHardmodeKills", out BiomeKeyDrop.desertHardmodeKills))
+                {
+                    BiomeKeyDrop.desertHardmodeKills = 0;
+                }
+            }
+            if (!tag.TryGet("chaosSwarmtime", out ChaosElementalSwarm.chaosSwarmtime))
+            {
+                ChaosElementalSwarm.chaosSwarmtime = 0;
             }
         }
     }
+
+    //class HowToUseBestiaryUnlock
+    //{
+    //    //add using Terraria.GameContent.Bestiary
+
+    //    public static bool HowToUseBestiaryUnlockTest()
+    //    {
+    //        BestiaryEntry entry = BestiaryDatabaseNPCsPopulator.FindEntryByNPCID(NPCID.SkeletonMerchant);
+    //        BestiaryEntryUnlockState unlockState = entry.UIInfoProvider.GetEntryUICollectionInfo().UnlockState;
+    //        return unlockState != BestiaryEntryUnlockState.NotKnownAtAll_0;
+    //    }
+    //}
 }
