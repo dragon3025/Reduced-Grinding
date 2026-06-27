@@ -3,7 +3,6 @@ using System;
 using System.ComponentModel;
 using Terraria.ID;
 using Terraria.ModLoader.Config;
-using static Terraria.ModLoader.ModContent;
 
 namespace ReducedGrinding.Configuration
 {
@@ -76,7 +75,7 @@ namespace ReducedGrinding.Configuration
         {
             BobberPotionIngredient = new(ItemID.ChlorophyteOre);
             BobberPotionAlternateIngredient = new(ItemID.None);
-            GreaterBobberPotionIngredient = new(ItemType<EmpressDust>());
+            GreaterBobberPotionIngredient = new ItemDefinition("ReducedGrinding", nameof(EmpressDust));
             GreaterBobberPotionAlternateIngredient = new(ItemID.None);
             SuperBobberPotionIngredient = new(ItemID.LunarOre);
             SuperBobberPotionAlternateIngredient = new(ItemID.None);
