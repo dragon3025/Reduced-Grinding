@@ -1305,8 +1305,8 @@ Mods: {
 			MasterStaff: {
 				Tooltip:
 					'''
-					Changes difficulty to [c/FF2619:{$UI.Master}].
-					In multiplayer, it will vote to change the difficulty.
+					Changes difficulty to [c/FF2619:{$UI.Master}]
+					In multiplayer, it will vote to change the difficulty
 					'''
 				DisplayName: Master Staff
 			}
@@ -1314,8 +1314,8 @@ Mods: {
 			ExpertStaff: {
 				Tooltip:
 					'''
-					Changes difficulty to [c/FF9900:{$UI.Expert}].
-					In multiplayer, it will vote to change the difficulty.
+					Changes difficulty to [c/FF9900:{$UI.Expert}]
+					In multiplayer, it will vote to change the difficulty
 					'''
 				DisplayName: Expert Staff
 			}
@@ -1323,8 +1323,8 @@ Mods: {
 			ClassicStaff: {
 				Tooltip:
 					'''
-					Changes difficulty to [c/FFFFFF:{$UI.Normal}].
-					In multiplayer, it will vote to change the difficulty.
+					Changes difficulty to [c/FFFFFF:{$UI.Normal}]
+					In multiplayer, it will vote to change the difficulty
 					'''
 				DisplayName: Classic Staff
 			}
@@ -1340,22 +1340,22 @@ Mods: {
 
 			WarStandard: {
 				DisplayName: War Standard
-				Tooltip: The current invasion will gain reinforcements for a while.
+				Tooltip: The current invasion will gain reinforcements for a while
 			}
 
 			GreaterBobberPotion: {
 				DisplayName: Greater Bobber Potion
-				Tooltip: Increases bobber amount while fishing.
+				Tooltip: Increases bobber amount while fishing
 			}
 
 			BobberPotion: {
 				DisplayName: Bobber Potion
-				Tooltip: Increases bobber amount while fishing.
+				Tooltip: Increases bobber amount while fishing
 			}
 
 			SuperBobberPotion: {
 				DisplayName: Super Bobber Potion
-				Tooltip: Increases bobber amount while fishing.
+				Tooltip: Increases bobber amount while fishing
 			}
 
 			NameTag: {
