@@ -1337,7 +1337,7 @@ Mods: {
 
 			GreaterBobberPotion: {
 				// DisplayName: Greater Bobber Potion
-				// Tooltip: Increases bobber amount while fishing
+				// Tooltip: "{$Items.BobberPotion.Tooltip}"
 			}
 
 			BobberPotion: {
@@ -1347,7 +1347,7 @@ Mods: {
 
 			SuperBobberPotion: {
 				// DisplayName: Super Bobber Potion
-				// Tooltip: Increases bobber amount while fishing
+				// Tooltip: "{$Items.BobberPotion.Tooltip}"
 			}
 
 			NameTag: {

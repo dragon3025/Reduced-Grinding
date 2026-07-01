@@ -1241,12 +1241,12 @@ Mods: {
 		Items: {
 			GreaterBattlePotion: {
 				DisplayName: Greater Battle Potion
-				Tooltip: Greatly increases enemy spawn rate
+				Tooltip: "{$ItemTooltip.BattlePotion}"
 			}
 
 			SuperBattlePotion: {
 				DisplayName: Super Battle Potion
-				Tooltip: Massively increases enemy spawn rate
+				Tooltip: "{$ItemTooltip.BattlePotion}"
 			}
 
 			FishCostumeBag: {
@@ -1345,7 +1345,7 @@ Mods: {
 
 			GreaterBobberPotion: {
 				DisplayName: Greater Bobber Potion
-				Tooltip: Increases bobber amount while fishing
+				Tooltip: "{$Items.BobberPotion.Tooltip}"
 			}
 
 			BobberPotion: {
@@ -1355,7 +1355,7 @@ Mods: {
 
 			SuperBobberPotion: {
 				DisplayName: Super Bobber Potion
-				Tooltip: Increases bobber amount while fishing
+				Tooltip: "{$Items.BobberPotion.Tooltip}"
 			}
 
 			NameTag: {
