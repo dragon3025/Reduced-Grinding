@@ -50,7 +50,7 @@ namespace ReducedGrinding.Common.GlobalNPCs
         {
             if (npc.type == NPCID.Golem)
             {
-                if (lootConfig.MaxBeetleHuskInNormal > 8)
+                if (lootConfig.MaxBeetleHuskInNormal == 8)
                 {
                     return false;
                 }
