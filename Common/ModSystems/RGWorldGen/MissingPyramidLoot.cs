@@ -42,10 +42,7 @@ namespace ReducedGrinding.Common.ModSystems
                     for (; !Main.tile[posX, posY].HasTile && posY < Main.worldSurface; posY++)
                     {
                     }
-                    if (Main.tile[posX, posY].TileType != TileID.Sand ||
-                        Main.tile[posX + 1, posY].TileType != TileID.Sand ||
-                        Main.tile[posX + 2, posY].TileType != TileID.Sand ||
-                        posY <= 150)
+                    if (Main.tile[posX, posY].TileType != TileID.Sand || posY <= 150)
                     {
                         continue;
                     }
@@ -54,7 +51,7 @@ namespace ReducedGrinding.Common.ModSystems
 
                     int buildPosY = posY + 5;
 
-                    if (AvoidedTilesNearby(posX, posX))
+                    if (AvoidedTilesNearby(posX, posY))
                     {
                         continue;
                     }
